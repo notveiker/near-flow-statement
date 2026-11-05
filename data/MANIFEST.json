@@ -28,6 +28,12 @@
    "sha256": "199d54d4131b432f73fa7f8aa81a2cf168ac4dec7791aac7629d8f1674bef4c2",
    "source": "https://api.coingecko.com/api/v3/coins/near"
   },
+  "raw/explorer/daily.json": {
+   "bytes": 6937,
+   "fetched_at": "2026-11-05T23:16:03Z",
+   "sha256": "0f6afb69104ac0390883f90bebbf4c3739088ce7d7ac12c6080e384594265eca",
+   "source": "https://explorer.near-intents.org/api/v0/transactions?statuses=SUCCESS (per-day cursor pull, 2026-11-04..2026-11-04)"
+  },
   "raw/llama/chainfees_near.json": {
    "bytes": 40580,
    "fetched_at": "2026-11-05T22:51:13Z",

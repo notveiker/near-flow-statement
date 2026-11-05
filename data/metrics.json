@@ -9,6 +9,84 @@
  "capture_share_30d_pct": 32.5,
  "coverage_rev_near_30d_pct": 15.7,
  "coverage_rev_usd_30d_pct": 15.7,
+ "explorer_appfees_bp": 48.6,
+ "explorer_appfees_to_buybacks_pct": 4.0,
+ "explorer_appfees_to_buybacks_usd_k": 9.4,
+ "explorer_appfees_usd_k": 234.7,
+ "explorer_channel_hhi": 0.225,
+ "explorer_days": 1,
+ "explorer_swaps_k": 20.4,
+ "explorer_top_channels": [
+  {
+   "channel": "swapkit",
+   "share_pct": 42.0
+  },
+  {
+   "channel": "(none)",
+   "share_pct": 16.3
+  },
+  {
+   "channel": "lifi",
+   "share_pct": 10.7
+  },
+  {
+   "channel": "zodl",
+   "share_pct": 6.5
+  },
+  {
+   "channel": "vizor",
+   "share_pct": 4.5
+  },
+  {
+   "channel": "new.intents-referral.near",
+   "share_pct": 3.9
+  },
+  {
+   "channel": "rango",
+   "share_pct": 3.0
+  },
+  {
+   "channel": "rhea",
+   "share_pct": 2.9
+  }
+ ],
+ "explorer_top_fee_recipients": [
+  {
+   "recipient": "ledgerswapkit.near",
+   "usd_k": 113.8
+  },
+  {
+   "recipient": "trustswapkit.near",
+   "usd_k": 35.8
+  },
+  {
+   "recipient": "zodlswaps.near",
+   "usd_k": 20.9
+  },
+  {
+   "recipient": "f6e2a398796c74b6f555dd3786c02e2792ea53d6ad4ee3a59fd95576682b27a2",
+   "usd_k": 14.6
+  },
+  {
+   "recipient": "tangemswapkit.near",
+   "usd_k": 13.8
+  },
+  {
+   "recipient": "buybacks.multisignature.near",
+   "usd_k": 9.4
+  },
+  {
+   "recipient": "thorswap.near",
+   "usd_k": 5.0
+  },
+  {
+   "recipient": "swapkit.near",
+   "usd_k": 2.9
+  }
+ ],
+ "explorer_usd_in_m": 48.3,
+ "explorer_vs_llama_net_pct": 67.1,
+ "explorer_vs_llama_reported_pct": 33.6,
  "fefunds_wallet_near_m": 1.978,
  "gas_burn_share_pct": 100.0,
  "gross_staking_yield_pct": 5.05,

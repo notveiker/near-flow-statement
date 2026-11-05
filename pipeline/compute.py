@@ -179,6 +179,37 @@ def build() -> tuple[dict, dict]:
         net_by_endpoint = rewards - (end - start)
         m["h1a_pass"] = bool((outflow - inflow) < 0.5 * rewards and net_by_endpoint < 0.5 * rewards)
 
+    # ---------- 1Click swaps from the Intents Explorer API (one-sided amountInUsd) ----------
+    if (RAW / "explorer" / "daily.json").exists():
+        days = [x for x in read_raw("explorer/daily.json")["days"] if add_days(asof, -29) <= x["date"] <= asof]
+        if days:
+            n_days = len(days)
+            usd = sum(x["usd_in"] for x in days)
+            llama_same = sum(v.get(x["date"], 0) for x in days)
+            m["explorer_days"] = n_days
+            m["explorer_usd_in_m"] = r(usd / 1e6, 1)
+            m["explorer_swaps_k"] = r(sum(x["n"] for x in days) / 1e3, 1)
+            m["explorer_vs_llama_reported_pct"] = r(usd / llama_same * 100, 1)
+            m["explorer_vs_llama_net_pct"] = r(usd / (llama_same / 2) * 100, 1)
+            ref = defaultdict(float)
+            for x in days:
+                for t in x["top_referrals"]:
+                    ref[t["referral"]] += t["usd_in"]
+            shares = sorted(((k, val / usd * 100) for k, val in ref.items()), key=lambda kv: -kv[1])
+            m["explorer_top_channels"] = [{"channel": k, "share_pct": r(s, 1)} for k, s in shares[:8]]
+            m["explorer_channel_hhi"] = r(sum((s / 100) ** 2 for _, s in shares), 3)
+            fee = defaultdict(float)
+            for x in days:
+                for k, val in x["fee_usd_by_recipient"].items():
+                    fee[k] += val
+            tot_fee = sum(fee.values())
+            m["explorer_appfees_usd_k"] = r(tot_fee / 1e3, 1)
+            m["explorer_appfees_bp"] = r(tot_fee / usd * 1e4, 1)
+            m["explorer_appfees_to_buybacks_usd_k"] = r(fee.get("buybacks.multisignature.near", 0) / 1e3, 1)
+            m["explorer_appfees_to_buybacks_pct"] = r(fee.get("buybacks.multisignature.near", 0) / tot_fee * 100, 1)
+            m["explorer_top_fee_recipients"] = [{"recipient": k, "usd_k": r(val / 1e3, 1)}
+                                                for k, val in sorted(fee.items(), key=lambda kv: -kv[1])[:8]]
+
     # ---------- peers ----------
     peer_rows = []
     tot30 = sum(window_sum(vol[s], asof, 30) for s in PEERS)
