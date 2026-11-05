@@ -1,0 +1,112 @@
+{
+ "files": {
+  "raw/coingecko/near_market_chart_365d.json": {
+   "bytes": 37953,
+   "fetched_at": "2026-11-05T22:51:17Z",
+   "sha256": "3cb5249d777e88f29315215745c5ff57847f620acf94aaadd86e48afeab501b8",
+   "source": "https://api.coingecko.com/api/v3/coins/near/market_chart?vs_currency=usd&days=365&interval=daily"
+  },
+  "raw/coingecko/near_snapshot.json": {
+   "bytes": 172,
+   "fetched_at": "2026-11-05T22:51:17Z",
+   "sha256": "199d54d4131b432f73fa7f8aa81a2cf168ac4dec7791aac7629d8f1674bef4c2",
+   "source": "https://api.coingecko.com/api/v3/coins/near"
+  },
+  "raw/llama/chainfees_near.json": {
+   "bytes": 40580,
+   "fetched_at": "2026-11-05T22:51:13Z",
+   "sha256": "9c92ce1711a251bb1782c32d0652aa62c7460d38c1962da91bc558e10865b2a0",
+   "source": "https://api.llama.fi/summary/fees/near?dataType=dailyFees"
+  },
+  "raw/llama/dailyHoldersRevenue_near-intents.json": {
+   "bytes": 10159,
+   "fetched_at": "2026-11-05T22:51:13Z",
+   "sha256": "e49f45d5f03a411721847b8b05d617ac43138fcb16970a83a79f2d2e9a94aee4",
+   "source": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyHoldersRevenue"
+  },
+  "raw/llama/dailyRevenue_near-intents.json": {
+   "bytes": 10262,
+   "fetched_at": "2026-11-05T22:51:12Z",
+   "sha256": "1c07e697a9afd11f400576d38988a2c4f71ab0ccf0ec1f9acf6eb3b9535caea9",
+   "source": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyRevenue"
+  },
+  "raw/llama/fees_chainflip-amm.json": {
+   "bytes": 19967,
+   "fetched_at": "2026-11-05T22:51:10Z",
+   "sha256": "cc19df6373b49a0c7cdcd77a157841d5ff80e22adc81ddc97bb09010d820cfe3",
+   "source": "https://api.llama.fi/summary/fees/chainflip-amm?dataType=dailyFees"
+  },
+  "raw/llama/fees_maya-protocol.json": {
+   "bytes": 8700,
+   "fetched_at": "2026-11-05T22:51:12Z",
+   "sha256": "aa6e6dd4387e1a6460e82af70b15629caeb6ecbccda70aef5613f0d248f15a2b",
+   "source": "https://api.llama.fi/summary/fees/maya-protocol?dataType=dailyFees"
+  },
+  "raw/llama/fees_near-intents.json": {
+   "bytes": 11467,
+   "fetched_at": "2026-11-05T22:51:07Z",
+   "sha256": "20099b72ae5cd03e23dd068b5f7d91d26df881267047f23ad3a9461e70934a9f",
+   "source": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyFees"
+  },
+  "raw/llama/fees_thorchain-dex.json": {
+   "bytes": 40767,
+   "fetched_at": "2026-11-05T22:51:09Z",
+   "sha256": "7aab8630938565658ed5879e73c8dd107488fc36c81af92c64ddd337ef176756",
+   "source": "https://api.llama.fi/summary/fees/thorchain-dex?dataType=dailyFees"
+  },
+  "raw/llama/volume_chainflip-amm.json": {
+   "bytes": 19602,
+   "fetched_at": "2026-11-05T22:51:10Z",
+   "sha256": "597c6e6bd83e79e37d4bccbcb70abe681186f7331240783971edc4615cd782c4",
+   "source": "https://api.llama.fi/summary/dexs/chainflip-amm?dataType=dailyVolume"
+  },
+  "raw/llama/volume_maya-protocol.json": {
+   "bytes": 9962,
+   "fetched_at": "2026-11-05T22:51:11Z",
+   "sha256": "fc0d9b05af6d78db474426e9d1b7713bd194b4ad25481bdcf7e5b2d8cf73d268",
+   "source": "https://api.llama.fi/summary/dexs/maya-protocol?dataType=dailyVolume"
+  },
+  "raw/llama/volume_near-intents.json": {
+   "bytes": 15214,
+   "fetched_at": "2026-11-05T22:51:06Z",
+   "sha256": "8fcf1cdd855f1f9306eb977a45604c279080d69924cc7c7d70ed351b5154dd13",
+   "source": "https://api.llama.fi/summary/dexs/near-intents?dataType=dailyVolume"
+  },
+  "raw/llama/volume_thorchain-dex.json": {
+   "bytes": 44947,
+   "fetched_at": "2026-11-05T22:51:08Z",
+   "sha256": "33f4253959332e1a3d4d83a07fc8a731bd1cf56bf332605c604d564f77ac1a75",
+   "source": "https://api.llama.fi/summary/dexs/thorchain-dex?dataType=dailyVolume"
+  },
+  "raw/nearblocks/charts.json": {
+   "bytes": 1538633,
+   "fetched_at": "2026-11-05T22:51:15Z",
+   "sha256": "2b7345969508264434d8c4dfec406d2734108d136159595ce8be3326e528e566",
+   "source": "https://api.nearblocks.io/v1/charts"
+  },
+  "raw/rpc/final_block.json": {
+   "bytes": 189,
+   "fetched_at": "2026-11-05T22:51:17Z",
+   "sha256": "7618a460b4a9d493f6a844e5c9129078e383ab4fb523f095120aca71fcc989bf",
+   "source": "rpc block {finality: final}"
+  },
+  "raw/rpc/protocol_config.json": {
+   "bytes": 244,
+   "fetched_at": "2026-11-05T22:51:18Z",
+   "sha256": "f07cfe75700c99c1258964520d23e50ffce1b1c09a4776328ee9dea700ff31e3",
+   "source": "rpc EXPERIMENTAL_protocol_config {finality: final}"
+  },
+  "raw/rpc/validators.json": {
+   "bytes": 20388,
+   "fetched_at": "2026-11-05T22:51:18Z",
+   "sha256": "fc982e0204c342a80d56676c6ce4367b40861f6c51c2c7423d78b0ed974efa48",
+   "source": "rpc validators [null]"
+  },
+  "raw/rpc/wallets.json": {
+   "bytes": 568,
+   "fetched_at": "2026-11-05T22:51:19Z",
+   "sha256": "b8b264ed703b8ba338747cc7e0df9b0bf5ec81eea80d8ec8c8a728179a693b02",
+   "source": "rpc view_account at block 223230811"
+  }
+ }
+}
