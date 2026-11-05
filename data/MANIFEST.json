@@ -1,5 +1,21 @@
 {
  "files": {
+  "raw/bq/staking_flows_daily.json": {
+   "bytes": 13581,
+   "bytes_processed_estimate": 51201758030,
+   "fetched_at": "2026-11-05T22:55:37Z",
+   "rows": 90,
+   "sha256": "010fcd4df130391c4e1006016e3705e8e9f9e984923b276235c74aaffc2d8eac",
+   "source": "bigquery: sql/staking_flows_daily.sql"
+  },
+  "raw/bq/staking_pool_totals_endpoints.json": {
+   "bytes": 220,
+   "bytes_processed_estimate": 626802239,
+   "fetched_at": "2026-11-05T22:56:05Z",
+   "rows": 2,
+   "sha256": "4e1b90af3b259723a27fe8211cc7448340dbdbf73ae2f63bb25d44d56e2f3b2e",
+   "source": "bigquery: sql/staking_pool_totals_endpoints.sql"
+  },
   "raw/coingecko/near_market_chart_365d.json": {
    "bytes": 37953,
    "fetched_at": "2026-11-05T22:51:17Z",

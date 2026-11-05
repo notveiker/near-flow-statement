@@ -10,7 +10,7 @@ from __future__ import annotations
 import json
 from collections import defaultdict
 
-from .common import DATA, METRICS, YOCTO, add_days, day, read_raw
+from .common import DATA, METRICS, RAW, YOCTO, add_days, day, read_raw
 
 FEE_SWITCH = "2026-02-23"  # NEAR Intents fee switch / buyback start (DefiLlama methodology)
 PEERS = ["near-intents", "thorchain-dex", "chainflip-amm", "maya-protocol"]
@@ -156,6 +156,28 @@ def build() -> tuple[dict, dict]:
     m["staked_near_m"] = r(staked / 1e6, 1)
     m["staked_share_pct"] = r(staked / total_supply * 100, 1)
     m["gross_staking_yield_pct"] = r(0.9 * (mi_num / mi_den) / (staked / total_supply) * 100, 2)
+
+    # ---------- staking-pool flows (BigQuery account_changes; PREREG H1a) ----------
+    if (RAW / "bq" / "staking_flows_daily.json").exists():
+        rows = read_raw("bq/staking_flows_daily.json")
+        tot = lambda k: sum(float(x[k]) for x in rows)  # noqa: E731
+        rewards, inflow, outflow = tot("rewards_near"), tot("inflow_near"), tot("outflow_near")
+        m["pool_flow_days"] = len(rows)
+        m["pool_rewards_90d_m"] = r(rewards / 1e6, 2)
+        m["pool_inflow_90d_m"] = r(inflow / 1e6, 1)
+        m["pool_outflow_90d_m"] = r(outflow / 1e6, 1)
+        m["pool_net_outflow_90d_m"] = r((outflow - inflow) / 1e6, 1)
+        m["pool_net_outflow_to_rewards_x"] = r((outflow - inflow) / rewards, 2)
+        ends = {x["block_date"]: float(x["pool_total_near"]) for x in read_raw("bq/staking_pool_totals_endpoints.json")}
+        start, end = ends["2026-08-06"], ends["2026-11-04"]
+        m["pool_total_start_m"] = r(start / 1e6, 1)
+        m["pool_total_end_m"] = r(end / 1e6, 1)
+        m["pool_total_change_m"] = r((end - start) / 1e6, 1)
+        # Residual between the endpoint balances and the summed daily flows (method check, not a finding).
+        m["pool_flow_residual_m"] = r(((end - start) - (rewards + tot("gas_rebate_near") + inflow - outflow)) / 1e6, 1)
+        # H1a: pass if net staking outflow < 50% of staking rewards. Must hold under both measures.
+        net_by_endpoint = rewards - (end - start)
+        m["h1a_pass"] = bool((outflow - inflow) < 0.5 * rewards and net_by_endpoint < 0.5 * rewards)
 
     # ---------- peers ----------
     peer_rows = []

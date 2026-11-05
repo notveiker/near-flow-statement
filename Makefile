@@ -3,10 +3,9 @@ PY ?= python3
 
 .PHONY: reproduce fetch bq compute render check test all
 
-reproduce: ## Offline: verify raw-data hashes, recompute every number, rebuild THESIS.md and the dashboard
+reproduce: ## Offline: verify raw-data hashes, then recompute every number into data/metrics.json
 	$(PY) -m pipeline.check --manifest
 	$(PY) -m pipeline.compute
-	$(PY) -m pipeline.render
 	$(PY) -m pipeline.check --numbers
 
 fetch: ## Live, keyless: refresh DefiLlama, Nearblocks, CoinGecko and NEAR RPC snapshots
@@ -18,8 +17,8 @@ bq: ## Live BigQuery (needs gcloud auth; every query is capped with --maximum_by
 compute:
 	$(PY) -m pipeline.compute
 
-render:
-	$(PY) -m pipeline.render
+render: ## (dashboard renderer: next step)
+	@echo 'render: not built yet'
 
 check:
 	$(PY) -m pipeline.check --manifest --numbers
