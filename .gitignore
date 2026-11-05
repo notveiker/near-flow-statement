@@ -1,0 +1,16 @@
+# private research and working notes: never publish
+near-research.md
+notes/
+private/
+# secrets
+.env
+.env.*
+secrets/
+*.key.json
+service-account*.json
+# python / os
+__pycache__/
+*.pyc
+.DS_Store
+# local scratch
+.cache/
