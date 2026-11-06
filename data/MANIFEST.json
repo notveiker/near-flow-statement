@@ -210,17 +210,35 @@
    "sha256": "91b74120106701e1dba4a0dfa8a4609578b9d8bc1fa83a930366b70931dabf6d",
    "source": "archival RPC wrap.near ft_balance_of buybacks.multisignature.near at the same blocks"
   },
+  "raw/rpc/epoch_issuance.json": {
+   "bytes": 97681,
+   "fetched_at": "2026-11-06T23:49:05Z",
+   "sha256": "2937ac18000a6106ce49e448aa01b039095aa9a71f314b3f75ba4d73ed5c13dd",
+   "source": "archival RPC epoch-boundary block headers, 2026-08-07..11-04 (pipeline/fetch_issuance.py)"
+  },
   "raw/rpc/final_block.json": {
    "bytes": 189,
    "fetched_at": "2026-11-05T22:51:17Z",
    "sha256": "7618a460b4a9d493f6a844e5c9129078e383ab4fb523f095120aca71fcc989bf",
    "source": "rpc block {finality: final}"
   },
+  "raw/rpc/pool_endpoints_archival.json": {
+   "bytes": 50728,
+   "fetched_at": "2026-11-06T23:49:05Z",
+   "sha256": "e9e2372a4e33bf0c9d6f187635a741da84cee13b987b0eac624864e986c1925f",
+   "source": "archival RPC staking-pool totals at blocks 210,238,033 and 223,088,015 (all 550 pools)"
+  },
   "raw/rpc/protocol_config.json": {
    "bytes": 244,
    "fetched_at": "2026-11-05T22:51:18Z",
    "sha256": "f07cfe75700c99c1258964520d23e50ffce1b1c09a4776328ee9dea700ff31e3",
    "source": "rpc EXPERIMENTAL_protocol_config {finality: final}"
+  },
+  "raw/rpc/rating_assumptions.json": {
+   "bytes": 1202,
+   "fetched_at": "2026-11-06T23:49:05Z",
+   "sha256": "dda808e7f742ce211a6237c684df6b65774418a5b95a2face7b106d3736fddc8",
+   "source": "frozen constants for the PREREG rating rule (HSP-029 ramp, activation date, price snapshot)"
   },
   "raw/rpc/validators.json": {
    "bytes": 20388,

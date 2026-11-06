@@ -467,10 +467,20 @@ def build() -> tuple[dict, dict]:
             concentration(m, price, lo, hi)
             escrow_ladder(m, lo, hi)
 
+    # ---------- H1a as written: gross issuance from epoch-boundary headers (PREREG-ADDENDUM 2026-11-06) ----------
+    if (RAW / "rpc" / "epoch_issuance.json").exists():
+        from .h1a import h1a
+        h1a(m)  # before h1b: h1b reads m["h1a_gross_issuance_90d_m"]
+
     # ---------- H1b / H1c (PREREG exchange-flow tests; method in PREREG-ADDENDUM 2026-11-06 23:11 UTC) ----------
     if (RAW / "bq" / "h1b_a_native_flows.json").exists():
         from .h1b import h1b
         h1b(m)
+
+    # ---------- Rating rule (PREREG: G_req, G_obs, H1b verdict) ----------
+    if (RAW / "rpc" / "rating_assumptions.json").exists():
+        from .h1a import rating
+        rating(m)
 
     # ---------- peers ----------
     peer_rows = []
