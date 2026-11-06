@@ -198,6 +198,18 @@
    "sha256": "2b7345969508264434d8c4dfec406d2734108d136159595ce8be3326e528e566",
    "source": "https://api.nearblocks.io/v1/charts"
   },
+  "raw/rpc/buyback_balance_endpoints.json": {
+   "bytes": 721,
+   "fetched_at": "2026-11-06T23:23:25Z",
+   "sha256": "8b25f66f4b26cea85c0174fb0ff3d6238751001e8ddd3af2f153a68bbf69d49a",
+   "source": "archival RPC view_account buybacks.multisignature.near at blocks 210,238,033 and 223,088,015"
+  },
+  "raw/rpc/buyback_wnear_endpoints.json": {
+   "bytes": 506,
+   "fetched_at": "2026-11-06T23:23:25Z",
+   "sha256": "91b74120106701e1dba4a0dfa8a4609578b9d8bc1fa83a930366b70931dabf6d",
+   "source": "archival RPC wrap.near ft_balance_of buybacks.multisignature.near at the same blocks"
+  },
   "raw/rpc/final_block.json": {
    "bytes": 189,
    "fetched_at": "2026-11-05T22:51:17Z",

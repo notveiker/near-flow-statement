@@ -467,6 +467,11 @@ def build() -> tuple[dict, dict]:
             concentration(m, price, lo, hi)
             escrow_ladder(m, lo, hi)
 
+    # ---------- H1b / H1c (PREREG exchange-flow tests; method in PREREG-ADDENDUM 2026-11-06 23:11 UTC) ----------
+    if (RAW / "bq" / "h1b_a_native_flows.json").exists():
+        from .h1b import h1b
+        h1b(m)
+
     # ---------- peers ----------
     peer_rows = []
     tot30 = sum(window_sum(vol[s], asof, 30) for s in PEERS)
