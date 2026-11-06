@@ -4,7 +4,7 @@ Window: 30 days, 2026-10-06 → 2026-11-04 (UTC). Every number marked `<!--n:…
 
 **Sources**
 - **1Click swaps:** successful swaps from the NEAR Intents Explorer API (`pipeline/fetch_explorer.py`), aggregated per day into `data/raw/explorer/daily.json`.
-- **Revenue wallets:** native NEAR arriving at NEAR's three Intents revenue wallets from outside that set (`sql/revenue_wallet_inflows.sql`, BigQuery). wNEAR inflows were checked too (`sql/revenue_wallet_wnear_inflows.sql`) and were zero.
+- **Revenue wallets:** native NEAR arriving at NEAR's three Intents revenue wallets from outside that set (`sql/revenue_wallet_inflows.sql`, BigQuery). A wNEAR check (`sql/revenue_wallet_wnear_inflows.sql`) returned zero rows, but it reads `ft_events`, which appears not to record `wrap.near` transfers at all (no rows on a busy day), so that zero is uninformative. The evidence that wNEAR inflows are negligible is instead the reconciliation: our native-only total is 100.9% of DefiLlama's revenue, which counts native NEAR and wNEAR.
 - **Benchmark:** DefiLlama's near-intents adapter, which defines revenue the same way ([source](https://github.com/DefiLlama/dimension-adapters/blob/master/fees/near-intents/index.ts)).
 - **Fee rules:** [docs.near-intents.org/resources/fees](https://docs.near-intents.org/resources/fees) and [the 1Click fee-config page](https://docs.near-intents.org/integration/distribution-channels/1click-api/fee-config), read 2026-11-05.
 
