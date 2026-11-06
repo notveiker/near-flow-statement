@@ -265,11 +265,13 @@
  "mcap_to_rev_365d_x": 510.0,
  "mcap_usd_b": 4.82,
  "near_share_of_partner_fees_max_pct": 22.4,
+ "near_share_of_partner_fees_max_tight_pct": 19.6,
  "net_issuance_near_per_day_30d_k": 88.2,
  "net_issuance_usd_30d_m": 12.71,
  "net_supply_growth_30d_annualized_pct": 2.46,
  "net_supply_growth_365d_pct": 2.48,
  "partners_kept_vs_near_rev_high_x": 2.22,
+ "partners_kept_vs_near_rev_low_tight_x": 1.81,
  "partners_kept_vs_near_rev_low_x": 1.75,
  "peers": [
   {

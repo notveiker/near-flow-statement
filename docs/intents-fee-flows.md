@@ -30,7 +30,7 @@ The fee docs say an integrator's fee is split 50/50 with 1Click by default, but 
 
 The revenue wallets settle which reading holds:
 - **Explicit entries:** they account for $450.6 <!--n:explorer_appfees_to_buybacks_usd_k-->K of the buyback wallet's inflow.
-- **Unexplained:** this leaves $942.2 <!--n:buybacks_unexplained_usd_k-->K. Even if all of it came from partners with no buyback entry, NEAR's share of their fees is at most **22.4 <!--n:near_share_of_partner_fees_max_pct-->%**. A default 50/50 split would have added about $2.1M on top of the explicit entries, but the buyback wallet received only $1.39M in total.
+- **Unexplained:** this leaves $942.2 <!--n:buybacks_unexplained_usd_k-->K. Even if all of it came from partners with no buyback entry, NEAR's share of their fees is at most **22.4 <!--n:near_share_of_partner_fees_max_pct-->%**. A default 50/50 split would have added about $2.1M on top of the explicit entries, but the buyback wallet received only $1.39M in total. (Update: [`partner-concentration.md`](partner-concentration.md) tightens this ceiling to 19.6 <!--n:near_share_of_partner_fees_max_tight_pct-->%.)
 - **Conclusion:** the default split does not apply to these partners.
 
 Over the window, partners kept between **1.75 <!--n:partners_kept_vs_near_rev_low_x-->×** and **2.22 <!--n:partners_kept_vs_near_rev_high_x-->×** NEAR's entire captured Intents revenue. That figure counts only the 1Click half of Intents.

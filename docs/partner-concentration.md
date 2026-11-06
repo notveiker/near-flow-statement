@@ -29,7 +29,7 @@ The volume exposure is larger and certain. SwapKit routes 38.2 <!--n:swapkit_vol
   - **No referrer:** 45.8 <!--n:buyback_fee_unreferred_share_pct-->% comes from swaps with no referral, meaning integrators on the default fee.
   - **Top three channels:** the top three account for 65.0 <!--n:buyback_fee_top3_share_pct-->%. They are no-referrer swaps, Trust Wallet's direct integration, and one unnamed integrator charging 71 bp on 0.4% of volume.
 
-**One wallet, two integrations.** Trust Wallet routes through 1Click two ways:
+**One wallet, two integrations.** A referral labelled `trustwallet` and the fee account `trustswapkit.near` look like two routes for the same wallet:
 
 | Route | Share of 1Click volume | To Trust | To NEAR's buyback wallet |
 |---|---|---|---|
@@ -50,12 +50,15 @@ Every NEAR inflow to `buybacks.multisignature.near` in the window was a `native_
 
 The single-use path is 59.1 <!--n:bb_from_mm_singleuse_share_pct-->% of the buyback wallet's inflow. Its funding sits off this ledger. Candidates are near.com fees (NEAR says near.com sends 100% of fees to buybacks), 1Click platform fees collected outside the appFees list, and partner revenue-share settlements. Only the last would tie this stream to SwapKit, which is why the ceiling above is a ceiling.
 
-**What changed from yesterday's note.** `docs/intents-fee-flows.md` treated the $942K the buyback wallet received beyond explicit fees as possibly hidden partner fees. Most of it ($824K) arrives by a separate purchase path, and about $109K is quote-improvement sharing that NEAR earns on every 1Click swap, partner swaps included. The 22.4% ceiling on NEAR's share of partner fees still holds, but the real figure is probably far lower.
+**What changed from yesterday's note.** `docs/intents-fee-flows.md` treated the $942K the buyback wallet received beyond explicit fees as possibly hidden partner fees. Most of it ($824K) arrives by a separate purchase path, and about $109K is quote-improvement sharing, which is not a fee share. That tightens the ceiling on NEAR's share of fees on partner swaps with no buyback entry from 22.4% to **19.6 <!--n:near_share_of_partner_fees_max_tight_pct-->%**. On that basis partners kept at least 1.81 <!--n:partners_kept_vs_near_rev_low_tight_x-->× NEAR's captured revenue.
+
+The likeliest reading of the $824K is NEAR's own fees settled off this ledger, not partner shares. `fefundsadmin` (NEAR's own front-end fund) is fed by exactly the same market-maker path, and NEAR says near.com sends its fees to buybacks. Still, the ledger cannot tell 0% from about 20% for SwapKit. For ZODL it can: the next paragraph shows no hidden split.
 
 **On-chain confirmation for ZODL.** On a sampled $13.0K ZODL swap, ZODL's own account received exactly 67 bp of the input. NEAR received a quote-improvement cut and no fee share.
 
 ## Limits
 
 - **Sampling:** collector identities and fee behaviour come from about 180 sampled swaps on 2026-11-05/06 plus the 30-day aggregates. The 30-day totals reconcile, but the sample is small.
-- **Pro-rata assumption:** we allocate collector B's quote improvement to SwapKit by volume share. A real allocation needs a per-swap join; Explorer `intentHashes` match on-chain events for only part of the sample.
+- **Pro-rata assumption:** we allocate collector B's quote improvement to SwapKit by volume share. This is unverified for SwapKit, because no sampled SwapKit swap paid collector B. If SwapKit pays none, the traceable exposure is about 0% and the ceiling is unchanged. A real allocation needs a per-swap join; Explorer `intentHashes` match on-chain events for only part of the sample.
+- **SwapKit's fees are invisible on this ledger.** Every sampled SwapKit swap (Ledger, Trust, Tangem and others) produced no fee transfer to anyone on `intents.near`, only storage-deposit dust of about 0.0027 NEAR. ZODL and LI.FI swaps paid their collectors on chain. SwapKit therefore takes its fees in its own infrastructure, which is why `ledgerswapkit.near` never appears in the logs. The ZODL result (full 67 bp to the partner, nothing to NEAR) does not carry over to SwapKit. For SwapKit we have only the wallet arithmetic.
 - **Unpriced tokens:** they are left out of the collector values (12% of collector A's transfers by count, 9% of collector B's), so both figures are lower bounds.

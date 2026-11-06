@@ -111,6 +111,11 @@ def concentration(m: dict, near_price: dict, lo: str, hi: str) -> None:
     m["bb_from_collector_b_usd_k"] = r(src["b"][1] / 1e3, 1)
     m["bb_from_mm_singleuse_usd_k"] = r(src["other"][1] / 1e3, 1)
     m["bb_from_mm_singleuse_share_pct"] = r(src["other"][1] / tot * 100, 1)
+    # Tighter ceiling on NEAR's share of fees on swaps with no buyback entry: collector B's NEAR is
+    # quote improvement, not fee share, so only the off-ledger (market-maker) path could hide one.
+    m["near_share_of_partner_fees_max_tight_pct"] = r(src["other"][1] / 1e3 / m["explorer_partner_fees_no_bb_usd_k"] * 100, 1)
+    m["partners_kept_vs_near_rev_low_tight_x"] = r(
+        (m["explorer_partner_fees_all_usd_k"] - src["other"][1] / 1e3) / m["revwallets_usd_k"], 2)
 
     # Value what reached each collector (token amounts x daily USD price).
     prices = {c: {day(ms / 1000): float(p) for ms, p in pts} for c, pts in read_raw("coingecko/majors_90d.json").items()}
