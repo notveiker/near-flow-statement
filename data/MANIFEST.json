@@ -24,6 +24,14 @@
    "sha256": "ac928fe08ef03877df145fc4bdfbabae9a0644c2941f9e7dcd416c53b1f1c5ed",
    "source": "bigquery: sql/h1b_a_native_flows.sql"
   },
+  "raw/bq/h1b_b_wnear_logs.json": {
+   "bytes": 95310,
+   "bytes_processed_estimate": 116995456607,
+   "fetched_at": "2026-11-06T23:20:21Z",
+   "rows": 634,
+   "sha256": "3b7b4433b777533ad4a11e5fa1b2aa885f2c9d24c5d0dd15fb929c82f4f6c7d5",
+   "source": "bigquery: sql/h1b_b_wnear_logs.sql"
+  },
   "raw/bq/h1b_c_sweep_clusters.json": {
    "bytes": 32356,
    "bytes_processed_estimate": 23947500701,
