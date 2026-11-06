@@ -31,7 +31,7 @@ def bq(args: list[str]) -> str:
 
 def dry_run_bytes(query: str) -> int:
     msg = bq(["query", "--dry_run", "--use_legacy_sql=false", "\n" + query])
-    m = re.search(r"process (\d+) bytes", msg)
+    m = re.search(r"process (?:upper bound of )?(\d+) bytes", msg)
     if not m:
         raise RuntimeError(f"could not read dry-run size: {msg}")
     return int(m.group(1))

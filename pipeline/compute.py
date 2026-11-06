@@ -210,6 +210,87 @@ def build() -> tuple[dict, dict]:
             m["explorer_top_fee_recipients"] = [{"recipient": k, "usd_k": r(val / 1e3, 1)}
                                                 for k, val in sorted(fee.items(), key=lambda kv: -kv[1])[:8]]
 
+            def sum_dict(key: str) -> dict:
+                out: dict = defaultdict(float)
+                for x in days:
+                    for k, val in (x.get(key) or {}).items():
+                        out[k] += val
+                return out
+
+            if all("fee_split" in x for x in days):
+                # What the NEAR token itself gets from Intents flow: swaps into / out of wNEAR.
+                nl = sum_dict("near_leg")
+                legs = sum_dict("usd_by_asset_leg")
+                m["explorer_near_leg_share_pct"] = r(legs.get("nep141:wrap.near", 0) / usd * 100, 1)
+                m["explorer_into_near_usd_m"] = r(nl["into_usd"] / 1e6, 1)
+                m["explorer_out_of_near_usd_m"] = r(nl["out_usd"] / 1e6, 1)
+                m["explorer_net_near_sold_usd_m"] = r((nl["out_usd"] - nl["into_usd"]) / 1e6, 1)
+                stables = [k for k in legs if any(s in k for s in (
+                    "eth-0xdac17f958d2ee523a2206206994597c13d831ec7", "eth-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                    "tron-d28a265909efecdcee7c5028585214ea0b96f015", "usdt.tether-token.near",
+                    "17208628f84f5d6ad33f0da3bbbeb27ffcb398eac501a31bd6ad2011e36133a1",
+                    "base-0x833589fcd6edb6e08f4c7c32d4f71b54bda02913", "arb-0xaf88d065e77c8cc2239327c5edb3a432268e5831"))]
+                m["explorer_stablecoin_leg_share_pct"] = r(sum(legs[k] for k in stables) / usd * 100, 1)
+                m["explorer_top_asset_legs"] = [{"asset": k, "share_pct": r(val / usd * 100, 1)}
+                                                for k, val in sorted(legs.items(), key=lambda kv: -kv[1])[:10]]
+                # Size: swaps of $10K+ (buckets are lower edges in USD).
+                sb: dict = defaultdict(lambda: [0, 0.0])
+                for x in days:
+                    for k, (n, v) in x["size_buckets"].items():
+                        sb[k][0] += n; sb[k][1] += v
+                big = [k for k in sb if float(k) >= 10_000]
+                n_all = sum(v[0] for v in sb.values())
+                m["explorer_swaps_10k_plus_n_pct"] = r(sum(sb[k][0] for k in big) / n_all * 100, 1)
+                m["explorer_swaps_10k_plus_vol_pct"] = r(sum(sb[k][1] for k in big) / usd * 100, 1)
+                # Who keeps the listed fees: explicit buyback entries vs partner entries.
+                fs = sum_dict("fee_split")
+                m["explorer_vol_with_buyback_fee_pct"] = r(fs["usd_in_with_bb"] / usd * 100, 1)
+                m["explorer_partner_fees_no_bb_usd_k"] = r(fs["partner_without_bb_usd"] / 1e3, 1)
+                m["explorer_partner_fees_all_usd_k"] = r((fs["partner_without_bb_usd"] + fs["partner_with_bb_usd"]) / 1e3, 1)
+                # Realized cost vs listed fees, swaps $1K-$50K: (in - out) minus listed fee = solver/market spread.
+                cost: dict = defaultdict(lambda: [0, 0.0, 0.0, 0.0])
+                for x in days:
+                    for k, vals in x["realized_cost_1k_50k"].items():
+                        for i, val in enumerate(vals):
+                            cost[k][i] += val
+                m["explorer_realized_cost_by_listed_bp"] = [
+                    {"listed_bp_from": int(float(k)), "n": int(v[0]), "realized_bp": r(v[2] / v[1] * 1e4, 1),
+                     "listed_bp": r(v[3] / v[1] * 1e4, 1), "excess_bp": r((v[2] - v[3]) / v[1] * 1e4, 1)}
+                    for k, v in sorted(cost.items(), key=lambda kv: float(kv[0]))]
+                tc = [sum(v[i] for v in cost.values()) for i in range(4)]
+                m["explorer_excess_over_listed_bp"] = r((tc[2] - tc[3]) / tc[1] * 1e4, 1)
+
+    # ---------- NEAR's revenue wallets: native NEAR arriving from outside the wallet set ----------
+    if (RAW / "bq" / "revenue_wallet_inflows.json").exists():
+        rw = read_raw("bq/revenue_wallet_inflows.json")
+        wn = read_raw("bq/revenue_wallet_wnear_inflows.json") if (RAW / "bq" / "revenue_wallet_wnear_inflows.json").exists() else []
+        lo, hi = min(x["day"] for x in rw), max(x["day"] for x in rw)
+        by_w: dict = defaultdict(float)
+        by_w_near: dict = defaultdict(float)
+        for x in rw + [y for y in wn if lo <= y["day"] <= hi]:
+            by_w[x["wallet"]] += float(x["near"]) * price[x["day"]]
+            by_w_near[x["wallet"]] += float(x["near"])
+        tot_w = sum(by_w.values())
+        llama_rev = sum(v for k, v in rev.items() if lo <= k <= hi)
+        m["revwallets_window"] = f"{lo}..{hi}"
+        m["revwallets_usd_k"] = r(tot_w / 1e3, 1)
+        m["revwallets_near_k"] = r(sum(by_w_near.values()) / 1e3, 1)
+        m["revwallets_buybacks_usd_k"] = r(by_w["buybacks.multisignature.near"] / 1e3, 1)
+        m["revwallets_frontend_usd_k"] = r(by_w["fefundsadmin.sputnik-dao.near"] / 1e3, 1)
+        m["revwallets_frontend_share_pct"] = r(by_w["fefundsadmin.sputnik-dao.near"] / tot_w * 100, 1)
+        m["revwallets_vs_llama_rev_pct"] = r(tot_w / llama_rev * 100, 1)
+        if "explorer_partner_fees_no_bb_usd_k" in m and m.get("explorer_days") == 30:
+            bb_explicit = m["explorer_appfees_to_buybacks_usd_k"]
+            unexplained = m["revwallets_buybacks_usd_k"] - bb_explicit
+            partner_nobb = m["explorer_partner_fees_no_bb_usd_k"]
+            # Upper bound: every buyback-wallet dollar not explained by explicit buyback fee entries came
+            # from partners whose fee lists show no buyback entry. The documented default is 50%.
+            m["buybacks_unexplained_usd_k"] = r(unexplained, 1)
+            m["near_share_of_partner_fees_max_pct"] = r(unexplained / partner_nobb * 100, 1)
+            kept_low = m["explorer_partner_fees_all_usd_k"] - max(unexplained, 0)
+            m["partners_kept_vs_near_rev_low_x"] = r(kept_low / m["revwallets_usd_k"], 2)
+            m["partners_kept_vs_near_rev_high_x"] = r(m["explorer_partner_fees_all_usd_k"] / m["revwallets_usd_k"], 2)
+
     # ---------- peers ----------
     peer_rows = []
     tot30 = sum(window_sum(vol[s], asof, 30) for s in PEERS)

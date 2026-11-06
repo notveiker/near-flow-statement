@@ -1,5 +1,21 @@
 {
  "files": {
+  "raw/bq/revenue_wallet_inflows.json": {
+   "bytes": 6814,
+   "bytes_processed_estimate": 86962294607,
+   "fetched_at": "2026-11-06T01:08:10Z",
+   "rows": 60,
+   "sha256": "98a521e32949c97abff0fd608ee1aa06c3517fc663ec36520aa41ce61a3f2eb2",
+   "source": "bigquery: sql/revenue_wallet_inflows.sql"
+  },
+  "raw/bq/revenue_wallet_wnear_inflows.json": {
+   "bytes": 3,
+   "bytes_processed_estimate": 20909826646,
+   "fetched_at": "2026-11-06T01:08:41Z",
+   "rows": 0,
+   "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+   "source": "bigquery: sql/revenue_wallet_wnear_inflows.sql"
+  },
   "raw/bq/staking_flows_daily.json": {
    "bytes": 13581,
    "bytes_processed_estimate": 51201758030,
@@ -29,9 +45,9 @@
    "source": "https://api.coingecko.com/api/v3/coins/near"
   },
   "raw/explorer/daily.json": {
-   "bytes": 191078,
-   "fetched_at": "2026-11-06T00:40:03Z",
-   "sha256": "6e6dbc22f91bd1d1fec09c80c7d9562d7b9d4ddea0bfa0f08a1fe759dbd11b3e",
+   "bytes": 278890,
+   "fetched_at": "2026-11-06T01:09:52Z",
+   "sha256": "600e188d14659c56e57f108eb0cb90dc910a3b88c918d0de13c70fda21875194",
    "source": "https://explorer.near-intents.org/api/v0/transactions?statuses=SUCCESS (per-day cursor pull, 2026-10-06..2026-11-04)"
   },
   "raw/llama/chainfees_near.json": {

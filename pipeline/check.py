@@ -1,7 +1,8 @@
 """Integrity checks the screeners (and CI) run.
 
   --manifest  every file in data/raw matches the SHA-256 recorded in data/MANIFEST.json
-  --numbers   every <!--n:key--> marker in README.md / THESIS.md matches data/metrics.json
+  --numbers   every <!--n:key--> marker in README.md, THESIS.md, PREREG-ADDENDUM.md and docs/*.md
+              matches data/metrics.json
 """
 from __future__ import annotations
 
@@ -12,6 +13,7 @@ import sys
 from .common import METRICS, RAW, ROOT, load_manifest, verify_manifest
 
 MARK = re.compile(r"([-\d.,]+)\s*<!--n:([a-z0-9_]+)-->")
+TAG = re.compile(r"<!--n:[a-z0-9_]+-->")
 
 
 def check_manifest() -> list[str]:
@@ -28,11 +30,16 @@ def check_numbers() -> list[str]:
         return ["data/metrics.json missing: run `make compute` first"]
     m = json.loads(METRICS.read_text())
     problems = []
-    for name in ("README.md", "THESIS.md"):
-        f = ROOT / name
+    files = [ROOT / "README.md", ROOT / "THESIS.md", ROOT / "PREREG-ADDENDUM.md"] + sorted((ROOT / "docs").glob("*.md"))
+    for f in files:
+        name = str(f.relative_to(ROOT))
         if not f.exists():
             continue
-        for value, key in MARK.findall(f.read_text()):
+        text = f.read_text()
+        n_tags, found = len(TAG.findall(text)), MARK.findall(text)
+        if n_tags != len(found):
+            problems.append(f"{name}: {n_tags - len(found)} marker(s) not directly after a number")
+        for value, key in found:
             if key not in m:
                 problems.append(f"{name}: unknown metric {key}")
             elif float(value.replace(",", "")) != float(m[key]):
