@@ -41,7 +41,9 @@ def r(x: float, n: int = 2) -> float:
 
 COLLECTOR_A = "5880ad2b362620fadf759cbceb1cd5737ce8c6ed7fb8e9942881e6731f9247dd"  # explicit buyback appFee
 COLLECTOR_B = "143f2bb439575c286f4f585163f0e5fb4e464f8ce57ec06ae80741407d3cfb31"  # quote-improvement share
-MARKET_MAKER = "51e8f94d77b5e90dc9852ca6113771e11e8382ce69473a75e313e41665de7cbe"
+# Confidential Intents treasury: PRIVATE_TREASURY_ACCOUNT_ID, "a production constant shared by all participants"
+# (docs.near-intents.org, Confidential Intents). Unshields (private -> public) release tokens from it.
+PRIVATE_TREASURY_ESCROW = "51e8f94d77b5e90dc9852ca6113771e11e8382ce69473a75e313e41665de7cbe"
 USD6 = ("eth-0xdac17f958d2ee523a2206206994597c13d831ec7", "eth-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
         "tron-d28a265909efecdcee7c5028585214ea0b96f015", "base-0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
         "arb-0xaf88d065e77c8cc2239327c5edb3a432268e5831", "arb-0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
@@ -109,10 +111,10 @@ def concentration(m: dict, near_price: dict, lo: str, hi: str) -> None:
     tot = sum(v[1] for v in src.values())
     m["bb_from_collector_a_usd_k"] = r(src["a"][1] / 1e3, 1)
     m["bb_from_collector_b_usd_k"] = r(src["b"][1] / 1e3, 1)
-    m["bb_from_mm_singleuse_usd_k"] = r(src["other"][1] / 1e3, 1)
-    m["bb_from_mm_singleuse_share_pct"] = r(src["other"][1] / tot * 100, 1)
+    m["bb_from_escrow_unshield_usd_k"] = r(src["other"][1] / 1e3, 1)
+    m["bb_from_escrow_unshield_share_pct"] = r(src["other"][1] / tot * 100, 1)
     # Tighter ceiling on NEAR's share of fees on swaps with no buyback entry: collector B's NEAR is
-    # quote improvement, not fee share, so only the off-ledger (market-maker) path could hide one.
+    # quote improvement, not fee share, so only the confidential-escrow unshields (fee stream unattested) could hide one.
     m["near_share_of_partner_fees_max_tight_pct"] = r(src["other"][1] / 1e3 / m["explorer_partner_fees_no_bb_usd_k"] * 100, 1)
     m["partners_kept_vs_near_rev_low_tight_x"] = r(
         (m["explorer_partner_fees_all_usd_k"] - src["other"][1] / 1e3) / m["revwallets_usd_k"], 2)
@@ -137,7 +139,8 @@ def concentration(m: dict, near_price: dict, lo: str, hi: str) -> None:
 
     # SwapKit exit: revenue at risk, 30-day basis, as % of NEAR's captured Intents revenue.
     # Traceable: explicit buyback fees on SwapKit swaps + collector B (quote improvement) pro rata to volume.
-    # Ceiling: + all NEAR the market maker delivered to the buyback wallet, whose source is off this ledger.
+    # Ceiling: + all NEAR unshielded from the Confidential Intents escrow to the buyback wallet; which fee
+    # stream it comes from is not visible on the public ledger.
     traceable = sum(v[3] for v in sk) + val["b"] * m["swapkit_vol_share_pct"] / 100
     m["swapkit_exit_traceable_usd_k"] = r(traceable / 1e3, 1)
     m["swapkit_exit_traceable_pct"] = r(traceable / 1e3 / m["revwallets_usd_k"] * 100, 1)
