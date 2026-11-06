@@ -29,10 +29,10 @@
    "source": "https://api.coingecko.com/api/v3/coins/near"
   },
   "raw/explorer/daily.json": {
-   "bytes": 6937,
-   "fetched_at": "2026-11-05T23:16:03Z",
-   "sha256": "0f6afb69104ac0390883f90bebbf4c3739088ce7d7ac12c6080e384594265eca",
-   "source": "https://explorer.near-intents.org/api/v0/transactions?statuses=SUCCESS (per-day cursor pull, 2026-11-04..2026-11-04)"
+   "bytes": 191078,
+   "fetched_at": "2026-11-06T00:40:03Z",
+   "sha256": "6e6dbc22f91bd1d1fec09c80c7d9562d7b9d4ddea0bfa0f08a1fe759dbd11b3e",
+   "source": "https://explorer.near-intents.org/api/v0/transactions?statuses=SUCCESS (per-day cursor pull, 2026-10-06..2026-11-04)"
   },
   "raw/llama/chainfees_near.json": {
    "bytes": 40580,
