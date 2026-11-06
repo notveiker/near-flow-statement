@@ -22,7 +22,7 @@ H1a predicted that net staking outflow over 2026-08-07 → 2026-11-04 would be b
 | Pool totals, end of day | 625.1 M NEAR (2026-08-06) → 592.0 M NEAR (2026-11-04), **−33.1 M** |
 | Unexplained residual between the two measures | 7.1 M NEAR (1.1% of pool total), under investigation |
 
-Under either measure, stakers withdrew far more than they earned over the window. This was a price-rally window: NEAR went from about $1.9 to a $5.89 high and then $3.7.
+Under either measure, stakers withdrew far more than they earned over the window. This was a price-rally window: NEAR went from about $1.70 (low $1.59 on 08-19) to a $5.89 high on 10-12 and $3.83 at window end (CoinGecko daily).
 
 Next steps, all reported here:
 - Who withdrew: concentration by delegator.
@@ -36,8 +36,13 @@ Next steps, all reported here:
 - **So H1b and H1c will very likely be reported as ranges** under PREREG's labelled-coverage rule.
 - **Planned method, disclosed before running:** cluster exchange deposit addresses (accounts that receive from many users and sweep to a single account), plus a committed list of named exchange accounts.
 
-## 2026-11-05: corrections and scope notes, written before the forward-test window opens (2026-11-06 00:00 UTC)
+## 2026-11-06 01:11 UTC: corrections and scope notes, written after the forward-test window opened (see the 2026-11-06 correction below)
 
 1. **Correction to a pre-freeze observation.** PREREG's table says the buyback wallet balance is 68.5% of the NEAR implied by DefiLlama's holders revenue. That compares one wallet with a revenue series measured across three: DefiLlama counts NEAR arriving at `fefundsadmin.sputnik-dao.near`, `1csfundsadmin.sputnik-dao.near` and `buybacks.multisignature.near` ([adapter source](https://github.com/DefiLlama/dimension-adapters/blob/master/fees/near-intents/index.ts)). Over 2026-10-06 → 11-04, `fefundsadmin` received 30.7 <!--n:revwallets_frontend_share_pct-->% of those inflows. Our own three-wallet measure matches DefiLlama at 100.9 <!--n:revwallets_vs_llama_rev_pct-->% (`sql/revenue_wallet_inflows.sql`). The gap is therefore mostly in `fefundsadmin`, not missing. As a rough check: 2.187M NEAR / 0.685 ≈ 3.19M NEAR implied, a gap of about 1.0M. A 30.7% front-end share of 3.19M is about 0.98M. That share was measured over 30 days, not since the switch, so this is consistency, not proof. F1 concerns only the buyback wallet's balance and is unchanged.
-2. **F3 sensitivity, disclosed in advance.** DefiLlama "revenue" is NEAR delivered to the wallets, not fees accrued. In the 30 days to 2026-11-04 no day had zero inflow, and 8-day sums ranged from about $422K to $757K. F3 will be scored exactly as written.
+2. **F3 sensitivity, disclosed in advance.** DefiLlama "revenue" is NEAR delivered to the wallets, not fees accrued. In the 30 days to 2026-11-04 no day had zero inflow, and 8-day sums ranged from about $417K to $757K on the DefiLlama series F3 is scored on. F3 will be scored exactly as written.
 3. **H1b scope.** H1b counts only labelled centralized-exchange accounts. NEAR Intents' 1Click is a non-custodial route out of NEAR: over the same 30 days it swapped out of NEAR 24.0 <!--n:explorer_out_of_near_usd_m--> USD M and into NEAR 14.6 <!--n:explorer_into_near_usd_m--> USD M. We will report this next to H1b, never inside it. The test and its thresholds are unchanged. Details: `docs/intents-fee-flows.md`.
+
+## 2026-11-06: correction to the timing of the entry above
+
+The entry above was headed "2026-11-05 … written before the forward-test window opens (2026-11-06 00:00 UTC)". That was wrong. `git log` shows it was committed at 2026-11-06 01:11:49 UTC (`e202d78`) and edited at 01:14:25 UTC (`e0edac8`), and the revenue-wallet data it cites was fetched at 01:08:10 UTC (`data/MANIFEST.json`). The date was the author's local date (UTC−6). It was therefore written about 71 minutes after the window opened. Its content changes no test: F3 is scored exactly as written, and H1b's scope note only adds context beside the test. Two numbers in it are also corrected in place: the F3 8-day range ($422K quoted the wallet series; DefiLlama's, which F3 uses, gives $417.3K–$756.8K) and the price path in the H1a entry ($1.70 at the window start, not $1.9). An outside review of a fresh clone found all three.
+

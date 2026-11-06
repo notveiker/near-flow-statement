@@ -81,6 +81,7 @@
  "explorer_excess_over_listed_bp": 8.5,
  "explorer_into_near_usd_m": 14.6,
  "explorer_near_leg_share_pct": 2.2,
+ "explorer_near_side_swap_share_pct": 3.5,
  "explorer_net_near_sold_usd_m": 9.4,
  "explorer_out_of_near_usd_m": 24.0,
  "explorer_partner_fees_all_usd_k": 4454.2,
@@ -240,6 +241,7 @@
  "explorer_vol_with_buyback_fee_pct": 43.0,
  "explorer_vs_llama_net_pct": 55.2,
  "explorer_vs_llama_reported_pct": 27.6,
+ "fefunds_escrow_path_usd_k": 616.9,
  "fefunds_wallet_near_m": 1.978,
  "gas_burn_share_pct": 100.0,
  "gross_staking_yield_pct": 5.05,
@@ -334,6 +336,7 @@
  "staked_near_m": 583.9,
  "staked_share_pct": 44.5,
  "swapkit_buyback_fees_usd": 159.0,
+ "swapkit_exit_ceiling_all_escrow_pct": 73.7,
  "swapkit_exit_ceiling_pct": 43.0,
  "swapkit_exit_traceable_pct": 2.0,
  "swapkit_exit_traceable_usd_k": 39.9,
@@ -385,5 +388,6 @@
  "tx_per_day_30d_k": 685.0,
  "tx_per_day_30d_yoy_pct": -84.8,
  "validators": 351,
- "volume_channel_hhi": 0.087
+ "volume_channel_hhi": 0.087,
+ "volume_channel_hhi_swapkit_merged": 0.2
 }

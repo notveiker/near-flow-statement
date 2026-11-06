@@ -17,13 +17,14 @@ Window: 30 days, 2026-10-06 → 2026-11-04 (UTC). Every number marked with an `n
 | If SwapKit stopped routing through 1Click | Share of NEAR's captured Intents revenue lost |
 |---|---|
 | Traceable streams (explicit fees + quote-improvement share, pro rata) | 2.0 <!--n:swapkit_exit_traceable_pct-->% |
-| Ceiling (also counting all NEAR unshielded from the Confidential Intents escrow, fee stream unattested) | 43.0 <!--n:swapkit_exit_ceiling_pct-->% |
+| Ceiling (also counting all NEAR unshielded from the Confidential Intents escrow to the buyback wallet, fee stream unattested) | 43.0 <!--n:swapkit_exit_ceiling_pct-->% |
+| Wider ceiling (the same logic applied to the escrow-path NEAR that reached `fefundsadmin` too) | 73.7 <!--n:swapkit_exit_ceiling_all_escrow_pct-->% |
 
 The volume exposure is larger and certain. SwapKit routes 38.2 <!--n:swapkit_vol_share_pct-->% of 1Click volume, about 21.1 <!--n:swapkit_share_of_intents_net_pct-->% of all Intents volume (one-sided). Every bull case cites Intents' volume share against THORChain, Chainflip and Maya, so losing SwapKit would hit the volume narrative much harder than the revenue line.
 
 ## 1. Volume is spread out, but NEAR's explicit fees are concentrated elsewhere
 
-- **Volume:** concentration across channels is low, with an HHI of 0.087 <!--n:volume_channel_hhi-->. SwapKit's sub-channels are the largest single block.
+- **Volume:** with SwapKit counted as one channel, as it is one exit risk, volume concentration is moderate to high: HHI 0.200 <!--n:volume_channel_hhi_swapkit_merged-->. Split into its downstream wallets it looks spread out (HHI 0.087 <!--n:volume_channel_hhi-->), but that split hides the dependency.
 - **SwapKit fees:** SwapKit's partners listed $3,528.9 <!--n:swapkit_partner_fees_usd_k-->K of fees. NEAR's buyback wallet got **$159 <!--n:swapkit_buyback_fees_usd-->** explicitly over 30 days.
 - **NEAR's explicit 1Click fees** are concentrated in different channels, with an HHI of 0.244 <!--n:buyback_fee_hhi-->:
   - **No referrer:** 45.8 <!--n:buyback_fee_unreferred_share_pct-->% comes from swaps with no referral, meaning integrators on the default fee.
@@ -54,7 +55,7 @@ Escrow unshields are 59.1 <!--n:bb_from_escrow_unshield_share_pct-->% of the buy
 
 Neither reading ties this stream to SwapKit. The ledger still cannot exclude a partner settlement routed through private mode, which is why the ceiling above is a ceiling.
 
-**What changed from yesterday's note.** `docs/intents-fee-flows.md` treated the $942K the buyback wallet received beyond explicit fees as possibly hidden partner fees. Most of it ($824K) arrives as unshields from the Confidential Intents escrow, and about $109K is quote-improvement sharing, which is not a fee share. That tightens the ceiling on NEAR's share of fees on partner swaps with no buyback entry from 22.4% to **19.6 <!--n:near_share_of_partner_fees_max_tight_pct-->%**. On that basis partners kept at least 1.81 <!--n:partners_kept_vs_near_rev_low_tight_x-->× NEAR's captured revenue.
+**What changed from the first fee-flow note.** `docs/intents-fee-flows.md` treated the $942K the buyback wallet received beyond explicit fees as possibly hidden partner fees. Most of it ($824K) arrives as unshields from the Confidential Intents escrow, and about $109K is quote-improvement sharing, which is not a fee share. That tightens the ceiling on NEAR's share of fees on partner swaps with no buyback entry from 22.4% to **19.6 <!--n:near_share_of_partner_fees_max_tight_pct-->%**. On that basis partners kept at least 1.81 <!--n:partners_kept_vs_near_rev_low_tight_x-->× NEAR's captured revenue.
 
 The likeliest reading of the $824K is NEAR's own confidential-mode fees, not partner shares. `fefundsadmin` (NEAR's own front-end fund) is fed by exactly the same escrow path, and both documented readings above are NEAR-side fees. Still, the ledger cannot tell 0% from about 20% for SwapKit. For ZODL it can: the next paragraph shows no hidden split.
 

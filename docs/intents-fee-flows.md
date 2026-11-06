@@ -47,7 +47,8 @@ On swaps of $1K–$50K, the realized cost (`amountInUsd − amountOutUsd`) excee
 
 | | Value |
 |---|---|
-| Share of 1Click volume with NEAR as one leg (NEAR appears only as `nep141:wrap.near`; checked) | 2.2 <!--n:explorer_near_leg_share_pct-->% |
+| Share of 1Click volume in swaps with NEAR on one side (NEAR appears only as `nep141:wrap.near`; checked) | 3.5 <!--n:explorer_near_side_swap_share_pct-->% |
+| NEAR's share of volume legs (each swap's value split half to each leg) | 2.2 <!--n:explorer_near_leg_share_pct-->% |
 | Share of volume legs in stablecoins | 47.4 <!--n:explorer_stablecoin_leg_share_pct-->% |
 | Swaps into NEAR, USD M | 14.6 <!--n:explorer_into_near_usd_m--> |
 | Swaps out of NEAR, USD M | 24.0 <!--n:explorer_out_of_near_usd_m--> |

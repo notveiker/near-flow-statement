@@ -2,7 +2,7 @@
 
 Needs NEAR_INTENTS_EXPLORER_JWT (an "Explorer" key from partners.near-intents.org) in the
 environment or in a git-ignored .env file. The API allows 1 request per 5 seconds, so a
-30-day pull takes roughly 40 minutes; finished days are cached in .cache/explorer/ and skipped
+30-day pull takes about 1h45m; finished days are cached in .cache/explorer/ and skipped
 on the next run.
 
 Committed output (re-used offline): data/raw/explorer/daily.json — per-day totals, top

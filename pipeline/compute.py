@@ -93,6 +93,11 @@ def concentration(m: dict, near_price: dict, lo: str, hi: str) -> None:
     m["buyback_fee_unreferred_share_pct"] = r(ch["(none)"][3] / bb * 100, 1)
     m["buyback_fee_hhi"] = r(sum((v[3] / bb) ** 2 for v in ch.values()), 3)
     m["volume_channel_hhi"] = r(sum((v[1] / usd) ** 2 for v in ch.values()), 3)
+    # Same, with SwapKit as one channel (it is one exit risk): its sub-channels merged.
+    merged: dict = defaultdict(float)
+    for k, v in ch.items():
+        merged["swapkit" if k.startswith("swapkit/") else k] += v[1]
+    m["volume_channel_hhi_swapkit_merged"] = r(sum((x / usd) ** 2 for x in merged.values()), 3)
     m["swapkit_share_of_intents_net_pct"] = r(m["swapkit_vol_share_pct"] * m["explorer_vs_llama_net_pct"] / 100, 1)
     # The same wallet, two integrations: Trust Wallet direct (pays NEAR) vs Trust via SwapKit (does not).
     for key, k in (("trust_direct", "trustwallet"), ("trust_via_swapkit", "swapkit/trustswapkit.near")):
@@ -103,10 +108,13 @@ def concentration(m: dict, near_price: dict, lo: str, hi: str) -> None:
 
     # Where the buyback wallet's NEAR came from (native_withdraw sources).
     src: dict = defaultdict(lambda: [0.0, 0.0])
+    fef_other = 0.0  # fefundsadmin's non-collector (escrow-path) inflow, USD
     for x in read_raw("bq/buyback_withdraw_sources.json"):
-        if x["wallet"] != "buybacks.multisignature.near":
-            continue
         k = "a" if x["src"] == COLLECTOR_A else "b" if x["src"] == COLLECTOR_B else "other"
+        if x["wallet"] != "buybacks.multisignature.near":
+            if k == "other":
+                fef_other += float(x["near"]) * near_price[x["day"]]
+            continue
         src[k][0] += float(x["near"]); src[k][1] += float(x["near"]) * near_price[x["day"]]
     tot = sum(v[1] for v in src.values())
     m["bb_from_collector_a_usd_k"] = r(src["a"][1] / 1e3, 1)
@@ -145,6 +153,10 @@ def concentration(m: dict, near_price: dict, lo: str, hi: str) -> None:
     m["swapkit_exit_traceable_usd_k"] = r(traceable / 1e3, 1)
     m["swapkit_exit_traceable_pct"] = r(traceable / 1e3 / m["revwallets_usd_k"] * 100, 1)
     m["swapkit_exit_ceiling_pct"] = r((traceable + src["other"][1]) / 1e3 / m["revwallets_usd_k"] * 100, 1)
+    # Wider ceiling: the ledger cannot exclude a partner settlement in the escrow NEAR that reached the
+    # front-end wallet either, so the same logic run on all escrow-path NEAR.
+    m["fefunds_escrow_path_usd_k"] = r(fef_other / 1e3, 1)
+    m["swapkit_exit_ceiling_all_escrow_pct"] = r((traceable + src["other"][1] + fef_other) / 1e3 / m["revwallets_usd_k"] * 100, 1)
 
 
 def build() -> tuple[dict, dict]:
@@ -330,6 +342,8 @@ def build() -> tuple[dict, dict]:
                 nl = sum_dict("near_leg")
                 legs = sum_dict("usd_by_asset_leg")
                 m["explorer_near_leg_share_pct"] = r(legs.get("nep141:wrap.near", 0) / usd * 100, 1)
+                # Swaps with NEAR on exactly one side, as a share of swap volume (not leg-weighted).
+                m["explorer_near_side_swap_share_pct"] = r((nl["into_usd"] + nl["out_usd"]) / usd * 100, 1)
                 m["explorer_into_near_usd_m"] = r(nl["into_usd"] / 1e6, 1)
                 m["explorer_out_of_near_usd_m"] = r(nl["out_usd"] / 1e6, 1)
                 m["explorer_net_near_sold_usd_m"] = r((nl["out_usd"] - nl["into_usd"]) / 1e6, 1)
