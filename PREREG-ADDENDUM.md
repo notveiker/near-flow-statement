@@ -47,7 +47,7 @@ Next steps, all reported here:
 The entry above was headed "2026-11-05 … written before the forward-test window opens (2026-11-06 00:00 UTC)". That was wrong. `git log` shows it was committed at 2026-11-06 01:11:49 UTC (`e202d78`) and edited at 01:14:25 UTC (`e0edac8`), and the revenue-wallet data it cites was fetched at 01:08:10 UTC (`data/MANIFEST.json`). The date was the author's local date (UTC−6). It was therefore written about 71 minutes after the window opened. Its content changes no test: F3 is scored exactly as written, and H1b's scope note only adds context beside the test. Two numbers in it are also corrected in place: the F3 8-day range ($422K quoted the wallet series; DefiLlama's, which F3 uses, gives $417.3K–$756.8K) and the price path in the H1a entry ($1.70 at the window start, not $1.9). An outside review of a fresh clone found all three.
 
 
-## 2026-11-06 23:15 UTC: H1b/H1c method, fixed before any H1b/H1c flow query runs
+## 2026-11-06 23:11 UTC: H1b/H1c method, fixed before any H1b/H1c flow query runs
 
 Committed together with the exchange-account list (`data/raw/labels/exchange_accounts.json`) and the four queries (`sql/h1b_*.sql`). No H1b/H1c query had run for real when this was committed; only dry runs (byte estimates) had. The BigQuery job IDs and creation times of the real runs will be added below, so the order can be checked against this commit.
 
