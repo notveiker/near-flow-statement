@@ -1,0 +1,862 @@
+{
+ "_about": "Named centralized-exchange accounts on NEAR mainnet for PREREG H1b/H1c (phase 1a, lane h1b-exchange). Built 2026-11-06 before any H1b/H1c flow query ran. Only accounts with a citable source are listed; nothing is inferred from account names alone. These are reserve (hot/cold) wallets, not per-user deposit addresses; deposit addresses are added by the sweep-clustering rule in sql_a/sql_c (tier 2/3), not here.",
+ "window": [
+  "2026-08-07",
+  "2026-11-04"
+ ],
+ "confidence_scale": {
+  "high": "first-party exchange publication (PoR list)",
+  "medium": "third-party curated list (DefiLlama CEX adapters) that cites PoR disclosures in aggregate",
+  "low": "not used"
+ },
+ "sources": {
+  "binance_por": {
+   "url": "https://www.binance.com/bapi/apex/v1/public/apex/market/por/address",
+   "kind": "first-party proof-of-reserves wallet list (Binance), network == 'NEAR'",
+   "retrieved_utc": "2026-11-06T22:49:56Z",
+   "evidence_file": "data/raw/labels/binance_por_address_2026-11-06.json",
+   "evidence_sha256": "5557f3c2ba1f2306a3f31dba11283b27af054cf26d93a4f0c9873b64f23fd667",
+   "context": "Same endpoint DefiLlama's Binance CEX adapter reads (https://github.com/DefiLlama/DefiLlama-Adapters/blob/eff0ddbfa069bb8547760db722bca3ce72c19a0e/projects/binance/index.js#L10)"
+  },
+  "dl_bitfinex": {
+   "url": "https://github.com/DefiLlama/DefiLlama-Adapters/blob/eff0ddbfa069bb8547760db722bca3ce72c19a0e/projects/bitfinex/index.js#L85-L90",
+   "kind": "DefiLlama CEX-transparency adapter, near.owners",
+   "retrieved_utc": "2026-11-06"
+  },
+  "dl_bitget": {
+   "url": "https://github.com/DefiLlama/DefiLlama-Adapters/blob/eff0ddbfa069bb8547760db722bca3ce72c19a0e/projects/bitget/index.js#L174-L179",
+   "kind": "DefiLlama CEX-transparency adapter, near.owners (comments: added 05/10/2026 and 21/10/2026)",
+   "retrieved_utc": "2026-11-06"
+  },
+  "dl_gate": {
+   "url": "https://github.com/DefiLlama/DefiLlama-Adapters/blob/eff0ddbfa069bb8547760db722bca3ce72c19a0e/projects/gate-io/index.js#L1417-L1425",
+   "kind": "DefiLlama CEX-transparency adapter, near.owners; e10e2848/bc02e51d also listed as gtnode-0.poolv1.near delegators (L2109-L2118)",
+   "retrieved_utc": "2026-11-06"
+  },
+  "dl_kucoin": {
+   "url": "https://github.com/DefiLlama/DefiLlama-Adapters/blob/eff0ddbfa069bb8547760db722bca3ce72c19a0e/projects/kucoin/index.js#L146-L151",
+   "kind": "DefiLlama CEX-transparency adapter, near.owners",
+   "retrieved_utc": "2026-11-06"
+  },
+  "dl_mexc": {
+   "url": "https://github.com/DefiLlama/DefiLlama-Adapters/blob/eff0ddbfa069bb8547760db722bca3ce72c19a0e/cex/mexc-cex.js#",
+   "kind": "DefiLlama CEX-transparency config, near.owners",
+   "retrieved_utc": "2026-11-06"
+  },
+  "dl_swissborg": {
+   "url": "https://github.com/DefiLlama/DefiLlama-Adapters/blob/eff0ddbfa069bb8547760db722bca3ce72c19a0e/cex/swissborg.js#",
+   "kind": "DefiLlama CEX-transparency config, near.owners",
+   "retrieved_utc": "2026-11-06"
+  },
+  "dl_flipster": {
+   "url": "https://github.com/DefiLlama/DefiLlama-Adapters/blob/eff0ddbfa069bb8547760db722bca3ce72c19a0e/cex/flipster.js#",
+   "kind": "DefiLlama CEX-transparency config, near.owners",
+   "retrieved_utc": "2026-11-06"
+  },
+  "dl_gate_us": {
+   "url": "https://github.com/DefiLlama/DefiLlama-Adapters/blob/eff0ddbfa069bb8547760db722bca3ce72c19a0e/cex/gate-us.js#",
+   "kind": "DefiLlama CEX-transparency config, near.owners",
+   "retrieved_utc": "2026-11-06"
+  },
+  "dl_bitlo": {
+   "url": "https://github.com/DefiLlama/DefiLlama-Adapters/blob/eff0ddbfa069bb8547760db722bca3ce72c19a0e/cex/index.js#L257-L297",
+   "kind": "DefiLlama CEX-transparency config ('bitlo-cex'), near.owners",
+   "retrieved_utc": "2026-11-06"
+  },
+  "rpc_check": {
+   "url": "https://rpc.mainnet.fastnear.com (view_account, finality=final)",
+   "kind": "existence/balance check only, not a label source",
+   "retrieved_utc": "2026-11-06T22:54:26Z",
+   "evidence_file": "evidence/rpc_view_account_2026-11-06.json"
+  }
+ },
+ "accounts": [
+  {
+   "account": "10da3e6516672e0317d9c20e0bf89018271b18c5e3b01ac7b246b2417636a57b",
+   "exchange": "binance",
+   "role": "reserve wallet (PoR list; hot/cold not stated)",
+   "sources": [
+    "binance_por"
+   ],
+   "confidence": "high",
+   "label_basis": "first-party PoR list",
+   "rpc": {
+    "exists": true,
+    "balance_near": 3327276.6,
+    "has_contract": false,
+    "block_height": 223380932
+   },
+   "notes": "held with third-party custodian Ceffu (Binance-affiliated); counted as Binance; PoR createTime 1760486400000 ms"
+  },
+  {
+   "account": "1fc0d96bc0304bfaa1672d2ee84bfeed86ed2db1bdccedab95fa9792a4438a24",
+   "exchange": "binance",
+   "role": "reserve wallet (PoR list; hot/cold not stated)",
+   "sources": [
+    "binance_por"
+   ],
+   "confidence": "high",
+   "label_basis": "first-party PoR list",
+   "rpc": {
+    "exists": true,
+    "balance_near": 3627290.5,
+    "has_contract": false,
+    "block_height": 223380933
+   },
+   "notes": "PoR createTime 1766016000000 ms"
+  },
+  {
+   "account": "27ddc83845172d5ee380af7ba6bcc524145892ff0b91a6078e9ae6d26655e56a",
+   "exchange": "binance",
+   "role": "reserve wallet (PoR list; hot/cold not stated)",
+   "sources": [
+    "binance_por"
+   ],
+   "confidence": "high",
+   "label_basis": "first-party PoR list",
+   "rpc": {
+    "exists": true,
+    "balance_near": 1.0,
+    "has_contract": false,
+    "block_height": 223380934
+   },
+   "notes": "PoR createTime 1760486400000 ms"
+  },
+  {
+   "account": "451913e633c72fb951effe076d3bd2977e3f08083dcf6c87fa89992b0d437c5c",
+   "exchange": "binance",
+   "role": "reserve wallet (PoR list; hot/cold not stated)",
+   "sources": [
+    "binance_por"
+   ],
+   "confidence": "high",
+   "label_basis": "first-party PoR list",
+   "rpc": {
+    "exists": true,
+    "balance_near": 0.4,
+    "has_contract": false,
+    "block_height": 223380935
+   },
+   "notes": "PoR createTime 1760486400000 ms"
+  },
+  {
+   "account": "56203c5b21b828175fa9c1fd4161ecaca76de9a1f6008935eeb9b4d6dc821a22",
+   "exchange": "binance",
+   "role": "reserve wallet (PoR list; hot/cold not stated)",
+   "sources": [
+    "binance_por"
+   ],
+   "confidence": "high",
+   "label_basis": "first-party PoR list",
+   "rpc": {
+    "exists": true,
+    "balance_near": 31053.3,
+    "has_contract": false,
+    "block_height": 223380935
+   },
+   "notes": "PoR createTime 1760486400000 ms"
+  },
+  {
+   "account": "5c33c6218d47e00ef229f60da78d0897e1ee9665312550b8afd5f9c7bc6957d2",
+   "exchange": "binance",
+   "role": "reserve wallet (PoR list; hot/cold not stated)",
+   "sources": [
+    "binance_por"
+   ],
+   "confidence": "high",
+   "label_basis": "first-party PoR list",
+   "rpc": {
+    "exists": true,
+    "balance_near": 3.0,
+    "has_contract": false,
+    "block_height": 223380936
+   },
+   "notes": "prior dig (exodus-decomposition) saw this account at >1.58M txs, unlabelled; it is a Binance PoR address; PoR createTime 1760486400000 ms"
+  },
+  {
+   "account": "7747991786f445efb658b69857eadc7a57b6b475beec26ed14da8bc35bb2b5b6",
+   "exchange": "binance",
+   "role": "reserve wallet (PoR list; hot/cold not stated)",
+   "sources": [
+    "binance_por"
+   ],
+   "confidence": "high",
+   "label_basis": "first-party PoR list",
+   "rpc": {
+    "exists": true,
+    "balance_near": 0.1,
+    "has_contract": false,
+    "block_height": 223380937
+   },
+   "notes": "PoR createTime 1760486400000 ms"
+  },
+  {
+   "account": "7e6e17fcb8e8e6a22ecd47bbd1b58b1af3582b97bbfd4a8d974bb9c266fa282b",
+   "exchange": "binance",
+   "role": "reserve wallet (PoR list; hot/cold not stated)",
+   "sources": [
+    "binance_por"
+   ],
+   "confidence": "high",
+   "label_basis": "first-party PoR list",
+   "rpc": {
+    "exists": true,
+    "balance_near": 4.0,
+    "has_contract": false,
+    "block_height": 223380937
+   },
+   "notes": "prior dig: binancenode1 delegator that sent 2.5M to binancecold3.near; it is a Binance PoR address; PoR createTime 1760486400000 ms"
+  },
+  {
+   "account": "9c484fa5d2d069569ba063fc555c34e621ccd88fdbb0295fc79bad232621c5c1",
+   "exchange": "binance",
+   "role": "reserve wallet (PoR list; hot/cold not stated)",
+   "sources": [
+    "binance_por"
+   ],
+   "confidence": "high",
+   "label_basis": "first-party PoR list",
+   "rpc": {
+    "exists": true,
+    "balance_near": 0.4,
+    "has_contract": false,
+    "block_height": 223380938
+   },
+   "notes": "PoR createTime 1760486400000 ms"
+  },
+  {
+   "account": "b8caf00f8f925cc7b3925def6db361974403082ac7e7710b8342e0b20ac496e9",
+   "exchange": "binance",
+   "role": "reserve wallet (PoR list; hot/cold not stated)",
+   "sources": [
+    "binance_por"
+   ],
+   "confidence": "high",
+   "label_basis": "first-party PoR list",
+   "rpc": {
+    "exists": true,
+    "balance_near": 2.0,
+    "has_contract": false,
+    "block_height": 223380938
+   },
+   "notes": "held with third-party custodian Ceffu (Binance-affiliated); counted as Binance; PoR createTime 1760486400000 ms"
+  },
+  {
+   "account": "bc2fa68aa5d9a0d4e75fbe5659369aa13e1bccf7cabf81ac5d007ae0e51fcac3",
+   "exchange": "binance",
+   "role": "reserve wallet (PoR list; hot/cold not stated)",
+   "sources": [
+    "binance_por"
+   ],
+   "confidence": "high",
+   "label_basis": "first-party PoR list",
+   "rpc": {
+    "exists": true,
+    "balance_near": 1.0,
+    "has_contract": false,
+    "block_height": 223380939
+   },
+   "notes": "held with third-party custodian Ceffu (Binance-affiliated); counted as Binance; PoR createTime 1760486400000 ms"
+  },
+  {
+   "account": "binance1.near",
+   "exchange": "binance",
+   "role": "reserve wallet (PoR list; hot/cold not stated)",
+   "sources": [
+    "binance_por"
+   ],
+   "confidence": "high",
+   "label_basis": "first-party PoR list",
+   "rpc": {
+    "exists": true,
+    "balance_near": 0.2,
+    "has_contract": false,
+    "block_height": 223380940
+   },
+   "notes": "PoR createTime 1760486400000 ms"
+  },
+  {
+   "account": "binancecold3.near",
+   "exchange": "binance",
+   "role": "cold (name + PoR)",
+   "sources": [
+    "binance_por"
+   ],
+   "confidence": "high",
+   "label_basis": "first-party PoR list",
+   "rpc": {
+    "exists": true,
+    "balance_near": 105636361.0,
+    "has_contract": false,
+    "block_height": 223380940
+   },
+   "notes": "PoR createTime 1760486400000 ms"
+  },
+  {
+   "account": "c6f10c6993a97c90e34ce60c5ea3ccb4915cf731daff0e7a2e5d93ebc879cc74",
+   "exchange": "binance",
+   "role": "reserve wallet (PoR list; hot/cold not stated)",
+   "sources": [
+    "binance_por"
+   ],
+   "confidence": "high",
+   "label_basis": "first-party PoR list",
+   "rpc": {
+    "exists": true,
+    "balance_near": 30.4,
+    "has_contract": false,
+    "block_height": 223380941
+   },
+   "notes": "PoR createTime 1760486400000 ms"
+  },
+  {
+   "account": "ce766fc85f14b52d177bb0620a3be19585783644282b16ff3cfe3f4f699ece03",
+   "exchange": "binance",
+   "role": "reserve wallet (PoR list; hot/cold not stated)",
+   "sources": [
+    "binance_por"
+   ],
+   "confidence": "high",
+   "label_basis": "first-party PoR list",
+   "rpc": {
+    "exists": true,
+    "balance_near": 541110.1,
+    "has_contract": false,
+    "block_height": 223380942
+   },
+   "notes": "PoR createTime 1766016000000 ms"
+  },
+  {
+   "account": "d04204b6591fefb973a8ed60929f8211af89ee38020da9faf905acdc7a320063",
+   "exchange": "binance",
+   "role": "reserve wallet (PoR list; hot/cold not stated)",
+   "sources": [
+    "binance_por"
+   ],
+   "confidence": "high",
+   "label_basis": "first-party PoR list",
+   "rpc": {
+    "exists": true,
+    "balance_near": 0.4,
+    "has_contract": false,
+    "block_height": 223380943
+   },
+   "notes": "PoR createTime 1760486400000 ms"
+  },
+  {
+   "account": "e1074e251c7350b8a4480816fffd897b727011df579e04cc19f890fd48fd8830",
+   "exchange": "binance",
+   "role": "reserve wallet (PoR list; hot/cold not stated)",
+   "sources": [
+    "binance_por"
+   ],
+   "confidence": "high",
+   "label_basis": "first-party PoR list",
+   "rpc": {
+    "exists": true,
+    "balance_near": 360256.1,
+    "has_contract": false,
+    "block_height": 223380943
+   },
+   "notes": "PoR createTime 1760486400000 ms"
+  },
+  {
+   "account": "e1a70d1d2b8df95e0742c5aa18eb9089d84d5365fead073ac77d4c115cf3e264",
+   "exchange": "binance",
+   "role": "reserve wallet (PoR list; hot/cold not stated)",
+   "sources": [
+    "binance_por"
+   ],
+   "confidence": "high",
+   "label_basis": "first-party PoR list",
+   "rpc": {
+    "exists": true,
+    "balance_near": 1509937.6,
+    "has_contract": false,
+    "block_height": 223380944
+   },
+   "notes": "PoR createTime 1760486400000 ms"
+  },
+  {
+   "account": "e37e1cf6cd9c8601881799e531c958cd0ca01c734a6349aa88a23489c4258d05",
+   "exchange": "binance",
+   "role": "reserve wallet (PoR list; hot/cold not stated)",
+   "sources": [
+    "binance_por"
+   ],
+   "confidence": "high",
+   "label_basis": "first-party PoR list",
+   "rpc": {
+    "exists": true,
+    "balance_near": 217073.2,
+    "has_contract": false,
+    "block_height": 223380944
+   },
+   "notes": "PoR createTime 1760486400000 ms"
+  },
+  {
+   "account": "383e50ea1a754ed3acd0d59116f221add87adb82559f31ca6d377f058fe83375",
+   "exchange": "bitfinex",
+   "role": "reserve wallet (PoR/transparency list; hot/cold not stated)",
+   "sources": [
+    "dl_bitfinex"
+   ],
+   "confidence": "medium",
+   "label_basis": "third-party curated (DefiLlama CEX transparency adapter; each adapter's addresses are typically taken from the exchange's own PoR disclosure but the per-address provenance is not shown)",
+   "rpc": {
+    "exists": true,
+    "balance_near": 2067915.3,
+    "has_contract": false,
+    "block_height": 223380945
+   },
+   "notes": ""
+  },
+  {
+   "account": "965c8b57b7f36fe9a40ce6188d444ca78708e4d83843b108f7f53d0fe5332076",
+   "exchange": "bitfinex",
+   "role": "reserve wallet (PoR/transparency list; hot/cold not stated)",
+   "sources": [
+    "dl_bitfinex"
+   ],
+   "confidence": "medium",
+   "label_basis": "third-party curated (DefiLlama CEX transparency adapter; each adapter's addresses are typically taken from the exchange's own PoR disclosure but the per-address provenance is not shown)",
+   "rpc": {
+    "exists": true,
+    "balance_near": 87.9,
+    "has_contract": false,
+    "block_height": 223380946
+   },
+   "notes": ""
+  },
+  {
+   "account": "241754260760e04e3a90acf27b1c54296b81e52a3b21fab8347ae88066946092",
+   "exchange": "bitget",
+   "role": "reserve wallet (PoR/transparency list; hot/cold not stated)",
+   "sources": [
+    "dl_bitget"
+   ],
+   "confidence": "medium",
+   "label_basis": "third-party curated (DefiLlama CEX transparency adapter; each adapter's addresses are typically taken from the exchange's own PoR disclosure but the per-address provenance is not shown)",
+   "rpc": {
+    "exists": true,
+    "balance_near": 4159305.2,
+    "has_contract": false,
+    "block_height": 223380946
+   },
+   "notes": ""
+  },
+  {
+   "account": "454e9a19b4552d08132efb9db354f8cdb1ceb155d8c2c9806f6cb15d947187cf",
+   "exchange": "bitget",
+   "role": "reserve wallet (PoR/transparency list; hot/cold not stated)",
+   "sources": [
+    "dl_bitget"
+   ],
+   "confidence": "medium",
+   "label_basis": "third-party curated (DefiLlama CEX transparency adapter; each adapter's addresses are typically taken from the exchange's own PoR disclosure but the per-address provenance is not shown)",
+   "rpc": {
+    "exists": true,
+    "balance_near": 976536.0,
+    "has_contract": false,
+    "block_height": 223380947
+   },
+   "notes": ""
+  },
+  {
+   "account": "0d584a4cbbfd9a4878d816512894e65918e54fae13df39a6f520fc90caea2fb0",
+   "exchange": "gate",
+   "role": "reserve wallet (PoR/transparency list; hot/cold not stated)",
+   "sources": [
+    "dl_gate"
+   ],
+   "confidence": "medium",
+   "label_basis": "third-party curated (DefiLlama CEX transparency adapter; each adapter's addresses are typically taken from the exchange's own PoR disclosure but the per-address provenance is not shown)",
+   "rpc": {
+    "exists": true,
+    "balance_near": 1149798.4,
+    "has_contract": false,
+    "block_height": 223380948
+   },
+   "notes": ""
+  },
+  {
+   "account": "f857de8a2a882488235eda61d3f41c4a60591d7f8daec1299ec0f20426a4cc3f",
+   "exchange": "gate",
+   "role": "reserve wallet (PoR/transparency list; hot/cold not stated)",
+   "sources": [
+    "dl_gate"
+   ],
+   "confidence": "medium",
+   "label_basis": "third-party curated (DefiLlama CEX transparency adapter; each adapter's addresses are typically taken from the exchange's own PoR disclosure but the per-address provenance is not shown)",
+   "rpc": {
+    "exists": true,
+    "balance_near": 253099.5,
+    "has_contract": false,
+    "block_height": 223380948
+   },
+   "notes": ""
+  },
+  {
+   "account": "e10e284823bc0728f1850486fd4ccd5546249140e96823ac09f96b30363cd251",
+   "exchange": "gate",
+   "role": "reserve wallet (PoR/transparency list; hot/cold not stated)",
+   "sources": [
+    "dl_gate"
+   ],
+   "confidence": "medium",
+   "label_basis": "third-party curated (DefiLlama CEX transparency adapter; each adapter's addresses are typically taken from the exchange's own PoR disclosure but the per-address provenance is not shown)",
+   "rpc": {
+    "exists": true,
+    "balance_near": 80.6,
+    "has_contract": false,
+    "block_height": 223380948
+   },
+   "notes": "also listed by DefiLlama as Gate's staking delegator in gtnode-0.poolv1.near"
+  },
+  {
+   "account": "bc02e51d5f4c03611ef28d8fdbdba01b237f5a870fad7670d0a17a1a14934b97",
+   "exchange": "gate",
+   "role": "reserve wallet (PoR/transparency list; hot/cold not stated)",
+   "sources": [
+    "dl_gate"
+   ],
+   "confidence": "medium",
+   "label_basis": "third-party curated (DefiLlama CEX transparency adapter; each adapter's addresses are typically taken from the exchange's own PoR disclosure but the per-address provenance is not shown)",
+   "rpc": {
+    "exists": true,
+    "balance_near": 10.0,
+    "has_contract": false,
+    "block_height": 223380949
+   },
+   "notes": "also listed by DefiLlama as Gate's staking delegator in gtnode-0.poolv1.near"
+  },
+  {
+   "account": "kucoinc.near",
+   "exchange": "kucoin",
+   "role": "reserve wallet (PoR/transparency list; hot/cold not stated)",
+   "sources": [
+    "dl_kucoin"
+   ],
+   "confidence": "medium",
+   "label_basis": "third-party curated (DefiLlama CEX transparency adapter; each adapter's addresses are typically taken from the exchange's own PoR disclosure but the per-address provenance is not shown)",
+   "rpc": {
+    "exists": true,
+    "balance_near": 0.1,
+    "has_contract": false,
+    "block_height": 223380950
+   },
+   "notes": "named account; DefiLlama lists it as a KuCoin owner"
+  },
+  {
+   "account": "e589457354361489a89039b8be6737cbc2db4d13919b6ccf23889a60f3b0d8f3",
+   "exchange": "kucoin",
+   "role": "reserve wallet (PoR/transparency list; hot/cold not stated)",
+   "sources": [
+    "dl_kucoin"
+   ],
+   "confidence": "medium",
+   "label_basis": "third-party curated (DefiLlama CEX transparency adapter; each adapter's addresses are typically taken from the exchange's own PoR disclosure but the per-address provenance is not shown)",
+   "rpc": {
+    "exists": true,
+    "balance_near": 198237.2,
+    "has_contract": false,
+    "block_height": 223380950
+   },
+   "notes": ""
+  },
+  {
+   "account": "7b865db190b966fe6ea30d0e7cc44ce42c4ea4f159a4b0b937122f166fc3ae28",
+   "exchange": "kucoin",
+   "role": "reserve wallet (PoR/transparency list; hot/cold not stated)",
+   "sources": [
+    "dl_kucoin"
+   ],
+   "confidence": "medium",
+   "label_basis": "third-party curated (DefiLlama CEX transparency adapter; each adapter's addresses are typically taken from the exchange's own PoR disclosure but the per-address provenance is not shown)",
+   "rpc": {
+    "exists": true,
+    "balance_near": 4594067.0,
+    "has_contract": false,
+    "block_height": 223380951
+   },
+   "notes": ""
+  },
+  {
+   "account": "dba256d942a6fbfef9c8d42a2960f89a1f6dcc1e8490c7531d89a470d1d00405",
+   "exchange": "mexc",
+   "role": "reserve wallet (PoR/transparency list; hot/cold not stated)",
+   "sources": [
+    "dl_mexc"
+   ],
+   "confidence": "medium",
+   "label_basis": "third-party curated (DefiLlama CEX transparency adapter; each adapter's addresses are typically taken from the exchange's own PoR disclosure but the per-address provenance is not shown)",
+   "rpc": {
+    "exists": true,
+    "balance_near": 1.5,
+    "has_contract": false,
+    "block_height": 223380952
+   },
+   "notes": ""
+  },
+  {
+   "account": "dc6b4c8821dbe652b763e3bfadfea548137b29b97408c8b411ad72acff94e63f",
+   "exchange": "swissborg",
+   "role": "reserve wallet (PoR/transparency list; hot/cold not stated)",
+   "sources": [
+    "dl_swissborg"
+   ],
+   "confidence": "medium",
+   "label_basis": "third-party curated (DefiLlama CEX transparency adapter; each adapter's addresses are typically taken from the exchange's own PoR disclosure but the per-address provenance is not shown)",
+   "rpc": {
+    "exists": true,
+    "balance_near": 0.0,
+    "has_contract": false,
+    "block_height": 223380952
+   },
+   "notes": "SwissBorg is a custodial app/exchange; included as centralized exchange"
+  },
+  {
+   "account": "1c0dc521827821f1695538ff9312df15f32837bbfe95bc937f9faaafd4125552",
+   "exchange": "swissborg",
+   "role": "reserve wallet (PoR/transparency list; hot/cold not stated)",
+   "sources": [
+    "dl_swissborg"
+   ],
+   "confidence": "medium",
+   "label_basis": "third-party curated (DefiLlama CEX transparency adapter; each adapter's addresses are typically taken from the exchange's own PoR disclosure but the per-address provenance is not shown)",
+   "rpc": {
+    "exists": true,
+    "balance_near": 0.0,
+    "has_contract": false,
+    "block_height": 223380953
+   },
+   "notes": "SwissBorg is a custodial app/exchange; included as centralized exchange"
+  },
+  {
+   "account": "9b23bfd45a028e7a28326007b221cf8bd8b288630dde5ca714a0524f4865db89",
+   "exchange": "swissborg",
+   "role": "reserve wallet (PoR/transparency list; hot/cold not stated)",
+   "sources": [
+    "dl_swissborg"
+   ],
+   "confidence": "medium",
+   "label_basis": "third-party curated (DefiLlama CEX transparency adapter; each adapter's addresses are typically taken from the exchange's own PoR disclosure but the per-address provenance is not shown)",
+   "rpc": {
+    "exists": true,
+    "balance_near": 0.6,
+    "has_contract": false,
+    "block_height": 223380953
+   },
+   "notes": "SwissBorg is a custodial app/exchange; included as centralized exchange"
+  },
+  {
+   "account": "034e29f9703726c1f7b955fa5f7b16f6293adec615f668a73bc3b3b0255392df",
+   "exchange": "swissborg",
+   "role": "reserve wallet (PoR/transparency list; hot/cold not stated)",
+   "sources": [
+    "dl_swissborg"
+   ],
+   "confidence": "medium",
+   "label_basis": "third-party curated (DefiLlama CEX transparency adapter; each adapter's addresses are typically taken from the exchange's own PoR disclosure but the per-address provenance is not shown)",
+   "rpc": {
+    "exists": true,
+    "balance_near": 1619485.4,
+    "has_contract": false,
+    "block_height": 223380954
+   },
+   "notes": "SwissBorg is a custodial app/exchange; included as centralized exchange"
+  },
+  {
+   "account": "c298ef5c3754dbcb6c23b481b514641f91d46845a256be4fd6ad742d5f3c251c",
+   "exchange": "swissborg",
+   "role": "reserve wallet (PoR/transparency list; hot/cold not stated)",
+   "sources": [
+    "dl_swissborg"
+   ],
+   "confidence": "medium",
+   "label_basis": "third-party curated (DefiLlama CEX transparency adapter; each adapter's addresses are typically taken from the exchange's own PoR disclosure but the per-address provenance is not shown)",
+   "rpc": {
+    "exists": true,
+    "balance_near": 3949.8,
+    "has_contract": false,
+    "block_height": 223380954
+   },
+   "notes": "SwissBorg is a custodial app/exchange; included as centralized exchange"
+  },
+  {
+   "account": "d09904357488c186e9105396dc32f1a1180bf9870a09c037b3282372e337e770",
+   "exchange": "flipster",
+   "role": "reserve wallet (PoR/transparency list; hot/cold not stated)",
+   "sources": [
+    "dl_flipster"
+   ],
+   "confidence": "medium",
+   "label_basis": "third-party curated (DefiLlama CEX transparency adapter; each adapter's addresses are typically taken from the exchange's own PoR disclosure but the per-address provenance is not shown)",
+   "rpc": {
+    "exists": true,
+    "balance_near": 503.7,
+    "has_contract": false,
+    "block_height": 223380955
+   },
+   "notes": "derivatives CEX; included as centralized exchange"
+  },
+  {
+   "account": "679760352e80fca56d416fdbe8c9e060ed96a5a2c7b4bb5add51f99a08fd8afe",
+   "exchange": "gate_us",
+   "role": "reserve wallet (PoR/transparency list; hot/cold not stated)",
+   "sources": [
+    "dl_gate_us"
+   ],
+   "confidence": "medium",
+   "label_basis": "third-party curated (DefiLlama CEX transparency adapter; each adapter's addresses are typically taken from the exchange's own PoR disclosure but the per-address provenance is not shown)",
+   "rpc": {
+    "exists": true,
+    "balance_near": 128747.4,
+    "has_contract": false,
+    "block_height": 223380955
+   },
+   "notes": "Gate.US (separate entity from Gate.io); still a centralized exchange"
+  },
+  {
+   "account": "c2566b91e059eb97e2acaa57fe1647db65970fe43f50a7264483d717737f2348",
+   "exchange": "gate_us",
+   "role": "reserve wallet (PoR/transparency list; hot/cold not stated)",
+   "sources": [
+    "dl_gate_us"
+   ],
+   "confidence": "medium",
+   "label_basis": "third-party curated (DefiLlama CEX transparency adapter; each adapter's addresses are typically taken from the exchange's own PoR disclosure but the per-address provenance is not shown)",
+   "rpc": {
+    "exists": true,
+    "balance_near": 34030.6,
+    "has_contract": false,
+    "block_height": 223380956
+   },
+   "notes": "Gate.US (separate entity from Gate.io); still a centralized exchange"
+  },
+  {
+   "account": "6ab1742337f2734a9da8bc75091c0a4558280adc951be7db04feb4c1cea0edc1",
+   "exchange": "bitlo",
+   "role": "reserve wallet (PoR/transparency list; hot/cold not stated)",
+   "sources": [
+    "dl_bitlo"
+   ],
+   "confidence": "medium",
+   "label_basis": "third-party curated (DefiLlama CEX transparency adapter; each adapter's addresses are typically taken from the exchange's own PoR disclosure but the per-address provenance is not shown)",
+   "rpc": {
+    "exists": true,
+    "balance_near": 0.7,
+    "has_contract": false,
+    "block_height": 223380957
+   },
+   "notes": ""
+  }
+ ],
+ "excluded_or_unlabelled": [
+  {
+   "account": "c1a3dabb95b06767db2ab85ed0be86133a15bfe3a80fa017cbb83216760a8181",
+   "exchange": "gate",
+   "reason": "commented out in DefiLlama gate-io adapter: 'account was never created on near'",
+   "source": "https://github.com/DefiLlama/DefiLlama-Adapters/blob/eff0ddbfa069bb8547760db722bca3ce72c19a0e/projects/gate-io/index.js#L1421"
+  },
+  {
+   "account": "ccb91e1d\u2026",
+   "exchange": null,
+   "reason": "high-throughput account (>1.8M txs) seen in prior dig; not in any list found; NOT labelled",
+   "source": "dig/exodus-decomposition.md"
+  },
+  {
+   "account": "466222f1\u2026",
+   "exchange": null,
+   "reason": "unlabelled hub from prior dig; no source; NOT labelled (sweep pass may report it as an unlabelled hub)",
+   "source": "dig/exodus-decomposition.md"
+  }
+ ],
+ "searched_not_found": [
+  {
+   "exchange": "okx",
+   "searched": [
+    "DefiLlama projects/okex/index.js @eff0ddb (no near key)",
+    "web search 'OKX proof of reserves NEAR wallet address list' (OKX publishes ~700k PoR addresses via okx.com/proof-of-reserves download; no machine-readable NEAR list reachable without the site UI)"
+   ],
+   "result": "no NEAR address with a citable source in time box"
+  },
+  {
+   "exchange": "htx",
+   "searched": [
+    "DefiLlama projects/huobi/index.js (no near key)",
+    "https://github.com/huobiapi/Tool-Node.js-VerifyAddress/blob/main/snapshot/huobi_por.csv (no NEAR row)"
+   ],
+   "result": "none"
+  },
+  {
+   "exchange": "bybit",
+   "searched": [
+    "DefiLlama cex/bybit.js (no near key)"
+   ],
+   "result": "none"
+  },
+  {
+   "exchange": "crypto.com",
+   "searched": [
+    "DefiLlama cex/index.js 'crypto-com' entry (no near key)",
+    "web search 'Crypto.com proof of reserves NEAR wallet addresses' (2022 cold-wallet list, BTC/ETH only)"
+   ],
+   "result": "none"
+  },
+  {
+   "exchange": "kraken",
+   "searched": [
+    "DefiLlama cex/index.js 'kraken' entry (no near key)"
+   ],
+   "result": "none"
+  },
+  {
+   "exchange": "coinbase",
+   "searched": [
+    "DefiLlama (no Coinbase CEX adapter with near)"
+   ],
+   "result": "none"
+  },
+  {
+   "exchange": "upbit",
+   "searched": [
+    "DefiLlama (no adapter found)"
+   ],
+   "result": "none"
+  },
+  {
+   "exchange": "bithumb",
+   "searched": [
+    "DefiLlama (no adapter found)"
+   ],
+   "result": "none"
+  },
+  {
+   "exchange": "nearblocks labels",
+   "searched": [
+    "PREREG-ADDENDUM: Nearblocks account API returns no labels"
+   ],
+   "result": "none"
+  }
+ ],
+ "counts": {
+  "accounts": 40,
+  "with_cited_source": 40,
+  "high": 19,
+  "medium": 21,
+  "exchanges": [
+   "binance",
+   "bitfinex",
+   "bitget",
+   "bitlo",
+   "flipster",
+   "gate",
+   "gate_us",
+   "kucoin",
+   "mexc",
+   "swissborg"
+  ],
+  "all_exist_on_chain": true
+ }
+}

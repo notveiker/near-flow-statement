@@ -55,7 +55,10 @@ def run(path) -> None:
 
 def main(argv: list[str]) -> int:
     pattern = argv[0] if argv else ""
-    files = sorted(p for p in SQL.glob("*.sql") if not p.name.startswith("spike_") and pattern in p.name)
+    # spike_ files are one-off probes; h1b_ files are staged (c -> a -> b) and large (a is ~262 GB),
+    # so they run only when named explicitly, e.g. NFS_BQ_MAX_GB=270 python3 -m pipeline.bq_run h1b_a
+    skip = ("spike_",) if pattern.startswith("h1b_") else ("spike_", "h1b_")
+    files = sorted(p for p in SQL.glob("*.sql") if not p.name.startswith(skip) and pattern in p.name)
     failed = 0
     for p in files:
         try:

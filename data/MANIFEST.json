@@ -72,6 +72,18 @@
    "sha256": "bce514b1fb49104c54d40e382171adf474258c6e7e8e3a31491438b19eaf141d",
    "source": "https://explorer.near-intents.org/api/v0/transactions?statuses=SUCCESS (per-day cursor pull, 2026-10-06..2026-11-04)"
   },
+  "raw/labels/binance_por_address_2026-11-06.json": {
+   "bytes": 91766,
+   "fetched_at": "2026-11-06T23:10:36Z",
+   "sha256": "5557f3c2ba1f2306a3f31dba11283b27af054cf26d93a4f0c9873b64f23fd667",
+   "source": "Binance proof-of-reserves address endpoint, fetched 2026-11-06 (evidence for exchange_accounts.json)"
+  },
+  "raw/labels/exchange_accounts.json": {
+   "bytes": 28974,
+   "fetched_at": "2026-11-06T23:10:36Z",
+   "sha256": "86e17c81c187bef3801b4c5c4c1323041039c4196f6600f18f06ba673750c98f",
+   "source": "lane h1b-exchange phase 1a (2026-11-06): named CEX accounts, each with a cited source"
+  },
   "raw/llama/chainfees_near.json": {
    "bytes": 40580,
    "fetched_at": "2026-11-05T22:51:13Z",
