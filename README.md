@@ -12,6 +12,7 @@
 | `make fetch` | Refreshes the keyless sources (DefiLlama, Nearblocks, CoinGecko, NEAR RPC) |
 | `make explorer` | Pulls successful 1Click swaps from the NEAR Intents Explorer API and aggregates them by day into `data/raw/explorer/daily.json`. Needs an Explorer key from [partners.near-intents.org](https://partners.near-intents.org) as `NEAR_INTENTS_EXPLORER_JWT`, in your environment or in a git-ignored `.env`. The API allows 1 request per 5 s, so 30 days takes about 1h45m. Finished days are cached in `.cache/explorer/` |
 | `make bq` | Re-runs `sql/*.sql` on `bigquery-public-data.crypto_near_mainnet_us`. Needs `gcloud` auth. Every query is dry-run first and capped with `--maximum_bytes_billed`. A full run scans about 230 GB, which costs roughly $1.50 at on-demand pricing (about $6.25 per TB) once a project is past BigQuery's free 1 TB a month. To refresh one query, run `python3 -m pipeline.bq_run <name>` |
+| `python3 -m pipeline.fetch_escrow verify --sample 60` | Re-checks a random sample of revenue-wallet deliveries in `data/raw/escrow/deliveries.csv`, and their funding transfers from the Confidential Intents escrow, against FastNEAR and archival RPC. No key. `verify --all` checks every row |
 
 ## Findings so far
 

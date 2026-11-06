@@ -159,6 +159,53 @@ def concentration(m: dict, near_price: dict, lo: str, hi: str) -> None:
     m["swapkit_exit_ceiling_all_escrow_pct"] = r((traceable + src["other"][1] + fef_other) / 1e3 / m["revwallets_usd_k"] * 100, 1)
 
 
+def escrow_ladder(m: dict, lo: str, hi: str) -> None:
+    """Escrow-unshield evidence (data/raw/escrow/, re-checkable with pipeline.fetch_escrow).
+
+    Each delivery of NEAR to the revenue wallets is classified by its withdrawing account; single-use
+    accounts carry their funding hop. Rungs are NEAR delivered per day over lo..hi as % of net issuance per
+    day between the two archival total_supply reads. Exploratory, post-freeze (not a PREREG test)."""
+    import csv
+    from fractions import Fraction
+    path = RAW / "escrow" / "deliveries.csv"
+    if not path.exists():
+        return
+    with open(path, newline="") as f:
+        rows = list(csv.DictReader(f))
+    reads = read_raw("escrow/issuance_reads.json")["reads"]
+    (t0, s0), (t1, s1) = sorted((int(x["timestamp_ns"]), int(x["total_supply"])) for x in reads)
+    iss = Fraction(s1 - s0, YOCTO) / Fraction(t1 - t0, 86400 * 10**9)
+    win = [x for x in rows if lo <= x["day"] <= hi]
+    from datetime import date
+    n_days = (date.fromisoformat(hi) - date.fromisoformat(lo)).days + 1
+
+    def near(sel) -> Fraction:
+        return Fraction(sum(int(x["amount_yocto"]) for x in win if sel(x)), YOCTO)
+
+    single = [x for x in win if x["path"] in ("escrow_unshield", "other") and x["single_use_account"]]
+    verified = [x for x in single if x["funder"] == PRIVATE_TREASURY_ESCROW and x["exact_amount_flag"] == "1"]
+    m["escrow_unshields_30d_n"] = len([x for x in win if x["path"] == "escrow_unshield"])
+    m["escrow_single_use_30d_n"] = len(single)
+    m["escrow_funded_exact_30d_n"] = len(verified)
+    m["escrow_funded_exact_30d_pct"] = r(len(verified) / len(single) * 100, 1) if single else 0.0
+    bb = lambda x: x["wallet"] == "buybacks.multisignature.near"
+    m["escrow_share_of_buyback_near_30d_pct"] = r(float(near(lambda x: bb(x) and x["path"] == "escrow_unshield")
+                                                     / near(bb) * 100), 1)
+    m["net_issuance_near_per_day_window"] = r(float(iss), 0)
+    for key, sel in (("all_wallets", lambda x: True), ("buyback_only", bb),
+                     ("public_collectors", lambda x: x["path"] in ("collector_a", "collector_b")),
+                     ("escrow_unshields", lambda x: x["path"] == "escrow_unshield")):
+        m[f"ladder_{key}_pct_of_issuance"] = r(float(near(sel) / n_days / iss * 100), 2)
+    tot, esc = defaultdict(int), defaultdict(int)
+    for x in rows:
+        if bb(x):
+            tot[x["day"][:7]] += int(x["amount_yocto"])
+            esc[x["day"][:7]] += int(x["amount_yocto"]) if x["path"] == "escrow_unshield" else 0
+    m["escrow_share_of_buyback_by_month"] = [{"month": k, "share_pct": r(esc[k] / tot[k] * 100, 1),
+                                              "note": "from 07-07" if k == "2026-07" else ""}
+                                             for k in sorted(tot) if k <= hi[:7]]
+
+
 def build() -> tuple[dict, dict]:
     # ---------- inputs ----------
     vol = {s: llama_daily(f"llama/volume_{s}.json") for s in PEERS}
@@ -418,6 +465,7 @@ def build() -> tuple[dict, dict]:
             m["partners_kept_vs_near_rev_low_x"] = r(kept_low / m["revwallets_usd_k"], 2)
             m["partners_kept_vs_near_rev_high_x"] = r(m["explorer_partner_fees_all_usd_k"] / m["revwallets_usd_k"], 2)
             concentration(m, price, lo, hi)
+            escrow_ladder(m, lo, hi)
 
     # ---------- peers ----------
     peer_rows = []

@@ -16,6 +16,22 @@
    "sha256": "76ca2d1194f0c19db1a517d4850724ef5da63d8b6ee9568abfa774dcb06ea272",
    "source": "bigquery: sql/collector_inflows.sql"
   },
+  "raw/bq/h1b_a_native_flows.json": {
+   "bytes": 5985011,
+   "bytes_processed_estimate": 262380873736,
+   "fetched_at": "2026-11-06T23:15:13Z",
+   "rows": 25437,
+   "sha256": "ac928fe08ef03877df145fc4bdfbabae9a0644c2941f9e7dcd416c53b1f1c5ed",
+   "source": "bigquery: sql/h1b_a_native_flows.sql"
+  },
+  "raw/bq/h1b_c_sweep_clusters.json": {
+   "bytes": 32356,
+   "bytes_processed_estimate": 23947500701,
+   "fetched_at": "2026-11-06T23:11:41Z",
+   "rows": 210,
+   "sha256": "e9588b535fff683e7b94e750b4cdf98403399f5a634c02055aa61ce66e25b963",
+   "source": "bigquery: sql/h1b_c_sweep_clusters.sql"
+  },
   "raw/bq/revenue_wallet_inflows.json": {
    "bytes": 6814,
    "bytes_processed_estimate": 86962294607,
@@ -65,6 +81,24 @@
    "fetched_at": "2026-11-05T22:51:17Z",
    "sha256": "199d54d4131b432f73fa7f8aa81a2cf168ac4dec7791aac7629d8f1674bef4c2",
    "source": "https://api.coingecko.com/api/v3/coins/near"
+  },
+  "raw/escrow/deliveries.csv": {
+   "bytes": 895289,
+   "fetched_at": "2026-11-06T23:19:12Z",
+   "sha256": "3176231d206547fca15ac8c52fb724252afbcd7e860fd2a08ecb108a7c652749",
+   "source": "intents.near native_withdraw deliveries to the 3 revenue wallets, 2026-07-07..11-04, with funding hops (BigQuery job bqjob_r275b038b73d7c093_000001a1af3708a8_1 for October; FastNEAR samples before)"
+  },
+  "raw/escrow/issuance_reads.json": {
+   "bytes": 271,
+   "fetched_at": "2026-11-06T23:19:12Z",
+   "sha256": "2e9c824b4b3df33a29d58036755332a0bf951740fa86defdbec11c9feafef6df",
+   "source": "archival RPC block total_supply at 218,718,000 and 223,087,766"
+  },
+  "raw/escrow/verify_sample.json": {
+   "bytes": 15483,
+   "fetched_at": "2026-11-06T23:19:12Z",
+   "sha256": "3a64f2ad06154bc70984b890df63e6d47a258e8dff83b96dc3f3696496822a02",
+   "source": "python3 -m pipeline.fetch_escrow verify --sample 60 --seed 20261106 (FastNEAR + archival RPC)"
   },
   "raw/explorer/daily.json": {
    "bytes": 447081,

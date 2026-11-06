@@ -72,6 +72,38 @@
  "collector_b_valued_transfers_pct": 91.0,
  "coverage_rev_near_30d_pct": 15.7,
  "coverage_rev_usd_30d_pct": 15.7,
+ "escrow_funded_exact_30d_n": 909,
+ "escrow_funded_exact_30d_pct": 100.0,
+ "escrow_share_of_buyback_by_month": [
+  {
+   "month": "2026-07",
+   "note": "from 07-07",
+   "share_pct": 17.5
+  },
+  {
+   "month": "2026-08",
+   "note": "",
+   "share_pct": 28.6
+  },
+  {
+   "month": "2026-09",
+   "note": "",
+   "share_pct": 53.0
+  },
+  {
+   "month": "2026-10",
+   "note": "",
+   "share_pct": 57.4
+  },
+  {
+   "month": "2026-11",
+   "note": "",
+   "share_pct": 58.5
+  }
+ ],
+ "escrow_share_of_buyback_near_30d_pct": 58.8,
+ "escrow_single_use_30d_n": 909,
+ "escrow_unshields_30d_n": 909,
  "explorer_appfees_bp": 44.4,
  "explorer_appfees_to_buybacks_pct": 9.2,
  "explorer_appfees_to_buybacks_usd_k": 450.6,
@@ -262,6 +294,10 @@
  "intents_vol_prior30d_b": 4.56,
  "l1_fees_30d_k": 178.0,
  "l1_fees_365d_m": 1.2,
+ "ladder_all_wallets_pct_of_issuance": 15.81,
+ "ladder_buyback_only_pct_of_issuance": 11.0,
+ "ladder_escrow_unshields_pct_of_issuance": 11.25,
+ "ladder_public_collectors_pct_of_issuance": 4.53,
  "max_inflation_pct": 2.5,
  "mcap_to_rev_30d_annualized_x": 199.0,
  "mcap_to_rev_365d_x": 510.0,
@@ -269,6 +305,7 @@
  "near_share_of_partner_fees_max_pct": 22.4,
  "near_share_of_partner_fees_max_tight_pct": 19.6,
  "net_issuance_near_per_day_30d_k": 88.2,
+ "net_issuance_near_per_day_window": 88295.0,
  "net_issuance_usd_30d_m": 12.71,
  "net_supply_growth_30d_annualized_pct": 2.46,
  "net_supply_growth_365d_pct": 2.48,
