@@ -23,7 +23,10 @@ Window: 90 days, 2026-08-07 → 2026-11-04 (UTC). Every number marked with an `n
 
 Prior research found that 14 accounts in three pools made almost all of the net outflow, and that each reaches one unlabelled hub (`466222f1…`) within two hops. Two new facts:
 
-- **Part of that trail reaches a sourced exchange reserve.** `5c33c621…` and `7e6e17fc…`, which the earlier trace left unlabelled, are on Binance's own proof-of-reserves address list (snapshot committed at `data/raw/labels/binance_por_address_2026-11-06.json`). `7e6e17fc…` is the `binancenode1` delegator that sent 2.5M NEAR to `binancecold3.near`. This is a reserve address, not proof of a sale.
+- **Two accounts elsewhere in the top-30 withdrawals now carry a sourced Binance label. Neither is on the hub trail.** Both are on Binance's own proof-of-reserves address list (snapshot committed at `data/raw/labels/binance_por_address_2026-11-06.json`), as is `binancecold3.near`.
+  - `7e6e17fc…` is itself a top-30 withdrawer: Binance's delegator unstaking from `binancenode1` and moving 2.5M NEAR to `binancecold3.near`. That is an exchange moving its own or its customers' stake, not a user selling.
+  - `5c33c621…` is a destination: part of the ~0.92M NEAR that one top-30 withdrawal (from a `kiln` pool) reached through one-hop relays.
+  - These are reserve addresses, not proof of a sale.
 - **The hub lineage did not route NEAR through Intents.** The 14 withdrawers, the hub, its relays, and every downstream account that received ≥ 100K NEAR moved no NEAR into `intents.near` by any route we could see. Four smaller top-50 withdrawers did: 1.46 <!--n:unstakers_into_intents_m-->M NEAR, mostly between 09-11 and 09-20, via `bridge-mng.near` and the Confidential Intents treasury rather than 1Click.
 - **Against 1Click's selling.** In the 30 days where we have 1Click data, 1Click users sold 4.95 <!--n:oneclick_near_sold_30d_m-->M NEAR for other assets. The unstaker set moved 72.8 <!--n:unstakers_into_intents_overlap_k-->K NEAR into Intents over the same days, a size ratio of 1.5 <!--n:unstakers_overlap_pct_of_1click_near_sold-->%. None of it matched a 1Click deposit address.
 

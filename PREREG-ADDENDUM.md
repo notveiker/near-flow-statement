@@ -73,7 +73,7 @@ Committed together with the exchange-account list (`data/raw/labels/exchange_acc
 
 **Budget.** Dry runs: sweep preview (`h1b_c`) 24.0 GB, native flows (`h1b_a`) 262.4 GB, wNEAR 117.0 GB from logs or 8.4 GB from `ft_events`. Planned total about 295 GB (about $1.70 on demand). The H1b queries run only when named explicitly, e.g. `NFS_BQ_MAX_GB=270 python3 -m pipeline.bq_run h1b_a`; a plain `make bq` skips them.
 
-## 2026-11-06: H1b and H1c results (both inconclusive)
+## 2026-11-06 23:23 UTC: H1b and H1c results (both inconclusive)
 
 Run exactly as fixed in the 23:11 UTC entry. Jobs, all created after that commit: `bqjob_r140d347f6f05de25_000001a1b321c86a_1` (sweep preview, 23:11:38Z, 23.9 GB), `bqjob_r3eccfeb9d7486d84_000001a1b322482a_1` (native flows, 23:12:11Z, 262.4 GB) and `bqjob_r58d81aa5f1fb52b1_000001a1b3297c9d_1` (wNEAR, 23:20:04Z, 117.0 GB, run on the query committed in `b1861cd` at 23:19:42Z). Numbers are recomputed by `pipeline/h1b.py` from the committed outputs.
 
@@ -84,7 +84,7 @@ Run exactly as fixed in the 23:11 UTC entry. Jobs, all created after that commit
 | Lower bound (unlabelled = 0% exchange-bound) | 4.42 <!--n:h1b_net_inflow_lower_m--> |
 | Upper bound (unlabelled top-100 = 100% exchange-bound) | 152.45 <!--n:h1b_net_inflow_upper_m--> |
 | Side: tier 1 (cited list) only | 3.31 <!--n:h1b_net_inflow_tier1_m--> |
-| Side: upper bound with sourced non-exchange accounts excluded | 190.71 <!--n:h1b_net_inflow_upper_ex_nonexchange_m--> |
+| Side: upper bound with sourced non-exchange accounts excluded (larger, because once `intents.near` and a DAO leave the enlarged set, their payouts into it count as boundary inflow) | 190.71 <!--n:h1b_net_inflow_upper_ex_nonexchange_m--> |
 
 - **H1b (net exchange inflow < gross issuance): inconclusive.** The lower bound is below any plausible 90-day gross issuance (about 8M NEAR); the upper bound is far above it.
 - **H1c (identified buying ÷ net exchange inflow ≥ 25%): inconclusive.** Identified buying, the buyback wallet's balance increase between the endpoint blocks, is 1.48 <!--n:h1c_identified_buying_m-->M NEAR: 33.48 <!--n:h1c_ratio_lower_pct-->% of the lower bound, 0.97 <!--n:h1c_ratio_upper_pct-->% of the upper.

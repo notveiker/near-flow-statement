@@ -31,11 +31,11 @@ The fee docs say an integrator's fee is split 50/50 with 1Click by default, but 
 The revenue wallets settle which reading holds:
 - **Explicit entries:** they account for $450.6 <!--n:explorer_appfees_to_buybacks_usd_k-->K of the buyback wallet's inflow.
 - **Unexplained:** this leaves $942.2 <!--n:buybacks_unexplained_usd_k-->K. Even if all of it came from partners with no buyback entry, NEAR's share of their fees is at most **22.4 <!--n:near_share_of_partner_fees_max_pct-->%**. A default 50/50 split would have added about $2.1M on top of the explicit entries, but the buyback wallet received only $1.39M in total. (Update: [`partner-concentration.md`](partner-concentration.md) tightens this ceiling to 19.6 <!--n:near_share_of_partner_fees_max_tight_pct-->%.)
-- **Conclusion:** the default split does not apply to these partners.
+- **Conclusion (inference):** whatever these partners' split is, at most about a fifth of their fees reaches NEAR's wallets. The wallets cannot tell two readings apart: (a) no 50/50 split applies to these partners, or (b) a split happens and 1Click's half is kept by Intents Technology outside NEAR's three wallets. The 1Click terms let Intents Technology retain fees "for its own account" (Schedule 1 §6.2, for confidential swaps). Either way, NEAR's capture depends on how much Intents Technology forwards, not only on partner deals.
 
 Over the window, partners kept between **1.75 <!--n:partners_kept_vs_near_rev_low_x-->×** and **2.22 <!--n:partners_kept_vs_near_rev_high_x-->×** NEAR's entire captured Intents revenue. That figure counts only the 1Click half of Intents.
 
-Why it matters: the bull case treats Intents fee revenue as value flowing to NEAR. On this evidence, the distribution layer (hardware and mobile wallets) captures most of the fee economics. NEAR's take is set by negotiation with a handful of partners, and SwapKit alone routes 38.2% of 1Click volume.
+Why it matters: the bull case treats Intents fee revenue as value flowing to NEAR. On this evidence, the distribution layer (hardware and mobile wallets) captures most of the fee economics. NEAR's take appears to depend on partner terms and on what Intents Technology forwards (an inference from the wallet arithmetic, not a documented policy), and SwapKit alone routes 38.2% of 1Click volume.
 
 ### 3. Users pay the listed fee plus an execution cost
 
