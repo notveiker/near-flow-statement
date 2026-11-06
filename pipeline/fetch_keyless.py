@@ -94,6 +94,21 @@ def fetch_coingecko() -> None:
     write_raw("coingecko/near_snapshot.json", keep, f"{cg}/coins/near")
 
 
+MAJORS = ["bitcoin", "ethereum", "solana", "zcash", "tron", "ripple", "binancecoin", "litecoin", "dogecoin"]
+
+
+def fetch_coingecko_majors() -> None:
+    """Daily USD prices (90 days) for the non-stablecoin tokens that reach NEAR's fee collectors."""
+    import time
+    cg = "https://api.coingecko.com/api/v3"
+    out = {}
+    for coin in MAJORS:
+        out[coin] = http_json(f"{cg}/coins/{coin}/market_chart",
+                              {"vs_currency": "usd", "days": "90", "interval": "daily"})["prices"]
+        time.sleep(15)  # keyless rate limit (~5 calls/min)
+    write_raw("coingecko/majors_90d.json", out, f"{cg}/coins/<coin>/market_chart?vs_currency=usd&days=90&interval=daily")
+
+
 def fetch_rpc() -> None:
     block = rpc("block", {"finality": "final"})
     hdr = block["header"]
@@ -131,9 +146,11 @@ def fetch_rpc() -> None:
               f"rpc view_account at block {hdr['height']}")
 
 
-def main() -> int:
+def main(argv: list[str]) -> int:
     steps = [("defillama", fetch_llama), ("nearblocks", fetch_nearblocks),
-             ("coingecko", fetch_coingecko), ("rpc", fetch_rpc)]
+             ("coingecko", fetch_coingecko), ("coingecko_majors", fetch_coingecko_majors), ("rpc", fetch_rpc)]
+    if argv:  # e.g. `python3 -m pipeline.fetch_keyless coingecko_majors` refreshes one source only
+        steps = [s for s in steps if s[0] in argv]
     failed = []
     for name, fn in steps:
         try:
@@ -148,4 +165,4 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(main(sys.argv[1:]))

@@ -39,6 +39,106 @@ def r(x: float, n: int = 2) -> float:
     return round(x, n)
 
 
+COLLECTOR_A = "5880ad2b362620fadf759cbceb1cd5737ce8c6ed7fb8e9942881e6731f9247dd"  # explicit buyback appFee
+COLLECTOR_B = "143f2bb439575c286f4f585163f0e5fb4e464f8ce57ec06ae80741407d3cfb31"  # quote-improvement share
+MARKET_MAKER = "51e8f94d77b5e90dc9852ca6113771e11e8382ce69473a75e313e41665de7cbe"
+USD6 = ("eth-0xdac17f958d2ee523a2206206994597c13d831ec7", "eth-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "tron-d28a265909efecdcee7c5028585214ea0b96f015", "base-0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "arb-0xaf88d065e77c8cc2239327c5edb3a432268e5831", "arb-0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
+        "sol-5ce3bf3a31af18be40ba30f721101b4341690186", "sol-c800a4bd850783ccb82c2b2c7e84175443606352",
+        "17208628f84f5d6ad33f0da3bbbeb27ffcb398eac501a31bd6ad2011e36133a1", "usdt.tether-token.near",
+        "137_qiStmoQJDQPTebaPjgx5VBxZv6L")
+# token -> (CoinGecko id or "usd", decimals). Checked against amountInUsd/amountIn of sampled 1Click swaps.
+TOKEN_PRICE = {"nep141:wrap.near": ("near", 24), "nep141:sol.omft.near": ("solana", 9),
+               "nep141:eth.omft.near": ("ethereum", 18), "nep141:base.omft.near": ("ethereum", 18),
+               "nep141:arb.omft.near": ("ethereum", 18), "nep141:hood.omft.near": ("ethereum", 18),
+               "nep141:nbtc.bridge.near": ("bitcoin", 8), "nep141:btc.omft.near": ("bitcoin", 8),
+               "nep141:zec.omft.near": ("zcash", 8), "nep141:tron.omft.near": ("tron", 6),
+               "nep141:xrp.omft.near": ("ripple", 6), "nep141:ltc.omft.near": ("litecoin", 8),
+               "nep245:v2_1.omni.hot.tg:56_2CMMyVTGZkeyNZTSvS5sarzfir6g": ("usd", 18)}
+
+
+def token_usd(token: str, amount: float, d: str, prices: dict) -> float | None:
+    if any(k in token for k in USD6):
+        return amount / 1e6
+    if token not in TOKEN_PRICE:
+        return None
+    coin, dec = TOKEN_PRICE[token]
+    p = 1.0 if coin == "usd" else prices.get(coin, {}).get(d)
+    return None if p is None else amount / 10 ** dec * p
+
+
+def concentration(m: dict, near_price: dict, lo: str, hi: str) -> None:
+    """Partner concentration: which channels NEAR's Intents revenue depends on, and what is traceable."""
+    days = [x for x in read_raw("explorer/daily.json")["days"] if lo <= x["date"] <= hi]
+    ch: dict = defaultdict(lambda: [0, 0.0, 0.0, 0.0])
+    for x in days:
+        for k, vals in x["by_channel"].items():
+            for i, val in enumerate(vals):
+                ch[k][i] += val
+    usd = sum(v[1] for v in ch.values())
+    bb = sum(v[3] for v in ch.values())
+    sk = [v for k, v in ch.items() if k.startswith("swapkit/")]
+    m["swapkit_vol_share_pct"] = r(sum(v[1] for v in sk) / usd * 100, 1)
+    m["swapkit_partner_fees_usd_k"] = r(sum(v[2] for v in sk) / 1e3, 1)
+    m["swapkit_buyback_fees_usd"] = r(sum(v[3] for v in sk), 0)
+    m["swapkit_subchannels"] = [{"channel": k, "vol_share_pct": r(v[1] / usd * 100, 1), "partner_fee_bp": r(v[2] / v[1] * 1e4, 1)}
+                                for k, v in sorted(ch.items(), key=lambda kv: -kv[1][1]) if k.startswith("swapkit/")][:6]
+    ranked = sorted(ch.items(), key=lambda kv: -kv[1][3])
+    m["buyback_fee_by_channel"] = [{"channel": k, "share_pct": r(v[3] / bb * 100, 1), "vol_share_pct": r(v[1] / usd * 100, 1),
+                                    "buyback_bp": r(v[3] / v[1] * 1e4, 1)} for k, v in ranked[:8]]
+    m["buyback_fee_top3_share_pct"] = r(sum(v[3] for _, v in ranked[:3]) / bb * 100, 1)
+    m["buyback_fee_unreferred_share_pct"] = r(ch["(none)"][3] / bb * 100, 1)
+    m["buyback_fee_hhi"] = r(sum((v[3] / bb) ** 2 for v in ch.values()), 3)
+    m["volume_channel_hhi"] = r(sum((v[1] / usd) ** 2 for v in ch.values()), 3)
+    m["swapkit_share_of_intents_net_pct"] = r(m["swapkit_vol_share_pct"] * m["explorer_vs_llama_net_pct"] / 100, 1)
+    # The same wallet, two integrations: Trust Wallet direct (pays NEAR) vs Trust via SwapKit (does not).
+    for key, k in (("trust_direct", "trustwallet"), ("trust_via_swapkit", "swapkit/trustswapkit.near")):
+        v = ch.get(k, [0, 0.0, 0.0, 0.0])
+        m[f"{key}_vol_share_pct"] = r(v[1] / usd * 100, 1)
+        m[f"{key}_buyback_bp"] = r(v[3] / v[1] * 1e4, 1) if v[1] else 0.0
+        m[f"{key}_partner_bp"] = r(v[2] / v[1] * 1e4, 1) if v[1] else 0.0
+
+    # Where the buyback wallet's NEAR came from (native_withdraw sources).
+    src: dict = defaultdict(lambda: [0.0, 0.0])
+    for x in read_raw("bq/buyback_withdraw_sources.json"):
+        if x["wallet"] != "buybacks.multisignature.near":
+            continue
+        k = "a" if x["src"] == COLLECTOR_A else "b" if x["src"] == COLLECTOR_B else "other"
+        src[k][0] += float(x["near"]); src[k][1] += float(x["near"]) * near_price[x["day"]]
+    tot = sum(v[1] for v in src.values())
+    m["bb_from_collector_a_usd_k"] = r(src["a"][1] / 1e3, 1)
+    m["bb_from_collector_b_usd_k"] = r(src["b"][1] / 1e3, 1)
+    m["bb_from_mm_singleuse_usd_k"] = r(src["other"][1] / 1e3, 1)
+    m["bb_from_mm_singleuse_share_pct"] = r(src["other"][1] / tot * 100, 1)
+
+    # Value what reached each collector (token amounts x daily USD price).
+    prices = {c: {day(ms / 1000): float(p) for ms, p in pts} for c, pts in read_raw("coingecko/majors_90d.json").items()}
+    prices["near"] = near_price
+    val: dict = defaultdict(float)
+    n_all: dict = defaultdict(int)
+    n_val: dict = defaultdict(int)
+    for x in read_raw("bq/collector_inflows.json"):
+        k = "a" if x["collector"] == COLLECTOR_A else "b"
+        n_all[k] += int(x["n"])
+        v = token_usd(x["token"], float(x["amount"]), x["day"], prices)
+        if v is not None:
+            val[k] += v; n_val[k] += int(x["n"])
+    m["collector_a_inflow_usd_k"] = r(val["a"] / 1e3, 1)
+    m["collector_b_inflow_usd_k"] = r(val["b"] / 1e3, 1)
+    m["collector_a_valued_transfers_pct"] = r(n_val["a"] / n_all["a"] * 100, 1)
+    m["collector_b_valued_transfers_pct"] = r(n_val["b"] / n_all["b"] * 100, 1)
+    m["collector_a_vs_explicit_fees_pct"] = r(val["a"] / 1e3 / m["explorer_appfees_to_buybacks_usd_k"] * 100, 1)
+
+    # SwapKit exit: revenue at risk, 30-day basis, as % of NEAR's captured Intents revenue.
+    # Traceable: explicit buyback fees on SwapKit swaps + collector B (quote improvement) pro rata to volume.
+    # Ceiling: + all NEAR the market maker delivered to the buyback wallet, whose source is off this ledger.
+    traceable = sum(v[3] for v in sk) + val["b"] * m["swapkit_vol_share_pct"] / 100
+    m["swapkit_exit_traceable_usd_k"] = r(traceable / 1e3, 1)
+    m["swapkit_exit_traceable_pct"] = r(traceable / 1e3 / m["revwallets_usd_k"] * 100, 1)
+    m["swapkit_exit_ceiling_pct"] = r((traceable + src["other"][1]) / 1e3 / m["revwallets_usd_k"] * 100, 1)
+
+
 def build() -> tuple[dict, dict]:
     # ---------- inputs ----------
     vol = {s: llama_daily(f"llama/volume_{s}.json") for s in PEERS}
@@ -295,6 +395,7 @@ def build() -> tuple[dict, dict]:
             kept_low = m["explorer_partner_fees_all_usd_k"] - max(unexplained, 0)
             m["partners_kept_vs_near_rev_low_x"] = r(kept_low / m["revwallets_usd_k"], 2)
             m["partners_kept_vs_near_rev_high_x"] = r(m["explorer_partner_fees_all_usd_k"] / m["revwallets_usd_k"], 2)
+            concentration(m, price, lo, hi)
 
     # ---------- peers ----------
     peer_rows = []

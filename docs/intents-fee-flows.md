@@ -62,7 +62,7 @@ Swaps of $10K or more are 3.4 <!--n:explorer_swaps_10k_plus_n_pct-->% of swaps b
 ## What we cannot conclude yet
 
 - **The other half of Intents.** 1Click is 55.2 <!--n:explorer_vs_llama_net_pct-->% of DefiLlama's volume on a one-sided basis. The rest (near.com, direct solver flow, other integrations) has a fee structure this API does not show. We do not extrapolate.
-- **What makes up the $942K.** Candidates are quote-improvement sharing, near.com routing, private agreements and timing lags between fee accrual and buyback. Separating them needs the per-intent fee events, which are not in the BigQuery token tables.
+- **What makes up the $942K.** Partly answered in [`partner-concentration.md`](partner-concentration.md). About $109K is quote-improvement sharing. About $824K is NEAR delivered by a market maker through single-use accounts, and it is paid for off this ledger.
 - **Partner payouts on chain.** Fee recipients such as `ledgerswapkit.near` never appear in `intents.near` event logs over 2026-10-28 → 11-04. Partner fees are settled some other way, so "partner kept X" is an inference from the revenue wallets, not a direct payout trace.
 
 ## Open questions this raises

@@ -109,6 +109,15 @@ def bucket(x: float, edges: list) -> str:
     return str(lo)
 
 
+def channel(t: dict) -> str:
+    """Referral, with SwapKit split by its first downstream fee recipient (Ledger, Trust, Tangem, ...)."""
+    ref = t["ref"] or "(none)"
+    if ref == "swapkit":
+        subs = [r for r, _ in t["fees"] if r not in ("swapkit.near", BB)]
+        return "swapkit/" + (subs[0] if subs else "(direct)")
+    return ref
+
+
 def aggregate(d: str, rows: list[dict]) -> dict:
     by_ref = Counter()
     by_ref_n = Counter()
@@ -119,6 +128,7 @@ def aggregate(d: str, rows: list[dict]) -> dict:
     sizes = defaultdict(lambda: [0, 0.0])
     split = defaultdict(float)
     cost = defaultdict(lambda: [0, 0.0, 0.0, 0.0])  # n, usd_in, usd_in - usd_out, listed fee usd
+    chans = defaultdict(lambda: [0, 0.0, 0.0, 0.0])  # n, usd_in, partner fee usd, explicit buyback fee usd
     for t in rows:
         ref = t["ref"] or "(none)"
         by_ref[ref] += t["in"]
@@ -138,6 +148,8 @@ def aggregate(d: str, rows: list[dict]) -> dict:
         has_bb = any(r == BB for r, _ in t["fees"])
         bb = sum(t["in"] * bps / 1e4 for r, bps in t["fees"] if r == BB)
         partner = sum(t["in"] * bps / 1e4 for r, bps in t["fees"] if r != BB)
+        ch = chans[channel(t)]
+        ch[0] += 1; ch[1] += t["in"]; ch[2] += partner; ch[3] += bb
         split["bb_explicit_usd"] += bb
         split["partner_with_bb_usd" if has_bb else "partner_without_bb_usd"] += partner
         split["usd_in_with_bb"] += t["in"] if has_bb else 0
@@ -158,6 +170,8 @@ def aggregate(d: str, rows: list[dict]) -> dict:
             "near_leg": {k: round(v, 2) for k, v in near.items()},
             "size_buckets": {k: [v[0], round(v[1], 2)] for k, v in sorted(sizes.items(), key=lambda kv: float(kv[0]))},
             "fee_split": {k: round(v, 2) for k, v in split.items()},
+            "by_channel": {k: [v[0], round(v[1], 2), round(v[2], 2), round(v[3], 2)]
+                           for k, v in sorted(chans.items(), key=lambda kv: -kv[1][1])},
             "realized_cost_1k_50k": {k: [v[0], round(v[1], 2), round(v[2], 2), round(v[3], 2)]
                                      for k, v in sorted(cost.items(), key=lambda kv: float(kv[0]))}}
 

@@ -16,6 +16,7 @@
 ## Findings so far
 
 - [`docs/intents-fee-flows.md`](docs/intents-fee-flows.md): who earns from NEAR Intents fees, and whether Intents volume touches the NEAR token. Covers 30 days of 1Click swaps reconciled against NEAR's revenue wallets on chain.
+- [`docs/partner-concentration.md`](docs/partner-concentration.md): how much of NEAR's Intents revenue depends on SwapKit and a few other channels. Traces the buyback wallet's NEAR to its on-chain sources.
 - [`PREREG-ADDENDUM.md`](PREREG-ADDENDUM.md): the H1a result (fails), plus corrections and scope notes.
 
 ## Pre-registration

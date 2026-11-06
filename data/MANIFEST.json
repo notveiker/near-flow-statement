@@ -1,5 +1,21 @@
 {
  "files": {
+  "raw/bq/buyback_withdraw_sources.json": {
+   "bytes": 175134,
+   "bytes_processed_estimate": 36784492112,
+   "fetched_at": "2026-11-06T02:58:06Z",
+   "rows": 971,
+   "sha256": "e310eb0c522acb9fb2a69a544cf0c2316448188348a3d10ec064fb4b556074f5",
+   "source": "bigquery: sql/buyback_withdraw_sources.sql"
+  },
+  "raw/bq/collector_inflows.json": {
+   "bytes": 915074,
+   "bytes_processed_estimate": 36784492112,
+   "fetched_at": "2026-11-06T02:52:36Z",
+   "rows": 4785,
+   "sha256": "76ca2d1194f0c19db1a517d4850724ef5da63d8b6ee9568abfa774dcb06ea272",
+   "source": "bigquery: sql/collector_inflows.sql"
+  },
   "raw/bq/revenue_wallet_inflows.json": {
    "bytes": 6814,
    "bytes_processed_estimate": 86962294607,
@@ -32,6 +48,12 @@
    "sha256": "4e1b90af3b259723a27fe8211cc7448340dbdbf73ae2f63bb25d44d56e2f3b2e",
    "source": "bigquery: sql/staking_pool_totals_endpoints.sql"
   },
+  "raw/coingecko/majors_90d.json": {
+   "bytes": 28442,
+   "fetched_at": "2026-11-06T02:57:28Z",
+   "sha256": "a144c264ac840428efa7e0c449386261e160683a4ab7ca9ad38a5a4ff3b8ef95",
+   "source": "https://api.coingecko.com/api/v3/coins/<coin>/market_chart?vs_currency=usd&days=90&interval=daily"
+  },
   "raw/coingecko/near_market_chart_365d.json": {
    "bytes": 37953,
    "fetched_at": "2026-11-05T22:51:17Z",
@@ -45,9 +67,9 @@
    "source": "https://api.coingecko.com/api/v3/coins/near"
   },
   "raw/explorer/daily.json": {
-   "bytes": 278890,
-   "fetched_at": "2026-11-06T01:09:52Z",
-   "sha256": "600e188d14659c56e57f108eb0cb90dc910a3b88c918d0de13c70fda21875194",
+   "bytes": 447081,
+   "fetched_at": "2026-11-06T02:58:34Z",
+   "sha256": "bce514b1fb49104c54d40e382171adf474258c6e7e8e3a31491438b19eaf141d",
    "source": "https://explorer.near-intents.org/api/v0/transactions?statuses=SUCCESS (per-day cursor pull, 2026-10-06..2026-11-04)"
   },
   "raw/llama/chainfees_near.json": {
