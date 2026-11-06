@@ -1,0 +1,891 @@
+{
+ "window_blocks": [
+  210238034,
+  223088015
+ ],
+ "n_accounts": 107,
+ "counts": {
+  "A14": 14,
+  "relays": 4,
+  "hub": 1,
+  "hop1": 50,
+  "hop2": 6,
+  "top50": 50,
+  "top50_lst_excluded": 2
+ },
+ "accounts": {
+  "08c2b2a0918067eccd0bf78cb725749e8b0be75a0114482637660f7d3e1a02f0": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 1534751.0,
+   "hop2_in": null
+  },
+  "0af6f2074650d347c732c90d2f0c14dc6c25f1c31fa9b4167cff5efb015086c7": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 218278.0,
+   "hop2_in": null
+  },
+  "10633b146095512371c4735e737442b177fb6da6.lockup.near": {
+   "roles": [
+    "top50_net_withdrawer#21"
+   ],
+   "net_diff": -1153806.0,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "11c03f07260bd7501b398893c27b6bc9380be8305bb47710a3c444c9e55f0c02": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 125047.7325441,
+   "hop2_in": null
+  },
+  "1936aaafe682118427cf12a6f98b7f7d41da22bdf56adbe111654a7db9e272a8": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 999006.007,
+   "hop2_in": null
+  },
+  "1e74ab0a225c87cf49c5b031f29208195ba5b284fd0fefceaa9e283455686c02": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 1139425.3630317,
+   "hop2_in": null
+  },
+  "2045ea024b1a72afdbe22ef1d95f1dc42ed0e7db3a906ce4319f723477c2dc5a": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 12860236.791385084,
+   "hop2_in": null
+  },
+  "2380ee9f038cbf102ee807ad476700519cdb05cfb5a39b2d628af6ff8bd5dfe0": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 8068887.785410569,
+   "hop2_in": null
+  },
+  "23ced4300a4bf282bf94a4fcd2b0af32ad291ef531f544f6d7d283e8ff1e684a": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 1775555.20247736,
+   "hop2_in": null
+  },
+  "245dcd3db4fc2a612fc3c5db8496bd053eb76e151e804bac70cabbc2c9fcf255": {
+   "roles": [
+    "top50_net_withdrawer#48"
+   ],
+   "net_diff": -417982.716,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "2b8cc04e26f38bcbd600a9a1e0991edb7040037eb82f3bf553978284c33f35d3": {
+   "roles": [
+    "relay_to_hub"
+   ],
+   "net_diff": null,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "3436bf620963883e4e059757f8f43106d6320eec78e76a12acb13d286fb8730b": {
+   "roles": [
+    "A14_hub_lineage_withdrawer",
+    "top50_net_withdrawer#16"
+   ],
+   "net_diff": -1406907.922,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "3be29e87fd4318ff1832a95075a16610824e693477e399c17dd566bf3e8a52e2": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 186542.99,
+   "hop2_in": null
+  },
+  "3e3cfd0a163ee7819abb9a48fbf43bb733b9756f.venear.dao": {
+   "roles": [
+    "top50_net_withdrawer#45"
+   ],
+   "net_diff": -453041.15,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "465036a5f77af7d18f06f8984051e72bb2d7b76d2d0e3bfafce9026a032838da": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 308539.75921756664,
+   "hop2_in": null
+  },
+  "466222f1d229ca75ae9b4c82202e0e0b2fc3f6bdbdbac3704e8bf1808baa6093": {
+   "roles": [
+    "hub"
+   ],
+   "net_diff": null,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "474229828d23423e38d612715ed3f1f90bc63e9ef6cc59395d2648883455dbf0": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 202509.0,
+   "hop2_in": null
+  },
+  "4a54f8ac55a8da41cd7109f8812c18782df1a74657598556dbbc5025476fe841": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 320840.82,
+   "hop2_in": null
+  },
+  "4e6baf302947fe14135a83a63106bf0834e9247eef4aa76690ab4ac334938bfd": {
+   "roles": [
+    "hub_hop2_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": null,
+   "hop2_in": 1818000.0000000002
+  },
+  "514dead1592a8401764e50074b9987ad8eb3e0799914c05b1b3345185917a74b": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 130000.0,
+   "hop2_in": null
+  },
+  "574b77485f78a6177eb4e05ca47ddcee060de692b474624e55ec5e2216f5b548": {
+   "roles": [
+    "top50_net_withdrawer#6"
+   ],
+   "net_diff": -5866573.956,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "5754ff26eaa951cd814f657c840059086da32ecd600efc58106028ed6b6b3559": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 20983047.998130508,
+   "hop2_in": null
+  },
+  "58bddc36768586a8fed32bf718d1a13835b25ecff1a379477f8e341a12cf27b7": {
+   "roles": [
+    "top50_net_withdrawer#30"
+   ],
+   "net_diff": -854158.826,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "59cf4fe62f312e717df2b7c5f823e440d2a8666c33ae3b8fdff06b7afb42c46b": {
+   "roles": [
+    "A14_hub_lineage_withdrawer",
+    "top50_net_withdrawer#22"
+   ],
+   "net_diff": -1135404.715,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "5a378ab63dc7f5384bb11cd56886e5f602a926ddd313440f07af6bd068f54f9c": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 526190.5133787,
+   "hop2_in": null
+  },
+  "5bf56c605b49cf47825dd8660dbf7ef427d2c39aea04cd4cac473573fb8846bc": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 239569.58149778,
+   "hop2_in": null
+  },
+  "60da4dbf1fcfa0161252660d7b31b2556fea9c6d.lockup.near": {
+   "roles": [
+    "top50_net_withdrawer#41"
+   ],
+   "net_diff": -530738.427,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "628eedf2ebb94aa3a11e527d7ce5aabf28b11d20c232771a7e9173b260cbfc22": {
+   "roles": [
+    "hub_hop2_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": null,
+   "hop2_in": 2600505.0
+  },
+  "65e6f28d7071be3be25fe3a89373694e9c14ce7f8b7e0b515cd83aa0311fc2b5": {
+   "roles": [
+    "top50_net_withdrawer#47"
+   ],
+   "net_diff": -435267.893,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "6769140ef3c46c68765a0b6cc9ffc246e768e55fd579268549d2ed8789f7ee21": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": 615450.68,
+   "hub_out_to": 614000.0,
+   "hop2_in": null
+  },
+  "682e7d980560262cd98c2776560fdfd4cf18ae6bc80acbb65adf3ad18f378614": {
+   "roles": [
+    "A14_hub_lineage_withdrawer",
+    "top50_net_withdrawer#19"
+   ],
+   "net_diff": -1406881.405,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "68435163f0dd7803edcfc350b6bf60baba6a2f933eacbe503ca5eda25bdf8c3b": {
+   "roles": [
+    "top50_net_withdrawer#37"
+   ],
+   "net_diff": -667039.613,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "684fa44af5576b8b28b0ba70edc2a8184e9a8877dd0e12e216894fb5bb95ebca": {
+   "roles": [
+    "relay_to_hub"
+   ],
+   "net_diff": null,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "6874153719ffa6135adb51ad3849635a392cdfef34559dcac26b7f2ecb61cecc": {
+   "roles": [
+    "top50_net_withdrawer#50"
+   ],
+   "net_diff": -414484.584,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "6a48d99687679de427833cd02d6544dddc00ae1cfce185dcd1f9e1a3e5db4538": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": 100937.47,
+   "hub_out_to": 100000.0,
+   "hop2_in": null
+  },
+  "6e32fd8bfb37133783aff550fc63e7c6f9980ece.lockup.near": {
+   "roles": [
+    "top50_net_withdrawer#5"
+   ],
+   "net_diff": -7100000.0,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "6e6062871507416e143a352ea8a1db1fdf00634b35da107abf0affc57e1d6b39": {
+   "roles": [
+    "top50_net_withdrawer#35"
+   ],
+   "net_diff": -749854.62,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "6e8d9a66c4f74784afc86337a2763873b4599070c7357a7504adb9f21e23cb59": {
+   "roles": [
+    "hub_hop2_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": null,
+   "hop2_in": 9335840.0
+  },
+  "7091707f436468043a91823b9a9bdb478de2c880558d25f2d52494661b4abecc": {
+   "roles": [
+    "A14_hub_lineage_withdrawer",
+    "top50_net_withdrawer#28"
+   ],
+   "net_diff": -1008342.927,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "73279d39a3cf26e0c681fc08d5e4c5ccc0880e062d2884bd7df6a725d41b439a": {
+   "roles": [
+    "A14_hub_lineage_withdrawer",
+    "top50_net_withdrawer#27"
+   ],
+   "net_diff": -1019079.835,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "746fb1d3c6771f0206631b8db1d7853c474b6845df06f60da72ddd8d35163d76": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 1088632.629,
+   "hop2_in": null
+  },
+  "78e2bf41323b17f275e24f5ce40b6023b443b8aca99e19be5b8dfad570ea21e7": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 8573927.756510904,
+   "hop2_in": null
+  },
+  "78f3f9138e7286bab3e69dbf3f8dd2470d410232073c010cdc9d44882b96f292": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 7840421.2983258655,
+   "hop2_in": null
+  },
+  "791396a1dacfb6e3ecb37f0648664d07c08980a9.lockup.near": {
+   "roles": [
+    "top50_net_withdrawer#36"
+   ],
+   "net_diff": -742879.514,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "79b833cfeffe1de4ee3df5b7484fbee6a3f939f3b8f576350801327d7d38eac3": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 150000.0,
+   "hop2_in": null
+  },
+  "7cfdd353f98738dad2c5afccedde6a753691a59d6a3585871a67cb327d969738": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 750352.424,
+   "hop2_in": null
+  },
+  "7d217b8186446dce6e374cc86cbe453a63abff24c6dc88f86ce889d0f374b415": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 100000.0,
+   "hop2_in": null
+  },
+  "7e6e17fcb8e8e6a22ecd47bbd1b58b1af3582b97bbfd4a8d974bb9c266fa282b": {
+   "roles": [
+    "top50_net_withdrawer#11"
+   ],
+   "net_diff": -2527185.162,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "7fe6b959b67596b98fd05f71075cbe02ff4988800b372cc72710fcc69b1642aa": {
+   "roles": [
+    "A14_hub_lineage_withdrawer",
+    "top50_net_withdrawer#9"
+   ],
+   "net_diff": -3296379.675,
+   "hub_out_to": 0.19999999999999998,
+   "hop2_in": null
+  },
+  "80a0792b06abcbe0832822812cd98ba470fcf87a.lockup.near": {
+   "roles": [
+    "top50_net_withdrawer#39"
+   ],
+   "net_diff": -583811.113,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "844328878da2fca10c32fa56b8cfd01c84cc7d75cae693976277516d12239809": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 632029.14687713,
+   "hop2_in": null
+  },
+  "85ba37c12c6d93c3f243bc85db8a8ddb1fa576a6a43db11b308cf7f03db65e2a": {
+   "roles": [
+    "A14_hub_lineage_withdrawer",
+    "hub_hop1_ge100k",
+    "top50_net_withdrawer#25"
+   ],
+   "net_diff": -1043931.5,
+   "hub_out_to": 1665178.500487864,
+   "hop2_in": null
+  },
+  "863252663f6002b45de02ad46cb2ad9ff4242c24df92bb3cda943fff7b49497b": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 239569.5818678,
+   "hop2_in": null
+  },
+  "8780208ba71f465e8869d82a3bf7f0472d5606850e37722bbee46107d0c0ca0c": {
+   "roles": [
+    "top50_net_withdrawer#29"
+   ],
+   "net_diff": -877350.0,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "88cc2b61cf1f5a8c7508bbe36fbf38ec26e51e7f9b898f66bee1ef5a520fda5a": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 8068887.78541057,
+   "hop2_in": null
+  },
+  "8d366a8501683913e37d6f4e2500e3bb4a987a87d279ef730eb0a19ce6a2ba90": {
+   "roles": [
+    "A14_hub_lineage_withdrawer",
+    "top50_net_withdrawer#24"
+   ],
+   "net_diff": -1053717.86,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "8d9bc485ad1c8ec78a9cfb5f444e91ba1cda847b730cf400f7fbd95942166977": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": 102745.749,
+   "hub_out_to": 102412.183,
+   "hop2_in": null
+  },
+  "8e2922ee58ed8f6c5533e1440529155c429f6089cc81ece428193950f05a0263": {
+   "roles": [
+    "top50_net_withdrawer#13"
+   ],
+   "net_diff": -2023980.898,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "8f0fb1f05e1241aefba6af494f5c01efa584092ca691ec5130d63e49a141d4b6": {
+   "roles": [
+    "A14_hub_lineage_withdrawer",
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": -308864.936,
+   "hub_out_to": 4995535.5,
+   "hop2_in": null
+  },
+  "9258c268f134181dba040bd67ee1ab90bb9039370091773ea2690f80ca4b946e": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 148398.6804350314,
+   "hop2_in": null
+  },
+  "98446b9dd40b9dd365be9d7def69e33b6a3cb790daa95a9b447d64bb3c65d780": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 135500.0,
+   "hop2_in": null
+  },
+  "98500395d5a604735a5e44ea8158e94f39473838bf03d27c7f9d7e1b516c8986": {
+   "roles": [
+    "top50_net_withdrawer#38"
+   ],
+   "net_diff": -661005.115,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "9a077436736e64d6a6ba308bdef3d6aa547579927ab07a02ffdfcfe885666a81": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 109786.63992252001,
+   "hop2_in": null
+  },
+  "9f29b548cc810774a39c4a2711507257e0901952a53ff61e191abccea194493a": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 909700.20035,
+   "hop2_in": null
+  },
+  "a371d43420619dde8cd14dc23120c436149478dbbc58fffdf149653591c61785": {
+   "roles": [
+    "top50_net_withdrawer#23"
+   ],
+   "net_diff": -1134140.674,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "a48f1afe1fc7a965f0e36994eb0ff7ec507a844646cf076cf747657adfd48eec": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 196320.94658847,
+   "hop2_in": null
+  },
+  "a6552a46526c95744efbc0f7edd1a2611a7e54af3f5af954ab6e5ef40e702839": {
+   "roles": [
+    "top50_net_withdrawer#34"
+   ],
+   "net_diff": -761868.247,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "a9bc87970bd3fd35ea8fa52f03e5aaa360e2827a2aca2efeb001b36afbc4f0b6": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 147406.35575810002,
+   "hop2_in": null
+  },
+  "ac47ab30195f6c2ce8445bea02a110d9b6d2aa91cff38d05cd634888dd0bfa7f": {
+   "roles": [
+    "relay_to_hub"
+   ],
+   "net_diff": null,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "af09768659017107aad46477428f1ca3c267ff8b95d96bb1ab8a272f8df7c8f6": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 2171876.39592387,
+   "hop2_in": null
+  },
+  "b1bce4d046b9a881355e9f2492f07b6e886e95d41ff92d26e7317809902dae23": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 155981.46302028,
+   "hop2_in": null
+  },
+  "b4e4e68169d241cfd4221615219ed93deeb29e03.lockup.near": {
+   "roles": [
+    "top50_net_withdrawer#42"
+   ],
+   "net_diff": -529727.26,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "b95268085976178e43a0fec774287dd8abcdaf31.venear.dao": {
+   "roles": [
+    "top50_net_withdrawer#44"
+   ],
+   "net_diff": -454340.578,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "b9b88cf9aef9ab035b762b123af612a8f45254c16ebbc2f1f10de8b367d9a029": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 129078.55386914,
+   "hop2_in": null
+  },
+  "ba0134d437897e027a7c63ca77eb0ba7c47b44986030619a17360009a061babe": {
+   "roles": [
+    "top50_net_withdrawer#7"
+   ],
+   "net_diff": -3855857.403,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "bbaaaab37824ea1056a84bb282d1031be0ff2172a7cd3a421cd97cdf5f9ea68d": {
+   "roles": [
+    "top50_net_withdrawer#32"
+   ],
+   "net_diff": -792475.674,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "bf6c909761ebd9e15a1b6a115443866c66ab5979.lockup.near": {
+   "roles": [
+    "top50_net_withdrawer#20"
+   ],
+   "net_diff": -1162435.608,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "bfec798eedd013e7043fc5bad50d87b6b1ba688477a0a03b9a62f289788c03a9": {
+   "roles": [
+    "A14_hub_lineage_withdrawer",
+    "top50_net_withdrawer#17"
+   ],
+   "net_diff": -1406907.922,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "c1833ea5a24a38fa80d50506083bca57205326d8dc08da69a954fc2616fd963c": {
+   "roles": [
+    "relay_to_hub"
+   ],
+   "net_diff": null,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "c519fdee5a29f58b17ef0bc37ffd357f1f42d5a6c92854dc1f0ce801e84b19f1": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 111666.0,
+   "hop2_in": null
+  },
+  "d2f0f590b1077d6ea63c37fd5c558bd5d3c455ac78ced8e2a81395a24407c22a": {
+   "roles": [
+    "A14_hub_lineage_withdrawer",
+    "top50_net_withdrawer#1"
+   ],
+   "net_diff": -25952945.771,
+   "hub_out_to": 32783.55400422545,
+   "hop2_in": null
+  },
+  "d68c56e3bae2d8b81aa8766cfaa8183a64423f843d2784aaa7d6985e6843b2eb": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": 220881.576,
+   "hub_out_to": 781059.27037488,
+   "hop2_in": null
+  },
+  "d8e9f36be65aa12b37706a2f54130652194074d7c5d462d6f91506b819f00433": {
+   "roles": [
+    "A14_hub_lineage_withdrawer",
+    "top50_net_withdrawer#26"
+   ],
+   "net_diff": -1021373.705,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "dcc3e8c1e6de71f14934fc2e93217cf20dc1ff78784c9ccc03cf6ff0e72eb800": {
+   "roles": [
+    "A14_hub_lineage_withdrawer",
+    "top50_net_withdrawer#18"
+   ],
+   "net_diff": -1406907.922,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "ddb52cc985ecc900a40c2c7a417f2bf89aca759eb7a6a554d7a48ea1e9b8ecb6": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 1174749.292856,
+   "hop2_in": null
+  },
+  "df35bffdabc86bee9265f99f0b81d4eca4ffe6867376ddd6937571d0d9f337ef": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 160591.97470592,
+   "hop2_in": null
+  },
+  "e10278c427ddd44851dd4ba16f3dab08da10fbdd4d72bd4b91c4b145bc556d60": {
+   "roles": [
+    "top50_net_withdrawer#14"
+   ],
+   "net_diff": -1778526.492,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "e1772d218b4d19661e50a8f280462be886d79ac008c8d17e4b21ce81094314b8": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 152422.06850008,
+   "hop2_in": null
+  },
+  "e4419c18dc8a93a8f17545830247fb9cff0fca357276e2a9f4e06dfe43436ca5": {
+   "roles": [
+    "top50_net_withdrawer#10"
+   ],
+   "net_diff": -3201921.931,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "e5faf2763b992f63766c456babe8b2d99e8c47dbaa09776f05ef311b05bd709f": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 1190877.369234713,
+   "hop2_in": null
+  },
+  "e672fced9d9e5c3a0d9afbca6f50b957e29f11a3fd0004cc833bb26882c653e2": {
+   "roles": [
+    "top50_net_withdrawer#2"
+   ],
+   "net_diff": -20386048.744,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "e6ce93885b6a4d2db4476606f0c1195c2c0acd7f89ba7720c209c2ffad87b381": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 5000000.0,
+   "hop2_in": null
+  },
+  "ea33f36fb03c5ac0b3d1f71e4f72a6c1818fe0296acdb7567df5f7eca8f4d8f9": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 714128.3552,
+   "hop2_in": null
+  },
+  "eaf6f6f7bc9c478408eb6605be0cfe465786def75432a560a8f1ab1385f8fd81": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 869585.5802337,
+   "hop2_in": null
+  },
+  "ec3ba010379f286553bb1ec59891f73b3aa67e1a7a890d394e36db5c6e4598fc": {
+   "roles": [
+    "hub_hop2_ge100k",
+    "top50_net_withdrawer#4"
+   ],
+   "net_diff": -7744173.147,
+   "hub_out_to": null,
+   "hop2_in": 2437000.0
+  },
+  "eec102b30e72e579de3d01074465566351f3f727ec89338ed26e77099ab7a2db": {
+   "roles": [
+    "top50_net_withdrawer#33"
+   ],
+   "net_diff": -792371.547,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "f1bb20659f00960c4a54077f00ad4316b01eddc13d2050f6ebc190bb64492e6a": {
+   "roles": [
+    "hub_hop2_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": null,
+   "hop2_in": 111665.99
+  },
+  "f269a63328a01e3ed551c927bba7bb2bde322a5b83db2db7209c43bd9dc413c3": {
+   "roles": [
+    "A14_hub_lineage_withdrawer",
+    "top50_net_withdrawer#15"
+   ],
+   "net_diff": -1406907.922,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "f287c13aed14e0549e15b3a140a9d19eb6e8e77b3fdccf510dfca98a3f178f53": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": 253862.005,
+   "hub_out_to": 252077.081,
+   "hop2_in": null
+  },
+  "f748ade9d8588eb4ec1e07a402c20e1d784e2c0985cae082056a50760427aab8": {
+   "roles": [
+    "hub_hop2_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": null,
+   "hop2_in": 4000000.0
+  },
+  "f9cdfdf61274ce83833a82a05f261417f920f11110769113741d9c4c1acd2c96": {
+   "roles": [
+    "hub_hop1_ge100k"
+   ],
+   "net_diff": null,
+   "hub_out_to": 10369954.682851251,
+   "hop2_in": null
+  },
+  "jasnah-treasury.sputnik-dao.near": {
+   "roles": [
+    "top50_net_withdrawer#40"
+   ],
+   "net_diff": -578262.272,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "linear-stake-wars.sputnik-dao.near": {
+   "roles": [
+    "top50_net_withdrawer#31"
+   ],
+   "net_diff": -805112.141,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "lituus.near": {
+   "roles": [
+    "top50_net_withdrawer#46"
+   ],
+   "net_diff": -449072.039,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "n1-staking.sputnik-dao.near": {
+   "roles": [
+    "top50_net_withdrawer#12"
+   ],
+   "net_diff": -2240359.846,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "sheckwes.near": {
+   "roles": [
+    "top50_net_withdrawer#43"
+   ],
+   "net_diff": -481940.92,
+   "hub_out_to": null,
+   "hop2_in": null
+  },
+  "staked.near": {
+   "roles": [
+    "top50_net_withdrawer#49"
+   ],
+   "net_diff": -416328.836,
+   "hub_out_to": null,
+   "hop2_in": null
+  }
+ },
+ "notes": "hop2 only where the dig fetched flows of the hop-1 account (10 accounts in a 48h file, 5 with full window flows); other hop-1 accounts extended in extend_hop2 step"
+}

@@ -482,6 +482,14 @@ def build() -> tuple[dict, dict]:
         from .h1a import rating
         rating(m)
 
+    # ---------- Large unstakers -> intents.near (exploratory; data/raw/unstakers/, sql/unstakers/) ----------
+    if (RAW / "unstakers" / "results.json").exists():
+        u = read_raw("unstakers/results.json")
+        m["unstakers_into_intents_m"] = r(u["into_intents_total_near_capped"] / 1e6, 2)
+        m["unstakers_into_intents_overlap_k"] = r(u["set_into_intents_overlap_near_capped"] / 1e3, 1)
+        m["unstakers_overlap_pct_of_1click_near_sold"] = r(u["set_overlap_pct_capped"], 1)
+        m["oneclick_near_sold_30d_m"] = r(u["oneclick"]["near_to_x_near_at_daily_price"] / 1e6, 2)
+
     # ---------- peers ----------
     peer_rows = []
     tot30 = sum(window_sum(vol[s], asof, 30) for s in PEERS)

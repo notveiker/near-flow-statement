@@ -251,6 +251,30 @@
    "fetched_at": "2026-11-05T22:51:19Z",
    "sha256": "b8b264ed703b8ba338747cc7e0df9b0bf5ec81eea80d8ec8c8a728179a693b02",
    "source": "rpc view_account at block 223230811"
+  },
+  "raw/unstakers/account_set.json": {
+   "bytes": 21282,
+   "fetched_at": "2026-11-06T23:50:01Z",
+   "sha256": "8a5a8434b3c944c1e909bb9052d60ac33f732c5b75d823236f26a47e058b9753",
+   "source": "account set: 14 hub-lineage withdrawers, hub, relays, >=100K recipients, top-50 net withdrawers"
+  },
+  "raw/unstakers/big_set.json": {
+   "bytes": 28941,
+   "fetched_at": "2026-11-06T23:50:01Z",
+   "sha256": "45eecdb2d1d43f6922b856d049b05935fd4bb1d767e555497d86f04999185735",
+   "source": "expanded account set used in the intents.near log scan"
+  },
+  "raw/unstakers/oneclick_deposit_address_match.json": {
+   "bytes": 686,
+   "fetched_at": "2026-11-06T23:50:01Z",
+   "sha256": "4153dd7997dc225b1e24d3c6b9de96cd586d63881c04833a8bbdb4dffb7da3fd",
+   "source": "match of the set against 1Click deposit addresses, 10-04..11-04"
+  },
+  "raw/unstakers/results.json": {
+   "bytes": 14684,
+   "fetched_at": "2026-11-06T23:50:01Z",
+   "sha256": "0d2782ddce85bbe2e1fbce662c0c894108a636c18b2d354966ca75979e86f968",
+   "source": "event-level NEAR moved into intents.near by large unstakers, 2026-08-07..11-04 (BigQuery q1-q6 + FastNEAR; lane unstakers-intents, 63.9 GB)"
   }
  }
 }

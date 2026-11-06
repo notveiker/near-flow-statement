@@ -1,0 +1,391 @@
+{
+ "window": "2026-08-07..2026-11-04",
+ "overlap": "2026-10-06..2026-11-04",
+ "into_intents_events": [
+  {
+   "account": "jasnah-payments.near",
+   "withdrawer": "jasnah-treasury.sputnik-dao.near",
+   "tx": "45LjGtLPGEojn9vAevsw2GFfD9q9WfZfhysFAFetetjT",
+   "block_height": 210743248,
+   "day": "2026-08-10",
+   "week": "2026-08-10",
+   "near": 5334.49,
+   "route": "near_deposit + ft_transfer_call wrap.near -> intents.near",
+   "set_link": "jasnah-treasury.sputnik-dao.near (top-50 #40)",
+   "near_capped": 5334.49
+  },
+  {
+   "account": "n1-transit.near",
+   "tx": "FFHGvjGxGN499SwmfFTjsBArzqSBYHYfyrzDwke62DfQ",
+   "block_height": 210768175,
+   "day": "2026-08-10",
+   "week": "2026-08-10",
+   "near": 45000.0,
+   "route": "near_deposit + ft_transfer_call wrap.near -> intents.near (mt_mint owner_id = signer)",
+   "set_link": "n1-staking.sputnik-dao.near (top-50 #12) via n1-treasury",
+   "near_capped": 45000.0
+  },
+  {
+   "account": "n1-transit.near",
+   "tx": "5Ds9d3355Lpt3m3JfuknkmfmjLe51dJ8HtxM4tZraz5g",
+   "block_height": 210864467,
+   "day": "2026-08-11",
+   "week": "2026-08-10",
+   "near": 45000.0,
+   "route": "near_deposit + ft_transfer_call wrap.near -> intents.near (mt_mint owner_id = signer)",
+   "set_link": "n1-staking.sputnik-dao.near (top-50 #12) via n1-treasury",
+   "near_capped": 45000.0
+  },
+  {
+   "account": "jasnah-payments.near",
+   "withdrawer": "jasnah-treasury.sputnik-dao.near",
+   "tx": "FHzwMFFkiQbM3w3jHGSai9GerNMeN5K6TXktzJ32TGXk",
+   "block_height": 211058766,
+   "day": "2026-08-12",
+   "week": "2026-08-10",
+   "near": 3000.0,
+   "route": "near_deposit + ft_transfer_call wrap.near -> intents.near",
+   "set_link": "jasnah-treasury.sputnik-dao.near (top-50 #40)",
+   "near_capped": 3000.0
+  },
+  {
+   "account": "n1-transit.near",
+   "tx": "9SDrnmqhjeACgcHYWjkdmQefqndLNjovK4rDfcDjKEAJ",
+   "block_height": 211330410,
+   "day": "2026-08-14",
+   "week": "2026-08-10",
+   "near": 45000.0,
+   "route": "near_deposit + ft_transfer_call wrap.near -> intents.near (mt_mint owner_id = signer)",
+   "set_link": "n1-staking.sputnik-dao.near (top-50 #12) via n1-treasury",
+   "near_capped": 45000.0
+  },
+  {
+   "account": "becf915c5fc69a435f8fc0155ac04d299887c15adf35f76c951191a8d0e1437d",
+   "withdrawer": "jasnah-treasury.sputnik-dao.near",
+   "tx": "8p8ijFabnuDYMafe9x7hY2cEHXkpLQEW8gHDBp6VxVGg",
+   "block_height": 212476444,
+   "day": "2026-08-22",
+   "week": "2026-08-17",
+   "near": 100.0,
+   "route": "near_deposit + ft_transfer_call wrap.near -> intents.near",
+   "set_link": "jasnah-treasury.sputnik-dao.near (top-50 #40)",
+   "near_capped": 100.0
+  },
+  {
+   "account": "becf915c5fc69a435f8fc0155ac04d299887c15adf35f76c951191a8d0e1437d",
+   "withdrawer": "jasnah-treasury.sputnik-dao.near",
+   "tx": "BpaG8143GqUASaKRAEx5yRnm65t5sGL8M7u44bhhMiqk",
+   "block_height": 212477105,
+   "day": "2026-08-22",
+   "week": "2026-08-17",
+   "near": 1000.0,
+   "route": "near_deposit + ft_transfer_call wrap.near -> intents.near",
+   "set_link": "jasnah-treasury.sputnik-dao.near (top-50 #40)",
+   "near_capped": 1000.0
+  },
+  {
+   "account": "becf915c5fc69a435f8fc0155ac04d299887c15adf35f76c951191a8d0e1437d",
+   "withdrawer": "jasnah-treasury.sputnik-dao.near",
+   "tx": "7U45ry3PBx5iG4QVgJDyRw45MjLxtWT18Bs2RmrA6uEj",
+   "block_height": 212477210,
+   "day": "2026-08-22",
+   "week": "2026-08-17",
+   "near": 12000.0,
+   "route": "near_deposit + ft_transfer_call wrap.near -> intents.near",
+   "set_link": "jasnah-treasury.sputnik-dao.near (top-50 #40)",
+   "near_capped": 12000.0
+  },
+  {
+   "account": "jasnah-payments.near",
+   "withdrawer": "jasnah-treasury.sputnik-dao.near",
+   "tx": "GRL3jeRDQ41QX31yHg61J7P39NkrytnTyAiBwdmSsNvX",
+   "block_height": 214671392,
+   "day": "2026-09-07",
+   "week": "2026-09-07",
+   "near": 6440.43,
+   "route": "near_deposit + ft_transfer_call wrap.near -> intents.near",
+   "set_link": "jasnah-treasury.sputnik-dao.near (top-50 #40)",
+   "near_capped": 6440.43
+  },
+  {
+   "account": "jasnah-payments.near",
+   "withdrawer": "jasnah-treasury.sputnik-dao.near",
+   "tx": "9EdyHS3XyCPbauyNYu5ynGJVSNvmfxkaGVXYE1UbVeP",
+   "block_height": 214671655,
+   "day": "2026-09-07",
+   "week": "2026-09-07",
+   "near": 85070.68,
+   "route": "near_deposit + ft_transfer_call wrap.near -> intents.near",
+   "set_link": "jasnah-treasury.sputnik-dao.near (top-50 #40)",
+   "near_capped": 85070.68
+  },
+  {
+   "account": "n1-transit.near",
+   "tx": "9koLkkHCW9M1nZujvCFShUgPo1L7AawLLmpRuenBK4aK",
+   "block_height": 214772050,
+   "day": "2026-09-08",
+   "week": "2026-09-07",
+   "near": 19870.0,
+   "route": "near_deposit + ft_transfer_call wrap.near -> intents.near (mt_mint owner_id = signer)",
+   "set_link": "n1-staking.sputnik-dao.near (top-50 #12) via n1-treasury",
+   "near_capped": 19870.0
+  },
+  {
+   "account": "becf915c5fc69a435f8fc0155ac04d299887c15adf35f76c951191a8d0e1437d",
+   "withdrawer": "jasnah-treasury.sputnik-dao.near",
+   "tx": "9R762GJpPBBf87oSXjCMQfBZ9Ndhy1y4qBFDq7k16DmW",
+   "block_height": 214812328,
+   "day": "2026-09-08",
+   "week": "2026-09-07",
+   "near": 1000.0,
+   "route": "near_deposit + ft_transfer_call wrap.near -> intents.near",
+   "set_link": "jasnah-treasury.sputnik-dao.near (top-50 #40)",
+   "near_capped": 1000.0
+  },
+  {
+   "account": "becf915c5fc69a435f8fc0155ac04d299887c15adf35f76c951191a8d0e1437d",
+   "withdrawer": "jasnah-treasury.sputnik-dao.near",
+   "tx": "FHoAP5DN3YdmFUarytf1coRn5wZ1Z8MMUeJLpn8sHrA",
+   "block_height": 214812719,
+   "day": "2026-09-08",
+   "week": "2026-09-07",
+   "near": 10000.0,
+   "route": "near_deposit + ft_transfer_call wrap.near -> intents.near",
+   "set_link": "jasnah-treasury.sputnik-dao.near (top-50 #40)",
+   "near_capped": 10000.0
+  },
+  {
+   "account": "becf915c5fc69a435f8fc0155ac04d299887c15adf35f76c951191a8d0e1437d",
+   "withdrawer": "jasnah-treasury.sputnik-dao.near",
+   "tx": "EQx6rWiC4FdQzRD1w1TtL7gywdFsMhWynGtLZTNqFpLd",
+   "block_height": 214813397,
+   "day": "2026-09-08",
+   "week": "2026-09-07",
+   "near": 13000.000000000002,
+   "route": "near_deposit + ft_transfer_call wrap.near -> intents.near",
+   "set_link": "jasnah-treasury.sputnik-dao.near (top-50 #40)",
+   "near_capped": 13000.000000000002
+  },
+  {
+   "account": "n1-transit.near",
+   "tx": "D4Z8CA62ttN5uAnRKRQGBT7rB3TW4Dwx8bX3D6p92Kmn",
+   "block_height": 214834822,
+   "day": "2026-09-08",
+   "week": "2026-09-07",
+   "near": 53750.99,
+   "route": "near_deposit + ft_transfer_call wrap.near -> intents.near (mt_mint owner_id = signer)",
+   "set_link": "n1-staking.sputnik-dao.near (top-50 #12) via n1-treasury",
+   "near_capped": 53750.99
+  },
+  {
+   "account": "1657182f02519f3af2e2c49f6f311c4955eef740fffda7c93c4fb14f4dc2786a",
+   "withdrawer": "80a0792b06abcbe0832822812cd98b",
+   "tx": "Dddwqmz5uLQ4eJAws6MTn6Fq7dZRxzyNXhhYzY6uRkWE",
+   "block_height": 215238752,
+   "day": "2026-09-11",
+   "week": "2026-09-07",
+   "near": 99999.999505,
+   "route": "native NEAR -> bridge-mng.near (deposit wrapper) -> intents.near",
+   "set_link": "80a0792b\u2026 (top-50 #39)",
+   "near_capped": 99999.999505
+  },
+  {
+   "account": "becf915c5fc69a435f8fc0155ac04d299887c15adf35f76c951191a8d0e1437d",
+   "withdrawer": "jasnah-treasury.sputnik-dao.near",
+   "tx": "7ta71cfva5Jctc8ZvneD2ngUATso7DgbwZBrnP9ahDdE",
+   "block_height": 216236958,
+   "day": "2026-09-18",
+   "week": "2026-09-14",
+   "near": 8000.0,
+   "route": "near_deposit + ft_transfer_call wrap.near -> intents.near",
+   "set_link": "jasnah-treasury.sputnik-dao.near (top-50 #40)",
+   "near_capped": 5148.0
+  },
+  {
+   "account": "sheckwes.near",
+   "tx": null,
+   "block_height": 216389152,
+   "day": "2026-09-19",
+   "week": "2026-09-14",
+   "near": 535164.9253,
+   "route": "native NEAR to fresh account 5cec4b8f\u2026 -> bridge-mng.near -> intents.near; Q5: Deposit/Transfer to intents.near at 216,389,152; mt_mint owner cc49207d\u2026; moved to Confidential Intents treasury 51e8f94d\u2026 at 216,389,157",
+   "set_link": "sheckwes.near (top-50 #43)",
+   "near_capped": 481941.93
+  },
+  {
+   "account": "d2ac944f27cba229c7811bbe8ddafe499f1fbe67685da370b2f5930bc9bce03b",
+   "withdrawer": "80a0792b06abcbe0832822812cd98b",
+   "tx": "7r7JggdHV9mCRmFWV4UB8WWfZozpYMikuAoyRP1KAk9Q",
+   "block_height": 216512811,
+   "day": "2026-09-20",
+   "week": "2026-09-14",
+   "near": 299999.999505,
+   "route": "native NEAR -> bridge-mng.near (deposit wrapper) -> intents.near",
+   "set_link": "80a0792b\u2026 (top-50 #39)",
+   "near_capped": 299999.999505
+  },
+  {
+   "account": "becf915c5fc69a435f8fc0155ac04d299887c15adf35f76c951191a8d0e1437d",
+   "withdrawer": "jasnah-treasury.sputnik-dao.near",
+   "tx": "3zpfrkfhEfsmVgAV9Ubb7iWgp9anZW58NhiT1dRpW6VF",
+   "block_height": 217688020,
+   "day": "2026-09-28",
+   "week": "2026-09-28",
+   "near": 6500.000000000001,
+   "route": "near_deposit + ft_transfer_call wrap.near -> intents.near",
+   "set_link": "jasnah-treasury.sputnik-dao.near (top-50 #40)",
+   "near_capped": 0.0
+  },
+  {
+   "account": "4cfa4a5f0fa9c192769c10bfa31dbfba45b79ddd3547e8cb05de2d955a493781",
+   "withdrawer": "80a0792b06abcbe0832822812cd98b",
+   "tx": "9ocmJa3yPuDQJuUPNniZhpZhxFqTEvB4ohSJ6KXANLNd",
+   "block_height": 218377900,
+   "day": "2026-10-03",
+   "week": "2026-09-28",
+   "near": 99999.999505,
+   "route": "native NEAR -> bridge-mng.near (deposit wrapper) -> intents.near",
+   "set_link": "80a0792b\u2026 (top-50 #39)",
+   "near_capped": 99999.999505
+  },
+  {
+   "account": "jasnah-payments.near",
+   "withdrawer": "jasnah-treasury.sputnik-dao.near",
+   "tx": "kcALDR3j8EYxT6nsAt5EmYU6bLtwRuQNJmSW64fKLhp",
+   "block_height": 218666432,
+   "day": "2026-10-05",
+   "week": "2026-10-05",
+   "near": 51531.409999999996,
+   "route": "near_deposit + ft_transfer_call wrap.near -> intents.near",
+   "set_link": "jasnah-treasury.sputnik-dao.near (top-50 #40)",
+   "near_capped": 51531.409999999996
+  },
+  {
+   "account": "n1-transit.near",
+   "tx": "HWG1huVBBxdn9UCbsdMpy2vNP9gvPnVdDYkt2gSPufa4",
+   "block_height": 218969088,
+   "day": "2026-10-07",
+   "week": "2026-10-05",
+   "near": 17920.0,
+   "route": "near_deposit + ft_transfer_call wrap.near -> intents.near (mt_mint owner_id = signer)",
+   "set_link": "n1-staking.sputnik-dao.near (top-50 #12) via n1-treasury",
+   "near_capped": 17920.0
+  },
+  {
+   "account": "becf915c5fc69a435f8fc0155ac04d299887c15adf35f76c951191a8d0e1437d",
+   "withdrawer": "jasnah-treasury.sputnik-dao.near",
+   "tx": "EEYFbX4sZzPwBbh9tabqLtUx9kiLgteTdpitYVzb5n2P",
+   "block_height": 219060311,
+   "day": "2026-10-08",
+   "week": "2026-10-05",
+   "near": 4500.0,
+   "route": "near_deposit + ft_transfer_call wrap.near -> intents.near",
+   "set_link": "jasnah-treasury.sputnik-dao.near (top-50 #40)",
+   "near_capped": 0.0
+  },
+  {
+   "account": "n1-transit.near",
+   "tx": null,
+   "block_height": 219118785,
+   "day": "2026-10-08",
+   "week": "2026-10-05",
+   "near": 54.87846,
+   "route": "native NEAR to fresh account 1d1de23c\u2026 -> bridge-mng.near -> intents.near; Q3: Deposit/Transfer to intents.near at 219,118,785",
+   "set_link": "n1-staking.sputnik-dao.near (top-50 #12) via n1-treasury",
+   "near_capped": 54.87846
+  },
+  {
+   "account": "n1-transit.near",
+   "tx": null,
+   "block_height": 219118913,
+   "day": "2026-10-08",
+   "week": "2026-10-05",
+   "near": 54823.58,
+   "route": "native NEAR to fresh account 611db101\u2026 -> bridge-mng.near -> intents.near; Q3: Deposit/Transfer to intents.near at 219,118,913 (sender paid 54,823.579505; bridge-mng deposited 54,823.58)",
+   "set_link": "n1-staking.sputnik-dao.near (top-50 #12) via n1-treasury",
+   "near_capped": 54823.58
+  }
+ ],
+ "into_intents_total_near": 1524061.382275,
+ "by_account_total": {
+  "n1-transit.near": 281419.44846,
+  "sheckwes.near": 535164.9253,
+  "jasnah-payments.near": 151377.00999999998,
+  "4cfa4a5f0fa9c192769c10bfa31dbfba45b79ddd3547e8cb05de2d955a493781": 99999.999505,
+  "1657182f02519f3af2e2c49f6f311c4955eef740fffda7c93c4fb14f4dc2786a": 99999.999505,
+  "becf915c5fc69a435f8fc0155ac04d299887c15adf35f76c951191a8d0e1437d": 56100.0,
+  "d2ac944f27cba229c7811bbe8ddafe499f1fbe67685da370b2f5930bc9bce03b": 299999.999505
+ },
+ "into_intents_total_near_capped": 1456986.386975,
+ "by_link_gross_capped": {
+  "80a0792b\u2026 (top-50 #39)": [
+   499999.998515,
+   499999.998515
+  ],
+  "n1-staking.sputnik-dao.near (top-50 #12) via n1-treasury": [
+   281419.44846,
+   281419.44846
+  ],
+  "sheckwes.near (top-50 #43)": [
+   535164.9253,
+   481941.93
+  ],
+  "jasnah-treasury.sputnik-dao.near (top-50 #40)": [
+   207477.00999999998,
+   193625.00999999998
+  ]
+ },
+ "into_intents_by_account_week": {
+  "jasnah-treasury.sputnik-dao.near (top-50 #40)|2026-08-10": 8334.49,
+  "n1-staking.sputnik-dao.near (top-50 #12) via n1-treasury|2026-08-10": 135000.0,
+  "jasnah-treasury.sputnik-dao.near (top-50 #40)|2026-08-17": 13100.0,
+  "jasnah-treasury.sputnik-dao.near (top-50 #40)|2026-09-07": 115511.10999999999,
+  "n1-staking.sputnik-dao.near (top-50 #12) via n1-treasury|2026-09-07": 73620.98999999999,
+  "80a0792b\u2026 (top-50 #39)|2026-09-07": 99999.999505,
+  "jasnah-treasury.sputnik-dao.near (top-50 #40)|2026-09-14": 8000.0,
+  "sheckwes.near (top-50 #43)|2026-09-14": 535164.9253,
+  "80a0792b\u2026 (top-50 #39)|2026-09-14": 299999.999505,
+  "jasnah-treasury.sputnik-dao.near (top-50 #40)|2026-09-28": 6500.000000000001,
+  "80a0792b\u2026 (top-50 #39)|2026-09-28": 99999.999505,
+  "jasnah-treasury.sputnik-dao.near (top-50 #40)|2026-10-05": 56031.409999999996,
+  "n1-staking.sputnik-dao.near (top-50 #12) via n1-treasury|2026-10-05": 72798.45846
+ },
+ "direct_txs_to_intents_near_by_bigset_signers": 0,
+ "q2_event_counts": {
+  "dip4/ft_withdraw": 215,
+  "nep245/mt_mint": 1,
+  "dip4/transfer": 1,
+  "dip4/intents_executed": 1,
+  "nep245/mt_transfer": 1
+ },
+ "q2_mt_mint": [
+  {
+   "day": "2026-10-07",
+   "owner": "n1-transit.near",
+   "tokens": [
+    "nep141:wrap.near"
+   ],
+   "amounts": [
+    "17920000000000000000000000000"
+   ]
+  }
+ ],
+ "q2_near_out_of_intents_to_bigset": {},
+ "q2_usdc_out_of_intents_to_bigset": {
+  "jasnah-treasury.sputnik-dao.near|17208628f84f5d6ad33f0da3bbbeb27ffcb398eac501a31bd6ad2011e36133a1": 2998.0,
+  "n1-treasury.sputnik-dao.near|17208628f84f5d6ad33f0da3bbbeb27ffcb398eac501a31bd6ad2011e36133a1": 336530.935268
+ },
+ "oneclick": {
+  "days": 30,
+  "near_to_x_usd": 24016533.51,
+  "x_to_near_usd": 14614100.89,
+  "near_to_x_near_at_daily_price": 4950993.277342223,
+  "x_to_near_near_at_daily_price": 2977779.9980577505,
+  "avg_price_weighted": 4.850851569504147
+ },
+ "set_into_intents_overlap_near": 77298.45846000001,
+ "set_into_intents_overlap_usd": 407559.04571879434,
+ "set_overlap_pct_of_1click_near_to_x": 1.5612717313463034,
+ "set_into_intents_overlap_near_capped": 72798.45846000001,
+ "set_overlap_pct_capped": 1.470380878785589
+}

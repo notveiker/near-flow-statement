@@ -338,6 +338,7 @@
  "net_issuance_usd_30d_m": 12.71,
  "net_supply_growth_30d_annualized_pct": 2.46,
  "net_supply_growth_365d_pct": 2.48,
+ "oneclick_near_sold_30d_m": 4.95,
  "partners_kept_vs_near_rev_high_x": 2.22,
  "partners_kept_vs_near_rev_low_tight_x": 1.81,
  "partners_kept_vs_near_rev_low_x": 1.75,
@@ -461,6 +462,9 @@
  "trust_via_swapkit_vol_share_pct": 6.4,
  "tx_per_day_30d_k": 685.0,
  "tx_per_day_30d_yoy_pct": -84.8,
+ "unstakers_into_intents_m": 1.46,
+ "unstakers_into_intents_overlap_k": 72.8,
+ "unstakers_overlap_pct_of_1click_near_sold": 1.5,
  "validators": 351,
  "volume_channel_hhi": 0.087,
  "volume_channel_hhi_swapkit_merged": 0.2

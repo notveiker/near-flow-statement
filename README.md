@@ -18,7 +18,8 @@
 
 - [`docs/intents-fee-flows.md`](docs/intents-fee-flows.md): who earns from NEAR Intents fees, and whether Intents volume touches the NEAR token. Covers 30 days of 1Click swaps reconciled against NEAR's revenue wallets on chain.
 - [`docs/partner-concentration.md`](docs/partner-concentration.md): how much of NEAR's Intents revenue depends on SwapKit and a few other channels. Traces the buyback wallet's NEAR to its on-chain sources.
-- [`PREREG-ADDENDUM.md`](PREREG-ADDENDUM.md): the H1a result (fails), plus corrections and scope notes.
+- [`docs/supply-side.md`](docs/supply-side.md): the pre-registered scorecard (H1a fails; H1b and H1c inconclusive; the frozen rating rule gives **Hold**) and where the largest unstakers' NEAR went.
+- [`PREREG-ADDENDUM.md`](PREREG-ADDENDUM.md): every post-freeze result, method choice and correction, dated.
 
 ## Pre-registration
 
