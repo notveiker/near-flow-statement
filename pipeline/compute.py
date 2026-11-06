@@ -279,7 +279,12 @@ def build() -> tuple[dict, dict]:
         m["revwallets_frontend_usd_k"] = r(by_w["fefundsadmin.sputnik-dao.near"] / 1e3, 1)
         m["revwallets_frontend_share_pct"] = r(by_w["fefundsadmin.sputnik-dao.near"] / tot_w * 100, 1)
         m["revwallets_vs_llama_rev_pct"] = r(tot_w / llama_rev * 100, 1)
-        if "explorer_partner_fees_no_bb_usd_k" in m and m.get("explorer_days") == 30:
+        ex_days = [x["date"] for x in read_raw("explorer/daily.json")["days"]] if (RAW / "explorer" / "daily.json").exists() else []
+        same_window = "explorer_partner_fees_no_bb_usd_k" in m and m.get("explorer_days") == len(
+            [d for d in ex_days if lo <= d <= hi]) and add_days(asof, -29) == lo and asof == hi
+        if not same_window:
+            print(f"note: revenue-wallet window {lo}..{hi} differs from the Explorer window; partner-fee bound skipped")
+        if same_window:
             bb_explicit = m["explorer_appfees_to_buybacks_usd_k"]
             unexplained = m["revwallets_buybacks_usd_k"] - bb_explicit
             partner_nobb = m["explorer_partner_fees_no_bb_usd_k"]

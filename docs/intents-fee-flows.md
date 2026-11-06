@@ -37,9 +37,9 @@ Over the window, partners kept between **1.75 <!--n:partners_kept_vs_near_rev_lo
 
 Why it matters: the bull case treats Intents fee revenue as value flowing to NEAR. On this evidence, the distribution layer (hardware and mobile wallets) captures most of the fee economics. NEAR's take is set by negotiation with a handful of partners, and SwapKit alone routes 38.2% of 1Click volume.
 
-### 3. Users pay the listed fee plus a solver spread
+### 3. Users pay the listed fee plus an execution cost
 
-On swaps of $1K–$50K, the realized cost (`amountInUsd − amountOutUsd`) exceeds the listed fees by **8.5 <!--n:explorer_excess_over_listed_bp-->bp** on average. This is a third party's take (market makers and solvers), and it sits in no one's revenue model. Two details:
+On swaps of $1K–$50K, the realized cost (`amountInUsd − amountOutUsd`) exceeds the listed fees by **8.5 <!--n:explorer_excess_over_listed_bp-->bp** on average. That excess includes the solver or market-maker spread, destination-chain gas and the 1-pip protocol fee, so it is an execution cost, not a pure solver take. It appears in no one's revenue model. The per-bucket figures in `explorer_realized_cost_by_listed_bp` mostly reflect asset mix (BTC routes cost more to fill than stablecoin routes), not fee tier. Two details:
 - **Swaps listing 81 bp or more** (mostly Ledger via SwapKit): the listed fee averages about 141 bp and the realized cost about 149 bp. The listed fee is the whole platform charge; no hidden 1Click fee is added on top.
 - **Swaps listing under 2 bp** (mostly stablecoin routes): the listed fee averages under 1 bp and the realized cost about 2 bp.
 
@@ -47,7 +47,7 @@ On swaps of $1K–$50K, the realized cost (`amountInUsd − amountOutUsd`) excee
 
 | | Value |
 |---|---|
-| Share of 1Click volume with wNEAR as one leg | 2.2 <!--n:explorer_near_leg_share_pct-->% |
+| Share of 1Click volume with NEAR as one leg (NEAR appears only as `nep141:wrap.near`; checked) | 2.2 <!--n:explorer_near_leg_share_pct-->% |
 | Share of volume legs in stablecoins | 47.4 <!--n:explorer_stablecoin_leg_share_pct-->% |
 | Swaps into NEAR, USD M | 14.6 <!--n:explorer_into_near_usd_m--> |
 | Swaps out of NEAR, USD M | 24.0 <!--n:explorer_out_of_near_usd_m--> |
