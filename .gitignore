@@ -14,3 +14,14 @@ __pycache__/
 .DS_Store
 # local scratch
 .cache/
+
+# more key material (scripts/scan_secrets.py flags these file names too)
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+.near-credentials/
+application_default_credentials.json
+client_secret*.json
