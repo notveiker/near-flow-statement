@@ -1,0 +1,74 @@
+# Continuous integration: the offline checks a judge runs, plus a determinism check, a secret scan and a
+# Python 3.10 / 3.13 matrix. The repository's own steps use no secret, no key, no network and no third-party Python
+# package, and the workflow token is read-only.
+#
+# Pushing a change to this file may need a credential with the "workflow" scope (a classic personal access token with
+# that scope, or a fine-grained token with the Workflows permission). If GitHub refuses the push, that is the likely reason.
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: verify (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.13"] # quoted: an unquoted 3.10 is read as the number 3.1
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      # Full history and tags: the secret scan reads every commit, and the integrity tests compare PREREG.md with
+      # git tag prereg-freeze, which a shallow checkout would not have.
+      - name: Check out all history and tags
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+          persist-credentials: false
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Raw data matches data/MANIFEST.json
+        run: python3 -m pipeline.check --manifest
+
+      - name: Recompute every metric
+        run: python3 -m pipeline.compute
+
+      - name: Recomputing changed nothing (deterministic)
+        run: git diff --exit-code data/metrics.json data/series.json
+
+      - name: Numbers in the write-up match data/metrics.json
+        run: python3 -m pipeline.check --numbers
+
+      - name: Unit and integrity tests
+        run: python3 -m unittest discover -s tests -v
+
+      - name: Dashboard equals a fresh render
+        run: python3 -m pipeline.render --check
+
+      - name: Secret scan, working tree
+        run: python3 scripts/scan_secrets.py
+
+      - name: Secret scan, full git history
+        run: python3 scripts/scan_secrets.py --history
+
+      # What a judge sees: a clone of this commit, every step run again in it. Once is enough.
+      - name: Fresh-clone rehearsal
+        if: matrix.python-version == '3.13'
+        run: bash scripts/fresh_clone_check.sh

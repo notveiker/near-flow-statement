@@ -1,0 +1,58 @@
+# Publishes the committed site/ folder (the static dashboard, site/index.html) to GitHub Pages.
+# It builds nothing and fetches nothing: it uploads exactly what is committed. The CI workflow checks that site/ equals
+# a fresh render of the committed data.
+#
+# One-time setup in the repository settings (this file cannot do it for you):
+#   1. The repository must be public, or the account's plan must include GitHub Pages for private repositories.
+#   2. Settings > Pages > Build and deployment > Source must be "GitHub Actions".
+# Without both, expect the run to fail at actions/configure-pages or actions/deploy-pages.
+# The job's environment url is taken from the deploy step's page_url output, so the run page links to the deployed site.
+#
+# Pushing a change to this file may need a credential with the "workflow" scope (a classic personal access token with
+# that scope, or a fine-grained token with the Workflows permission). If GitHub refuses the push, that is the likely reason.
+name: Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "site/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deployment at a time; a deployment that has started is allowed to finish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: The committed page exists
+        run: test -s site/index.html || { echo "site/index.html is missing or empty; run python3 -m pipeline.render and commit site/"; exit 1; }
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload the site/ folder
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
