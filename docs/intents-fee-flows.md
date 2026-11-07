@@ -60,6 +60,24 @@ Intents is a cross-chain stablecoin, BTC and ZEC venue. Usage creates no direct 
 
 Swaps of $10K or more are 3.4 <!--n:explorer_swaps_10k_plus_n_pct-->% of swaps but 77.1 <!--n:explorer_swaps_10k_plus_vol_pct-->% of volume. The median swap is about $52. Revenue is therefore exposed to a small number of large users, whose fee rates vary by channel.
 
+### 6. NEAR's take inside 1Click doubled over 90 days, and partners still keep about ten times more
+
+Three 30-day blocks of 1Click swaps (Explorer API), 2026-08-07 → 11-04:
+
+| | Aug 7 – Sep 5 | Sep 6 – Oct 5 | Oct 6 – Nov 4 |
+|---|---|---|---|
+| 1Click volume, USD M | 1,269 <!--n:take_b1_oneclick_usd_m--> | 1,442 <!--n:take_b2_oneclick_usd_m--> | 1,104 <!--n:take_b3_oneclick_usd_m--> |
+| Explicit buyback fee, bp of volume | 1.83 <!--n:take_b1_bb_explicit_bp--> | 2.84 <!--n:take_b2_bb_explicit_bp--> | 4.08 <!--n:take_b3_bb_explicit_bp--> |
+| Partner fees, bp of volume | 32.5 <!--n:take_b1_partner_bp--> | 43.7 <!--n:take_b2_partner_bp--> | 40.3 <!--n:take_b3_partner_bp--> |
+| Share of volume with a buyback fee entry | 23.6 <!--n:take_b1_vol_with_bb_pct-->% | 39.0 <!--n:take_b2_vol_with_bb_pct-->% | 43.0 <!--n:take_b3_vol_with_bb_pct-->% |
+| SwapKit's share of volume | 35.6 <!--n:take_b1_swapkit_vol_pct-->% | 37.9 <!--n:take_b2_swapkit_vol_pct-->% | 38.2 <!--n:take_b3_swapkit_vol_pct-->% |
+| Captured revenue ÷ reported Intents volume (DefiLlama), bp | 2.89 <!--n:take_b1_captured_bp--> | 4.25 <!--n:take_b2_captured_bp--> | 4.98 <!--n:take_b3_captured_bp--> |
+
+- **NEAR's explicit take rose mainly because more volume carries a buyback fee entry**, not because SwapKit's share fell. The share of volume with an entry nearly doubled.
+- **Partners' fees stayed about ten times NEAR's explicit fee** in every block.
+- **Captured take on DefiLlama's basis rose too**, from 2.89 to 4.98 bp. The first block is not like-for-like: DefiLlama's volume series steps up on 2026-09-01. 1Click's share of it falls from 86.2 <!--n:oneclick_share_of_llama_week_before_0901_pct-->% in the week before to 60.8 <!--n:oneclick_share_of_llama_week_after_0901_pct-->% in the week from that day, with no matching change in 1Click's own volume. That is consistent with DefiLlama counting more of Intents' volume (for example confidential swaps) from that date. If so, pre-09-01 volume is understated and the first block's 2.89 bp overstated, so the true rise is, if anything, larger.
+- **Scope.** This covers 90 days, not the whole period since the 2026-02-23 fee switch.
+
 ## What we cannot conclude yet
 
 - **The other half of Intents.** 1Click is 55.2 <!--n:explorer_vs_llama_net_pct-->% of DefiLlama's volume on a one-sided basis. (DefiLlama's figure counts both sides of each swap: from January to August 2026 it matched an independent both-sides total at 1.004-1.017×, not 0.5×, so halving it is right and, for multi-hop swaps, slightly conservative. The Dune query behind it could not be read directly.) The rest (near.com, direct solver flow, other integrations) has a fee structure this API does not show. We do not extrapolate.
@@ -69,6 +87,6 @@ Swaps of $10K or more are 3.4 <!--n:explorer_swaps_10k_plus_n_pct-->% of swaps b
 ## Open questions this raises
 
 1. **Partner concentration risk.** If SwapKit renegotiates or leaves, how much of NEAR's captured revenue goes with it? This needs per-channel buyback attribution.
-2. **Can NEAR raise its take?** Trace NEAR's take rate over time against partner fee lists, since the fee switch on 2026-02-23. Explorer history makes this possible.
+2. **Can NEAR raise its take?** Partly answered in section 6: over 90 days, NEAR's explicit take inside 1Click doubled, mostly because more volume carries a buyback fee entry. The period since the 2026-02-23 fee switch is not yet covered.
 3. **Who are the net NEAR sellers on 1Click?** Origin addresses on NEAR→X swaps could be matched against unstaking accounts from the H1a analysis. That would be a market-wide overlap, not an attribution.
 4. **Is ZEC volume (10.9% of legs) durable,** or a privacy-coin cycle?

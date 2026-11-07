@@ -210,6 +210,34 @@ def escrow_ladder(m: dict, lo: str, hi: str) -> None:
     m["ladder_other_pct_of_issuance"] = r(float(near(lambda x: x["path"] == "other") / n_days / iss * 100), 2)
 
 
+def take_over_time(m: dict, rev: dict, vol: dict, asof: str) -> None:
+    """1Click fee take in three 30-day blocks ending asof (Explorer days must cover all 90)."""
+    days = {x["date"]: x for x in read_raw("explorer/daily.json")["days"]}
+    for i, tag in ((2, "b1"), (1, "b2"), (0, "b3")):
+        hi = add_days(asof, -30 * i); lo = add_days(hi, -29)
+        ds = [days[d] for d in days if lo <= d <= hi]
+        if len(ds) != 30 or not all("by_channel" in x for x in ds):
+            return
+        usd = sum(x["usd_in"] for x in ds)
+        fs = lambda k: sum(x["fee_split"][k] for x in ds)
+        m[f"take_{tag}_window"] = f"{lo}..{hi}"
+        m[f"take_{tag}_bb_explicit_bp"] = r(fs("bb_explicit_usd") / usd * 1e4, 2)
+        m[f"take_{tag}_partner_bp"] = r((fs("partner_with_bb_usd") + fs("partner_without_bb_usd")) / usd * 1e4, 1)
+        m[f"take_{tag}_vol_with_bb_pct"] = r(fs("usd_in_with_bb") / usd * 100, 1)
+        m[f"take_{tag}_swapkit_vol_pct"] = r(sum(v[1] for x in ds for k, v in x["by_channel"].items()
+                                                 if k.startswith("swapkit/")) / usd * 100, 1)
+        lv = sum(vol.get(d, 0) for d in days if lo <= d <= hi)
+        lr = sum(rev.get(d, 0) for d in days if lo <= d <= hi)
+        m[f"take_{tag}_oneclick_vs_llama_net_pct"] = r(usd / (lv / 2) * 100, 1)
+        m[f"take_{tag}_captured_bp"] = r(lr / lv * 1e4, 2)  # DefiLlama revenue / reported (leg-sum) volume
+        m[f"take_{tag}_oneclick_usd_m"] = r(usd / 1e6, 0)
+    # DefiLlama's series steps on 2026-09-01: 1Click's share of it, the week before vs the week from that day.
+    for key, lo, hi in (("before", "2026-08-25", "2026-08-31"), ("after", "2026-09-01", "2026-09-07")):
+        ds = [d for d in days if lo <= d <= hi]
+        m[f"oneclick_share_of_llama_week_{key}_0901_pct"] = r(
+            sum(days[d]["usd_in"] for d in ds) / (sum(vol.get(d, 0) for d in ds) / 2) * 100, 1)
+
+
 def build() -> tuple[dict, dict]:
     # ---------- inputs ----------
     vol = {s: llama_daily(f"llama/volume_{s}.json") for s in PEERS}
@@ -493,6 +521,10 @@ def build() -> tuple[dict, dict]:
         m["unstakers_into_intents_overlap_k"] = r(u["set_into_intents_overlap_near_capped"] / 1e3, 1)
         m["unstakers_overlap_pct_of_1click_near_sold"] = r(u["set_overlap_pct_capped"], 1)
         m["oneclick_near_sold_30d_m"] = r(u["oneclick"]["near_to_x_near_at_daily_price"] / 1e6, 2)
+
+    # ---------- 1Click fee take over time (three 30-day blocks; Explorer API) ----------
+    if (RAW / "explorer" / "daily.json").exists():
+        take_over_time(m, rev, vol["near-intents"], asof)
 
     # ---------- peers ----------
     peer_rows = []

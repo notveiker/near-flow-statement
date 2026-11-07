@@ -109,10 +109,10 @@
    "source": "python3 -m pipeline.fetch_escrow verify --sample 60 --seed 20261106 (FastNEAR + archival RPC)"
   },
   "raw/explorer/daily.json": {
-   "bytes": 447081,
-   "fetched_at": "2026-11-06T02:58:34Z",
-   "sha256": "bce514b1fb49104c54d40e382171adf474258c6e7e8e3a31491438b19eaf141d",
-   "source": "https://explorer.near-intents.org/api/v0/transactions?statuses=SUCCESS (per-day cursor pull, 2026-10-06..2026-11-04)"
+   "bytes": 1276556,
+   "fetched_at": "2026-11-07T02:52:18Z",
+   "sha256": "bf77c7832108ebcb0f80ae066ab0d1ce508de779cf27905f9c86082be7b3b70e",
+   "source": "https://explorer.near-intents.org/api/v0/transactions?statuses=SUCCESS (per-day cursor pull, 2026-08-07..2026-11-04)"
   },
   "raw/labels/binance_por_address_2026-11-06.json": {
    "bytes": 91766,
