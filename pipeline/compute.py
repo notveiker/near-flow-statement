@@ -204,6 +204,10 @@ def escrow_ladder(m: dict, lo: str, hi: str) -> None:
     m["escrow_share_of_buyback_by_month"] = [{"month": k, "share_pct": r(esc[k] / tot[k] * 100, 1),
                                               "note": "from 07-07" if k == "2026-07" else ""}
                                              for k in sorted(tot) if k <= hi[:7]]
+    for k in sorted(tot):
+        if k <= hi[:7]:
+            m[f"escrow_share_buyback_{k.replace('-', '_')}_pct"] = r(esc[k] / tot[k] * 100, 1)
+    m["ladder_other_pct_of_issuance"] = r(float(near(lambda x: x["path"] == "other") / n_days / iss * 100), 2)
 
 
 def build() -> tuple[dict, dict]:

@@ -105,3 +105,12 @@ Written after the forward-test window opened. It changes no test; it finishes H1
    - **The rule's output: Hold.** Buy needs H1b to pass and Avoid needs H1b to fail. H1b is inconclusive (2026-11-06 results entry), so the rule outputs Hold. Had H1b passed it would have been Buy, since G_obs ≥ G_req.
 6. **HSP-029's timelock (2026-11-16) resolves after the deadline.** G_req assumes the ramp, as PREREG specifies. We state it as a pending resolver and do not predict it.
 7. **Forward tests.** `pipeline/score_forward.py` will score F1-F4 exactly as PREREG words them and refuses to run before 2026-11-14 00:00 UTC. It was written on 2026-11-06, after the window opened. Its dry run read no day inside 11-06..11-13 for F2-F4 and only the window-opening block for F1. Any missing day or failed fetch is "not scorable". `make test` runs its tests.
+
+## 2026-11-07 00:21 UTC: exploratory headline chosen after the freeze and after all three flow results
+
+The thesis (`THESIS.md`) leads with an exhibit that was not pre-registered: the value-capture "ladder", which splits the NEAR arriving in NEAR's revenue wallets into NEAR traceable to public fee collectors and NEAR released from the Confidential Intents escrow, each as a share of net issuance. The author chose it on 2026-11-07, which is:
+- after the freeze (tag `prereg-freeze`, commit `413d776`, 2026-11-05 22:53:29 UTC);
+- after H1a's first result (2026-11-05) and its as-written result (2026-11-06 23:49 UTC);
+- after H1b and H1c came out inconclusive (2026-11-06 23:23 UTC).
+
+It changes no hypothesis, threshold, probability or the rating rule. The rule's output, Hold, stands, and the ladder does not feed it. `THESIS.md` reports the pre-registered scorecard in its first paragraph, before any exploratory result, and labels the ladder exploratory wherever it appears. The escrow dataset the ladder rests on was committed on 2026-11-06 (`51e396b`).

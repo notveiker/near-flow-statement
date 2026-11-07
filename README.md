@@ -16,6 +16,7 @@
 
 ## Findings so far
 
+- [`THESIS.md`](THESIS.md): the investment thesis. It opens with the pre-registered scorecard (H1a fails; H1b and H1c inconclusive; the frozen rule rates NEAR **Hold**), then leads with an **exploratory, post-freeze** exhibit: how much of NEAR's value capture can be verified on chain (4.5-15.8% of net issuance).
 - [`docs/intents-fee-flows.md`](docs/intents-fee-flows.md): who earns from NEAR Intents fees, and whether Intents volume touches the NEAR token. Covers 30 days of 1Click swaps reconciled against NEAR's revenue wallets on chain.
 - [`docs/partner-concentration.md`](docs/partner-concentration.md): how much of NEAR's Intents revenue depends on SwapKit and a few other channels. Traces the buyback wallet's NEAR to its on-chain sources.
 - [`docs/supply-side.md`](docs/supply-side.md): the pre-registered scorecard (H1a fails; H1b and H1c inconclusive; the frozen rating rule gives **Hold**) and where the largest unstakers' NEAR went.

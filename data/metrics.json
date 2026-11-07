@@ -74,6 +74,11 @@
  "coverage_rev_usd_30d_pct": 15.7,
  "escrow_funded_exact_30d_n": 909,
  "escrow_funded_exact_30d_pct": 100.0,
+ "escrow_share_buyback_2026_07_pct": 17.5,
+ "escrow_share_buyback_2026_08_pct": 28.6,
+ "escrow_share_buyback_2026_09_pct": 53.0,
+ "escrow_share_buyback_2026_10_pct": 57.4,
+ "escrow_share_buyback_2026_11_pct": 58.5,
  "escrow_share_of_buyback_by_month": [
   {
    "month": "2026-07",
@@ -326,6 +331,7 @@
  "ladder_all_wallets_pct_of_issuance": 15.81,
  "ladder_buyback_only_pct_of_issuance": 11.0,
  "ladder_escrow_unshields_pct_of_issuance": 11.25,
+ "ladder_other_pct_of_issuance": 0.03,
  "ladder_public_collectors_pct_of_issuance": 4.53,
  "max_inflation_pct": 2.5,
  "mcap_to_rev_30d_annualized_x": 199.0,
