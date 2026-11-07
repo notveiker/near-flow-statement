@@ -7,7 +7,9 @@ on the next run.
 
 Committed output (re-used offline): data/raw/explorer/daily.json — per-day totals, top
 referral channels, and USD fees routed to each appFee recipient (amountInUsd x bps).
-Per-swap rows stay in the git-ignored cache (they are large and are the API's data).
+Per-swap rows stay in the git-ignored cache (they are large and are the API's data). The one exception is the
+small fee-evidence sample in data/raw/evidence/ (pipeline/fetch_fee_evidence.py), which keeps only fields that are
+also on chain (assets, amounts, fee list, NEAR tx hashes) and no deposit addresses or senders.
 
 Run: python3 -m pipeline.fetch_explorer 2026-10-06 2026-11-04
 """

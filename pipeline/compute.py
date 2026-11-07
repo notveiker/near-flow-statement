@@ -258,11 +258,13 @@ def fee_evidence(m: dict) -> None:
 
     c = defaultdict(int)
     zodl_to, b_bp = set(), []
+    recips: dict = defaultdict(lambda: defaultdict(int))
     for sw, o in zip(ex["swaps"], on):
         mv, ain = o["moves"], int(sw["amountIn"])
         sk = sw["channel"].startswith("swapkit/")
         a_moves = [x for x in mv if x["to"] == COLLECTOR_A]
         c["n"] += 1
+        c["sk_swaps"] += sk
         for f in sw["appFees"] or []:
             if f["recipient"] == bb:
                 c["bb_listed"] += 1
@@ -274,6 +276,8 @@ def fee_evidence(m: dict) -> None:
                 c[f"p_{k}_paid"] += hit is not None
                 if hit and k == "zodl":
                     zodl_to.add(hit["to"])
+                if hit:
+                    recips[f["recipient"]][hit["to"]] += 1
         if not any(f["recipient"] == bb for f in sw["appFees"] or []):
             c["unlisted"] += 1
             c["unlisted_a_paid"] += bool(a_moves)
@@ -282,7 +286,9 @@ def fee_evidence(m: dict) -> None:
             c["b_paid"] += 1
             c["b_paid_sk"] += sk
             out = int(sw["amountOut"] or 0)
-            same = [int(x["amount"]) for x in bmv if x["token"] == sw["destinationAsset"]]
+            # one payment can appear twice with different `from` accounts: count each (tx, token, amount) once
+            same = [int(a) for (_, tok, a) in {(x["tx"], x["token"], x["amount"]) for x in bmv}
+                    if tok == sw["destinationAsset"]]
             if same and out:
                 b_bp.append(sum(same) / out * 1e4)
     m["fee_ev_swaps_n"] = c["n"]
@@ -298,6 +304,10 @@ def fee_evidence(m: dict) -> None:
     m["fee_ev_zodl_fee_accounts"] = sorted(zodl_to)
     m["fee_ev_other_partner_fees_listed_n"] = c["p_other_listed"]
     m["fee_ev_other_partner_fees_paid_onchain_n"] = c["p_other_paid"]
+    m["fee_ev_swapkit_swaps_n"] = c["sk_swaps"]
+    m["fee_ev_hours_with_swaps_n"] = len({x["hour"] for x in ex["swaps"]})
+    m["fee_ev_partner_fee_accounts"] = {k: max(v, key=v.get) for k, v in sorted(recips.items())
+                                        if sum(v.values()) >= 3}
     m["fee_ev_collector_b_swaps_n"] = c["b_paid"]
     m["fee_ev_collector_b_swapkit_swaps_n"] = c["b_paid_sk"]
     b_bp.sort()
