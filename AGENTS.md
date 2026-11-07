@@ -1,0 +1,16 @@
+# AGENTS.md
+
+Instructions for AI agents (reviewers or contributors) working in this repository. Run every command from the repository root.
+
+- **What this is:** a pre-registered, re-runnable token flow statement for NEAR, plus an investment thesis (`THESIS.md`). Python 3.10+, standard library only.
+- **Verify, offline, no keys:** `python3 -m pipeline.check --manifest`, `python3 -m pipeline.check --numbers`, `python3 -m unittest discover -s tests`, `python3 -m pipeline.render --check`, `make reproduce` (`make site` is the same plus the render), `python3 scripts/scan_secrets.py`, and `bash scripts/fresh_clone_check.sh --worktree`. The checks print `check: PASS`, `scan_secrets: PASS` and `RESULT: PASS`. The tests end with `OK`, or with `OK (skipped=1)` from 2026-11-14 00:00 UTC.
+- **Where results live:** `THESIS.md` (thesis), `docs/` (supporting write-ups), `PREREG-ADDENDUM.md` (dated post-freeze results and corrections), `data/metrics.json` (every published number), `site/index.html` (static dashboard; `python3 -m pipeline.render` rebuilds it and `python3 -m pipeline.render --check` verifies it is current).
+- **Never edit `PREREG.md`.** It is frozen: git tag `prereg-freeze`, SHA-256 `19e470be5398f67ce7b6b5a51f007c0c7a0fcc059b61853c52caf7401452e240`.
+- **`PREREG-ADDENDUM.md` is append-only.** Every entry is dated. Do not rewrite or reorder existing entries; add a new dated entry for a correction.
+- **Do not edit by hand:** `sql/*.sql`, `data/raw/`, `data/MANIFEST.json`, `data/metrics.json`, `data/series.json`, `site/index.html`. Raw data changes only through the fetchers in `pipeline/`, which update the manifest. Metrics change only through `python3 -m pipeline.compute`, and the dashboard only through `python3 -m pipeline.render`.
+- **After the forward tests are scored (2026-11-14 or later):** `python3 -m pipeline.score_forward --score` writes `data/forward/score_<UTC stamp>/`. Then run `python3 -m pipeline.render` and commit `site/index.html` with it. Until you do, `python3 -m pipeline.render --check` fails, by design.
+- **Numbers in markdown:** a number that exists in `data/metrics.json` must be followed immediately by its marker, an HTML comment holding the metric key, for example `6.56<!--n:h1a_ratio_as_written_x-->`. `python3 -m pipeline.check --numbers` enforces this for `README.md`, `THESIS.md`, `PREREG-ADDENDUM.md` and `docs/*.md`.
+- **Labels:** keep every result labelled pre-registered or exploratory (chosen after the freeze) wherever it appears. Keep the hedges (consistent with, inferred, ceiling, unattested). Output of `python3 -m pipeline.score_forward --dry-run` is not a score of F1-F4; its file is named `DRY_RUN_result_NOT_A_SCORE.json`.
+- **Standard library only:** no pip dependencies, no CDN, no network at build time. `make reproduce` makes no network calls.
+- **Credentials:** `make bq` needs gcloud and bills BigQuery bytes, `make explorer` needs an Explorer key, and `make fetch` overwrites the committed snapshots. Do not run them without the credentials and the intent to refresh data. Keys belong in the environment or a git-ignored `.env`, never in a committed file.
+- **Do not invent numbers.** If a figure cannot be computed from the committed data, say so in the text instead of estimating it.
