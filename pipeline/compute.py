@@ -238,6 +238,76 @@ def take_over_time(m: dict, rev: dict, vol: dict, asof: str) -> None:
             sum(days[d]["usd_in"] for d in ds) / (sum(vol.get(d, 0) for d in ds) / 2) * 100, 1)
 
 
+def fee_evidence(m: dict) -> None:
+    """Per-swap fee mechanics from data/raw/evidence/ (pipeline.fetch_fee_evidence): 195 in-window swaps.
+
+    A listed fee counts as paid on chain if some intents.near movement in the swap's NEAR txs carries
+    amountIn x bps / 1e4 (within 0.6%, at least 2 raw units). The buyback fee must go to collector A;
+    partner fees may go to any other account (partners often collect at an implicit account)."""
+    ex = read_raw("evidence/fee_sample_explorer.json")
+    on = read_raw("evidence/fee_sample_onchain.json")["swaps"]
+    bb = "buybacks.multisignature.near"
+
+    def match(moves, amount_in, bps, to_ok):
+        want = amount_in * bps / 1e4
+        for mv in moves:
+            a = int(mv["amount"])
+            if a >= 2 and abs(a - want) <= max(2, 0.006 * want) and to_ok(mv["to"]):
+                return mv
+        return None
+
+    c = defaultdict(int)
+    zodl_to, b_bp = set(), []
+    for sw, o in zip(ex["swaps"], on):
+        mv, ain = o["moves"], int(sw["amountIn"])
+        sk = sw["channel"].startswith("swapkit/")
+        a_moves = [x for x in mv if x["to"] == COLLECTOR_A]
+        c["n"] += 1
+        for f in sw["appFees"] or []:
+            if f["recipient"] == bb:
+                c["bb_listed"] += 1
+                c["bb_paid_exact"] += match(mv, ain, f["fee"], lambda t: t == COLLECTOR_A) is not None
+            else:
+                hit = match(mv, ain, f["fee"], lambda t: t not in (COLLECTOR_A, COLLECTOR_B))
+                k = "sk" if sk else "zodl" if sw["channel"] == "zodl" else "other"
+                c[f"p_{k}_listed"] += 1
+                c[f"p_{k}_paid"] += hit is not None
+                if hit and k == "zodl":
+                    zodl_to.add(hit["to"])
+        if not any(f["recipient"] == bb for f in sw["appFees"] or []):
+            c["unlisted"] += 1
+            c["unlisted_a_paid"] += bool(a_moves)
+        bmv = [x for x in mv if x["to"] == COLLECTOR_B]
+        if bmv:
+            c["b_paid"] += 1
+            c["b_paid_sk"] += sk
+            out = int(sw["amountOut"] or 0)
+            same = [int(x["amount"]) for x in bmv if x["token"] == sw["destinationAsset"]]
+            if same and out:
+                b_bp.append(sum(same) / out * 1e4)
+    m["fee_ev_swaps_n"] = c["n"]
+    m["fee_ev_channels_n"] = len({x["channel"] for x in ex["swaps"]})
+    m["fee_ev_bb_listed_n"] = c["bb_listed"]
+    m["fee_ev_bb_paid_exact_n"] = c["bb_paid_exact"]
+    m["fee_ev_unlisted_n"] = c["unlisted"]
+    m["fee_ev_unlisted_collector_a_paid_n"] = c["unlisted_a_paid"]
+    m["fee_ev_swapkit_fees_listed_n"] = c["p_sk_listed"]
+    m["fee_ev_swapkit_fees_paid_onchain_n"] = c["p_sk_paid"]
+    m["fee_ev_zodl_fees_listed_n"] = c["p_zodl_listed"]
+    m["fee_ev_zodl_fees_paid_onchain_n"] = c["p_zodl_paid"]
+    m["fee_ev_zodl_fee_accounts"] = sorted(zodl_to)
+    m["fee_ev_other_partner_fees_listed_n"] = c["p_other_listed"]
+    m["fee_ev_other_partner_fees_paid_onchain_n"] = c["p_other_paid"]
+    m["fee_ev_collector_b_swaps_n"] = c["b_paid"]
+    m["fee_ev_collector_b_swapkit_swaps_n"] = c["b_paid_sk"]
+    b_bp.sort()
+    if b_bp:
+        m["fee_ev_collector_b_bp_median"] = r(b_bp[len(b_bp) // 2], 2)
+        m["fee_ev_collector_b_bp_min"] = r(b_bp[0], 2)
+        m["fee_ev_collector_b_bp_max"] = r(b_bp[-1], 1)
+        m["fee_ev_collector_b_bp_n"] = len(b_bp)
+
+
 def build() -> tuple[dict, dict]:
     # ---------- inputs ----------
     vol = {s: llama_daily(f"llama/volume_{s}.json") for s in PEERS}
@@ -525,6 +595,10 @@ def build() -> tuple[dict, dict]:
     # ---------- 1Click fee take over time (three 30-day blocks; Explorer API) ----------
     if (RAW / "explorer" / "daily.json").exists():
         take_over_time(m, rev, vol["near-intents"], asof)
+
+    # ---------- Per-swap fee evidence (in-window sample, re-checkable on chain) ----------
+    if (RAW / "evidence" / "fee_sample_onchain.json").exists():
+        fee_evidence(m)
 
     # ---------- peers ----------
     peer_rows = []

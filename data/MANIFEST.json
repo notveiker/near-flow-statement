@@ -108,6 +108,18 @@
    "sha256": "3a64f2ad06154bc70984b890df63e6d47a258e8dff83b96dc3f3696496822a02",
    "source": "python3 -m pipeline.fetch_escrow verify --sample 60 --seed 20261106 (FastNEAR + archival RPC)"
   },
+  "raw/evidence/fee_sample_explorer.json": {
+   "bytes": 132159,
+   "fetched_at": "2026-11-07T03:25:29Z",
+   "sha256": "e358b57acdb2cdd26306b8d82ed309b4838651b2f6f7562a3446ac0809b67ad9",
+   "source": "NEAR Intents Explorer API, one page per sampled hour (2026-10-08T14, 10-15T09, 10-22T18, 10-29T03 UTC); sampled fields only (pipeline/fetch_fee_evidence.py sample)"
+  },
+  "raw/evidence/fee_sample_onchain.json": {
+   "bytes": 358293,
+   "fetched_at": "2026-11-07T03:25:29Z",
+   "sha256": "490fd71de5f2ce1b2d233148a4921add9fce93f69c53095a88db0dba034c016f",
+   "source": "FastNEAR tx API: every intents.near token movement in the sampled swaps NEAR txs (pipeline/fetch_fee_evidence.py trace)"
+  },
   "raw/explorer/daily.json": {
    "bytes": 1276556,
    "fetched_at": "2026-11-07T02:52:18Z",
