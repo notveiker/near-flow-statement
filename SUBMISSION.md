@@ -754,7 +754,7 @@ Numbers in the thread, with their keys in `data/metrics.json`: 6.56<!--n:h1a_rat
 
 ### 5.3 Silent video, about two minutes ten
 
-Built around `site/index.html`, opened from disk or from the hosted address. The page follows the system colour scheme, has no script, and each chart card has "What it shows", "What it does not show", and "Query" and "Data" blocks that open. The section and card names below are the ones on the page of 2026-11-08 (commit `c28b732`). **Confirm them against the final page before you record.** Captions are burned-in text; there is no audio. The table is a plan of about 2 minutes 15 seconds. The assistant recorded a silent video from that page on 2026-11-08 (1280x720, no audio, 2:14, about 8 MB, file `near-flow-statement-demo-final.mp4`) and sent it to you in the chat; it is not in the repository, and whether it reached you is UNVERIFIED. Measure any video you are given (the player's duration, or `ffprobe`) against X's video limit for your account (UNVERIFIED; the free limit is commonly quoted as 2 minutes 20 seconds), cut it to fit, and re-record the parts that show the page from the final page: at least the forward-test scene, after scoring. Keep a copy of any draft media outside the repository now. Q-013 gives the organizers promotional rights to the video.
+Built around `site/index.html`, opened from disk or from the hosted address. The page follows the system colour scheme, has no script, and each chart card has "What it shows", "What it does not show", and "Query" and "Data" blocks that open. The section and card names below are the ones on the page of 2026-11-08 (commit `720949f`). **Confirm them against the final page before you record.** Captions are burned-in text; there is no audio. The table is a plan of about 2 minutes 15 seconds. The assistant recorded a silent video from that page on 2026-11-08 (1280x720, no audio, 2:14, about 8 MB, file `near-flow-statement-demo-final.mp4`) and sent it to you in the chat; it is not in the repository, and whether it reached you is UNVERIFIED. Measure any video you are given (the player's duration, or `ffprobe`) against X's video limit for your account (UNVERIFIED; the free limit is commonly quoted as 2 minutes 20 seconds), cut it to fit, and re-record the parts that show the page from the final page: at least the forward-test scene, after scoring. Keep a copy of any draft media outside the repository now. Q-013 gives the organizers promotional rights to the video.
 
 | Time | Show | Caption |
 |---|---|---|
@@ -786,7 +786,7 @@ Cards you can add if there is time: the network-usage card (`chart-usage`), "Esc
 12. After scoring: the new addendum entry on GitHub, or the scored forward-test card.
 13. The public repository page with a green CI mark, and the hosted dashboard in a browser tab.
 
-The assistant captured items 1 to 10 from the page of `c28b732` (13 PNG files at twice the pixel density, named `01_first_screen_desktop_light.png` to `13_partner_fees_card.png`) and sent them to you in the chat; they are not in the repository.
+The assistant captured items 1 to 10 from the page of `720949f` (13 PNG files at twice the pixel density, named `01_first_screen_desktop_light.png` to `13_partner_fees_card.png`) and sent them to you in the chat; they are not in the repository.
 
 Attach the video (required unless the hosted dashboard is live and judges can open it, Q-012). UNVERIFIED: whether X allows a video and images in one post; if not, put the screenshots on thread posts 2 to 5. Write alt text that states the finding in a sentence.
 
