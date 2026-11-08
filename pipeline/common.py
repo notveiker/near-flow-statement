@@ -101,17 +101,21 @@ def load_manifest() -> dict:
 # access_token, x_cg_demo_api_key, client_secret, password, jwt, key, sig, auth ...). Not "design", "author" or "keyword".
 # On purpose it fails closed: any parameter name containing token, secret, passw, apikey or jwt is refused (so tokens_sold
 # would be too). A fetcher with such a URL should record endpoint_origin(url) or a keyless description instead.
+# It is a heuristic, not a proof: a key written into a URL path (https://host/v2/KEY...) or a name it has not listed gets through.
+# The parameter may follow ? & ; or # (a fragment such as #access_token=... is searched too), and a percent-encoded name
+# (x%2dapi%2dkey=) is decoded before the search.
 _URL_USERINFO = re.compile(r"://[^\s/?#@]*@")
 _URL_KEY_PARAM = re.compile(
-    r"(?i)[?&;](?:[^=&;#\s]*(?:token|secret|passw|apikey|api[_-]?key|jwt)[^=&;#\s]*"
-    r"|(?:[^=&;#\s]*[_.-])?(?:key|sig|signature|auth|authorization|pwd))=")
+    r"(?i)[?&;#](?:[^=&;#\s]*(?:token|secret|passw|apikey|api[_-]?key|jwt|accesskey|privatekey|authkey|credential|bearer)[^=&;#\s]*"
+    r"|(?:[^=&;#\s]*[_.-])?(?:key|sig|signature|auth|authorization|pwd|pass)=)")
 
 
 def refuse_credentials(text: str, what: str = "text") -> None:
     """Raise ValueError if `text` holds a URL that carries a credential (user:password@host, ?api_key=...).
 
     A guard for what goes into data/MANIFEST.json and data/raw/: both are committed, hashed and public."""
-    if _URL_USERINFO.search(text) or _URL_KEY_PARAM.search(text):
+    decoded = urllib.parse.unquote(text)
+    if _URL_USERINFO.search(text) or any(_URL_KEY_PARAM.search(t) for t in (text, decoded)):
         raise ValueError(f"refusing to record {what}: it holds a URL with a credential in it (user:password@ or a "
                          "key-like query parameter); record endpoint_origin(url) instead")
 
@@ -120,11 +124,15 @@ def endpoint_origin(url: str) -> str:
     """`url` reduced to scheme://host[:port]: userinfo, path, query and fragment dropped.
 
     For an endpoint that may carry a key (https://user:pw@rpc.example/KEY?apikey=abc -> https://rpc.example).
-    Raises ValueError for anything that is not an absolute http(s) URL, so a malformed value is never recorded as is."""
+    Raises ValueError for anything that is not an absolute http(s) URL with a plain host name (letters, digits, dots and
+    hyphens, or an IPv6 literal), so a malformed value is never recorded as is. A host name that itself carries a key (an
+    account-specific sub-domain) is returned as written, in lower case."""
     parts = urllib.parse.urlsplit(url.strip())
     host = parts.hostname
     if parts.scheme not in ("http", "https") or not host:
         raise ValueError("not an absolute http(s) URL; its text is not echoed because it may hold a key")
+    if not re.fullmatch(r"[A-Za-z0-9.-]+|[0-9A-Fa-f:.%]+", host):
+        raise ValueError("not a plain host name; its text is not echoed because it may hold a key")
     if ":" in host:  # IPv6 literal
         host = f"[{host}]"
     try:

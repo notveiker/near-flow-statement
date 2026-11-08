@@ -128,5 +128,59 @@ class RefusesAnEditedFile(unittest.TestCase):
             self.run_with(flip)
 
 
+class ClassifiesTheErrors(unittest.TestCase):
+    """The committed file has no row with a funding-side error and none with a second error beside a height mismatch, so a
+    counter that confused them would pass on the real data. These tests edit one row of a copy and recount."""
+
+    @staticmethod
+    def metrics_after(edit):
+        verify, _ = load()
+        verify = copy.deepcopy(verify)
+        edit(verify)
+        real = compute.read_raw
+        with mock.patch.object(compute, "read_raw", side_effect=lambda rel: verify if rel == "escrow/verify_all.json" else real(rel)):
+            m: dict = {}
+            compute.escrow_recheck(m, LO, HI)
+        return m
+
+    def test_a_funding_side_error_is_not_a_height_failure_and_costs_a_funding_hop(self):
+        verify, table = load()
+        hashes = {x["delivery_tx_hash"] for x in table if LO <= x["day"] <= HI and x["path"] in ("escrow_unshield", "other")
+                  and x["single_use_account"] and x["funding_tx_hash"]}
+        target = next(r["delivery_tx_hash"] for r in verify["rows"] if r["ok"] and r["delivery_tx_hash"] in hashes)
+
+        def edit(v):
+            row = next(r for r in v["rows"] if r["delivery_tx_hash"] == target)
+            row["errors"], row["ok"] = ["funder mismatch: chain [] csv x"], False
+            v["summary"]["rows_ok"] -= 1
+            v["summary"]["funding_hops_ok"] -= 1
+        m = self.metrics_after(edit)
+        base = {}
+        compute.escrow_recheck(base, LO, HI)
+        self.assertEqual(m["escrow_recheck_failed_n"], base["escrow_recheck_failed_n"] + 1)
+        self.assertEqual(m["escrow_recheck_failed_height_only_n"], base["escrow_recheck_failed_height_only_n"],
+                         "a funder mismatch is not a block-height failure")
+        self.assertEqual(m["escrow_recheck_funding_hops_ok_n"], base["escrow_recheck_funding_hops_ok_n"] - 1)
+        self.assertEqual(m["escrow_recheck_window_funding_ok_n"], base["escrow_recheck_window_funding_ok_n"] - 1)
+        self.assertEqual(m["escrow_recheck_window_rows_ok_n"], base["escrow_recheck_window_rows_ok_n"] - 1)
+
+    def test_a_height_mismatch_with_another_delivery_error_is_not_height_only_and_leaves_the_funding_hop_alone(self):
+        verify, _ = load()
+        target = next(r["delivery_tx_hash"] for r in verify["rows"] if r["ok"])
+
+        def edit(v):
+            row = next(r for r in v["rows"] if r["delivery_tx_hash"] == target)
+            row["errors"] = ["block mismatch: csv 1 chain [2]", "no native_withdraw event to wallet with amount_yocto"]
+            row["ok"] = False
+            v["summary"]["rows_ok"] -= 1
+        m = self.metrics_after(edit)
+        base = {}
+        compute.escrow_recheck(base, LO, HI)
+        self.assertEqual(m["escrow_recheck_failed_n"], base["escrow_recheck_failed_n"] + 1)
+        self.assertEqual(m["escrow_recheck_failed_height_only_n"], base["escrow_recheck_failed_height_only_n"])
+        self.assertEqual(m["escrow_recheck_funding_hops_ok_n"], base["escrow_recheck_funding_hops_ok_n"],
+                         "delivery-side errors are not funding errors")
+
+
 if __name__ == "__main__":
     unittest.main()

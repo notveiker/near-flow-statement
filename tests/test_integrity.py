@@ -173,6 +173,11 @@ class GitignoreCoversSecrets(unittest.TestCase):
         for pattern in self.PATTERNS:
             self.assertIn(pattern, lines, f".gitignore must list {pattern}")
 
+    @staticmethod
+    def ignored(path: str) -> subprocess.CompletedProcess:
+        """git check-ignore with the machine's global ignore file switched off, so the answer comes from this repository's rules only."""
+        return git("-c", f"core.excludesFile={os.devnull}", "check-ignore", "-q", "--no-index", path)
+
     def test_git_agrees(self):
         if not own_git():
             self.skipTest("not a git checkout")
@@ -181,11 +186,11 @@ class GitignoreCoversSecrets(unittest.TestCase):
                      # key material that scripts/scan_secrets.py also flags by name
                      "tls/server.key", "keys/a.pem", "id_rsa", ".near-credentials/mainnet/me.json",
                      "client_secret_123.json", "application_default_credentials.json"):
-            self.assertEqual(git("check-ignore", "-q", "--no-index", path).returncode, 0, f"{path} is not ignored")
+            self.assertEqual(self.ignored(path).returncode, 0, f"{path} is not ignored")
         # Files that must be committed are not swallowed by an ignore rule.
         for path in ("README.md", "data/MANIFEST.json", "data/raw/escrow/deliveries.csv", "site/index.html",
                      "scripts/scan_secrets.py", ".github/workflows/ci.yml", "data/forward/score_x/result.json"):
-            self.assertEqual(git("check-ignore", "-q", "--no-index", path).returncode, 1, f"{path} is ignored")
+            self.assertEqual(self.ignored(path).returncode, 1, f"{path} is ignored")
 
 
 # ------------------------------------------------------------------------------------------- raw-data manifest
@@ -719,7 +724,7 @@ class FetchersRecordNoCredentials(unittest.TestCase):
 
     def test_endpoint_origin_rejects_what_it_cannot_reduce_without_echoing_it(self):
         for bad in ("rpc.example/KEY123", "KEY123", "", "ftp://rpc.example/KEY123", "https:///KEY123", "https://rpc.example:99999/KEY123",
-                    "//rpc.example/KEY123"):
+                    "//rpc.example/KEY123", "https://host\\KEY123", "https://host.example%2fKEY123/x", "https://exa mple/KEY123"):
             with self.subTest(bad=bad), self.assertRaises(ValueError) as caught:
                 C.endpoint_origin(bad)
             self.assertNotIn("KEY123", str(caught.exception))
@@ -769,6 +774,10 @@ class FetchersRecordNoCredentials(unittest.TestCase):
 
     def test_record_and_write_raw_refuse_a_url_that_carries_a_credential(self):
         for source in (self.KEYED, "https://rpc.example/v2?api_key=abc", "https://rpc.example/v2?apikey=abc",
+                       "https://rpc.example/#access_token=abc", "https://rpc.example/?accessKey=abc", "https://rpc.example/?privatekey=abc",
+                       "https://rpc.example/?pass=abc", "https://rpc.example/?authkey=abc", "https://rpc.example/?bearer=abc",
+                       "https://rpc.example/?X-Amz-Credential=abc", "https://rpc.example/?x%2dapi%2dkey=abc",
+                       "https://tok3n@rpc.example/x", "https://user:pw@rpc.example/x",
                        "https://rpc.example/v2?api-key=abc", "https://rpc.example/?access_token=abc",
                        "see https://rpc.example/x?x_cg_demo_api_key=abc", "https://rpc.example/?Authorization=abc",
                        "https://rpc.example/?client_secret=abc"):
@@ -916,7 +925,17 @@ class Workflows(unittest.TestCase):
         self.assertNotIn("secrets: inherit", ci)
         self.assertRegex(ci, r"(?m)^concurrency:\n  group: .+\n  cancel-in-progress: true")
         self.assertRegex(ci, r'python-version: \["3\.10", "3\.13"\]')
-        self.assertRegex(ci, r"actions/checkout@v\d+\n\s+with:\n(\s+.+\n)*?\s+fetch-depth: 0")
+        # A line scan, not a regex with nested quantifiers: such a pattern backtracks exponentially when the line is missing,
+        # so an edit of the checkout step would hang this test instead of failing it.
+        lines = ci.split("\n")
+        start = next((k for k, ln in enumerate(lines) if re.search(r"actions/checkout@v\d+", ln)), None)
+        self.assertIsNotNone(start, "ci.yml no longer uses actions/checkout")
+        step = []
+        for ln in lines[start + 1:]:
+            if ln.lstrip().startswith("- "):
+                break
+            step.append(ln.strip())
+        self.assertIn("fetch-depth: 0", step, "the secret scan reads every commit and the freeze tag must exist: no shallow checkout")
         for command in ("python3 -m pipeline.check --manifest", "python3 -m pipeline.compute",
                         "git diff --exit-code data/metrics.json data/series.json", "python3 -m pipeline.check --numbers",
                         "python3 -m unittest discover -s tests", "python3 -m pipeline.render --check",

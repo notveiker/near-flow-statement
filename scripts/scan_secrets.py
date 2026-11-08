@@ -30,6 +30,8 @@ What it cannot see (a clean result is not a proof):
   * a secret with no recognisable shape: a short or human-chosen password, a token that is not assigned to a name such
     as api_key, secret, token or password, a key type that has no rule;
   * a value split over several lines, or assembled by concatenation or string formatting;
+  * a URL password with no user name (redis://:pw@host) or with an @ in it, a value inside an escaped-quote JSON string,
+    and HTTP Basic credentials (authorization = Basic ...);
   * anything encoded or compressed: base64, URL- or hex-encoded text, archives, images, PDFs and other binary files;
   * text in an encoding other than UTF-8, UTF-16 or UTF-32, and files over 32 MB (listed as skipped);
   * a value that carries the allow-list pragma, a file that is allow-listed, and the 64-hex hashes in data/MANIFEST.json.

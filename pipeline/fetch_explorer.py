@@ -20,7 +20,7 @@ import sys
 import time
 from collections import Counter, defaultdict
 
-from .common import ROOT, add_days, http_json, write_raw
+from .common import ROOT, add_days, write_raw
 
 API = "https://explorer.near-intents.org/api/v0/transactions"
 CACHE = ROOT / ".cache" / "explorer"

@@ -16,7 +16,6 @@ compute.py then reports, per channel, how many swaps paid each party on chain an
 """
 from __future__ import annotations
 
-import json
 import sys
 import time
 

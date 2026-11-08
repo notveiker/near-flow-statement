@@ -155,6 +155,47 @@ class CheckOnATamperedCopy(unittest.TestCase):
         self.assertRegex(p.stdout, r"^check: 1 problem\(s\)$")
         self.assertEqual(self.run_check("--manifest").returncode, 0, "--manifest must not run the numbers check")
 
+    def append_to_thesis(self, extra: str) -> subprocess.CompletedProcess:
+        path = self.repo / "THESIS.md"
+        path.write_text(path.read_text(encoding="utf-8") + "\n" + extra + "\n", encoding="utf-8")
+        return self.run_check("--numbers")
+
+    def test_a_marker_that_does_not_follow_a_number_fails(self):
+        p = self.append_to_thesis("about<!--n:h1a_ratio_as_written_x-->")
+        self.assertEqual(p.returncode, 1, p.stdout + p.stderr)
+        self.assertIn("marker(s) not directly after a number", p.stderr)
+        self.assertNotIn("PASS", p.stdout)
+
+    def test_a_mistyped_marker_is_reported_not_skipped(self):
+        for typo in ("<!--n:h1a-ratio_as_written_x-->", "<!--N:h1a_ratio_as_written_x-->", "<!-- n:h1a_ratio_as_written_x-->",
+                     "<!--n:h1a_ratio_as_written_x -->"):
+            with self.subTest(typo=typo):
+                p = self.append_to_thesis("9.99" + typo)
+                self.assertEqual(p.returncode, 1, p.stdout + p.stderr)
+                self.assertIn("malformed marker(s)", p.stderr)
+
+    def test_a_marker_after_text_that_is_not_a_number_is_a_fail_line_not_a_traceback(self):
+        for extra in ("the end.<!--n:h1a_ratio_as_written_x-->", "6.56.<!--n:h1a_ratio_as_written_x-->",
+                      "2026-11-04<!--n:h1a_ratio_as_written_x-->", "6.56<!--n:h1b_verdict-->", "1<!--n:escrow_share_of_buyback_by_month-->"):
+            with self.subTest(extra=extra):
+                p = self.append_to_thesis(extra)
+                self.assertEqual(p.returncode, 1, p.stdout + p.stderr)
+                self.assertNotIn("Traceback", p.stderr)
+                self.assertRegex(p.stderr, r"FAIL  THESIS.md: ")
+
+    def test_a_missing_document_cannot_pass_by_being_skipped(self):
+        (self.repo / "THESIS.md").unlink()
+        p = self.run_check("--numbers")
+        self.assertEqual(p.returncode, 1, p.stdout + p.stderr)
+        self.assertIn("THESIS.md: missing", p.stderr)
+
+    def test_a_long_run_of_digits_does_not_stall_the_numbers_check(self):
+        import time
+        started = time.monotonic()
+        p = self.append_to_thesis("-" * 60_000 + " " + "1" * 60_000)
+        self.assertEqual(p.returncode, 0, p.stdout + p.stderr)
+        self.assertLess(time.monotonic() - started, 20, "the marker regex must not be quadratic in a run of digits")
+
     def test_a_typo_or_help_does_not_turn_a_tampered_tree_into_a_pass(self):
         (self.repo / "data" / "raw" / "extra.json").write_text("{}\n", encoding="utf-8")
         self.assertEqual(self.run_check("--manifest").returncode, 1)
@@ -277,10 +318,9 @@ class TextIoIsExplicit(unittest.TestCase):
     check of pipeline/*.py and scripts/*.py: a call of read_text, write_text or open in text mode, or a subprocess run with
     text=True, must pass encoding= (and a write must pass newline=)."""
 
-    # Call sites that predate this check and were left alone on purpose. Both files handle ASCII only (json.dumps escapes
-    # everything else, and deliveries.csv is ASCII), so nothing is wrong on Linux or macOS; on Windows the writes would
-    # produce CRLF. The counts are an upper bound: a new offender anywhere, or a fourth in one of these two files, fails the
-    # test. Lower a count when its file is fixed.
+    # Call sites that predate this check and were left alone on purpose. The one file handles ASCII only (json.dumps escapes
+    # everything else), so nothing is wrong on Linux or macOS; on Windows the writes would produce CRLF. The counts are an
+    # upper bound: a new offender anywhere, or a fourth in that file, fails the test. Lower a count when its file is fixed.
     KNOWN_GAPS = {
         # compute.py: fixed (the CSV read, and the write of data/metrics.json and of data/series.json).
         "pipeline/compute.py": 0,

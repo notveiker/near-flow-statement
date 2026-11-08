@@ -130,15 +130,14 @@ VARIANTS: list[tuple[str, Node, str, dict | None]] = []   # (name, dom, page, fo
 
 
 def committed_score() -> dict | None:
-    """The page's source of truth for the forward tests, read independently of the renderer: the newest (by directory name)
-    data/forward/score_*/result.json, if it is a real score. An older real score does not count when a newer file is not one."""
-    paths = sorted((ROOT / "data" / "forward").glob("score_*/result.json"))
+    """The page's source of truth for the forward tests, read independently of the renderer: the newest (by directory name,
+    score_YYYYMMDDTHHMMSSZ only) data/forward/score_*/result.json, if it is a real score. An older real score does not count
+    when a newer file is not one. A newest file that is not JSON is an error here, as it is in the renderer."""
+    paths = sorted(p for p in (ROOT / "data" / "forward").glob("score_*/result.json")
+                   if re.fullmatch(r"score_\d{8}T\d{6}Z", p.parent.name))
     if not paths:
         return None
-    try:
-        d = json.loads(paths[-1].read_text(encoding="utf-8"))
-    except (OSError, ValueError):
-        return None
+    d = json.loads(paths[-1].read_text(encoding="utf-8"))
     ok = isinstance(d, dict) and d.get("is_score") is True and d.get("mode") == "score" and isinstance(d.get("results"), dict)
     return d if ok else None
 
@@ -617,13 +616,13 @@ class DataAttributes(unittest.TestCase):
         addendum = (ROOT / "PREREG-ADDENDUM.md").read_text(encoding="utf-8")
         self.assertIn(f"commit `{R.FREEZE_COMMIT}`, {R.FREEZE_UTC} UTC", addendum)
         if shutil.which("git") is None:
-            return
+            self.skipTest("git is not installed")
         top = subprocess.run(["git", "-C", str(ROOT), "rev-parse", "--show-toplevel"], capture_output=True, text=True, check=False)
         if top.returncode != 0 or Path(top.stdout.strip()).resolve() != ROOT.resolve():
-            return      # a copy without .git, or a folder inside some other repository
+            self.skipTest("a copy without .git, or a folder inside some other repository")
         ts = subprocess.run(["git", "-C", str(ROOT), "log", "-1", "--format=%ct", f"{R.FREEZE_TAG}^{{commit}}"], capture_output=True, text=True, check=False)
         if ts.returncode != 0 or not ts.stdout.strip():
-            return      # the tag was not fetched
+            self.skipTest("the prereg-freeze tag was not fetched")
         self.assertEqual(datetime.fromtimestamp(int(ts.stdout), tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S"), R.FREEZE_UTC)
 
 
@@ -815,6 +814,8 @@ class Safety(unittest.TestCase):
             self.assertNotIn("<script", out)
             self.assertNotIn("alert(1)</script>", out)
         self.assertEqual(R.T(hostile)[0], R.esc(hostile))
+        self.assertIn("&quot;", R.esc('"'), "double quotes must be escaped: esc() is used inside attribute values")
+        self.assertIn("&lt;", R.esc("<"))
 
     def test_sql_text_is_escaped(self):
         class Stub:
@@ -925,15 +926,50 @@ class ForwardTests(unittest.TestCase):
         self.assertEqual(words, {f: result["results"][f]["result"] for f in ("F1", "F2", "F3", "F4")})
         self.assertGreater(check_forward_numbers(self, dom, result), 10)
 
-    def test_unreadable_or_odd_files_are_ignored(self):
+    def test_odd_but_parseable_files_are_ignored(self):
         with tempfile.TemporaryDirectory() as d:
             tmp = Path(d)
-            (tmp / "score_20261114T010000Z").mkdir()
-            (tmp / "score_20261114T010000Z" / "result.json").write_text("{not json", encoding="utf-8")
-            self.assertIsNone(R.load_forward(tmp))
             write_forward(tmp, "score_20261114T020000Z", {"is_score": True, "mode": "score"})  # no results
             self.assertIsNone(R.load_forward(tmp))
+            write_forward(tmp, "score_20261114T030000Z", fixture_result(is_score=False, mode="rehearsal"))
+            self.assertIsNone(R.load_forward(tmp), "a newer file that is not a real score hides an older real one")
             self.assertIsNone(R.load_forward(tmp / "missing"))
+
+    def test_a_newest_result_that_cannot_be_read_stops_the_render_instead_of_saying_pending(self):
+        for label, raw in (("not json", b"{not json"), ("byte-order mark", b"\xef\xbb\xbf" + json.dumps(fixture_result()).encode("utf-8")),
+                           ("truncated", json.dumps(fixture_result()).encode("utf-8")[:40])):
+            with self.subTest(label), tempfile.TemporaryDirectory() as d:
+                tmp = Path(d)
+                write_forward(tmp, "score_20261114T010000Z", fixture_result())
+                (tmp / "score_20261114T020000Z").mkdir()
+                (tmp / "score_20261114T020000Z" / "result.json").write_bytes(raw)
+                with self.assertRaises(SystemExit) as caught:
+                    R.load_forward(tmp)
+                self.assertIn("score_20261114T020000Z", str(caught.exception))
+                with self.assertRaises(SystemExit):
+                    R.render(forward_dir=tmp)
+
+    def test_only_folders_named_by_the_scorer_count(self):
+        """A rehearsal folder such as score_rehearsal sorts after every stamp; it must not outrank or break a real score."""
+        with tempfile.TemporaryDirectory() as d:
+            tmp = Path(d)
+            write_forward(tmp, "score_20261114T060000Z", fixture_result())
+            (tmp / "score_rehearsal").mkdir()
+            (tmp / "score_rehearsal" / "result.json").write_text("{not json", encoding="utf-8")
+            write_forward(tmp, "score_2026-11-14", {"is_score": False, "mode": "score", "results": {}})
+            got = R.load_forward(tmp)
+            self.assertEqual(got["_path"], "data/forward/score_20261114T060000Z/result.json")
+
+    def test_a_non_finite_observed_value_stops_the_render(self):
+        for bad in (float("nan"), float("inf")):
+            with self.subTest(bad), tempfile.TemporaryDirectory() as d:
+                tmp = Path(d)
+                res = fixture_result()
+                res["results"]["F4"] = {"result": "MISS", "intents_share_pct": bad, "threshold_pct": 50.0}
+                write_forward(tmp, "score_20261114T060000Z", res)
+                with self.assertRaises(SystemExit) as caught:
+                    R.render(forward_dir=tmp)
+                self.assertIn("F4.intents_share_pct", str(caught.exception))
 
 
 class CheckMode(unittest.TestCase):
@@ -979,6 +1015,10 @@ class CheckMode(unittest.TestCase):
 
 
 class Helpers(unittest.TestCase):
+    def test_the_smallest_drawn_sizes_are_pinned_by_literals(self):
+        """The floors that keep a tiny value visible. Read from the module under test they could not fail anything."""
+        self.assertEqual((R.MIN_BAR, R.MIN_SEG, R.SEG_GAP, R.MIN_COL), (1.5, 1.0, 2, 1.0))
+
     def test_number_formatting(self):
         self.assertEqual(R.fmt_value(6.56), "6.56")
         self.assertEqual(R.fmt_value(20.0), "20.0")
@@ -2603,7 +2643,9 @@ class Wording(unittest.TestCase):
     def test_the_hold_explanation_refuses_to_render_when_the_data_stop_supporting_it(self):
         ctx = R.Ctx()
         self.assertIn("could only ever have output Buy or Hold", R.hold_explanation(ctx))
-        for key, value in (("rating_g_obs_pct", 10.0), ("rating_g_obs_near_pct", 10.0), ("rating_if_h1b_fail", "Avoid"), ("rating_output", "Buy"),
+        avoid = ctx.m["rating_g_avoid_line_pct"]
+        for key, value in (("rating_g_obs_pct", 10.0), ("rating_g_obs_near_pct", 10.0), ("rating_g_obs_near_pct", avoid + 0.1),
+                           ("rating_g_obs_pct", 2 * avoid - 0.1), ("rating_if_h1b_fail", "Avoid"), ("rating_output", "Buy"),
                            ("h1b_coverage_count_pct", 60.0)):
             bad = R.Ctx()
             bad.m = dict(bad.m, **{key: value})
@@ -2684,6 +2726,10 @@ class Wording(unittest.TestCase):
         bad.m = dict(bad.m, fee_ev_partner_fees_nonzero_unmatched_escrow_n=0)
         with self.assertRaises(SystemExit):
             R.card_paid(bad)
+        none = R.Ctx()
+        none.m = dict(none.m, fee_ev_partner_fees_nonzero_unmatched_escrow_n=0, fee_ev_partner_fees_nonzero_unmatched_n=0)
+        with self.assertRaises(SystemExit, msg="no unmatched entry means the sentence about 'the unmatched entry' has no subject"):
+            R.card_paid(none)
 
     # ---- the forward card
     def test_the_forward_card_says_first_dry_run_and_points_at_the_entry(self):

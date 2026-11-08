@@ -215,7 +215,9 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--verify", type=int, metavar="N", help="re-read N random committed epochs and compare")
     ap.add_argument("--seed", type=int, default=None, help="RNG seed for --verify (default: random)")
     a = ap.parse_args(argv)
-    if a.verify:
+    if a.verify is not None:      # `--verify 0` must not fall through to the full refresh, which rewrites committed files
+        if a.verify < 1:
+            ap.error("--verify needs N of at least 1")
         return verify(a.verify, a.seed if a.seed is not None else random.SystemRandom().randrange(1 << 30))
     recorded_rpc()  # fail now, not after a walk of ~600 block reads, if NEAR_ARCHIVAL_RPC is not an absolute http(s) URL
     obj = fetch()

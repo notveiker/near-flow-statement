@@ -21,7 +21,7 @@ the tests fail on any other):
   data-k="name"          a threshold fixed in PREREG.md (CONSTS below; the tests compare each with the frozen text)
   data-f="F1.balance_near"  a scored forward test (data/forward/score_*/result.json, only when is_score is true)
   data-r="bytes:sql/x.sql"  a fact read from a repo file: its size in bytes, the number of very long lines the page
-                         cuts from it (cut:), an endpoint block height in a raw snapshot (block:), or the time
+                         cuts from it (cut:), or the time
                          data/MANIFEST.json records for a file (stamp:raw/bq/x.json)
 Tables of raw or series rows carry data-raw / data-series, one data-k per row and one data-c per column.
 
@@ -78,9 +78,11 @@ CONSTS: dict[str, tuple[float, str, float]] = {
     "f3_max_bp": (sf.F3_MAX_BP, "4.0", 1.0), "f4_min_pct": (sf.F4_MIN_PCT, "50", 1.0),
 }
 
+SCORE_FOLDER = re.compile(r"score_\d{8}T\d{6}Z")   # what pipeline.score_forward --score names its folder
+
 MONTHS = ("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
 
-# Smallest drawn sizes, so a tiny value stays visible (the tests expect exactly these floors).
+# Smallest drawn sizes, so a tiny value stays visible. tests/test_render.py pins them with literals.
 MIN_BAR = 1.5     # horizontal bar length
 MIN_SEG = 1.0     # length of a segment of a stacked bar
 SEG_GAP = 2       # gap left after every segment but the last
@@ -210,20 +212,24 @@ def gh(path: str) -> str:
 
 
 def load_forward(forward_dir: Path) -> dict | None:
-    """The newest data/forward/score_*/result.json, only if it is a real score (is_score true, mode "score").
+    """The newest data/forward/score_<UTC stamp>/result.json, only if it is a real score (is_score true, mode "score").
 
-    Dry-run output (dry-run_*/DRY_RUN_result_NOT_A_SCORE.json) is never opened: only files named result.json
-    inside score_* directories are considered, and a result whose mode is not "score" is ignored."""
+    Dry-run output (dry-run_*/DRY_RUN_result_NOT_A_SCORE.json) is never opened: only files named result.json inside
+    folders named score_YYYYMMDDTHHMMSSZ are considered (a folder such as score_rehearsal is ignored, so it cannot
+    outrank a real stamp), and a parseable result whose mode is not "score" is ignored. A newest result.json that
+    cannot be read as JSON (a byte-order mark, a truncated file) stops the render: showing "pending" while a score
+    file exists would let a stale page pass every check."""
     if not forward_dir.is_dir():
         return None
-    cands = sorted(p for p in forward_dir.glob("score_*/result.json") if p.is_file())
+    cands = sorted(p for p in forward_dir.glob("score_*/result.json") if p.is_file() and SCORE_FOLDER.fullmatch(p.parent.name))
     if not cands:
         return None
     path = cands[-1]
     try:
         d = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, ValueError):
-        return None
+    except (OSError, ValueError) as exc:
+        raise SystemExit(f"render: data/forward/{path.parent.name}/result.json exists but cannot be read as JSON "
+                         f"({type(exc).__name__}); the page would say 'pending'. Fix or remove it.")
     if not (isinstance(d, dict) and d.get("is_score") is True and d.get("mode") == "score"
             and isinstance(d.get("results"), dict)):
         return None
@@ -1333,12 +1339,12 @@ def card_h1c(ctx: Ctx) -> str:
 def hold_explanation(ctx: Ctx) -> str:
     """Why the Hold of the frozen rating rule is not a view on NEAR (markup, for the rating card).
 
-    The sentence is true of the data as committed: observed growth is above the Avoid line, so a failed H1b would also
+    The sentence is true of the data as committed: observed growth is far above the Avoid line (at least twice it), so a failed H1b would also
     give Hold, and coverage is below the pre-registered 50%, where (under the range rule as read before the results) H1b
     cannot fail. If the data stop supporting it the render stops, so the page cannot go on saying it."""
     m = ctx.m
     if not (m["rating_output"] == "Hold" and m["rating_if_h1b_fail"] == "Hold"
-            and min(m["rating_g_obs_pct"], m["rating_g_obs_near_pct"]) >= m["rating_g_avoid_line_pct"]
+            and min(m["rating_g_obs_pct"], m["rating_g_obs_near_pct"]) >= 2 * m["rating_g_avoid_line_pct"]
             and m["h1b_coverage_count_pct"] < CONSTS["h1b_coverage_min_pct"][0]):
         raise SystemExit("render: the rating card explains the Hold with facts the data no longer support; rewrite hold_explanation()")
     M, K = ctx.M, ctx.K
@@ -1524,7 +1530,12 @@ def card_forward(ctx: Ctx) -> str:
 
     def obs_of(fid: str, key: str):
         v = result_of(fid).get(key)
-        return float(v) if isinstance(v, (int, float)) and not isinstance(v, bool) else None
+        if isinstance(v, (int, float)) and not isinstance(v, bool):
+            if not math.isfinite(v):
+                raise SystemExit(f"render: {fid}.{key} is {v}, not a finite number, so the page cannot draw it; "
+                                 "record that test as 'not scorable' by hand and say so in a dated addendum entry")
+            return float(v)
+        return None
 
     def ftxt(fid: str, key: str, dec: int, scale: float = 1.0, suffix: str = "") -> Txt | None:
         v = obs_of(fid, key)
@@ -2061,8 +2072,9 @@ def card_partners(ctx: Ctx) -> str:
 
 def card_paid(ctx: Ctx) -> str:
     m, Mt = ctx.m, ctx.Mt
-    if m["fee_ev_partner_fees_nonzero_unmatched_escrow_n"] != m["fee_ev_partner_fees_nonzero_unmatched_n"]:
-        raise SystemExit("render: not every unmatched partner fee is in an escrow-routed swap; rewrite the note on the per-swap sample in card_paid()")
+    if (m["fee_ev_partner_fees_nonzero_unmatched_escrow_n"] != m["fee_ev_partner_fees_nonzero_unmatched_n"]
+            or m["fee_ev_partner_fees_nonzero_unmatched_n"] == 0):
+        raise SystemExit("render: the note on the per-swap sample needs at least one unmatched partner fee, all in escrow-routed swaps; rewrite it in card_paid()")
     unmatched_word = "entry" if m["fee_ev_partner_fees_nonzero_unmatched_n"] == 1 else "entries"
     title = "Who keeps the listed 1Click fees, and which way 1Click moves NEAR"
     desc = (f"Panel A, bars from zero in multiples of NEAR's entire captured revenue, with a reference line at 1: partners kept {ctx.plain('partners_kept_vs_near_rev_low_x')} "

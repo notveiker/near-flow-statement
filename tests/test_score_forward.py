@@ -4,7 +4,6 @@ Run: make test   (python3 -m unittest discover -s tests -v, from the repo root)
 """
 from __future__ import annotations
 
-import copy
 import json
 import os
 import re
