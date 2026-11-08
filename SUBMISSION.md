@@ -740,37 +740,41 @@ It does not name `PREREG-ADDENDUM.md`: `.md` is a country-code domain, so X migh
 
 Numbers in the thread, with their keys in `data/metrics.json`: 6.56<!--n:h1a_ratio_as_written_x-->× (post 2, written `x`), 20.0<!--n:h1b_coverage_count_pct-->% and 10.0<!--n:h1b_coverage_tier1_count_pct-->% (post 2), 15.81<!--n:ladder_all_wallets_pct_of_issuance-->%, 4.53<!--n:ladder_public_collectors_pct_of_issuance-->, 11.25<!--n:ladder_escrow_unshields_pct_of_issuance--> and 0.03<!--n:ladder_other_pct_of_issuance--> points (post 3; they add up to the 15.81). `python3 -m pipeline.check --numbers` does not read this file, so compare them with `data/metrics.json` before posting. "50%" is the threshold fixed in `PREREG.md`; 413d776 is the freeze commit; "two minutes" is the gap between its time (2026-11-05 22:53:29 UTC) and the manifest stamp of the first BigQuery result (22:55:37 UTC). "Built with Claude Code" matches the README's disclosure; whether to say it is your decision (section 8). The drafts carry the two required tags and not the optional `@NearLegion` and `@NearBuilders`.
 
-### 5.3 Silent video, about three minutes
+### 5.3 Silent video, about two minutes ten
 
-Built around `site/index.html`, opened from disk or from the hosted address. The page follows the system colour scheme, has no script, and each chart card has "What it shows", "What it does not show", and "Query" and "Data" blocks that open. The section and card names below are the ones on the page of 2026-11-08. **Confirm them against the final page before you record.** Captions are burned-in text; there is no audio. The table is a plan of about three minutes. The assistant made a silent draft from it on 2026-11-08, before the last edits to the page; it is not in the repository, and whether it reached you is UNVERIFIED. Its file name said "2m20" but it ran 2:38, so measure any draft you are given (the player's duration, or `ffprobe`) against X's video limit for your account (UNVERIFIED; the free limit is commonly quoted as 2 minutes 20 seconds), cut it to fit, and re-record the parts that show the page from the final page. Keep a copy of any draft media outside the repository now. Q-013 gives the organizers promotional rights to the video.
+Built around `site/index.html`, opened from disk or from the hosted address. The page follows the system colour scheme, has no script, and each chart card has "What it shows", "What it does not show", and "Query" and "Data" blocks that open. The section and card names below are the ones on the page of 2026-11-08 (commit `c28b732`). **Confirm them against the final page before you record.** Captions are burned-in text; there is no audio. The table is a plan of about 2 minutes 15 seconds. The assistant recorded a silent video from that page on 2026-11-08 (1280x720, no audio, 2:14, about 8 MB, file `near-flow-statement-demo-final.mp4`) and sent it to you in the chat; it is not in the repository, and whether it reached you is UNVERIFIED. Measure any video you are given (the player's duration, or `ffprobe`) against X's video limit for your account (UNVERIFIED; the free limit is commonly quoted as 2 minutes 20 seconds), cut it to fit, and re-record the parts that show the page from the final page: at least the forward-test scene, after scoring. Keep a copy of any draft media outside the repository now. Q-013 gives the organizers promotional rights to the video.
 
 | Time | Show | Caption |
 |---|---|---|
-| 0:00-0:12 | Top of the page: the title and the scorecard heading. | "Who buys and who sells NEAR? Pre-registered. Checkable offline. Research, not financial advice." |
-| 0:12-0:35 | Section "Scorecard (pre-registered)": the five tiles. | "Tests were frozen at commit 413d776, two minutes before the first BigQuery result the repository records (git and manifest times are the author's own). These are the results the frozen rules produce; the addendum records how H1a was re-read." |
-| 0:35-1:00 | Card "H1a: staking outflow". Open "Query" and "Data". | "H1a fails: net staking outflow was 6.56<!--n:h1a_ratio_as_written_x-->× staking rewards. A pass needed under 0.5×." |
-| 1:00-1:25 | Cards "H1b: net exchange inflow" (both panels: the range, then coverage against 50%) and "H1c: identified buying". | "Inconclusive: 20.0<!--n:h1b_coverage_count_pct-->% of top receivers carry an exchange label, 10.0<!--n:h1b_coverage_tier1_count_pct-->% a cited one. The pre-registration needs 50%." |
-| 1:25-1:40 | Card "Rating rule inputs". | "The frozen rule outputs Hold. That carries no view on NEAR." |
-| 1:40-2:00 | Card "Forward tests F1-F4". | "Will be scored after 2026-11-14 00:00 UTC by a script that refuses a live run earlier. Misses will be published." Re-shoot after scoring and change the caption to the result. |
-| 2:00-2:30 | Section "Exploratory (chosen after the freeze)": card "The value-capture ladder". | "Exploratory. The NEAR delivered to the revenue wallets equalled 15.81<!--n:ladder_all_wallets_pct_of_issuance-->% of net issuance. 4.53<!--n:ladder_public_collectors_pct_of_issuance--> points trace to public fee collectors; 11.25<!--n:ladder_escrow_unshields_pct_of_issuance--> come from the escrow, unattested; 0.03<!--n:ladder_other_pct_of_issuance--> other." |
-| 2:30-2:45 | A terminal: `python3 -m pipeline.check --manifest`, `python3 -m pipeline.compute`, `git status --short`. | "Every number recomputes offline from committed snapshots. No keys, no network. (The snapshots themselves need credentials to refresh.)" |
-| 2:45-3:00 | End card: repository address, hosted dashboard address. | "Built at NEAR HACKATHON." |
+| 0:00-0:11 | Top of the page: the title, the two questions, the answer box and the five status chips. | "Who buys and who sells NEAR? Pre-registered: H1a fails, H1b and H1c are inconclusive. What can be verified instead is a range. Research, not financial advice." |
+| 0:11-0:25 | Section "Scorecard (pre-registered)": the five tiles. | "Tests were frozen at commit 413d776, about two minutes before the first BigQuery result the repository records (times written by the author's own machine). These are the results as they came out." |
+| 0:25-0:46 | Card "H1a: staking outflow". Open "Query" and "Data". | "H1a fails: net staking outflow was 6.56<!--n:h1a_ratio_as_written_x-->× staking rewards. A pass needed under 0.5×." |
+| 0:46-1:03 | Cards "H1b: net exchange inflow" (both panels: the range, then coverage against 50%) and "H1c: identified buying". | "Inconclusive: 20.0<!--n:h1b_coverage_count_pct-->% of top receivers carry an exchange label, 10.0<!--n:h1b_coverage_tier1_count_pct-->% a cited one. The pre-registration needs 50%." |
+| 1:03-1:14 | Card "Rating rule inputs". | "The frozen rule outputs Hold. That carries no view on NEAR." |
+| 1:14-1:28 | Card "Forward tests F1-F4". | "F1-F4 will be scored after 2026-11-14 00:00 UTC by a script that refuses to run earlier. Earlier dry runs are disclosed. Misses will be published." Re-shoot after scoring and change the caption to the result. |
+| 1:28-1:50 | Section "Exploratory (chosen after the freeze)": card "The value-capture ladder". | "Exploratory, chosen after the freeze: NEAR reaching the revenue wallets was 15.81<!--n:ladder_all_wallets_pct_of_issuance-->% of net issuance: 4.53<!--n:ladder_public_collectors_pct_of_issuance--> from public fee collectors, 11.25<!--n:ladder_escrow_unshields_pct_of_issuance--> from the escrow (unattested), 0.03<!--n:ladder_other_pct_of_issuance--> other. No valuation." |
+| 1:50-2:05 | A terminal: `python3 -m pipeline.check --manifest`, `python3 -m pipeline.compute`, `git status --short`, `python3 -m pipeline.check --numbers`. | "Every number recomputes offline from committed snapshots. No keys, no network. (Refreshing the snapshots needs credentials.)" |
+| 2:05-2:15 | End card: repository address, hosted dashboard address. | "Built at NEAR HACKATHON." |
 
-Cards you can add if there is time: the network-usage card (`chart-usage`), "Escrow share by month", "NEAR's take in 1Click", "Partner concentration", "Who keeps the fees", "Share of the peer set", "Monthly revenue and take rate", "Supply and net issuance". Record at a fixed window size, and zoom the browser so captions are readable on a phone.
+Cards you can add if there is time: the network-usage card (`chart-usage`), "Escrow share by month", "NEAR's take in 1Click", "Partner concentration", "Partner fees against NEAR's revenue", "Share of the peer set", "Monthly revenue and take rate", "Supply and net issuance". Record at a fixed window size, and zoom the browser so captions are readable on a phone.
 
 ### 5.4 Screenshots to capture
 
-1. The scorecard row at the top, desktop width, light theme.
+1. The first screen (title, the two questions, the answer box and the five status chips), desktop width, light theme.
 2. The same, dark theme.
-3. The scorecard at phone width (browser device mode).
-4. The H1a card: chart, "What it shows" and "What it does not show".
-5. The H1b card: panel A, the range around the minted amount, and panel B, label coverage against the required 50%.
-6. The "Forward tests F1-F4" card: pending before scoring, scored after.
-7. The ladder card, with its "Exploratory, chosen after the freeze" label in view.
-8. Any card with "Query" and "Data" open, to show that every chart names its source.
-9. A terminal with the three README commands (`check: PASS`, `wrote data/metrics.json …`, a clean `git status --short`), and one with `git tag -n` and `sha256sum PREREG.md`, showing the freeze.
-10. After scoring: the new addendum entry on GitHub, or the scored forward-test card.
-11. The public repository page with a green CI mark, and the hosted dashboard in a browser tab.
+3. The same at phone width (browser device mode).
+4. The scorecard tiles, desktop width, and at phone width.
+5. The H1a card: chart, "What it shows" and "What it does not show".
+6. The H1b card: panel A, the range around the minted amount, and panel B, label coverage against the required 50%.
+7. The "Forward tests F1-F4" card: pending before scoring, scored after.
+8. The ladder card, with its "Exploratory, chosen after the freeze" label in view.
+9. Any card with "Query" and "Data" open, to show that every chart names its source.
+10. The partner-fee card, "Partner fees against NEAR's revenue", and the rating card.
+11. A terminal with the three README commands (`check: PASS`, `wrote data/metrics.json …`, a clean `git status --short`), and one with `git tag -n` and `sha256sum PREREG.md`, showing the freeze.
+12. After scoring: the new addendum entry on GitHub, or the scored forward-test card.
+13. The public repository page with a green CI mark, and the hosted dashboard in a browser tab.
+
+The assistant captured items 1 to 10 from the page of `c28b732` (13 PNG files at twice the pixel density, named `01_first_screen_desktop_light.png` to `13_partner_fees_card.png`) and sent them to you in the chat; they are not in the repository.
 
 Attach the video (required unless the hosted dashboard is live and judges can open it, Q-012). UNVERIFIED: whether X allows a video and images in one post; if not, put the screenshots on thread posts 2 to 5. Write alt text that states the finding in a sentence.
 
