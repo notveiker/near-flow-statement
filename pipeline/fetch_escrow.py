@@ -164,7 +164,7 @@ def check_funding(row: dict, tx: dict | None) -> list[str]:
 # ---------------------------------------------------------------- commands
 
 def load_rows() -> list[dict]:
-    with open(CSV, newline="") as f:
+    with open(CSV, newline="", encoding="utf-8") as f:
         return list(csv.DictReader(f))
 
 
@@ -199,7 +199,7 @@ def verify(rows: list[dict], label: str, meta: dict) -> int:
         results.append({"delivery_tx_hash": r["delivery_tx_hash"], "funding_tx_hash": r["funding_tx_hash"],
                         "day": r["day"], "wallet": r["wallet"], "path": r["path"],
                         "funding_evidence": r["funding_evidence"], "ok": ok, "errors": errs + ferrs})
-    committed = {x["block"]: x for x in json.loads((RAW / SUPPLY).read_text())["reads"]}
+    committed = {x["block"]: x for x in json.loads((RAW / SUPPLY).read_text(encoding="utf-8"))["reads"]}
     supply = []
     for x in read_supply():
         c = committed.get(x["block"], {})

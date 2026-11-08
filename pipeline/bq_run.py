@@ -23,7 +23,7 @@ SQL = ROOT / "sql"
 def bq(args: list[str]) -> str:
     project = env("NFS_BQ_PROJECT")
     base = ["bq", "--quiet", "--headless"] + ([f"--project_id={project}"] if project else [])
-    out = subprocess.run(base + args, capture_output=True, text=True)
+    out = subprocess.run(base + args, capture_output=True, text=True, encoding="utf-8")
     if out.returncode != 0:
         raise RuntimeError(out.stderr.strip() or out.stdout.strip())
     return out.stdout
@@ -38,7 +38,7 @@ def dry_run_bytes(query: str) -> int:
 
 
 def run(path) -> None:
-    query = path.read_text()
+    query = path.read_text(encoding="utf-8")
     cap = int(float(env("NFS_BQ_MAX_GB", "120")) * 1e9)
     est = dry_run_bytes(query)
     if est > cap:
@@ -48,7 +48,7 @@ def run(path) -> None:
     rows = json.loads(out or "[]")
     dest = RAW / "bq" / f"{path.stem}.json"
     dest.parent.mkdir(parents=True, exist_ok=True)
-    dest.write_text(json.dumps(rows, sort_keys=True, separators=(",", ":")) + "\n")
+    dest.write_text(json.dumps(rows, sort_keys=True, separators=(",", ":")) + "\n", encoding="utf-8", newline="\n")
     record(dest, f"bigquery: sql/{path.name}", {"bytes_processed_estimate": est, "rows": len(rows)})
     print(f"ok    {path.name}: {len(rows)} rows, ~{est/1e9:.1f} GB")
 

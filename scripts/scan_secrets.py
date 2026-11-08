@@ -16,6 +16,24 @@ such as .env or *.key. It is a pattern scan: it finds what it has a pattern for,
 It never prints a whole suspected secret. A finding shows the rule, file:line:column, the text around the match with the
 value masked (a few leading characters and the length), and a 12-character SHA-256 fingerprint of the value.
 
+Files are read as UTF-8 (a BOM is fine), and as UTF-16 or UTF-32 when they start with that encoding's byte-order mark or
+are NUL-interleaved ASCII (what a `>` redirect in Windows PowerShell 5 writes). Any other file whose first 8 KB holds a NUL
+byte is binary. A binary file is skipped, except that one with a text-like name (.md .py .json .sh .yml .yaml .txt .csv
+.html .toml .cfg .env* ..., or no extension) is reported as an `unscannable-file` finding, so a text file cannot hide a
+secret by starting with a NUL: allow-list it (below) if it really is binary. That finding is not one of the content rules.
+A value is ignored as a placeholder if it holds a structural marker (<token>, ***, xxxxxx, ${VAR}, {{ VAR }}, %s,
+your_..., example, changeme, redacted, placeholder) or a word such as test, fake, todo, dummy, sample, insert or replace
+standing alone: set off by anything that is not a letter or digit, or by a change of case (my_test_key, myTestKey). The
+same letters inside a longer random-looking run (a 40-character key that happens to contain "test") do not hide it.
+
+What it cannot see (a clean result is not a proof):
+  * a secret with no recognisable shape: a short or human-chosen password, a token that is not assigned to a name such
+    as api_key, secret, token or password, a key type that has no rule;
+  * a value split over several lines, or assembled by concatenation or string formatting;
+  * anything encoded or compressed: base64, URL- or hex-encoded text, archives, images, PDFs and other binary files;
+  * text in an encoding other than UTF-8, UTF-16 or UTF-32, and files over 32 MB (listed as skipped);
+  * a value that carries the allow-list pragma, a file that is allow-listed, and the 64-hex hashes in data/MANIFEST.json.
+
 Allowing a known-safe value (the allowlist):
   * `scan-secrets: allow` anywhere on the same line (working-tree files; old history cannot be edited);
   * --allow VALUE, or an entry in ALLOW_VALUES below: a 64-hex hash (case does not matter, 0x is ignored) or the
@@ -26,6 +44,7 @@ The PREREG.md hash and every SHA-256 recorded in data/MANIFEST.json are allowed 
 from __future__ import annotations
 
 import argparse
+import codecs
 import fnmatch
 import hashlib
 import json
@@ -54,10 +73,14 @@ MAX_LINES_PRINTED = 200
 
 
 # --------------------------------------------------------------------------------------------- value checks
+# Markers that a generated key cannot contain, so they hide a value wherever they stand in it.
 PLACEHOLDER = re.compile(
-    r"(?i)example|sample|placeholder|change[_-]?me|dummy|fake|redacted|your[_-]|insert|replace|todo|test|"
-    r"[<>]|\*{3}|x{6,}|\.{3}|\$\{|\{\{|%s"
+    r"(?i)example|placeholder|change[_-]?me|redacted|your[_-]|[<>]|\*{3}|x{6,}|\.{3}|\$\{|\{\{|%s"
 )
+# Ordinary words hide a value only when they stand alone. A 40-character key that happens to contain "test" or "todo"
+# is still reported (it used to be ignored: any value with those letters anywhere counted as a placeholder).
+PLACEHOLDER_WORD = re.compile(r"(?i)(?<![a-z0-9])(?:sample|dummy|fake|insert|replace|todo|test)(?![a-z0-9])")
+CASE_CHANGE = re.compile(r"(?<=[a-z0-9])(?=[A-Z])")  # myTestKey -> my_Test_Key, so camelCase words stand alone too
 ENV_NAME = re.compile(r"[A-Z][A-Z0-9_]*")  # an environment variable name, not a value
 DOTTED_IDENT = re.compile(r"[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)+")  # a.b.c in code
 SNAKE_IDENT = re.compile(r"[a-z][a-z0-9]*(?:_[a-z0-9]+)+")  # some_function_name_v2
@@ -65,6 +88,10 @@ SUFFIX_DENY = re.compile(
     r"(?i)hash|digest|sha|checksum|crc|id$|ids$|_id|url|uri|name|path|file|count|len|size|type|addr|env|label|symbol|"
     r"decimal|expir|ttl|header|prefix|regex|pattern|index|ref$"
 )
+
+
+def is_placeholder(v: str) -> bool:
+    return bool(PLACEHOLDER.search(v) or PLACEHOLDER_WORD.search(CASE_CHANGE.sub("_", v)))
 
 
 def entropy(s: str) -> float:
@@ -76,7 +103,7 @@ def entropy(s: str) -> float:
 
 def random_like(v: str) -> bool:
     """True if v could be a generated secret: long, has letters and digits, not a path or identifier, high entropy."""
-    if len(v) < 20 or PLACEHOLDER.search(v):
+    if len(v) < 20 or is_placeholder(v):
         return False
     if not (re.search(r"[A-Za-z]", v) and re.search(r"[0-9]", v)):
         return False
@@ -104,7 +131,7 @@ PLACEHOLDER_WORDS = frozenset({"password", "passwd", "pass", "pwd", "secret", "t
 
 
 def _url_password_ok(value: str, m: re.Match[str], text: str) -> bool:
-    return not (PLACEHOLDER.search(value) or value[0] in "$%{<" or ENV_NAME.fullmatch(value)
+    return not (is_placeholder(value) or value[0] in "$%{<" or ENV_NAME.fullmatch(value)
                 or value.lower() in PLACEHOLDER_WORDS)
 
 
@@ -315,6 +342,51 @@ def is_binary(data: bytes) -> bool:
     return b"\0" in data[:8192]
 
 
+TEXT_SUFFIXES = frozenset({
+    ".md", ".py", ".json", ".sh", ".yml", ".yaml", ".txt", ".csv", ".html", ".toml", ".cfg", ".ini", ".conf", ".env",
+    ".sql", ".js", ".ts", ".css", ".xml", ".svg", ".tsv", ".jsonl", ".rst", ".bash", ".zsh", ".properties"})
+
+
+def looks_like_text(rel: str) -> bool:
+    """A file name that says the file is text: a text-like extension, .env*, or no extension (Makefile, LICENSE ...)."""
+    name = rel.rsplit("/", 1)[-1].lower()
+    return bool(name) and (name.startswith(".env") or "." not in name.lstrip(".") or Path(name).suffix in TEXT_SUFFIXES)
+
+
+def _interleaved(head: bytes, unit: int, nul_at: tuple[int, ...]) -> bool:
+    """True if, in nearly every `unit`-byte code unit of head, the bytes at positions nul_at are NUL and the others are not
+    (ASCII text in UTF-16 or UTF-32 without a byte-order mark)."""
+    n = len(head) // unit
+    if n < 4:
+        return False
+    zero = sum(1 for k in range(n) for j in nul_at if head[k * unit + j] == 0)
+    other = sum(1 for k in range(n) for j in range(unit) if j not in nul_at and head[k * unit + j] == 0)
+    return zero >= 0.9 * n * len(nul_at) and other <= 0.1 * n * (unit - len(nul_at))
+
+
+def decode_text(data: bytes) -> str | None:
+    """The text of a file, or None if it is binary. UTF-8 (BOM or not), UTF-16 and UTF-32 are text: with a byte-order
+    mark, or as NUL-interleaved ASCII. The UTF-32 marks come first: FF FE 00 00 starts with the UTF-16 LE mark."""
+    for bom, codec in ((codecs.BOM_UTF32_LE, "utf-32"), (codecs.BOM_UTF32_BE, "utf-32"),
+                       (codecs.BOM_UTF16_LE, "utf-16"), (codecs.BOM_UTF16_BE, "utf-16")):
+        if data.startswith(bom):
+            return data.decode(codec, "replace")
+    if not is_binary(data):
+        return data.decode("utf-8", "replace")
+    head = data[:8192]
+    for codec, unit, nul_at in (("utf-32-le", 4, (1, 2, 3)), ("utf-32-be", 4, (0, 1, 2)),
+                                ("utf-16-le", 2, (1,)), ("utf-16-be", 2, (0,))):
+        if _interleaved(head, unit, nul_at):
+            return data.decode(codec, "replace")
+    return None
+
+
+def unscannable(where: str) -> Finding:
+    return Finding(where, 0, 0, "unscannable-file",
+                   "has a text-like name but holds NUL bytes that are not UTF-16 or UTF-32 text, so it was not scanned; "
+                   "if it is binary, allow-list it with --allow-path", "n/a")
+
+
 # ---------------------------------------------------------------------------------------------------------- git
 def _git(root: Path, *args: str) -> subprocess.CompletedProcess:
     try:
@@ -366,8 +438,11 @@ def scan_tree(root: Path, allow: Allow) -> TreeResult:
         data = p.read_bytes()
         files += 1
         nbytes += len(data)
-        if not is_binary(data):
-            findings += scan_text(rel, data.decode("utf-8", "replace"), allow)
+        text = decode_text(data)
+        if text is not None:
+            findings += scan_text(rel, text, allow)
+        elif looks_like_text(rel):
+            findings.append(unscannable(rel))
     return TreeResult(findings, files, nbytes, how, skipped)
 
 
@@ -446,8 +521,12 @@ def scan_history(root: Path, allow: Allow) -> HistoryResult:
                         continue
                     if size > MAX_BYTES:
                         skipped.append(f"{label} (larger than {MAX_BYTES} bytes)")
-                    elif not is_binary(body):
-                        findings += scan_text(label, body.decode("utf-8", "replace"), allow)
+                    else:
+                        text = decode_text(body)
+                        if text is not None:
+                            findings += scan_text(label, text, allow)
+                        elif looks_like_text(rel):
+                            findings.append(unscannable(label))
                 elif kind in ("commit", "tag"):
                     commits += kind == "commit"
                     tags += kind == "tag"

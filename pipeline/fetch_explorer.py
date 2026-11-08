@@ -32,7 +32,7 @@ def jwt() -> str:
     tok = os.environ.get("NEAR_INTENTS_EXPLORER_JWT")
     env = ROOT / ".env"
     if not tok and env.exists():
-        for line in env.read_text().splitlines():
+        for line in env.read_text(encoding="utf-8").splitlines():
             if line.startswith("NEAR_INTENTS_EXPLORER_JWT="):
                 tok = line.split("=", 1)[1].strip()
     if not tok:
@@ -75,7 +75,7 @@ def pull_day(d: str, token) -> list[dict]:
     `token` is a zero-argument callable, so a rebuild from a full cache needs no key."""
     path = CACHE / f"{d}.jsonl"
     if path.exists():
-        return [json.loads(x) for x in path.read_text().splitlines()]
+        return [json.loads(x) for x in path.read_text(encoding="utf-8").splitlines()]
     token = token()
     rows, seen = [], set()
     params = {"numberOfTransactions": 1000, "statuses": "SUCCESS", "direction": "next",
@@ -96,7 +96,7 @@ def pull_day(d: str, token) -> list[dict]:
         else:
             params.pop("lastDepositMemo", None)
     CACHE.mkdir(parents=True, exist_ok=True)
-    path.write_text("".join(json.dumps(t, separators=(",", ":")) + "\n" for t in rows))
+    path.write_text("".join(json.dumps(t, separators=(",", ":")) + "\n" for t in rows), encoding="utf-8", newline="\n")
     return rows
 
 
@@ -182,7 +182,7 @@ def main(argv: list[str]) -> int:
     start, end = argv[:2] if len(argv) >= 2 else ("2026-10-06", "2026-11-04")
     token = jwt  # read lazily: only needed for days missing from the cache
     out_path = ROOT / "data" / "raw" / "explorer" / "daily.json"
-    existing = {x["date"]: x for x in json.loads(out_path.read_text())["days"]} if out_path.exists() else {}
+    existing = {x["date"]: x for x in json.loads(out_path.read_text(encoding="utf-8"))["days"]} if out_path.exists() else {}
     d = end
     while d >= start:
         rows = pull_day(d, token)

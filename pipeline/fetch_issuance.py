@@ -14,6 +14,14 @@ block carries the expected epoch_id and its predecessor a different one); `valid
 
 Standard library only. Polite: one request per RPC_PACE seconds (default 0.5); waits out HTTP 429 (FastNEAR's
 free tier is rate-limited). archival-rpc.mainnet.near.org is deprecated (answers 429 to everything) and not used.
+
+Environment:
+  NEAR_ARCHIVAL_RPC  archival JSON-RPC endpoint to read (default https://archival-rpc.mainnet.fastnear.com). It may be
+                     a keyed URL (a key in the user-info, the path or the query). Requests use it exactly as given, but
+                     only its scheme and host (`recorded_rpc()`) are written to data/raw/rpc/epoch_issuance.json and
+                     data/MANIFEST.json, which are committed. A provider that puts the key in the host name itself
+                     (an account-specific sub-domain) cannot be recorded safely: refresh with a keyless endpoint.
+  RPC_PACE           seconds between requests (default 0.5)
 """
 from __future__ import annotations
 
@@ -26,9 +34,16 @@ import time
 import urllib.error
 import urllib.request
 
-from .common import USER_AGENT, read_raw, write_raw
+from .common import USER_AGENT, endpoint_origin, read_raw, write_raw
 
 RPC = os.environ.get("NEAR_ARCHIVAL_RPC", "https://archival-rpc.mainnet.fastnear.com")
+
+
+def recorded_rpc() -> str:
+    """The endpoint as it may be written to a committed file: scheme and host only (see the module docstring)."""
+    return endpoint_origin(RPC)
+
+
 PACE = float(os.environ.get("RPC_PACE", "0.5"))
 WINDOW_FIRST, WINDOW_LAST = 210_238_034, 223_088_015  # first block of 2026-08-07 UTC, last block of 2026-11-04 UTC
 ENDPOINTS = (210_238_033, 223_088_015)
@@ -159,7 +174,7 @@ def fetch() -> dict:
                     "treasury_delta": str(int(b["amount"]) + int(b["locked"]) - int(a["amount"]) - int(a["locked"])),
                     "treasury_before": [a["amount"], a["locked"]], "treasury_after": [b["amount"], b["locked"]]})
     mi = cfgs[str(ENDPOINTS[1])]["max_inflation_rate"]
-    return {"source": f"{RPC} JSON-RPC `block` (and `validators` by epoch_id where the arithmetic start did not "
+    return {"source": f"{recorded_rpc()} JSON-RPC `block` (and `validators` by epoch_id where the arithmetic start did not "
                       "verify); written by pipeline/fetch_issuance.py",
             "method": "mint(s) = total_supply(s) - total_supply(prev(s)) + sum(chunk.balance_burnt, height_included "
                       "== s) for each epoch-start block s; supply(b) = supply(prev) + minted(b) - burnt(b) holds "
@@ -202,8 +217,9 @@ def main(argv: list[str]) -> int:
     a = ap.parse_args(argv)
     if a.verify:
         return verify(a.verify, a.seed if a.seed is not None else random.SystemRandom().randrange(1 << 30))
+    recorded_rpc()  # fail now, not after a walk of ~600 block reads, if NEAR_ARCHIVAL_RPC is not an absolute http(s) URL
     obj = fetch()
-    write_raw("rpc/epoch_issuance.json", obj, f"{RPC} block headers at epoch boundaries (pipeline/fetch_issuance.py)")
+    write_raw("rpc/epoch_issuance.json", obj, f"{recorded_rpc()} block headers at epoch boundaries (pipeline/fetch_issuance.py)")
     print(f"wrote data/raw/rpc/epoch_issuance.json ({len(obj['epochs'])} epochs)")
     return 0
 

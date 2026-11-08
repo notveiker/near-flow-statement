@@ -1,0 +1,8 @@
+# Never convert line endings. This repository is byte-hashed: data/MANIFEST.json holds the SHA-256 of every file under
+# data/raw/, the hash of PREREG.md is frozen (git tag prereg-freeze), site/index.html must equal a fresh render byte for
+# byte, and scripts/fresh_clone_check.sh must stay LF to run under bash. A checkout that turned LF into CRLF (a Git for
+# Windows install commonly sets core.autocrlf=true) would change those bytes, and `python3 -m pipeline.check --manifest`
+# would fail on 43 of the 45 files it lists although nobody edited anything (reproduced with core.autocrlf=true on Linux).
+# "-text" switches the conversion off for every path. It changes nothing that is stored in the repository.
+# tests/test_integrity.py clones with core.autocrlf=true to prove that this file does its job.
+* -text

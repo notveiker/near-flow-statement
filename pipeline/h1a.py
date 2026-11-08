@@ -24,6 +24,11 @@ YOCTO = 10**24
 W_FIRST, W_LAST = 210_238_034, 223_088_015
 B0, B1 = "210238033", "223088015"
 
+# Fixed in PREREG.md (frozen). tests/test_prereg_spec.py compares each with the frozen text.
+H1A_PASS_BELOW_X = 0.5      # H1a: net staking outflow < 50% of staking rewards (strict)
+STAKING_REWARD_SHARE = 0.9  # staking rewards = 90% of gross issuance
+AVOID_DIVISOR = 2           # rating rule: Avoid if G_obs < G_req / 2 (strict); Buy if G_obs >= G_req
+
 
 def _epochs() -> tuple[dict, list[dict]]:
     d = read_raw("rpc/epoch_issuance.json")
@@ -53,6 +58,11 @@ def issuance() -> dict:
             "cap_share": sum(shares) / len(shares), "burn_per_day_v87": v87_burn / YOCTO / (v87_secs / 86400)}
 
 
+def h1a_passes(rewards: float, *net_outflows: float) -> bool:
+    """H1a as written: every measure of net staking outflow is below 50% of staking rewards (strictly)."""
+    return all(out < H1A_PASS_BELOW_X * rewards for out in net_outflows)
+
+
 def h1a(m: dict) -> None:
     if not (RAW / "rpc" / "epoch_issuance.json").exists():
         return
@@ -60,14 +70,14 @@ def h1a(m: dict) -> None:
     rows = read_raw("bq/staking_flows_daily.json")
     tot = {k: sum(float(x[k]) for x in rows) for k in ("rewards_near", "gas_rebate_near", "inflow_near", "outflow_near")}
     net_out = tot["outflow_near"] - tot["inflow_near"]
-    rewards = 0.9 * iss["gross"]
+    rewards = STAKING_REWARD_SHARE * iss["gross"]
     m["h1a_gross_issuance_90d_m"] = round(iss["gross"] / 1e6, 4)
     m["h1a_net_supply_change_90d_m"] = round(iss["net"] / 1e6, 4)
     m["h1a_burn_90d_k"] = round(iss["burn"] / 1e3, 2)
     m["h1a_epochs_in_window"] = iss["n_epochs"]
     m["h1a_staking_rewards_90d_m"] = round(rewards / 1e6, 4)
     m["h1a_ratio_as_written_x"] = round(net_out / rewards, 2)
-    m["h1a_pass_as_written"] = bool(net_out < 0.5 * rewards)
+    m["h1a_pass_as_written"] = h1a_passes(rewards, net_out)
 
     if not (RAW / "rpc" / "pool_endpoints_archival.json").exists():
         return
@@ -76,7 +86,7 @@ def h1a(m: dict) -> None:
     t1 = sum(int(v[1]) for v in pe["pools"].values()) / YOCTO
     endpoint_out = tot["rewards_near"] - (t1 - t0)  # net outflow = rewards credited - change in pool balances
     m["h1a_ratio_endpoint_archival_x"] = round(endpoint_out / rewards, 2)
-    m["h1a_pass_as_written"] = bool(net_out < 0.5 * rewards and endpoint_out < 0.5 * rewards)
+    m["h1a_pass_as_written"] = h1a_passes(rewards, net_out, endpoint_out)
     lst = pe["lst_pool"]
     lst_flow = lst["native_in_near"] - lst["native_out_near"]
     m["h1a_ratio_with_lst_pool_x"] = round((net_out - lst_flow) / rewards, 2)
@@ -123,6 +133,18 @@ def g_req(ra: dict, iss: dict, r90: float, hsp029: bool = True) -> float:
     return (n90 * ra["price_usd"] / r90) ** (1 / ra["horizon_years"]) - 1
 
 
+def rating_rule(h1b: str, go: float, gr: float) -> str:
+    """PREREG: Buy if G_obs >= G_req and H1b passes; Avoid if G_obs < G_req/2 and H1b fails; Hold otherwise.
+
+    `h1b` is the H1b verdict text ("pass", "fail", "inconclusive ...", "pending"); only a leading "pass" or "fail"
+    counts, so an inconclusive or pending H1b always gives Hold."""
+    if h1b.startswith("pass") and go >= gr:
+        return "Buy"
+    if h1b.startswith("fail") and go < gr / AVOID_DIVISOR:
+        return "Avoid"
+    return "Hold"
+
+
 def rating(m: dict) -> None:
     if not (RAW / "rpc" / "rating_assumptions.json").exists() or not (RAW / "rpc" / "epoch_issuance.json").exists():
         return
@@ -150,14 +172,6 @@ def rating(m: dict) -> None:
         ga = sum(rev[k] / px[k] for k in wa) / sum(rev[k] / px[k] for k in wb)
         m["rating_g_obs_near_pct"] = round((ga ** (365 / n) - 1) * 100, 1)
 
-    # PREREG: Buy if G_obs >= G_req and H1b passes; Avoid if G_obs < G_req/2 and H1b fails; Hold otherwise.
-    def rule(h1b: str) -> str:
-        if h1b.startswith("pass") and go >= gr:
-            return "Buy"
-        if h1b.startswith("fail") and go < gr / 2:
-            return "Avoid"
-        return "Hold"
-
     v = str(m.get("h1b_verdict", "pending"))
-    m["rating_if_h1b_pass"], m["rating_if_h1b_fail"] = rule("pass"), rule("fail")
-    m["rating_output"] = rule(v) if not v.startswith("pending") else "pending (H1b not scored)"
+    m["rating_if_h1b_pass"], m["rating_if_h1b_fail"] = rating_rule("pass", go, gr), rating_rule("fail", go, gr)
+    m["rating_output"] = rating_rule(v, go, gr) if not v.startswith("pending") else "pending (H1b not scored)"

@@ -7,6 +7,7 @@ Run: python3 -m pipeline.compute
 """
 from __future__ import annotations
 
+import argparse
 import json
 from collections import defaultdict
 
@@ -170,7 +171,7 @@ def escrow_ladder(m: dict, lo: str, hi: str) -> None:
     path = RAW / "escrow" / "deliveries.csv"
     if not path.exists():
         return
-    with open(path, newline="") as f:
+    with open(path, newline="", encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
     reads = read_raw("escrow/issuance_reads.json")["reads"]
     (t0, s0), (t1, s1) = sorted((int(x["timestamp_ns"]), int(x["total_supply"])) for x in reads)
@@ -745,10 +746,13 @@ def build() -> tuple[dict, dict]:
     return m, series
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
+    # No arguments: --help prints the usage and exits 0 before anything is computed or written, an unknown one exits 2.
+    argparse.ArgumentParser(prog="python3 -m pipeline.compute", description="Recompute data/metrics.json and data/series.json "
+                            "from data/raw/, offline. Takes no arguments.").parse_args(argv)
     m, series = build()
-    METRICS.write_text(json.dumps(m, indent=1, sort_keys=True) + "\n")
-    (DATA / "series.json").write_text(json.dumps(series, indent=1, sort_keys=True) + "\n")
+    METRICS.write_text(json.dumps(m, indent=1, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
+    (DATA / "series.json").write_text(json.dumps(series, indent=1, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
     print(f"wrote {METRICS.relative_to(DATA.parent)} ({len(m)} metrics, as of {m['asof']})")
     return 0
 

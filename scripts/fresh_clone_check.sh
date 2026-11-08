@@ -27,7 +27,7 @@ set -euo pipefail
 FROZEN_PREREG_SHA256=19e470be5398f67ce7b6b5a51f007c0c7a0fcc059b61853c52caf7401452e240
 FREEZE_TAG=prereg-freeze
 # Files a judge needs: named in the README or run by the checks. A copy without one of them is not ready to submit.
-REQUIRED_FILES="README.md AGENTS.md CLAUDE.md THESIS.md PREREG.md PREREG-ADDENDUM.md LICENSE Makefile .gitignore
+REQUIRED_FILES="README.md AGENTS.md CLAUDE.md THESIS.md PREREG.md PREREG-ADDENDUM.md LICENSE Makefile .gitignore .gitattributes
 data/MANIFEST.json data/metrics.json data/series.json pipeline/check.py pipeline/compute.py pipeline/render.py
 site/index.html tests/test_integrity.py scripts/fresh_clone_check.sh scripts/scan_secrets.py
 .github/workflows/ci.yml .github/workflows/pages.yml"

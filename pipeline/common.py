@@ -1,12 +1,22 @@
 """Shared helpers: paths, HTTP with retries, raw snapshots and the SHA-256 manifest.
 
 Standard library only (Python 3.10+), so the offline rebuild needs nothing installed.
+
+Every text file this package reads or writes is UTF-8 with LF line endings, whatever the locale or the operating
+system. Raw snapshots and the manifest are byte-hashed, and the platform defaults differ: text mode writes CRLF on
+Windows, and a non-UTF-8 locale cannot read the UTF-8 write-up that `python3 -m pipeline.check --numbers` scans.
+Readers pass encoding="utf-8" and writers pass encoding="utf-8", newline="\\n".
+
+A URL that goes into a `source` or `note` field of data/MANIFEST.json or data/raw/ must carry no credential:
+`endpoint_origin` reduces an endpoint to scheme and host, and `record` refuses text with a user:password@ part or a
+key-like query parameter.
 """
 from __future__ import annotations
 
 import hashlib
 import json
 import os
+import re
 import time
 import urllib.error
 import urllib.parse
@@ -64,10 +74,11 @@ def http_json(url: str, params: dict | None = None, body: dict | None = None,
 
 def write_raw(rel: str, obj: object, source: str) -> Path:
     """Write a raw snapshot as canonical JSON and record it in the manifest."""
+    refuse_credentials(source, "the source of " + rel)  # before anything is written: the file and its entry stay in step
     path = RAW / rel
     path.parent.mkdir(parents=True, exist_ok=True)
     text = json.dumps(obj, sort_keys=True, separators=(",", ":"))
-    path.write_text(text + "\n")
+    path.write_text(text + "\n", encoding="utf-8", newline="\n")
     record(path, source)
     return path
 
@@ -82,11 +93,50 @@ def sha256(path: Path) -> str:
 
 def load_manifest() -> dict:
     if MANIFEST.exists():
-        return json.loads(MANIFEST.read_text())
+        return json.loads(MANIFEST.read_text(encoding="utf-8"))
     return {"files": {}}
 
 
+# A user:password@ part in a URL, or a query parameter whose name says it is a key, token or secret (api_key, apikey,
+# access_token, x_cg_demo_api_key, client_secret, password, jwt, key, sig, auth ...). Not "design", "author" or "keyword".
+_URL_USERINFO = re.compile(r"://[^\s/?#@]*@")
+_URL_KEY_PARAM = re.compile(
+    r"(?i)[?&;](?:[^=&;#\s]*(?:token|secret|passw|apikey|api[_-]?key|jwt)[^=&;#\s]*"
+    r"|(?:[^=&;#\s]*[_.-])?(?:key|sig|signature|auth|authorization|pwd))=")
+
+
+def refuse_credentials(text: str, what: str = "text") -> None:
+    """Raise ValueError if `text` holds a URL that carries a credential (user:password@host, ?api_key=...).
+
+    A guard for what goes into data/MANIFEST.json and data/raw/: both are committed, hashed and public."""
+    if _URL_USERINFO.search(text) or _URL_KEY_PARAM.search(text):
+        raise ValueError(f"refusing to record {what}: it holds a URL with a credential in it (user:password@ or a "
+                         "key-like query parameter); record endpoint_origin(url) instead")
+
+
+def endpoint_origin(url: str) -> str:
+    """`url` reduced to scheme://host[:port]: userinfo, path, query and fragment dropped.
+
+    For an endpoint that may carry a key (https://user:pw@rpc.example/KEY?apikey=abc -> https://rpc.example).
+    Raises ValueError for anything that is not an absolute http(s) URL, so a malformed value is never recorded as is."""
+    parts = urllib.parse.urlsplit(url.strip())
+    host = parts.hostname
+    if parts.scheme not in ("http", "https") or not host:
+        raise ValueError("not an absolute http(s) URL; its text is not echoed because it may hold a key")
+    if ":" in host:  # IPv6 literal
+        host = f"[{host}]"
+    try:
+        port = parts.port
+    except ValueError:
+        raise ValueError("not a valid port in the URL (text not echoed: it may hold a key)") from None
+    return f"{parts.scheme}://{host}" + (f":{port}" if port else "")
+
+
 def record(path: Path, source: str, extra: dict | None = None) -> None:
+    refuse_credentials(source, "the source of " + path.name)
+    for k, v in (extra or {}).items():
+        if isinstance(v, str):
+            refuse_credentials(v, f"{k} of {path.name}")
     m = load_manifest()
     rel = str(path.relative_to(DATA))
     entry = {"sha256": sha256(path), "bytes": path.stat().st_size,
@@ -94,7 +144,7 @@ def record(path: Path, source: str, extra: dict | None = None) -> None:
     if extra:
         entry.update(extra)
     m["files"][rel] = entry
-    MANIFEST.write_text(json.dumps(m, indent=1, sort_keys=True) + "\n")
+    MANIFEST.write_text(json.dumps(m, indent=1, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
 
 
 def verify_manifest() -> list[str]:
@@ -111,7 +161,7 @@ def verify_manifest() -> list[str]:
 
 
 def read_raw(rel: str) -> object:
-    return json.loads((RAW / rel).read_text())
+    return json.loads((RAW / rel).read_text(encoding="utf-8"))
 
 
 def env(name: str, default: str | None = None) -> str | None:
