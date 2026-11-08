@@ -1320,7 +1320,7 @@ CARD_PHRASES = {
     "rating": ("pending resolver", "do not predict it", "never fail", "does not feed the rule", "carries no view on NEAR",
                "far above the Avoid line", "would also have been", "committed after the freeze", "straddles the 2026-02-23 fee switch",
                "does not separate the switch from other causes"),
-    "forward": ("never estimated", "not scorable", "is not a score", "first dry run", "Later dry runs", "2026-11-08 05:10 UTC entry"),
+    "forward": ("never estimated", "not scorable", "is not a score", "first dry run", "Later dry runs", "2026-11-08 05:04 UTC entry"),
     "ladder": ("unattested", "attestation", "Nothing here alleges misconduct", "consistent with a privacy feature working as documented",
                "No valuation is made here", "The range is the finding", "subset"),
     "escrow": ("unattested", "attributed from samples", "less firmly established"),
@@ -2784,20 +2784,20 @@ class Wording(unittest.TestCase):
 
     # ---- the forward card
     def test_the_forward_card_says_first_dry_run_and_points_at_both_entries(self):
-        """Item 7 of the 23:49 UTC entry describes the first dry run only (pinned text). Later dry runs and two direct reads of the buyback wallet's
-        balance touched window days; the 2026-11-08 05:10 UTC entry discloses them, and the card (pending and scored) says so and names both entries.
+        """Item 7 of the 23:49 UTC entry describes the first dry run only (pinned text). Later dry runs and direct reads of the buyback wallet's
+        balance touched window days; the 2026-11-08 05:04 UTC entry discloses them, and the card (pending and scored) says so and names both entries.
         That second entry may still be edited by the owner, so only what the card relies on is pinned: its date and time, and that it is about
         dry runs and the buyback wallet's balance."""
         entry = addendum_entry("2026-11-06 23:49 UTC")
         self.assertRegex(entry, r"(?m)^7\. \*\*Forward tests\.\*\*.*Its dry run read no day inside 11-06\.\.11-13 for F2-F4 and only the window-opening block for F1")
-        later = addendum_entry("2026-11-08 05:10 UTC")
+        later = addendum_entry("2026-11-08 05:04 UTC")
         self.assertIn("dry run", later.splitlines()[0], "the heading of the entry the card points at is about dry runs")
         for needle in ("dry run", "buyback wallet", "window"):
             self.assertIn(needle, later)
         first = ("Its first dry run read no scoring-window day for F2 to F4 and only the window-opening block for F1 "
                  "(PREREG-ADDENDUM.md, 2026-11-06 23:49 UTC entry, item 7).")
-        after = ("Later dry runs, and two direct reads of the buyback wallet’s balance, did touch window days; they are disclosed in the "
-                 "2026-11-08 05:10 UTC entry of PREREG-ADDENDUM.md.")
+        after = ("Later dry runs, and direct reads of the buyback wallet’s balance, did touch window days; they are disclosed in the "
+                 "2026-11-08 05:04 UTC entry of PREREG-ADDENDUM.md.")
         for name, dom, _, _ in VARIANTS:
             card = card_node(dom, "forward")
             text = re.sub(r"\s+", " ", card.find("ul", "notes").text())
@@ -2966,14 +2966,21 @@ class FirstScreen(unittest.TestCase):
     def chips_nav(dom: Node) -> Node:
         return next(n for n in dom.find("header").find_all("nav") if n.attrs.get("aria-label") == FirstScreen.NAV)
 
-    def test_the_title_stays_the_pre_registered_question_and_the_two_questions_follow_it(self):
+    def test_the_title_is_the_headline_and_the_two_questions_follow_it_with_the_frozen_one_quoted_from_prereg(self):
+        """The page calls a question "pre-registered" only if PREREG.md says it. PREREG.md's question is the market-wide one; the title
+        "Who buys and who sells NEAR?" was written after the freeze, and PREREG.md makes no claim about which coins are sold."""
+        frozen = (ROOT / "PREREG.md").read_text(encoding="utf-8")
+        self.assertIn("how much NEAR actually flows to exchanges, and how much of that do identified buyers absorb?", frozen)
+        self.assertIn("no claim about which coins are sold", frozen)
+        self.assertNotIn("who buys", frozen.lower())
         for name, dom, _, _ in VARIANTS:
             head = dom.find("header")
             self.assertEqual(dom.find("h1").text(), "Who buys and who sells NEAR?", name)
             kids = [c.tag + "".join("." + k for k in sorted(c.classes())) for c in head.children if isinstance(c, Node)]
             self.assertEqual(kids[:6], ["p.eyebrow", "h1", "p.questions", "div.answer", "nav", "p.lede"], name)
             self.assertEqual(re.sub(r"\s+", " ", head.find("p", "questions").text()),
-                             "The pre-registered question: who buys and who sells NEAR? The question the evidence can answer: how much of NEAR’s value capture can you verify?", name)
+                             "The pre-registered question: how much NEAR actually flows to exchanges, and how much of that do identified buyers absorb? (It makes no claim about "
+                             "which coins are sold.) The question the evidence can answer: how much of NEAR’s value capture can you verify?", name)
 
     def test_the_answer_is_the_shared_sentence_with_every_number_a_metric_and_both_labels(self):
         m = METRICS
@@ -2982,7 +2989,8 @@ class FirstScreen(unittest.TestCase):
                 "Exploratory, chosen after the freeze: over 30 days the NEAR that verifiably reached NEAR’s three Intents revenue wallets was "
                 f"{m['ladder_all_wallets_pct_of_issuance']:.2f}% of net issuance, of which {m['ladder_public_collectors_pct_of_issuance']:.2f} points trace to public fee "
                 f"collectors, {m['ladder_escrow_unshields_pct_of_issuance']:.2f} arrived as releases from an escrow whose fee stream is unattested, and "
-                f"{m['ladder_other_pct_of_issuance']:.2f} came from one other source. So the value capture that can be verified is a range, not a number. "
+                f"{m['ladder_other_pct_of_issuance']:.2f} came from one other source. So, if those three are all of NEAR’s Intents revenue wallets, the value capture that can be "
+                "verified is a range, not a number. "
                 "This is not a valuation and not advice.")
         self.assertEqual((m["h1a_pass_as_written"], m["h1b_verdict"], m["h1c_verdict"], m["rating_output"]), (False, "inconclusive", "inconclusive", "Hold"))
         for name, dom, _, _ in VARIANTS:
@@ -3080,7 +3088,9 @@ class FirstScreen(unittest.TestCase):
 
     def test_the_meta_description_names_both_questions(self):
         desc = next(mt.attrs["content"] for mt in DOM.find_all("meta") if mt.attrs.get("name") == "description")
-        self.assertIn("The pre-registered question is who buys and who sells NEAR; the question the evidence can answer is how much of NEAR's value capture can you verify.", desc)
+        self.assertIn("The pre-registered question is how much NEAR flows to exchanges and how much of that identified buyers absorb; the question the evidence can answer "
+                      "is how much of NEAR's value capture can you verify.", desc)
+        self.assertNotIn("who buys", desc.lower())
 
     def test_the_dash_of_the_hold_icon_follows_the_theme_so_it_shows_in_both(self):
         """The Hold icon is a grey circle with a dash. The dash was white, on the light grey of the dark theme; it is now drawn in the surface colour."""

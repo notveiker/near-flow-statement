@@ -1011,8 +1011,8 @@ H1B_RUN_NOTE = ("The header comment of this file says &ldquo;NOT run&rdquo; beca
 DRY_RUN_DISCLOSURE = (
     'Its first dry run read no scoring-window day for F2 to F4 and only the window-opening block for F1 '
     f'(<a href="{esc(gh("PREREG-ADDENDUM.md"))}">PREREG-ADDENDUM.md</a>, 2026-11-06 23:49 UTC entry, item 7). '
-    'Later dry runs, and two direct reads of the buyback wallet&rsquo;s balance, did touch window days; they are disclosed in the '
-    f'2026-11-08 05:10 UTC entry of <a href="{esc(gh("PREREG-ADDENDUM.md"))}">PREREG-ADDENDUM.md</a>.')
+    'Later dry runs, and direct reads of the buyback wallet&rsquo;s balance, did touch window days; they are disclosed in the '
+    f'2026-11-08 05:04 UTC entry of <a href="{esc(gh("PREREG-ADDENDUM.md"))}">PREREG-ADDENDUM.md</a>.')
 
 
 def query_details(ctx: Ctx, sql: tuple[str, ...] = (), endpoints: tuple[tuple[str, str], ...] = (),
@@ -1863,7 +1863,7 @@ def card_ladder(ctx: Ctx) -> str:
                f'{ctx.M("ladder_escrow_unshields_pct_of_issuance", 2)}% released from the Confidential Intents escrow, plus '
                f'{ctx.M("ladder_other_pct_of_issuance", 2)}% from one other source.'),
         notshows=(f'Which fee stream pays for the escrow releases: the NEAR verifiably arrived, but the public chain cannot split the '
-                  f'{ctx.M("ladder_escrow_unshields_pct_of_issuance", 2)} points between the two candidate NEAR-side streams that fit, so measured value capture is a '
+                  f'{ctx.M("ladder_escrow_unshields_pct_of_issuance", 2)} points between the two candidate NEAR-side streams that fit, so, if those three are all of NEAR&rsquo;s Intents revenue wallets, measured value capture is a '
                   f'range, {ctx.M("ladder_public_collectors_pct_of_issuance", 2)}% to {ctx.M("ladder_all_wallets_pct_of_issuance", 2)}% of issuance.'),
         figure=fig,
         caption=(f'Window: the 30 days {window_text(ctx, 30)} (UTC). Unit: percent of net issuance. Both panels start at zero; Panel B is a zoom of Panel A.'),
@@ -2761,8 +2761,9 @@ def answer_line(ctx: Ctx) -> str:
         raise SystemExit("render: the answer under the title says that H1a fails, H1b and H1c are inconclusive, the rule outputs Hold and the three "
                          "sources add up to the total; the data no longer say that, so rewrite answer_line()")
     return (
-        '<p class="questions"><strong>The pre-registered question:</strong> who buys and who sells NEAR? '
-        '<strong>The question the evidence can answer:</strong> how much of NEAR&rsquo;s value capture can you verify?</p>'
+        '<p class="questions"><strong>The pre-registered question:</strong> how much NEAR actually flows to exchanges, and how much of that do identified buyers '
+        'absorb? (It makes no claim about which coins are sold.) <strong>The question the evidence can answer:</strong> how much of NEAR&rsquo;s value capture '
+        'can you verify?</p>'
         '<div class="answer">'
         f'<p><strong>Pre-registered result:</strong> H1a (most staking rewards stay staked) fails; H1b (less NEAR reaches exchanges than is minted) and '
         f'H1c (identified buying is at least {K("h1c_min_pct")}% of net exchange inflow) are inconclusive; and the frozen rating rule outputs '
@@ -2770,7 +2771,8 @@ def answer_line(ctx: Ctx) -> str:
         f'<p><strong>Exploratory, chosen after the freeze:</strong> over 30 days the NEAR that verifiably reached NEAR&rsquo;s three Intents revenue wallets was '
         f'{M("ladder_all_wallets_pct_of_issuance", 2)}% of net issuance, of which {M("ladder_public_collectors_pct_of_issuance", 2)} points trace to public '
         f'fee collectors, {M("ladder_escrow_unshields_pct_of_issuance", 2)} arrived as releases from an escrow whose fee stream is unattested, and '
-        f'{M("ladder_other_pct_of_issuance", 2)} came from one other source. So the value capture that can be verified is a range, not a number. '
+        f'{M("ladder_other_pct_of_issuance", 2)} came from one other source. So, if those three are all of NEAR&rsquo;s Intents revenue wallets, the value capture that can be '
+        f'verified is a range, not a number. '
         f'This is not a valuation and not advice. <a href="#chart-ladder">See the value-capture ladder.</a></p></div>')
 
 
@@ -2882,8 +2884,8 @@ def build_page(ctx: Ctx, breaks: bool = True) -> str:
         '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
         '<meta name="viewport" content="width=device-width, initial-scale=1">\n<meta name="color-scheme" content="light dark">\n'
         '<title>NEAR flow statement dashboard</title>\n'
-        '<meta name="description" content="Pre-registered, re-runnable token flow statement for NEAR. The pre-registered question is who buys and who sells NEAR; '
-        'the question the evidence can answer is how much of NEAR&#x27;s value capture can you verify. '
+        '<meta name="description" content="Pre-registered, re-runnable token flow statement for NEAR. The pre-registered question is how much NEAR flows to exchanges and how much of that '
+        'identified buyers absorb; the question the evidence can answer is how much of NEAR&#x27;s value capture can you verify. '
         'Every chart shows the query behind it and the exact numbers it plots.">\n'
         '<link rel="icon" href="data:,">\n'
         f"<style>\n{css()}\n</style>\n</head>\n")
