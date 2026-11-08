@@ -11,7 +11,7 @@ None of these needs the network or a key, and none changes a tracked file. (The 
 
 - `python3 -m pipeline.check --manifest` and `python3 -m pipeline.check --numbers`. These are the only two options besides `-h`/`--help`, which prints the usage and checks nothing; any other option is an error (exit status 2), never `check: PASS`. `--numbers` validates every marker that is present and cannot find a number that lacks one.
 - `python3 -m pipeline.render --check` (is the committed `site/index.html` equal to a fresh render?).
-- `python3 -m unittest discover -s tests`. It ends with `OK`, or with `OK (skipped=N)`: the refusal test skips itself from 2026-11-14 00:00 UTC, and the tests that need git (the freeze tag, the `.gitignore` rules, the line-ending checks) skip in a copy without `.git`, so `bash scripts/fresh_clone_check.sh --worktree` ends `OK (skipped=N)` (N is 5 at the time of writing).
+- `python3 -m unittest discover -s tests`. It ends with `OK`, or with `OK (skipped=N)`: the refusal test skips itself from 2026-11-14 00:00 UTC, and the tests that need git (the freeze tag and the freeze time, the `.gitignore` rules, the line-ending checks) skip in a copy without `.git`, so `bash scripts/fresh_clone_check.sh --worktree` ends `OK (skipped=N)` (N is 6 at the time of writing).
 - `python3 scripts/scan_secrets.py` (add `--history` to scan every commit). It is a pattern scan, not a proof.
 - `bash scripts/fresh_clone_check.sh`: runs the offline checks in a temporary clone of `HEAD` and writes nothing in your checkout. With `--worktree` it copies your working tree instead, uncommitted changes included.
 
