@@ -78,7 +78,12 @@ CONSTS: dict[str, tuple[float, str, float]] = {
     "f3_max_bp": (sf.F3_MAX_BP, "4.0", 1.0), "f4_min_pct": (sf.F4_MIN_PCT, "50", 1.0),
 }
 
-SCORE_FOLDER = re.compile(r"score_\d{8}T\d{6}Z")   # what pipeline.score_forward --score names its folder
+SCORE_FOLDER = re.compile(r"score_[0-9]{8}T[0-9]{6}Z")   # what pipeline.score_forward --score names its folder (ASCII digits)
+# The most ticks one axis of the forward-test card may draw. The committed axes draw 4 or 5, and one tick is drawn for every
+# step an observed value lies outside them, so a corrupt value (1e6 basis points, 1e9 NEAR a day) made a page of 150 MB, or
+# no page. This many ticks still draws every value the scorer can really produce: an F3 take rate of about 400 bp, an F2 mean
+# of about 870 thousand NEAR a day, an F1 balance of about 40 million NEAR. Beyond that the render stops and says why.
+MAX_AXIS_TICKS = 200
 
 MONTHS = ("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
 
@@ -211,6 +216,16 @@ def gh(path: str) -> str:
     return f"{REPO_URL}/blob/{BRANCH}/{path}"
 
 
+def says_it_is_a_score(d: object) -> bool:
+    """True for a parsed result.json that claims to be a real score: is_score true and mode "score"."""
+    return isinstance(d, dict) and d.get("is_score") is True and d.get("mode") == "score"
+
+
+def is_real_score(d: object) -> bool:
+    """True for a parsed result.json that the page may draw as a score: it says it is one, and it holds a results object."""
+    return says_it_is_a_score(d) and isinstance(d.get("results"), dict)
+
+
 def load_forward(forward_dir: Path) -> dict | None:
     """The newest data/forward/score_<UTC stamp>/result.json, only if it is a real score (is_score true, mode "score").
 
@@ -218,20 +233,39 @@ def load_forward(forward_dir: Path) -> dict | None:
     folders named score_YYYYMMDDTHHMMSSZ are considered (a folder such as score_rehearsal is ignored, so it cannot
     outrank a real stamp), and a parseable result whose mode is not "score" is ignored. A newest result.json that
     cannot be read as JSON (a byte-order mark, a truncated file) stops the render: showing "pending" while a score
-    file exists would let a stale page pass every check."""
+    file exists would let a stale page pass every check. So does a result that says it is a score (is_score true, mode
+    "score") in a score_* folder whose name is not exactly score_YYYYMMDDTHHMMSSZ, the name pipeline.score_forward
+    gives it: it would be ignored, and the page would say "pending" over it. The other files of such folders (not a
+    score, a dry run, not JSON) are ignored as before."""
     if not forward_dir.is_dir():
         return None
-    cands = sorted(p for p in forward_dir.glob("score_*/result.json") if p.is_file() and SCORE_FOLDER.fullmatch(p.parent.name))
+    files = sorted(p for p in forward_dir.glob("score_*/result.json") if p.is_file())
+    cands = [p for p in files if SCORE_FOLDER.fullmatch(p.parent.name)]
+    misnamed = []
+    for p in files:
+        if SCORE_FOLDER.fullmatch(p.parent.name):
+            continue
+        try:
+            found = json.loads(p.read_text(encoding="utf-8"))
+        except (OSError, ValueError, RecursionError):
+            continue    # it cannot be read, so it cannot be told from a rehearsal: ignored, as a folder without a stamp always was
+        if says_it_is_a_score(found):
+            misnamed.append(f"data/forward/{p.parent.name}/result.json")
+    if misnamed:
+        many = len(misnamed) > 1
+        raise SystemExit(f"render: {', '.join(misnamed)} {'are scored results' if many else 'is a scored result'} (mode \"score\", "
+                         f"is_score true) in {'folders' if many else 'a folder'} not named score_YYYYMMDDTHHMMSSZ, the name "
+                         f"pipeline.score_forward gives it, so the page would say 'pending' over {'them' if many else 'it'}. "
+                         "Rename the folder to score_<UTC stamp>, or remove it if it is a rehearsal.")
     if not cands:
         return None
     path = cands[-1]
     try:
         d = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, ValueError) as exc:
+    except (OSError, ValueError, RecursionError) as exc:
         raise SystemExit(f"render: data/forward/{path.parent.name}/result.json exists but cannot be read as JSON "
                          f"({type(exc).__name__}); the page would say 'pending'. Fix or remove it.")
-    if not (isinstance(d, dict) and d.get("is_score") is True and d.get("mode") == "score"
-            and isinstance(d.get("results"), dict)):
+    if not is_real_score(d):
         return None
     d["_path"] = f"data/forward/{path.parent.name}/result.json"
     return d
@@ -1531,8 +1565,13 @@ def card_forward(ctx: Ctx) -> str:
     def obs_of(fid: str, key: str):
         v = result_of(fid).get(key)
         if isinstance(v, (int, float)) and not isinstance(v, bool):
-            if not math.isfinite(v):
-                raise SystemExit(f"render: {fid}.{key} is {v}, not a finite number, so the page cannot draw it; "
+            try:
+                finite = math.isfinite(v)
+            except OverflowError:       # an integer beyond the range of a float (JSON allows any number of digits)
+                finite = False
+            if not finite:
+                shown = repr(v) if isinstance(v, float) else "an integer too large for a float"
+                raise SystemExit(f"render: {fid}.{key} is {shown}, not a finite number, so the page cannot draw it; "
                                  "record that test as 'not scorable' by hand and say so in a dated addendum entry")
             return float(v)
         return None
@@ -1545,18 +1584,24 @@ def card_forward(ctx: Ctx) -> str:
         return f'<tspan data-f="{fid}.{key}" data-scale="{n1(scale) if scale != 1 else 1}">{esc(text_)}</tspan>{esc(suffix)}', text_ + suffix
 
     # axes: the frozen band plus the reference value, widened if an observed value falls outside
-    def axis(lo: float, hi: float, step: float, ob: float | None) -> tuple[float, float, list[float]]:
+    def axis(lo: float, hi: float, step: float, ob: float | None, what: str) -> tuple[float, float, list[float]]:
         if ob is not None:
             lo, hi = min(lo, math.floor((ob - step) / step) * step), max(hi, math.ceil((ob + step) / step) * step)
-        k = int(math.ceil((hi - lo) / step - 1e-9))
+        k = math.ceil((hi - lo) / step - 1e-9)      # k intervals, k + 1 ticks; ob is finite (obs_of), so k is an integer
+        if k + 1 > MAX_AXIS_TICKS:
+            ticks = f"{k + 1:,}" if k < 10**9 else "over a billion"
+            raise SystemExit(f"render: {what} is {ob:.6g}, which needs an axis of {ticks} ticks; the page draws at most "
+                             f"{MAX_AXIS_TICKS}. That is too far from its band to be a measurement of this quantity, so the page cannot "
+                             "draw it. Check the snapshot; if the data are wrong, record that test as 'not scorable' by hand and "
+                             "say so in a dated addendum entry")
         return lo, lo + k * step, [lo + i * step for i in range(k + 1)]
 
     o1, o2, o3, o4 = (obs_of("F1", "balance_near"), obs_of("F2", "mean_near_per_day"),
                       obs_of("F3", "take_rate_bp"), obs_of("F4", "intents_share_pct"))
-    a1 = axis(2.0, 2.6, 0.2, o1 / 1e6 if o1 is not None else None)
-    a2 = axis(82.0, 94.0, 4.0, o2 / 1e3 if o2 is not None else None)
-    a3 = axis(0.0, 8.0, 2.0, o3)
-    a4 = axis(0.0, 100.0, 25.0, o4)
+    a1 = axis(2.0, 2.6, 0.2, o1 / 1e6 if o1 is not None else None, "F1.balance_near, in million NEAR,")
+    a2 = axis(82.0, 94.0, 4.0, o2 / 1e3 if o2 is not None else None, "F2.mean_near_per_day, in thousand NEAR,")
+    a3 = axis(0.0, 8.0, 2.0, o3, "F3.take_rate_bp, in basis points,")
+    a4 = axis(0.0, 100.0, 25.0, o4, "F4.intents_share_pct, in percent,")
 
     def mk_obs(fid: str, key: str, val: float | None, dec: int, scale: float, suffix: str):
         t = ftxt(fid, key, dec, scale, suffix)
@@ -2758,16 +2803,28 @@ def build_page(ctx: Ctx, breaks: bool = True) -> str:
 
 
 # ------------------------------------------------------------------ build, write, check
+def build_site(root: Path = ROOT, forward_dir: Path | None = None) -> tuple[dict[str, bytes], Ctx]:
+    """The files of the site, as {path relative to the repo root: bytes}, and the Ctx they were built from.
+
+    main() names the data fingerprint and the data date from that Ctx. A second Ctx would read the data again, and without the
+    --forward-dir given: with a broken default data/forward it stopped the command after the page had been written elsewhere."""
+    ctx = Ctx(root, forward_dir)
+    return {f"{SITE_DIR}/{PAGE_NAME}": build_page(ctx).encode("utf-8")}, ctx
+
+
 def render(root: Path = ROOT, forward_dir: Path | None = None) -> dict[str, bytes]:
     """The files of the site, as {path relative to the repo root: bytes}. Pure: reads files, writes none."""
-    ctx = Ctx(root, forward_dir)
-    return {f"{SITE_DIR}/{PAGE_NAME}": build_page(ctx).encode("utf-8")}
+    return build_site(root, forward_dir)[0]
 
 
-def summary(files: dict[str, bytes], ctx_root: Path = ROOT) -> str:
+def summary(files: dict[str, bytes], ctx: Ctx | Path = ROOT, name: str | None = None) -> str:
+    """`site/index.html (N bytes), data fingerprint …, data as of …`. `ctx` is the Ctx the page was built from (a repo root is
+    read again, as it always was); `name` stands for site/index.html when the page was written or checked somewhere else."""
     page = files[f"{SITE_DIR}/{PAGE_NAME}"]
-    ctx = Ctx(ctx_root)
-    return f"{SITE_DIR}/{PAGE_NAME} ({len(page):,} bytes), data fingerprint {ctx.fingerprint}, data as of {ctx.m['asof']}"
+    if not isinstance(ctx, Ctx):
+        ctx = Ctx(ctx)
+    label = name if name is not None else f"{SITE_DIR}/{PAGE_NAME}"
+    return f"{label} ({len(page):,} bytes), data fingerprint {ctx.fingerprint}, data as of {ctx.m['asof']}"
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -2777,8 +2834,12 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--root", type=Path, default=ROOT, help="repo root to read from (default: this repo)")
     ap.add_argument("--forward-dir", type=Path, help="directory holding score_*/result.json (default: data/forward)")
     a = ap.parse_args(argv)
-    files = render(a.root, a.forward_dir)
+    files, ctx = build_site(a.root, a.forward_dir)
     out_dir = a.out if a.out is not None else a.root / SITE_DIR
+    # The site of this repository is named as the README quotes it (site/ and site/index.html); any other place by its real path.
+    own = a.out is None and Path(a.root) == ROOT
+    shown_dir = f"{SITE_DIR}/" if own else str(out_dir)
+    shown_page = f"{SITE_DIR}/{PAGE_NAME}" if own else str(out_dir / PAGE_NAME)
     problems: list[str] = []
     for rel, data in files.items():
         target = out_dir / Path(rel).relative_to(SITE_DIR)
@@ -2794,11 +2855,14 @@ def main(argv: list[str] | None = None) -> int:
         for p in problems:
             print(f"FAIL  {p}", file=sys.stderr)
         if problems:
-            print("render: site/ is out of date; run `python3 -m pipeline.render` and commit the result", file=sys.stderr)
+            again = "".join((f" --root {a.root}" if Path(a.root) != ROOT else "",
+                              f" --forward-dir {a.forward_dir}" if a.forward_dir else ""))
+            fix = "`python3 -m pipeline.render` and commit the result" if own else f"`python3 -m pipeline.render{again} --out {out_dir}`"
+            print(f"render: {shown_dir} is out of date; run {fix}", file=sys.stderr)
             return 1
-        print(f"render: site/ matches a fresh render ({summary(files, a.root)})")
+        print(f"render: {shown_dir} matches a fresh render ({summary(files, ctx, shown_page)})")
         return 0
-    print(f"render: wrote {summary(files, a.root)}")
+    print(f"render: wrote {summary(files, ctx, shown_page)}")
     return 0
 
 

@@ -14,6 +14,7 @@ key-like query parameter.
 from __future__ import annotations
 
 import hashlib
+import ipaddress
 import json
 import os
 import re
@@ -102,12 +103,15 @@ def load_manifest() -> dict:
 # On purpose it fails closed: any parameter name containing token, secret, passw, apikey or jwt is refused (so tokens_sold
 # would be too). A fetcher with such a URL should record endpoint_origin(url) or a keyless description instead.
 # It is a heuristic, not a proof: a key written into a URL path (https://host/v2/KEY...) or a name it has not listed gets through.
-# The parameter may follow ? & ; or # (a fragment such as #access_token=... is searched too), and a percent-encoded name
-# (x%2dapi%2dkey=) is decoded before the search.
+# The parameter may follow ? & ; or # (a fragment such as #access_token=... is searched too), and the text is searched twice, as
+# written and percent-decoded (x%2dapi%2dkey= and https%3A%2F%2Fuser%3Apw%40host are found too).
+# The name classes leave out ? as well as = & ; # and white space: every one of those starts a new parameter name, and a class that
+# also took ? made the search quadratic in a run of them (8000 of them took seconds), with the same answer: a name that held a ?
+# is found from the ? before it.
 _URL_USERINFO = re.compile(r"://[^\s/?#@]*@")
 _URL_KEY_PARAM = re.compile(
-    r"(?i)[?&;#](?:[^=&;#\s]*(?:token|secret|passw|apikey|api[_-]?key|jwt|accesskey|privatekey|authkey|credential|bearer)[^=&;#\s]*"
-    r"|(?:[^=&;#\s]*[_.-])?(?:key|sig|signature|auth|authorization|pwd|pass)=)")
+    r"(?i)[?&;#](?:[^=&;#?\s]*(?:token|secret|passw|apikey|api[_-]?key|jwt|accesskey|privatekey|authkey|credential|bearer)[^=&;#?\s]*"
+    r"|(?:[^=&;#?\s]*[_.-])?(?:key|sig|signature|auth|authorization|pwd|pass)=)")
 
 
 def refuse_credentials(text: str, what: str = "text") -> None:
@@ -115,7 +119,7 @@ def refuse_credentials(text: str, what: str = "text") -> None:
 
     A guard for what goes into data/MANIFEST.json and data/raw/: both are committed, hashed and public."""
     decoded = urllib.parse.unquote(text)
-    if _URL_USERINFO.search(text) or any(_URL_KEY_PARAM.search(t) for t in (text, decoded)):
+    if any(_URL_USERINFO.search(t) or _URL_KEY_PARAM.search(t) for t in (text, decoded)):
         raise ValueError(f"refusing to record {what}: it holds a URL with a credential in it (user:password@ or a "
                          "key-like query parameter); record endpoint_origin(url) instead")
 
@@ -125,15 +129,26 @@ def endpoint_origin(url: str) -> str:
 
     For an endpoint that may carry a key (https://user:pw@rpc.example/KEY?apikey=abc -> https://rpc.example).
     Raises ValueError for anything that is not an absolute http(s) URL with a plain host name (letters, digits, dots and
-    hyphens, or an IPv6 literal), so a malformed value is never recorded as is. A host name that itself carries a key (an
+    hyphens, or an IPv6 literal that parses as one), so a malformed value is never recorded as is, and the text of the value is
+    in no message: that includes the messages urlsplit itself raises, which quote it. A host name that itself carries a key (an
     account-specific sub-domain) is returned as written, in lower case."""
-    parts = urllib.parse.urlsplit(url.strip())
+    try:
+        parts = urllib.parse.urlsplit(url.strip())
+    except ValueError:
+        raise ValueError("not a valid URL; its text is not echoed because it may hold a key") from None
     host = parts.hostname
     if parts.scheme not in ("http", "https") or not host:
         raise ValueError("not an absolute http(s) URL; its text is not echoed because it may hold a key")
-    if not re.fullmatch(r"[A-Za-z0-9.-]+|[0-9A-Fa-f:.%]+", host):
+    # The second alternative is for a bracketed IPv6 literal. It has no %: a percent-encoded slash or a zone id would let hex
+    # digits through that are not an address. Without a colon it is the first alternative again, so the only hosts it adds
+    # are those with a colon, and those must parse as an address (below).
+    if not re.fullmatch(r"[A-Za-z0-9.-]+|[0-9A-Fa-f:.]+", host):
         raise ValueError("not a plain host name; its text is not echoed because it may hold a key")
     if ":" in host:  # IPv6 literal
+        try:
+            ipaddress.IPv6Address(host)
+        except ValueError:
+            raise ValueError("not a plain host name; its text is not echoed because it may hold a key") from None
         host = f"[{host}]"
     try:
         port = parts.port

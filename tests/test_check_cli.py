@@ -9,6 +9,7 @@ Run: python3 -m unittest discover -s tests
 from __future__ import annotations
 
 import ast
+import json
 import os
 import re
 import shutil
@@ -17,8 +18,11 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+from pipeline import check as CHECK  # noqa: E402
 
 # A locale that is not UTF-8, as a stricter CI image, an old Windows code page or a CJK locale would give.
 NON_UTF8 = {"PYTHONUTF8": "0", "PYTHONCOERCECLOCALE": "0", "LC_ALL": "C", "LANG": "C"}
@@ -156,8 +160,11 @@ class CheckOnATamperedCopy(unittest.TestCase):
         self.assertEqual(self.run_check("--manifest").returncode, 0, "--manifest must not run the numbers check")
 
     def append_to_thesis(self, extra: str) -> subprocess.CompletedProcess:
-        path = self.repo / "THESIS.md"
-        path.write_text(path.read_text(encoding="utf-8") + "\n" + extra + "\n", encoding="utf-8")
+        """THESIS.md as committed plus one line. Every call starts again from the committed text: setUp runs once per test
+        method and not once per sub-test, so appending to the copy would let each sub-case inherit the defect of the one
+        before it, and from the second on it would fail whatever the code does."""
+        committed = (ROOT / "THESIS.md").read_text(encoding="utf-8")
+        (self.repo / "THESIS.md").write_text(committed + "\n" + extra + "\n", encoding="utf-8", newline="\n")
         return self.run_check("--numbers")
 
     def test_a_marker_that_does_not_follow_a_number_fails(self):
@@ -167,12 +174,15 @@ class CheckOnATamperedCopy(unittest.TestCase):
         self.assertNotIn("PASS", p.stdout)
 
     def test_a_mistyped_marker_is_reported_not_skipped(self):
+        """Each typo alone, on the committed text, must be the only problem and be called a malformed marker."""
         for typo in ("<!--n:h1a-ratio_as_written_x-->", "<!--N:h1a_ratio_as_written_x-->", "<!-- n:h1a_ratio_as_written_x-->",
-                     "<!--n:h1a_ratio_as_written_x -->"):
+                     "<!--n :h1a_ratio_as_written_x-->", "<!--n:h1a_ratio_as_written_x -->", "<!--n:H1A_RATIO_AS_WRITTEN_X-->",
+                     "<!--n:-->", "<!--n:h1a_ratio_as_written_x"):
             with self.subTest(typo=typo):
                 p = self.append_to_thesis("9.99" + typo)
                 self.assertEqual(p.returncode, 1, p.stdout + p.stderr)
-                self.assertIn("malformed marker(s)", p.stderr)
+                self.assertEqual(p.stdout, "check: 1 problem(s)\n")
+                self.assertTrue(p.stderr.startswith("FAIL  THESIS.md: 1 malformed marker(s)"), p.stderr)
 
     def test_a_marker_after_text_that_is_not_a_number_is_a_fail_line_not_a_traceback(self):
         for extra in ("the end.<!--n:h1a_ratio_as_written_x-->", "6.56.<!--n:h1a_ratio_as_written_x-->",
@@ -180,14 +190,35 @@ class CheckOnATamperedCopy(unittest.TestCase):
             with self.subTest(extra=extra):
                 p = self.append_to_thesis(extra)
                 self.assertEqual(p.returncode, 1, p.stdout + p.stderr)
+                self.assertEqual(p.stdout, "check: 1 problem(s)\n")
                 self.assertNotIn("Traceback", p.stderr)
-                self.assertRegex(p.stderr, r"FAIL  THESIS.md: ")
+                self.assertRegex(p.stderr, r"^FAIL  THESIS\.md: [a-z0-9_]+ follows .* which cannot be compared as numbers\n$")
+
+    def test_a_sub_case_does_not_inherit_the_defect_of_the_one_before_it(self):
+        """The helper above starts from the committed text: a bad line, then the committed text alone, passes again."""
+        self.assertEqual(self.append_to_thesis("about<!--n:h1a_ratio_as_written_x-->").returncode, 1)
+        p = self.append_to_thesis("")
+        self.assertEqual((p.returncode, p.stdout, p.stderr), (0, "check: PASS\n", ""))
 
     def test_a_missing_document_cannot_pass_by_being_skipped(self):
-        (self.repo / "THESIS.md").unlink()
+        """Each of the three documents the check requires, one at a time: a copy without one of them must not pass by skipping its
+        markers. (The one document that was tested was THESIS.md, so dropping README.md or the addendum from the list went unseen.)"""
+        for name in ("README.md", "THESIS.md", "PREREG-ADDENDUM.md"):
+            with self.subTest(name):
+                (self.repo / name).unlink()
+                p = self.run_check("--numbers")
+                self.assertEqual(p.returncode, 1, p.stdout + p.stderr)
+                self.assertEqual(p.stderr, f"FAIL  {name}: missing, so its markers were not checked\n")
+                self.assertEqual(p.stdout, "check: 1 problem(s)\n")
+                shutil.copy2(ROOT / name, self.repo / name)
+        self.assertEqual(self.run_check("--numbers").returncode, 0, "and the copy passes again once the three are back")
+
+    def test_missing_metrics_are_a_problem_and_not_a_traceback(self):
+        (self.repo / "data" / "metrics.json").unlink()
         p = self.run_check("--numbers")
-        self.assertEqual(p.returncode, 1, p.stdout + p.stderr)
-        self.assertIn("THESIS.md: missing", p.stderr)
+        self.assertEqual((p.returncode, p.stdout), (1, "check: 1 problem(s)\n"))
+        self.assertEqual(p.stderr, "FAIL  data/metrics.json missing: run `make compute` first\n")
+        self.assertEqual(self.run_check("--manifest").returncode, 0, "--manifest does not read the metrics")
 
     def test_a_long_run_of_digits_does_not_stall_the_numbers_check(self):
         import time
@@ -222,6 +253,74 @@ class CheckOnATamperedCopy(unittest.TestCase):
         p = python(["-c", COMPARE_WITH_COMMITTED], cwd=self.repo)
         self.assertEqual(p.returncode, 1, p.stdout + p.stderr)
         self.assertIn("differs: metrics.json", p.stdout)
+
+
+class MarkedNumbersKeepTheirSign(unittest.TestCase):
+    """A marked number is compared with its sign: a hyphen-minus or U+2212 (MINUS SIGN) in front of it is part of it. Only the
+    hyphen was, so a text with a typographic minus passed with the wrong sign (the digits alone were compared), and a correct
+    negative number written that way failed. In-process, on a temporary tree and metrics file (check_numbers reads ROOT and METRICS)."""
+
+    MINUS = "\u2212"
+
+    def problems(self, text: str, metrics: dict) -> list[str]:
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            (root / "docs").mkdir()
+            (root / "data").mkdir()
+            for name in ("README.md", "PREREG-ADDENDUM.md"):
+                (root / name).write_text("", encoding="utf-8", newline="\n")
+            (root / "THESIS.md").write_text(text + "\n", encoding="utf-8", newline="\n")
+            (root / "data" / "metrics.json").write_text(json.dumps(metrics), encoding="utf-8", newline="\n")
+            with mock.patch.object(CHECK, "ROOT", root), mock.patch.object(CHECK, "METRICS", root / "data" / "metrics.json"):
+                return CHECK.check_numbers()
+
+    def test_the_right_sign_passes_with_either_minus(self):
+        for sign in ("-", self.MINUS):
+            with self.subTest(sign=ascii(sign)):
+                self.assertEqual(self.problems(f"net {sign}6.56<!--n:neg--> and 6.56<!--n:pos-->", {"neg": -6.56, "pos": 6.56}), [])
+                self.assertEqual(self.problems(f"{sign}1,234.5<!--n:neg-->", {"neg": -1234.5}), [])
+                self.assertEqual(self.problems(f"{sign}7 <!--n:neg-->", {"neg": -7}), [])
+
+    def test_the_wrong_sign_fails_with_either_minus(self):
+        for sign in ("-", self.MINUS):
+            with self.subTest(sign=ascii(sign), case="a minus before a positive metric"):
+                got = self.problems(f"{sign}6.56<!--n:pos-->", {"pos": 6.56})
+                self.assertEqual(len(got), 1, got)
+                self.assertRegex(got[0], r"^THESIS\.md: pos says .*6\.56, metrics\.json says 6\.56$")
+        with self.subTest(case="no minus before a negative metric"):
+            got = self.problems("6.56<!--n:neg-->", {"neg": -6.56})
+            self.assertEqual(len(got), 1, got)
+            self.assertIn("neg says 6.56, metrics.json says -6.56", got[0])
+
+    def test_two_signs_or_a_sign_after_the_number_is_reported_not_a_traceback(self):
+        for text in (self.MINUS + "-6.56<!--n:neg-->", "--6.56<!--n:neg-->", "6.56" + self.MINUS + "<!--n:neg-->"):
+            with self.subTest(text=ascii(text)):
+                self.assertEqual(len(self.problems(text, {"neg": -6.56})), 1)
+
+    def test_a_long_run_of_minus_signs_does_not_stall_the_marker_search(self):
+        """The lookbehind keeps the search linear in a run of signs and digits; the same must hold for U+2212. A child process
+        with a time limit, so that a regression fails here instead of hanging the suite."""
+        child = (
+            "import sys, time\n"
+            "sys.path.insert(0, '.')\n"
+            "from pipeline.check import LOOSE, MARK, TAG\n"
+            "minus = chr(0x2212)\n"
+            "cases = {'typographic minus': minus * 100_000 + ' ' + '1' * 100_000, 'hyphen': '-' * 100_000 + '1' * 100_000,\n"
+            "         'mixed signs': (minus + '-') * 50_000, 'digits and commas': '1,' * 100_000, 'dots': '.' * 200_000}\n"
+            "for name, text in cases.items():\n"
+            "    t0 = time.monotonic()\n"
+            "    MARK.findall(text); TAG.findall(text); LOOSE.findall(text)\n"
+            "    print(name + ':', time.monotonic() - t0)\n")
+        try:
+            p = subprocess.run([sys.executable, "-I", "-c", child], cwd=ROOT, capture_output=True, text=True, encoding="utf-8",
+                               timeout=30, check=False)
+        except subprocess.TimeoutExpired:
+            self.fail("the marker search took more than 30 s on a few hundred thousand characters: it is no longer linear")
+        self.assertEqual(p.returncode, 0, p.stderr)
+        times = {line.rsplit(": ", 1)[0]: float(line.rsplit(": ", 1)[1]) for line in p.stdout.splitlines()}
+        self.assertEqual(len(times), 5, p.stdout)
+        for name, seconds in times.items():
+            self.assertLess(seconds, 10.0, f"{name}: {seconds:.1f} s")
 
 
 # Recompute in memory and compare, byte for byte, with the committed files (`compute` itself would overwrite them).

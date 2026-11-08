@@ -19,10 +19,12 @@ import sys
 
 from .common import METRICS, RAW, ROOT, load_manifest, verify_manifest
 
-# The lookbehind makes the number start at the beginning of a run of digits, hyphens, dots and commas: without it a long run
-# with no marker after it is scanned from every position (quadratic). `LOOSE` counts anything that looks like a marker, so a
-# mistyped one (<!--n:h1a-ratio-->, <!-- n:key-->) is reported instead of silently skipped; the descriptive `<!--n:…-->` is exempt.
-MARK = re.compile(r"(?<![-\d.,])([-\d.,]+)\s*<!--n:([a-z0-9_]+)-->")
+# The lookbehind makes the number start at the beginning of a run of digits, minus signs, dots and commas: without it a long run
+# with no marker after it is scanned from every position (quadratic). A minus sign is the hyphen-minus or U+2212 (MINUS SIGN),
+# which a typographic edit puts there: a number written with one is read with its sign, and the sign is compared too.
+# `LOOSE` counts anything that looks like a marker, so a mistyped one (<!--n:h1a-ratio-->, <!-- n:key-->) is reported instead of
+# silently skipped; the descriptive `<!--n:…-->` is exempt.
+MARK = re.compile(r"(?<![-\u2212\d.,])([-\u2212\d.,]+)\s*<!--n:([a-z0-9_]+)-->")
 TAG = re.compile(r"<!--n:[a-z0-9_]+-->")
 LOOSE = re.compile(r"<!--\s*[nN]\s*:(?!…)")
 
@@ -62,7 +64,7 @@ def check_numbers() -> list[str]:
                 problems.append(f"{name}: unknown metric {key}")
                 continue
             try:
-                same = float(value.replace(",", "")) == float(m[key])
+                same = float(value.replace(",", "").replace("\u2212", "-")) == float(m[key])
             except (ValueError, TypeError):
                 problems.append(f"{name}: {key} follows {value!r} or holds {m[key]!r}, which cannot be compared as numbers")
                 continue

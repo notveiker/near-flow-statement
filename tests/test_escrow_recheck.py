@@ -11,6 +11,7 @@ Run: python3 -m unittest discover -s tests
 """
 from __future__ import annotations
 
+import ast
 import copy
 import csv
 import json
@@ -35,6 +36,29 @@ def load():
     with open(RAW / "deliveries.csv", newline="", encoding="utf-8") as f:
         table = list(csv.DictReader(f))
     return verify, table
+
+
+def tool_errors(func: str) -> list[str]:
+    """The fixed start of every error string that pipeline/fetch_escrow.py `func` can write, read from its source (up to the
+    first {placeholder} of an f-string), so that the classification below is tested against what the tool really writes."""
+    tree = ast.parse((ROOT / "pipeline" / "fetch_escrow.py").read_text(encoding="utf-8"))
+    fn = next(n for n in ast.walk(tree) if isinstance(n, ast.FunctionDef) and n.name == func)
+    found = []
+    for n in ast.walk(fn):
+        if (isinstance(n, ast.Call) and isinstance(n.func, ast.Attribute) and n.func.attr == "append"
+                and isinstance(n.func.value, ast.Name) and n.func.value.id == "errs"):
+            found.append(n.args[0])
+        elif isinstance(n, ast.Return) and isinstance(n.value, ast.List):
+            found.extend(n.value.elts)
+    heads = []
+    for c in sorted(found, key=lambda c: (c.lineno, c.col_offset)):
+        if isinstance(c, ast.Constant) and isinstance(c.value, str):
+            heads.append(c.value)
+        elif isinstance(c, ast.JoinedStr) and c.values and isinstance(c.values[0], ast.Constant):
+            heads.append(c.values[0].value)
+        else:
+            raise AssertionError(f"{func}: an error string this test cannot read at line {c.lineno}")
+    return heads
 
 
 class Recount(unittest.TestCase):
@@ -130,7 +154,22 @@ class RefusesAnEditedFile(unittest.TestCase):
 
 class ClassifiesTheErrors(unittest.TestCase):
     """The committed file has no row with a funding-side error and none with a second error beside a height mismatch, so a
-    counter that confused them would pass on the real data. These tests edit one row of a copy and recount."""
+    counter that confused them would pass on the real data. These tests edit one row of a copy and recount.
+
+    The row they edit has a funding hop inside the window: a row without one is not in `hops`, so no classification of its
+    error strings could change a funding count. Every error string is taken from the source of pipeline/fetch_escrow.py,
+    so a message the tool gains is classified by a test and not assumed."""
+
+    @classmethod
+    def setUpClass(cls):
+        verify, table = load()
+        window_hops = {x["delivery_tx_hash"] for x in table if LO <= x["day"] <= HI and x["path"] in ("escrow_unshield", "other")
+                       and x["single_use_account"] and x["funding_tx_hash"]}
+        cls.target = next((r["delivery_tx_hash"] for r in verify["rows"] if r["ok"] and r["delivery_tx_hash"] in window_hops), None)
+        if cls.target is None:
+            raise AssertionError("no row of verify_all.json passed and has a funding hop in the window; the tests below need one")
+        cls.base: dict = {}
+        compute.escrow_recheck(cls.base, LO, HI)
 
     @staticmethod
     def metrics_after(edit):
@@ -143,20 +182,37 @@ class ClassifiesTheErrors(unittest.TestCase):
             compute.escrow_recheck(m, LO, HI)
         return m
 
-    def test_a_funding_side_error_is_not_a_height_failure_and_costs_a_funding_hop(self):
-        verify, table = load()
-        hashes = {x["delivery_tx_hash"] for x in table if LO <= x["day"] <= HI and x["path"] in ("escrow_unshield", "other")
-                  and x["single_use_account"] and x["funding_tx_hash"]}
-        target = next(r["delivery_tx_hash"] for r in verify["rows"] if r["ok"] and r["delivery_tx_hash"] in hashes)
-
+    def with_errors(self, errors, funding_hop_lost):
+        """The metrics after the target row gets `errors`. The tool's own summary is kept in step with the classification the
+        test expects: one funding hop fewer when `funding_hop_lost`, else the same. A different classification then trips the
+        summary check in compute.escrow_recheck, which is reported here as what it means."""
         def edit(v):
-            row = next(r for r in v["rows"] if r["delivery_tx_hash"] == target)
-            row["errors"], row["ok"] = ["funder mismatch: chain [] csv x"], False
+            row = next(r for r in v["rows"] if r["delivery_tx_hash"] == self.target)
+            row["errors"], row["ok"] = list(errors), False
             v["summary"]["rows_ok"] -= 1
-            v["summary"]["funding_hops_ok"] -= 1
-        m = self.metrics_after(edit)
-        base = {}
-        compute.escrow_recheck(base, LO, HI)
+            if funding_hop_lost:
+                v["summary"]["funding_hops_ok"] -= 1
+        try:
+            return self.metrics_after(edit)
+        except ValueError as exc:
+            self.fail(f"{errors} was classified the other way (compute.escrow_recheck: {exc})")
+
+    def test_the_edited_row_is_a_funding_hop_in_the_window(self):
+        verify, table = load()
+        row = next(x for x in table if x["delivery_tx_hash"] == self.target)
+        self.assertTrue(row["funding_tx_hash"], "a row without a funding hop cannot show how its errors are classified")
+        self.assertTrue(LO <= row["day"] <= HI and row["single_use_account"])
+
+    def test_the_tools_delivery_messages_are_the_delivery_side_prefixes_and_the_funding_ones_are_not(self):
+        delivery, funding = tool_errors("check_delivery"), tool_errors("check_funding")
+        self.assertEqual(len(delivery), len(DELIVERY_SIDE))
+        self.assertEqual([next(p for p in DELIVERY_SIDE if h.startswith(p)) for h in delivery], list(DELIVERY_SIDE))
+        self.assertTrue(funding)
+        self.assertFalse([h for h in funding if h.startswith(DELIVERY_SIDE)])
+
+    def test_a_funding_side_error_is_not_a_height_failure_and_costs_a_funding_hop(self):
+        m = self.with_errors(["funder mismatch: chain [] csv x"], funding_hop_lost=True)
+        base = self.base
         self.assertEqual(m["escrow_recheck_failed_n"], base["escrow_recheck_failed_n"] + 1)
         self.assertEqual(m["escrow_recheck_failed_height_only_n"], base["escrow_recheck_failed_height_only_n"],
                          "a funder mismatch is not a block-height failure")
@@ -164,22 +220,46 @@ class ClassifiesTheErrors(unittest.TestCase):
         self.assertEqual(m["escrow_recheck_window_funding_ok_n"], base["escrow_recheck_window_funding_ok_n"] - 1)
         self.assertEqual(m["escrow_recheck_window_rows_ok_n"], base["escrow_recheck_window_rows_ok_n"] - 1)
 
-    def test_a_height_mismatch_with_another_delivery_error_is_not_height_only_and_leaves_the_funding_hop_alone(self):
-        verify, _ = load()
-        target = next(r["delivery_tx_hash"] for r in verify["rows"] if r["ok"])
+    def test_every_funding_side_message_the_tool_writes_costs_a_funding_hop(self):
+        base = self.base
+        for head in tool_errors("check_funding"):
+            with self.subTest(head):
+                m = self.with_errors([head.rstrip() + " [edited]"], funding_hop_lost=True)
+                self.assertEqual(m["escrow_recheck_failed_n"], base["escrow_recheck_failed_n"] + 1)
+                self.assertEqual(m["escrow_recheck_failed_height_only_n"], base["escrow_recheck_failed_height_only_n"])
+                self.assertEqual(m["escrow_recheck_funding_hops_ok_n"], base["escrow_recheck_funding_hops_ok_n"] - 1)
+                self.assertEqual(m["escrow_recheck_window_funding_ok_n"], base["escrow_recheck_window_funding_ok_n"] - 1)
 
-        def edit(v):
-            row = next(r for r in v["rows"] if r["delivery_tx_hash"] == target)
-            row["errors"] = ["block mismatch: csv 1 chain [2]", "no native_withdraw event to wallet with amount_yocto"]
-            row["ok"] = False
-            v["summary"]["rows_ok"] -= 1
-        m = self.metrics_after(edit)
-        base = {}
-        compute.escrow_recheck(base, LO, HI)
+    def test_every_delivery_side_message_the_tool_writes_leaves_the_funding_hop_alone(self):
+        """One sub-test per delivery-side prefix of compute.escrow_recheck: dropping any one of them fails its own."""
+        base = self.base
+        for head in tool_errors("check_delivery"):
+            with self.subTest(head):
+                m = self.with_errors([head.rstrip() + " [edited]"], funding_hop_lost=False)
+                height_only = 1 if head.startswith("block mismatch") else 0
+                self.assertEqual(m["escrow_recheck_failed_n"], base["escrow_recheck_failed_n"] + 1)
+                self.assertEqual(m["escrow_recheck_failed_height_only_n"], base["escrow_recheck_failed_height_only_n"] + height_only)
+                self.assertEqual(m["escrow_recheck_funding_hops_ok_n"], base["escrow_recheck_funding_hops_ok_n"],
+                                 "a delivery-side error is not a funding error")
+                self.assertEqual(m["escrow_recheck_window_funding_ok_n"], base["escrow_recheck_window_funding_ok_n"])
+                self.assertEqual(m["escrow_recheck_window_rows_ok_n"], base["escrow_recheck_window_rows_ok_n"] - 1)
+
+    def test_a_height_mismatch_with_another_delivery_error_is_not_height_only_and_leaves_the_funding_hop_alone(self):
+        m = self.with_errors(["block mismatch: csv 1 chain [2]", "no native_withdraw event to wallet with amount_yocto"],
+                             funding_hop_lost=False)
+        base = self.base
         self.assertEqual(m["escrow_recheck_failed_n"], base["escrow_recheck_failed_n"] + 1)
         self.assertEqual(m["escrow_recheck_failed_height_only_n"], base["escrow_recheck_failed_height_only_n"])
         self.assertEqual(m["escrow_recheck_funding_hops_ok_n"], base["escrow_recheck_funding_hops_ok_n"],
                          "delivery-side errors are not funding errors")
+        self.assertEqual(m["escrow_recheck_window_funding_ok_n"], base["escrow_recheck_window_funding_ok_n"])
+
+    def test_a_delivery_error_beside_a_funding_error_still_costs_the_funding_hop(self):
+        """Both kinds on one row: the funding one decides the funding count, the delivery one does not hide it."""
+        m = self.with_errors(["block mismatch: csv 1 chain [2]", "funder mismatch: chain [] csv x"], funding_hop_lost=True)
+        base = self.base
+        self.assertEqual(m["escrow_recheck_funding_hops_ok_n"], base["escrow_recheck_funding_hops_ok_n"] - 1)
+        self.assertEqual(m["escrow_recheck_failed_height_only_n"], base["escrow_recheck_failed_height_only_n"])
 
 
 if __name__ == "__main__":

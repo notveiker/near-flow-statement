@@ -238,13 +238,17 @@ class FromSnapshot(unittest.TestCase):
 
 
 class OnlyARealScoreIsRendered(unittest.TestCase):
-    """The dashboard reads data/forward/score_*/result.json and nothing else, and only with is_score true and mode score.
-    (pipeline.render.load_forward; read here, not edited.) A folder name that starts with score_ is the only way in."""
+    """The dashboard reads data/forward/score_<UTC stamp>/result.json and nothing else, and only with is_score true and mode
+    score. (pipeline.render.load_forward; read here, not edited.) The folder name has to be score_YYYYMMDDTHHMMSSZ, the one
+    pipeline.score_forward writes. Every case below that is meant to be rejected for what the FILE says uses such a name, so
+    that the content test is what rejects it: with a name the filter would reject first (score_a) the content test would be
+    pinned by nothing. Names that do not fit the pattern are in tests/test_render_guards.py."""
 
     GOOD = {"mode": "score", "is_score": True, "window": list(sf.WINDOW), "scored_at": "2026-11-14T06:00:00Z",
             "results": {"F1": {"result": sf.NOT_SCORABLE, "why": "x"}}}
+    STAMPED = "score_20261114T061500Z"      # a folder name the scorer could have written
 
-    def loaded(self, layout: dict[str, dict]):
+    def loaded(self, layout: dict[str, object]):
         with tempfile.TemporaryDirectory() as tmp:
             for rel, obj in layout.items():
                 f = Path(tmp) / rel
@@ -257,14 +261,28 @@ class OnlyARealScoreIsRendered(unittest.TestCase):
         self.assertEqual(self.loaded({"score_20261114T061500Z/result.json": self.GOOD}),
                          "data/forward/score_20261114T061500Z/result.json")
 
+    def test_a_valid_stamp_with_this_content_is_found(self):
+        """The control for the next test: the same folder name and the same content, except for the one field it changes."""
+        self.assertEqual(self.loaded({f"{self.STAMPED}/result.json": self.GOOD}), f"data/forward/{self.STAMPED}/result.json")
+
     def test_nothing_else_under_data_forward_is_rendered_as_a_score(self):
+        bad = f"{self.STAMPED}/result.json"
+        no_results = {k: v for k, v in self.GOOD.items() if k != "results"}
         for label, layout in (
                 ("dry-run folder", {"dry-run_20261108T000000Z/DRY_RUN_result_NOT_A_SCORE.json": self.GOOD}),
-                ("dry-run file inside a score folder", {"score_20261114T061500Z/DRY_RUN_result_NOT_A_SCORE.json": self.GOOD}),
+                ("dry-run file inside a score folder", {f"{self.STAMPED}/DRY_RUN_result_NOT_A_SCORE.json": self.GOOD}),
                 ("a dry-run result.json", {"dry-run_x/result.json": self.GOOD}),
-                ("is_score false", {"score_a/result.json": {**self.GOOD, "is_score": False}}),
-                ("mode DRY-RUN", {"score_a/result.json": {**self.GOOD, "mode": "DRY-RUN"}}),
-                ("a deeper folder", {"score_a/sub/result.json": self.GOOD}),
+                ("is_score false", {bad: {**self.GOOD, "is_score": False}}),
+                ("is_score the text true", {bad: {**self.GOOD, "is_score": "true"}}),
+                ("is_score the number 1", {bad: {**self.GOOD, "is_score": 1}}),
+                ("is_score missing", {bad: {k: v for k, v in self.GOOD.items() if k != "is_score"}}),
+                ("mode DRY-RUN", {bad: {**self.GOOD, "mode": "DRY-RUN"}}),
+                ("mode missing", {bad: {k: v for k, v in self.GOOD.items() if k != "mode"}}),
+                ("no results", {bad: no_results}),
+                ("results that is not an object", {bad: {**self.GOOD, "results": []}}),
+                ("a JSON array", {bad: []}),
+                ("a JSON number", {bad: 7}),
+                ("a deeper folder", {f"{self.STAMPED}/sub/result.json": self.GOOD}),
                 ("another prefix", {"rescore_20261114T061500Z/result.json": self.GOOD}),
                 ("a file, not a folder", {"score_20261114T061500Z.json": self.GOOD}),
                 ("a newer folder that is not a score hides an older one", {

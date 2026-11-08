@@ -22,7 +22,9 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import traceback
 import unittest
+import urllib.parse
 from pathlib import Path
 from unittest import mock
 
@@ -566,6 +568,37 @@ class SecretScannerBlindSpotsThatWereClosed(unittest.TestCase):
         self.assertNotIn(value, shown)
         self.assertNotIn(value[:8], shown)
 
+    def test_a_file_that_is_NUL_in_its_other_bytes_too_is_not_taken_for_wide_text(self):
+        """ASCII in UTF-16 or UTF-32 is NUL in some bytes of each code unit and not in the others. A file that is NUL in the others
+        as well (a zero-filled file, a sparse binary) is no text, whatever its name says: it is reported, and not decoded into NUL
+        characters and passed with nothing found."""
+        for label, body in (("only NUL", b"\0" * 64), ("a header and NULs", b"MZ" + b"\0" * 100), ("a full block", b"\0" * 8192),
+                            ("a few bytes of text among NULs", b"\0" * 30 + b"key" + b"\0" * 30)):
+            for name in ("notes.md", "data.json", "run.sh"):
+                with self.subTest(label=label, name=name):
+                    self.assertEqual([(f.where, f.rule) for f in self.scan_files({name: body}).findings], [(name, "unscannable-file")])
+
+    def test_utf16_without_a_mark_is_text_while_nine_in_ten_of_its_letters_are_ascii(self):
+        """Without a byte-order mark the decision is the share of letters whose high byte is NUL: at 95% the key is found, at 80% the
+        file is reported. A threshold moved either way changes one of the two."""
+        ascii_part = self.assignment(fake(40, ALNUM, "share")) + "\n"
+        for kanji, rule in ((3, "credential-assignment"), (len(ascii_part) // 4, "unscannable-file")):
+            text = ascii_part + "\u5bc6" * kanji
+            share = len(ascii_part) / len(text)
+            with self.subTest(share=round(share, 2)):
+                got = self.scan_files({"notes.md": text.encode("utf-16-le")}).findings
+                self.assertEqual([f.rule for f in got], [rule])
+
+    def test_utf16_without_a_mark_may_hold_a_few_NUL_characters_but_not_a_quarter_of_them(self):
+        """The bytes that are not meant to be NUL (the low byte of each letter) may be NUL for one letter in ten at most: a text with
+        a few stray NUL characters is read, a file that is a quarter NUL is not."""
+        line = self.assignment(fake(40, ALNUM, "nuls")) + "\n"
+        for nuls, rule in ((3, "credential-assignment"), (len(line) // 3, "unscannable-file")):
+            text = "\0" * nuls + line
+            with self.subTest(share=round(nuls / len(text), 2)):
+                got = self.scan_files({"notes.md": text.encode("utf-16-le")}).findings
+                self.assertEqual([f.rule for f in got], [rule])
+
     def test_binary_files_without_a_text_name_are_still_skipped_quietly(self):
         res = self.scan_files({"blob.bin": b"\0" + fake(40, ALNUM, "bin").encode(), "image.png": b"\x89PNG\r\n\x1a\n\0\0\0",
                                "dump.gz": b"\x1f\x8b\0\0", "data.parquet": b"PAR1\0\0"})
@@ -754,7 +787,11 @@ class FetchersRecordNoCredentials(unittest.TestCase):
                           ("https://rpc.example#KEY123", "https://rpc.example"),
                           ("https://tok3n@rpc.example/", "https://rpc.example"),
                           ("http://RPC.Example:8545/path?x=1", "http://rpc.example:8545"),
-                          ("https://[::1]:3030/KEY123", "https://[::1]:3030")):
+                          ("https://[::1]:3030/KEY123", "https://[::1]:3030"),
+                          ("https://[::1]/", "https://[::1]"),
+                          ("https://[2001:DB8::1]/x", "https://[2001:db8::1]"),
+                          ("https://[2001:DB8::1]:8545/x?k=1", "https://[2001:db8::1]:8545"),
+                          ("https://[::ffff:192.0.2.1]:8080/", "https://[::ffff:192.0.2.1]:8080")):
             with self.subTest(url=url):
                 self.assertEqual(C.endpoint_origin(url), want)
 
@@ -764,6 +801,37 @@ class FetchersRecordNoCredentials(unittest.TestCase):
             with self.subTest(bad=bad), self.assertRaises(ValueError) as caught:
                 C.endpoint_origin(bad)
             self.assertNotIn("KEY123", str(caught.exception))
+
+    def test_endpoint_origin_does_not_echo_a_value_in_any_message_or_traceback(self):
+        """The cases the list above misses: a host of hex digits and a percent-encoded slash (the old IPv6 alternative took it for
+        an address), a value urlsplit itself rejects with a message that quotes it, and a zone id. The text is in neither the
+        message nor the traceback, which would show the error urlsplit raised if it were not suppressed."""
+        for bad, secret in (("https://a%2fb/x", "a%2fb"),
+                            ("https://abc%2f0123456789abcdef/x", "0123456789abcdef"),
+                            ("https://0123456789abcdef%2f/x", "0123456789abcdef"),
+                            ("https://KEY123SECRET\uff20rpc.example/", "KEY123SECRET"),
+                            ("https://[KEY123SECRET]/", "KEY123SECRET"),
+                            ("https://[abc:0123456789abcdef]/x", "0123456789abcdef"),
+                            ("https://[::1%25abc123def456]/", "abc123def456"),
+                            ("https://[fe80::1%25eth0]/", "eth0"),
+                            ("https://[1.2.3.4]/", "1.2.3.4"),
+                            ("https://rpc.example:KEY123/x", "KEY123")):
+            with self.subTest(bad=bad), self.assertRaises(ValueError) as caught:
+                C.endpoint_origin(bad)
+            self.assertNotIn(secret, str(caught.exception))
+            self.assertNotIn(secret, repr(caught.exception))
+            self.assertNotIn(secret, "".join(traceback.format_exception(caught.exception)))
+
+    def test_a_bracketed_host_must_be_an_address_even_where_urlsplit_does_not_check_it(self):
+        """An older Python's urlsplit takes anything between brackets; hex digits and colons are not yet an address."""
+        for host in ("[abc:0123456789abcdef]", "[1:2]", "[:::]", "[0123:4567:89ab:cdef:0123:4567:89ab:cdef:0123]"):
+            hostile = urllib.parse.SplitResult("https", host, "/x", "", "")
+            with self.subTest(host=host), mock.patch.object(urllib.parse, "urlsplit", lambda u, h=hostile: h):
+                with self.assertRaises(ValueError) as caught:
+                    C.endpoint_origin("https://ignored.example/")
+            self.assertNotIn(host.strip("[]"), "".join(traceback.format_exception(caught.exception)))
+        with mock.patch.object(urllib.parse, "urlsplit", lambda u: urllib.parse.SplitResult("https", "[2001:db8::1]:8545", "/x", "", "")):
+            self.assertEqual(C.endpoint_origin("https://ignored.example/"), "https://[2001:db8::1]:8545")
 
     def test_fetch_issuance_records_only_the_origin(self):
         with mock.patch.object(FI, "RPC", self.KEYED):
@@ -816,7 +884,21 @@ class FetchersRecordNoCredentials(unittest.TestCase):
                        "https://tok3n@rpc.example/x", "https://user:pw@rpc.example/x",
                        "https://rpc.example/v2?api-key=abc", "https://rpc.example/?access_token=abc",
                        "see https://rpc.example/x?x_cg_demo_api_key=abc", "https://rpc.example/?Authorization=abc",
-                       "https://rpc.example/?client_secret=abc"):
+                       "https://rpc.example/?client_secret=abc",
+                       # a bare name of the second alternative, one test each: dropping key, sig, signature, auth or pwd from it
+                       # lets exactly its own shape through
+                       "https://rpc.example/?key=abc", "https://rpc.example/?sig=abc", "https://rpc.example/?signature=abc",
+                       "https://rpc.example/?auth=abc", "https://rpc.example/?pwd=abc",
+                       # the same names behind a prefix and after each of & ; #
+                       "https://rpc.example/?x_key=abc", "https://rpc.example/?my.sig=abc", "https://rpc.example/?app-auth=abc",
+                       "https://rpc.example/?db-pwd=abc", "https://rpc.example/?a&key=abc", "https://rpc.example/?a;sig=abc",
+                       "https://rpc.example/#auth=abc",
+                       # user:password@ and a key-like parameter that are only there once the text is percent-decoded
+                       "https%3A%2F%2Fuser%3Apw%40host.example%2Fx", "https://x.example/?u=https%3A%2F%2Fuser%3Apw%40host.example",
+                       "https%3A%2F%2Ftok3n%40host.example%2Fx", "https%3A%2F%2Fhost.example%2Fx%3Fapi_key%3Dabc",
+                       # user:password@ found in the raw text, whose percent-decoded form has a / ? or # before the @
+                       "https://user%2Fname:pw@rpc.example/", "https://us%3Fer:pw@rpc.example/", "https://us%23er:pw@rpc.example/",
+                       "https://x.example/?next=https%3A%2F%2Fhost.example%2F%3Fkey%3Dabc"):
             with self.subTest(source=source), tempfile.TemporaryDirectory() as tmp:
                 data = Path(tmp) / "data"
                 with mock.patch.object(C, "DATA", data), mock.patch.object(C, "RAW", data / "raw"), \
@@ -840,12 +922,58 @@ class FetchersRecordNoCredentials(unittest.TestCase):
                 self.assertNotIn("abc", str(caught.exception))
                 self.assertFalse((data / "MANIFEST.json").exists())
 
+    def test_record_itself_refuses_a_source_that_carries_a_credential(self):
+        """write_raw checks the source before it writes anything, but record() is also called on its own by the fetchers that
+        write their file themselves: its own check is the one under test here, with write_raw out of the picture."""
+        for source in ("https://u:p@h/", "https://rpc.example/?api_key=abc", "https://rpc.example/?key=abc",
+                       "https%3A%2F%2Fu%3Ap%40h%2F"):
+            with self.subTest(source=source), tempfile.TemporaryDirectory() as tmp:
+                data = Path(tmp) / "data"
+                (data / "raw" / "x").mkdir(parents=True)
+                path = data / "raw" / "x" / "y.json"
+                path.write_bytes(b'{"a":1}\n')
+                with mock.patch.object(C, "DATA", data), mock.patch.object(C, "RAW", data / "raw"), \
+                        mock.patch.object(C, "MANIFEST", data / "MANIFEST.json"):
+                    with self.assertRaises(ValueError) as caught:
+                        C.record(path, source)
+                    self.assertNotIn("abc", str(caught.exception))
+                    self.assertNotIn("u:p", str(caught.exception))
+                    self.assertFalse((data / "MANIFEST.json").exists(), "nothing is recorded when the source is refused")
+
+    def test_refuse_credentials_takes_time_linear_in_the_text(self):
+        """A run of ? (or & ; #) used to make the key-parameter search quadratic: 8000 of them took seconds and 100000 would take
+        hours. It runs in a child process that is cut off, so a regression fails here in seconds instead of hanging the suite."""
+        child = (
+            "import sys, time\n"
+            "sys.path.insert(0, '.')\n"
+            "from pipeline.common import refuse_credentials\n"
+            "cases = {'question marks': '?' * 100_000, 'pairs': '?a' * 100_000, 'ampersands': '&' * 100_000, 'words': '?abc_' * 40_000,\n"
+            "         'encoded': '%3F' * 50_000, 'semicolons and hashes': ';#' * 50_000, 'separators': '&_' * 100_000}\n"
+            "for name, text in cases.items():\n"
+            "    t0 = time.monotonic()\n"
+            "    refuse_credentials(text)\n"
+            "    print(name, time.monotonic() - t0)\n")
+        try:
+            p = subprocess.run([sys.executable, "-I", "-c", child], cwd=ROOT, capture_output=True, text=True, encoding="utf-8",
+                               timeout=30, check=False)
+        except subprocess.TimeoutExpired:
+            self.fail("refuse_credentials took more than 30 s on a few hundred thousand characters: it is no longer linear")
+        self.assertEqual(p.returncode, 0, p.stderr)
+        times = {line.rsplit(" ", 1)[0]: float(line.rsplit(" ", 1)[1]) for line in p.stdout.splitlines()}
+        self.assertEqual(len(times), 7, p.stdout)
+        for name, seconds in times.items():
+            self.assertLess(seconds, 10.0, f"{name}: {seconds:.1f} s (a linear search takes well under a second)")
+
     def test_record_and_write_raw_still_accept_the_sources_the_fetchers_use(self):
         for source in ("https://api.llama.fi/summary/dexs/near-intents?dataType=dailyVolume",
                        "https://api.coingecko.com/api/v3/coins/<coin>/market_chart?vs_currency=usd&days=90&interval=daily",
                        "https://explorer.near-intents.org/api/v0/transactions?statuses=SUCCESS (per-day cursor pull)",
                        "bigquery: sql/staking_flows_daily.sql", "rpc view_account at block 223230811",
-                       "https://design.example/?author=1&keyword=2&monkey=3"):
+                       "https://design.example/?author=1&keyword=2&monkey=3",
+                       # percent-encoded text that is no credential, and a note that is mostly question marks
+                       "https://x.example/?next=https%3A%2F%2Fexample.org%2Fa%40b", "https://x.example/mailto%3Auser%40example.org",
+                       "https://x.example/?q=a%2Fb%3Fc%3Dd", "https://x.example/?p=%3F%3F%3F", "what?" * 40 + " (a note)",
+                       "https://x.example/" + "?" * 200):
             with self.subTest(source=source), tempfile.TemporaryDirectory() as tmp:
                 data = Path(tmp) / "data"
                 with mock.patch.object(C, "DATA", data), mock.patch.object(C, "RAW", data / "raw"), \
@@ -879,6 +1007,31 @@ class FetchersRecordNoCredentials(unittest.TestCase):
                 if isinstance(value, str):
                     with self.subTest(file=rel, field=key):
                         C.refuse_credentials(value, f"{key} of {rel}")
+
+    def test_no_url_in_the_code_carries_a_credential(self):
+        """Every string in pipeline/ and scripts/ that holds ://, apart from the docstrings that show a keyed URL on purpose, is
+        accepted by the guard: it has no false positive on the endpoints the code uses, and no key is written into the code."""
+        import ast
+        checked = 0
+        for path in sorted((ROOT / "pipeline").glob("*.py")) + sorted((ROOT / "scripts").glob("*.py")):
+            tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
+            docstrings = {id(n.body[0].value) for n in ast.walk(tree)
+                          if isinstance(n, (ast.Module, ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)) and n.body
+                          and isinstance(n.body[0], ast.Expr) and isinstance(n.body[0].value, ast.Constant)}
+            for node in ast.walk(tree):
+                if id(node) in docstrings:
+                    continue
+                if isinstance(node, ast.Constant) and isinstance(node.value, str):
+                    text = node.value
+                elif isinstance(node, ast.JoinedStr):
+                    text = "".join(v.value if isinstance(v, ast.Constant) else "{}" for v in node.values)
+                else:
+                    continue
+                if "://" in text:
+                    checked += 1
+                    with self.subTest(file=path.name, line=node.lineno):
+                        C.refuse_credentials(text, f"{path.name}:{node.lineno}")
+        self.assertGreater(checked, 25, "the walk found almost no URLs, so it proved nothing")
 
     def test_no_text_in_any_committed_json_file_under_data_carries_a_credential_bearing_url(self):
         def walk(obj, where):
