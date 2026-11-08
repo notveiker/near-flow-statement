@@ -250,6 +250,27 @@ def l1_usage(m: dict, nb: dict, end: str) -> list[dict]:
             and val(k, "active_accounts") is not None]
 
 
+def bb_reconcile(m: dict) -> None:
+    """The buyback wallet's balance growth against the deliveries from intents.near that we trace (exploratory).
+
+    PREREG defines H1c's identified buying as the wallet's balance increase between the H1a window's endpoint
+    blocks (same blocks as pipeline/h1b.py), so H1c uses all of it. The deliveries we trace (data/raw/escrow/
+    deliveries.csv) explain only part of it; transfers from other accounts are not in that file. Reported, not
+    adjusted: the H1c verdict is `inconclusive` whichever numerator is used (coverage is below 50%)."""
+    import csv
+    from fractions import Fraction
+    bal = read_raw("rpc/buyback_balance_endpoints.json")["blocks"]
+    lo, hi = "210238033", "223088015"
+    growth = Fraction(int(bal[hi]["amount"]) - int(bal[lo]["amount"]), YOCTO)
+    with open(RAW / "escrow" / "deliveries.csv", newline="", encoding="utf-8") as f:
+        got = Fraction(sum(int(x["amount_yocto"]) for x in csv.DictReader(f)
+                           if x["wallet"] == "buybacks.multisignature.near"
+                           and "2026-08-07" <= x["day"] <= "2026-11-04"), YOCTO)
+    m["bb_deliveries_90d_m"] = r(float(got) / 1e6, 3)
+    m["bb_growth_not_delivered_m"] = r(float(growth - got) / 1e6, 3)
+    m["bb_growth_not_delivered_pct"] = r(float((growth - got) / growth) * 100, 1)
+
+
 def take_over_time(m: dict, rev: dict, vol: dict, asof: str) -> None:
     """1Click fee take in three 30-day blocks ending asof (Explorer days must cover all 90)."""
     days = {x["date"]: x for x in read_raw("explorer/daily.json")["days"]}
@@ -642,6 +663,9 @@ def build() -> tuple[dict, dict]:
     if (RAW / "bq" / "h1b_a_native_flows.json").exists():
         from .h1b import h1b
         h1b(m)
+
+    if (RAW / "escrow" / "deliveries.csv").exists() and (RAW / "rpc" / "buyback_balance_endpoints.json").exists():
+        bb_reconcile(m)
 
     # ---------- Rating rule (PREREG: G_req, G_obs, H1b verdict) ----------
     if (RAW / "rpc" / "rating_assumptions.json").exists():
