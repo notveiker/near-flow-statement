@@ -210,6 +210,46 @@ def escrow_ladder(m: dict, lo: str, hi: str) -> None:
     m["ladder_other_pct_of_issuance"] = r(float(near(lambda x: x["path"] == "other") / n_days / iss * 100), 2)
 
 
+def l1_usage(m: dict, nb: dict, end: str) -> list[dict]:
+    """Nearblocks daily usage (exploratory, descriptive; data/raw/nearblocks/charts.json).
+
+    Finds the largest one-day fall in daily transactions over the 365 days to `end`, then reports what four
+    daily counts did between two days before that day and the day itself (the contract counts fall over two
+    days), and the change since it. Nearblocks does not say what its counts include, so a step that hits
+    transactions, active contracts and new accounts but not active accounts is reported as a step, not
+    explained. Returns the daily series the dashboard charts."""
+    def val(k: str, key: str) -> float | None:
+        v = nb.get(k, {}).get(key)
+        return None if v in (None, "") else float(v)
+
+    def mean(ks: list[str], key: str) -> float:
+        xs = [val(k, key) for k in ks]
+        xs = [x for x in xs if x is not None]
+        return sum(xs) / len(xs)
+
+    days = [k for k in sorted(nb) if add_days(end, -364) <= k <= end]
+    falls = [(val(k, "txns") / val(p, "txns"), k) for p, k in zip(days, days[1:])
+             if add_days(p, 1) == k and val(p, "txns") and val(k, "txns") is not None]
+    if not falls:
+        return []
+    _, step = min(falls)
+    ref = add_days(step, -2)
+    m["l1_step_date"] = step
+    m["l1_step_ref_date"] = ref
+    for tag, key in (("tx", "txns"), ("contracts", "active_contracts"), ("new_accounts", "new_accounts"),
+                     ("active_accounts", "active_accounts")):
+        m[f"l1_step_{tag}_before_k"] = r(val(ref, key) / 1e3, 1)
+        m[f"l1_step_{tag}_after_k"] = r(val(step, key) / 1e3, 1)
+    # Like-for-like change since the step: the first 30 days from it against the latest 30 days.
+    first = [add_days(step, i) for i in range(30)]
+    last = [add_days(end, -i) for i in range(30)]
+    for tag, key in (("tx_per_day", "txns"), ("active_accounts", "active_accounts")):
+        m[f"{tag}_since_step_pct"] = r((mean(last, key) / mean(first, key) - 1) * 100, 1)
+    return [{"date": k, "tx_k": r(val(k, "txns") / 1e3, 1), "active_accounts_k": r(val(k, "active_accounts") / 1e3, 1)}
+            for k in sorted(nb) if "2025-10-01" <= k <= end and val(k, "txns") is not None
+            and val(k, "active_accounts") is not None]
+
+
 def take_over_time(m: dict, rev: dict, vol: dict, asof: str) -> None:
     """1Click fee take in three 30-day blocks ending asof (Explorer days must cover all 90)."""
     days = {x["date"]: x for x in read_raw("explorer/daily.json")["days"]}
@@ -390,6 +430,7 @@ def build() -> tuple[dict, dict]:
     m["tx_per_day_30d_yoy_pct"] = r((nb_avg("txns", nb_end, 30) / nb_avg("txns", add_days(nb_end, -365), 30) - 1) * 100, 1)
     m["active_accounts_30d_k"] = r(nb_avg("active_accounts", nb_end, 30) / 1e3, 1)
     m["active_accounts_30d_yoy_pct"] = r((nb_avg("active_accounts", nb_end, 30) / nb_avg("active_accounts", add_days(nb_end, -365), 30) - 1) * 100, 1)
+    l1_daily = l1_usage(m, nb, nb_end)
 
     # ---------- supply / issuance (net of burn, from daily total supply) ----------
     def supply_delta(end: str, days: int) -> float:
@@ -437,10 +478,12 @@ def build() -> tuple[dict, dict]:
     m["gross_staking_yield_pct"] = r(0.9 * (mi_num / mi_den) / (staked / total_supply) * 100, 2)
 
     # ---------- staking-pool flows (BigQuery account_changes; PREREG H1a) ----------
+    pool_net_out = None
     if (RAW / "bq" / "staking_flows_daily.json").exists():
         rows = read_raw("bq/staking_flows_daily.json")
         tot = lambda k: sum(float(x[k]) for x in rows)  # noqa: E731
         rewards, inflow, outflow = tot("rewards_near"), tot("inflow_near"), tot("outflow_near")
+        pool_net_out = outflow - inflow
         m["pool_flow_days"] = len(rows)
         m["pool_rewards_90d_m"] = r(rewards / 1e6, 2)
         m["pool_inflow_90d_m"] = r(inflow / 1e6, 1)
@@ -593,6 +636,8 @@ def build() -> tuple[dict, dict]:
     if (RAW / "rpc" / "rating_assumptions.json").exists():
         from .h1a import rating
         rating(m)
+        if "rating_g_req_pct" in m:  # PREREG's Avoid line: G_obs below half of G_req
+            m["rating_g_avoid_line_pct"] = r(m["rating_g_req_pct"] / 2, 1)
 
     # ---------- Large unstakers -> intents.near (exploratory; data/raw/unstakers/, sql/unstakers/) ----------
     if (RAW / "unstakers" / "results.json").exists():
@@ -601,6 +646,17 @@ def build() -> tuple[dict, dict]:
         m["unstakers_into_intents_overlap_k"] = r(u["set_into_intents_overlap_near_capped"] / 1e3, 1)
         m["unstakers_overlap_pct_of_1click_near_sold"] = r(u["set_overlap_pct_capped"], 1)
         m["oneclick_near_sold_30d_m"] = r(u["oneclick"]["near_to_x_near_at_daily_price"] / 1e6, 2)
+
+    # The 14 hub-lineage withdrawers' net unstaking over the H1a window, against the pools' net outflow
+    # (exploratory). account_set.json is a committed, hash-checked input; the extraction that produced its
+    # net_diff values is not in this repository, and its window blocks are the H1a window's.
+    if (RAW / "unstakers" / "account_set.json").exists() and pool_net_out:
+        aset = read_raw("unstakers/account_set.json")
+        a14 = [v["net_diff"] for v in aset["accounts"].values() if "A14_hub_lineage_withdrawer" in v["roles"]]
+        if len(a14) == aset["counts"]["A14"] and all(x is not None for x in a14):
+            m["unstakers_a14_n"] = len(a14)
+            m["unstakers_a14_net_outflow_m"] = r(-sum(a14) / 1e6, 2)
+            m["unstakers_a14_share_of_net_outflow_pct"] = r(-sum(a14) / pool_net_out * 100, 1)
 
     # ---------- 1Click fee take over time (three 30-day blocks; Explorer API) ----------
     if (RAW / "explorer" / "daily.json").exists():
@@ -649,6 +705,7 @@ def build() -> tuple[dict, dict]:
                                                        max(1, sum(1 for k in nb if k.startswith(mo))) / 1e3, 0)}
                        for mo in sorted({k[:7] for k in nb}) if mo >= "2024-01"],
         "supply_daily": [{"date": k, "supply_m": r(supply[k] / 1e6, 3)} for k in sorted(supply) if k >= "2024-11-01"],
+        "l1_daily": l1_daily,
     }
     return m, series
 
