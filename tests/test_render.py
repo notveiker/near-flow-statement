@@ -7,7 +7,8 @@ What they guarantee, and what they do not:
     are the ones written down below (GOLDEN_AXES), so doubling an axis maximum or swapping two bars fails;
   * every headline, scorecard tile, key figure, bar row and column is bound to the metric written down below
     (HEADLINE_REFS, TILE_REFS, KEYFIGS, ROWS, COLS), so a label that reads another metric fails;
-  * the committed page equals a fresh render, byte for byte.
+  * the committed page equals a fresh render, byte for byte;
+  * the line breaks in the page are whitespace added where a browser ignores it, and nothing else (LineBreaks).
 They do not check wording beyond the phrases in CARD_PHRASES, and they cannot say that a metric itself is right: that is
 what pipeline/compute.py, pipeline/check.py and the raw-data manifest are for.
 
@@ -22,7 +23,10 @@ import csv
 import hashlib
 import io
 import json
+import math
 import re
+import shutil
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -43,7 +47,7 @@ MANIFEST = json.loads(MANIFEST_BYTES)["files"]
 PAGE_KEY = f"{R.SITE_DIR}/{R.PAGE_NAME}"
 
 VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}
-CARD_IDS = ("h1a", "h1b", "h1c", "rating", "forward", "ladder", "escrow", "take", "partners", "paid", "peers", "revenue", "supply")
+CARD_IDS = ("h1a", "h1b", "h1c", "rating", "forward", "ladder", "escrow", "take", "partners", "paid", "peers", "revenue", "supply", "usage")
 PRE_IDS = ("h1a", "h1b", "h1c", "rating", "forward")
 
 
@@ -188,6 +192,11 @@ REF_ATTRS = VALUE_ATTRS + ("data-f", "data-p", "data-count", "data-fingerprint",
 
 def card_node(dom: Node, cid: str) -> Node:
     return next(n for n in dom.find_all("section") if n.attrs.get("id") == f"chart-{cid}")
+
+
+def section_node(dom: Node, sid: str) -> Node:
+    """A page section by id: scorecard, preregistered, exploratory, not-computed, reproduce or limits."""
+    return next(n for n in dom.find_all("section") if n.attrs.get("id") == sid)
 
 
 def refs_in(node: Node, attrs: tuple[str, ...] = VALUE_ATTRS) -> list[tuple[str, str]]:
@@ -345,7 +354,8 @@ class Determinism(unittest.TestCase):
 
     def test_size_budget(self):
         # One self-contained file: the SQL text, the data tables and every chart drawn twice (wide and phone) are the bulk.
-        self.assertLess(len(FILES[PAGE_KEY]), 450 * 1024)
+        # The usage card adds its two charts of 400 points each, drawn twice, and the 400-row table of what they plot.
+        self.assertLess(len(FILES[PAGE_KEY]), 520 * 1024)
 
     def test_committed_site_is_current(self):
         committed = ROOT / R.SITE_DIR / R.PAGE_NAME
@@ -601,6 +611,20 @@ class DataAttributes(unittest.TestCase):
     def test_prereg_is_still_the_frozen_file(self):
         self.assertEqual(hashlib.sha256((ROOT / "PREREG.md").read_bytes()).hexdigest(), R.FROZEN_PREREG_SHA256)
         self.assertIn(R.FREEZE_COMMIT, (ROOT / "PREREG-ADDENDUM.md").read_text(encoding="utf-8"))
+
+    def test_the_freeze_time_on_the_page_is_the_freeze_commit_time(self):
+        """FREEZE_UTC is written in the repository's own text (the addendum is append-only) and, in a git checkout, is the commit time."""
+        addendum = (ROOT / "PREREG-ADDENDUM.md").read_text(encoding="utf-8")
+        self.assertIn(f"commit `{R.FREEZE_COMMIT}`, {R.FREEZE_UTC} UTC", addendum)
+        if shutil.which("git") is None:
+            return
+        top = subprocess.run(["git", "-C", str(ROOT), "rev-parse", "--show-toplevel"], capture_output=True, text=True, check=False)
+        if top.returncode != 0 or Path(top.stdout.strip()).resolve() != ROOT.resolve():
+            return      # a copy without .git, or a folder inside some other repository
+        ts = subprocess.run(["git", "-C", str(ROOT), "log", "-1", "--format=%ct", f"{R.FREEZE_TAG}^{{commit}}"], capture_output=True, text=True, check=False)
+        if ts.returncode != 0 or not ts.stdout.strip():
+            return      # the tag was not fetched
+        self.assertEqual(datetime.fromtimestamp(int(ts.stdout), tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S"), R.FREEZE_UTC)
 
 
 class Cards(unittest.TestCase):
@@ -1003,11 +1027,14 @@ HEADLINE_REFS = {
     "take": [("m", "take_b1_bb_explicit_bp"), ("m", "take_b3_bb_explicit_bp"), ("m", "take_b3_partner_bp")],
     "partners": [("m", "swapkit_vol_share_pct"), ("m", "swapkit_buyback_fees_usd"), ("m", "swapkit_exit_traceable_pct"),
                  ("m", "swapkit_exit_ceiling_pct"), ("m", "swapkit_exit_ceiling_all_escrow_pct")],
-    "paid": [("m", "partners_kept_vs_near_rev_low_tight_x"), ("m", "explorer_out_of_near_usd_m"), ("m", "explorer_into_near_usd_m")],
+    "paid": [("m", "partners_kept_vs_near_rev_low_x"), ("m", "partners_kept_vs_near_rev_low_tight_x"), ("m", "explorer_out_of_near_usd_m"),
+             ("m", "explorer_into_near_usd_m")],
     "peers": [("m", "intents_share_peerset_30d_pct"), ("m", "intents_share_peerset_365d_pct")],
     "revenue": [("s", "intents_monthly.2026-10.rev_m"), ("s", "intents_monthly.2026-10.captured_bp"),
                 ("s", "intents_monthly.2026-09.captured_bp")],
     "supply": [("m", "net_supply_growth_365d_pct"), ("m", "net_issuance_near_per_day_30d_k")],
+    "usage": [("m", "active_accounts_30d_k"), ("m", "asof"), ("m", "active_accounts_30d_yoy_pct"), ("m", "tx_per_day_30d_yoy_pct"),
+              ("m", "l1_step_date")],
 }
 
 # The four pre-registered scorecard tiles: label, then the data references in the tile in the order they are printed.
@@ -1052,6 +1079,10 @@ KEYFIGS = {
     "supply": [("Net supply growth, 365 days", [("m", "net_supply_growth_365d_pct")]),
                ("Net issuance, 30-day mean", [("m", "net_issuance_near_per_day_30d_k")]),
                ("Gross issuance, 90 days", [("m", "h1a_gross_issuance_90d_m")]), ("Burn, 90 days", [("m", "h1a_burn_90d_k")])],
+    "usage": [("Transactions", [("m", "l1_step_tx_before_k"), ("m", "l1_step_tx_after_k")]),
+              ("Active contracts", [("m", "l1_step_contracts_before_k"), ("m", "l1_step_contracts_after_k")]),
+              ("New accounts", [("m", "l1_step_new_accounts_before_k"), ("m", "l1_step_new_accounts_after_k")]),
+              ("Active accounts", [("m", "l1_step_active_accounts_before_k"), ("m", "l1_step_active_accounts_after_k")])],
 }
 
 # Every chart panel, in order: (card, panel index) -> (kind, axis low, axis high). None means the axis is chosen from the
@@ -1069,6 +1100,7 @@ GOLDEN_AXES = {
     ("peers", 0): ("line", 0, 100),
     ("revenue", 0): ("vcol", 0, None), ("revenue", 1): ("line", 0, None),
     ("supply", 0): ("line", 1200, 1320), ("supply", 1): ("vcol", 0, 120),
+    ("usage", 0): ("line", 0, 5000), ("usage", 1): ("line", 0, 600),
 }
 
 # Bar rows: (card, panel index) -> [(row label, [the metric each bar's label prints, in order])].
@@ -1096,7 +1128,7 @@ ROWS = {
     ("partners", 1): [("Traceable streams: explicit fees plus quote-improvement share, pro rata", ["swapkit_exit_traceable_pct"]),
                       ("Ceiling: also all escrow NEAR unshielded to the buyback wallet", ["swapkit_exit_ceiling_pct"]),
                       ("Wider ceiling: also the escrow NEAR that reached fefundsadmin", ["swapkit_exit_ceiling_all_escrow_pct"])],
-    ("paid", 0): [("Loose lower bound: all unexplained NEAR in the buyback wallet counted as partner fees passed on",
+    ("paid", 0): [("Wide lower bound: all unexplained NEAR in the buyback wallet counted as partner fees passed on",
                    ["partners_kept_vs_near_rev_low_x"]),
                   ("Tight lower bound: only escrow unshields counted as passed on", ["partners_kept_vs_near_rev_low_tight_x"]),
                   ("Upper: all listed partner fees, none passed on", ["partners_kept_vs_near_rev_high_x"])],
@@ -1143,7 +1175,7 @@ TABLE_ROWS = {
         ('Captured revenue, last 90 days', ['rating_r90_usd_m']),
     ],
     ('ladder', 0): [
-        ('All three revenue wallets (base case for valuation)', ['ladder_all_wallets_pct_of_issuance']),
+        ('All three revenue wallets', ['ladder_all_wallets_pct_of_issuance']),
         ('Of which the buyback wallet alone', ['ladder_buyback_only_pct_of_issuance']),
         ('Traceable to two recurring public fee collectors', ['ladder_public_collectors_pct_of_issuance']),
         ('Released from the Confidential Intents escrow', ['ladder_escrow_unshields_pct_of_issuance']),
@@ -1181,7 +1213,7 @@ TABLE_ROWS = {
     ('paid', 0): [
         ('Partner fees listed on 1Click swaps', ['explorer_partner_fees_all_usd_k']),
         ("NEAR's captured revenue, three revenue wallets", ['revwallets_usd_k']),
-        ("Partners kept ÷ NEAR's revenue, loose lower bound", ['partners_kept_vs_near_rev_low_x']),
+        ("Partners kept ÷ NEAR's revenue, wide lower bound", ['partners_kept_vs_near_rev_low_x']),
         ("Partners kept ÷ NEAR's revenue, tight lower bound", ['partners_kept_vs_near_rev_low_tight_x']),
         ("Partners kept ÷ NEAR's revenue, upper", ['partners_kept_vs_near_rev_high_x']),
         ('1Click swaps into NEAR', ['explorer_into_near_usd_m']),
@@ -1193,6 +1225,17 @@ TABLE_ROWS = {
         ('THORChain', ['peers.1.vol_30d_b', 'peers.1.vol_365d_b', 'peers.1.share_30d_pct']),
         ('Chainflip', ['peers.2.vol_30d_b', 'peers.2.vol_365d_b', 'peers.2.share_30d_pct']),
         ('Maya', ['peers.3.vol_30d_b', 'peers.3.vol_365d_b', 'peers.3.share_30d_pct']),
+    ],
+    # the change column is computed on the page from the two values beside it (a data-d span), and recomputed from the raw file in Usage
+    ('usage', 0): [
+        ('Transactions', ['l1_step_tx_before_k', 'l1_step_tx_after_k', '(l1_step_tx_after_k/l1_step_tx_before_k-1)*100']),
+        ('Active contracts', ['l1_step_contracts_before_k', 'l1_step_contracts_after_k', '(l1_step_contracts_after_k/l1_step_contracts_before_k-1)*100']),
+        ('New accounts', ['l1_step_new_accounts_before_k', 'l1_step_new_accounts_after_k', '(l1_step_new_accounts_after_k/l1_step_new_accounts_before_k-1)*100']),
+        ('Active accounts', ['l1_step_active_accounts_before_k', 'l1_step_active_accounts_after_k', '(l1_step_active_accounts_after_k/l1_step_active_accounts_before_k-1)*100']),
+    ],
+    ('usage', 1): [
+        ('Transactions', ['tx_per_day_30d_k', 'tx_per_day_30d_yoy_pct', 'tx_per_day_since_step_pct']),
+        ('Active accounts', ['active_accounts_30d_k', 'active_accounts_30d_yoy_pct', 'active_accounts_since_step_pct']),
     ],
 }
 
@@ -1229,33 +1272,41 @@ COLS = {
 # Phrases each card must keep: the hedges and the labels that say what kind of result it is.
 CARD_PHRASES = {
     "h1a": ("fungible", "inconclusive", "post hoc"),
-    "h1b": ("inconclusive", "mechanical", "snapshots dated", "biases the lower bound down", "never inside it"),
+    "h1b": ("inconclusive", "mechanical", "snapshots dated", "biases the lower bound down", "never inside it", "a cited one",
+            "labelled by our sweep rule"),
     "h1c": ("inconclusive", "market-wide balance, not a trace", "held, not burned"),
-    "rating": ("pending resolver", "do not predict it", "never fail", "does not feed the rule"),
-    "forward": ("never estimated", "not scorable", "is not a score"),
-    "ladder": ("unattested", "attestation", "Nothing here alleges misconduct", "labelled sensitivity", "subset"),
+    "rating": ("pending resolver", "do not predict it", "never fail", "does not feed the rule", "carries no view on NEAR",
+               "far above the Avoid line", "would also have been", "committed after the freeze", "straddles the 2026-02-23 fee switch",
+               "does not separate the switch from other causes"),
+    "forward": ("never estimated", "not scorable", "is not a score", "first dry run"),
+    "ladder": ("unattested", "attestation", "Nothing here alleges misconduct", "No valuation is made here", "The range is the finding", "subset"),
     "escrow": ("unattested", "attributed from samples", "less firmly established"),
     "take": ("like-for-like", "consistent with", "overstated"),
-    "partners": ("ceiling", "unknown, not zero", "its size is not measured", "neither documented reading"),
-    "paid": ("is not visible", "do not extrapolate", "non-custodial"),
+    "partners": ("ceiling", "unknown, not zero", "its size is not measured", "neither documented reading", "on the tighter reading"),
+    "paid": ("is not visible", "do not extrapolate", "non-custodial", "wide reading", "tight reading", "inferred, not proven",
+             "cannot exclude a partner settlement", "where the public chain shows no fee"),
     "peers": ("context for it, not the test", "reported volume"),
     "revenue": ("NEAR delivered to the wallets", "context for it, not the test"),
     "supply": ("HSP-029", "context for it, not the test", "rounding"),
+    "usage": ("one step", "no sybil or bot filter", "cannot tell a change in what is counted", "by an order of magnitude", "not the BigQuery queries the track brief names",
+              "does not decompose either fall", "is not a pre-registered test"),
 }
 # The hedges the headline itself carries (the headline is what a reader sees first).
 HEADLINE_PHRASES = {
     "ladder": ("fee stream unattested",),
-    "partners": ("about", "at most", "if the escrow NEAR reaching the front-end fund is counted too"),
-    "paid": ("at least",),
+    "partners": ("about", "The ceiling is", "if the escrow NEAR reaching the front-end fund is counted too"),
+    "paid": ("at least", "on the tighter reading"),
     "h1b": ("on either side of",),
     "h1c": ("a pass needs",),
-    "rating": ("Buy needs H1b to pass, Avoid needs it to fail",),
+    "rating": ("which carries no view on NEAR", "Buy needs H1b to pass, Avoid needs it to fail and observed growth under half the required growth"),
     "take": ("mostly because more volume carries a buyback fee entry",),
+    "usage": ("most of that is one step", "not a gradual decline", "on the same 30 days a year earlier"),
 }
 # And the sections of the page that carry hedges of their own.
 SECTION_PHRASES = {
     "limits": ("inferred", "consistent with the docs rather than proven", "sample-attributed", "lower bounds", "mechanical"),
-    "not-computed": ("attestation", "fungible", "pending resolver"),
+    "not-computed": ("attestation", "fungible", "pending resolver", "Contract usage", "an order of magnitude in two days",
+                     "BigQuery topics", "no sybil or bot filter", "on the tighter reading"),
 }
 
 
@@ -1648,7 +1699,7 @@ class Geometry(unittest.TestCase):
                         if panel.attrs["data-kind"] == "line":
                             self.check_line(panel, self.where(name, cid, si, pi))
                             checked += 1
-        self.assertEqual(checked, 4 * 2 * 4)
+        self.assertEqual(checked, 4 * 2 * 6)    # h1a B, peers, revenue B, supply A and the two usage panels, in 2 drawings of 4 pages
 
     def test_line_end_values_are_the_series_end_values(self):
         for name, dom, _, _ in VARIANTS:
@@ -1773,6 +1824,7 @@ MONTHF = "January|February|March|April|May|June|July|August|September|October|No
 DATE_MASKS = [re.compile(p) for p in (
     r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z",                                   # a timestamp quoted from result.json
     r"\d{4}-\d{2}-\d{2}", r"(?<![\d.])\d{4}-\d{2}(?!\d)", r"(?<![\d-])\d{2}-\d{2}(?![\d-])",   # dates, months, "07-07"
+    r"\b\d{2}:\d{2}:\d{2}\b",                                                 # a clock time with seconds, as in the freeze commit's 22:53:29
     r"\b\d{2}:\d{2}\b",                                                        # a clock time, as in 00:00 UTC
     rf"\b(?:{MONTH3}) \d{{1,2}}\b", rf"\b1-\d{{1,2}} (?:{MONTHF})\b",          # "Aug 7", "1-4 November"
     r"(?<![\d.,])20\d{2}(?![\d]|[.,]\d)",                                       # a year
@@ -1783,7 +1835,7 @@ NAME_MASKS = [re.compile(p) for p in (
 )]
 TEXT_ALLOWED = DATE_MASKS + NAME_MASKS + [re.compile(p) for p in (
     r"\b(?:30|90|180|365)(?:-day| days?| before)\b",                           # window lengths
-    r"\bfirst 16 hex\b", r"\bsteps? \d(?: to \d)?\b", r"÷ 2\b",                # the fingerprint length, step numbers, the rule
+    r"\bfirst 16 hex\b", r"\bsteps? \d(?: to \d)?\b", r"\bitems? \d\b", r"÷ 2\b",   # the fingerprint length, step and item numbers, the rule
     r"\bof 4\b", r"(?<![\d.])0%",                                               # "not scorable of 4" (F1 to F4), "0%"
 )]
 TEXT_NUMBER = re.compile(r"\d[\d,]*(?:\.\d+)?")
@@ -1896,13 +1948,18 @@ class Numbers(unittest.TestCase):
             self.assertEqual(bad, [], name)
 
     def test_facts_read_from_repo_files_equal_the_files(self):
-        """data-r spans: a byte count, the number of very long lines the page cuts, or an endpoint block height."""
-        seen = {"bytes": 0, "cut": 0}
+        """data-r spans: a byte count, the number of very long lines the page cuts, an endpoint block height, or (stamp:) the time
+        data/MANIFEST.json records for a file."""
+        seen = {"bytes": 0, "cut": 0, "stamp": 0}
         for n in DOM.iter():
             if "data-r" not in n.attrs:
                 continue
             kind, _, rel = n.attrs["data-r"].partition(":")
             text = n.text().replace("bytes", "").strip()
+            if kind == "stamp":   # rel is a manifest key such as raw/bq/staking_flows_daily.json
+                self.assertEqual(n.text().strip(), MANIFEST[rel]["fetched_at"].replace("T", " ").rstrip("Z") + " UTC", rel)
+                seen["stamp"] += 1
+                continue
             raw = (ROOT / rel).read_text(encoding="utf-8")
             if kind == "bytes":
                 self.assertEqual(num(text), len(raw.encode("utf-8")), rel)
@@ -1913,6 +1970,7 @@ class Numbers(unittest.TestCase):
             seen[kind] += 1
         self.assertGreaterEqual(seen["bytes"], 12)
         self.assertGreaterEqual(seen["cut"], 1)    # sql/h1b_b_wnear_logs.sql, under H1b and again under H1c
+        self.assertEqual(seen["stamp"], 2)         # the scorecard note and the header
 
     def test_the_end_point_blocks_in_the_h1c_query_come_from_the_raw_snapshot(self):
         blocks = sorted(json.loads((ROOT / "data/raw/rpc/buyback_balance_endpoints.json").read_text(encoding="utf-8"))["blocks"], key=int)
@@ -1958,15 +2016,56 @@ def delivery_rows() -> list[dict]:
 class PageClaims(unittest.TestCase):
     """What the page says about how it is built and what it shows is true, and says no more than is true."""
 
-    def test_the_page_says_bigquery_where_it_says_what_was_frozen_before(self):
+    def test_the_freeze_sentences_say_what_the_repository_shows_and_no_more(self):
+        """The page used to say the pre-registration was fixed 'before any BigQuery flow query ran'. The repository shows only that
+        the freeze commit is earlier than the first BigQuery result it records, on clocks the author controls."""
         text = re.sub(r"\s+", " ", DOM.find("body").text())
-        self.assertNotIn("before any flow query", text)
-        self.assertGreaterEqual(text.count("before any BigQuery flow query ran"), 3)   # scorecard, header, pre-registered section
+        for flat in ("before any BigQuery flow query ran", "before any flow query", "Fixed before any BigQuery"):
+            self.assertNotIn(flat, text)
+        self.assertGreaterEqual(text.count("before the first BigQuery result the repository records"), 3)   # scorecard, header, pre-registered section
+        # the facts in the sentence, recomputed here from the manifest and the freeze time written in the addendum
+        bq = sorted((e["fetched_at"], rel) for rel, e in MANIFEST.items() if "bigquery" in e.get("source", "").lower())
+        stamp, rel = bq[0][0].replace("T", " ").rstrip("Z"), bq[0][1]
+        self.assertTrue(rel.startswith("raw/bq/"), rel)
+        gap = (datetime.fromisoformat(stamp) - datetime.fromisoformat(R.FREEZE_UTC)).total_seconds()
+        self.assertGreater(gap, 0, "the first BigQuery result must be recorded after the freeze commit, or the sentence is false")
+        words = {1: "about one minute", 2: "about two minutes", 3: "about three minutes", 4: "about four minutes", 5: "about five minutes"}
+        self.assertIn(words[round(gap / 60)], text)
+        note = re.sub(r"\s+", " ", next(p for p in DOM.find_all("p", "note") if p.text().startswith("Frozen at commit")).text())
+        self.assertIn(f"Frozen at commit {R.FREEZE_COMMIT} ({R.FREEZE_UTC} UTC), {words[round(gap / 60)]} before the first BigQuery result the repository "
+                      f"records ({stamp} UTC in data/MANIFEST.json).", note)
+        self.assertIn("Commit and manifest times are written by the author’s machine, and nothing external attests them", note)
+        header = re.sub(r"\s+", " ", next(d for d in DOM.find("header").find_all("dd") if d.text().startswith("PREREG.md SHA-256")).text())
+        self.assertIn(f"(commit {R.FREEZE_COMMIT}, {R.FREEZE_UTC} UTC), before the first BigQuery result the repository records ({stamp} UTC in data/MANIFEST.json); "
+                      f"the order rests on the author’s own commit and manifest times", header)
+        # the PREREG anchor is still linked from the scorecard note and the header, and only from them
+        links = [a for a in DOM.find_all("a") if a.attrs["href"] == f"{R.REPO_URL}/blob/{R.BRANCH}/PREREG.md#{R.PREREG_ANCHOR}"]
+        self.assertEqual(len(links), 2)
         prereg = (ROOT / "PREREG.md").read_text(encoding="utf-8")
         heading = next(line for line in prereg.splitlines() if line.startswith("## What we had already seen"))
         self.assertEqual(re.sub(r"[^a-z0-9 -]", "", heading[3:].lower()).replace(" ", "-"), R.PREREG_ANCHOR)
-        links = [a for a in DOM.find_all("a") if a.attrs["href"] == f"{R.REPO_URL}/blob/{R.BRANCH}/PREREG.md#{R.PREREG_ANCHOR}"]
-        self.assertEqual(len(links), 2)    # the scorecard note and the header
+
+    def test_the_job_id_sentence_is_what_the_repository_records(self):
+        """'BigQuery job IDs, which embed their creation time, are recorded only for the H1b and H1c runs and one October escrow scan, not for
+        the H1a queries.'"""
+        addendum = (ROOT / "PREREG-ADDENDUM.md").read_text(encoding="utf-8")
+        entries = re.split(r"(?m)^## ", addendum)
+        id_rx = re.compile(r"bqjob_[0-9a-z]+_[0-9a-z]+_[0-9]+")
+        h1b_h1c = set(id_rx.findall(addendum_entry("2026-11-06 23:23 UTC: H1b and H1c results")))
+        self.assertEqual(len(h1b_h1c), 3)                                              # the sweep preview, native flows and wNEAR runs
+        manifest_ids = set(id_rx.findall(MANIFEST_BYTES.decode("utf-8")))
+        self.assertEqual(len(manifest_ids), 1)
+        self.assertIn(next(iter(manifest_ids)), MANIFEST["raw/escrow/deliveries.csv"]["source"])   # the October escrow scan
+        # no other job ID is recorded anywhere in the addendum: a later entry may repeat these four, but one for another run makes the sentence stale
+        self.assertLessEqual(set(id_rx.findall(addendum)), h1b_h1c | manifest_ids)
+        for rel in ("raw/bq/staking_flows_daily.json", "raw/bq/staking_pool_totals_endpoints.json"):   # the H1a queries
+            self.assertNotIn("bqjob_", MANIFEST[rel]["source"], rel)
+        h1a_entries = [e for e in entries if e.startswith(("2026-11-05: method disclosures", "2026-11-05: first result, H1a"))]
+        self.assertEqual(len(h1a_entries), 2)
+        for e in h1a_entries:
+            self.assertNotIn("bqjob_", e)
+        sentence = "recorded only for the H1b and H1c runs and one October escrow scan, not for the H1a queries"
+        self.assertIn(sentence, re.sub(r"\s+", " ", section_node(DOM, "scorecard").text()))
 
     def test_the_lede_names_the_two_commands_and_the_one_that_runs_both(self):
         lede = DOM.find("p", "lede").text()
@@ -2109,6 +2208,631 @@ class PageClaims(unittest.TestCase):
         self.assertEqual(first[0].text(), "SwapKit")
         for td, c in zip(first[1:], METRICS["buyback_fee_by_channel"]):
             self.assertEqual(td.find("code").text(), c["channel"])
+
+
+# ------------------------------------------------------------------ the network-usage card
+class Usage(unittest.TestCase):
+    """The exploratory network-usage card, checked against data/raw/nearblocks/charts.json read here: the step day, the four counts on the
+    two days, the 30-day figures, every plotted point and the marker. The card's own series and metrics are compared with the snapshot,
+    so a wrong value cannot agree with itself."""
+
+    RAW: dict[str, dict[str, float | None]] = {}
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        rows = json.loads((ROOT / "data/raw/nearblocks/charts.json").read_text(encoding="utf-8"))["charts"]
+        cls.RAW = {r["date"][:10]: {k: (float(v) if v not in (None, "") else None) for k, v in r.items() if k != "date"} for r in rows}
+
+    @staticmethod
+    def days(end: str, n: int) -> list[str]:
+        """The n days ending on `end`, oldest first."""
+        e = date.fromisoformat(end)
+        return [(e - timedelta(days=i)).isoformat() for i in range(n - 1, -1, -1)]
+
+    def mean(self, days: list[str], key: str) -> float:
+        return sum(self.RAW[d][key] for d in days) / len(days)  # type: ignore[misc]
+
+    def figure_panels(self, dom: Node) -> list[tuple[str, Node]]:
+        """(where, panel) for the two panels of each of the card's two drawings."""
+        out = []
+        for si, sv in enumerate(card_node(dom, "usage").find_all("svg", "svg")):
+            panels = sv.find_all("g", "panel")
+            self.assertEqual(len(panels), 2)
+            out += [(f"{'wide' if si == 0 else 'phone'}/panel {pi}", panel) for pi, panel in enumerate(panels)]
+        return out
+
+    # ---- where it sits
+    def test_the_card_is_the_ninth_exploratory_card_and_is_in_the_contents(self):
+        cards = [n for n in DOM.find_all("section") if n.attrs.get("id", "").startswith("chart-")]
+        self.assertEqual([c.attrs["id"] for c in cards].count("chart-usage"), 1)
+        pre, expl = list(section_node(DOM, "preregistered").iter()), list(section_node(DOM, "exploratory").iter())
+        self.assertEqual((len([c for c in cards if c in pre]), len([c for c in cards if c in expl])), (5, 9))
+        usage = card_node(DOM, "usage")
+        self.assertIn(usage, expl)
+        self.assertNotIn(usage, pre)
+        badge = usage.find("span", "badge")
+        self.assertIn("badge-exp", badge.classes())
+        self.assertEqual(badge.text().strip(), "Exploratory, chosen after the freeze")
+        self.assertIs(cards[-1], usage, "it comes after the other exploratory cards")
+        nav = next(n for n in DOM.find_all("nav") if n.attrs.get("aria-label") == "Contents")
+        toc_pre, toc_exp = nav.find_all("ul", "toc")
+        self.assertEqual([a.attrs["href"] for a in toc_pre.find_all("a")], [f"#chart-{c}" for c in PRE_IDS])
+        self.assertEqual([a.attrs["href"] for a in toc_exp.find_all("a")], [f"#chart-{c}" for c in CARD_IDS if c not in PRE_IDS])
+        self.assertEqual(toc_exp.find_all("a")[-1].text(), "Network usage")
+
+    # ---- the data
+    def test_the_daily_series_is_the_snapshot(self):
+        rows = SERIES["l1_daily"]
+        dates = [r["date"] for r in rows]
+        self.assertEqual(dates, self.days(METRICS["asof"], 400))     # one row for each of 400 days, the last one the as-of date
+        self.assertEqual(dates[0], "2025-10-01")
+        for r in rows:
+            self.assertEqual(r["tx_k"], round(self.RAW[r["date"]]["txns"] / 1e3, 1), r["date"])
+            self.assertEqual(r["active_accounts_k"], round(self.RAW[r["date"]]["active_accounts"] / 1e3, 1), r["date"])
+
+    def test_the_step_is_the_largest_one_day_fall_and_the_four_counts_are_the_snapshot_values(self):
+        raw, asof = self.RAW, METRICS["asof"]
+        window = self.days(asof, 365)
+        step = min((raw[b]["txns"] / raw[a]["txns"], b) for a, b in zip(window, window[1:]))[1]
+        self.assertEqual(step, METRICS["l1_step_date"])
+        ref = (date.fromisoformat(step) - timedelta(days=2)).isoformat()
+        self.assertEqual(ref, METRICS["l1_step_ref_date"])
+        table = next(t for t in card_node(DOM, "usage").find_all("table") if "data-series" not in t.attrs)
+        heads = [th.text().strip() for th in table.find_all("th")]
+        self.assertEqual(heads, ["Daily count", f"On {ref}, thousand", f"On {step}, thousand", f"Change from {ref} to {step}, %"])
+        body = [[td.text().strip() for td in tr.find_all("td")] for tr in table.find_all("tr") if tr.find_all("td")]
+        self.assertEqual([row[0] for row in body], ["Transactions", "Active contracts", "New accounts", "Active accounts"])
+        for (tag, key), row in zip((("tx", "txns"), ("contracts", "active_contracts"), ("new_accounts", "new_accounts"),
+                                    ("active_accounts", "active_accounts")), body):
+            before, after = raw[ref][key], raw[step][key]
+            self.assertEqual(METRICS[f"l1_step_{tag}_before_k"], round(before / 1e3, 1), tag)
+            self.assertEqual(METRICS[f"l1_step_{tag}_after_k"], round(after / 1e3, 1), tag)
+            self.assertEqual((num(row[1]), num(row[2])), (round(before / 1e3, 1), round(after / 1e3, 1)), tag)
+            # the page computes the change from the two rounded values it shows; it must be the change in the raw counts, to the whole percent
+            self.assertEqual(num(row[3]), round((after / before - 1) * 100, 0), tag)
+        # the claims the card makes about those four numbers
+        self.assertGreaterEqual(raw[ref]["active_contracts"] / raw[step]["active_contracts"], 10, "an order of magnitude")
+        self.assertLess(abs(raw[step]["active_accounts"] / raw[ref]["active_accounts"] - 1), 0.05, "active accounts barely move")
+        self.assertLess(raw[step]["txns"] / raw[ref]["txns"], 0.3)
+
+    def test_the_30_day_figures_are_the_snapshot_figures(self):
+        asof, step = METRICS["asof"], METRICS["l1_step_date"]
+        last, year_ago = self.days(asof, 30), self.days((date.fromisoformat(asof) - timedelta(days=365)).isoformat(), 30)
+        first = [(date.fromisoformat(step) + timedelta(days=i)).isoformat() for i in range(30)]
+        table = [t for t in card_node(DOM, "usage").find_all("table") if "data-series" not in t.attrs][1]
+        rows = {tr.find_all("td")[0].text().strip(): [num(td.text()) for td in tr.find_all("td")[1:]] for tr in table.find_all("tr") if tr.find_all("td")}
+        for label, key, avg_key, yoy_key, since_key, dec in (("Transactions", "txns", "tx_per_day_30d_k", "tx_per_day_30d_yoy_pct", "tx_per_day_since_step_pct", 0),
+                                                           ("Active accounts", "active_accounts", "active_accounts_30d_k", "active_accounts_30d_yoy_pct",
+                                                            "active_accounts_since_step_pct", 1)):
+            now, then, start = self.mean(last, key), self.mean(year_ago, key), self.mean(first, key)
+            want = [round(now / 1e3, dec), round((now / then - 1) * 100, 1), round((now / start - 1) * 100, 1)]
+            self.assertEqual([METRICS[avg_key], METRICS[yoy_key], METRICS[since_key]], want, key)
+            self.assertEqual(rows[label], want, key)
+        h3 = card_node(DOM, "usage").find("h3")
+        self.assertEqual([float(n.text()) for n in h3.find_all("span") if n.attrs.get("data-m", "").startswith(("active", "tx_"))],
+                         [METRICS["active_accounts_30d_k"], METRICS["active_accounts_30d_yoy_pct"], METRICS["tx_per_day_30d_yoy_pct"]])
+
+    def test_most_of_the_year_on_year_fall_in_transactions_is_the_step_and_that_of_active_accounts_is_not(self):
+        """The headline says most of the -84.8% is one step; the notes say active accounts do not step. Share of the fall in the 30-day mean
+        (a year ago to now) that happens between the 30 days ending on the day before the fall began and the 30 days starting on the step day."""
+        asof, step, ref = METRICS["asof"], METRICS["l1_step_date"], METRICS["l1_step_ref_date"]
+        last, year_ago = self.days(asof, 30), self.days((date.fromisoformat(asof) - timedelta(days=365)).isoformat(), 30)
+        before, after = self.days(ref, 30), [(date.fromisoformat(step) + timedelta(days=i)).isoformat() for i in range(30)]
+
+        def share(key: str) -> float:
+            return (self.mean(before, key) - self.mean(after, key)) / (self.mean(year_ago, key) - self.mean(last, key))
+
+        self.assertGreater(share("txns"), 0.5)
+        self.assertLess(share("active_accounts"), 0.5)
+
+    # ---- the charts
+    def test_every_point_of_both_charts_is_where_its_value_puts_it(self):
+        n = len(SERIES["l1_daily"])
+        self.assertEqual(n, 400)
+        for name, dom, _, _ in VARIANTS:
+            for where, panel in self.figure_panels(dom):
+                pi = int(where[-1])
+                key, hi = (("txns", 5000), ("active_accounts", 600))[pi]
+                at = f"{name}/{where}"
+                self.assertEqual((panel.attrs["data-kind"], float(panel.attrs["data-lo"]), float(panel.attrs["data-hi"])), ("line", 0.0, float(hi)), at)
+                x0, pw, base, ph = (float(panel.attrs[k]) for k in ("data-x0", "data-pw", "data-base", "data-ph"))
+                lines = [pt for pt in panel.find_all("path") if "ln" in pt.classes()]
+                self.assertEqual(len(lines), 1, at)
+                pts = path_points(lines[0].attrs["d"])
+                self.assertEqual(len(pts), n, at)
+                values = [round(self.RAW[d][key] / 1e3, 1) for d in self.days(METRICS["asof"], n)]
+                self.assertLessEqual(max(values), hi, f"{at}: the axis does not hold the series")
+                for i, ((x, y), v) in enumerate(zip(pts, values)):
+                    self.assertAlmostEqual(x, x0 + pw * i / (n - 1), delta=0.2, msg=f"{at}: point {i} is at the wrong place along the days")
+                    self.assertAlmostEqual(y, base - ph * v / hi, delta=0.2, msg=f"{at}: point {i} ({v}) is at the wrong height")
+                dots = [c for c in panel.find_all("circle") if "data-v" in c.attrs]
+                self.assertEqual([float(c.attrs["data-v"]) for c in dots], [values[-1]], at)
+                self.assertAlmostEqual(float(dots[0].attrs["cx"]), x0 + pw, delta=0.2, msg=at)
+                # the end label prints that last value, named by the series row it comes from
+                labels = [t for t in panel.find_all("text", "val") if refs_in(t)]
+                self.assertEqual([[r for _, r in refs_in(t)] for t in labels], [[f"l1_daily.{METRICS['asof']}.{('tx_k', 'active_accounts_k')[pi]}"]], at)
+
+    def test_the_marker_is_on_the_step_day_in_both_charts(self):
+        dates = [r["date"] for r in SERIES["l1_daily"]]
+        idx = dates.index(METRICS["l1_step_date"])
+        for name, dom, _, _ in VARIANTS:
+            for where, panel in self.figure_panels(dom):
+                at = f"{name}/{where}"
+                marks = panel.find_all("line", "vmark")
+                self.assertEqual(len(marks), 1, at)
+                mk = marks[0]
+                self.assertEqual((mk.attrs["data-date"], int(mk.attrs["data-i"])), (METRICS["l1_step_date"], idx), at)
+                x0, pw, base, ph = (float(panel.attrs[k]) for k in ("data-x0", "data-pw", "data-base", "data-ph"))
+                self.assertEqual(mk.attrs["x1"], mk.attrs["x2"], at)
+                self.assertAlmostEqual(float(mk.attrs["x1"]), x0 + pw * idx / (len(dates) - 1), delta=0.15, msg=f"{at}: the marker is not on the step day")
+                line = next(pt for pt in panel.find_all("path") if "ln" in pt.classes())
+                self.assertAlmostEqual(path_points(line.attrs["d"])[idx][0], float(mk.attrs["x1"]), delta=0.2, msg=f"{at}: the marker misses the plotted day")
+                self.assertAlmostEqual(float(mk.attrs["y1"]), base - ph, delta=0.15, msg=at)    # from the top of the plot ...
+                self.assertAlmostEqual(float(mk.attrs["y2"]), base, delta=0.15, msg=at)          # ... down to the zero line
+                label = [t for t in panel.find_all("text") if ("m", "l1_step_date") in refs_in(t)]
+                self.assertEqual(len(label), 1, at)
+                self.assertEqual(re.sub(r"\s+", " ", label[0].text().strip()), f"step {METRICS['l1_step_date']}", at)
+                self.assertGreater(float(label[0].attrs["x"]) * (1 if label[0].attrs.get("text-anchor") != "end" else -1),
+                                   float(mk.attrs["x1"]) * (1 if label[0].attrs.get("text-anchor") != "end" else -1), at)
+
+    def test_both_axes_start_at_zero_and_the_zero_line_is_drawn(self):
+        for name, dom, _, _ in VARIANTS:
+            for where, panel in self.figure_panels(dom):
+                self.assertEqual(float(panel.attrs["data-lo"]), 0.0, f"{name}/{where}")
+                zero = [ln for ln in panel.find_all("line", "axis") if ln.attrs["y1"] == ln.attrs["y2"]]
+                self.assertAlmostEqual(float(zero[0].attrs["y1"]), float(panel.attrs["data-base"]), delta=0.15, msg=f"{name}/{where}")
+
+    def test_the_panels_carry_the_letters_the_caption_and_description_use(self):
+        for name, dom, _, _ in VARIANTS:
+            card = card_node(dom, "usage")
+            for where, panel in self.figure_panels(dom):
+                first = panel.find("text", "ttl").text().strip()
+                self.assertTrue(first.startswith("AB"[int(where[-1])] + ". "), f"{name}/{where}: {first!r}")
+            text = re.sub(r"\s+", " ", card.text())
+            for want in ("Panel A", "Panel B", "A. Transactions per day", "B. Active accounts per day"):
+                self.assertIn(want, text)
+
+    # ---- the text
+    def test_the_headline_does_not_present_the_transaction_fall_as_a_trend(self):
+        h3 = re.sub(r"\s+", " ", card_node(DOM, "usage").find("h3").text())
+        self.assertEqual(h3, f"Daily active accounts averaged {METRICS['active_accounts_30d_k']}K over the 30 days to {METRICS['asof']}, "
+                             f"{METRICS['active_accounts_30d_yoy_pct']}% on the same 30 days a year earlier; daily transactions are "
+                             f"{METRICS['tx_per_day_30d_yoy_pct']}% on a year earlier, but most of that is one step on {METRICS['l1_step_date']}, "
+                             f"not a gradual decline.")
+
+    def test_what_the_card_does_not_show_names_the_gaps_the_brief_asks_about(self):
+        text = re.sub(r"\s+", " ", card_node(DOM, "usage").find("p", "notshows").text())
+        for want in ("Why the step happened", "this repository holds no definition of what Nearblocks counts",
+                     "cannot tell a change in what is counted, or the end of automated traffic, from a real fall in usage",
+                     "That active accounts are people: this repository applies no sybil or bot filter",
+                     "Contract usage: the active-contract count falls by an order of magnitude on the same days (see the table), so it is not used",
+                     "Anything from BigQuery: these are Nearblocks aggregates, not the BigQuery queries the track brief names", "A cause for any of it."):
+            self.assertIn(want, text)
+        # "none of the committed BigQuery queries counts" the brief's topics: a coarse guard, a distinct count of signers or predecessors, or a
+        # name of a Nearblocks column
+        for sql in sorted((ROOT / "sql").rglob("*.sql")):
+            body = sql.read_text(encoding="utf-8")
+            self.assertIsNone(re.search(r"(?i)count\s*\(\s*distinct\s+(signer|predecessor)", body), sql.name)
+            self.assertIsNone(re.search(r"(?i)active_accounts|active_contracts|daily active", body), sql.name)
+
+    def test_the_card_names_its_source_query_and_data(self):
+        card = card_node(DOM, "usage")
+        source = card.find("div", "source").text()
+        for want in ("data/raw/nearblocks/charts.json", f"sha256 {MANIFEST['raw/nearblocks/charts.json']['sha256'][:12]}",
+                     "pipeline/fetch_keyless.py", "pipeline/compute.py"):
+            self.assertIn(want, source)
+        query = next(d for d in card.find_all("details") if d.find("summary").text().strip() == "Query").text()
+        for want in ("GET https://api.nearblocks.io/v1/charts", "python3 -m pipeline.fetch_keyless", "fetch_nearblocks()", "l1_usage()", "series l1_daily"):
+            self.assertIn(want, query)
+        daily = next(t for t in card.find_all("table") if t.attrs.get("data-series") == "l1_daily")
+        self.assertEqual([tr.attrs["data-k"] for tr in daily.find_all("tr") if "data-k" in tr.attrs], [r["date"] for r in SERIES["l1_daily"]])
+        fetcher = (ROOT / "pipeline/fetch_keyless.py").read_text(encoding="utf-8")
+        self.assertIn("def fetch_nearblocks", fetcher)
+        self.assertIn("https://api.nearblocks.io/v1/charts", fetcher)
+        self.assertIn("def l1_usage", (ROOT / "pipeline/compute.py").read_text(encoding="utf-8"))
+
+    def test_the_not_computed_list_keeps_its_entries_and_names_the_usage_gaps(self):
+        sec = section_node(DOM, "not-computed")
+        heads = [li.find("strong").text().strip() for li in sec.find_all("li")]
+        old = ["Net exchange inflow as one number (H1b, H1c).", "Which fee stream pays the escrow releases.", "NEAR’s share of partner fees.",
+               "The other half of Intents.", "Who the sellers were.", "Longer-dated predictions P1 to P3.", "HSP-029’s issuance cut.", "Earlier work."]
+        self.assertEqual(heads, old[:4] + ["Contract usage.", "The track brief’s BigQuery topics for daily active accounts and transaction counts."] + old[4:])
+        items = {li.find("strong").text().strip(): li for li in sec.find_all("li")}
+        contracts = items["Contract usage."]
+        self.assertEqual([r for _, r in refs_in(contracts)], ["l1_step_contracts_before_k", "l1_step_contracts_after_k"])
+        text = re.sub(r"\s+", " ", contracts.text())
+        self.assertIn(f"falls from {METRICS['l1_step_contracts_before_k']:,}K on {METRICS['l1_step_ref_date']} to {METRICS['l1_step_contracts_after_k']}K "
+                      f"on {METRICS['l1_step_date']}, an order of magnitude in two days", text)
+        self.assertIn("this repository holds no definition of what is counted", text)
+        topics = re.sub(r"\s+", " ", items["The track brief’s BigQuery topics for daily active accounts and transaction counts."].text())
+        self.assertIn("No BigQuery query was written for them", topics)
+        self.assertIn("uses Nearblocks aggregates instead", topics)
+        lead = sec.find("p", "note").text()
+        self.assertNotIn("cannot be computed from the committed sources, so the page does not show a number", lead)
+        self.assertIn("The page shows no finding for these", lead)
+
+
+# ------------------------------------------------------------------ panel letters, in every figure
+class PanelLetters(unittest.TestCase):
+    """A caption that says "Panel A" names a title the reader can see: every panel of a two-panel figure starts "A. ", "B. ", in order,
+    a one-panel figure has no letter, and no card refers to a panel it does not have."""
+
+    def test_panels_are_lettered_in_order_and_every_reference_resolves(self):
+        lettered = 0
+        for name, dom, _, _ in VARIANTS:
+            for cid in CARD_IDS:
+                if cid == "forward":
+                    continue
+                card = card_node(dom, cid)
+                counts = set()
+                for sv in card.find_all("svg", "svg"):
+                    panels = sv.find_all("g", "panel")
+                    counts.add(len(panels))
+                    for k, panel in enumerate(panels):
+                        first = panel.find("text", "ttl").text().strip()
+                        if len(panels) > 1:
+                            self.assertTrue(first.startswith(f"{chr(65 + k)}. "), f"{name}/{cid}: panel {k} is titled {first!r}")
+                            lettered += 1
+                        else:
+                            self.assertIsNone(re.match(r"[A-Z]\. ", first), f"{name}/{cid}: a lone panel carries a letter: {first!r}")
+                self.assertEqual(len(counts), 1, f"{name}/{cid}: the wide and phone drawings differ in their number of panels")
+                n = counts.pop()
+                cited = set()
+                for m in re.finditer(r"\bPanels? ([A-Z])(?: and ([A-Z]))?\b", card.text()):
+                    cited |= {g for g in m.groups() if g}
+                self.assertLessEqual(cited, {chr(65 + k) for k in range(n)}, f"{name}/{cid}: the text refers to a panel the figure does not have")
+                if n == 1:
+                    self.assertEqual(cited, set(), f"{name}/{cid}")
+                else:
+                    self.assertEqual(cited, {chr(65 + k) for k in range(n)}, f"{name}/{cid}: a panel is never mentioned")
+        self.assertEqual(lettered, 4 * 2 * 8 * 2)     # 8 two-panel cards, 2 drawings, 2 panels each, in 4 pages
+
+    def test_title_block_prints_the_letter_before_the_title(self):
+        for v in R.VARIANTS:
+            markup, _ = R.title_block(v, "Share of net issuance offset, % (a long title that has to wrap on a phone, where there is little room)", "B")
+            self.assertTrue(markup.startswith("<text") and ">B. Share of net issuance" in markup, markup[:120])
+            self.assertNotIn("B. ", R.title_block(v, "x")[0])
+
+
+# ------------------------------------------------------------------ wording fixes: each claim tied to the data it speaks about
+def git_out(*args: str) -> str | None:
+    """Output of `git -C ROOT args`, or None when ROOT is not itself a git checkout, or git or the object is missing."""
+    if shutil.which("git") is None:
+        return None
+    top = subprocess.run(["git", "-C", str(ROOT), "rev-parse", "--show-toplevel"], capture_output=True, text=True, check=False)
+    if top.returncode != 0 or Path(top.stdout.strip()).resolve() != ROOT.resolve():
+        return None
+    p = subprocess.run(["git", "-C", str(ROOT), *args], capture_output=True, text=True, check=False)
+    return p.stdout if p.returncode == 0 else None
+
+
+def addendum_entry(prefix: str) -> str:
+    """The text of the PREREG-ADDENDUM.md entry whose heading starts with prefix (the file is append-only, so these do not move)."""
+    entries = re.split(r"(?m)^## ", (ROOT / "PREREG-ADDENDUM.md").read_text(encoding="utf-8"))
+    return next(e for e in entries if e.startswith(prefix))
+
+
+class Wording(unittest.TestCase):
+    """What the review found the page said too strongly or too loosely, now said as the data support it."""
+
+    # ---- 20.0% is not "a citable exchange label"
+    def test_the_labelled_share_is_not_called_citable_and_the_cited_share_is_the_tier_one_share(self):
+        top = [x for x in json.loads((ROOT / "data/raw/bq/h1b_a_native_flows.json").read_text(encoding="utf-8")) if x["leg"] == "top100"]
+        self.assertEqual(len(top), 100)
+        tier1 = {x["account"] for x in top if x["tier"] == "1"}
+        labelled = {x["account"] for x in top if x["tier"] in ("1", "2", "3")}
+        self.assertEqual((float(len(labelled)), float(len(tier1))), (METRICS["h1b_coverage_count_pct"], METRICS["h1b_coverage_tier1_count_pct"]))
+        cited = {x["account"] for x in json.loads((ROOT / "data/raw/labels/exchange_accounts.json").read_text(encoding="utf-8"))["accounts"]}
+        self.assertLessEqual(tier1, cited, "tier 1 is the cited list")
+        self.assertFalse((labelled - tier1) & cited, "the other labelled accounts are not on it: our sweep rule labelled them")
+        self.assertGreater(len(labelled), len(tier1))
+        self.assertNotIn("citable exchange label", re.sub(r"\s+", " ", DOM.find("main").text()))
+        a, b = METRICS["h1b_coverage_count_pct"], METRICS["h1b_coverage_tier1_count_pct"]
+        h1b_note = re.sub(r"\s+", " ", card_node(DOM, "h1b").find("ul", "notes").find_all("li")[0].text())
+        self.assertTrue(h1b_note.startswith(f"Only {a}% of the top-100 native-NEAR receivers carry an exchange label ({b}% a cited one; the rest are labelled "
+                                            f"by our sweep rule), below the 50% the pre-registration requires, so the test passes only if it passes under both bounds."), h1b_note)
+        self.assertEqual([r for _, r in refs_in(card_node(DOM, "h1b").find("ul", "notes").find_all("li")[0])][:3],
+                         ["h1b_coverage_count_pct", "h1b_coverage_tier1_count_pct", "h1b_coverage_min_pct"])
+        first = re.sub(r"\s+", " ", section_node(DOM, "not-computed").find_all("li")[0].text())
+        self.assertIn(f"Only {a}% of the top-100 receivers carry an exchange label ({b}% a cited one; the rest are labelled by our sweep rule). The binding gap is "
+                      f"labelling, not data: no citable NEAR address was found for OKX, Coinbase, Kraken, Bybit, HTX, Crypto.com, Upbit or Bithumb", first)
+        self.assertIn("No citable NEAR address was found for OKX, Coinbase, Kraken, Bybit, HTX, Crypto.com, Upbit or Bithumb.", h1b_note + " " + re.sub(
+            r"\s+", " ", card_node(DOM, "h1b").find("ul", "notes").text()))
+
+    # ---- the Hold
+    def test_the_hold_is_explained_clause_by_clause_from_the_data(self):
+        go, gr = METRICS["rating_g_obs_pct"], METRICS["rating_g_req_pct"]
+
+        def rule(h1b: str) -> str:   # PREREG's rating rule, applied here to each outcome of H1b at the committed growth figures
+            return "Buy" if h1b == "pass" and go >= gr else "Avoid" if h1b == "fail" and go < gr / 2 else "Hold"
+
+        self.assertEqual({h: rule(h) for h in ("pass", "fail", "inconclusive")}, {"pass": "Buy", "fail": "Hold", "inconclusive": "Hold"})
+        self.assertEqual((METRICS["rating_if_h1b_pass"], METRICS["rating_if_h1b_fail"], METRICS["rating_output"]), ("Buy", "Hold", "Hold"))
+        self.assertEqual(METRICS["rating_g_avoid_line_pct"], round(gr / 2, 1), "the Avoid line is half of G_req")
+        self.assertGreater(min(go, METRICS["rating_g_obs_near_pct"]), METRICS["rating_g_avoid_line_pct"])
+        # below the pre-registered coverage H1b comes out pass or inconclusive, never fail (the reading recorded in the addendum before the results)
+        from pipeline.h1b import _both
+        cov = METRICS["h1b_coverage_count_pct"]
+        self.assertLess(cov, R.CONSTS["h1b_coverage_min_pct"][0])
+        self.assertEqual({_both(lo, up, cov) for lo in (True, False) for up in (True, False)}, {"pass", "inconclusive"})
+        entry = addendum_entry("2026-11-06 23:11 UTC: H1b/H1c method")
+        self.assertRegex(entry, r"(?m)^6\. \*\*Reading of the range rule, recorded before results\.\*\*.*never fail")
+        # the page says exactly that, with each number bound to its metric
+        notshows = card_node(DOM, "rating").find("p", "notshows")
+        self.assertEqual([r for _, r in refs_in(notshows)], ["rating_output", "h1b_coverage_min_pct", "rating_g_obs_pct", "rating_g_obs_near_pct",
+                                                              "rating_g_avoid_line_pct", "rating_g_req_pct", "rating_if_h1b_fail"])
+        text = re.sub(r"\s+", " ", notshows.text())
+        self.assertIn(f"The frozen rule outputs Hold, and that carries no view on NEAR. Below 50% label coverage H1b can come out pass or inconclusive but never fail "
+                      f"(the range rule as read before the results; PREREG-ADDENDUM.md, 2026-11-06 23:11 UTC entry, item 6), and observed revenue growth "
+                      f"({go}% a year; {METRICS['rating_g_obs_near_pct']}% in NEAR terms) is far above the Avoid line ({METRICS['rating_g_avoid_line_pct']}% a year, half of "
+                      f"G_req {gr}%), so the rule could only ever have output Buy or Hold; had H1b failed it would also have been Hold.", text)
+        # G_req rests on constants committed after the freeze, with the as-written H1a result
+        ra = json.loads((ROOT / "data/raw/rpc/rating_assumptions.json").read_text(encoding="utf-8"))
+        fetched = MANIFEST["raw/rpc/rating_assumptions.json"]["fetched_at"]
+        self.assertGreater(fetched.replace("T", " ").rstrip("Z"), R.FREEZE_UTC)
+        self.assertEqual(fetched, MANIFEST["raw/rpc/epoch_issuance.json"]["fetched_at"])
+        constants = git_out("log", "--diff-filter=A", "--format=%h", "--", "data/raw/rpc/rating_assumptions.json")
+        issuance = git_out("log", "--diff-filter=A", "--format=%h", "--", "data/raw/rpc/epoch_issuance.json")
+        if constants and issuance:      # in a git checkout: the constants arrived in the commit that added the headers the H1a result is computed from
+            self.assertEqual(constants.split(), issuance.split())
+        for want in ("G_req rests on constants committed after the freeze, with the as-written H1a result (the price, the length of HSP-029’s ramp and its "
+                     "activation date; data/raw/rpc/rating_assumptions.json)",):
+            self.assertIn(want, text)
+        self.assertIn("price_usd", ra)
+        self.assertIn("ramp_months", ra["hsp029"])
+        self.assertIn("activation_date", ra["hsp029"])
+        # G_obs: the base window straddles the 2026-02-23 fee switch, and most of the USD growth is the NEAR price
+        asof, n = date.fromisoformat(ra["asof"]), ra["g_obs_days"]
+        self.assertEqual(n, 180)
+        self.assertLessEqual(asof - timedelta(days=2 * n - 1), date(2026, 2, 23))
+        self.assertLessEqual(date(2026, 2, 23), asof - timedelta(days=n))
+        self.assertIn("2026-02-23", (ROOT / "PREREG.md").read_text(encoding="utf-8"))
+        self.assertIn("G_obs compares the last 180 days with the 180 before, a base window that straddles the 2026-02-23 fee switch (pre-switch revenue counts as "
+                      "captured, as DefiLlama labels it), so it does not separate the switch from other causes, and most of the USD growth is the NEAR price.", text)
+        self.assertLess(math.log1p(METRICS["rating_g_obs_near_pct"] / 100) / math.log1p(go / 100), 0.5, "most of the USD growth is the price")
+
+    def test_the_headline_and_the_tile_say_the_whole_rule_and_that_hold_is_no_view(self):
+        h3 = re.sub(r"\s+", " ", card_node(DOM, "rating").find("h3").text())
+        self.assertEqual(h3, "The frozen rule outputs Hold, which carries no view on NEAR: Buy needs H1b to pass, Avoid needs it to fail and observed growth under "
+                             "half the required growth, and H1b is inconclusive.")
+        tile = [n for n in DOM.find_all("li") if "tile" in n.classes()][3]
+        self.assertEqual(re.sub(r"\s+", " ", tile.find("p", "tnote").text()),
+                         "Observed against required growth in captured revenue, a year. Buy needs H1b to pass; Avoid needs it to fail and observed growth under "
+                         "half the required. H1b is inconclusive, so the rule outputs Hold, which carries no view on NEAR.")
+
+    def test_the_hold_explanation_refuses_to_render_when_the_data_stop_supporting_it(self):
+        ctx = R.Ctx()
+        self.assertIn("could only ever have output Buy or Hold", R.hold_explanation(ctx))
+        for key, value in (("rating_g_obs_pct", 10.0), ("rating_g_obs_near_pct", 10.0), ("rating_if_h1b_fail", "Avoid"), ("rating_output", "Buy"),
+                           ("h1b_coverage_count_pct", 60.0)):
+            bad = R.Ctx()
+            bad.m = dict(bad.m, **{key: value})
+            with self.assertRaises(SystemExit, msg=key):
+                R.hold_explanation(bad)
+
+    # ---- the ladder makes no valuation
+    def test_the_ladder_makes_no_valuation_claim(self):
+        card = card_node(DOM, "ladder")
+        text = re.sub(r"\s+", " ", card.text())
+        for gone in ("base case for valuation", "Valuation basis", "labelled sensitivity"):
+            self.assertNotIn(gone, text)
+        notes = card.find("ul", "notes").find_all("li")
+        last = notes[-1]
+        self.assertEqual(re.sub(r"\s+", " ", last.text()),
+                         f"No valuation is made here. The range is the finding: {METRICS['ladder_all_wallets_pct_of_issuance']}% is what reached the three wallets and "
+                         f"{METRICS['ladder_public_collectors_pct_of_issuance']}% is what is traced to public fee collectors. None of this feeds the rating rule.")
+        self.assertEqual([r for _, r in refs_in(last)], ["ladder_all_wallets_pct_of_issuance", "ladder_public_collectors_pct_of_issuance"])
+        for mod in ("pipeline/h1a.py", "pipeline/h1b.py", "pipeline/score_forward.py"):    # "none of this feeds the rating rule"
+            self.assertNotIn("ladder", (ROOT / mod).read_text(encoding="utf-8"), mod)
+        table = [t for t in card.find_all("table") if "data-series" not in t.attrs][0]
+        self.assertEqual(table.find_all("tr")[1].find_all("td")[0].text().strip(), "All three revenue wallets")
+
+    # ---- partner headlines: the wide bound first, the tight one as a labelled second reading
+    def test_the_partner_headlines_state_the_wide_bound_and_label_the_tight_one(self):
+        m = METRICS
+        self.assertLess(m["partners_kept_vs_near_rev_low_x"], m["partners_kept_vs_near_rev_low_tight_x"])         # the wide bound is the lower one
+        self.assertGreater(m["near_share_of_partner_fees_max_pct"], m["near_share_of_partner_fees_max_tight_pct"])  # and the higher ceiling on NEAR's share
+        self.assertGreater(m["swapkit_exit_ceiling_all_escrow_pct"], m["swapkit_exit_ceiling_pct"])                 # the second ceiling adds to the first
+        paid = re.sub(r"\s+", " ", card_node(DOM, "paid").find("h3").text())
+        self.assertTrue(paid.startswith(f"Partners kept at least {m['partners_kept_vs_near_rev_low_x']}× NEAR’s entire captured revenue "
+                                        f"({m['partners_kept_vs_near_rev_low_tight_x']}× on the tighter reading), and 1Click was a net route out of NEAR"), paid)
+        partners = re.sub(r"\s+", " ", card_node(DOM, "partners").find("h3").text())
+        self.assertNotIn("at most", partners)
+        self.assertIn(f"The ceiling is {m['swapkit_exit_ceiling_pct']}% if all the escrow NEAR delivered to the buyback wallet counts as SwapKit’s, and "
+                      f"{m['swapkit_exit_ceiling_all_escrow_pct']}% if the escrow NEAR reaching the front-end fund is counted too.", partners)
+        # in the paid chart the blue bar is the bound the headline quotes
+        for name, dom, _, _ in VARIANTS:
+            for sv in card_node(dom, "paid").find_all("svg", "svg"):
+                panels = sv.find_all("g", "panel")
+                blue = [pt for pt in panels[0].find_all("path") if "data-v" in pt.attrs and "s1" in pt.classes()]
+                self.assertEqual([float(pt.attrs["data-v"]) for pt in blue], [m["partners_kept_vs_near_rev_low_x"]], name)
+        caption = card_node(DOM, "paid").find("figcaption").text()
+        self.assertIn("the blue bar is the wide lower bound the headline quotes", caption)
+        notes = re.sub(r"\s+", " ", card_node(DOM, "paid").find("ul", "notes").find_all("li")[0].text())
+        self.assertIn(f"partners kept at least {m['partners_kept_vs_near_rev_low_x']}×, and at most {m['near_share_of_partner_fees_max_pct']}% of the fees on partner swaps "
+                      f"with no buyback fee entry reached NEAR", notes)
+        self.assertIn(f"{m['partners_kept_vs_near_rev_low_tight_x']}× and {m['near_share_of_partner_fees_max_tight_pct']}%", notes)
+        self.assertIn("a role that is inferred, not proven", notes)
+        self.assertIn("Both leave out the escrow NEAR that reached the front-end fund, where the ledger cannot exclude a partner settlement", notes)
+        shows_not = re.sub(r"\s+", " ", card_node(DOM, "partners").find("p", "notshows").text())
+        self.assertIn(f"cannot tell 0% from about {m['near_share_of_partner_fees_max_pct']}% for SwapKit ({m['near_share_of_partner_fees_max_tight_pct']}% on the tighter reading)",
+                      shows_not)
+        nc = re.sub(r"\s+", " ", section_node(DOM, "not-computed").text())
+        self.assertIn(f"no more than {m['near_share_of_partner_fees_max_pct']}% ({m['near_share_of_partner_fees_max_tight_pct']}% on the tighter reading)", nc)
+
+    def test_the_per_swap_sample_note_is_scoped_and_says_what_the_unmatched_entries_are(self):
+        m = METRICS
+        listed = m["fee_ev_swapkit_fees_listed_n"] + m["fee_ev_zodl_fees_listed_n"] + m["fee_ev_other_partner_fees_listed_n"]
+        paid = m["fee_ev_swapkit_fees_paid_onchain_n"] + m["fee_ev_zodl_fees_paid_onchain_n"] + m["fee_ev_other_partner_fees_paid_onchain_n"]
+        zero = m["fee_ev_swapkit_fees_zero_rate_n"] + m["fee_ev_zodl_fees_zero_rate_n"] + m["fee_ev_other_partner_fees_zero_rate_n"]
+        self.assertEqual(listed - paid, zero + m["fee_ev_partner_fees_nonzero_unmatched_n"], "every listed entry is matched, zero-rate or the unmatched one")
+        self.assertEqual(m["fee_ev_partner_fees_nonzero_unmatched_n"], 1)
+        self.assertEqual(m["fee_ev_partner_fees_nonzero_unmatched_escrow_n"], m["fee_ev_partner_fees_nonzero_unmatched_n"])
+        self.assertEqual(m["fee_ev_zodl_fees_zero_rate_n"], 0)
+        li = card_node(DOM, "paid").find("ul", "notes").find_all("li")[1]
+        self.assertEqual(refs_in(li), [("m", "fee_ev_swaps_n"), ("m", "fee_ev_hours_with_swaps_n"), ("m", "fee_ev_partner_fees_nonzero_unmatched_n"),
+                                       ("m", "fee_ev_swapkit_fees_zero_rate_n"), ("d", "fee_ev_other_partner_fees_zero_rate_n+fee_ev_zodl_fees_zero_rate_n")])
+        self.assertEqual(re.sub(r"\s+", " ", li.text()),
+                         f"In the per-swap sample ({m['fee_ev_swaps_n']} swaps from {m['fee_ev_hours_with_swaps_n']} sampled hours) every non-zero partner fee entry was "
+                         f"matched on chain by a payment of the listed amount, except {m['fee_ev_partner_fees_nonzero_unmatched_n']} unmatched entry, in a swap whose tokens "
+                         f"went into the Confidential Intents escrow, where the public chain shows no fee on that route. A further {m['fee_ev_swapkit_fees_zero_rate_n']} "
+                         f"SwapKit entries and {m['fee_ev_other_partner_fees_zero_rate_n'] + m['fee_ev_zodl_fees_zero_rate_n']} others list a zero rate, so nothing is owed "
+                         f"on them and no amount can match. So no split comes out of a listed fee in that sample; whatever 1Click charges on top, and whether it forwards "
+                         f"any of it to NEAR, is not visible.")
+        self.assertNotIn("Partners are paid their full listed fee", card_node(DOM, "paid").text())
+        bad = R.Ctx()
+        bad.m = dict(bad.m, fee_ev_partner_fees_nonzero_unmatched_escrow_n=0)
+        with self.assertRaises(SystemExit):
+            R.card_paid(bad)
+
+    # ---- the forward card
+    def test_the_forward_card_says_first_dry_run_and_points_at_the_entry(self):
+        entry = addendum_entry("2026-11-06 23:49 UTC")
+        self.assertRegex(entry, r"(?m)^7\. \*\*Forward tests\.\*\*.*Its dry run read no day inside 11-06\.\.11-13 for F2-F4 and only the window-opening block for F1")
+        want = ("its first dry run read no scoring-window day for F2 to F4 and only the window-opening block for F1 "
+                "(PREREG-ADDENDUM.md, 2026-11-06 23:49 UTC entry, item 7).")
+        for name, dom, _, _ in VARIANTS:
+            text = re.sub(r"\s+", " ", card_node(dom, "forward").find("ul", "notes").text())
+            self.assertIn(want, text, name)
+            self.assertNotIn("and its dry run read", text, name)
+
+    # ---- the freeze sentences cannot say more than the manifest does
+    def test_the_freeze_sentences_stop_the_render_if_the_manifest_no_longer_supports_them(self):
+        ctx = R.Ctx()
+        self.assertEqual(R.first_bigquery_record(ctx)[0], "raw/bq/staking_flows_daily.json")
+        early = R.Ctx()
+        early.manifest = {k: dict(v) for k, v in early.manifest.items()}
+        early.manifest["raw/bq/staking_flows_daily.json"]["fetched_at"] = "2026-11-05T22:50:00Z"
+        with self.assertRaises(SystemExit):
+            R.freeze_order(early)
+        none = R.Ctx()
+        none.manifest = {k: v for k, v in none.manifest.items() if "bigquery" not in v.get("source", "").lower()}
+        with self.assertRaises(SystemExit):
+            R.first_bigquery_record(none)
+        late = R.Ctx()
+        late.manifest = {k: dict(v) for k, v in late.manifest.items()}
+        for k, v in late.manifest.items():
+            if "bigquery" in v.get("source", "").lower():
+                v["fetched_at"] = "2026-11-06T09:00:00Z"
+        self.assertEqual(R.freeze_order(late)[1], "more than ten minutes")
+
+
+# ------------------------------------------------------------------ line breaks
+class LineBreaks(unittest.TestCase):
+    """break_lines puts newlines into the page only where the browser ignores whitespace. tests/ and the screenshots (every card and
+    section, 1280 and 390 px, light and dark, details closed and open) agree that the page looks the same; these tests pin what it may do."""
+
+    PRE = re.compile(r"<pre\b.*?</pre>", re.S)
+    CHART = re.compile(r'<svg class="svg".*?</svg>', re.S)
+    SVG_TAGS = ("text", "line", "path", "circle", "rect", "g", "title", "desc")
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.PLAIN = R.build_page(R.Ctx(), breaks=False)
+        cls.BROKEN = R.build_page(R.Ctx())
+
+    def inserted(self) -> list[int]:
+        """Positions in the broken page of the newlines the plain page does not have. Anything else that differs is a failure."""
+        plain, broken = self.PLAIN, self.BROKEN
+        i = j = 0
+        out: list[int] = []
+        while i < len(broken):
+            if j < len(plain) and broken[i] == plain[j]:
+                i += 1
+                j += 1
+            elif broken[i] == "\n":
+                out.append(i)
+                i += 1
+            else:
+                self.fail(f"the broken page differs from the plain one by more than newlines, near {broken[max(0, i - 60):i + 60]!r}")
+        self.assertEqual(j, len(plain))
+        return out
+
+    def test_the_committed_page_is_the_broken_one(self):
+        self.assertEqual(PAGE, self.BROKEN)
+
+    def test_it_adds_newlines_and_nothing_else(self):
+        added = self.inserted()
+        self.assertGreater(len(added), 5000)
+        self.assertEqual(len(self.BROKEN), len(self.PLAIN) + len(added))
+
+    def test_every_added_newline_sits_where_whitespace_is_ignored(self):
+        broken = self.BROKEN
+        pre = [(m.start(), m.end()) for m in self.PRE.finditer(broken)]
+        charts = [(m.start(), m.end()) for m in self.CHART.finditer(broken)]
+        block = set(R.BLOCK_TAGS)
+        kinds = {"block": 0, "svg": 0, "path": 0}
+        for i in self.inserted():
+            self.assertFalse(any(a <= i < b for a, b in pre), "a newline inside a <pre>")
+            in_chart = any(a <= i < b for a, b in charts)
+            before, after = broken[i - 1], broken[i + 1]
+            if before == ">" and after == "<":
+                left = re.match(r"</?([a-zA-Z][a-zA-Z0-9]*)", broken[broken.rfind("<", 0, i):i])   # attribute values never hold a raw "<"
+                right = re.match(r"<([a-zA-Z][a-zA-Z0-9]*)[\s>/]", broken[i + 1:i + 40])
+                self.assertTrue(left and right, broken[i - 60:i + 60])
+                if left.group(1) in block and right.group(1) in block and not in_chart:
+                    kinds["block"] += 1                     # between two block-level tags
+                else:
+                    self.assertTrue(in_chart and right.group(1) in self.SVG_TAGS, f"{left.group(0)!r} {right.group(1)!r}")
+                    self.assertNotEqual(left.group(1), "tspan", "a newline between two tspans would be drawn as a space")
+                    open_text = broken.rfind("<text", 0, i)
+                    self.assertTrue(open_text < broken.rfind("</text>", 0, i) or left.group(1) not in ("text", "tspan"), "a newline inside a <text>")
+                    kinds["svg"] += 1                       # between two children of a chart <svg>
+            else:
+                # inside the path data of a chart line, before a command letter
+                start = broken.rfind(' d="', 0, i)
+                inside = start != -1 and broken.find('"', start + 4, i) == -1      # the last d=" before i is still open at i
+                self.assertTrue(in_chart and inside and after in "MLHVAZmlhvaz" and before in "0123456789", broken[i - 60:i + 60])
+                kinds["path"] += 1
+        self.assertGreater(kinds["block"], 4000)
+        self.assertGreater(kinds["svg"], 1000)
+        self.assertGreater(kinds["path"], 10)       # the 400-point lines of the usage charts
+
+    def test_pre_blocks_are_untouched(self):
+        plain, broken = self.PRE.findall(self.PLAIN), self.PRE.findall(self.BROKEN)
+        self.assertGreater(len(plain), 10)
+        self.assertEqual(plain, broken)
+
+    def test_the_text_and_the_elements_are_the_same_with_and_without_the_breaks(self):
+        def canon(node: Node):
+            kids = []
+            for c in node.children:
+                if isinstance(c, Node):
+                    kids.append(canon(c))
+                elif c.strip():
+                    kids.append(c)
+            return (node.tag, tuple(sorted((k, re.sub(r"\s+", "", v) if k == "d" else v) for k, v in node.attrs.items())), tuple(kids))
+
+        plain_dom, errors = parse(self.PLAIN)
+        self.assertEqual(errors, [])
+        self.assertEqual(canon(plain_dom), canon(DOM))
+
+    def test_no_line_of_the_page_is_longer_than_2000_characters(self):
+        longest = max(len(line) for line in PAGE.split("\n"))
+        self.assertLessEqual(longest, 2000, f"a line of {longest} characters")
+        self.assertGreater(max(len(line) for line in self.PLAIN.split("\n")), 100_000, "the plain page is the very long lines this avoids")
+
+    def test_break_lines_on_small_inputs(self):
+        b = R.break_lines
+        self.assertEqual(b("<p>a <b>b</b> c</p><p>d</p>"), "<p>a <b>b</b> c</p>\n<p>d</p>")
+        self.assertEqual(b("<ul><li>a</li><li><b>b</b> c</li></ul>"), "<ul>\n<li>a</li>\n<li><b>b</b> c</li></ul>")
+        self.assertEqual(b("<table><thead><tr><th>a</th><th>b</th></tr></thead><tbody><tr><td>1</td></tr><tr><td>2</td></tr></tbody></table>"),
+                         "<table>\n<thead>\n<tr>\n<th>a</th>\n<th>b</th></tr></thead>\n<tbody>\n<tr>\n<td>1</td></tr>\n<tr>\n<td>2</td></tr></tbody></table>")
+        pre = "<pre><code>a</p><p>b</code></pre>"
+        self.assertEqual(b(f"<p>x</p><p>y</p>{pre}<p>z</p>"), f"<p>x</p>\n<p>y</p>{pre}<p>z</p>")
+        self.assertEqual(b("<p>x <span>y</span><span>z</span> <a>w</a></p>"), "<p>x <span>y</span><span>z</span> <a>w</a></p>")
+        svg = '<svg class="svg" viewBox="0 0 1 1"><title id="t">T</title><g class="panel"><text x="1">A<tspan>B</tspan><tspan>C</tspan></text><text x="2">D</text><line class="a" /><path d="M1,1L2,2" /></g></svg>'
+        self.assertEqual(b(svg), '<svg class="svg" viewBox="0 0 1 1">\n<title id="t">T</title>\n<g class="panel">\n<text x="1">A<tspan>B</tspan><tspan>C</tspan></text>\n'
+                                 '<text x="2">D</text>\n<line class="a" />\n<path d="M1,1L2,2" /></g></svg>')
+        icon = '<svg class="ico" viewBox="0 0 20 20"><circle cx="1" /><path d="M1" /></svg>'
+        self.assertEqual(b(icon), icon, "the small icons are left alone")
+        long_path = '<svg class="svg"><path d="M' + "L".join(f"{i}.5,{i}.5" for i in range(300)) + '" /></svg>'
+        wrapped = b(long_path)
+        self.assertGreater(wrapped.count("\n"), 3)
+        self.assertEqual(wrapped.replace("\n", ""), long_path)
+        self.assertTrue(all(len(line) < R.PATH_LINE + 40 for line in wrapped.split("\n")))
+        for text in (svg, long_path, "<p>a</p><p>b</p>", f"<p>x</p>{pre}<p>y</p>"):
+            self.assertEqual(b(b(text)), b(text), "idempotent")
 
 
 if __name__ == "__main__":

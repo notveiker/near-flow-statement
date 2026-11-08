@@ -21,13 +21,20 @@ the tests fail on any other):
   data-k="name"          a threshold fixed in PREREG.md (CONSTS below; the tests compare each with the frozen text)
   data-f="F1.balance_near"  a scored forward test (data/forward/score_*/result.json, only when is_score is true)
   data-r="bytes:sql/x.sql"  a fact read from a repo file: its size in bytes, the number of very long lines the page
-                         cuts from it (cut:), or an endpoint block height in a raw snapshot (block:)
+                         cuts from it (cut:), an endpoint block height in a raw snapshot (block:), or the time
+                         data/MANIFEST.json records for a file (stamp:raw/bq/x.json)
 Tables of raw or series rows carry data-raw / data-series, one data-k per row and one data-c per column.
 
 The charts carry the numbers they draw, so the tests can check geometry as well as text: every SVG panel is a
 <g class="panel"> that states its kind and axis (data-kind, data-lo, data-hi and the plot box), every bar, column
 and segment carries data-v (the value it is drawn from; data-lv is the value its label prints when that differs),
-and each bar row or column group is a <g class="row" data-row> or <g class="col" data-cat>.
+and each bar row or column group is a <g class="row" data-row> or <g class="col" data-cat>. A vertical marker on a
+line chart carries data-i (the index of the point it stands on) and data-date. The panels of a figure with two or
+more are titled "A. ", "B. " ..., which is what a caption's "Panel A" refers to.
+
+The page is written with newlines between block-level tags and between the children of a chart (see break_lines), so
+that no line is longer than a file viewer can show; they are placed only where a browser ignores whitespace, and the
+tests check that the page is otherwise the same.
 """
 from __future__ import annotations
 
@@ -41,7 +48,7 @@ import math
 import re
 import sys
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 
 from . import score_forward as sf
@@ -57,6 +64,7 @@ PAGE_NAME = "index.html"
 FROZEN_PREREG_SHA256 = "19e470be5398f67ce7b6b5a51f007c0c7a0fcc059b61853c52caf7401452e240"
 FREEZE_TAG = "prereg-freeze"
 FREEZE_COMMIT = "413d776"
+FREEZE_UTC = "2026-11-05 22:53:29"   # commit time of FREEZE_COMMIT (README.md and the 2026-11-07 addendum entry state it; a test compares)
 
 # Thresholds and shares fixed in PREREG.md: name -> (value, shown text, scale). value == float(text) * scale.
 # tests/test_render.py compares each with the frozen text; the forward-test bands come from pipeline/score_forward.py.
@@ -369,10 +377,13 @@ def tip(s: str) -> str:
     return f"<title>{esc(s)}</title>" if s else ""
 
 
-def title_block(v: Variant, title: object) -> tuple[str, float]:
-    """A panel title, wrapped to the panel width. Returns (markup, height used)."""
+def title_block(v: Variant, title: object, tag: str = "") -> tuple[str, float]:
+    """A panel title, wrapped to the panel width. Returns (markup, height used).
+
+    tag is the panel's letter in a figure of two or more panels ("A", "B"): it is printed first, as "A. ", so that a
+    caption or a description that says "Panel A" names something the reader can see."""
     fs = v.fs + 1
-    lines = wrap_words(pl(title), int(v.w / (fs * 0.6)))
+    lines = wrap_words((f"{tag}. " if tag else "") + pl(title), int(v.w / (fs * 0.6)))
     out = "".join(text(0, fs + j * (fs + 3), esc(line), cls="ttl", fs=fs) for j, line in enumerate(lines))
     return out, len(lines) * (fs + 3)
 
@@ -425,13 +436,14 @@ def legend(v: Variant, items: list[tuple[str, object, str]], y: float) -> tuple[
 
 def hbar_panel(v: Variant, *, title: object, rows: list[dict], vmax: float, ticks: list[float],
                tick_fmt=lambda t: f"{t:g}", refs: list[dict] | None = None,
-               legend_items: list[tuple[str, object, str]] | None = None) -> tuple[str, float]:
+               legend_items: list[tuple[str, object, str]] | None = None, tag: str = "") -> tuple[str, float]:
     """Horizontal bars from zero on one linear axis.
 
     rows: {"label": str, "bars": [{"v": float, "cls": "s1", "txt": Txt, "tip": str,
            "lv": float (the value the label prints, when it is not the value drawn),
            "track": bool (full-scale track behind the bar), "segs": [{"v", "cls", "tip"}] (a stacked bar of total v)}]}
     refs: {"v": float, "label": Txt}, a vertical reference line (a pass line or a required threshold).
+    tag: the panel's letter when it is one of several in a figure (see title_block).
 
     The panel is one <g class="panel"> stating its axis and plot box, each row is a <g class="row" data-row>, and
     every bar and segment carries data-v, which is what tests/test_render.py checks the drawn length against."""
@@ -445,7 +457,7 @@ def hbar_panel(v: Variant, *, title: object, rows: list[dict], vmax: float, tick
     def sx(val: float) -> float:
         return pw * val / vmax
 
-    tb, th = title_block(v, title)
+    tb, th = title_block(v, title, tag)
     out: list[str] = [tb]
     lg_h = 0.0
     if legend_items:
@@ -530,12 +542,13 @@ def hbar_panel(v: Variant, *, title: object, rows: list[dict], vmax: float, tick
 def vcol_panel(v: Variant, *, title: object, cats: list[dict], series: list[dict], ymax: float, yticks: list[float],
                h_plot: float, tick_fmt=lambda t: f"{t:g}", label_step: int = 1, refs: list[dict] | None = None,
                brackets: list[dict] | None = None, val_labels: bool = True,
-               footnote: str | None = None) -> tuple[str, float]:
+               footnote: str | None = None, tag: str = "") -> tuple[str, float]:
     """Columns from zero. cats: {"label": str, "vals": [..], "txts": [Txt|None], "tips": [str], "cls": [str]}.
 
     series: {"cls": "s1", "name": str}; a legend is drawn when there is more than one series.
     refs: {"v": float, "label": Txt}, a horizontal reference line; its label is a legend row above the plot,
     never inside it, so it cannot cover a column. footnote: plain text under the brackets.
+    tag: the panel's letter when it is one of several in a figure (see title_block).
 
     The panel is one <g class="panel"> stating its axis and plot box; each category is a <g class="col" data-cat>
     and every column carries data-v, which tests/test_render.py checks the drawn height against."""
@@ -545,7 +558,7 @@ def vcol_panel(v: Variant, *, title: object, cats: list[dict], series: list[dict
     ml = max(tw(tick_fmt(t), fs) for t in yticks) + 12
     mr = 8
     pw = v.w - ml - mr
-    tb, th = title_block(v, title)
+    tb, th = title_block(v, title, tag)
     out: list[str] = [tb]
     y = th + 4
     if len(series) > 1:
@@ -622,20 +635,24 @@ def vcol_panel(v: Variant, *, title: object, cats: list[dict], series: list[dict
 def line_panel(v: Variant, *, title: object, xlabels: list[str], xtick_idx: list[int], series: list[dict],
                ymin: float, ymax: float, yticks: list[float], h_plot: float, tick_fmt=lambda t: f"{t:g}",
                refs: list[dict] | None = None, area_first: bool = False, ynote: str | None = None,
-               annots: list[dict] | None = None) -> tuple[str, float]:
+               annots: list[dict] | None = None, vmarks: list[dict] | None = None, tag: str = "") -> tuple[str, float]:
     """Lines on one axis. series: {"cls": "l1", "dot": "s1", "ys": [..], "end": Txt, "name": str}.
     annots: {"i": point index, "y": value, "txt": Txt}, a labelled dot (a peak or another point worth naming).
+    vmarks: {"i": point index, "date": str, "label": Txt}, a labelled vertical line from the top of the plot to the axis
+    (an event on the horizontal axis); the label sits beside it, inside the plot.
+    tag: the panel's letter when it is one of several in a figure (see title_block).
 
     A legend is drawn when there are two or more series; the last point of each series is labelled directly.
 
     The panel is one <g class="panel"> stating its axis and plot box; the dot at the end of each series, and each
-    annotated dot, carries data-v, which tests/test_render.py checks the drawn height against."""
+    annotated dot, carries data-v, which tests/test_render.py checks the drawn height against, and each vertical line
+    carries data-i and data-date, which it checks the drawn position against."""
     refs = refs or []
     fs = v.fs
     ml = max(tw(tick_fmt(t), fs) for t in yticks) + 12
     mr = max(58 if v.narrow else 76, max([tw(pl(s["end"]), fs, True) for s in series if s.get("end")] or [0]) + 14)
     pw = v.w - ml - mr
-    tb, th = title_block(v, title)
+    tb, th = title_block(v, title, tag)
     out: list[str] = [tb]
     y = th + 4
     if ynote:
@@ -667,6 +684,10 @@ def line_panel(v: Variant, *, title: object, xlabels: list[str], xtick_idx: list
         yy = sy(rf["v"])
         out.append(hline(ml, ml + pw, yy, "refline", f' data-v="{dv(rf["v"])}"'))
         out.append(text(ml + 4, yy - 5, mk(rf["label"]), cls="rl", fs=fs))
+    for vm in vmarks or []:  # drawn before the lines, so a line is never hidden by its marker
+        mx = sx(vm["i"])
+        out.append(f'<line class="vmark" data-i="{vm["i"]}" data-date="{esc(vm["date"])}" x1="{n1(mx)}" x2="{n1(mx)}" '
+                   f'y1="{n1(top)}" y2="{n1(base)}" />')
     ends: list[tuple[float, dict]] = []
     for si, s in enumerate(series):
         pts = [(sx(i), sy(val)) for i, val in enumerate(s["ys"]) if val is not None]
@@ -685,6 +706,12 @@ def line_panel(v: Variant, *, title: object, xlabels: list[str], xtick_idx: list
         aw = tw(pl(an["txt"]), fs, True)
         axa = min(max(ax, ml + aw / 2), ml + pw - aw / 2)
         out.append(text(axa, ay - 9, mk(an["txt"]), cls="val", anchor="middle", fs=fs))
+    for vm in vmarks or []:  # the label goes on the side of the line that has room for it
+        mx = sx(vm["i"])
+        if mx + 6 + tw(pl(vm["label"]), fs) <= ml + pw:
+            out.append(text(mx + 6, top + fs, mk(vm["label"]), cls="rl", fs=fs))
+        else:
+            out.append(text(mx - 6, top + fs, mk(vm["label"]), cls="rl", anchor="end", fs=fs))
     ends.sort(key=lambda e: e[0])
     placed = -1e9
     for ey, s in ends:  # direct end labels, nudged apart by at least one text line
@@ -781,6 +808,7 @@ figcaption{font-size:.8125rem;color:var(--muted);margin-top:6px}
 .svg .grid{stroke:var(--grid);stroke-width:1;shape-rendering:crispEdges}
 .svg .axis{stroke:var(--axis);stroke-width:1;shape-rendering:crispEdges}
 .svg .refline{stroke:var(--ink);stroke-width:1.5}
+.svg .vmark{stroke:var(--ink);stroke-width:1.5;stroke-dasharray:5 4;shape-rendering:crispEdges}
 .svg .bracket{fill:none;stroke:var(--axis);stroke-width:1.2}
 .svg .s1{fill:var(--s1)}.svg .s2{fill:var(--s2)}.svg .sc{fill:var(--ctx)}.svg .sk{fill:var(--ink)}.svg .st2{fill:var(--ink2)}
 .svg .track{fill:var(--grid)}
@@ -1082,7 +1110,7 @@ def card_h1a(ctx: Ctx) -> str:
                           f"Staking rewards: {ctx.plain('h1a_staking_rewards_90d_m')}M NEAR")]},
         ]
         pass_line = eval_expr(f"{CONSTS['h1a_pass_below_x'][0]}*h1a_staking_rewards_90d_m", m)
-        a, ha = hbar_panel(v, title="90-day totals, million NEAR (bars start at zero)", rows=a_rows, vmax=250,
+        a, ha = hbar_panel(v, title="90-day totals, million NEAR (bars start at zero)", tag="A", rows=a_rows, vmax=250,
                            ticks=[0, 50, 100, 150, 200, 250],
                            refs=[{"v": pass_line, "label": T("H1a pass line: net outflow below ",
                                                               ctx.Dt("0.5*h1a_staking_rewards_90d_m", 2), "M")}])
@@ -1090,7 +1118,7 @@ def card_h1a(ctx: Ctx) -> str:
         ys_rw = [r["cum_rw"] / 1e6 for r in rows]
         ticks, lo, top = nice_range(min(ys_net), max(ys_net))
         b, hb = line_panel(
-            v, title="Running total since the first day, million NEAR (below zero: more went into the pools than out)",
+            v, title="Running total since the first day, million NEAR (below zero: more went into the pools than out)", tag="B",
             xlabels=[date_short(d) for d in dates], xtick_idx=[0, n // 3, 2 * n // 3, n - 1], ymin=lo, ymax=top,
             yticks=ticks, h_plot=104 if v.narrow else 126,
             series=[{"cls": "l2", "dot": "s2", "ys": ys_net, "end": T(Mt("pool_net_outflow_90d_m"), "M"),
@@ -1171,7 +1199,7 @@ def card_h1b(ctx: Ctx) -> str:
              "bars": [bar(m["h1b_net_inflow_upper_ex_nonexchange_m"], "sc", T(Mt("h1b_net_inflow_upper_ex_nonexchange_m"), "M"),
                           f"Upper bound ex non-exchange: {ctx.plain('h1b_net_inflow_upper_ex_nonexchange_m')}M NEAR")]},
         ]
-        a, ha = hbar_panel(v, title="Net exchange inflow, 90 days, million NEAR (bars start at zero)", rows=a_rows, vmax=200,
+        a, ha = hbar_panel(v, title="Net exchange inflow, 90 days, million NEAR (bars start at zero)", tag="A", rows=a_rows, vmax=200,
                            ticks=[0, 50, 100, 150, 200],
                            refs=[{"v": m["h1a_gross_issuance_90d_m"],
                                   "label": T("gross issuance ", Mt("h1a_gross_issuance_90d_m"), "M (the H1b bar)")}])
@@ -1186,7 +1214,7 @@ def card_h1b(ctx: Ctx) -> str:
              "bars": [bar(m["h1b_coverage_inflow_pct"], "sc", T(Mt("h1b_coverage_inflow_pct"), "%"),
                           f"Coverage by inflow: {ctx.plain('h1b_coverage_inflow_pct')}%")]},
         ]
-        b, hb = hbar_panel(v, title="Labelled share of the top-100 native-NEAR receivers, % (bars start at zero)", rows=b_rows,
+        b, hb = hbar_panel(v, title="Labelled share of the top-100 native-NEAR receivers, % (bars start at zero)", tag="B", rows=b_rows,
                            vmax=100, ticks=[0, 25, 50, 75, 100], tick_fmt=lambda t: f"{t:g}%",
                            refs=[{"v": CONSTS["h1b_coverage_min_pct"][0],
                                   "label": T("required for a point result: ", ctx.Kt("h1b_coverage_min_pct"), "%")}])
@@ -1219,7 +1247,8 @@ def card_h1b(ctx: Ctx) -> str:
                   '1Click, a non-custodial route out of NEAR, is reported beside H1b and never inside it.'),
         figure=fig,
         caption=f'Window: 90 days, {window_text(ctx, 90)} (UTC). Units: million NEAR (Panel A) and percent of the top-100 receivers (Panel B). Both axes start at zero.',
-        notes=(f'Only {ctx.M("h1b_coverage_count_pct")}% of the top-100 native-NEAR receivers carry a citable exchange label, below the '
+        notes=(f'Only {ctx.M("h1b_coverage_count_pct")}% of the top-100 native-NEAR receivers carry an exchange label ({ctx.M("h1b_coverage_tier1_count_pct")}% a cited '
+               f'one; the rest are labelled by our sweep rule), below the '
                f'{ctx.K("h1b_coverage_min_pct")}% the pre-registration requires, so the test passes only if it passes under both bounds. The lower '
                f'bound is under gross issuance and the upper bound is far over it, so the result is inconclusive.',
                'The upper bound is mechanical: it treats every unlabelled top-100 receiver as an exchange, including accounts that are probably not.',
@@ -1298,6 +1327,25 @@ def card_h1c(ctx: Ctx) -> str:
         data=data_details(tab))
 
 
+def hold_explanation(ctx: Ctx) -> str:
+    """Why the Hold of the frozen rating rule is not a view on NEAR (markup, for the rating card).
+
+    The sentence is true of the data as committed: observed growth is above the Avoid line, so a failed H1b would also
+    give Hold, and coverage is below the pre-registered 50%, where (under the range rule as read before the results) H1b
+    cannot fail. If the data stop supporting it the render stops, so the page cannot go on saying it."""
+    m = ctx.m
+    if not (m["rating_output"] == "Hold" and m["rating_if_h1b_fail"] == "Hold"
+            and min(m["rating_g_obs_pct"], m["rating_g_obs_near_pct"]) >= m["rating_g_avoid_line_pct"]
+            and m["h1b_coverage_count_pct"] < CONSTS["h1b_coverage_min_pct"][0]):
+        raise SystemExit("render: the rating card explains the Hold with facts the data no longer support; rewrite hold_explanation()")
+    M, K = ctx.M, ctx.K
+    return (f'The frozen rule outputs {M("rating_output")}, and that carries no view on NEAR. Below {K("h1b_coverage_min_pct")}% label coverage H1b can come '
+            f'out pass or inconclusive but never fail (the range rule as read before the results; <a href="{esc(gh("PREREG-ADDENDUM.md"))}">PREREG-ADDENDUM.md</a>, '
+            f'2026-11-06 23:11 UTC entry, item 6), and observed revenue growth ({M("rating_g_obs_pct")}% a year; {M("rating_g_obs_near_pct")}% in NEAR terms) '
+            f'is far above the Avoid line ({M("rating_g_avoid_line_pct")}% a year, half of G_req {M("rating_g_req_pct")}%), so the rule could only ever have '
+            f'output Buy or Hold; had H1b failed it would also have been {M("rating_if_h1b_fail")}.')
+
+
 def card_rating(ctx: Ctx) -> str:
     m, Mt = ctx.m, ctx.Mt
     go, gr = m["rating_g_obs_pct"], m["rating_g_req_pct"]
@@ -1357,17 +1405,21 @@ def card_rating(ctx: Ctx) -> str:
                     ("If H1b had failed", ctx.M("rating_if_h1b_fail"))])
     return card(
         cid="rating", kind="pre",
-        headline=(f'The frozen rule outputs {ctx.M("rating_output")}: Buy needs H1b to pass, Avoid needs it to fail, and H1b is '
-                  f'{ctx.M("h1b_verdict")}.'),
+        headline=(f'The frozen rule outputs {ctx.M("rating_output")}, which carries no view on NEAR: Buy needs H1b to pass, Avoid needs it to fail and observed '
+                  f'growth under half the required growth, and H1b is {ctx.M("h1b_verdict")}.'),
         shows=(f'The two inputs of the pre-registered rating rule: required growth G_req of {ctx.M("rating_g_req_pct")}% a year '
                f'({ctx.M("rating_g_req_no_hsp029_pct")}% without HSP-029) against observed growth G_obs of {ctx.M("rating_g_obs_pct")}% a year in USD '
                f'({ctx.M("rating_g_obs_near_pct")}% in NEAR terms).'),
-        notshows=(f'A view on the token: the rule outputs {ctx.M("rating_output")} whatever G_obs and G_req are, because H1b is neither a pass nor a fail.'),
+        notshows=(f'A view on the token. {hold_explanation(ctx)} Nor does it show that the inputs are firm: G_req rests on constants committed after the freeze, '
+                  f'with the as-written H1a result (the price, the length of HSP-029&rsquo;s ramp and its activation date; '
+                  f'<code>data/raw/rpc/rating_assumptions.json</code>), and G_obs compares the last 180 days with the 180 before, a base window that straddles the '
+                  f'2026-02-23 fee switch (pre-switch revenue counts as captured, as DefiLlama labels it), so it does not separate the switch from other causes, '
+                  f'and most of the USD growth is the NEAR price.'),
         figure=fig,
         caption=f'Unit: percent a year. The axis starts at zero, so the observed USD growth dwarfs the other bars. Observed growth compares the last 180 days with the 180 before, to {ctx.m["asof"]}.',
         extra=f'{rule}{figs}',
         notes=(f'G_req is the annual growth in captured Intents revenue ({ctx.M("rating_r90_usd_m")}M USD over the last 90 days, DefiLlama) needed for it to equal '
-               f'the USD value of net new supply by 2031-11-04. G_obs compares the last 180 days with the 180 before, annualized; most of the USD growth is the NEAR price.',
+               f'the USD value of net new supply by 2031-11-04. G_obs is the growth of the last 180 days over the 180 before, annualized.',
                'G_req assumes HSP-029&rsquo;s issuance ramp, whose timelock clears on 2026-11-16, after the submission deadline; we state it as a pending resolver and do not predict it.',
                f'Under the range rule as read before the results, a low-coverage H1b can come out pass or inconclusive, never fail, so the Avoid branch cannot be '
                f'reached while coverage is below {ctx.K("h1b_coverage_min_pct")}%. The exploratory ladder below does not feed the rule.'),
@@ -1575,16 +1627,16 @@ def card_forward(ctx: Ctx) -> str:
                  f'from data fetched at <span data-f="snapshot_fetched_at" data-scale="1">{esc(fw.get("snapshot_fetched_at", ""))}</span>.')
         notes = ('Every result is published, misses included. A test with missing data is scored "not scorable" and never estimated.',
                  'The bands are the frozen predictions and the dot is the observed value. The predictions were frozen before the window; the scorer was '
-                 'written on 2026-11-06, after the window opened, and its dry run read no scoring-window day for F2 to F4 and only the window-opening block '
-                 'for F1 (PREREG-ADDENDUM.md, 2026-11-06 23:49 UTC entry).')
+                 'written on 2026-11-06, after the window opened, and its first dry run read no scoring-window day for F2 to F4 and only the window-opening '
+                 'block for F1 (PREREG-ADDENDUM.md, 2026-11-06 23:49 UTC entry, item 7).')
     else:
         headline = (f'Forward tests F1 to F4 are pending: the window is {esc(w0)} to {esc(w1)} and scoring opens {esc(opens)}.')
         shows = (f'The four predictions frozen in PREREG.md before the window {esc(w0)} to {esc(w1)}, each with its prior probability; '
                  f'nothing is scored yet, so each test is pending.')
         notes = ('The bands are the frozen predictions. The diamonds are the last values committed before the window opened, shown for scale and not as forecasts.',
                  'Every result will be published, including misses. A test with missing data is scored "not scorable" and never estimated. The predictions were '
-                 'frozen before the window; the scorer was written on 2026-11-06, after the window opened, and its dry run read no scoring-window day for F2 to F4 '
-                 'and only the window-opening block for F1 (PREREG-ADDENDUM.md, 2026-11-06 23:49 UTC entry).')
+                 'frozen before the window; the scorer was written on 2026-11-06, after the window opened, and its first dry run read no scoring-window day for F2 to F4 '
+                 'and only the window-opening block for F1 (PREREG-ADDENDUM.md, 2026-11-06 23:49 UTC entry, item 7).')
     notshows = ('A score before scoring opens: a dry run of the scorer is not a score and is never shown here.')
     tab_rows = []
     for fid in ("F1", "F2", "F3", "F4"):
@@ -1663,7 +1715,7 @@ def card_ladder(ctx: Ctx) -> str:
 
     def build(v: Variant) -> tuple[str, float]:
         a, ha = hbar_panel(
-            v, title="Share of net issuance offset, % (full scale: 100% is all of net issuance)",
+            v, title="Share of net issuance offset, % (full scale: 100% is all of net issuance)", tag="A",
             rows=[{"label": "NEAR delivered to the three revenue wallets",
                    "bars": [{"v": tot, "cls": "st2", "track": True, "txt": T(Mt("ladder_all_wallets_pct_of_issuance", 2), "%"),
                              "tip": f"Three revenue wallets: {ctx.plain('ladder_all_wallets_pct_of_issuance', 2)}% of net issuance"}]}],
@@ -1672,7 +1724,7 @@ def card_ladder(ctx: Ctx) -> str:
                 {"v": esc_, "cls": "s2", "tip": f"Escrow unshields: {ctx.plain('ladder_escrow_unshields_pct_of_issuance', 2)}%"},
                 {"v": oth, "cls": "sc", "tip": f"One other recurring source: {ctx.plain('ladder_other_pct_of_issuance', 2)}%"}]
         b, hb = hbar_panel(
-            v, title="Zoom: the same data on a 0 to 20% axis",
+            v, title="Zoom: the same data on a 0 to 20% axis", tag="B",
             rows=[{"label": "All three revenue wallets, by how the NEAR arrived",
                    "bars": [{"v": tot, "cls": "st2", "segs": segs, "txt": T(Mt("ladder_all_wallets_pct_of_issuance", 2), "%")}]},
                   {"label": "Of which the buyback wallet alone (a subset, not an extra rung)",
@@ -1687,7 +1739,7 @@ def card_ladder(ctx: Ctx) -> str:
     fig = dual(ctx, "chart-ladder", title, desc, build)
     tab = table_html(
         [{"h": "Rung", "num": False}, {"h": "% of net issuance"}, {"h": "How the NEAR arrived", "num": False}],
-        [{"k": None, "cells": [esc("All three revenue wallets (base case for valuation)"), ctx.M("ladder_all_wallets_pct_of_issuance", 2),
+        [{"k": None, "cells": [esc("All three revenue wallets"), ctx.M("ladder_all_wallets_pct_of_issuance", 2),
                                esc("sum of the three rows below")]},
          {"k": None, "cells": [esc("Of which the buyback wallet alone"), ctx.M("ladder_buyback_only_pct_of_issuance", 2),
                                esc("a subset of the total, not nested with the rows below")]},
@@ -1728,8 +1780,8 @@ def card_ladder(ctx: Ctx) -> str:
                'The rungs are not nested: collectors, escrow and one other source add up to all three wallets, and the buyback-wallet rung is a subset of the total.',
                f'The total reconciles with DefiLlama: {ctx.M("revwallets_near_k")}K NEAR is {ctx.M("revwallets_vs_llama_rev_pct")}% of its reported Intents revenue '
                f'for the same days. Even the top of the range covers about a sixth of issuance, and the buyback wallet&rsquo;s NEAR is held, not burned.',
-               f'Valuation basis: the full {ctx.M("ladder_all_wallets_pct_of_issuance", 2)}% of what reaches the wallets; the '
-               f'{ctx.M("ladder_public_collectors_pct_of_issuance", 2)}% traceable-only figure is a labelled sensitivity. None of this feeds the rating rule.'),
+               f'No valuation is made here. The range is the finding: {ctx.M("ladder_all_wallets_pct_of_issuance", 2)}% is what reached the three wallets and '
+               f'{ctx.M("ladder_public_collectors_pct_of_issuance", 2)}% is what is traced to public fee collectors. None of this feeds the rating rule.'),
         source=source_p(ctx, sql=("sql/buyback_withdraw_sources.sql",),
                         raw=("raw/escrow/deliveries.csv", "raw/escrow/issuance_reads.json", "raw/escrow/verify_sample.json",
                              "raw/bq/buyback_withdraw_sources.json"),
@@ -1935,7 +1987,7 @@ def card_partners(ctx: Ctx) -> str:
             rows.append({"label": channel_label(c["channel"]),
                          "bars": [bar(c["vol_share_pct"], "s1", T(Mt(f"{p}.vol_share_pct"), "%"), f"{channel_label(c['channel'])}: {c['vol_share_pct']}% of volume"),
                                   bar(c["share_pct"], "s2", T(Mt(f"{p}.share_pct"), "%"), f"{channel_label(c['channel'])}: {c['share_pct']}% of explicit fees")]})
-        a, ha = hbar_panel(v, title="Share of 1Click volume and of NEAR's explicit buyback fees, 30 days, % (bars start at zero)",
+        a, ha = hbar_panel(v, title="Share of 1Click volume and of NEAR's explicit buyback fees, 30 days, % (bars start at zero)", tag="A",
                            rows=rows, vmax=50, ticks=[0, 10, 20, 30, 40, 50], tick_fmt=lambda t: f"{t:g}%",
                            legend_items=[("s1", "Share of 1Click volume", "rect"), ("s2", "Share of NEAR's explicit buyback fees", "rect")])
         b_rows = [
@@ -1947,7 +1999,7 @@ def card_partners(ctx: Ctx) -> str:
              "bars": [bar(m["swapkit_exit_ceiling_all_escrow_pct"], "st2", T(Mt("swapkit_exit_ceiling_all_escrow_pct"), "%"),
                           f"Wider ceiling: {ctx.plain('swapkit_exit_ceiling_all_escrow_pct')}%")]},
         ]
-        b, hb = hbar_panel(v, title="If SwapKit stopped routing through 1Click: share of captured Intents revenue lost, %", rows=b_rows,
+        b, hb = hbar_panel(v, title="If SwapKit stopped routing through 1Click: share of captured Intents revenue lost, %", tag="B", rows=b_rows,
                            vmax=100, ticks=[0, 25, 50, 75, 100], tick_fmt=lambda t: f"{t:g}%")
         return stack([(a, ha), (b, hb)])
 
@@ -1972,12 +2024,13 @@ def card_partners(ctx: Ctx) -> str:
         cid="partners", kind="exp",
         headline=(f'SwapKit routes {ctx.M("swapkit_vol_share_pct")}% of 1Click volume but paid NEAR ${ctx.M("swapkit_buyback_fees_usd", 0)} in explicit fees '
                   f'over 30 days; if it left, NEAR would lose about {ctx.M("swapkit_exit_traceable_pct")}% of captured revenue on the traceable '
-                  f'streams, and at most {ctx.M("swapkit_exit_ceiling_pct")}% ({ctx.M("swapkit_exit_ceiling_all_escrow_pct")}% if the escrow NEAR reaching the front-end fund is counted too).'),
+                  f'streams. The ceiling is {ctx.M("swapkit_exit_ceiling_pct")}% if all the escrow NEAR delivered to the buyback wallet counts as SwapKit&rsquo;s, '
+                  f'and {ctx.M("swapkit_exit_ceiling_all_escrow_pct")}% if the escrow NEAR reaching the front-end fund is counted too.'),
         shows=(f'For SwapKit and for the channels that pay NEAR the most explicit buyback fees, each channel&rsquo;s share of 1Click volume against its share of '
                f'NEAR&rsquo;s explicit buyback fees over the 30 days {window_text(ctx, 30)}, and what NEAR would lose if SwapKit stopped routing through 1Click.'),
         notshows=(f'Most of the NEAR the buyback wallet receives cannot be traced to any channel on chain, so that part of the exposure is unknown, not zero: '
                   f'the ceilings count every escrow unshield as if it came from SwapKit, which neither documented reading of that stream supports, and the ledger '
-                  f'cannot tell 0% from about {ctx.M("near_share_of_partner_fees_max_tight_pct")}% for SwapKit.'),
+                  f'cannot tell 0% from about {ctx.M("near_share_of_partner_fees_max_pct")}% for SwapKit ({ctx.M("near_share_of_partner_fees_max_tight_pct")}% on the tighter reading).'),
         figure=fig,
         caption=(f'Window: the 30 days {window_text(ctx, 30)} (UTC). Unit: percent. Both panels start at zero. SwapKit&rsquo;s fee bar is drawn to scale and is too short to see. '
                  f'Blue and orange mean volume share and fee share in Panel A only; Panel B uses one colour.'),
@@ -2000,24 +2053,27 @@ def card_partners(ctx: Ctx) -> str:
 
 def card_paid(ctx: Ctx) -> str:
     m, Mt = ctx.m, ctx.Mt
+    if m["fee_ev_partner_fees_nonzero_unmatched_escrow_n"] != m["fee_ev_partner_fees_nonzero_unmatched_n"]:
+        raise SystemExit("render: not every unmatched partner fee is in an escrow-routed swap; rewrite the note on the per-swap sample in card_paid()")
+    unmatched_word = "entry" if m["fee_ev_partner_fees_nonzero_unmatched_n"] == 1 else "entries"
     title = "Who keeps the listed 1Click fees, and which way 1Click moves NEAR"
     desc = (f"Panel A, bars from zero in multiples of NEAR's entire captured revenue, with a reference line at 1: partners kept {ctx.plain('partners_kept_vs_near_rev_low_x')} "
-            f"at the loose lower bound, {ctx.plain('partners_kept_vs_near_rev_low_tight_x')} at the tight lower bound and {ctx.plain('partners_kept_vs_near_rev_high_x')} at the upper. "
+            f"at the wide lower bound, {ctx.plain('partners_kept_vs_near_rev_low_tight_x')} at the tight lower bound and {ctx.plain('partners_kept_vs_near_rev_high_x')} at the upper. "
             f"Panel B: 1Click swaps into NEAR {ctx.plain('explorer_into_near_usd_m')} million dollars, out of NEAR {ctx.plain('explorer_out_of_near_usd_m')} million.")
 
     def build(v: Variant) -> tuple[str, float]:
         a_rows = [
-            {"label": "Loose lower bound: all unexplained NEAR in the buyback wallet counted as partner fees passed on",
-             "bars": [bar(m["partners_kept_vs_near_rev_low_x"], "sc", T(Mt("partners_kept_vs_near_rev_low_x"), "×"),
-                          f"Loose lower bound: {ctx.plain('partners_kept_vs_near_rev_low_x')}×")]},
+            {"label": "Wide lower bound: all unexplained NEAR in the buyback wallet counted as partner fees passed on",
+             "bars": [bar(m["partners_kept_vs_near_rev_low_x"], "s1", T(Mt("partners_kept_vs_near_rev_low_x"), "×"),
+                          f"Wide lower bound: {ctx.plain('partners_kept_vs_near_rev_low_x')}×")]},
             {"label": "Tight lower bound: only escrow unshields counted as passed on",
-             "bars": [bar(m["partners_kept_vs_near_rev_low_tight_x"], "s1", T(Mt("partners_kept_vs_near_rev_low_tight_x"), "×"),
+             "bars": [bar(m["partners_kept_vs_near_rev_low_tight_x"], "sc", T(Mt("partners_kept_vs_near_rev_low_tight_x"), "×"),
                           f"Tight lower bound: {ctx.plain('partners_kept_vs_near_rev_low_tight_x')}×")]},
             {"label": "Upper: all listed partner fees, none passed on",
              "bars": [bar(m["partners_kept_vs_near_rev_high_x"], "sc", T(Mt("partners_kept_vs_near_rev_high_x"), "×"),
                           f"Upper: {ctx.plain('partners_kept_vs_near_rev_high_x')}×")]},
         ]
-        a, ha = hbar_panel(v, title="Partners' listed fees ÷ NEAR's entire captured revenue (bars start at zero)", rows=a_rows, vmax=2.5,
+        a, ha = hbar_panel(v, title="Partners' listed fees ÷ NEAR's entire captured revenue (bars start at zero)", tag="A", rows=a_rows, vmax=2.5,
                            ticks=[0, 0.5, 1, 1.5, 2, 2.5], tick_fmt=lambda t: f"{t:g}×",
                            refs=[{"v": 1.0, "label": T("1×: equal to NEAR's whole captured revenue")}])
         b_rows = [
@@ -2026,7 +2082,7 @@ def card_paid(ctx: Ctx) -> str:
             {"label": "1Click swaps out of NEAR", "bars": [bar(m["explorer_out_of_near_usd_m"], "st2", T("$", Mt("explorer_out_of_near_usd_m"), "M"),
                                                               f"Out of NEAR: ${ctx.plain('explorer_out_of_near_usd_m')}M")]},
         ]
-        b, hb = hbar_panel(v, title="1Click swaps with NEAR on one side, USD million, 30 days (bars start at zero)", rows=b_rows, vmax=30,
+        b, hb = hbar_panel(v, title="1Click swaps with NEAR on one side, USD million, 30 days (bars start at zero)", tag="B", rows=b_rows, vmax=30,
                            ticks=[0, 10, 20, 30])
         return stack([(a, ha), (b, hb)])
 
@@ -2035,7 +2091,7 @@ def card_paid(ctx: Ctx) -> str:
         [{"h": "Measure", "num": False}, {"h": "Value"}, {"h": "Unit", "num": False}],
         [{"k": None, "cells": [esc("Partner fees listed on 1Click swaps"), ctx.M("explorer_partner_fees_all_usd_k"), esc("USD thousand")]},
          {"k": None, "cells": [esc("NEAR's captured revenue, three revenue wallets"), ctx.M("revwallets_usd_k"), esc("USD thousand")]},
-         {"k": None, "cells": [esc("Partners kept ÷ NEAR's revenue, loose lower bound"), ctx.M("partners_kept_vs_near_rev_low_x"), esc("×")]},
+         {"k": None, "cells": [esc("Partners kept ÷ NEAR's revenue, wide lower bound"), ctx.M("partners_kept_vs_near_rev_low_x"), esc("×")]},
          {"k": None, "cells": [esc("Partners kept ÷ NEAR's revenue, tight lower bound"), ctx.M("partners_kept_vs_near_rev_low_tight_x"), esc("×")]},
          {"k": None, "cells": [esc("Partners kept ÷ NEAR's revenue, upper"), ctx.M("partners_kept_vs_near_rev_high_x"), esc("×")]},
          {"k": None, "cells": [esc("1Click swaps into NEAR"), ctx.M("explorer_into_near_usd_m"), esc("USD million")]},
@@ -2048,8 +2104,9 @@ def card_paid(ctx: Ctx) -> str:
                     ("Share of 1Click volume with NEAR on one side", f'{ctx.M("explorer_near_side_swap_share_pct")}%')])
     return card(
         cid="paid", kind="exp",
-        headline=(f'Partners kept at least {ctx.M("partners_kept_vs_near_rev_low_tight_x")}× NEAR&rsquo;s entire captured revenue, and 1Click was a net route out '
-                  f'of NEAR: ${ctx.M("explorer_out_of_near_usd_m")}M out against ${ctx.M("explorer_into_near_usd_m")}M in over 30 days.'),
+        headline=(f'Partners kept at least {ctx.M("partners_kept_vs_near_rev_low_x")}× NEAR&rsquo;s entire captured revenue ({ctx.M("partners_kept_vs_near_rev_low_tight_x")}× '
+                  f'on the tighter reading), and 1Click was a net route out of NEAR: ${ctx.M("explorer_out_of_near_usd_m")}M out against '
+                  f'${ctx.M("explorer_into_near_usd_m")}M in over 30 days.'),
         shows=(f'The fees 1Click swaps listed for partners (${ctx.M("explorer_partner_fees_all_usd_k")}K) as a multiple of NEAR&rsquo;s entire captured Intents revenue '
                f'(${ctx.M("revwallets_usd_k")}K), between {ctx.M("partners_kept_vs_near_rev_low_x")}× and {ctx.M("partners_kept_vs_near_rev_high_x")}×, and 1Click swap volume '
                f'into and out of NEAR, over the 30 days {window_text(ctx, 30)}.'),
@@ -2057,11 +2114,18 @@ def card_paid(ctx: Ctx) -> str:
                   f'and other integrations have a fee structure the Explorer API does not show, so we do not extrapolate.'),
         figure=fig,
         caption=(f'Window: the 30 days {window_text(ctx, 30)} (UTC). Units: a multiple of NEAR&rsquo;s revenue (Panel A) and USD million (Panel B). Both axes start at zero. '
-                 f'In Panel A the blue bar is the bound the headline quotes; Panel B uses one colour for both bars.'),
+                 f'In Panel A the blue bar is the wide lower bound the headline quotes and the grey bars are the tight reading and the upper bound; Panel B uses one colour for both bars.'),
         extra=figs,
-        notes=(f'Partners are paid their full listed fee on chain (for SwapKit, {ctx.M("fee_ev_swapkit_fees_paid_onchain_n")} of {ctx.M("fee_ev_swapkit_fees_listed_n")} fee '
-               f'entries sampled), so no split comes out of it; whatever 1Click charges on top, and whether it forwards any of it to NEAR, is not visible. On partner swaps '
-               f'with no buyback fee entry, at most {ctx.M("near_share_of_partner_fees_max_tight_pct")}% of fees reaches NEAR&rsquo;s wallets.',
+        notes=(f'The wide reading counts all the NEAR in the buyback wallet that the explicit fee entries do not explain as partner fees passed on to NEAR: partners kept '
+               f'at least {ctx.M("partners_kept_vs_near_rev_low_x")}×, and at most {ctx.M("near_share_of_partner_fees_max_pct")}% of the fees on partner swaps with no buyback fee '
+               f'entry reached NEAR. The tight reading counts only the escrow unshields, reading collector B&rsquo;s NEAR as quote improvement, a role that is inferred, '
+               f'not proven: {ctx.M("partners_kept_vs_near_rev_low_tight_x")}× and {ctx.M("near_share_of_partner_fees_max_tight_pct")}%. Both leave out the escrow NEAR '
+               f'that reached the front-end fund, where the ledger cannot exclude a partner settlement.',
+               f'In the per-swap sample ({ctx.M("fee_ev_swaps_n")} swaps from {ctx.M("fee_ev_hours_with_swaps_n")} sampled hours) every non-zero partner fee entry was matched '
+               f'on chain by a payment of the listed amount, except {ctx.M("fee_ev_partner_fees_nonzero_unmatched_n")} unmatched {unmatched_word}, in a swap whose tokens went '
+               f'into the Confidential Intents escrow, where the public chain shows no fee on that route. A further {ctx.M("fee_ev_swapkit_fees_zero_rate_n")} SwapKit entries '
+               f'and {ctx.D("fee_ev_other_partner_fees_zero_rate_n+fee_ev_zodl_fees_zero_rate_n", 0)} others list a zero rate, so nothing is owed on them and no amount can '
+               f'match. So no split comes out of a listed fee in that sample; whatever 1Click charges on top, and whether it forwards any of it to NEAR, is not visible.',
                f'1Click swaps out of NEAR are not exchange deposits: H1b counts only labelled centralized-exchange accounts and does not see this non-custodial route. '
                f'Only {ctx.M("explorer_near_side_swap_share_pct")}% of 1Click volume has NEAR on one side.',
                'Partner numbers rest on one key-gated source, the Explorer API.'),
@@ -2160,12 +2224,12 @@ def card_revenue(ctx: Ctx) -> str:
             lab_txt = T("$", St(f"intents_monthly.{r['month']}.rev_m"), "M") if r["month"] == peak_rev else None
             cats.append({"label": r["month"], "vals": [r["rev_m"]], "txts": [lab_txt],
                          "tips": [f"{r['month']}: ${fmt_value(r['rev_m'])}M captured revenue"]})
-        a, ha = vcol_panel(v, title="Captured revenue per month, USD million (bars start at zero)", cats=cats,
+        a, ha = vcol_panel(v, title="Captured revenue per month, USD million (bars start at zero)", tag="A", cats=cats,
                            series=[{"cls": "s1", "name": "Captured revenue"}], ymax=top, yticks=ticks,
                            h_plot=96 if not v.narrow else 90, label_step=6 if v.narrow else 3)
         bticks, btop = nice_axis(max(r["captured_bp"] for r in rows), 4)
         b, hb = line_panel(
-            v, title="Captured revenue ÷ DefiLlama reported volume, basis points (axis starts at zero)",
+            v, title="Captured revenue ÷ DefiLlama reported volume, basis points (axis starts at zero)", tag="B",
             xlabels=[r["month"] for r in rows], xtick_idx=tick_every(n, 6 if v.narrow else 3),
             series=[{"cls": "l1", "dot": "s1", "ys": [r["captured_bp"] for r in rows], "end": T(St(f"intents_monthly.{last}.captured_bp"), " bp")}],
             ymin=0, ymax=btop, yticks=bticks, h_plot=96 if not v.narrow else 90,
@@ -2233,14 +2297,14 @@ def card_supply(ctx: Ctx) -> str:
     def build(v: Variant) -> tuple[str, float]:
         lo, hi = 1200.0, 1320.0
         a, ha = line_panel(
-            v, title="Total supply at each month end, million NEAR", xlabels=[d[:7] for d in me_dates],
+            v, title="Total supply at each month end, million NEAR", tag="A", xlabels=[d[:7] for d in me_dates],
             xtick_idx=tick_every(len(me_dates), 6 if v.narrow else 3),
             series=[{"cls": "l1", "dot": "s1", "ys": [by_date[d] for d in me_dates],
                      "end": T(St(f"supply_daily.{me_dates[-1]}.supply_m"), "M")}],
             ymin=lo, ymax=hi, yticks=[1200, 1240, 1280, 1320], h_plot=96 if not v.narrow else 90, area_first=True,
             ynote="The vertical axis starts at 1,200M, not zero.")
         cats = [{"label": date_short(r["date"]), "vals": [r["change_k"]], "txts": [None]} for r in daily]
-        b, hb = vcol_panel(v, title="Net issuance per day, thousand NEAR (bars start at zero)", cats=cats,
+        b, hb = vcol_panel(v, title="Net issuance per day, thousand NEAR (bars start at zero)", tag="B", cats=cats,
                            series=[{"cls": "s1", "name": "Net issuance"}], ymax=120, yticks=[0, 40, 80, 120],
                            h_plot=96 if not v.narrow else 90, label_step=30 if v.narrow else 15,
                            refs=[{"v": m["net_issuance_near_per_day_30d_k"], "label": T("30-day mean ", Mt("net_issuance_near_per_day_30d_k"), "K")}])
@@ -2285,6 +2349,102 @@ def card_supply(ctx: Ctx) -> str:
         data=data_details(tab_a, tab_b))
 
 
+USAGE_COUNTS = (("tx", "Transactions"), ("contracts", "Active contracts"), ("new_accounts", "New accounts"),
+                ("active_accounts", "Active accounts"))   # the four daily counts the step table compares
+
+
+def card_usage(ctx: Ctx) -> str:
+    m, Mt, M, St = ctx.m, ctx.Mt, ctx.M, ctx.St
+    rows = ctx.s["l1_daily"]
+    n = len(rows)
+    dates = [r["date"] for r in rows]
+    step, ref, asof = m["l1_step_date"], m["l1_step_ref_date"], m["asof"]
+    if dates[-1] != asof or step not in dates:
+        raise SystemExit("render: series l1_daily does not end at the as-of date or does not contain the step day; run `make reproduce`")
+    si = dates.index(step)
+    first, last = dates[0], dates[-1]
+    title = "Daily transactions and daily active accounts on NEAR, from Nearblocks"
+    desc = (f"Panel A: a line of daily transactions in thousand, on an axis from zero, over the {n} days from {first} to {last}. It stands at "
+            f"{ctx.plain('l1_step_tx_before_k')} thousand on {ref} and {ctx.plain('l1_step_tx_after_k')} thousand on {step}, where a dashed vertical "
+            f"line marks the largest one-day fall in the 365 days to {asof}, and at {ctx.series_value(f'l1_daily.{last}.tx_k')} thousand on {last}. "
+            f"Panel B: a line of daily active accounts in thousand over the same days, with the same dashed line. It stands at "
+            f"{ctx.plain('l1_step_active_accounts_before_k')} thousand on {ref}, {ctx.plain('l1_step_active_accounts_after_k')} thousand on {step} and "
+            f"{ctx.series_value(f'l1_daily.{last}.active_accounts_k')} thousand on {last}.")
+    labels = [f"{MONTHS[int(d[5:7]) - 1]} {d[:4]}" for d in dates]
+
+    def build(v: Variant) -> tuple[str, float]:
+        months = (4, 10) if v.narrow else (1, 4, 7, 10)
+        ticks_x = [i for i, d in enumerate(dates) if d[8:] == "01" and int(d[5:7]) in months]
+        panels = []
+        for key, name, tag in (("tx_k", "Transactions per day, thousand (axis starts at zero)", "A"),
+                               ("active_accounts_k", "Active accounts per day, thousand (axis starts at zero)", "B")):
+            ys = [r[key] for r in rows]
+            yt, top = nice_axis(max(ys), 5)
+            panels.append(line_panel(
+                v, title=name, tag=tag, xlabels=labels, xtick_idx=ticks_x,
+                series=[{"cls": "l1", "dot": "s1", "ys": ys, "end": T(St(f"l1_daily.{last}.{key}"), "K")}],
+                ymin=0, ymax=top, yticks=yt, tick_fmt=lambda t: f"{t:,.0f}", h_plot=96 if v.narrow else 104,
+                vmarks=[{"i": si, "date": step, "label": T("step ", Mt("l1_step_date"))}]))
+        return stack(panels)
+
+    fig = dual(ctx, "chart-usage", title, desc, build)
+
+    step_rows = []
+    for tag, label in USAGE_COUNTS:
+        b, a = f"l1_step_{tag}_before_k", f"l1_step_{tag}_after_k"
+        step_rows.append({"k": None, "cells": [esc(label), M(b), M(a), ctx.D(f"({a}/{b}-1)*100", 0)]})
+    tab_step = table_html(
+        [{"h": "Daily count", "num": False}, {"h": f"On {ref}, thousand"}, {"h": f"On {step}, thousand"},
+         {"h": f"Change from {ref} to {step}, %"}],
+        step_rows, caption="The step: four daily counts on the two days (the change is computed from the two values shown)")
+    tab_change = table_html(
+        [{"h": "Daily count", "num": False}, {"h": "Average of the latest 30 days, thousand a day"},
+         {"h": "Change on the same 30 days a year earlier, %"}, {"h": f"Change on the 30 days that start on {step}, %"}],
+        [{"k": None, "cells": [esc("Transactions"), M("tx_per_day_30d_k"), M("tx_per_day_30d_yoy_pct"), M("tx_per_day_since_step_pct")]},
+         {"k": None, "cells": [esc("Active accounts"), M("active_accounts_30d_k"), M("active_accounts_30d_yoy_pct"), M("active_accounts_since_step_pct")]}],
+        caption="Year on year, and since the step")
+    tab_daily = table_html(
+        [{"h": "Day", "num": False, "c": "date"}, {"h": "Transactions per day, thousand", "c": "tx_k"},
+         {"h": "Active accounts per day, thousand", "c": "active_accounts_k"}],
+        [{"k": r["date"], "cells": [esc(r["date"]), fmt_value(r["tx_k"], 1), fmt_value(r["active_accounts_k"], 1)]} for r in rows],
+        caption=f"Panels A and B: plotted values, {first} to {last}", attrs='data-series="l1_daily"')
+
+    figs = keyfigs([(label, f'{M(f"l1_step_{tag}_before_k")} → {M(f"l1_step_{tag}_after_k")}') for tag, label in USAGE_COUNTS])
+    lead = f'<p class="note">Four daily counts, in thousands, on {esc(ref)} and then on {esc(step)}, the day of the fall:</p>'
+    return card(
+        cid="usage", kind="exp",
+        headline=(f'Daily active accounts averaged {M("active_accounts_30d_k")}K over the 30 days to {M("asof")}, {M("active_accounts_30d_yoy_pct")}% on the same 30 days '
+                  f'a year earlier; daily transactions are {M("tx_per_day_30d_yoy_pct")}% on a year earlier, but most of that is one step on {M("l1_step_date")}, '
+                  f'not a gradual decline.'),
+        shows=(f'Nearblocks&rsquo; counts of transactions (Panel A) and of active accounts (Panel B) on each day from {esc(first)} to {esc(last)}, in thousands. '
+               f'A dashed line marks {esc(step)}, the largest one-day fall in daily transactions in the 365 days to {esc(asof)}. The headline averages are '
+               f'the 30 days {window_text(ctx, 30)} against the same 30 days a year earlier.'),
+        notshows=('Why the step happened: this repository holds no definition of what Nearblocks counts, and these data cannot tell a change in what is counted, '
+                  'or the end of automated traffic, from a real fall in usage. That active accounts are people: this repository applies no sybil or bot filter to the counts. '
+                  'Contract usage: the active-contract count falls by an order of magnitude on the same days (see the table), so it is not used. Anything from '
+                  'BigQuery: these are Nearblocks aggregates, not the BigQuery queries the track brief names. A cause for any of it.'),
+        figure=fig,
+        caption=(f'Window: {esc(first)} to {esc(last)} (UTC), one point per day. Unit: thousand a day. Both axes start at zero. The dashed line is {esc(step)}. '
+                 f'The headline figures are 30-day averages; each line shows single days, so its last point, the as-of date, differs from them.'),
+        extra=f'{lead}{figs}',
+        notes=(f'The transactions series falls in one step, from {M("l1_step_tx_before_k")}K to {M("l1_step_tx_after_k")}K between {esc(ref)} and {esc(step)}. '
+               f'Active contracts and new accounts fall with it, but active accounts barely move ({M("l1_step_active_accounts_before_k")}K to '
+               f'{M("l1_step_active_accounts_after_k")}K): they fall gradually, with spikes this card does not explain, not in a step. Since the step, the change is {M("tx_per_day_since_step_pct")}% for '
+               f'daily transactions and {M("active_accounts_since_step_pct")}% for daily active accounts (the latest 30 days against the 30 days that start on {esc(step)}).',
+               'Both counts are lower than a year ago, but they fall differently. This card does not decompose either fall, it is not a pre-registered test, and it feeds '
+               'neither the rating rule nor any other result.',
+               'The track brief names daily active accounts, transaction counts and contract usage. This card reports the first two from Nearblocks aggregates and says why '
+               'it does not use the third; none of the committed BigQuery queries counts any of them.'),
+        source=source_p(ctx, raw=("raw/nearblocks/charts.json",), code=("pipeline/fetch_keyless.py", "pipeline/compute.py"),
+                        upstream=("Nearblocks /v1/charts daily transactions, active accounts, active contracts and new accounts",)),
+        query=query_details(ctx, endpoints=(
+            ("Endpoint", "GET https://api.nearblocks.io/v1/charts"),
+            ("Fetcher", "python3 -m pipeline.fetch_keyless (no key), function fetch_nearblocks()"),
+            ("Step and series", "pipeline/compute.py, function l1_usage(): the step day, the four counts on the two days, the change since the step, and series l1_daily in data/series.json"),
+            ("Averages", "pipeline/compute.py, function build(): the 30-day averages and the year-on-year changes"))),
+        data=data_details(tab_step, tab_change, tab_daily))
+
+
 # ------------------------------------------------------------------ page
 PRE_CARDS = (("h1a", "H1a: staking outflow", card_h1a), ("h1b", "H1b: net exchange inflow", card_h1b),
              ("h1c", "H1c: identified buying", card_h1c), ("rating", "Rating rule inputs", card_rating),
@@ -2292,12 +2452,41 @@ PRE_CARDS = (("h1a", "H1a: staking outflow", card_h1a), ("h1b", "H1b: net exchan
 EXP_CARDS = (("ladder", "The value-capture ladder", card_ladder), ("escrow", "Escrow share by month", card_escrow),
              ("take", "NEAR's take in 1Click", card_take), ("partners", "Partner concentration", card_partners),
              ("paid", "Who keeps the fees", card_paid), ("peers", "Share of the peer set", card_peers),
-             ("revenue", "Monthly revenue and take rate", card_revenue), ("supply", "Supply and net issuance", card_supply))
+             ("revenue", "Monthly revenue and take rate", card_revenue), ("supply", "Supply and net issuance", card_supply),
+             ("usage", "Network usage", card_usage))
 
 
 def tile(*, label: str, status_markup: str, kind: str, big: str, note: str, href: str) -> str:
     return (f'<li class="tile"><p class="st">{icon(kind, 24)}{status_markup}</p><p class="tlabel">{label}</p>'
             f'<p class="big">{big}</p><p class="tnote">{note}</p><a href="{href}">See the chart</a></li>')
+
+
+NUMBER_WORDS = ("zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten")   # index = a whole number of minutes
+
+
+def first_bigquery_record(ctx: Ctx) -> tuple[str, str]:
+    """(manifest path, time) of the earliest BigQuery-derived file in data/MANIFEST.json, the time as "2026-11-05 22:55:37".
+
+    That time is when pipeline.common.record() last wrote the file, on the author's machine: it is the earliest BigQuery
+    result the repository records, not proof of when the first query ran."""
+    rows = sorted((e["fetched_at"], rel) for rel, e in ctx.manifest.items() if "bigquery" in str(e.get("source", "")).lower())
+    if not rows:
+        raise SystemExit("render: data/MANIFEST.json records no BigQuery result")
+    return rows[0][1], rows[0][0].replace("T", " ").rstrip("Z")
+
+
+def freeze_order(ctx: Ctx) -> tuple[str, str]:
+    """(the first BigQuery record's time as a span that names its manifest entry, how long after the freeze it is, in words).
+
+    The page says the freeze came before that record only because the manifest says so: if it ever does not, the render stops."""
+    rel, stamp = first_bigquery_record(ctx)
+    gap = (datetime.fromisoformat(stamp) - datetime.fromisoformat(FREEZE_UTC)).total_seconds()
+    if gap <= 0:
+        raise SystemExit(f"render: {rel} is recorded as written at {stamp}, not after the freeze commit ({FREEZE_UTC}); rewrite the freeze sentences")
+    n = round(gap / 60)
+    how_long = ("less than a minute" if n < 1 else f"about {NUMBER_WORDS[n]} minute{'s' if n != 1 else ''}" if n < len(NUMBER_WORDS)
+                else "more than ten minutes")
+    return f'<span data-r="stamp:{esc(rel)}">{esc(stamp)} UTC</span>', how_long
 
 
 def scorecard(ctx: Ctx) -> str:
@@ -2318,8 +2507,8 @@ def scorecard(ctx: Ctx) -> str:
              href="#chart-h1c"),
         tile(label="Rating · the frozen rule", status_markup=M("rating_output"), kind=status_kind(str(m["rating_output"])),
              big=f'{M("rating_g_obs_pct")}% against {M("rating_g_req_pct")}%',
-             note=(f'Observed against required growth in captured revenue, a year. Buy needs H1b to pass and Avoid needs it to fail; H1b is '
-                   f'{M("h1b_verdict")}, so the rule outputs {M("rating_output")}.'), href="#chart-rating"),
+             note=(f'Observed against required growth in captured revenue, a year. Buy needs H1b to pass; Avoid needs it to fail and observed growth under '
+                   f'half the required. H1b is {M("h1b_verdict")}, so the rule outputs {M("rating_output")}, which carries no view on NEAR.'), href="#chart-rating"),
     ]
     if fw:
         words = [str(fw["results"].get(f, {}).get("result", "not scorable")) for f in ("F1", "F2", "F3", "F4")]
@@ -2336,26 +2525,39 @@ def scorecard(ctx: Ctx) -> str:
         tiles.append(tile(label="Forward tests F1 to F4", status_markup="pending", kind="pending", big="F1 to F4",
                           note=(f'Window {esc(sf.WINDOW[0])} to {esc(sf.WINDOW[1])}. Scored after {esc(opens)} by '
                                 f'<code>python3 -m pipeline.score_forward --score</code>, misses included.'), href="#chart-forward"))
+    freeze_stamp, freeze_gap = freeze_order(ctx)
     return (f'<section id="scorecard" aria-labelledby="scorecard-h"><h2 id="scorecard-h">Scorecard (pre-registered)</h2>'
-            f'<p class="note">Fixed before any BigQuery flow query ran. The table <a href="{esc(gh("PREREG.md"))}#{PREREG_ANCHOR}">&ldquo;What we had already '
+            f'<p class="note">Frozen at commit <code>{FREEZE_COMMIT}</code> ({FREEZE_UTC} UTC), {freeze_gap} before the first BigQuery result the repository records '
+            f'({freeze_stamp} in <code>data/MANIFEST.json</code>). Commit and manifest times are written by the author&rsquo;s machine, and nothing external '
+            f'attests them; BigQuery job IDs, which embed their creation time, are recorded only for the H1b and H1c runs and one October escrow scan, not for the '
+            f'H1a queries. The table <a href="{esc(gh("PREREG.md"))}#{PREREG_ANCHOR}">&ldquo;What we had already '
             f'seen&rdquo; in PREREG.md</a> lists the data already in hand at the freeze. Each status is shown by a shape and a word, not by colour alone.</p>'
             f'<ul class="tiles">{"".join(tiles)}</ul></section>')
 
 
 def not_computed(ctx: Ctx) -> str:
-    M = ctx.M
+    M, m = ctx.M, ctx.m
     items = [
         ("Net exchange inflow as one number (H1b, H1c).",
-         f'Only {M("h1b_coverage_count_pct")}% of the top-100 receivers carry a citable exchange label. The binding gap is labelling, not data: no citable NEAR '
+         f'Only {M("h1b_coverage_count_pct")}% of the top-100 receivers carry an exchange label ({M("h1b_coverage_tier1_count_pct")}% a cited one; the rest are '
+         f'labelled by our sweep rule). The binding gap is labelling, not data: no citable NEAR '
          f'address was found for OKX, Coinbase, Kraken, Bybit, HTX, Crypto.com, Upbit or Bithumb, and nothing is labelled from its name alone.'),
         ("Which fee stream pays the escrow releases.",
          f'{M("ladder_escrow_unshields_pct_of_issuance", 2)} points of the ladder arrive as unshields from the Confidential Intents escrow. The public chain does not show which fee '
          f'stream funds them; a per-stream attestation by NEAR would turn the range into one number.'),
         ("NEAR&rsquo;s share of partner fees.",
-         f'On partner swaps with no buyback entry the ledger bounds NEAR&rsquo;s share at no more than {M("near_share_of_partner_fees_max_tight_pct")}% but does not measure it.'),
+         f'On partner swaps with no buyback entry the ledger puts NEAR&rsquo;s share, as it reaches the buyback wallet, at no more than {M("near_share_of_partner_fees_max_pct")}% '
+         f'({M("near_share_of_partner_fees_max_tight_pct")}% on the tighter reading) but does not measure it.'),
         ("The other half of Intents.",
          f'1Click is {M("explorer_vs_llama_net_pct")}% of DefiLlama&rsquo;s volume on a one-sided basis. near.com, direct solver flow and other integrations have a fee '
          f'structure the Explorer API does not show, and we do not extrapolate.'),
+        ("Contract usage.",
+         f'The track brief names it, and the Nearblocks snapshot has an active-contract count, but that count falls from {M("l1_step_contracts_before_k")}K on '
+         f'{esc(m["l1_step_ref_date"])} to {M("l1_step_contracts_after_k")}K on {esc(m["l1_step_date"])}, an order of magnitude in two days, while this repository holds no '
+         f'definition of what is counted. The usage card&rsquo;s table shows the step; no finding rests on it.'),
+        ("The track brief&rsquo;s BigQuery topics for daily active accounts and transaction counts.",
+         'No BigQuery query was written for them: the committed queries cover staking, exchange and Intents flows. The usage card uses Nearblocks aggregates instead, '
+         'and says so; this repository applies no sybil or bot filter to them.'),
         ("Who the sellers were.", 'NEAR is fungible, so every flow here is a market-wide balance. Nothing says which coins were sold.'),
         ("Longer-dated predictions P1 to P3.", 'They resolve on 2027-05-04 and 2027-11-04 and cannot be scored yet.'),
         ("HSP-029&rsquo;s issuance cut.",
@@ -2364,7 +2566,8 @@ def not_computed(ctx: Ctx) -> str:
     ]
     lis = "".join(f"<li><strong>{a}</strong> {b}</li>" for a, b in items)
     return (f'<section id="not-computed" aria-labelledby="nc-h"><h2 id="nc-h">Not computed here</h2>'
-            f'<p class="note">These cannot be computed from the committed sources, so the page does not show a number for them.</p>'
+            f'<p class="note">The page shows no finding for these: some cannot be computed from the committed sources, and for the others a number would claim more '
+            f'than the data support.</p>'
             f'<ul class="plain">{lis}</ul></section>')
 
 
@@ -2429,6 +2632,7 @@ def limits(ctx: Ctx) -> str:
 
 def header(ctx: Ctx) -> str:
     M = ctx.M
+    freeze_stamp, _ = freeze_order(ctx)
     docs = "".join(f'<li><a href="{esc(gh(p))}">{esc(p)}</a></li>' for p in ("THESIS.md", "README.md", "PREREG.md", "PREREG-ADDENDUM.md"))
     return (
         f'<header class="top"><p class="eyebrow">NEAR Hackathon 2026 · Investment Thesis track</p>'
@@ -2443,12 +2647,62 @@ def header(ctx: Ctx) -> str:
         f'<dt>Data fingerprint</dt><dd><code data-fingerprint="{esc(ctx.fingerprint)}">{esc(ctx.fingerprint)}</code>, the first 16 hex of the SHA-256 of <code>data/MANIFEST.json</code>, '
         f'which pins every raw snapshot.</dd>'
         f'<dt>Pre-registration</dt><dd><code>PREREG.md</code> SHA-256 <code data-prereg="{esc(ctx.prereg_sha)}">{esc(ctx.prereg_sha[:16])}…</code>, frozen at git tag '
-        f'<code>{FREEZE_TAG}</code> (commit <code>{FREEZE_COMMIT}</code>) before any BigQuery flow query ran. '
+        f'<code>{FREEZE_TAG}</code> (commit <code>{FREEZE_COMMIT}</code>, {FREEZE_UTC} UTC), before the first BigQuery result the repository records '
+        f'({freeze_stamp} in <code>data/MANIFEST.json</code>); the order rests on the author&rsquo;s own commit and manifest times. '
         f'<a href="{esc(gh("PREREG.md"))}#{PREREG_ANCHOR}">&ldquo;What we had already seen&rdquo;</a> in that file lists the data already in hand.</dd></dl>'
         f'<nav aria-label="Project documents"><ul class="docs">{docs}</ul></nav></header>')
 
 
-def build_page(ctx: Ctx) -> str:
+# ------------------------------------------------------------------ line breaks
+# The page is built as a few very long lines (a chart card is tens of thousands of characters), which no diff or file viewer
+# shows well. break_lines puts a newline only where the browser ignores whitespace, so the rendered page does not change:
+#   * between two block-level tags (a closing tag and the next opening tag, or two opening tags): p, div, ul, li, table parts ...
+#   * between the child elements of a chart <svg> (rect, line, path, text, circle, g, title, desc), never inside a <text>
+#   * inside the path data of a chart line, which the SVG parser reads as it reads a space (before a command letter)
+# It never touches the inside of a <pre>, a <text>, running text or an inline element. tests/test_render.py parses the page with
+# and without the breaks and requires the same elements, attributes and text, and the same <pre> bytes.
+BLOCK_TAGS = ("p", "div", "ul", "ol", "li", "dl", "dt", "dd", "h1", "h2", "h3", "h4", "h5", "h6", "section", "details", "summary", "figure",
+              "figcaption", "table", "thead", "tbody", "tr", "td", "th", "caption", "nav", "header", "footer", "main")
+_B = "|".join(BLOCK_TAGS)
+_BLOCK_CLOSE_OPEN = re.compile(rf"(</(?:{_B})>)(?=<(?:{_B})[\s>])")
+_BLOCK_OPEN_OPEN = re.compile(rf"(<(?:{_B})(?:\s[^<>]*)?>)(?=<(?:{_B})[\s>])")
+_PRE_BLOCK = re.compile(r"<pre\b.*?</pre>", re.S)
+_CHART_SVG = re.compile(r'<svg class="svg".*?</svg>', re.S)
+_SVG_CHILD = re.compile(r">(?=<(?:text|line|path|circle|rect|g|title|desc)[\s>/])")
+_PATH_DATA = re.compile(r'( d=")([^"]{400,})(")')
+PATH_LINE = 360   # a chart line's path data is wrapped before the first command letter after this many characters
+
+
+def _wrap_path(m: "re.Match[str]") -> str:
+    out, cur = [], ""
+    for cmd in re.findall(r"[A-Za-z][^A-Za-z]*", m.group(2).replace("\n", "")):   # without the breaks of an earlier pass: idempotent
+        if len(cur) >= PATH_LINE:
+            out.append(cur)
+            cur = ""
+        cur += cmd
+    out.append(cur)
+    return m.group(1) + "\n".join(out) + m.group(3)
+
+
+def _break_markup(seg: str) -> str:
+    seg = _BLOCK_CLOSE_OPEN.sub(r"\1\n", seg)
+    seg = _BLOCK_OPEN_OPEN.sub(r"\1\n", seg)
+    return _CHART_SVG.sub(lambda m: _PATH_DATA.sub(_wrap_path, _SVG_CHILD.sub(">\n", m.group(0))), seg)
+
+
+def break_lines(page: str) -> str:
+    """The page with newlines added where HTML and SVG ignore whitespace (see above). Pure and idempotent."""
+    out: list[str] = []
+    pos = 0
+    for m in _PRE_BLOCK.finditer(page):
+        out += [_break_markup(page[pos:m.start()]), m.group(0)]
+        pos = m.end()
+    out.append(_break_markup(page[pos:]))
+    return "".join(out)
+
+
+def build_page(ctx: Ctx, breaks: bool = True) -> str:
+    """The whole page. breaks=False leaves the body on a few very long lines (tests/test_render.py compares the two)."""
     pre = "".join(fn(ctx) for _, _, fn in PRE_CARDS)
     exp = "".join(fn(ctx) for _, _, fn in EXP_CARDS)
     toc_pre = "".join(f'<li><a href="#chart-{cid}">{esc(lab)}</a></li>' for cid, lab, _ in PRE_CARDS)
@@ -2459,7 +2713,8 @@ def build_page(ctx: Ctx) -> str:
         f'<nav aria-label="Contents"><h2 class="sr">Contents</h2><p class="note"><strong>Pre-registered:</strong></p><ul class="toc">{toc_pre}</ul>'
         f'<p class="note"><strong>Exploratory:</strong></p><ul class="toc">{toc_exp}</ul></nav>'
         f'<section id="preregistered" aria-labelledby="pre-h"><h2 id="pre-h">Pre-registered results</h2>'
-        f'<p class="note">Hypotheses, thresholds and probabilities were fixed in <a href="{esc(gh("PREREG.md"))}">PREREG.md</a> before any BigQuery flow query ran. '
+        f'<p class="note">Hypotheses, thresholds and probabilities were fixed in <a href="{esc(gh("PREREG.md"))}">PREREG.md</a> before the first BigQuery result the '
+        f'repository records (the scorecard note gives both times and what they rest on). '
         f'Method choices made afterwards are dated in <a href="{esc(gh("PREREG-ADDENDUM.md"))}">PREREG-ADDENDUM.md</a>. Results are published whether they pass, fail or are inconclusive.</p>'
         f'{pre}</section>'
         f'<section id="exploratory" aria-labelledby="exp-h"><h2 id="exp-h">Exploratory (chosen after the freeze)</h2>'
@@ -2478,7 +2733,7 @@ def build_page(ctx: Ctx) -> str:
         'Every chart shows the query behind it and the exact numbers it plots.">\n'
         '<link rel="icon" href="data:,">\n'
         f"<style>\n{css()}\n</style>\n</head>\n")
-    return f"{head}<body>\n{body}\n</body>\n</html>\n"
+    return f"{head}<body>\n{break_lines(body) if breaks else body}\n</body>\n</html>\n"
 
 
 # ------------------------------------------------------------------ build, write, check
