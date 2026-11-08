@@ -17,7 +17,7 @@ import json
 import re
 import sys
 
-from .common import METRICS, RAW, ROOT, load_manifest, verify_manifest
+from .common import METRICS, RAW, ROOT, load_manifest, manifest_key, verify_manifest
 
 # The lookbehind makes the number start at the beginning of a run of digits, minus signs, dots and commas: without it a long run
 # with no marker after it is scanned from every position (quadratic). A minus sign is the hyphen-minus or U+2212 (MINUS SIGN),
@@ -35,7 +35,7 @@ def check_manifest() -> list[str]:
     for p in RAW.rglob("*"):
         if p.is_symlink():  # rglob does not enter a symlinked directory, so what is behind one would go unchecked
             problems.append(f"symbolic link under data/raw: {p.relative_to(ROOT)}")
-        elif p.is_file() and str(p.relative_to(RAW.parent)) not in listed:
+        elif p.is_file() and manifest_key(p, RAW.parent) not in listed:
             problems.append(f"not in manifest: {p.relative_to(ROOT)}")
     return problems
 

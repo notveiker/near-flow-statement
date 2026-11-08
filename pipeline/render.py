@@ -2754,7 +2754,7 @@ def answer_line(ctx: Ctx) -> str:
     Every number is a metric span. The words are true of the data as committed: H1a fails, H1b and H1c are inconclusive, the frozen rule outputs
     Hold, and the three sources add up to the total (each is rounded to two decimals, so the sum may be off by up to 0.02). If the data stop
     saying that, the render stops, so the page cannot go on saying it."""
-    m, M = ctx.m, ctx.M
+    m, M, K = ctx.m, ctx.M, ctx.K
     parts = [m["ladder_public_collectors_pct_of_issuance"], m["ladder_escrow_unshields_pct_of_issuance"], m["ladder_other_pct_of_issuance"]]
     if not (m["h1a_pass_as_written"] is False and m["h1b_verdict"] == "inconclusive" and m["h1c_verdict"] == "inconclusive"
             and m["rating_output"] == "Hold" and abs(sum(parts) - m["ladder_all_wallets_pct_of_issuance"]) <= 0.02 + 1e-9):
@@ -2764,8 +2764,9 @@ def answer_line(ctx: Ctx) -> str:
         '<p class="questions"><strong>The pre-registered question:</strong> who buys and who sells NEAR? '
         '<strong>The question the evidence can answer:</strong> how much of NEAR&rsquo;s value capture can you verify?</p>'
         '<div class="answer">'
-        f'<p><strong>Pre-registered result:</strong> H1a fails, H1b and H1c are inconclusive, and the frozen rating rule outputs {M("rating_output")}, '
-        f'which carries no view on NEAR.</p>'
+        f'<p><strong>Pre-registered result:</strong> H1a (most staking rewards stay staked) fails; H1b (less NEAR reaches exchanges than is minted) and '
+        f'H1c (identified buying is at least {K("h1c_min_pct")}% of net exchange inflow) are inconclusive; and the frozen rating rule outputs '
+        f'{M("rating_output")}, which carries no view on NEAR.</p>'
         f'<p><strong>Exploratory, chosen after the freeze:</strong> over 30 days the NEAR that verifiably reached NEAR&rsquo;s three Intents revenue wallets was '
         f'{M("ladder_all_wallets_pct_of_issuance", 2)}% of net issuance, of which {M("ladder_public_collectors_pct_of_issuance", 2)} points trace to public '
         f'fee collectors, {M("ladder_escrow_unshields_pct_of_issuance", 2)} arrived as releases from an escrow whose fee stream is unattested, and '
@@ -2783,7 +2784,7 @@ def glance(ctx: Ctx) -> str:
 def header(ctx: Ctx) -> str:
     M = ctx.M
     freeze_stamp, _ = freeze_order(ctx)
-    docs = "".join(f'<li><a href="{esc(gh(p))}">{esc(p)}</a></li>' for p in ("THESIS.md", "README.md", "PREREG.md", "PREREG-ADDENDUM.md"))
+    docs = "".join(f'<li><a href="{esc(gh(p))}">{esc(p)}</a></li>' for p in ("THESIS.md", "README.md", "docs/glossary.md", "PREREG.md", "PREREG-ADDENDUM.md"))
     return (
         f'<header class="top"><p class="eyebrow">NEAR Hackathon 2026 · Investment Thesis track</p>'
         f'<h1>Who buys and who sells NEAR?</h1>'
@@ -2915,7 +2916,7 @@ def summary(files: dict[str, bytes], ctx: Ctx | Path = ROOT, name: str | None = 
 
 
 def main(argv: list[str] | None = None) -> int:
-    ap = argparse.ArgumentParser(description="Render the static dashboard from the committed data (offline, deterministic).")
+    ap = argparse.ArgumentParser(prog="python3 -m pipeline.render", description="Render the static dashboard from the committed data (offline, deterministic).")
     ap.add_argument("--check", action="store_true", help="exit 1 unless the committed site/ equals a fresh render, byte for byte")
     ap.add_argument("--out", type=Path, help="the site directory to write or check (default: site/ in the repo)")
     ap.add_argument("--root", type=Path, default=ROOT, help="repo root to read from (default: this repo)")

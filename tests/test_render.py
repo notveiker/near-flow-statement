@@ -2977,7 +2977,8 @@ class FirstScreen(unittest.TestCase):
 
     def test_the_answer_is_the_shared_sentence_with_every_number_a_metric_and_both_labels(self):
         m = METRICS
-        want = ("Pre-registered result: H1a fails, H1b and H1c are inconclusive, and the frozen rating rule outputs Hold, which carries no view on NEAR. "
+        want = ("Pre-registered result: H1a (most staking rewards stay staked) fails; H1b (less NEAR reaches exchanges than is minted) and H1c "
+                "(identified buying is at least 25% of net exchange inflow) are inconclusive; and the frozen rating rule outputs Hold, which carries no view on NEAR. "
                 "Exploratory, chosen after the freeze: over 30 days the NEAR that verifiably reached NEAR’s three Intents revenue wallets was "
                 f"{m['ladder_all_wallets_pct_of_issuance']:.2f}% of net issuance, of which {m['ladder_public_collectors_pct_of_issuance']:.2f} points trace to public fee "
                 f"collectors, {m['ladder_escrow_unshields_pct_of_issuance']:.2f} arrived as releases from an escrow whose fee stream is unattested, and "
@@ -2989,7 +2990,7 @@ class FirstScreen(unittest.TestCase):
             text = re.sub(r"\s+", " ", answer.text()).strip()
             self.assertTrue(text.startswith(want), (name, text))
             self.assertEqual(text[len(want):].strip(), "See the value-capture ladder.", name)
-            self.assertEqual([r for _, r in refs_in(answer)], ["rating_output", "ladder_all_wallets_pct_of_issuance", "ladder_public_collectors_pct_of_issuance",
+            self.assertEqual([r for _, r in refs_in(answer)], ["h1c_min_pct", "rating_output", "ladder_all_wallets_pct_of_issuance", "ladder_public_collectors_pct_of_issuance",
                                                                  "ladder_escrow_unshields_pct_of_issuance", "ladder_other_pct_of_issuance"], name)
             self.assertEqual([b.text() for b in answer.find_all("strong")], ["Pre-registered result:", "Exploratory, chosen after the freeze:"], name)
             self.assertEqual([a.attrs["href"] for a in answer.find_all("a")], ["#chart-ladder"], name)
@@ -3036,6 +3037,14 @@ class FirstScreen(unittest.TestCase):
                 self.assertEqual(drawing(icon_c), drawing(icon_t), f"{at}: the shape is the tile's")
                 self.assertEqual(icon_c.attrs.get("aria-hidden"), "true", at)
             self.assertEqual(chips[4].find("span", "chipword").text().strip(), "scored" if result else "pending", name)
+
+    def test_the_header_links_the_glossary_with_the_other_documents(self):
+        """A reader who opens only the dashboard needs a route to the definitions of H1a, escrow, unshield and the rest."""
+        self.assertTrue((ROOT / "docs" / "glossary.md").is_file())
+        for name, dom, _, _ in VARIANTS:
+            links = dom.find("header").find("ul", "docs").find_all("a")
+            self.assertEqual([a.text() for a in links], ["THESIS.md", "README.md", "docs/glossary.md", "PREREG.md", "PREREG-ADDENDUM.md"], name)
+            self.assertTrue(links[2].attrs["href"].endswith("/blob/" + R.BRANCH + "/docs/glossary.md"), name)
 
     def test_the_chips_carry_a_visible_pre_registered_label_before_them(self):
         """The chips are results, and every result on the page says whether it is pre-registered: the label is text on the screen, not only an aria-label."""

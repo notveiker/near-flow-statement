@@ -23,7 +23,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import date, datetime, timedelta, timezone
-from pathlib import Path
+from pathlib import Path, PurePath
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -157,13 +157,19 @@ def endpoint_origin(url: str) -> str:
     return f"{parts.scheme}://{host}" + (f":{port}" if port else "")
 
 
+def manifest_key(path: PurePath, base: PurePath) -> str:
+    """A file's key in data/MANIFEST.json: its path below `base` (data/) with '/' on every platform. str() would give a
+    backslash path on Windows, which is never a key."""
+    return path.relative_to(base).as_posix()
+
+
 def record(path: Path, source: str, extra: dict | None = None) -> None:
     refuse_credentials(source, "the source of " + path.name)
     for k, v in (extra or {}).items():
         if isinstance(v, str):
             refuse_credentials(v, f"{k} of {path.name}")
     m = load_manifest()
-    rel = str(path.relative_to(DATA))
+    rel = manifest_key(path, DATA)
     entry = {"sha256": sha256(path), "bytes": path.stat().st_size,
              "source": source, "fetched_at": utc_now()}
     if extra:

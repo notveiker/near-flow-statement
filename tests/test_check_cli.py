@@ -56,6 +56,44 @@ def copy_of_the_repository(dest: Path) -> Path:
     return dest
 
 
+class ManifestKeysAreIdenticalOnEveryPlatform(unittest.TestCase):
+    """data/MANIFEST.json keys are `raw/llama/x.json`. str(path) on Windows is `raw\\llama\\x.json`, which is never a key: every
+    file would be "not in manifest" and `record` would write keys that nothing reads back. This cannot be run on Windows here, so
+    the Windows flavour of pathlib stands in for it."""
+
+    KEY = "raw/llama/volume_maya-protocol.json"
+
+    def test_the_key_is_the_path_below_data_with_forward_slashes(self):
+        from pathlib import PurePosixPath, PureWindowsPath
+        from pipeline import common as C
+        self.assertEqual(C.manifest_key(PureWindowsPath("C:/repo/data/" + self.KEY), PureWindowsPath("C:/repo/data")), self.KEY)
+        self.assertEqual(C.manifest_key(PurePosixPath("/repo/data/" + self.KEY), PurePosixPath("/repo/data")), self.KEY)
+        listed = json.loads((ROOT / "data" / "MANIFEST.json").read_text(encoding="utf-8"))["files"]
+        for key in listed:
+            with self.subTest(key=key):
+                self.assertEqual(C.manifest_key(ROOT / "data" / key, ROOT / "data"), key)
+
+    def test_check_manifest_finds_a_listed_file_whose_path_is_a_windows_path(self):
+        from pathlib import PureWindowsPath
+
+        class WindowsFile(PureWindowsPath):
+            def is_symlink(self) -> bool:
+                return False
+
+            def is_file(self) -> bool:
+                return True
+
+        class WindowsRaw:
+            parent = PureWindowsPath("C:/repo/data")
+
+            def rglob(self, pattern: str) -> list:
+                return [WindowsFile("C:/repo/data/" + ManifestKeysAreIdenticalOnEveryPlatform.KEY)]
+
+        with mock.patch.object(CHECK, "RAW", WindowsRaw()), mock.patch.object(CHECK, "verify_manifest", lambda: []), \
+                mock.patch.object(CHECK, "load_manifest", lambda: {"files": {self.KEY: {}}}):
+            self.assertEqual(CHECK.check_manifest(), [])
+
+
 class CheckCommandLine(unittest.TestCase):
     """pipeline.check used to treat any argument list without --manifest or --numbers as 'run nothing', then printed
     `check: PASS` and exited 0, so `--help` or a typo looked like a success on a tampered tree."""

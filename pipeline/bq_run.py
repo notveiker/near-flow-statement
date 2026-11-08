@@ -1,8 +1,8 @@
 """Run every sql/*.sql against the NEAR BigQuery public dataset and save results to data/raw/bq/.
 
 Needs the `bq` CLI (Google Cloud SDK) authenticated to a project. Each query is dry-run first,
-then run with --maximum_bytes_billed so it cannot exceed its cap. Bytes billed per query are
-recorded in data/MANIFEST.json.
+then run with --maximum_bytes_billed so it cannot exceed its cap. The dry-run estimate of the bytes
+each query processes is recorded in data/MANIFEST.json (bytes_processed_estimate).
 
 Run:  python3 -m pipeline.bq_run              (all queries)
       python3 -m pipeline.bq_run staking      (only files whose name contains "staking")
