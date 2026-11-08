@@ -1420,7 +1420,7 @@ def card_rating(ctx: Ctx) -> str:
         extra=f'{rule}{figs}',
         notes=(f'G_req is the annual growth in captured Intents revenue ({ctx.M("rating_r90_usd_m")}M USD over the last 90 days, DefiLlama) needed for it to equal '
                f'the USD value of net new supply by 2031-11-04. G_obs is the growth of the last 180 days over the 180 before, annualized.',
-               'G_req assumes HSP-029&rsquo;s issuance ramp, whose timelock clears on 2026-11-16, after the submission deadline; we state it as a pending resolver and do not predict it.',
+               'G_req assumes HSP-029&rsquo;s issuance ramp. Its on-chain timelock ends on 2026-11-16, after the submission deadline, and the proposal text also says the cut needs validator adoption through a protocol upgrade; we state it as a pending resolver and do not predict it.',
                f'Under the range rule as read before the results, a low-coverage H1b can come out pass or inconclusive, never fail, so the Avoid branch cannot be '
                f'reached while coverage is below {ctx.K("h1b_coverage_min_pct")}%. The exploratory ladder below does not feed the rule.'),
         source=source_p(ctx, raw=("raw/rpc/rating_assumptions.json", "raw/rpc/epoch_issuance.json",
@@ -1770,12 +1770,12 @@ def card_ladder(ctx: Ctx) -> str:
                f'{ctx.M("ladder_escrow_unshields_pct_of_issuance", 2)}% released from the Confidential Intents escrow, plus '
                f'{ctx.M("ladder_other_pct_of_issuance", 2)}% from one other source.'),
         notshows=(f'Which fee stream pays for the escrow releases: the NEAR verifiably arrived, but the public chain cannot split the '
-                  f'{ctx.M("ladder_escrow_unshields_pct_of_issuance", 2)} points between the two documented NEAR-side streams that fit, so measured value capture is a '
+                  f'{ctx.M("ladder_escrow_unshields_pct_of_issuance", 2)} points between the two candidate NEAR-side streams that fit, so measured value capture is a '
                   f'range, {ctx.M("ladder_public_collectors_pct_of_issuance", 2)}% to {ctx.M("ladder_all_wallets_pct_of_issuance", 2)}% of issuance.'),
         figure=fig,
         caption=(f'Window: the 30 days {window_text(ctx, 30)} (UTC). Unit: percent of net issuance. Both panels start at zero; Panel B is a zoom of Panel A.'),
         extra=figs,
-        notes=('The two documented readings are near.com&rsquo;s fees and the Confidential Infrastructure Fee. A per-stream attestation by NEAR would turn the '
+        notes=('The two candidate readings are near.com&rsquo;s fees and the Confidential Infrastructure Fee. A per-stream attestation by NEAR would turn the '
                'range into one number. Nothing here alleges misconduct: it is a privacy feature working as designed, and the question is auditability.',
                'The rungs are not nested: collectors, escrow and one other source add up to all three wallets, and the buyback-wallet rung is a subset of the total.',
                f'The total reconciles with DefiLlama: {ctx.M("revwallets_near_k")}K NEAR is {ctx.M("revwallets_vs_llama_rev_pct")}% of its reported Intents revenue '
@@ -1880,11 +1880,16 @@ def card_escrow(ctx: Ctx) -> str:
         extra=figs,
         notes=(f'Before {traced_from} the funding of each delivery is attributed from samples; from that date every delivery&rsquo;s funding hop is traced, so the '
                f'earlier months are less firmly established. July starts on 2026-07-07 and November covers {partial_month_note(ctx)} only.',
-               f'In the 30-day window all {ctx.M("escrow_funded_exact_30d_n")} single-use deliveries were funded by the escrow for the exact amount, to the '
-               f'yoctoNEAR ({ctx.M("escrow_funded_exact_30d_pct")}%).',
-               'The escrow is account <code>51e8f94d…7cbe</code>, <code>PRIVATE_TREASURY_ACCOUNT_ID</code> in NEAR&rsquo;s Confidential Intents docs.'),
+               f'In the 30-day window all {ctx.M("escrow_funded_exact_30d_n")} single-use deliveries are recorded as funded by the escrow for the exact amount, to the '
+               f'yoctoNEAR ({ctx.M("escrow_funded_exact_30d_pct")}%). It tallies two columns of the per-delivery table over the window&rsquo;s single-use accounts, a set that the committed BigQuery output defines without them; '
+               f'the funding scan that filled the columns is not in this repository.',
+               f'The re-read against the chain on 2026-11-08 (<code>python3 -m pipeline.fetch_escrow verify --all</code>, output in '
+               f'<code>data/raw/escrow/verify_all.json</code>): {ctx.M("escrow_recheck_rows_ok_n")} of {ctx.M("escrow_recheck_rows_n")} rows pass every check, the other '
+               f'{ctx.M("escrow_recheck_failed_n")} fail on block height alone (one to three blocks off), and all {ctx.M("escrow_recheck_funding_hops_n")} funding '
+               f'transfers pass, {ctx.M("escrow_recheck_window_funding_ok_n")} of them in the window. The command therefore ends with a failing exit status on these data.',
+               'The escrow is account <code>51e8f94d…7cbe</code>, <code>PRIVATE_TREASURY_ACCOUNT_ID</code> in NEAR&rsquo;s Confidential Intents docs, where it is called the Treasury.'),
         source=source_p(ctx, sql=("sql/buyback_withdraw_sources.sql",),
-                        raw=("raw/escrow/deliveries.csv", "raw/escrow/verify_sample.json", "raw/bq/buyback_withdraw_sources.json"),
+                        raw=("raw/escrow/deliveries.csv", "raw/escrow/verify_sample.json", "raw/escrow/verify_all.json", "raw/bq/buyback_withdraw_sources.json"),
                         code=("pipeline/compute.py", "pipeline/fetch_escrow.py"),
                         upstream=(f"intents.near native_withdraw deliveries to the three revenue wallets (BigQuery; FastNEAR samples before {traced_from})",)),
         query=query_details(ctx, sql=("sql/buyback_withdraw_sources.sql",), note=escrow_query_note(ctx)),
@@ -2029,7 +2034,7 @@ def card_partners(ctx: Ctx) -> str:
         shows=(f'For SwapKit and for the channels that pay NEAR the most explicit buyback fees, each channel&rsquo;s share of 1Click volume against its share of '
                f'NEAR&rsquo;s explicit buyback fees over the 30 days {window_text(ctx, 30)}, and what NEAR would lose if SwapKit stopped routing through 1Click.'),
         notshows=(f'Most of the NEAR the buyback wallet receives cannot be traced to any channel on chain, so that part of the exposure is unknown, not zero: '
-                  f'the ceilings count every escrow unshield as if it came from SwapKit, which neither documented reading of that stream supports, and the ledger '
+                  f'the ceilings count every escrow unshield as if it came from SwapKit, which neither candidate reading of that stream supports, and the ledger '
                   f'cannot tell 0% from about {ctx.M("near_share_of_partner_fees_max_pct")}% for SwapKit ({ctx.M("near_share_of_partner_fees_max_tight_pct")}% on the tighter reading).'),
         figure=fig,
         caption=(f'Window: the 30 days {window_text(ctx, 30)} (UTC). Unit: percent. Both panels start at zero. SwapKit&rsquo;s fee bar is drawn to scale and is too short to see. '
@@ -2190,7 +2195,7 @@ def card_peers(ctx: Ctx) -> str:
         figure=fig,
         caption=f'Window: {esc(rows[0]["month"])} to {esc(last)} (UTC), by calendar month. Unit: percent of the peer set&rsquo;s reported volume. The axis starts at zero.',
         extra=figs,
-        notes=(f'Reported volume counts both legs of an Intents swap; on a net, halved basis the 30-day share is {ctx.M("intents_share_peerset_30d_net_pct")}%.',
+        notes=(f'Reported volume appears to count both legs of an Intents swap (DefiLlama&rsquo;s adapter states no methodology); on a net, halved basis the 30-day share is {ctx.M("intents_share_peerset_30d_net_pct")}%.',
                f'The last month covers {partial_month_note(ctx)} only. Forward test F4 asks whether the share over 2026-11-06 to 2026-11-13 is at least '
                f'{ctx.K("f4_min_pct")}% on the reported basis; this chart is context for it, not the test.'),
         source=source_p(ctx, raw=("raw/llama/volume_near-intents.json", "raw/llama/volume_thorchain-dex.json", "raw/llama/volume_chainflip-amm.json",
@@ -2327,7 +2332,7 @@ def card_supply(ctx: Ctx) -> str:
         headline=(f'NEAR&rsquo;s supply grew {ctx.M("net_supply_growth_365d_pct")}% over 365 days; net issuance ran at {ctx.M("net_issuance_near_per_day_30d_k")}K NEAR a day '
                   f'over the last 30 days.'),
         shows=(f'Total NEAR supply at each month end and day-to-day net issuance (mint minus burn) over the 90 days {window_text(ctx, 90)}; net issuance is the quantity the ladder is measured against.'),
-        notshows=('Who receives the issuance, or what changes after HSP-029, an issuance cut whose timelock clears on 2026-11-16, after the deadline.'),
+        notshows=('Who receives the issuance, or what changes after HSP-029, an issuance cut whose on-chain timelock ends on 2026-11-16, after the deadline, and which also needs validator adoption.'),
         figure=fig,
         caption=f'Window: Panel A, month ends from {esc(me_dates[0])} to {esc(me_dates[-1])} (the last point is the as-of date); Panel B, the 90 days {window_text(ctx, 90)} (UTC). Units: million NEAR and thousand NEAR a day.',
         extra=figs,
@@ -2561,7 +2566,7 @@ def not_computed(ctx: Ctx) -> str:
         ("Who the sellers were.", 'NEAR is fungible, so every flow here is a market-wide balance. Nothing says which coins were sold.'),
         ("Longer-dated predictions P1 to P3.", 'They resolve on 2027-05-04 and 2027-11-04 and cannot be scored yet.'),
         ("HSP-029&rsquo;s issuance cut.",
-         'Its timelock clears on 2026-11-16, after the submission deadline. G_req assumes the ramp; we state it as a pending resolver and do not predict it.'),
+         'Its on-chain timelock ends on 2026-11-16, after the submission deadline, and the proposal text also says the cut needs validator adoption through a protocol upgrade. G_req assumes the ramp; we state it as a pending resolver and do not predict it.'),
         ("Earlier work.", 'Prior exploratory work on NEAR&rsquo;s revenue dashboard and the front-end fund&rsquo;s history is not in this repo and is not cited.'),
     ]
     lis = "".join(f"<li><strong>{a}</strong> {b}</li>" for a, b in items)

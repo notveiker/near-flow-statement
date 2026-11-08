@@ -1282,7 +1282,7 @@ CARD_PHRASES = {
     "ladder": ("unattested", "attestation", "Nothing here alleges misconduct", "No valuation is made here", "The range is the finding", "subset"),
     "escrow": ("unattested", "attributed from samples", "less firmly established"),
     "take": ("like-for-like", "consistent with", "overstated"),
-    "partners": ("ceiling", "unknown, not zero", "its size is not measured", "neither documented reading", "on the tighter reading"),
+    "partners": ("ceiling", "unknown, not zero", "its size is not measured", "neither candidate reading", "on the tighter reading"),
     "paid": ("is not visible", "do not extrapolate", "non-custodial", "wide reading", "tight reading", "inferred, not proven",
              "cannot exclude a partner settlement", "where the public chain shows no fee"),
     "peers": ("context for it, not the test", "reported volume"),

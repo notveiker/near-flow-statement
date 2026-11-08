@@ -102,6 +102,12 @@
    "sha256": "2e9c824b4b3df33a29d58036755332a0bf951740fa86defdbec11c9feafef6df",
    "source": "archival RPC block total_supply at 218,718,000 and 223,087,766"
   },
+  "raw/escrow/verify_all.json": {
+   "bytes": 835573,
+   "fetched_at": "2026-11-08T00:54:03Z",
+   "sha256": "f20cb3dffca15e816f2f97257a1020a5b43049175cb038db78e846eed390a52a",
+   "source": "https://tx.main.fastnear.com/v0/transactions (batches of 20) + archival rpc block; checks in pipeline/fetch_escrow.py"
+  },
   "raw/escrow/verify_sample.json": {
    "bytes": 15483,
    "fetched_at": "2026-11-06T23:19:12Z",

@@ -211,6 +211,55 @@ def escrow_ladder(m: dict, lo: str, hi: str) -> None:
     m["ladder_other_pct_of_issuance"] = r(float(near(lambda x: x["path"] == "other") / n_days / iss * 100), 2)
 
 
+def escrow_recheck(m: dict, lo: str, hi: str) -> None:
+    """Counts from the committed output of `python3 -m pipeline.fetch_escrow verify --all` (exploratory).
+
+    That command re-reads every row of data/raw/escrow/deliveries.csv, and every funding transfer, from the chain
+    and writes one record per row to data/raw/escrow/verify_all.json. This function only counts those records;
+    it makes no network call. The counts are taken from the per-row records and must equal the tool's own summary,
+    so a hand-edited file stops the build. A row's "funding error" is any error other than the delivery-side ones
+    the tool can raise (a missing delivery, a wrong amount, a block height that differs, a missing or mismatched
+    native_withdraw event); with the committed data no row has one."""
+    import csv
+    path = RAW / "escrow" / "verify_all.json"
+    csv_path = RAW / "escrow" / "deliveries.csv"
+    if not path.exists() or not csv_path.exists():
+        return
+    d = read_raw("escrow/verify_all.json")
+    with open(csv_path, newline="", encoding="utf-8") as f:
+        table = list(csv.DictReader(f))
+    rows = {x["delivery_tx_hash"]: x for x in d["rows"]}
+    if len(rows) != len(d["rows"]) or set(rows) != {x["delivery_tx_hash"] for x in table}:
+        raise ValueError("verify_all.json and deliveries.csv do not list the same delivery transactions")
+    delivery_side = ("delivery tx not returned", "no successful Transfer", "block mismatch", "no native_withdraw",
+                     "native_withdraw source")
+
+    def funding_errors(x: dict) -> list[str]:
+        return [e for e in x["errors"] if not e.startswith(delivery_side)]
+
+    failed = [x for x in d["rows"] if not x["ok"]]
+    height_only = [x for x in failed if x["errors"] and all(e.startswith("block mismatch") for e in x["errors"])]
+    hops = [x for x in table if x["funding_tx_hash"]]
+    hops_ok = [x for x in hops if not funding_errors(rows[x["delivery_tx_hash"]])]
+    win = [x for x in table if lo <= x["day"] <= hi and x["path"] in ("escrow_unshield", "other")
+           and x["single_use_account"]]
+    s = d["summary"]
+    counted = {"rows": len(d["rows"]), "rows_ok": len(d["rows"]) - len(failed), "funding_hops": len(hops),
+               "funding_hops_ok": len(hops_ok)}
+    if any(s[k] != v for k, v in counted.items()):
+        raise ValueError(f"verify_all.json: its summary {({k: s[k] for k in counted})} differs from its rows {counted}")
+    m["escrow_recheck_rows_n"] = counted["rows"]
+    m["escrow_recheck_rows_ok_n"] = counted["rows_ok"]
+    m["escrow_recheck_failed_n"] = len(failed)
+    m["escrow_recheck_failed_height_only_n"] = len(height_only)
+    m["escrow_recheck_funding_hops_n"] = counted["funding_hops"]
+    m["escrow_recheck_funding_hops_ok_n"] = counted["funding_hops_ok"]
+    m["escrow_recheck_window_single_use_n"] = len(win)
+    m["escrow_recheck_window_funding_ok_n"] = len([x for x in win if x["funding_tx_hash"]
+                                                   and not funding_errors(rows[x["delivery_tx_hash"]])])
+    m["escrow_recheck_window_rows_ok_n"] = len([x for x in win if rows[x["delivery_tx_hash"]]["ok"]])
+
+
 def l1_usage(m: dict, nb: dict, end: str) -> list[dict]:
     """Nearblocks daily usage (exploratory, descriptive; data/raw/nearblocks/charts.json).
 
@@ -654,6 +703,7 @@ def build() -> tuple[dict, dict]:
             m["partners_kept_vs_near_rev_high_x"] = r(m["explorer_partner_fees_all_usd_k"] / m["revwallets_usd_k"], 2)
             concentration(m, price, lo, hi)
             escrow_ladder(m, lo, hi)
+            escrow_recheck(m, lo, hi)
 
     # ---------- H1a as written: gross issuance from epoch-boundary headers (PREREG-ADDENDUM 2026-11-06) ----------
     if (RAW / "rpc" / "epoch_issuance.json").exists():
