@@ -2763,6 +2763,59 @@ class Wording(unittest.TestCase):
         self.assertEqual(R.freeze_order(late)[1], "more than ten minutes")
 
 
+# ------------------------------------------------------------------ data the page cannot be drawn from
+class StopsOnDataItCannotDrawFrom(unittest.TestCase):
+    """render stops with a message, never with a page, when the data under a sentence or a chart no longer support it. Each of
+    these was a guard added after review; the committed data pass them, so only an edited copy shows that they bite."""
+
+    def test_the_pool_flows_must_tie_to_the_metrics_they_are_summed_into(self):
+        ctx = R.Ctx()
+        rows = R.staking_rows(ctx)
+        self.assertEqual(round(rows[-1]["cum_net"] / 1e6, 1), ctx.m["pool_net_outflow_90d_m"])
+        self.assertEqual(round(rows[-1]["cum_rw"] / 1e6, 2), ctx.m["pool_rewards_90d_m"])
+        for key, step in (("pool_net_outflow_90d_m", 0.1), ("pool_rewards_90d_m", 0.01)):
+            bad = R.Ctx()
+            bad.m = dict(bad.m, **{key: bad.m[key] + step})
+            with self.assertRaises(SystemExit, msg=key):
+                R.staking_rows(bad)
+
+    def test_the_escrow_boundary_is_read_from_the_table_and_needs_a_traced_delivery_after_it(self):
+        real = R.escrow_attribution(R.Ctx())
+        self.assertRegex(real["traced_from"], r"^\d{4}-\d\d-\d\d$")
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            (root / "data" / "raw" / "escrow").mkdir(parents=True)
+            ctx = R.Ctx()
+            ctx.root = root
+
+            def write(*rows: str) -> None:
+                (root / "data" / "raw" / "escrow" / "deliveries.csv").write_text(
+                    "day,path,attribution\n" + "".join(r + "\n" for r in rows), encoding="utf-8")
+
+            write("2026-09-30,escrow_unshield,sample", "2026-10-10,escrow_unshield,sample", "2026-10-12,escrow_unshield,sample",
+                  "2026-10-14,other,sample", "2026-10-20,escrow_unshield,row", "2026-10-21,other,row")
+            self.assertEqual(R.escrow_attribution(ctx),
+                             {"traced_from": "2026-10-20", "sampled_first": "2026-10-10", "sampled_last": "2026-10-12"},
+                             "the sampled span is the same calendar month as the first traced day, escrow rows only")
+            write("2026-10-10,escrow_unshield,sample", "2026-10-12,other,row")
+            with self.assertRaises(SystemExit, msg="a sample-attributed row with no traced escrow delivery after it"):
+                R.escrow_attribution(ctx)
+            write("2026-10-10,escrow_unshield,sample", "2026-10-05,escrow_unshield,row")
+            with self.assertRaises(SystemExit, msg="a traced row before the last sampled one is not after the boundary"):
+                R.escrow_attribution(ctx)
+
+    def test_the_usage_card_needs_the_series_to_end_at_the_as_of_date_and_to_hold_the_step_day(self):
+        R.card_usage(R.Ctx())
+        short = R.Ctx()
+        short.s = dict(short.s, l1_daily=short.s["l1_daily"][:-1])
+        with self.assertRaises(SystemExit, msg="a series one day short of the as-of date"):
+            R.card_usage(short)
+        no_step = R.Ctx()
+        no_step.m = dict(no_step.m, l1_step_date="1999-01-01")
+        with self.assertRaises(SystemExit, msg="a step day the series does not contain"):
+            R.card_usage(no_step)
+
+
 # ------------------------------------------------------------------ line breaks
 class LineBreaks(unittest.TestCase):
     """break_lines puts newlines into the page only where the browser ignores whitespace. tests/ and the screenshots (every card and

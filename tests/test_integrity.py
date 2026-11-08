@@ -477,6 +477,42 @@ class SecretScannerDetects(unittest.TestCase):
             skipped = ss.scan_tree(root, ss.Allow(paths=("notes.md", ".env")))
             self.assertEqual(skipped.findings, [])
 
+    def test_a_link_to_a_file_outside_the_tree_is_not_read(self):
+        """A symlink is listed but not followed: what it points at is not part of this checkout, and following it could read
+        any file the user can read."""
+        ss = self.ss
+        with tempfile.TemporaryDirectory() as d:
+            outside, root = Path(d, "outside"), Path(d, "tree")
+            outside.mkdir()
+            root.mkdir()
+            (outside / "leak.md").write_text("api_" + f'key = "{fake(40, ALNUM, "link")}"\n', encoding="utf-8")
+            (root / "plain.txt").write_text("nothing to see\n", encoding="utf-8")
+            try:
+                os.symlink(outside / "leak.md", root / "link.md")
+            except (OSError, NotImplementedError) as err:
+                self.skipTest(f"this system cannot make a symbolic link: {err}")
+            res = ss.scan_tree(root, ss.Allow())
+            self.assertEqual(res.findings, [])
+            self.assertEqual(res.files, 1, "only plain.txt was read; link.md was passed over")
+            self.assertEqual(res.skipped, [])
+
+    def test_a_file_over_the_size_limit_is_reported_as_skipped_not_read(self):
+        ss = self.ss
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            (root / "big.md").write_text("api_" + f'key = "{fake(40, ALNUM, "big")}"\n', encoding="utf-8")
+            (root / "small.md").write_text("fine\n", encoding="utf-8")
+            size = (root / "big.md").stat().st_size
+            with mock.patch.object(ss, "MAX_BYTES", size - 1):
+                res = ss.scan_tree(root, ss.Allow())
+            self.assertEqual(res.findings, [], "a file too large to read is not scanned")
+            self.assertEqual(res.skipped, [f"big.md (larger than {size - 1} bytes)"], "but it is named, so the gap is visible")
+            self.assertEqual(res.files, 1)
+            with mock.patch.object(ss, "MAX_BYTES", size):
+                again = ss.scan_tree(root, ss.Allow())
+            self.assertEqual([f.rule for f in again.findings], ["credential-assignment"], "a file at the limit is still read")
+            self.assertEqual(again.skipped, [])
+
 
 class SecretScannerBlindSpotsThatWereClosed(unittest.TestCase):
     """Three ways a secret used to pass the scanner unseen, found by experiment and closed: a file with a NUL byte in its
