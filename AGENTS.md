@@ -1,16 +1,32 @@
 # AGENTS.md
 
-Instructions for AI agents (reviewers or contributors) working in this repository. Run every command from the repository root.
+Instructions for AI agents (reviewers or contributors) working in this repository. Run every command from the repository root. Part one is for a reviewer and only reads. Part two is for a maintainer who changes the repository; a reviewer should not do any of it.
 
 - **What this is:** a pre-registered, re-runnable token flow statement for NEAR, plus an investment thesis (`THESIS.md`). Python 3.10+, standard library only.
-- **Verify, offline, no keys:** `python3 -m pipeline.check --manifest`, `python3 -m pipeline.check --numbers`, `python3 -m unittest discover -s tests`, `python3 -m pipeline.render --check`, `make reproduce` (`make site` is the same plus the render), `python3 scripts/scan_secrets.py`, and `bash scripts/fresh_clone_check.sh --worktree`. The checks print `check: PASS`, `scan_secrets: PASS` and `RESULT: PASS`. The tests end with `OK`, or with `OK (skipped=1)` from 2026-11-14 00:00 UTC.
-- **Where results live:** `THESIS.md` (thesis), `docs/` (supporting write-ups), `PREREG-ADDENDUM.md` (dated post-freeze results and corrections), `data/metrics.json` (every published number), `site/index.html` (static dashboard; `python3 -m pipeline.render` rebuilds it and `python3 -m pipeline.render --check` verifies it is current).
+- **Where results live:** `THESIS.md` (thesis), `docs/` (supporting write-ups), `PREREG-ADDENDUM.md` (dated post-freeze results, method choices and corrections), `data/metrics.json` (every published number), `site/index.html` (static dashboard; `python3 -m pipeline.render` rebuilds it and `python3 -m pipeline.render --check` verifies it is current).
+
+## For reviewers (read-only checks, offline)
+
+None of these needs the network or a key, and none changes a tracked file. (The test run writes git-ignored `__pycache__` folders.)
+
+- `python3 -m pipeline.check --manifest` and `python3 -m pipeline.check --numbers`. These are the only two options; any other option is an error (exit status 2), never `check: PASS`. `--numbers` validates every marker that is present and cannot find a number that lacks one.
+- `python3 -m pipeline.render --check` (is the committed `site/index.html` equal to a fresh render?).
+- `python3 -m unittest discover -s tests`. It ends with `OK`, or with `OK (skipped=N)`: the refusal test skips itself from 2026-11-14 00:00 UTC, and the tests that need git (the freeze tag, the `.gitignore` rules, the line-ending checks) skip in a copy without `.git`, so `bash scripts/fresh_clone_check.sh --worktree` ends `OK (skipped=N)` (N is 5 at the time of writing).
+- `python3 scripts/scan_secrets.py` (add `--history` to scan every commit). It is a pattern scan, not a proof.
+- `bash scripts/fresh_clone_check.sh`: runs the offline checks in a temporary clone of `HEAD` and writes nothing in your checkout. With `--worktree` it copies your working tree instead, uncommitted changes included.
+
+The success lines are `check: PASS`, `scan_secrets: PASS` and `RESULT: PASS`.
+
+Optional, and not read-only: two more commands recompute generated files and write them back: `make reproduce` (the manifest check, `python3 -m pipeline.compute`, the numbers check) and `make site` (the same, plus `python3 -m pipeline.render`). On a consistent checkout they write the bytes that are already there, and `git status --short` stays empty. If you must not touch the checkout, use `bash scripts/fresh_clone_check.sh`, which runs `make reproduce` in its temporary copy.
+
+## For maintainers (changing the repository)
+
 - **Never edit `PREREG.md`.** It is frozen: git tag `prereg-freeze`, SHA-256 `19e470be5398f67ce7b6b5a51f007c0c7a0fcc059b61853c52caf7401452e240`.
-- **`PREREG-ADDENDUM.md` is append-only.** Every entry is dated. Do not rewrite or reorder existing entries; add a new dated entry for a correction.
-- **Do not edit by hand:** `sql/*.sql`, `data/raw/`, `data/MANIFEST.json`, `data/metrics.json`, `data/series.json`, `site/index.html`. Raw data changes only through the fetchers in `pipeline/`, which update the manifest. Metrics change only through `python3 -m pipeline.compute`, and the dashboard only through `python3 -m pipeline.render`.
-- **After the forward tests are scored (2026-11-14 or later):** `python3 -m pipeline.score_forward --score` writes `data/forward/score_<UTC stamp>/`. Then run `python3 -m pipeline.render` and commit `site/index.html` with it. Until you do, `python3 -m pipeline.render --check` fails, by design.
-- **Numbers in markdown:** a number that exists in `data/metrics.json` must be followed immediately by its marker, an HTML comment holding the metric key, for example `6.56<!--n:h1a_ratio_as_written_x-->`. `python3 -m pipeline.check --numbers` enforces this for `README.md`, `THESIS.md`, `PREREG-ADDENDUM.md` and `docs/*.md`.
-- **Labels:** keep every result labelled pre-registered or exploratory (chosen after the freeze) wherever it appears. Keep the hedges (consistent with, inferred, ceiling, unattested). Output of `python3 -m pipeline.score_forward --dry-run` is not a score of F1-F4; its file is named `DRY_RUN_result_NOT_A_SCORE.json`.
+- **`PREREG-ADDENDUM.md` is append-only.** Every entry is dated. Do not rewrite or reorder existing entries, and do not fix an old heading, number or sentence in place; add a new dated entry for a correction. (Five earlier commits did change nine existing lines. Its 2026-11-08 entry lists them, and the text above that entry is pinned by SHA-256 in `tests/test_integrity.py`, so an edit of it fails the tests.)
+- **Do not edit by hand:** `sql/*.sql`, `data/raw/`, `data/MANIFEST.json`, `data/metrics.json`, `data/series.json`, `site/index.html`. Raw data changes only through the fetchers in `pipeline/`, which update the manifest (eleven inputs have no fetcher; the README lists them; leave them as they are). Metrics change only through `python3 -m pipeline.compute`, and the dashboard only through `python3 -m pipeline.render`.
+- **After the forward tests are scored (2026-11-14 or later). Maintainer only; it uses the network.** `python3 -m pipeline.score_forward --score` writes `data/forward/score_<UTC stamp>/`. Then run `python3 -m pipeline.render` and commit `site/index.html` with it. Until you do, `python3 -m pipeline.render --check` fails, by design. Before 2026-11-14 00:00 UTC a live run refuses (exit status 2). `--score --from-snapshot DIR` re-scores a saved snapshot offline and does not read the clock, and a hand-built snapshot can claim anything, so never leave a rehearsal folder under `data/forward/`: the dashboard draws a `score_*` folder whose `result.json` says `is_score` true as a real score.
+- **Numbers in markdown:** a number that exists in `data/metrics.json` must be followed immediately by its marker, an HTML comment holding the metric key, for example `6.56<!--n:h1a_ratio_as_written_x-->`. `python3 -m pipeline.check --numbers` validates every marker that is present and cannot find a number that lacks one, so mark every figure you take from `data/metrics.json` yourself. It reads `README.md`, `THESIS.md`, `PREREG-ADDENDUM.md` and `docs/*.md`.
+- **Labels:** keep every result labelled pre-registered or exploratory (chosen after the freeze) wherever it appears. Keep the hedges (consistent with, inferred, ceiling, unattested). `python3 -m pipeline.score_forward --dry-run` (optional, uses the network) is not a score of F1-F4; its file is named `DRY_RUN_result_NOT_A_SCORE.json`.
 - **Standard library only:** no pip dependencies, no CDN, no network at build time. `make reproduce` makes no network calls.
 - **Credentials:** `make bq` needs gcloud and bills BigQuery bytes, `make explorer` needs an Explorer key, and `make fetch` overwrites the committed snapshots. Do not run them without the credentials and the intent to refresh data. Keys belong in the environment or a git-ignored `.env`, never in a committed file.
 - **Do not invent numbers.** If a figure cannot be computed from the committed data, say so in the text instead of estimating it.
