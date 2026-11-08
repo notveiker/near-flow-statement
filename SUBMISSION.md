@@ -19,7 +19,7 @@ Judging runs from 2026-11-16 to 2026-11-18, and the jury includes Claude Code an
 | Fri 2026-11-13 | Record the video. Draft the post. Have the payout account ID ready. Read `HACKATHON.md`. Run the final checks. | sections 5 and 6 |
 | Sat 2026-11-14 | Score, verify, commit, push, post, submit. | section 2 |
 
-**Marks.** UNVERIFIED means the sandbox (the restricted environment this file was written in) could not check it. Everything else was checked on 2026-11-07, or on 2026-11-08 for the parts revised then: against the repository, by a command run in a scratch copy of it, or on a page fetched that day (list at the end). Statements about the state of the work and about counts describe the commit named next to them and go stale with the next commit.
+**Marks.** UNVERIFIED means the sandbox (the restricted environment this file was written in) could not check it. Everything else was checked on 2026-11-07, or on 2026-11-08 for the parts revised then (including the organizers' live `HACKATHON.md`, section 1): against the repository, by a command run in a scratch copy of it, or on a page fetched that day (list at the end). Statements about the state of the work and about counts describe the commit named next to them and go stale with the next commit.
 
 | Section | Contents |
 |---|---|
@@ -34,14 +34,14 @@ Judging runs from 2026-11-16 to 2026-11-18, and the jury includes Claude Code an
 
 ## 1. Status against the organizers' checklist
 
-Source: [`SUBMITTING.md`](https://github.com/nearai/near-hackathon-prompt-examples/blob/main/SUBMITTING.md) in `nearai/near-hackathon-prompt-examples`, fetched 2026-11-07. The live rules, <https://nearhackathon.com/HACKATHON.md>, were not reachable from the sandbox and may differ. Read them before you submit (UNVERIFIED: anything they add).
+Sources: [`SUBMITTING.md`](https://github.com/nearai/near-hackathon-prompt-examples/blob/main/SUBMITTING.md) in `nearai/near-hackathon-prompt-examples` (fetched 2026-11-07) and, since 2026-11-08, the live rules, <https://nearhackathon.com/HACKATHON.md>, which the sandbox could not reach before and could then (read live on 2026-11-08 at 02:51 UTC, 22,199 bytes, SHA-256 prefix `903794f4b656b456`). It says that dates and rules may change, so read it again before you submit. What it adds to the checklist below: the demo post must **tag @NEARProtocol and #NEARHackathon** (optionally also @NearLegion and @NearBuilders) as well as say the project was built at NEAR HACKATHON; Q-012 says **screenshots are not enough when judges cannot open the demo, so record the video**; a hosted demo is a plus and should stay up until 2026-11-18, ideally 2026-11-25; the repository stays public through judging and needs a LICENSE file (Q-014; it has one, MIT); the submission is one POST to <https://nearhackathon.com/api/applications> that only you may confirm (section 6); and Claude Code and Codex screen every project for reproducibility, feature verification and a preliminary score, but humans decide and a low AI score alone cannot reject (Q-017).
 
 | # | Organizers' item (verbatim) | State | Why |
 |---|---|---|---|
 | 1 | *The repository is public, and the README has "do X, see Y" steps an AI judge can follow* | **not done** | GitHub reported the repository as private, with no Pages site (API check, 2026-11-07; not repeated since). The README with its "do X, see Y" table is committed on the working branch `claude/near-hackathon-dashboard`, not on `main`. Owner action: section 3. After the merge to `main`, run `bash scripts/fresh_clone_check.sh` to rehearse the judge's steps in a clean clone. |
-| 2 | *Your demo post is live on X, says you built it at NEAR HACKATHON, and has a video or screenshots attached* | **owner action** | Nothing is posted. Drafts, shot list and screenshot list: section 5. The post links the repository, so the repository must be public first. |
+| 2 | *Your demo post is live on X, says you built it at NEAR HACKATHON, and has a video or screenshots attached* | **owner action** | Nothing is posted. `HACKATHON.md` adds: tag **@NEARProtocol** and **#NEARHackathon**, and (Q-012) attach a video, because screenshots are not enough when judges cannot open the demo. Drafts that carry the tags, the video plan and the screenshot list: section 5. The post links the repository, so the repository must be public first. |
 | 3 | *You have a mainnet NEAR account for the prize payout, either your own or the team's* | **owner action** | The sandbox cannot see your accounts. The organizers' README says all prizes are paid in NEAR. Section 6 has a blank for the account ID. Copy it from your wallet; do not retype it. A mistyped account is a common cause of irreversible token loss ([NEAR docs](https://docs.near.org/web3-apps/tutorials/account-validation.md)). |
-| 4 | *You've selected every track your project fits* | **owner action** | At submission. `thesis` fits by the track brief. `open` is allowed alongside any track, per its brief, and whether it fits is your call (section 6). The live form is UNVERIFIED. |
+| 4 | *You've selected every track your project fits* | **owner action** | At submission: `tracks` is an array of ids, each listed once. `thesis` (Investment Thesis: "Judged on the evidence, not the conviction") fits by the track brief. `open` is allowed alongside any track, and whether it fits is your call (section 6). |
 | 5 | *There are no keys or secrets anywhere in the repo history* | **done as far as scanning can tell; re-run before going public** | A manual regex pass over the full history found none. A second pass on 2026-11-07, over every distinct file version in the history at that time and over the current files, also found none. `python3 scripts/scan_secrets.py --history` passed on 2026-11-08 at `a1fe2e6` (exit status 0; it prints the blob and commit counts, 218 blobs and 39 commits there, which grow with every commit). It is a pattern scan, so a clean result is not proof. Re-run it on the final tree. |
 | 6 | *You're submitting before Nov 14, 2026, 23:59 UTC* | **not done** | Plan with buffers: section 2.4. Submit by 20:00 UTC at the latest. |
 
@@ -165,7 +165,7 @@ If you are on UTC-6 (the commit timestamps show -06:00), subtract six hours: 06:
 | 20:00 | **Latest time to submit.** This leaves 3 hours 59 minutes of buffer. | |
 | 23:59 | The form closes. | |
 
-If a source never recovers by the last allowed run, the test stays `not scorable`. That is a result: publish it and carry on. Do not wait for the deadline to see whether a host comes back. Whether commits after 23:59 UTC count is UNVERIFIED; read `HACKATHON.md`.
+If a source never recovers by the last allowed run, the test stays `not scorable`. That is a result: publish it and carry on. Do not wait for the deadline to see whether a host comes back. `HACKATHON.md` says development ends at 2026-11-14T23:59:00Z and that the API refuses submissions outside the window (403). It says nothing more about commits made after that time, so make none.
 
 ### 2.5 Commands
 
@@ -483,6 +483,8 @@ If `git ls-remote` asks for a password, the repository is still private. On the 
 
 The address has the form `https://<user>.github.io/<repository>/` ([GitHub docs](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site)), so with the account and repository names unchanged it is `https://notveiker.github.io/near-flow-statement/`. Confirm it from the link on the workflow run page before you publish it anywhere.
 
+**What the organizers require of the repository and the demo** (`HACKATHON.md`, Q-012 and Q-014): the repository must be public by 2026-11-14T23:59:00Z, stay public through judging (results by 2026-11-18) and have a LICENSE file (it has one: MIT). A hosted demo is "a plus" and should be kept up to 2026-11-18, ideally 2026-11-25. Do not make the repository private again after you submit. Note that the MIT licence in the repository covers the code; the third-party data in `data/raw/` have their own terms, and `docs/sources-checked.md` records one restriction (DefiLlama's terms, clause 8) that you may want to settle before the repository goes public.
+
 **Why make it public before November 14.** The demo post needs a working link. A judge's tooling may look early. And the scoring push on November 14 would then be made in public. GitHub documents a public events feed for repositories that lists pushes ([GitHub docs](https://docs.github.com/en/rest/activity/events)), so GitHub, not your clock, would hold the push time. What that feed shows for a repository that was private earlier is UNVERIFIED.
 
 ## 4. Optional: anchor `PREREG.md` on NEAR mainnet
@@ -608,32 +610,32 @@ PREREG.md says its SHA-256 "is published on NEAR mainnet (see docs/ANCHOR.md onc
 
 ## 5. Demo assets
 
-The organizers' item is: "Your demo post is live on X, says you built it at NEAR HACKATHON, and has a video or screenshots attached". UNVERIFIED: any hashtag or handle that `HACKATHON.md` asks for, X's current limits on length and media, and how X counts a link. Every claim here is in `THESIS.md` or the README. Add nothing about price, and do not call the result a signal. Say "will be scored" until the scores exist.
+**What the organizers require** (`HACKATHON.md`, read live on 2026-11-08 at 02:51 UTC (22,199 bytes, SHA-256 prefix `903794f4b656b456`); read it again before posting, because it says that dates and rules may change). The demo post is public on X, says the project was built at NEAR HACKATHON, **tags @NEARProtocol and #NEARHackathon** (optionally also @NearLegion and @NearBuilders, which bring more amplification), and has the demo video or screenshots attached. Q-012 adds that "screenshots are not enough when judges cannot open the demo", so record the video (5.3). The organizers' advice for the post: lead with the user problem so that the first line makes sense to someone who does not know the project; show one complete moment and skip long intros; say concretely what NEAR does in the product; give people a next step, which is a link to the demo and the public repository and a genuine question or a request for specific feedback. Under Q-013 you keep all rights and the organizers get non-exclusive promotional rights to the name, screenshots, video and repository link. Still UNVERIFIED: X's current limits on post and video length for your account, and how X counts a link. Every claim in the drafts is in `THESIS.md` or the README. Add nothing about price, and do not call the result a signal. Say "will be scored" until the scores exist.
 
 ### 5.1 One post, at most 280 characters
 
-The counts in this section were made by script on 2026-11-08 and include every character of each post, the `N/ ` prefix included. Each post is given as: the raw count, with the link written out in full (the safe count), and the count under the rule that X counts every link as 23 characters (UNVERIFIED: the rule is from memory and the sandbox could not check it). All posts are plain ASCII. The `[n]` marks are counted as they stand, and a digit is shorter than a mark.
+The counts in this section were made by script on 2026-11-08 and include every character of each post, the `N/ ` prefix included. Each post is given as: the raw count, with the link written out in full (the safe count), and the count under the rule that X counts every link as 23 characters (UNVERIFIED: the rule is from memory and the sandbox could not check it). Every post is plain ASCII and at most 280 characters on the raw count, tags included. The `[n]` marks are counted as they stand, and a digit is shorter than a mark.
 
-**Variant A, before the forward tests are scored** (271 raw, 246 with a link counted as 23):
-
-```
-Built at NEAR HACKATHON: a pre-registered flow statement for NEAR. So far: H1a failed, H1b and H1c inconclusive, the frozen rule says Hold. Forward tests will be scored Nov 14. The checks run offline. Not financial advice. https://github.com/notveiker/near-flow-statement
-```
-
-**Variant B, after scoring.** Replace each `[n]` from `result.json` (count the `PASS`, `MISS` and `not scorable` results). Do not fill it before scoring. (267 raw, 242 with a link counted as 23.)
+**Variant A, before the forward tests are scored** (269 raw, 244 with a link counted as 23):
 
 ```
-Built at NEAR HACKATHON: a pre-registered flow statement for NEAR. H1a failed, H1b and H1c inconclusive, the frozen rule says Hold. Forward tests F1-F4: [n] passed, [n] missed, [n] not scorable. The checks run offline. https://github.com/notveiker/near-flow-statement
+Who buys and who sells NEAR? Tests frozen in git before the first result the repo records. H1a failed, H1b/H1c inconclusive, rule says Hold. Built at NEAR HACKATHON @NEARProtocol #NEARHackathon. Rerun offline: https://github.com/notveiker/near-flow-statement What next?
 ```
 
-Attach the video from 5.3 or at least three screenshots from 5.4.
+**Variant B, after scoring.** Replace each `[n]` from `result.json` (count the `PASS`, `MISS` and `not scorable` results). Do not fill it before scoring. (277 raw, 252 with a link counted as 23.)
+
+```
+Who buys and who sells NEAR? Tests frozen in git before the first result the repo records. H1a failed, H1b/H1c inconclusive, Hold. F1-F4: [n] pass, [n] miss, [n] not scorable. Built at NEAR HACKATHON @NEARProtocol #NEARHackathon https://github.com/notveiker/near-flow-statement
+```
+
+Attach the video from 5.3 (required in practice, see Q-012) and, if X allows it, one or two screenshots from 5.4.
 
 ### 5.2 Longer version: a thread of five
 
-Characters per post, raw / with a link counted as 23: 1 = 271 / 271, 2 = 275 / 275, 3 = 276 / 276, 4 = 230 / 230, 5 = 276 / 251. Every post is at least 4 characters under 280 on the raw count. Post 4 has a placeholder; write `pending` or the results.
+Characters per post, raw / with a link counted as 23: 1 = 273 / 273, 2 = 275 / 275, 3 = 276 / 276, 4 = 230 / 230, 5 = 277 / 252. Every post is at most 280 characters on the raw count. Post 1 carries the tags and the video, so that the thread shows up under the hashtag. Post 4 has a placeholder; write `pending` or the results.
 
 ```
-1/ Built at NEAR HACKATHON (Investment Thesis). Who buys and who sells NEAR? Tests frozen at commit 413d776, two minutes before the first BigQuery result the repo records (git and manifest times are the author's own). Failures are published. Research, not advice. Thread:
+1/ Who buys and who sells NEAR? Built at NEAR HACKATHON (Investment Thesis) @NEARProtocol #NEARHackathon. Tests frozen at commit 413d776, about two minutes before the first BigQuery result the repo records (times are the author's machine's). Failures are published. Thread:
 
 2/ Pre-registered, 90 days to 2026-11-04. H1a (most staking rewards stay staked) fails: net staking outflow was 6.56x rewards. H1b/H1c (exchange flows) are inconclusive: only 20.0% of top-100 receivers carry an exchange label, 10.0% a cited one. Hold says nothing about NEAR.
 
@@ -641,7 +643,7 @@ Characters per post, raw / with a link counted as 23: 1 = 271 / 271, 2 = 275 / 2
 
 4/ Forward tests F1-F4 (window Nov 6-13) will be scored after Nov 14 00:00 UTC by a script that refuses a live run earlier. Misses will be published. Status: [pending | fill in from data/forward/score_*/result.json after scoring].
 
-5/ Check it, no keys or network: python3 -m pipeline.check --manifest, then python3 -m pipeline.compute, then python3 -m pipeline.check --numbers, then open site/index.html. Python standard library only. Built with Claude Code. https://github.com/notveiker/near-flow-statement
+5/ No keys, no network, standard library only: python3 -m pipeline.check --manifest, then pipeline.compute, then pipeline.check --numbers, then open site/index.html. Built with Claude Code. https://github.com/notveiker/near-flow-statement Which exchange labels would you trust?
 ```
 
 Post 4 after scoring (211 raw, 211 with a link counted as 23, before you replace the `[n]` marks):
@@ -650,11 +652,11 @@ Post 4 after scoring (211 raw, 211 with a link counted as 23, before you replace
 4/ Forward tests F1-F4 (window Nov 6-13), scored Nov 14 by a script that refuses a live run earlier: [n] passed, [n] missed, [n] not scorable. Misses are published. Details: PREREG-ADDENDUM.md in the repository.
 ```
 
-Numbers in the thread, with their keys in `data/metrics.json`: 6.56<!--n:h1a_ratio_as_written_x-->× (post 2, written `x`), 20.0<!--n:h1b_coverage_count_pct-->% and 10.0<!--n:h1b_coverage_tier1_count_pct-->% (post 2), 15.81<!--n:ladder_all_wallets_pct_of_issuance-->%, 4.53<!--n:ladder_public_collectors_pct_of_issuance--> and 11.25<!--n:ladder_escrow_unshields_pct_of_issuance--> points (post 3). `python3 -m pipeline.check --numbers` does not read this file, so compare them with `data/metrics.json` before posting. "50%" is the threshold fixed in `PREREG.md`; 413d776 is the freeze commit; "two minutes" is the gap between its time (2026-11-05 22:53:29 UTC) and the manifest stamp of the first BigQuery result (22:55:37 UTC). "Built with Claude Code" matches the README's disclosure; whether to say it is your decision (section 8).
+Numbers in the thread, with their keys in `data/metrics.json`: 6.56<!--n:h1a_ratio_as_written_x-->× (post 2, written `x`), 20.0<!--n:h1b_coverage_count_pct-->% and 10.0<!--n:h1b_coverage_tier1_count_pct-->% (post 2), 15.81<!--n:ladder_all_wallets_pct_of_issuance-->%, 4.53<!--n:ladder_public_collectors_pct_of_issuance--> and 11.25<!--n:ladder_escrow_unshields_pct_of_issuance--> points (post 3). `python3 -m pipeline.check --numbers` does not read this file, so compare them with `data/metrics.json` before posting. "50%" is the threshold fixed in `PREREG.md`; 413d776 is the freeze commit; "two minutes" is the gap between its time (2026-11-05 22:53:29 UTC) and the manifest stamp of the first BigQuery result (22:55:37 UTC). "Built with Claude Code" matches the README's disclosure; whether to say it is your decision (section 8). `@NEARProtocol` and `#NEARHackathon` are the two tags the organizers require; `@NearLegion` and `@NearBuilders` are optional and are not in the drafts.
 
 ### 5.3 Silent video, about three minutes
 
-Built around `site/index.html`, opened from disk or from the hosted address. The page follows the system colour scheme, has no script, and each chart card has "What it shows", "What it does not show", and "Query" and "Data" blocks that open. The section and card names below are the ones on the page of 2026-11-07. **Confirm them against the final page before you record.** Captions are burned-in text; there is no audio.
+Built around `site/index.html`, opened from disk or from the hosted address. The page follows the system colour scheme, has no script, and each chart card has "What it shows", "What it does not show", and "Query" and "Data" blocks that open. The section and card names below are the ones on the page of 2026-11-08. **Confirm them against the final page before you record.** Captions are burned-in text; there is no audio. The assistant recorded a silent draft on 2026-11-08 from the committed page, with these captions, as a 2:20 cut and a 3:00 plan; the files were sent to you in the session and are not in the repository. X's video limit for your account is UNVERIFIED (the free limit is commonly quoted as 2 minutes 20 seconds), which decides which cut to post. Q-013 gives the organizers promotional rights to the video.
 
 | Time | Show | Caption |
 |---|---|---|
@@ -687,34 +689,42 @@ Cards you can add if there is time: the network-usage card (`chart-usage`: Nearb
 
 Attach the video, or at least three of these. Write alt text that states the finding in a sentence.
 
-## 6. Submission payload draft
+## 6. Submission payload
 
-The field names are a draft of what a submission needs, taken from `SUBMITTING.md` and the checklist. **The form (<https://nearhackathon.com/#apply>) and the submission API (in `HACKATHON.md`) were not reachable from the sandbox. Every field name, length limit and format below is UNVERIFIED.** Read <https://nearhackathon.com/HACKATHON.md> before you submit and fix this table to match it. This document contains no step that sends the payload, and none should be taken by an agent: `SUBMITTING.md` says an agent "must show you the full payload and wait for your OK before it sends anything". There is one submission per team and it cannot be edited after it is sent.
+Source: the "Submission API" section of `HACKATHON.md`, read live on 2026-11-08 at 02:51 UTC (22,199 bytes, SHA-256 prefix `903794f4b656b456`). It says `POST https://nearhackathon.com/api/applications` with `Content-Type: application/json`, a body of at most 12,000 bytes, exactly the fields below and no others. There is one submission per project and the repository can be submitted once; it **cannot be edited directly afterwards**: a mistake is fixed by a request at <https://nearhackathon.com/request-changes>, which the organizers review by hand, and a second submission of the same repository is rejected (409). Submissions are accepted only until 2026-11-14T23:59:00Z, and the organizers advise sending it "when the repository is public and the demo post is up". The same fields are in the form at <https://nearhackathon.com/#apply>. This document contains no step that sends the payload, and none should be taken by an agent: `HACKATHON.md` itself says an agent must print the full payload and wait for your yes, and must never guess or invent your name, email, team size or payout account. Do not commit the payload: it contains personal data.
 
-| Field | Draft | State |
-|---|---|---|
-| Project name | `near-flow-statement` | UNVERIFIED |
-| One line | A pre-registered token flow statement for NEAR, recomputable offline from committed snapshots, and the investment thesis built on it. H1a failed, H1b and H1c were inconclusive, and the frozen rating rule outputs Hold, which carries no view on NEAR. | UNVERIFIED (limit unknown) |
-| Short description | Question: who buys and who sells NEAR? The tests were frozen at commit 413d776, two minutes before the first BigQuery result the repository records (git and manifest times are the author's own; nothing external attests them), and results are published as they come, misses included. H1a fails (6.56<!--n:h1a_ratio_as_written_x-->× staking rewards), H1b and H1c are inconclusive (20.0<!--n:h1b_coverage_count_pct-->% of top receivers carry an exchange label, 10.0<!--n:h1b_coverage_tier1_count_pct-->% a cited one; 50% required), and the frozen rule outputs Hold, which carries no view on NEAR. An exploratory ladder, labelled as chosen after the freeze, shows that the NEAR delivered to NEAR's Intents revenue wallets equalled 15.81<!--n:ladder_all_wallets_pct_of_issuance-->% of net issuance: 4.53<!--n:ladder_public_collectors_pct_of_issuance--> points trace to public fee collectors and 11.25<!--n:ladder_escrow_unshields_pct_of_issuance--> points arrived as unshields from the Confidential Intents escrow, whose fee stream is unattested. No valuation is made. The checks and the recomputation of every number run offline from committed snapshots with the Python standard library; the snapshots themselves need credentials to refresh. | UNVERIFIED (limit unknown) |
-| Track(s) | `thesis` (Investment Thesis). Possibly `open` (Open Innovation). See below. | UNVERIFIED (form) |
-| Repository URL | <https://github.com/notveiker/near-flow-statement> (must be public) | owner action |
-| Dashboard URL | <https://notveiker.github.io/near-flow-statement/> (after section 3) | owner action |
-| Demo post URL | _blank_ | owner action |
-| Team lead | _blank_ | owner fills |
-| Contact email | _blank_ (the address the organizers should use; it need not be your git address) | owner fills |
-| Team size | _blank_ | owner fills |
-| Payout mainnet account | _blank_ (copy from your wallet) | owner fills |
-| AI assistance | Built with Claude Code under the owner's direction; disclosed in the README ("Timeline and disclosure"). | UNVERIFIED (whether the form asks) |
-| Try-it steps, if asked | `git clone https://github.com/notveiker/near-flow-statement`, then `python3 -m pipeline.check --manifest` (expect `check: PASS`), `python3 -m pipeline.compute` (expect `wrote data/metrics.json …` and no change in `git status --short`), `python3 -m pipeline.check --numbers` (expect `check: PASS`), then open `site/index.html`. | matches the README |
+| Field | Rule in `HACKATHON.md` | Value | Who |
+|---|---|---|---|
+| `requestId` | UUID, generated once and reused on every retry | `uuidgen \| tr A-Z a-z` (or `node -e 'console.log(crypto.randomUUID())'`), once | you, when sending |
+| `projectName` | 2-80 characters | `near-flow-statement` | draft |
+| `leadName` | 2-80 characters | _blank_ | you |
+| `email` | valid, at most 160 characters, at most 2 submissions per email | _blank_ (the address the organizers should use; it need not be your git address) | you |
+| `size` | exactly one of `1`, `2 - 4`, `4 - 6`, `6 - 8`, `8+` | _blank_ | you |
+| `tracks` | array of ids, each once, from `defi`, `thesis`, `privacy`, `business`, `swarms`, `security`, `agents`, `realworld`, `games`, `nfts`, `memecoins`, `social`, `open` | `["thesis"]`; `open` as well is your call (below) | you decide |
+| `nearAddress` | mainnet; 2-64 characters, lowercase, matching `^(([a-z\d]+[-_])*[a-z\d]+\.)*([a-z\d]+[-_])*[a-z\d]+$` (a named account such as `team.near`, or a 64-character implicit account) | _blank_ (copy it from your wallet; do not retype it) | you |
+| `projectUrl` | http(s), at most 300 characters, unique | `https://github.com/notveiker/near-flow-statement` (must be public) | you confirm |
+| `demoUrl` | http(s), at most 300 characters, the public demo post | _blank until the post is live_ | you |
+| `idea` | 20-2000 characters: the problem, the product, and how NEAR fits in | the draft below (1769 characters) | draft |
+| `consent` | `true`, only after you agreed to: "I agree that the organizers may use these details to review our submission and contact us about this hackathon." | _blank_ | you |
 
-**Tracks.** The organizers' track ids and briefs are in `nearai/near-hackathon-prompt-examples` (fetched 2026-11-07); there are 13.
+Do not add any other field. In particular `website` is a spam trap: any non-empty value rejects the submission. Responses: 201 saved; 400 a field failed validation (fix the fields listed in `fields` and resend with the same `requestId`); 403 submissions are not open, or the request looked cross-site (do not retry); 409 the repository was already submitted or the email has 2 submissions (ask; do not change the link or the email to get around it); 413 the body is too large; 503 storage is unavailable (wait a minute and resend with the same `requestId`).
+
+**`idea` draft** (1769 characters of the 2,000 allowed; it states the problem, the product and how NEAR fits in, as the field asks; the count was made by script):
+
+```
+Problem: nobody can say who buys and who sells NEAR, and investment cases for NEAR quote headline figures (issuance, buybacks, Intents volume) that no one can re-run. Product: a pre-registered, re-runnable token flow statement for NEAR, and the investment thesis built on it. The tests were frozen at commit 413d776, about two minutes before the first BigQuery result the repository records (git and manifest times are the author's own machine's; nothing external attests them), and results are published as they come, misses included. H1a fails: net staking outflow was 6.56 times staking rewards. H1b and H1c are inconclusive: 20.0% of the top-100 NEAR receivers carry an exchange label (10.0% a cited one), and the pre-registration needs 50%. The frozen rating rule outputs Hold, which carries no view on NEAR. An exploratory ladder, labelled as chosen after the freeze, shows that the NEAR delivered to NEAR's three Intents revenue wallets equalled 15.81% of net issuance: 4.53 points trace to public fee collectors and 11.25 points arrived as unshields from the Confidential Intents escrow, whose fee stream is unattested. No valuation is made. How NEAR fits in: the data are NEAR's own (epoch-boundary block headers and account state from archival RPC, flows from the NEAR BigQuery public dataset and FastNEAR, the NEAR Intents Explorer API). Nothing is deployed on NEAR and no transaction is signed. Every number recomputes offline with the Python standard library from committed snapshots: python3 -m pipeline.check --manifest, python3 -m pipeline.compute, python3 -m pipeline.check --numbers, then open site/index.html. Forward tests F1-F4 are scored after 2026-11-14 00:00 UTC, and misses will be published. Built with Claude Code under the owner's direction.
+```
+
+The numbers in it are the ones in `data/metrics.json` (`h1a_ratio_as_written_x`, `h1b_coverage_count_pct`, `h1b_coverage_tier1_count_pct`, `ladder_all_wallets_pct_of_issuance`, `ladder_public_collectors_pct_of_issuance`, `ladder_escrow_unshields_pct_of_issuance`); `python3 -m pipeline.check --numbers` does not read this file, so compare them before you send. Whether to say "Built with Claude Code" is your decision (section 8).
+
+**Tracks.** The 13 ids and their one-line briefs are in the "Tracks" table of `HACKATHON.md`; the longer example prompts are in `nearai/near-hackathon-prompt-examples`. The `thesis` brief: "Build a long-term investment thesis for NEAR and back it with data: onchain analytics, live dashboards and models anyone can re-run. Judged on the evidence, not the conviction." Its hints are ONCHAIN DATA, DASHBOARDS, RESEARCH.
 
 - `thesis` fits by construction. The README's "Track brief" table maps the brief line by line.
-- `open` ("Something we haven't seen"): its brief says you can enter it alongside any other track, since the form lets you pick every track your project fits. The brief asks for "new ways for money, intelligence and ownership to work together". A pre-registered research repository is a stretch for that wording. Adding it costs nothing if the form allows it, and a poor fit may cost credibility. Your decision.
+- `open` ("Have an idea that refuses to fit a category? Explore new ways for money, intelligence and ownership to work together."): `HACKATHON.md` tells you to list every track the project fits, and the API takes an array. A pre-registered research repository is a stretch for that wording. Adding it costs nothing if you think it fits, and a poor fit may cost credibility. Your decision.
 - `privacy` (Privacy & Private AI): the escrow work concerns a privacy feature's auditability, but the project builds no private computation. Not recommended.
 - The other ten tracks are build tracks (DeFi, agents, games and so on) and do not fit.
 
-The owner decides. UNVERIFIED: whether the live form lets you select more than one.
+**One thing to keep in mind about "live".** The `thesis` brief says "live dashboards". This dashboard is static and as of 2026-11-04, by design (section 7). Q-012 says a local-only demo is acceptable (public repository, reproducible README, an X post with a video), and a hosted demo is a plus: enable Pages (section 3) and keep it up to 2026-11-18, ideally 2026-11-25.
 
 ## 7. Risks and weak points a judge may raise
 
@@ -753,18 +763,21 @@ One line each. The first four have a date because later answers lose value.
 7. Start scoring at 06:00 UTC (midnight if you are on UTC-6) or at 12:00 UTC?
 8. Post the demo before scoring, with a reply on November 14, or once after scoring?
 9. Say in the post that it was built with Claude Code? The README already says so.
-10. Select `open` as a second track, if the form allows it?
+10. Select `open` as a second track? The API takes an array and `HACKATHON.md` says to list every track the project fits.
 11. This file stays out of `main` (section 3, step 2). Where do you keep your copy: untracked on this machine, or in the working branch only?
 12. Leave the data as of 2026-11-04 (recommended) or refresh the snapshots? A refresh changes numbers that the prose quotes and needs the keys and tools listed in the README.
 13. Who is team lead, what is the team size, and which email goes on the form?
 14. Which mainnet account receives the payout?
-15. After you read `HACKATHON.md`: does it add a hashtag, a handle, a form field, or a rule on commits after the deadline? Then update this file.
+15. Resolved on 2026-11-08: `HACKATHON.md` requires the post to tag @NEARProtocol and #NEARHackathon (optionally @NearLegion and @NearBuilders) and to attach a video (Q-012). The drafts in 5.1 and 5.2 now carry the tags. It adds no rule on commits after the deadline beyond "development ends" at 2026-11-14T23:59:00Z. Read the live file once more on November 13, because it says dates and rules may change.
 16. Approve Drafts 1, 2 and 3 in section 2.10, and fill Draft 3's blanks only with what you know to be true? Draft 3 is the only way the repository can learn when the earlier analysis was done and when the H1a queries ran.
 17. Item 6 of the 2026-11-08 addendum entry says `PREREG.md` "has not been anchored". Keep it, or reword it if you anchor (4a) before that entry is committed? Once committed, the text above a later entry is pinned, so a later anchor needs its own entry.
-18. Media: record the video and take the screenshots (5.3, 5.4). The repository has none, and the post needs a video or screenshots.
+18. Media: the assistant recorded a silent captioned draft video (2:20 cut) and ten screenshots on 2026-11-08 from the committed page and sent them to you; they are not in the repository. Re-record only if the page changes. Check X's video limit for your account (UNVERIFIED) to choose between the 2:20 cut and the 3:00 plan in 5.3.
 19. The brief's BigQuery usage queries (daily active accounts, transaction counts, contract usage) were not run, and the usage figures are Nearblocks aggregates. Run one cheap `block_date`-filtered query through `pipeline.bq_run` (a new file in `sql/`, a new addendum entry, new metrics with markers), or leave it as `THESIS.md` Limits states it?
 20. The working branch is on GitHub and holds this file: delete it from origin before going public (section 3, step 2c), or make a new repository from `main`?
 21. Which squash variant (section 3, step 2a): fast-forward to `32c3136` first (every cited hash survives; four `Claude-Session:` links stay in `main`'s history), or squash everything (no links; `a2414f8`, cited by the addendum, is missing from `main`)? Keep the `Claude-Session` links at all?
+22. Hosted demo: enable Pages (section 3) and keep it up to 2026-11-18, ideally 2026-11-25 (Q-012). Keep the repository public through judging and do not make it private again after you submit (Q-014).
+23. DefiLlama's terms (clause 8) forbid mirroring or republishing their data without permission, and the repository commits DefiLlama API responses under the MIT licence. Settle it before going public: ask DefiLlama, or document the exception in the README. `docs/sources-checked.md` has the quote. Not read: the terms of CoinGecko, Nearblocks and FastNEAR.
+24. The SQL of the BigQuery job that traced the escrow funding hops is not in the repository (job `bqjob_r275b038b73d7c093_000001a1af3708a8_1`, in `data/MANIFEST.json`). If you have the Google Cloud project that ran it, `bq show --job=true --location=US --project_id=<PROJECT> --format=prettyjson bqjob_r275b038b73d7c093_000001a1af3708a8_1` prints it (metadata only, no bytes billed). Committing it under `sql/` closes the one reproducibility gap in the escrow table.
 
 ## Sources and limits of this document
 
@@ -776,6 +789,8 @@ Fetched on 2026-11-07:
 
 Run in a scratch copy of the repository (nothing in the repository was changed by it): the scorer's refusal before the date; an offline re-score from a fixture snapshot and a second re-score of it; a dry-run snapshot refused as a score; the render and the tests with a fixture score present. Run against the live network, read-only: one `view_account` and one `block` call at a block already in the repository, one `tx` call on an existing mainnet transaction, and the four-host reachability loop.
 
-Not verifiable from the sandbox: `HACKATHON.md`, the submission form and API, X's rules, your GitHub plan, your accounts, when DefiLlama and Nearblocks publish a finished day, and the exact CLI command in 4a (its shape is checked against the CLI guide, but it was not run). The scripts, workflows and tests this file mentions were added in the same batch of work as this file. Re-run them yourself before you rely on them.
+Read live on 2026-11-08 at 02:51 UTC: <https://nearhackathon.com/HACKATHON.md> (22,199 bytes, SHA-256 prefix `903794f4b656b456`), which sections 1, 3, 5, 6 and 8 now follow. It was not reachable on 2026-11-07, and the rest of this file was written without it.
+
+Not verifiable from the sandbox: the submission form itself (the API contract is in `HACKATHON.md`; nothing was sent to it), X's rules, your GitHub plan, your accounts, when DefiLlama and Nearblocks publish a finished day, and the exact CLI command in 4a (its shape is checked against the CLI guide, but it was not run). The scripts, workflows and tests this file mentions were added in the same batch of work as this file. Re-run them yourself before you rely on them.
 
 Revised on 2026-11-08, in throwaway clones of the repository at `a1fe2e6` (nothing in the repository was changed by it): the two squash recipes in section 3 and the offline checks on the result; the 2.3 rehearsal with a fixture score present; a script recount of every post in section 5; the decode of a job-ID timestamp in 2.10; the author, trailer and commit counts in section 1; and a check that every commit hash cited by the README, `THESIS.md`, the docs and the addendum is at or before `32c3136`. Not run: `git push`, `bq ls`, and anything that needs GitHub, BigQuery or X.
