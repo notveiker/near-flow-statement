@@ -1288,7 +1288,7 @@ CARD_PHRASES = {
     "peers": ("context for it, not the test", "reported volume"),
     "revenue": ("NEAR delivered to the wallets", "context for it, not the test"),
     "supply": ("HSP-029", "context for it, not the test", "rounding"),
-    "usage": ("one step", "no sybil or bot filter", "cannot tell a change in what is counted", "by an order of magnitude", "not the BigQuery queries the track brief names",
+    "usage": ("one step", "no sybil or bot filter", "cannot tell a change in what is counted", "by an order of magnitude", "not the BigQuery queries the track brief asks for",
               "does not decompose either fall", "is not a pre-registered test"),
 }
 # The hedges the headline itself carries (the headline is what a reader sees first).
@@ -1298,7 +1298,7 @@ HEADLINE_PHRASES = {
     "paid": ("at least", "on the tighter reading"),
     "h1b": ("on either side of",),
     "h1c": ("a pass needs",),
-    "rating": ("which carries no view on NEAR", "Buy needs H1b to pass, Avoid needs it to fail and observed growth under half the required growth"),
+    "rating": ("which carries no view on NEAR", "Buy needs H1b to pass and observed growth at least the required growth, Avoid needs H1b to fail and observed growth under half the required growth"),
     "take": ("mostly because more volume carries a buyback fee entry",),
     "usage": ("most of that is one step", "not a gradual decline", "on the same 30 days a year earlier"),
 }
@@ -2406,9 +2406,9 @@ class Usage(unittest.TestCase):
                      "cannot tell a change in what is counted, or the end of automated traffic, from a real fall in usage",
                      "That active accounts are people: this repository applies no sybil or bot filter",
                      "Contract usage: the active-contract count falls by an order of magnitude on the same days (see the table), so it is not used",
-                     "Anything from BigQuery: these are Nearblocks aggregates, not the BigQuery queries the track brief names", "A cause for any of it."):
+                     "Anything from BigQuery: these are Nearblocks aggregates, not the BigQuery queries the track brief asks for", "A cause for any of it."):
             self.assertIn(want, text)
-        # "none of the committed BigQuery queries counts" the brief's topics: a coarse guard, a distinct count of signers or predecessors, or a
+        # "none of the committed BigQuery queries measures" the brief's topics: a coarse guard, a distinct count of signers or predecessors, or a
         # name of a Nearblocks column
         for sql in sorted((ROOT / "sql").rglob("*.sql")):
             body = sql.read_text(encoding="utf-8")
@@ -2593,11 +2593,11 @@ class Wording(unittest.TestCase):
 
     def test_the_headline_and_the_tile_say_the_whole_rule_and_that_hold_is_no_view(self):
         h3 = re.sub(r"\s+", " ", card_node(DOM, "rating").find("h3").text())
-        self.assertEqual(h3, "The frozen rule outputs Hold, which carries no view on NEAR: Buy needs H1b to pass, Avoid needs it to fail and observed growth under "
+        self.assertEqual(h3, "The frozen rule outputs Hold, which carries no view on NEAR: Buy needs H1b to pass and observed growth at least the required growth, Avoid needs H1b to fail and observed growth under "
                              "half the required growth, and H1b is inconclusive.")
         tile = [n for n in DOM.find_all("li") if "tile" in n.classes()][3]
         self.assertEqual(re.sub(r"\s+", " ", tile.find("p", "tnote").text()),
-                         "Observed against required growth in captured revenue, a year. Buy needs H1b to pass; Avoid needs it to fail and observed growth under "
+                         "Observed against required growth in captured revenue, a year. Buy needs H1b to pass and observed growth at least the required; Avoid needs H1b to fail and observed growth under "
                          "half the required. H1b is inconclusive, so the rule outputs Hold, which carries no view on NEAR.")
 
     def test_the_hold_explanation_refuses_to_render_when_the_data_stop_supporting_it(self):
@@ -2674,7 +2674,7 @@ class Wording(unittest.TestCase):
                                        ("m", "fee_ev_swapkit_fees_zero_rate_n"), ("d", "fee_ev_other_partner_fees_zero_rate_n+fee_ev_zodl_fees_zero_rate_n")])
         self.assertEqual(re.sub(r"\s+", " ", li.text()),
                          f"In the per-swap sample ({m['fee_ev_swaps_n']} swaps from {m['fee_ev_hours_with_swaps_n']} sampled hours) every non-zero partner fee entry was "
-                         f"matched on chain by a payment of the listed amount, except {m['fee_ev_partner_fees_nonzero_unmatched_n']} unmatched entry, in a swap whose tokens "
+                         f"matched on chain by a payment of about the listed amount, except {m['fee_ev_partner_fees_nonzero_unmatched_n']} unmatched entry, in a swap whose tokens "
                          f"went into the Confidential Intents escrow, where the public chain shows no fee on that route. A further {m['fee_ev_swapkit_fees_zero_rate_n']} "
                          f"SwapKit entries and {m['fee_ev_other_partner_fees_zero_rate_n'] + m['fee_ev_zodl_fees_zero_rate_n']} others list a zero rate, so nothing is owed "
                          f"on them and no amount can match. So no split comes out of a listed fee in that sample; whatever 1Click charges on top, and whether it forwards "

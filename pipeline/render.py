@@ -1405,7 +1405,7 @@ def card_rating(ctx: Ctx) -> str:
                     ("If H1b had failed", ctx.M("rating_if_h1b_fail"))])
     return card(
         cid="rating", kind="pre",
-        headline=(f'The frozen rule outputs {ctx.M("rating_output")}, which carries no view on NEAR: Buy needs H1b to pass, Avoid needs it to fail and observed '
+        headline=(f'The frozen rule outputs {ctx.M("rating_output")}, which carries no view on NEAR: Buy needs H1b to pass and observed growth at least the required growth, Avoid needs H1b to fail and observed '
                   f'growth under half the required growth, and H1b is {ctx.M("h1b_verdict")}.'),
         shows=(f'The two inputs of the pre-registered rating rule: required growth G_req of {ctx.M("rating_g_req_pct")}% a year '
                f'({ctx.M("rating_g_req_no_hsp029_pct")}% without HSP-029) against observed growth G_obs of {ctx.M("rating_g_obs_pct")}% a year in USD '
@@ -1715,7 +1715,7 @@ def card_ladder(ctx: Ctx) -> str:
 
     def build(v: Variant) -> tuple[str, float]:
         a, ha = hbar_panel(
-            v, title="Share of net issuance offset, % (full scale: 100% is all of net issuance)", tag="A",
+            v, title="Share of net issuance matched, % (full scale: 100% is all of net issuance)", tag="A",
             rows=[{"label": "NEAR delivered to the three revenue wallets",
                    "bars": [{"v": tot, "cls": "st2", "track": True, "txt": T(Mt("ladder_all_wallets_pct_of_issuance", 2), "%"),
                              "tip": f"Three revenue wallets: {ctx.plain('ladder_all_wallets_pct_of_issuance', 2)}% of net issuance"}]}],
@@ -1761,7 +1761,7 @@ def card_ladder(ctx: Ctx) -> str:
                 f"re-checkable evidence.") if note_job else ""
     return card(
         cid="ladder", kind="exp",
-        headline=(f'NEAR delivered to NEAR&rsquo;s three Intents revenue wallets offset {ctx.M("ladder_all_wallets_pct_of_issuance", 2)}% of net '
+        headline=(f'NEAR delivered to NEAR&rsquo;s three Intents revenue wallets equalled {ctx.M("ladder_all_wallets_pct_of_issuance", 2)}% of net '
                   f'issuance; only {ctx.M("ladder_public_collectors_pct_of_issuance", 2)} points trace to public fee collectors and '
                   f'{ctx.M("ladder_escrow_unshields_pct_of_issuance", 2)} arrive as unshields from the Confidential Intents escrow, fee stream unattested.'),
         shows=(f'How much of NEAR&rsquo;s net issuance ({ctx.M("net_issuance_near_per_day_window", 0)} NEAR a day over the 30 days {window_text(ctx, 30)}) '
@@ -2127,7 +2127,7 @@ def card_paid(ctx: Ctx) -> str:
                f'not proven: {ctx.M("partners_kept_vs_near_rev_low_tight_x")}× and {ctx.M("near_share_of_partner_fees_max_tight_pct")}%. Both leave out the escrow NEAR '
                f'that reached the front-end fund, where the ledger cannot exclude a partner settlement.',
                f'In the per-swap sample ({ctx.M("fee_ev_swaps_n")} swaps from {ctx.M("fee_ev_hours_with_swaps_n")} sampled hours) every non-zero partner fee entry was matched '
-               f'on chain by a payment of the listed amount, except {ctx.M("fee_ev_partner_fees_nonzero_unmatched_n")} unmatched {unmatched_word}, in a swap whose tokens went '
+               f'on chain by a payment of about the listed amount, except {ctx.M("fee_ev_partner_fees_nonzero_unmatched_n")} unmatched {unmatched_word}, in a swap whose tokens went '
                f'into the Confidential Intents escrow, where the public chain shows no fee on that route. A further {ctx.M("fee_ev_swapkit_fees_zero_rate_n")} SwapKit entries '
                f'and {ctx.D("fee_ev_other_partner_fees_zero_rate_n+fee_ev_zodl_fees_zero_rate_n", 0)} others list a zero rate, so nothing is owed on them and no amount can '
                f'match. So no split comes out of a listed fee in that sample; whatever 1Click charges on top, and whether it forwards any of it to NEAR, is not visible.',
@@ -2427,7 +2427,7 @@ def card_usage(ctx: Ctx) -> str:
         notshows=('Why the step happened: this repository holds no definition of what Nearblocks counts, and these data cannot tell a change in what is counted, '
                   'or the end of automated traffic, from a real fall in usage. That active accounts are people: this repository applies no sybil or bot filter to the counts. '
                   'Contract usage: the active-contract count falls by an order of magnitude on the same days (see the table), so it is not used. Anything from '
-                  'BigQuery: these are Nearblocks aggregates, not the BigQuery queries the track brief names. A cause for any of it.'),
+                  'BigQuery: these are Nearblocks aggregates, not the BigQuery queries the track brief asks for. A cause for any of it.'),
         figure=fig,
         caption=(f'Window: {esc(first)} to {esc(last)} (UTC), one point per day. Unit: thousand a day. Both axes start at zero. The dashed line is {esc(step)}. '
                  f'The headline figures are 30-day averages; each line shows single days, so its last point, the as-of date, differs from them.'),
@@ -2437,9 +2437,9 @@ def card_usage(ctx: Ctx) -> str:
                f'{M("l1_step_active_accounts_after_k")}K): they fall gradually, with spikes this card does not explain, not in a step. Since the step, the change is {M("tx_per_day_since_step_pct")}% for '
                f'daily transactions and {M("active_accounts_since_step_pct")}% for daily active accounts (the latest 30 days against the 30 days that start on {esc(step)}).',
                'Both counts are lower than a year ago, but they fall differently. This card does not decompose either fall, it is not a pre-registered test, and it feeds '
-               'neither the rating rule nor any other result.',
+               'neither the rating rule nor any pre-registered test.',
                'The track brief names daily active accounts, transaction counts and contract usage. This card reports the first two from Nearblocks aggregates and says why '
-               'it does not use the third; none of the committed BigQuery queries counts any of them.'),
+               'it does not use the third; none of the committed BigQuery queries measures network-wide daily transactions, active accounts or contract usage.'),
         source=source_p(ctx, raw=("raw/nearblocks/charts.json",), code=("pipeline/fetch_keyless.py", "pipeline/compute.py"),
                         upstream=("Nearblocks /v1/charts daily transactions, active accounts, active contracts and new accounts",)),
         query=query_details(ctx, endpoints=(
@@ -2512,7 +2512,7 @@ def scorecard(ctx: Ctx) -> str:
              href="#chart-h1c"),
         tile(label="Rating · the frozen rule", status_markup=M("rating_output"), kind=status_kind(str(m["rating_output"])),
              big=f'{M("rating_g_obs_pct")}% against {M("rating_g_req_pct")}%',
-             note=(f'Observed against required growth in captured revenue, a year. Buy needs H1b to pass; Avoid needs it to fail and observed growth under '
+             note=(f'Observed against required growth in captured revenue, a year. Buy needs H1b to pass and observed growth at least the required; Avoid needs H1b to fail and observed growth under '
                    f'half the required. H1b is {M("h1b_verdict")}, so the rule outputs {M("rating_output")}, which carries no view on NEAR.'), href="#chart-rating"),
     ]
     if fw:
