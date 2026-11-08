@@ -801,6 +801,16 @@ header.top{padding:28px 0 6px}
 .eyebrow{margin:0;font-size:.8125rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 h1{font-size:clamp(1.65rem,5.2vw,2.3rem);line-height:1.15;margin:.25em 0 .35em;letter-spacing:-.01em}
 .lede{font-size:1.0625rem;margin:0 0 1rem}
+.questions{font-size:1.0625rem;margin:0 0 .7rem}
+.answer{margin:.2rem 0 .9rem;padding:2px 16px;background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--ink);border-radius:10px}
+.answer p{margin:.65rem 0;max-width:none}
+.chipcap{margin:.9rem 0 .35rem;font-size:.8125rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0 0 1.1rem}
+.chips li{max-width:none}
+.chip{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:6px 14px 6px 10px;background:var(--surface);border:1px solid var(--border);border-radius:999px;color:var(--ink);text-decoration:none;line-height:1.25}
+.chip:hover{border-color:var(--ink2)}
+.chiplab{font-weight:700}
+.chipword{font-size:.8125rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
 .meta{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:4px 14px;font-size:.9rem;margin:1rem 0;padding:12px 14px;background:var(--surface);border:1px solid var(--border);border-radius:10px}
 .meta dt{color:var(--muted);font-weight:600}
 .meta dd{margin:0;min-width:0}
@@ -817,7 +827,7 @@ h3{font-size:1.15rem;line-height:1.35;margin:.5rem 0 .6rem}
 .tile .st{grid-row:1 / span 4;align-self:center}
 .tile>:not(.st){grid-column:2}
 .ico{flex:none}
-.i-bad{fill:var(--bad)}.i-ok{fill:var(--ok)}.i-warn{fill:var(--warn)}.i-ink2{fill:var(--ink2)}
+.i-bad{fill:var(--bad)}.i-ok{fill:var(--ok)}.i-warn{fill:var(--warn)}.i-ink2{fill:var(--ink2)}.i-dash{stroke:var(--surface)}
 .i-line{fill:none;stroke:var(--ink2);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .big{font-size:1.45rem;font-weight:750;line-height:1.2}
 .tnote{font-size:.875rem;color:var(--ink2)}
@@ -888,7 +898,7 @@ th{white-space:normal}
 th.txt,td.t{text-align:left;font-variant-numeric:normal;white-space:normal;min-width:10rem}
 @media (max-width:699px){th.txt,td.t{min-width:6.5rem}th,td{padding:5px 8px}.scrollhint{display:block}}
 thead th{position:sticky;top:0;background:var(--surface);z-index:1;border-bottom:1px solid var(--axis)}
-.keyfigs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px 14px;margin:.7rem 0 .2rem}
+.keyfigs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px 14px;align-items:end;margin:.7rem 0 .2rem}
 .keyfigs div{min-width:0}
 .keyfigs dt{font-size:.8125rem;color:var(--muted)}
 .keyfigs dd{margin:0;font-weight:700;font-size:1.05rem;font-variant-numeric:tabular-nums}
@@ -919,7 +929,7 @@ ICONS = {
     "fail": '<circle class="i-bad" cx="10" cy="10" r="9" /><path d="M6.6 6.6l6.8 6.8M13.4 6.6l-6.8 6.8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" />',
     "pass": '<circle class="i-ok" cx="10" cy="10" r="9" /><path d="M5.8 10.4l2.8 2.8 5.6-6.2" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />',
     "inconclusive": '<path class="i-warn" d="M10 .9l9.1 9.1-9.1 9.1L.9 10z" /><path d="M7.7 7.9a2.3 2.3 0 1 1 3.5 1.9c-.8.5-1.2 1-1.2 1.9" fill="none" stroke="#0b0b0b" stroke-width="2" stroke-linecap="round" /><circle cx="10" cy="14.5" r="1.2" fill="#0b0b0b" />',
-    "hold": '<circle class="i-ink2" cx="10" cy="10" r="9" /><path d="M5.6 10h8.8" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" />',
+    "hold": '<circle class="i-ink2" cx="10" cy="10" r="9" /><path class="i-dash" d="M5.6 10h8.8" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" />',
     "pending": '<circle class="i-line" cx="10" cy="10" r="8.2" /><path class="i-line" d="M10 5.4V10l3.2 2" />',
     "scored": '<circle class="i-line" cx="10" cy="10" r="8.2" /><circle class="i-ink2" cx="10" cy="10" r="3.4" />',
     "na": '<circle class="i-line" cx="10" cy="10" r="8.2" /><path class="i-line" d="M4.6 15.4l10.8-10.8" />',
@@ -996,6 +1006,13 @@ def sql_display(text: str, max_line: int = 400) -> tuple[str, int]:
 H1B_RUN_NOTE = ("The header comment of this file says &ldquo;NOT run&rdquo; because it was written before the run. "
                 "The run record is the 2026-11-06 23:23 UTC entry of "
                 f'<a href="{esc(gh("PREREG-ADDENDUM.md"))}">PREREG-ADDENDUM.md</a>.')
+
+# What the forward-test card says about the scorer's dry runs. tests/test_render.py reads both addendum entries it points at.
+DRY_RUN_DISCLOSURE = (
+    'Its first dry run read no scoring-window day for F2 to F4 and only the window-opening block for F1 '
+    f'(<a href="{esc(gh("PREREG-ADDENDUM.md"))}">PREREG-ADDENDUM.md</a>, 2026-11-06 23:49 UTC entry, item 7). '
+    'Later dry runs, and two direct reads of the buyback wallet&rsquo;s balance, did touch window days; they are disclosed in the '
+    f'2026-11-08 05:10 UTC entry of <a href="{esc(gh("PREREG-ADDENDUM.md"))}">PREREG-ADDENDUM.md</a>.')
 
 
 def query_details(ctx: Ctx, sql: tuple[str, ...] = (), endpoints: tuple[tuple[str, str], ...] = (),
@@ -1215,6 +1232,23 @@ def card_h1a(ctx: Ctx) -> str:
         data=data_details(totals, daily))
 
 
+def side_measure_note(ctx: Ctx) -> str:
+    """Why the fourth bar of the H1b chart is longer than the upper bound (markup, for the card's notes).
+
+    That bar is a side measure that pipeline/h1b.py computes as the upper bound (level 4) with the boundary rows of the sourced non-exchange
+    accounts among the unlabelled top-100 receivers dropped. It is larger than the upper bound exactly when the dropped rows net to an outflow
+    from the set. If the data stop showing that, the render stops, so the page cannot go on saying it."""
+    m, M = ctx.m, ctx.M
+    if not m["h1b_net_inflow_upper_ex_nonexchange_m"] > m["h1b_net_inflow_upper_m"]:
+        raise SystemExit("render: the H1b card explains a side measure that is longer than the upper bound because the dropped flows net to an "
+                         "outflow; the data no longer show that, so rewrite side_measure_note()")
+    return (f'The fourth bar of Panel A ({M("h1b_net_inflow_upper_ex_nonexchange_m")}M) is longer than the upper bound ({M("h1b_net_inflow_upper_m")}M) although it leaves two '
+            f'accounts out: it is a side measure, not a tighter bound. It drops the transfers between the sourced non-exchange accounts among the unlabelled top-100 receivers (here '
+            f'<code>intents.near</code> and a DAO account) and accounts outside the set, which is how <code>pipeline/h1b.py</code> approximates taking them out of '
+            f'the set counted as exchange-bound. More NEAR left the set through those transfers than entered it, so dropping them raises the total. The verdict '
+            f'uses only the lower and upper bounds.')
+
+
 def card_h1b(ctx: Ctx) -> str:
     m, Mt = ctx.m, ctx.Mt
     title = "Net exchange inflow as a range, and how much of the top 100 is labelled"
@@ -1289,9 +1323,10 @@ def card_h1b(ctx: Ctx) -> str:
         caption=f'Window: 90 days, {window_text(ctx, 90)} (UTC). Units: million NEAR (Panel A) and percent of the top-100 receivers (Panel B). Both axes start at zero.',
         notes=(f'Only {ctx.M("h1b_coverage_count_pct")}% of the top-100 native-NEAR receivers carry an exchange label ({ctx.M("h1b_coverage_tier1_count_pct")}% a cited '
                f'one; the rest are labelled by our sweep rule), below the '
-               f'{ctx.K("h1b_coverage_min_pct")}% the pre-registration requires, so the test passes only if it passes under both bounds. The lower '
+               f'{ctx.K("h1b_coverage_min_pct")}% the pre-registration requires, so the test passes only if it passes at both bounds. The lower '
                f'bound is under gross issuance and the upper bound is far over it, so the result is inconclusive.',
                'The upper bound is mechanical: it treats every unlabelled top-100 receiver as an exchange, including accounts that are probably not.',
+               side_measure_note(ctx),
                'Labels are snapshots dated 2026-11-06, so exchange addresses retired before then may be missing, which biases the lower bound down. '
                'No citable NEAR address was found for OKX, Coinbase, Kraken, Bybit, HTX, Crypto.com, Upbit or Bithumb.'),
         source=source_p(ctx, sql=("sql/h1b_a_native_flows.sql", "sql/h1b_b_wnear_logs.sql", "sql/h1b_c_sweep_clusters.sql"),
@@ -1323,7 +1358,7 @@ def card_h1c(ctx: Ctx) -> str:
         ]
         return hbar_panel(v, title="Identified buying ÷ net exchange inflow, % (bars start at zero)", rows=rows, vmax=40,
                           ticks=[0, 10, 20, 30, 40], tick_fmt=lambda t: f"{t:g}%",
-                          refs=[{"v": CONSTS["h1c_min_pct"][0], "label": T("pass bar: ", ctx.Kt("h1c_min_pct"), "% under both bounds")}])
+                          refs=[{"v": CONSTS["h1c_min_pct"][0], "label": T("pass bar: at least ", ctx.Kt("h1c_min_pct"), "% at both bounds")}])
 
     fig = dual(ctx, "chart-h1c", title, desc, build)
     tab = table_html(
@@ -1345,14 +1380,14 @@ def card_h1c(ctx: Ctx) -> str:
         cid="h1c", kind="pre",
         headline=(f'H1c is {ctx.M("h1c_verdict")}: the buyback wallet grew by {ctx.M("h1c_identified_buying_m")}M NEAR, '
                   f'{ctx.M("h1c_ratio_lower_pct")}% of the lower bound of net exchange inflow but {ctx.M("h1c_ratio_upper_pct")}% of the upper; '
-                  f'a pass needs {ctx.K("h1c_min_pct")}% under both.'),
+                  f'a pass needs at least {ctx.K("h1c_min_pct")}% at both bounds.'),
         shows=(f'Identified buying, the balance increase of <code>buybacks.multisignature.near</code> between the window&rsquo;s end-point blocks '
                f'({ctx.M("h1c_identified_buying_m")}M NEAR), as a share of the two net exchange inflow bounds from H1b.'),
         notshows=('That the buyback wallet&rsquo;s NEAR came from exchanges: NEAR is fungible, so the ratio is a market-wide balance, not a trace.'),
         figure=fig,
         caption=f'Window: 90 days, {window_text(ctx, 90)} (UTC). Unit: percent. The axis starts at zero.',
         extra=figs,
-        notes=(f'With label coverage below {ctx.K("h1b_coverage_min_pct")}%, H1c passes only if it clears {ctx.K("h1c_min_pct")}% under both bounds. '
+        notes=(f'With label coverage below {ctx.K("h1b_coverage_min_pct")}%, H1c passes only if it reaches at least {ctx.K("h1c_min_pct")}% at both bounds. '
                f'It clears the bar against the lower bound and falls far short against the upper, so it is inconclusive; it inherits every limit of '
                f'H1b, including the {ctx.M("h1b_coverage_count_pct")}% label coverage.',
                f'The balance growth is the pre-registered numerator and all of it is used. {ctx.M("bb_deliveries_90d_m")}M NEAR of it is delivery from <code>intents.near</code> in the committed escrow table; '
@@ -1686,16 +1721,14 @@ def card_forward(ctx: Ctx) -> str:
                  f'from data fetched at <span data-f="snapshot_fetched_at" data-scale="1">{esc(fw.get("snapshot_fetched_at", ""))}</span>.')
         notes = ('Every result is published, misses included. A test with missing data is scored "not scorable" and never estimated.',
                  'The bands are the frozen predictions and the dot is the observed value. The predictions were frozen before the window; the scorer was '
-                 'written on 2026-11-06, after the window opened, and its first dry run read no scoring-window day for F2 to F4 and only the window-opening '
-                 'block for F1 (PREREG-ADDENDUM.md, 2026-11-06 23:49 UTC entry, item 7).')
+                 'written on 2026-11-06, after the window opened. ' + DRY_RUN_DISCLOSURE)
     else:
         headline = (f'Forward tests F1 to F4 are pending: the window is {esc(w0)} to {esc(w1)} and scoring opens {esc(opens)}.')
         shows = (f'The four predictions frozen in PREREG.md before the window {esc(w0)} to {esc(w1)}, each with its prior probability; '
                  f'nothing is scored yet, so each test is pending.')
         notes = ('The bands are the frozen predictions. The diamonds are the last values committed before the window opened, shown for scale and not as forecasts.',
                  'Every result will be published, including misses. A test with missing data is scored "not scorable" and never estimated. The predictions were '
-                 'frozen before the window; the scorer was written on 2026-11-06, after the window opened, and its first dry run read no scoring-window day for F2 to F4 '
-                 'and only the window-opening block for F1 (PREREG-ADDENDUM.md, 2026-11-06 23:49 UTC entry, item 7).')
+                 'frozen before the window; the scorer was written on 2026-11-06, after the window opened. ' + DRY_RUN_DISCLOSURE)
     notshows = ('A score before scoring opens: a dry run of the scorer is not a score and is never shown here.')
     tab_rows = []
     for fid in ("F1", "F2", "F3", "F4"):
@@ -1746,10 +1779,11 @@ def partial_month_note(ctx: Ctx) -> str:
 
 
 def escrow_attribution(ctx: Ctx) -> dict:
-    """Where the funding hop of an escrow unshield is traced per delivery and where it is attributed from samples, read
-    from data/raw/escrow/deliveries.csv. Before the boundary the file mixes both kinds of row; from the first day
-    after the last sample-attributed row on, every delivery is traced (attribution "row"). Returns that first day, and
-    the first and last sampled day in the same calendar month before it (None when there are none)."""
+    """Where the funding hop of an escrow unshield (a single-use, escrow-path delivery) is traced per delivery and where it is
+    attributed from samples, read from data/raw/escrow/deliveries.csv. Before the boundary the file mixes both kinds of row; from
+    the first day after the last sample-attributed row on, every escrow-path delivery is traced (attribution "row"). The recurring
+    collectors' deliveries have no funding hop and are not looked at here. Returns that first day, and the first and last sampled
+    day in the same calendar month before it (None when there are none)."""
     with open(ctx.root / "data/raw/escrow/deliveries.csv", newline="", encoding="utf-8") as fh:
         rows = [r for r in csv.DictReader(fh) if r["path"] == "escrow_unshield"]
     last_sample = max((r["day"] for r in rows if r["attribution"] == "sample"), default="")
@@ -1835,7 +1869,7 @@ def card_ladder(ctx: Ctx) -> str:
         caption=(f'Window: the 30 days {window_text(ctx, 30)} (UTC). Unit: percent of net issuance. Both panels start at zero; Panel B is a zoom of Panel A.'),
         extra=figs,
         notes=('The two candidate readings are near.com&rsquo;s fees and the Confidential Infrastructure Fee. A per-stream attestation by NEAR would turn the '
-               'range into one number. Nothing here alleges misconduct: it is a privacy feature working as designed, and the question is auditability.',
+               'range into one number. Nothing here alleges misconduct. This is consistent with a privacy feature working as documented, and the question is auditability.',
                'The rungs are not nested: collectors, escrow and one other source add up to all three wallets, and the buyback-wallet rung is a subset of the total.',
                f'The total reconciles with DefiLlama: {ctx.M("revwallets_near_k")}K NEAR is {ctx.M("revwallets_vs_llama_rev_pct")}% of its reported Intents revenue '
                f'for the same days. Even the top of the range covers about a sixth of issuance, and the buyback wallet&rsquo;s NEAR is held, not burned.',
@@ -1881,7 +1915,7 @@ def escrow_query_note(ctx: Ctx) -> str:
             "per-delivery table the chart is drawn from, <code>data/raw/escrow/deliveries.csv</code>, over those days; it does not trace "
             "funding hops. ") if mt and escrow_sql_matches_table(ctx, mt.group(1), mt.group(2)) else ""
     src = ctx.manifest.get("raw/escrow/deliveries.csv", {}).get("source", "")
-    where = (f"Earlier deliveries, and the funding hop of every delivery, come from the sources that <code>data/MANIFEST.json</code> records "
+    where = (f"Earlier deliveries, and the funding hops of the single-use deliveries, come from the sources that <code>data/MANIFEST.json</code> records "
              f"for that table: <code>{esc(src)}</code>. ") if src else ""
     return (f"{cover}{same}{where}The monthly shares are computed in <code>pipeline/compute.py</code>, function <code>escrow_ladder</code>, from "
             f"the per-delivery table. Re-check any delivery with <code>python3 -m pipeline.fetch_escrow verify --sample 60</code>.")
@@ -1916,7 +1950,7 @@ def card_escrow(ctx: Ctx) -> str:
         if sampled:
             brackets.append({"i0": sampled[0], "i1": sampled[-1], "label": "funding hop attributed from samples"})
         if traced:
-            brackets.append({"i0": traced[0], "i1": traced[-1], "label": f"funding hop traced per delivery from {traced_from}"})
+            brackets.append({"i0": traced[0], "i1": traced[-1], "label": f"funding hop traced per single-use delivery from {traced_from}"})
         return vcol_panel(v, title="Escrow unshields as % of NEAR delivered to buybacks.multisignature.near", cats=cats,
                           series=[{"cls": "s1", "name": "Escrow share"}], ymax=100, yticks=[0, 25, 50, 75, 100],
                           tick_fmt=lambda t: f"{t:g}%", h_plot=130 if not v.narrow else 120, brackets=brackets, footnote=footnote)
@@ -1937,8 +1971,10 @@ def card_escrow(ctx: Ctx) -> str:
         figure=fig,
         caption=f'Window: 2026-07-07 to {esc(asof)} (UTC), by calendar month. Unit: percent of NEAR delivered. The axis starts at zero.',
         extra=figs,
-        notes=(f'Before {traced_from} the funding of each delivery is attributed from samples; from that date every delivery&rsquo;s funding hop is traced, so the '
-               f'earlier months are less firmly established. July starts on 2026-07-07 and November covers {partial_month_note(ctx)} only.',
+        notes=(f'Before {traced_from} the funding of a single-use (escrow-path) delivery is mostly attributed from samples; from that date the funding hop of every '
+               f'single-use (escrow-path) delivery in the window is traced (every single-use delivery in the 30-day window, {ctx.M("escrow_single_use_30d_n")}), '
+               f'so the earlier months are less firmly established. In the window, deliveries from the two recurring fee collectors and from the one other recurring '
+               f'source have no funding hop. July starts on 2026-07-07 and November covers {partial_month_note(ctx)} only.',
                f'In the 30-day window all {ctx.M("escrow_funded_exact_30d_n")} single-use deliveries are recorded as funded by the escrow for the exact amount, to the '
                f'yoctoNEAR ({ctx.M("escrow_funded_exact_30d_pct")}%). It tallies two columns of the per-delivery table over the window&rsquo;s single-use accounts, a set that the committed BigQuery output defines without them; '
                f'the funding scan that filled the columns is not in this repository.',
@@ -2121,8 +2157,8 @@ def card_paid(ctx: Ctx) -> str:
             or m["fee_ev_partner_fees_nonzero_unmatched_n"] == 0):
         raise SystemExit("render: the note on the per-swap sample needs at least one unmatched partner fee, all in escrow-routed swaps; rewrite it in card_paid()")
     unmatched_word = "entry" if m["fee_ev_partner_fees_nonzero_unmatched_n"] == 1 else "entries"
-    title = "Who keeps the listed 1Click fees, and which way 1Click moves NEAR"
-    desc = (f"Panel A, bars from zero in multiples of NEAR's entire captured revenue, with a reference line at 1: partners kept {ctx.plain('partners_kept_vs_near_rev_low_x')} "
+    title = "Partner fees listed by 1Click against NEAR's revenue, and which way 1Click moves NEAR"
+    desc = (f"Panel A, bars from zero in multiples of NEAR's entire captured revenue, with a reference line at 1: listed partner fees came to {ctx.plain('partners_kept_vs_near_rev_low_x')} times it "
             f"at the wide lower bound, {ctx.plain('partners_kept_vs_near_rev_low_tight_x')} at the tight lower bound and {ctx.plain('partners_kept_vs_near_rev_high_x')} at the upper. "
             f"Panel B: 1Click swaps into NEAR {ctx.plain('explorer_into_near_usd_m')} million dollars, out of NEAR {ctx.plain('explorer_out_of_near_usd_m')} million.")
 
@@ -2156,9 +2192,9 @@ def card_paid(ctx: Ctx) -> str:
         [{"h": "Measure", "num": False}, {"h": "Value"}, {"h": "Unit", "num": False}],
         [{"k": None, "cells": [esc("Partner fees listed on 1Click swaps"), ctx.M("explorer_partner_fees_all_usd_k"), esc("USD thousand")]},
          {"k": None, "cells": [esc("NEAR's captured revenue, three revenue wallets"), ctx.M("revwallets_usd_k"), esc("USD thousand")]},
-         {"k": None, "cells": [esc("Partners kept ÷ NEAR's revenue, wide lower bound"), ctx.M("partners_kept_vs_near_rev_low_x"), esc("×")]},
-         {"k": None, "cells": [esc("Partners kept ÷ NEAR's revenue, tight lower bound"), ctx.M("partners_kept_vs_near_rev_low_tight_x"), esc("×")]},
-         {"k": None, "cells": [esc("Partners kept ÷ NEAR's revenue, upper"), ctx.M("partners_kept_vs_near_rev_high_x"), esc("×")]},
+         {"k": None, "cells": [esc("Listed partner fees ÷ NEAR's revenue, wide lower bound"), ctx.M("partners_kept_vs_near_rev_low_x"), esc("×")]},
+         {"k": None, "cells": [esc("Listed partner fees ÷ NEAR's revenue, tight lower bound"), ctx.M("partners_kept_vs_near_rev_low_tight_x"), esc("×")]},
+         {"k": None, "cells": [esc("Listed partner fees ÷ NEAR's revenue, upper"), ctx.M("partners_kept_vs_near_rev_high_x"), esc("×")]},
          {"k": None, "cells": [esc("1Click swaps into NEAR"), ctx.M("explorer_into_near_usd_m"), esc("USD million")]},
          {"k": None, "cells": [esc("1Click swaps out of NEAR"), ctx.M("explorer_out_of_near_usd_m"), esc("USD million")]},
          {"k": None, "cells": [esc("Net NEAR sold through 1Click"), ctx.M("explorer_net_near_sold_usd_m"), esc("USD million")]}],
@@ -2169,7 +2205,7 @@ def card_paid(ctx: Ctx) -> str:
                     ("Share of 1Click volume with NEAR on one side", f'{ctx.M("explorer_near_side_swap_share_pct")}%')])
     return card(
         cid="paid", kind="exp",
-        headline=(f'Partners kept at least {ctx.M("partners_kept_vs_near_rev_low_x")}× NEAR&rsquo;s entire captured revenue ({ctx.M("partners_kept_vs_near_rev_low_tight_x")}× '
+        headline=(f'Listed partner fees were at least {ctx.M("partners_kept_vs_near_rev_low_x")}× NEAR&rsquo;s entire captured revenue ({ctx.M("partners_kept_vs_near_rev_low_tight_x")}× '
                   f'on the tighter reading), and 1Click was a net route out of NEAR: ${ctx.M("explorer_out_of_near_usd_m")}M out against '
                   f'${ctx.M("explorer_into_near_usd_m")}M in over 30 days.'),
         shows=(f'The fees 1Click swaps listed for partners (${ctx.M("explorer_partner_fees_all_usd_k")}K) as a multiple of NEAR&rsquo;s entire captured Intents revenue '
@@ -2181,16 +2217,17 @@ def card_paid(ctx: Ctx) -> str:
         caption=(f'Window: the 30 days {window_text(ctx, 30)} (UTC). Units: a multiple of NEAR&rsquo;s revenue (Panel A) and USD million (Panel B). Both axes start at zero. '
                  f'In Panel A the blue bar is the wide lower bound the headline quotes and the grey bars are the tight reading and the upper bound; Panel B uses one colour for both bars.'),
         extra=figs,
-        notes=(f'The wide reading counts all the NEAR in the buyback wallet that the explicit fee entries do not explain as partner fees passed on to NEAR: partners kept '
-               f'at least {ctx.M("partners_kept_vs_near_rev_low_x")}×, and at most {ctx.M("near_share_of_partner_fees_max_pct")}% of the fees on partner swaps with no buyback fee '
-               f'entry reached NEAR. The tight reading counts only the escrow unshields, reading collector B&rsquo;s NEAR as quote improvement, a role that is inferred, '
+        notes=(f'The wide reading counts all the NEAR in the buyback wallet that the explicit fee entries do not explain as partner fees passed on to NEAR: the listed '
+               f'partner fees left after that are at least {ctx.M("partners_kept_vs_near_rev_low_x")}× NEAR&rsquo;s revenue, and at most {ctx.M("near_share_of_partner_fees_max_pct")}% of the fees on '
+               f'partner swaps with no buyback fee entry reached NEAR. The tight reading counts only the escrow unshields, reading collector B&rsquo;s NEAR as quote improvement, a role that is inferred, '
                f'not proven: {ctx.M("partners_kept_vs_near_rev_low_tight_x")}× and {ctx.M("near_share_of_partner_fees_max_tight_pct")}%. Both leave out the escrow NEAR '
                f'that reached the front-end fund, where the ledger cannot exclude a partner settlement.',
                f'In the per-swap sample ({ctx.M("fee_ev_swaps_n")} swaps from {ctx.M("fee_ev_hours_with_swaps_n")} sampled hours) every non-zero partner fee entry was matched '
-               f'on chain by a payment of about the listed amount, except {ctx.M("fee_ev_partner_fees_nonzero_unmatched_n")} unmatched {unmatched_word}, in a swap whose tokens went '
+               f'on chain by a payment of about the listed amount to an account other than NEAR&rsquo;s two fee collectors, except {ctx.M("fee_ev_partner_fees_nonzero_unmatched_n")} unmatched {unmatched_word}, in a swap whose tokens went '
                f'into the Confidential Intents escrow, where the public chain shows no fee on that route. A further {ctx.M("fee_ev_swapkit_fees_zero_rate_n")} SwapKit entries '
                f'and {ctx.D("fee_ev_other_partner_fees_zero_rate_n+fee_ev_zodl_fees_zero_rate_n", 0)} others list a zero rate, so nothing is owed on them and no amount can '
-               f'match. So no split comes out of a listed fee in that sample; whatever 1Click charges on top, and whether it forwards any of it to NEAR, is not visible.',
+               f'match. Who owns those receiving accounts is not shown, so the sample shows the listed amount leaving the swap in one piece, not who keeps it. '
+               f'So no split comes out of a listed fee in that sample; whatever 1Click charges on top, and whether it forwards any of it to NEAR, is not visible.',
                f'1Click swaps out of NEAR are not exchange deposits: H1b counts only labelled centralized-exchange accounts and does not see this non-custodial route. '
                f'Only {ctx.M("explorer_near_side_swap_share_pct")}% of 1Click volume has NEAR on one side.',
                'Partner numbers rest on one key-gated source, the Explorer API.'),
@@ -2516,7 +2553,7 @@ PRE_CARDS = (("h1a", "H1a: staking outflow", card_h1a), ("h1b", "H1b: net exchan
              ("forward", "Forward tests F1-F4", card_forward))
 EXP_CARDS = (("ladder", "The value-capture ladder", card_ladder), ("escrow", "Escrow share by month", card_escrow),
              ("take", "NEAR's take in 1Click", card_take), ("partners", "Partner concentration", card_partners),
-             ("paid", "Who keeps the fees", card_paid), ("peers", "Share of the peer set", card_peers),
+             ("paid", "Partner fees against NEAR's revenue", card_paid), ("peers", "Share of the peer set", card_peers),
              ("revenue", "Monthly revenue and take rate", card_revenue), ("supply", "Supply and net issuance", card_supply),
              ("usage", "Network usage", card_usage))
 
@@ -2554,23 +2591,39 @@ def freeze_order(ctx: Ctx) -> tuple[str, str]:
     return f'<span data-r="stamp:{esc(rel)}">{esc(stamp)} UTC</span>', how_long
 
 
+def status_words(ctx: Ctx) -> list[tuple[str, str, str, str]]:
+    """The five pre-registered results as (card id, short label, status word as markup, icon kind), in the order of the scorecard.
+
+    The scorecard tiles and the status chips under the page title both take their word and shape from here, so they cannot disagree.
+    The forward tests read "pending" until a real score is committed, and "scored" after."""
+    m, M = ctx.m, ctx.M
+    fwd = "scored" if ctx.forward else "pending"
+    return [
+        ("h1a", "H1a", M("h1a_pass_as_written"), status_kind("pass" if m["h1a_pass_as_written"] else "fail")),
+        ("h1b", "H1b", M("h1b_verdict"), status_kind(str(m["h1b_verdict"]))),
+        ("h1c", "H1c", M("h1c_verdict"), status_kind(str(m["h1c_verdict"]))),
+        ("rating", "Rating rule", M("rating_output"), status_kind(str(m["rating_output"]))),
+        ("forward", "Forward tests", fwd, fwd),
+    ]
+
+
 def scorecard(ctx: Ctx) -> str:
     m, M, K = ctx.m, ctx.M, ctx.K
     fw = ctx.forward
+    st = {cid: (word, kind) for cid, _, word, kind in status_words(ctx)}
     tiles = [
-        tile(label="H1a · most staking rewards stay staked", status_markup=M("h1a_pass_as_written"),
-             kind=status_kind("pass" if m["h1a_pass_as_written"] else "fail"),
+        tile(label="H1a · most staking rewards stay staked", status_markup=st["h1a"][0], kind=st["h1a"][1],
              big=f'{M("h1a_ratio_as_written_x")}×',
              note=f'Net staking outflow ÷ staking rewards over 90 days. A pass needed under {K("h1a_pass_below_x")}×.', href="#chart-h1a"),
-        tile(label="H1b · less NEAR reaches exchanges than is minted", status_markup=M("h1b_verdict"), kind=status_kind(str(m["h1b_verdict"])),
+        tile(label="H1b · less NEAR reaches exchanges than is minted", status_markup=st["h1b"][0], kind=st["h1b"][1],
              big=f'{M("h1b_net_inflow_lower_m")}M to {M("h1b_net_inflow_upper_m")}M',
              note=(f'Net exchange inflow in NEAR, against {M("h1a_gross_issuance_90d_m")}M NEAR minted. Label coverage is {M("h1b_coverage_count_pct")}%, '
                    f'below the {K("h1b_coverage_min_pct")}% required for a point result.'), href="#chart-h1b"),
-        tile(label="H1c · identified buyers absorb a larger share", status_markup=M("h1c_verdict"), kind=status_kind(str(m["h1c_verdict"])),
+        tile(label="H1c · identified buyers absorb a larger share", status_markup=st["h1c"][0], kind=st["h1c"][1],
              big=f'{M("h1c_ratio_lower_pct")}% and {M("h1c_ratio_upper_pct")}%',
-             note=f'Identified buying ÷ net exchange inflow at the lower and upper bound. A pass needs {K("h1c_min_pct")}% under both.',
+             note=f'Identified buying ÷ net exchange inflow at the lower and upper bound. A pass needs at least {K("h1c_min_pct")}% at both bounds.',
              href="#chart-h1c"),
-        tile(label="Rating · the frozen rule", status_markup=M("rating_output"), kind=status_kind(str(m["rating_output"])),
+        tile(label="Rating · the frozen rule", status_markup=st["rating"][0], kind=st["rating"][1],
              big=f'{M("rating_g_obs_pct")}% against {M("rating_g_req_pct")}%',
              note=(f'Observed against required growth in captured revenue, a year. Buy needs H1b to pass and observed growth at least the required; Avoid needs H1b to fail and observed growth under '
                    f'half the required. H1b is {M("h1b_verdict")}, so the rule outputs {M("rating_output")}, which carries no view on NEAR.'), href="#chart-rating"),
@@ -2579,7 +2632,7 @@ def scorecard(ctx: Ctx) -> str:
         words = [str(fw["results"].get(f, {}).get("result", "not scorable")) for f in ("F1", "F2", "F3", "F4")]
         npass, nmiss = words.count("PASS"), words.count("MISS")
         nns = 4 - npass - nmiss
-        tiles.append(tile(label="Forward tests F1 to F4", status_markup="scored", kind="scored",
+        tiles.append(tile(label="Forward tests F1 to F4", status_markup=st["forward"][0], kind=st["forward"][1],
                           big=(f'<span data-f="@count.PASS" data-scale="1">{npass}</span> pass, '
                                f'<span data-f="@count.MISS" data-scale="1">{nmiss}</span> miss'),
                           note=(f'<span data-f="@count.not scorable" data-scale="1">{nns}</span> not scorable. '
@@ -2587,7 +2640,7 @@ def scorecard(ctx: Ctx) -> str:
                           href="#chart-forward"))
     else:
         opens = sf.SCORE_NOT_BEFORE.strftime("%Y-%m-%d %H:%M UTC")
-        tiles.append(tile(label="Forward tests F1 to F4", status_markup="pending", kind="pending", big="F1 to F4",
+        tiles.append(tile(label="Forward tests F1 to F4", status_markup=st["forward"][0], kind=st["forward"][1], big="F1 to F4",
                           note=(f'Window {esc(sf.WINDOW[0])} to {esc(sf.WINDOW[1])}. Scored after {esc(opens)} by '
                                 f'<code>python3 -m pipeline.score_forward --score</code>, misses included.'), href="#chart-forward"))
     freeze_stamp, freeze_gap = freeze_order(ctx)
@@ -2681,7 +2734,7 @@ def limits(ctx: Ctx) -> str:
         ("Unpriced tokens",
          f'are left out of the collector values: {M("collector_a_valued_transfers_pct")}% of collector A&rsquo;s transfers and {M("collector_b_valued_transfers_pct")}% of collector B&rsquo;s '
          f'are priced, so both figures are lower bounds.'),
-        ("Escrow funding", f'before {traced} is sample-attributed.'),
+        ("Escrow funding", f'before {traced} is mostly sample-attributed.'),
         ("Exchange labels are snapshots", 'dated 2026-11-06. Exchange addresses retired before then may be missing, which biases the lower bound down.'),
         ("The name-filter check", 'behind the lst-pool.near sensitivity read sampled validator sets, not every epoch.'),
         ("The upper bound is mechanical.", 'It treats every unlabelled top-100 receiver as an exchange, including accounts that are probably not.'),
@@ -2690,9 +2743,41 @@ def limits(ctx: Ctx) -> str:
     ]
     lis = "".join(f"<li><strong>{a}</strong> {b}</li>" for a, b in items)
     return (f'<section id="limits" aria-labelledby="limits-h"><h2 id="limits-h">Limits</h2>'
-            f'<p class="note">These come from the Limits sections of THESIS.md and docs/*.md and from PREREG-ADDENDUM.md. One date is sharper than in THESIS.md: '
-            f'escrow funding hops are traced per delivery from {traced}, which a test checks against <code>data/raw/escrow/deliveries.csv</code>.</p>'
+            f'<p class="note">These come from the Limits sections of THESIS.md and docs/*.md and from PREREG-ADDENDUM.md. '
+            f'Escrow funding hops are traced per single-use delivery from {traced}, which a test checks against <code>data/raw/escrow/deliveries.csv</code>.</p>'
             f'<ul class="plain">{lis}</ul></section>')
+
+
+def answer_line(ctx: Ctx) -> str:
+    """What the page answers, under its title (markup): the two questions, then the pre-registered result and the exploratory range.
+
+    Every number is a metric span. The words are true of the data as committed: H1a fails, H1b and H1c are inconclusive, the frozen rule outputs
+    Hold, and the three sources add up to the total (each is rounded to two decimals, so the sum may be off by up to 0.02). If the data stop
+    saying that, the render stops, so the page cannot go on saying it."""
+    m, M = ctx.m, ctx.M
+    parts = [m["ladder_public_collectors_pct_of_issuance"], m["ladder_escrow_unshields_pct_of_issuance"], m["ladder_other_pct_of_issuance"]]
+    if not (m["h1a_pass_as_written"] is False and m["h1b_verdict"] == "inconclusive" and m["h1c_verdict"] == "inconclusive"
+            and m["rating_output"] == "Hold" and abs(sum(parts) - m["ladder_all_wallets_pct_of_issuance"]) <= 0.02 + 1e-9):
+        raise SystemExit("render: the answer under the title says that H1a fails, H1b and H1c are inconclusive, the rule outputs Hold and the three "
+                         "sources add up to the total; the data no longer say that, so rewrite answer_line()")
+    return (
+        '<p class="questions"><strong>The pre-registered question:</strong> who buys and who sells NEAR? '
+        '<strong>The question the evidence can answer:</strong> how much of NEAR&rsquo;s value capture can you verify?</p>'
+        '<div class="answer">'
+        f'<p><strong>Pre-registered result:</strong> H1a fails, H1b and H1c are inconclusive, and the frozen rating rule outputs {M("rating_output")}, '
+        f'which carries no view on NEAR.</p>'
+        f'<p><strong>Exploratory, chosen after the freeze:</strong> over 30 days the NEAR that verifiably reached NEAR&rsquo;s three Intents revenue wallets was '
+        f'{M("ladder_all_wallets_pct_of_issuance", 2)}% of net issuance, of which {M("ladder_public_collectors_pct_of_issuance", 2)} points trace to public '
+        f'fee collectors, {M("ladder_escrow_unshields_pct_of_issuance", 2)} arrived as releases from an escrow whose fee stream is unattested, and '
+        f'{M("ladder_other_pct_of_issuance", 2)} came from one other source. So the value capture that can be verified is a range, not a number. '
+        f'This is not a valuation and not advice. <a href="#chart-ladder">See the value-capture ladder.</a></p></div>')
+
+
+def glance(ctx: Ctx) -> str:
+    """Five status chips under the answer, one per pre-registered result, each a link to its card: a shape and a word, never colour alone."""
+    items = "".join(f'<li><a class="chip" href="#chart-{cid}">{icon(kind, 18)}<span><span class="chiplab">{esc(label)}</span> <span class="chipword">{word}</span></span></a></li>'
+                    for cid, label, word, kind in status_words(ctx))
+    return f'<nav aria-label="Pre-registered results at a glance"><p class="chipcap">Pre-registered results</p><ul class="chips">{items}</ul></nav>'
 
 
 def header(ctx: Ctx) -> str:
@@ -2702,6 +2787,7 @@ def header(ctx: Ctx) -> str:
     return (
         f'<header class="top"><p class="eyebrow">NEAR Hackathon 2026 · Investment Thesis track</p>'
         f'<h1>Who buys and who sells NEAR?</h1>'
+        f'{answer_line(ctx)}{glance(ctx)}'
         f'<p class="lede">A pre-registered, re-runnable token flow statement for NEAR. <code>python3 -m pipeline.compute</code> recomputes every number from the raw '
         f'snapshots in <code>data/raw/</code>, <code>python3 -m pipeline.render</code> redraws every chart from the committed metrics and snapshots, and <code>make site</code> runs both '
         f'offline in one command. Each chart shows the query behind it, the exact numbers it plots, and one plain sentence on what it shows and what it does not.</p>'
@@ -2795,7 +2881,8 @@ def build_page(ctx: Ctx, breaks: bool = True) -> str:
         '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
         '<meta name="viewport" content="width=device-width, initial-scale=1">\n<meta name="color-scheme" content="light dark">\n'
         '<title>NEAR flow statement dashboard</title>\n'
-        '<meta name="description" content="Pre-registered, re-runnable token flow statement for NEAR: who buys and who sells NEAR. '
+        '<meta name="description" content="Pre-registered, re-runnable token flow statement for NEAR. The pre-registered question is who buys and who sells NEAR; '
+        'the question the evidence can answer is how much of NEAR&#x27;s value capture can you verify. '
         'Every chart shows the query behind it and the exact numbers it plots.">\n'
         '<link rel="icon" href="data:,">\n'
         f"<style>\n{css()}\n</style>\n</head>\n")

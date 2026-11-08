@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <title>NEAR flow statement dashboard</title>
-<meta name="description" content="Pre-registered, re-runnable token flow statement for NEAR: who buys and who sells NEAR. Every chart shows the query behind it and the exact numbers it plots.">
+<meta name="description" content="Pre-registered, re-runnable token flow statement for NEAR. The pre-registered question is who buys and who sells NEAR; the question the evidence can answer is how much of NEAR&#x27;s value capture can you verify. Every chart shows the query behind it and the exact numbers it plots.">
 <link rel="icon" href="data:,">
 <style>
 :root{color-scheme:light;--bg:#f9f9f7;--surface:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--muted:#66655f;--grid:#e1e0d9;
@@ -29,6 +29,16 @@ header.top{padding:28px 0 6px}
 .eyebrow{margin:0;font-size:.8125rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 h1{font-size:clamp(1.65rem,5.2vw,2.3rem);line-height:1.15;margin:.25em 0 .35em;letter-spacing:-.01em}
 .lede{font-size:1.0625rem;margin:0 0 1rem}
+.questions{font-size:1.0625rem;margin:0 0 .7rem}
+.answer{margin:.2rem 0 .9rem;padding:2px 16px;background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--ink);border-radius:10px}
+.answer p{margin:.65rem 0;max-width:none}
+.chipcap{margin:.9rem 0 .35rem;font-size:.8125rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0 0 1.1rem}
+.chips li{max-width:none}
+.chip{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:6px 14px 6px 10px;background:var(--surface);border:1px solid var(--border);border-radius:999px;color:var(--ink);text-decoration:none;line-height:1.25}
+.chip:hover{border-color:var(--ink2)}
+.chiplab{font-weight:700}
+.chipword{font-size:.8125rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
 .meta{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:4px 14px;font-size:.9rem;margin:1rem 0;padding:12px 14px;background:var(--surface);border:1px solid var(--border);border-radius:10px}
 .meta dt{color:var(--muted);font-weight:600}
 .meta dd{margin:0;min-width:0}
@@ -45,7 +55,7 @@ h3{font-size:1.15rem;line-height:1.35;margin:.5rem 0 .6rem}
 .tile .st{grid-row:1 / span 4;align-self:center}
 .tile>:not(.st){grid-column:2}
 .ico{flex:none}
-.i-bad{fill:var(--bad)}.i-ok{fill:var(--ok)}.i-warn{fill:var(--warn)}.i-ink2{fill:var(--ink2)}
+.i-bad{fill:var(--bad)}.i-ok{fill:var(--ok)}.i-warn{fill:var(--warn)}.i-ink2{fill:var(--ink2)}.i-dash{stroke:var(--surface)}
 .i-line{fill:none;stroke:var(--ink2);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .big{font-size:1.45rem;font-weight:750;line-height:1.2}
 .tnote{font-size:.875rem;color:var(--ink2)}
@@ -116,7 +126,7 @@ th{white-space:normal}
 th.txt,td.t{text-align:left;font-variant-numeric:normal;white-space:normal;min-width:10rem}
 @media (max-width:699px){th.txt,td.t{min-width:6.5rem}th,td{padding:5px 8px}.scrollhint{display:block}}
 thead th{position:sticky;top:0;background:var(--surface);z-index:1;border-bottom:1px solid var(--axis)}
-.keyfigs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px 14px;margin:.7rem 0 .2rem}
+.keyfigs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px 14px;align-items:end;margin:.7rem 0 .2rem}
 .keyfigs div{min-width:0}
 .keyfigs dt{font-size:.8125rem;color:var(--muted)}
 .keyfigs dd{margin:0;font-weight:700;font-size:1.05rem;font-variant-numeric:tabular-nums}
@@ -142,6 +152,18 @@ footer{margin:3rem 0 2rem;padding-top:1rem;border-top:1px solid var(--grid);font
 <header class="top">
 <p class="eyebrow">NEAR Hackathon 2026 · Investment Thesis track</p>
 <h1>Who buys and who sells NEAR?</h1>
+<p class="questions"><strong>The pre-registered question:</strong> who buys and who sells NEAR? <strong>The question the evidence can answer:</strong> how much of NEAR&rsquo;s value capture can you verify?</p>
+<div class="answer">
+<p><strong>Pre-registered result:</strong> H1a fails, H1b and H1c are inconclusive, and the frozen rating rule outputs <span data-m="rating_output">Hold</span>, which carries no view on NEAR.</p>
+<p><strong>Exploratory, chosen after the freeze:</strong> over 30 days the NEAR that verifiably reached NEAR&rsquo;s three Intents revenue wallets was <span data-m="ladder_all_wallets_pct_of_issuance">15.81</span>% of net issuance, of which <span data-m="ladder_public_collectors_pct_of_issuance">4.53</span> points trace to public fee collectors, <span data-m="ladder_escrow_unshields_pct_of_issuance">11.25</span> arrived as releases from an escrow whose fee stream is unattested, and <span data-m="ladder_other_pct_of_issuance">0.03</span> came from one other source. So the value capture that can be verified is a range, not a number. This is not a valuation and not advice. <a href="#chart-ladder">See the value-capture ladder.</a></p></div>
+<nav aria-label="Pre-registered results at a glance">
+<p class="chipcap">Pre-registered results</p>
+<ul class="chips">
+<li><a class="chip" href="#chart-h1a"><svg class="ico" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" focusable="false"><circle class="i-bad" cx="10" cy="10" r="9" /><path d="M6.6 6.6l6.8 6.8M13.4 6.6l-6.8 6.8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" /></svg><span><span class="chiplab">H1a</span> <span class="chipword"><span data-m="h1a_pass_as_written">fail</span></span></span></a></li>
+<li><a class="chip" href="#chart-h1b"><svg class="ico" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" focusable="false"><path class="i-warn" d="M10 .9l9.1 9.1-9.1 9.1L.9 10z" /><path d="M7.7 7.9a2.3 2.3 0 1 1 3.5 1.9c-.8.5-1.2 1-1.2 1.9" fill="none" stroke="#0b0b0b" stroke-width="2" stroke-linecap="round" /><circle cx="10" cy="14.5" r="1.2" fill="#0b0b0b" /></svg><span><span class="chiplab">H1b</span> <span class="chipword"><span data-m="h1b_verdict">inconclusive</span></span></span></a></li>
+<li><a class="chip" href="#chart-h1c"><svg class="ico" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" focusable="false"><path class="i-warn" d="M10 .9l9.1 9.1-9.1 9.1L.9 10z" /><path d="M7.7 7.9a2.3 2.3 0 1 1 3.5 1.9c-.8.5-1.2 1-1.2 1.9" fill="none" stroke="#0b0b0b" stroke-width="2" stroke-linecap="round" /><circle cx="10" cy="14.5" r="1.2" fill="#0b0b0b" /></svg><span><span class="chiplab">H1c</span> <span class="chipword"><span data-m="h1c_verdict">inconclusive</span></span></span></a></li>
+<li><a class="chip" href="#chart-rating"><svg class="ico" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" focusable="false"><circle class="i-ink2" cx="10" cy="10" r="9" /><path class="i-dash" d="M5.6 10h8.8" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" /></svg><span><span class="chiplab">Rating rule</span> <span class="chipword"><span data-m="rating_output">Hold</span></span></span></a></li>
+<li><a class="chip" href="#chart-forward"><svg class="ico" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" focusable="false"><circle class="i-line" cx="10" cy="10" r="8.2" /><path class="i-line" d="M10 5.4V10l3.2 2" /></svg><span><span class="chiplab">Forward tests</span> <span class="chipword">pending</span></span></a></li></ul></nav>
 <p class="lede">A pre-registered, re-runnable token flow statement for NEAR. <code>python3 -m pipeline.compute</code> recomputes every number from the raw snapshots in <code>data/raw/</code>, <code>python3 -m pipeline.render</code> redraws every chart from the committed metrics and snapshots, and <code>make site</code> runs both offline in one command. Each chart shows the query behind it, the exact numbers it plots, and one plain sentence on what it shows and what it does not.</p>
 <p class="note">To check any number, open the Data table under its chart, then follow the steps under <a href="#reproduce">Reproduce</a>.</p>
 <dl class="meta">
@@ -178,9 +200,9 @@ footer{margin:3rem 0 2rem;padding-top:1rem;border-top:1px solid var(--grid);font
 <p class="st"><svg class="ico" viewBox="0 0 20 20" width="24" height="24" aria-hidden="true" focusable="false"><path class="i-warn" d="M10 .9l9.1 9.1-9.1 9.1L.9 10z" /><path d="M7.7 7.9a2.3 2.3 0 1 1 3.5 1.9c-.8.5-1.2 1-1.2 1.9" fill="none" stroke="#0b0b0b" stroke-width="2" stroke-linecap="round" /><circle cx="10" cy="14.5" r="1.2" fill="#0b0b0b" /></svg><span data-m="h1c_verdict">inconclusive</span></p>
 <p class="tlabel">H1c · identified buyers absorb a larger share</p>
 <p class="big"><span data-m="h1c_ratio_lower_pct">33.48</span>% and <span data-m="h1c_ratio_upper_pct">0.97</span>%</p>
-<p class="tnote">Identified buying ÷ net exchange inflow at the lower and upper bound. A pass needs <span data-k="h1c_min_pct">25</span>% under both.</p><a href="#chart-h1c">See the chart</a></li>
+<p class="tnote">Identified buying ÷ net exchange inflow at the lower and upper bound. A pass needs at least <span data-k="h1c_min_pct">25</span>% at both bounds.</p><a href="#chart-h1c">See the chart</a></li>
 <li class="tile">
-<p class="st"><svg class="ico" viewBox="0 0 20 20" width="24" height="24" aria-hidden="true" focusable="false"><circle class="i-ink2" cx="10" cy="10" r="9" /><path d="M5.6 10h8.8" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" /></svg><span data-m="rating_output">Hold</span></p>
+<p class="st"><svg class="ico" viewBox="0 0 20 20" width="24" height="24" aria-hidden="true" focusable="false"><circle class="i-ink2" cx="10" cy="10" r="9" /><path class="i-dash" d="M5.6 10h8.8" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" /></svg><span data-m="rating_output">Hold</span></p>
 <p class="tlabel">Rating · the frozen rule</p>
 <p class="big"><span data-m="rating_g_obs_pct">619.0</span>% against <span data-m="rating_g_req_pct">33.2</span>%</p>
 <p class="tnote">Observed against required growth in captured revenue, a year. Buy needs H1b to pass and observed growth at least the required; Avoid needs H1b to fail and observed growth under half the required. H1b is <span data-m="h1b_verdict">inconclusive</span>, so the rule outputs <span data-m="rating_output">Hold</span>, which carries no view on NEAR.</p><a href="#chart-rating">See the chart</a></li>
@@ -204,7 +226,7 @@ footer{margin:3rem 0 2rem;padding-top:1rem;border-top:1px solid var(--grid);font
 <li><a href="#chart-escrow">Escrow share by month</a></li>
 <li><a href="#chart-take">NEAR&#x27;s take in 1Click</a></li>
 <li><a href="#chart-partners">Partner concentration</a></li>
-<li><a href="#chart-paid">Who keeps the fees</a></li>
+<li><a href="#chart-paid">Partner fees against NEAR&#x27;s revenue</a></li>
 <li><a href="#chart-peers">Share of the peer set</a></li>
 <li><a href="#chart-revenue">Monthly revenue and take rate</a></li>
 <li><a href="#chart-supply">Supply and net issuance</a></li>
@@ -1371,8 +1393,9 @@ GROUP BY block_date ORDER BY block_date
 <text x="0" y="52" class="rl" font-size="11.5">required for a point result: <tspan data-k="h1b_coverage_min_pct">50</tspan>%</text></g></g></svg></div></div>
 <figcaption>Window: 90 days, 2026-08-07 to 2026-11-04 (UTC). Units: million NEAR (Panel A) and percent of the top-100 receivers (Panel B). Both axes start at zero.</figcaption></figure>
 <ul class="notes">
-<li>Only <span data-m="h1b_coverage_count_pct">20.0</span>% of the top-100 native-NEAR receivers carry an exchange label (<span data-m="h1b_coverage_tier1_count_pct">10.0</span>% a cited one; the rest are labelled by our sweep rule), below the <span data-k="h1b_coverage_min_pct">50</span>% the pre-registration requires, so the test passes only if it passes under both bounds. The lower bound is under gross issuance and the upper bound is far over it, so the result is inconclusive.</li>
+<li>Only <span data-m="h1b_coverage_count_pct">20.0</span>% of the top-100 native-NEAR receivers carry an exchange label (<span data-m="h1b_coverage_tier1_count_pct">10.0</span>% a cited one; the rest are labelled by our sweep rule), below the <span data-k="h1b_coverage_min_pct">50</span>% the pre-registration requires, so the test passes only if it passes at both bounds. The lower bound is under gross issuance and the upper bound is far over it, so the result is inconclusive.</li>
 <li>The upper bound is mechanical: it treats every unlabelled top-100 receiver as an exchange, including accounts that are probably not.</li>
+<li>The fourth bar of Panel A (<span data-m="h1b_net_inflow_upper_ex_nonexchange_m">190.71</span>M) is longer than the upper bound (<span data-m="h1b_net_inflow_upper_m">152.45</span>M) although it leaves two accounts out: it is a side measure, not a tighter bound. It drops the transfers between the sourced non-exchange accounts among the unlabelled top-100 receivers (here <code>intents.near</code> and a DAO account) and accounts outside the set, which is how <code>pipeline/h1b.py</code> approximates taking them out of the set counted as exchange-bound. More NEAR left the set through those transfers than entered it, so dropping them raises the total. The verdict uses only the lower and upper bounds.</li>
 <li>Labels are snapshots dated 2026-11-06, so exchange addresses retired before then may be missing, which biases the lower bound down. No citable NEAR address was found for OKX, Coinbase, Kraken, Bybit, HTX, Crypto.com, Upbit or Bithumb.</li></ul>
 <div class="source">
 <p><strong>Source:</strong></p>
@@ -2009,7 +2032,7 @@ SELECT &#x27;qa&#x27;, &#x27;transfers_total&#x27;, COUNT(*), NULL, NULL, NULL, 
 <td class="t">%</td></tr></tbody></table></div></details></section>
 <section class="card" id="chart-h1c" aria-labelledby="chart-h1c-h">
 <div class="cardtop"><span class="badge badge-pre"><svg class="ico" viewBox="0 0 20 20" width="14" height="14" aria-hidden="true" focusable="false"><rect class="i-line" x="4.5" y="9" width="11" height="8" rx="1.6" /><path class="i-line" d="M7 9V6.6a3 3 0 0 1 6 0V9" /></svg> Pre-registered</span><a href="#chart-h1c" aria-label="Link to this chart">#</a></div>
-<h3 id="chart-h1c-h">H1c is <span data-m="h1c_verdict">inconclusive</span>: the buyback wallet grew by <span data-m="h1c_identified_buying_m">1.48</span>M NEAR, <span data-m="h1c_ratio_lower_pct">33.48</span>% of the lower bound of net exchange inflow but <span data-m="h1c_ratio_upper_pct">0.97</span>% of the upper; a pass needs <span data-k="h1c_min_pct">25</span>% under both.</h3>
+<h3 id="chart-h1c-h">H1c is <span data-m="h1c_verdict">inconclusive</span>: the buyback wallet grew by <span data-m="h1c_identified_buying_m">1.48</span>M NEAR, <span data-m="h1c_ratio_lower_pct">33.48</span>% of the lower bound of net exchange inflow but <span data-m="h1c_ratio_upper_pct">0.97</span>% of the upper; a pass needs at least <span data-k="h1c_min_pct">25</span>% at both bounds.</h3>
 <p class="shows"><strong>What it shows:</strong> Identified buying, the balance increase of <code>buybacks.multisignature.near</code> between the window&rsquo;s end-point blocks (<span data-m="h1c_identified_buying_m">1.48</span>M NEAR), as a share of the two net exchange inflow bounds from H1b.</p>
 <p class="notshows"><strong>What it does not show:</strong> That the buyback wallet&rsquo;s NEAR came from exchanges: NEAR is fungible, so the ratio is a market-wide balance, not a trace.</p>
 <figure class="chart-fig">
@@ -2042,7 +2065,7 @@ SELECT &#x27;qa&#x27;, &#x27;transfers_total&#x27;, COUNT(*), NULL, NULL, NULL, 
 <title>Against the upper bound: 0.97%</title></path>
 <text x="236.2" y="104.4" class="val" font-size="12.5"><tspan data-m="h1c_ratio_upper_pct">0.97</tspan>%</text></g>
 <line class="refline" data-v="25" x1="482.5" x2="482.5" y1="40.5" y2="119.5" />
-<text x="488.5" y="37.5" class="rl" font-size="12.5">pass bar: <tspan data-k="h1c_min_pct">25</tspan>% under both bounds</text></g></svg></div>
+<text x="476.5" y="37.5" class="rl" text-anchor="end" font-size="12.5">pass bar: at least <tspan data-k="h1c_min_pct">25</tspan>% at both bounds</text></g></svg></div>
 <div class="cv cv-narrow"><svg class="svg" viewBox="0 0 340 192.5" role="img" aria-labelledby="chart-h1c-n-t chart-h1c-n-d" focusable="false">
 <title id="chart-h1c-n-t">Identified buying as a share of net exchange inflow, against the 25% bar</title>
 <desc id="chart-h1c-n-d">Bars from zero in percent: identified buying is 33.48 percent of the lower bound of net exchange inflow and 0.97 percent of the upper bound; a reference line marks the 25 percent pass bar.</desc>
@@ -2073,7 +2096,7 @@ SELECT &#x27;qa&#x27;, &#x27;transfers_total&#x27;, COUNT(*), NULL, NULL, NULL, 
 <text x="15.6" y="159" class="val" font-size="11.5"><tspan data-m="h1c_ratio_upper_pct">0.97</tspan>%</text></g>
 <line class="refline" data-v="25" x1="173.6" x2="173.6" y1="90" y2="110" />
 <line class="refline" data-v="25" x1="173.6" x2="173.6" y1="145" y2="165" />
-<text x="0" y="52" class="rl" font-size="11.5">pass bar: <tspan data-k="h1c_min_pct">25</tspan>% under both bounds</text></g></svg></div></div>
+<text x="0" y="52" class="rl" font-size="11.5">pass bar: at least <tspan data-k="h1c_min_pct">25</tspan>% at both bounds</text></g></svg></div></div>
 <figcaption>Window: 90 days, 2026-08-07 to 2026-11-04 (UTC). Unit: percent. The axis starts at zero.</figcaption></figure>
 <dl class="keyfigs">
 <div>
@@ -2086,7 +2109,7 @@ SELECT &#x27;qa&#x27;, &#x27;transfers_total&#x27;, COUNT(*), NULL, NULL, NULL, 
 <dt>Upper bound of net inflow</dt>
 <dd><span data-m="h1b_net_inflow_upper_m">152.45</span>M NEAR</dd></div></dl>
 <ul class="notes">
-<li>With label coverage below <span data-k="h1b_coverage_min_pct">50</span>%, H1c passes only if it clears <span data-k="h1c_min_pct">25</span>% under both bounds. It clears the bar against the lower bound and falls far short against the upper, so it is inconclusive; it inherits every limit of H1b, including the <span data-m="h1b_coverage_count_pct">20.0</span>% label coverage.</li>
+<li>With label coverage below <span data-k="h1b_coverage_min_pct">50</span>%, H1c passes only if it reaches at least <span data-k="h1c_min_pct">25</span>% at both bounds. It clears the bar against the lower bound and falls far short against the upper, so it is inconclusive; it inherits every limit of H1b, including the <span data-m="h1b_coverage_count_pct">20.0</span>% label coverage.</li>
 <li>The balance growth is the pre-registered numerator and all of it is used. <span data-m="bb_deliveries_90d_m">0.97</span>M NEAR of it is delivery from <code>intents.near</code> in the committed escrow table; the other <span data-m="bb_growth_not_delivered_m">0.511</span>M NEAR (<span data-m="bb_growth_not_delivered_pct">34.5</span>%) is not, and a read of the chain on 2026-11-08 traces most of it to a DAO transfer from another NEAR revenue wallet (THESIS.md, Limits). The verdict is inconclusive whichever numerator is used.</li>
 <li>ETF and treasury-company holdings are not part of the test: PREREG.md says they would be reported where they can be measured, and none was measured. The buyback wallet&rsquo;s NEAR is held, not burned.</li></ul>
 <div class="source">
@@ -2931,7 +2954,7 @@ SELECT &#x27;qa&#x27;, NULL, NULL, NULL, NULL, fmt, ROUND(SUM(near), 6), COUNT(*
 <p class="tnote">Scored after 2026-11-14 00:00 UTC.</p></li></ol>
 <ul class="notes">
 <li>The bands are the frozen predictions. The diamonds are the last values committed before the window opened, shown for scale and not as forecasts.</li>
-<li>Every result will be published, including misses. A test with missing data is scored "not scorable" and never estimated. The predictions were frozen before the window; the scorer was written on 2026-11-06, after the window opened, and its first dry run read no scoring-window day for F2 to F4 and only the window-opening block for F1 (PREREG-ADDENDUM.md, 2026-11-06 23:49 UTC entry, item 7).</li></ul>
+<li>Every result will be published, including misses. A test with missing data is scored "not scorable" and never estimated. The predictions were frozen before the window; the scorer was written on 2026-11-06, after the window opened. Its first dry run read no scoring-window day for F2 to F4 and only the window-opening block for F1 (<a href="https://github.com/notveiker/near-flow-statement/blob/main/PREREG-ADDENDUM.md">PREREG-ADDENDUM.md</a>, 2026-11-06 23:49 UTC entry, item 7). Later dry runs, and two direct reads of the buyback wallet&rsquo;s balance, did touch window days; they are disclosed in the 2026-11-08 05:10 UTC entry of <a href="https://github.com/notveiker/near-flow-statement/blob/main/PREREG-ADDENDUM.md">PREREG-ADDENDUM.md</a>.</li></ul>
 <div class="source">
 <p><strong>Source:</strong></p>
 <ul>
@@ -3120,7 +3143,7 @@ SELECT &#x27;qa&#x27;, NULL, NULL, NULL, NULL, fmt, ROUND(SUM(near), 6), COUNT(*
 <dt>Net issuance</dt>
 <dd><span data-m="net_issuance_near_per_day_window">88,295</span> NEAR a day</dd></div></dl>
 <ul class="notes">
-<li>The two candidate readings are near.com&rsquo;s fees and the Confidential Infrastructure Fee. A per-stream attestation by NEAR would turn the range into one number. Nothing here alleges misconduct: it is a privacy feature working as designed, and the question is auditability.</li>
+<li>The two candidate readings are near.com&rsquo;s fees and the Confidential Infrastructure Fee. A per-stream attestation by NEAR would turn the range into one number. Nothing here alleges misconduct. This is consistent with a privacy feature working as documented, and the question is auditability.</li>
 <li>The rungs are not nested: collectors, escrow and one other source add up to all three wallets, and the buyback-wallet rung is a subset of the total.</li>
 <li>The total reconciles with DefiLlama: <span data-m="revwallets_near_k">418.8</span>K NEAR is <span data-m="revwallets_vs_llama_rev_pct">100.9</span>% of its reported Intents revenue for the same days. Even the top of the range covers about a sixth of issuance, and the buyback wallet&rsquo;s NEAR is held, not burned.</li>
 <li>No valuation is made here. The range is the finding: <span data-m="ladder_all_wallets_pct_of_issuance">15.81</span>% is what reached the three wallets and <span data-m="ladder_public_collectors_pct_of_issuance">4.53</span>% is what is traced to public fee collectors. None of this feeds the rating rule.</li></ul>
@@ -3245,10 +3268,10 @@ ORDER BY 1, 2, 3
 <path class="bracket" d="M42.5,207V212H440V207" />
 <text x="241.2" y="226.5" class="tk" text-anchor="middle" font-size="12">funding hop attributed from samples</text>
 <path class="bracket" d="M446,207V212H709V207" />
-<text x="577.5" y="226.5" class="tk" text-anchor="middle" font-size="12">funding hop traced per delivery from</text>
-<text x="577.5" y="241" class="tk" text-anchor="middle" font-size="12">2026-10-06</text>
+<text x="577.5" y="226.5" class="tk" text-anchor="middle" font-size="12">funding hop traced per single-use delivery</text>
+<text x="577.5" y="241" class="tk" text-anchor="middle" font-size="12">from 2026-10-06</text>
 <text x="0" y="274" class="tk" font-size="12">October includes 2026-10-01 to 2026-10-05, attributed from samples.</text></g></svg></div>
-<div class="cv cv-narrow"><svg class="svg" viewBox="0 0 340 308.5" role="img" aria-labelledby="chart-escrow-n-t chart-escrow-n-d" focusable="false">
+<div class="cv cv-narrow"><svg class="svg" viewBox="0 0 340 322" role="img" aria-labelledby="chart-escrow-n-t chart-escrow-n-d" focusable="false">
 <title id="chart-escrow-n-t">Share of the buyback wallet&#x27;s NEAR that arrived through the Confidential Intents escrow, by month</title>
 <desc id="chart-escrow-n-d">Columns from zero in percent, one per month from July to November 2026: Jul 2026 17.5, Aug 2026 28.6, Sep 2026 53.0, Oct 2026 57.4, Nov 2026 58.5.</desc>
 <g class="panel" data-kind="vcol" data-lo="0" data-hi="100" data-base="172.5" data-ph="120" data-x0="37.3" data-pw="294.7">
@@ -3296,10 +3319,11 @@ ORDER BY 1, 2, 3
 <text x="125.7" y="240.5" class="tk" text-anchor="middle" font-size="11">samples</text>
 <path class="bracket" d="M217.1,208.5V213.5H329V208.5" />
 <text x="273.1" y="227" class="tk" text-anchor="middle" font-size="11">funding hop traced</text>
-<text x="273.1" y="240.5" class="tk" text-anchor="middle" font-size="11">per delivery from</text>
-<text x="273.1" y="254" class="tk" text-anchor="middle" font-size="11">2026-10-06</text>
-<text x="0" y="285" class="tk" font-size="11">October includes 2026-10-01 to 2026-10-05, attributed from</text>
-<text x="0" y="298.5" class="tk" font-size="11">samples.</text></g></svg></div></div>
+<text x="273.1" y="240.5" class="tk" text-anchor="middle" font-size="11">per single-use</text>
+<text x="273.1" y="254" class="tk" text-anchor="middle" font-size="11">delivery from</text>
+<text x="273.1" y="267.5" class="tk" text-anchor="middle" font-size="11">2026-10-06</text>
+<text x="0" y="298.5" class="tk" font-size="11">October includes 2026-10-01 to 2026-10-05, attributed from</text>
+<text x="0" y="312" class="tk" font-size="11">samples.</text></g></svg></div></div>
 <figcaption>Window: 2026-07-07 to 2026-11-04 (UTC), by calendar month. Unit: percent of NEAR delivered. The axis starts at zero.</figcaption></figure>
 <dl class="keyfigs">
 <div>
@@ -3312,7 +3336,7 @@ ORDER BY 1, 2, 3
 <dt>Escrow share, 30-day window</dt>
 <dd><span data-m="escrow_share_of_buyback_near_30d_pct">58.8</span>%</dd></div></dl>
 <ul class="notes">
-<li>Before 2026-10-06 the funding of each delivery is attributed from samples; from that date every delivery&rsquo;s funding hop is traced, so the earlier months are less firmly established. July starts on 2026-07-07 and November covers 1-4 November only.</li>
+<li>Before 2026-10-06 the funding of a single-use (escrow-path) delivery is mostly attributed from samples; from that date the funding hop of every single-use (escrow-path) delivery in the window is traced (every single-use delivery in the 30-day window, <span data-m="escrow_single_use_30d_n">909</span>), so the earlier months are less firmly established. In the window, deliveries from the two recurring fee collectors and from the one other recurring source have no funding hop. July starts on 2026-07-07 and November covers 1-4 November only.</li>
 <li>In the 30-day window all <span data-m="escrow_funded_exact_30d_n">909</span> single-use deliveries are recorded as funded by the escrow for the exact amount, to the yoctoNEAR (<span data-m="escrow_funded_exact_30d_pct">100.0</span>%). It tallies two columns of the per-delivery table over the window&rsquo;s single-use accounts, a set that the committed BigQuery output defines without them; the funding scan that filled the columns is not in this repository.</li>
 <li>The re-read against the chain on 2026-11-08 (<code>python3 -m pipeline.fetch_escrow verify --all</code>, output in <code>data/raw/escrow/verify_all.json</code>): <span data-m="escrow_recheck_rows_ok_n">3,587</span> of <span data-m="escrow_recheck_rows_n">3,597</span> rows pass every check, the other <span data-m="escrow_recheck_failed_n">10</span> fail on block height alone (one to three blocks off), and all <span data-m="escrow_recheck_funding_hops_n">1,051</span> funding transfers pass, <span data-m="escrow_recheck_window_funding_ok_n">909</span> of them in the window. The command therefore ends with a failing exit status on these data.</li>
 <li>The escrow is account <code>51e8f94d…7cbe</code>, <code>PRIVATE_TREASURY_ACCOUNT_ID</code> in NEAR&rsquo;s Confidential Intents docs, where it is called the Treasury.</li></ul>
@@ -3329,7 +3353,7 @@ ORDER BY 1, 2, 3
 <li>Upstream: intents.near native_withdraw deliveries to the three revenue wallets (BigQuery; FastNEAR samples before 2026-10-06)</li></ul></div>
 <details class="query">
 <summary>Query</summary>
-<p class="qnote">This SQL covers only 2026-10-06 to 2026-11-04. Its committed output, <code>data/raw/bq/buyback_withdraw_sources.json</code>, has the same NEAR per day and wallet as the per-delivery table the chart is drawn from, <code>data/raw/escrow/deliveries.csv</code>, over those days; it does not trace funding hops. Earlier deliveries, and the funding hop of every delivery, come from the sources that <code>data/MANIFEST.json</code> records for that table: <code>intents.near native_withdraw deliveries to the 3 revenue wallets, 2026-07-07..11-04, with funding hops (BigQuery job bqjob_r275b038b73d7c093_000001a1af3708a8_1 for October; FastNEAR samples before)</code>. The monthly shares are computed in <code>pipeline/compute.py</code>, function <code>escrow_ladder</code>, from the per-delivery table. Re-check any delivery with <code>python3 -m pipeline.fetch_escrow verify --sample 60</code>.</p>
+<p class="qnote">This SQL covers only 2026-10-06 to 2026-11-04. Its committed output, <code>data/raw/bq/buyback_withdraw_sources.json</code>, has the same NEAR per day and wallet as the per-delivery table the chart is drawn from, <code>data/raw/escrow/deliveries.csv</code>, over those days; it does not trace funding hops. Earlier deliveries, and the funding hops of the single-use deliveries, come from the sources that <code>data/MANIFEST.json</code> records for that table: <code>intents.near native_withdraw deliveries to the 3 revenue wallets, 2026-07-07..11-04, with funding hops (BigQuery job bqjob_r275b038b73d7c093_000001a1af3708a8_1 for October; FastNEAR samples before)</code>. The monthly shares are computed in <code>pipeline/compute.py</code>, function <code>escrow_ladder</code>, from the per-delivery table. Re-check any delivery with <code>python3 -m pipeline.fetch_escrow verify --sample 60</code>.</p>
 <p class="qh"><a href="https://github.com/notveiker/near-flow-statement/blob/main/sql/buyback_withdraw_sources.sql"><code>sql/buyback_withdraw_sources.sql</code></a> <span class="sha" data-r="bytes:sql/buyback_withdraw_sources.sql">1,162 bytes</span></p><pre tabindex="0"><code>-- Which intents.near accounts deliver native NEAR to NEAR&#x27;s revenue wallets (dip4 native_withdraw
 -- events), 2026-10-06..11-04, per day, source account and wallet. Recurring sources are fee
 -- collectors; single-use sources are fresh accounts that receive NEAR unshielded from the Confidential Intents
@@ -3997,14 +4021,14 @@ ORDER BY 1, 2, 3
 <td><span data-m="swapkit_exit_ceiling_all_escrow_pct">73.7</span></td></tr></tbody></table></div></details></section>
 <section class="card" id="chart-paid" aria-labelledby="chart-paid-h">
 <div class="cardtop"><span class="badge badge-exp"><svg class="ico" viewBox="0 0 20 20" width="14" height="14" aria-hidden="true" focusable="false"><circle class="i-line" cx="10" cy="10" r="8" /><path class="i-line" d="M12.9 7.1l-1.7 4.1-4.1 1.7 1.7-4.1z" /></svg> Exploratory, chosen after the freeze</span><a href="#chart-paid" aria-label="Link to this chart">#</a></div>
-<h3 id="chart-paid-h">Partners kept at least <span data-m="partners_kept_vs_near_rev_low_x">1.75</span>× NEAR&rsquo;s entire captured revenue (<span data-m="partners_kept_vs_near_rev_low_tight_x">1.81</span>× on the tighter reading), and 1Click was a net route out of NEAR: $<span data-m="explorer_out_of_near_usd_m">24.0</span>M out against $<span data-m="explorer_into_near_usd_m">14.6</span>M in over 30 days.</h3>
+<h3 id="chart-paid-h">Listed partner fees were at least <span data-m="partners_kept_vs_near_rev_low_x">1.75</span>× NEAR&rsquo;s entire captured revenue (<span data-m="partners_kept_vs_near_rev_low_tight_x">1.81</span>× on the tighter reading), and 1Click was a net route out of NEAR: $<span data-m="explorer_out_of_near_usd_m">24.0</span>M out against $<span data-m="explorer_into_near_usd_m">14.6</span>M in over 30 days.</h3>
 <p class="shows"><strong>What it shows:</strong> The fees 1Click swaps listed for partners ($<span data-m="explorer_partner_fees_all_usd_k">4,454.2</span>K) as a multiple of NEAR&rsquo;s entire captured Intents revenue ($<span data-m="revwallets_usd_k">2,009.7</span>K), between <span data-m="partners_kept_vs_near_rev_low_x">1.75</span>× and <span data-m="partners_kept_vs_near_rev_high_x">2.22</span>×, and 1Click swap volume into and out of NEAR, over the 30 days 2026-10-06 to 2026-11-04.</p>
 <p class="notshows"><strong>What it does not show:</strong> The other half of Intents: 1Click is <span data-m="explorer_vs_llama_net_pct">55.2</span>% of DefiLlama&rsquo;s volume on a one-sided basis, and near.com, direct solver flow and other integrations have a fee structure the Explorer API does not show, so we do not extrapolate.</p>
 <figure class="chart-fig">
 <div class="chart">
 <div class="cv cv-wide"><svg class="svg" viewBox="0 0 720 343" role="img" aria-labelledby="chart-paid-w-t chart-paid-w-d" focusable="false">
-<title id="chart-paid-w-t">Who keeps the listed 1Click fees, and which way 1Click moves NEAR</title>
-<desc id="chart-paid-w-d">Panel A, bars from zero in multiples of NEAR&#x27;s entire captured revenue, with a reference line at 1: partners kept 1.75 at the wide lower bound, 1.81 at the tight lower bound and 2.22 at the upper. Panel B: 1Click swaps into NEAR 14.6 million dollars, out of NEAR 24.0 million.</desc>
+<title id="chart-paid-w-t">Partner fees listed by 1Click against NEAR&#x27;s revenue, and which way 1Click moves NEAR</title>
+<desc id="chart-paid-w-d">Panel A, bars from zero in multiples of NEAR&#x27;s entire captured revenue, with a reference line at 1: listed partner fees came to 1.75 times it at the wide lower bound, 1.81 at the tight lower bound and 2.22 at the upper. Panel B: 1Click swaps into NEAR 14.6 million dollars, out of NEAR 24.0 million.</desc>
 <g transform="translate(0,0)">
 <g class="panel" data-kind="hbar" data-lo="0" data-hi="2.5" data-x0="220" data-pw="420">
 <text x="0" y="13.5" class="ttl" font-size="13.5">A. Partners&#x27; listed fees ÷ NEAR&#x27;s entire captured revenue (bars start at zero)</text>
@@ -4064,8 +4088,8 @@ ORDER BY 1, 2, 3
 <title>Out of NEAR: $24.0M</title></path>
 <text x="562" y="69.9" class="val" font-size="12.5">$<tspan data-m="explorer_out_of_near_usd_m">24.0</tspan>M</text></g></g></g></svg></div>
 <div class="cv cv-narrow"><svg class="svg" viewBox="0 0 340 411.5" role="img" aria-labelledby="chart-paid-n-t chart-paid-n-d" focusable="false">
-<title id="chart-paid-n-t">Who keeps the listed 1Click fees, and which way 1Click moves NEAR</title>
-<desc id="chart-paid-n-d">Panel A, bars from zero in multiples of NEAR&#x27;s entire captured revenue, with a reference line at 1: partners kept 1.75 at the wide lower bound, 1.81 at the tight lower bound and 2.22 at the upper. Panel B: 1Click swaps into NEAR 14.6 million dollars, out of NEAR 24.0 million.</desc>
+<title id="chart-paid-n-t">Partner fees listed by 1Click against NEAR&#x27;s revenue, and which way 1Click moves NEAR</title>
+<desc id="chart-paid-n-d">Panel A, bars from zero in multiples of NEAR&#x27;s entire captured revenue, with a reference line at 1: listed partner fees came to 1.75 times it at the wide lower bound, 1.81 at the tight lower bound and 2.22 at the upper. Panel B: 1Click swaps into NEAR 14.6 million dollars, out of NEAR 24.0 million.</desc>
 <g transform="translate(0,0)">
 <g class="panel" data-kind="hbar" data-lo="0" data-hi="2.5" data-x0="3" data-pw="273">
 <text x="0" y="12.5" class="ttl" font-size="12.5">A. Partners&#x27; listed fees ÷ NEAR&#x27;s entire</text>
@@ -4140,8 +4164,8 @@ ORDER BY 1, 2, 3
 <dt>Share of 1Click volume with NEAR on one side</dt>
 <dd><span data-m="explorer_near_side_swap_share_pct">3.5</span>%</dd></div></dl>
 <ul class="notes">
-<li>The wide reading counts all the NEAR in the buyback wallet that the explicit fee entries do not explain as partner fees passed on to NEAR: partners kept at least <span data-m="partners_kept_vs_near_rev_low_x">1.75</span>×, and at most <span data-m="near_share_of_partner_fees_max_pct">22.4</span>% of the fees on partner swaps with no buyback fee entry reached NEAR. The tight reading counts only the escrow unshields, reading collector B&rsquo;s NEAR as quote improvement, a role that is inferred, not proven: <span data-m="partners_kept_vs_near_rev_low_tight_x">1.81</span>× and <span data-m="near_share_of_partner_fees_max_tight_pct">19.6</span>%. Both leave out the escrow NEAR that reached the front-end fund, where the ledger cannot exclude a partner settlement.</li>
-<li>In the per-swap sample (<span data-m="fee_ev_swaps_n">195</span> swaps from <span data-m="fee_ev_hours_with_swaps_n">3</span> sampled hours) every non-zero partner fee entry was matched on chain by a payment of about the listed amount, except <span data-m="fee_ev_partner_fees_nonzero_unmatched_n">1</span> unmatched entry, in a swap whose tokens went into the Confidential Intents escrow, where the public chain shows no fee on that route. A further <span data-m="fee_ev_swapkit_fees_zero_rate_n">10</span> SwapKit entries and <span data-d="fee_ev_other_partner_fees_zero_rate_n+fee_ev_zodl_fees_zero_rate_n">3</span> others list a zero rate, so nothing is owed on them and no amount can match. So no split comes out of a listed fee in that sample; whatever 1Click charges on top, and whether it forwards any of it to NEAR, is not visible.</li>
+<li>The wide reading counts all the NEAR in the buyback wallet that the explicit fee entries do not explain as partner fees passed on to NEAR: the listed partner fees left after that are at least <span data-m="partners_kept_vs_near_rev_low_x">1.75</span>× NEAR&rsquo;s revenue, and at most <span data-m="near_share_of_partner_fees_max_pct">22.4</span>% of the fees on partner swaps with no buyback fee entry reached NEAR. The tight reading counts only the escrow unshields, reading collector B&rsquo;s NEAR as quote improvement, a role that is inferred, not proven: <span data-m="partners_kept_vs_near_rev_low_tight_x">1.81</span>× and <span data-m="near_share_of_partner_fees_max_tight_pct">19.6</span>%. Both leave out the escrow NEAR that reached the front-end fund, where the ledger cannot exclude a partner settlement.</li>
+<li>In the per-swap sample (<span data-m="fee_ev_swaps_n">195</span> swaps from <span data-m="fee_ev_hours_with_swaps_n">3</span> sampled hours) every non-zero partner fee entry was matched on chain by a payment of about the listed amount to an account other than NEAR&rsquo;s two fee collectors, except <span data-m="fee_ev_partner_fees_nonzero_unmatched_n">1</span> unmatched entry, in a swap whose tokens went into the Confidential Intents escrow, where the public chain shows no fee on that route. A further <span data-m="fee_ev_swapkit_fees_zero_rate_n">10</span> SwapKit entries and <span data-d="fee_ev_other_partner_fees_zero_rate_n+fee_ev_zodl_fees_zero_rate_n">3</span> others list a zero rate, so nothing is owed on them and no amount can match. Who owns those receiving accounts is not shown, so the sample shows the listed amount leaving the swap in one piece, not who keeps it. So no split comes out of a listed fee in that sample; whatever 1Click charges on top, and whether it forwards any of it to NEAR, is not visible.</li>
 <li>1Click swaps out of NEAR are not exchange deposits: H1b counts only labelled centralized-exchange accounts and does not see this non-custodial route. Only <span data-m="explorer_near_side_swap_share_pct">3.5</span>% of 1Click volume has NEAR on one side.</li>
 <li>Partner numbers rest on one key-gated source, the Explorer API.</li></ul>
 <div class="source">
@@ -4216,15 +4240,15 @@ ORDER BY 1, 2, 3
 <td><span data-m="revwallets_usd_k">2,009.7</span></td>
 <td class="t">USD thousand</td></tr>
 <tr>
-<td class="t">Partners kept ÷ NEAR&#x27;s revenue, wide lower bound</td>
+<td class="t">Listed partner fees ÷ NEAR&#x27;s revenue, wide lower bound</td>
 <td><span data-m="partners_kept_vs_near_rev_low_x">1.75</span></td>
 <td class="t">×</td></tr>
 <tr>
-<td class="t">Partners kept ÷ NEAR&#x27;s revenue, tight lower bound</td>
+<td class="t">Listed partner fees ÷ NEAR&#x27;s revenue, tight lower bound</td>
 <td><span data-m="partners_kept_vs_near_rev_low_tight_x">1.81</span></td>
 <td class="t">×</td></tr>
 <tr>
-<td class="t">Partners kept ÷ NEAR&#x27;s revenue, upper</td>
+<td class="t">Listed partner fees ÷ NEAR&#x27;s revenue, upper</td>
 <td><span data-m="partners_kept_vs_near_rev_high_x">2.22</span></td>
 <td class="t">×</td></tr>
 <tr>
@@ -7753,14 +7777,14 @@ L276.3,133.1L277,131.1L277.6,133.1L278.2,133.1L278.9,133.4L279.5,133.6L280.1,133
 <p class="see"><strong>See:</strong> Writes site/index.html, this page, from the committed data. It has no timestamp, so the same data gives the same bytes.</p></li></ol></section>
 <section id="limits" aria-labelledby="limits-h">
 <h2 id="limits-h">Limits</h2>
-<p class="note">These come from the Limits sections of THESIS.md and docs/*.md and from PREREG-ADDENDUM.md. One date is sharper than in THESIS.md: escrow funding hops are traced per delivery from 2026-10-06, which a test checks against <code>data/raw/escrow/deliveries.csv</code>.</p>
+<p class="note">These come from the Limits sections of THESIS.md and docs/*.md and from PREREG-ADDENDUM.md. Escrow funding hops are traced per single-use delivery from 2026-10-06, which a test checks against <code>data/raw/escrow/deliveries.csv</code>.</p>
 <ul class="plain">
 <li><strong>Collector roles.</strong> Collector A&rsquo;s role (the explicit buyback fee) is cross-checked: its priced inflows are <span data-m="collector_a_vs_explicit_fees_pct">96.5</span>% of the fees the Explorer lists. Collector B&rsquo;s role (a share of quote improvement) is inferred from committed, re-checkable per-swap evidence: it is paid a variable cut on <span data-m="fee_ev_collector_b_swaps_n">43</span> of <span data-m="fee_ev_swaps_n">195</span> sampled swaps across channels. The quote it would be measured against is not in the Explorer API, so the role is consistent with the docs rather than proven.</li>
 <li><strong>Partner numbers</strong> rest on one key-gated source, the Explorer API.</li>
 <li><strong>Sampling.</strong> Fee mechanics come from <span data-m="fee_ev_swaps_n">195</span> swaps sampled from hours inside the window (<span data-m="fee_ev_hours_with_swaps_n">3</span> of the four sampled hours returned swaps) across <span data-m="fee_ev_channels_n">55</span> channels, a small sample. The 30-day totals reconcile.</li>
 <li><strong>Pro-rata assumption.</strong> Collector B&rsquo;s quote improvement is allocated to SwapKit by volume share. SwapKit swaps do pay collector B (<span data-m="fee_ev_collector_b_swapkit_swaps_n">9</span> of the <span data-m="fee_ev_swapkit_swaps_n">67</span> sampled), so the allocation has support, but its size is not measured.</li>
 <li><strong>Unpriced tokens</strong> are left out of the collector values: <span data-m="collector_a_valued_transfers_pct">87.8</span>% of collector A&rsquo;s transfers and <span data-m="collector_b_valued_transfers_pct">91.0</span>% of collector B&rsquo;s are priced, so both figures are lower bounds.</li>
-<li><strong>Escrow funding</strong> before 2026-10-06 is sample-attributed.</li>
+<li><strong>Escrow funding</strong> before 2026-10-06 is mostly sample-attributed.</li>
 <li><strong>Exchange labels are snapshots</strong> dated 2026-11-06. Exchange addresses retired before then may be missing, which biases the lower bound down.</li>
 <li><strong>The name-filter check</strong> behind the lst-pool.near sensitivity read sampled validator sets, not every epoch.</li>
 <li><strong>The upper bound is mechanical.</strong> It treats every unlabelled top-100 receiver as an exchange, including accounts that are probably not.</li>

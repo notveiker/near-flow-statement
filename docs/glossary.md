@@ -74,7 +74,7 @@ Plain-language definitions of the terms a first-time reader meets in the [README
 - **Confidential Intents escrow.** Our word for the Treasury account that NEAR's Confidential Intents docs say backs each confidential token one for one.
 - **Unshield.** A confidential withdrawal: the Treasury releases the backing tokens. On chain it shows as the escrow paying the exact amount to a fresh account, which then withdraws it to a revenue wallet. That pattern is an observation; the documentation describes the release, not the pattern.
 - **Single-use account.** A fresh account that receives NEAR from the escrow and withdraws it to a revenue wallet. It appears in exactly one row of the delivery table.
-- **Funding hop.** The transfer from the escrow that funds a single-use account. Every single-use delivery in the ladder's window has a traced funding hop; before the window, funding hops are sampled.
+- **Funding hop.** The transfer from the escrow that funds a single-use account. Every single-use delivery in the ladder's window has a traced funding hop; before the window, most funding hops are sampled.
 
 ## Sources and how the repository checks itself
 

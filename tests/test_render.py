@@ -8,8 +8,10 @@ What they guarantee, and what they do not:
   * every headline, scorecard tile, key figure, bar row and column is bound to the metric written down below
     (HEADLINE_REFS, TILE_REFS, KEYFIGS, ROWS, COLS), so a label that reads another metric fails;
   * the committed page equals a fresh render, byte for byte;
+  * what a reader sees first (the two questions, the answer and the five status chips under the title) is the shared wording, bound to the
+    same metrics as the scorecard tiles, and the render stops if the data stop supporting it (FirstScreen);
   * the line breaks in the page are whitespace added where a browser ignores it, and nothing else (LineBreaks).
-They do not check wording beyond the phrases in CARD_PHRASES, and they cannot say that a metric itself is right: that is
+They do not check wording beyond the phrases in CARD_PHRASES and the sentences pinned in Wording, FirstScreen and PageClaims, and they cannot say that a metric itself is right: that is
 what pipeline/compute.py, pipeline/check.py and the raw-data manifest are for.
 
 The page is rendered for four states of the forward-test card (the committed state, no score yet, and two scored fixtures)
@@ -795,7 +797,7 @@ class SourcesAndQueries(unittest.TestCase):
             self.assertIn("pipeline.fetch_keyless", text, cid)
 
     def test_escrow_attribution_claim_matches_the_csv(self):
-        """The page says funding hops are traced per delivery from 2026-10-06 and attributed from samples before."""
+        """The page says the funding hop of every single-use (escrow-path) delivery is traced from 2026-10-06 and mostly attributed from samples before."""
         import csv
         with open(ROOT / "data/raw/escrow/deliveries.csv", newline="", encoding="utf-8") as fh:
             rows = list(csv.DictReader(fh))
@@ -1253,9 +1255,9 @@ TABLE_ROWS = {
     ('paid', 0): [
         ('Partner fees listed on 1Click swaps', ['explorer_partner_fees_all_usd_k']),
         ("NEAR's captured revenue, three revenue wallets", ['revwallets_usd_k']),
-        ("Partners kept ÷ NEAR's revenue, wide lower bound", ['partners_kept_vs_near_rev_low_x']),
-        ("Partners kept ÷ NEAR's revenue, tight lower bound", ['partners_kept_vs_near_rev_low_tight_x']),
-        ("Partners kept ÷ NEAR's revenue, upper", ['partners_kept_vs_near_rev_high_x']),
+        ("Listed partner fees ÷ NEAR's revenue, wide lower bound", ['partners_kept_vs_near_rev_low_x']),
+        ("Listed partner fees ÷ NEAR's revenue, tight lower bound", ['partners_kept_vs_near_rev_low_tight_x']),
+        ("Listed partner fees ÷ NEAR's revenue, upper", ['partners_kept_vs_near_rev_high_x']),
         ('1Click swaps into NEAR', ['explorer_into_near_usd_m']),
         ('1Click swaps out of NEAR', ['explorer_out_of_near_usd_m']),
         ('Net NEAR sold through 1Click', ['explorer_net_near_sold_usd_m']),
@@ -1313,18 +1315,20 @@ COLS = {
 CARD_PHRASES = {
     "h1a": ("fungible", "inconclusive", "post hoc"),
     "h1b": ("inconclusive", "mechanical", "snapshots dated", "biases the lower bound down", "never inside it", "a cited one",
-            "labelled by our sweep rule"),
+            "labelled by our sweep rule", "a side measure, not a tighter bound", "passes at both bounds"),
     "h1c": ("inconclusive", "market-wide balance, not a trace", "held, not burned"),
     "rating": ("pending resolver", "do not predict it", "never fail", "does not feed the rule", "carries no view on NEAR",
                "far above the Avoid line", "would also have been", "committed after the freeze", "straddles the 2026-02-23 fee switch",
                "does not separate the switch from other causes"),
-    "forward": ("never estimated", "not scorable", "is not a score", "first dry run"),
-    "ladder": ("unattested", "attestation", "Nothing here alleges misconduct", "No valuation is made here", "The range is the finding", "subset"),
+    "forward": ("never estimated", "not scorable", "is not a score", "first dry run", "Later dry runs", "2026-11-08 05:10 UTC entry"),
+    "ladder": ("unattested", "attestation", "Nothing here alleges misconduct", "consistent with a privacy feature working as documented",
+               "No valuation is made here", "The range is the finding", "subset"),
     "escrow": ("unattested", "attributed from samples", "less firmly established"),
     "take": ("like-for-like", "consistent with", "overstated"),
     "partners": ("ceiling", "unknown, not zero", "its size is not measured", "neither candidate reading", "on the tighter reading"),
     "paid": ("is not visible", "do not extrapolate", "non-custodial", "wide reading", "tight reading", "inferred, not proven",
-             "cannot exclude a partner settlement", "where the public chain shows no fee"),
+             "cannot exclude a partner settlement", "where the public chain shows no fee", "is not shown, so the sample shows the listed amount "
+             "leaving the swap in one piece, not who keeps it"),
     "peers": ("context for it, not the test", "reported volume"),
     "revenue": ("NEAR delivered to the wallets", "context for it, not the test"),
     "supply": ("HSP-029", "context for it, not the test", "rounding"),
@@ -2189,7 +2193,7 @@ class PageClaims(unittest.TestCase):
         for sv in card.find_all("svg", "svg"):
             drawn = re.sub(r"\s+", " ", " ".join(t.text() for t in sv.find_all("text")))
             self.assertIn(footnote, drawn)
-            self.assertIn(f"funding hop traced per delivery from {traced_from}", drawn)
+            self.assertIn(f"funding hop traced per single-use delivery from {traced_from}", drawn)
         # the Query block says what its SQL covers and where the rest comes from
         sql = (ROOT / "sql/buyback_withdraw_sources.sql").read_text(encoding="utf-8")
         d0, d1 = re.search(r"BETWEEN '(\d{4}-\d{2}-\d{2})' AND '(\d{4}-\d{2}-\d{2})'", sql).groups()
@@ -2199,6 +2203,8 @@ class PageClaims(unittest.TestCase):
         self.assertIn(MANIFEST["raw/escrow/deliveries.csv"]["source"], note)
         self.assertIn("data/MANIFEST.json", note)
         self.assertIn("it does not trace funding hops", note)
+        self.assertIn("Earlier deliveries, and the funding hops of the single-use deliveries, come from the sources that data/MANIFEST.json records", note)
+        self.assertNotIn("funding hop of every delivery", note)
         source = card.find("div", "source").text()
         for want in ("sql/buyback_withdraw_sources.sql", "data/raw/bq/buyback_withdraw_sources.json", "data/raw/escrow/deliveries.csv"):
             self.assertIn(want, source)
@@ -2215,6 +2221,49 @@ class PageClaims(unittest.TestCase):
         self.assertEqual(set(sql_out), set(table))
         for k, v in sql_out.items():
             self.assertLess(abs(v - table[k]), Fraction(1, 10**6), k)
+
+    def test_the_funding_hop_claims_are_true_of_the_table_and_the_page_never_says_every_delivery(self):
+        """From 2026-10-06 the funding hop of every single-use (escrow-path) delivery in the 30-day window is traced; the deliveries of the recurring
+        collectors have none, so 'every delivery' would be false. Before that date the table mixes traced and sampled rows, the sampled ones in the
+        majority ('mostly', not 'each'). The card and its Query note say so, with the count from the metrics."""
+        first, last = METRICS["revwallets_window"].split("..")
+        rows = delivery_rows()
+        window = [r for r in rows if first <= r["day"] <= last]
+        single = [r for r in window if r["path"] == "escrow_unshield"]
+        recurring = [r for r in window if r["path"] != "escrow_unshield"]
+        self.assertEqual(first, "2026-10-06")
+        self.assertEqual(len(single), METRICS["escrow_single_use_30d_n"])
+        self.assertTrue(all(r["funding_tx_hash"] and r["attribution"] == "row" for r in single), "every single-use delivery in the window is traced")
+        self.assertTrue(recurring and not any(r["funding_tx_hash"] for r in recurring), "the recurring deliveries have no funding hop")
+        self.assertGreater(len(window), len(single), "so the window has more deliveries than traced funding hops")
+        before = [r for r in rows if r["path"] == "escrow_unshield" and r["day"] < first]
+        sampled = [r for r in before if r["attribution"] == "sample"]
+        self.assertTrue(len(before) / 2 < len(sampled) < len(before), "mostly, not entirely, attributed from samples before the boundary")
+        for name, dom, _, _ in VARIANTS:
+            body = re.sub(r"\s+", " ", dom.find("body").text())
+            self.assertNotRegex(body, r"(?i)\bevery delivery\b", name)
+            li = card_node(dom, "escrow").find("ul", "notes").find_all("li")[0]
+            self.assertEqual([r for _, r in refs_in(li)], ["escrow_single_use_30d_n"], name)
+            self.assertIn("Before 2026-10-06 the funding of a single-use (escrow-path) delivery is mostly attributed from samples; from that date the funding hop of "
+                          "every single-use (escrow-path) delivery in the window is traced (every single-use delivery in the 30-day window, "
+                          f"{METRICS['escrow_single_use_30d_n']}), so the earlier months are less firmly established. In the window, deliveries from the two recurring "
+                          "fee collectors and from the one other recurring source have no funding hop.", re.sub(r"\s+", " ", li.text()), name)
+        limits = re.sub(r"\s+", " ", section_node(DOM, "limits").find("p", "note").text())
+        self.assertIn("Escrow funding hops are traced per single-use delivery from 2026-10-06, which a test checks against data/raw/escrow/deliveries.csv.", limits)
+        items = {li.find("strong").text().strip(): re.sub(r"\s+", " ", li.text()) for li in section_node(DOM, "limits").find_all("li")}
+        self.assertEqual(items["Escrow funding"], "Escrow funding before 2026-10-06 is mostly sample-attributed.")
+
+    def test_the_limits_intro_does_not_compare_a_date_with_thesis_that_now_agrees(self):
+        """'One date is sharper than in THESIS.md' was true until THESIS.md was corrected to the same 2026-10-06; this checks that the dates agree."""
+        traced = R.escrow_attribution(R.Ctx())["traced_from"]
+        thesis = (ROOT / "THESIS.md").read_text(encoding="utf-8")
+        self.assertIn(traced, thesis)
+        for name, dom, page, _ in VARIANTS:
+            intro = re.sub(r"\s+", " ", section_node(dom, "limits").find("p", "note").text())
+            for gone in ("sharper", "One date"):
+                self.assertNotIn(gone, intro, name)
+            self.assertIn(traced, intro, name)
+        self.assertNotIn("sharper than", (ROOT / "pipeline/render.py").read_text(encoding="utf-8"))
 
     # ---- colour
     def test_blue_and_orange_keep_one_meaning_inside_each_figure(self):
@@ -2570,7 +2619,7 @@ class Wording(unittest.TestCase):
         a, b = METRICS["h1b_coverage_count_pct"], METRICS["h1b_coverage_tier1_count_pct"]
         h1b_note = re.sub(r"\s+", " ", card_node(DOM, "h1b").find("ul", "notes").find_all("li")[0].text())
         self.assertTrue(h1b_note.startswith(f"Only {a}% of the top-100 native-NEAR receivers carry an exchange label ({b}% a cited one; the rest are labelled "
-                                            f"by our sweep rule), below the 50% the pre-registration requires, so the test passes only if it passes under both bounds."), h1b_note)
+                                            f"by our sweep rule), below the 50% the pre-registration requires, so the test passes only if it passes at both bounds."), h1b_note)
         self.assertEqual([r for _, r in refs_in(card_node(DOM, "h1b").find("ul", "notes").find_all("li")[0])][:3],
                          ["h1b_coverage_count_pct", "h1b_coverage_tier1_count_pct", "h1b_coverage_min_pct"])
         first = re.sub(r"\s+", " ", section_node(DOM, "not-computed").find_all("li")[0].text())
@@ -2676,7 +2725,7 @@ class Wording(unittest.TestCase):
         self.assertGreater(m["near_share_of_partner_fees_max_pct"], m["near_share_of_partner_fees_max_tight_pct"])  # and the higher ceiling on NEAR's share
         self.assertGreater(m["swapkit_exit_ceiling_all_escrow_pct"], m["swapkit_exit_ceiling_pct"])                 # the second ceiling adds to the first
         paid = re.sub(r"\s+", " ", card_node(DOM, "paid").find("h3").text())
-        self.assertTrue(paid.startswith(f"Partners kept at least {m['partners_kept_vs_near_rev_low_x']}× NEAR’s entire captured revenue "
+        self.assertTrue(paid.startswith(f"Listed partner fees were at least {m['partners_kept_vs_near_rev_low_x']}× NEAR’s entire captured revenue "
                                         f"({m['partners_kept_vs_near_rev_low_tight_x']}× on the tighter reading), and 1Click was a net route out of NEAR"), paid)
         partners = re.sub(r"\s+", " ", card_node(DOM, "partners").find("h3").text())
         self.assertNotIn("at most", partners)
@@ -2691,7 +2740,7 @@ class Wording(unittest.TestCase):
         caption = card_node(DOM, "paid").find("figcaption").text()
         self.assertIn("the blue bar is the wide lower bound the headline quotes", caption)
         notes = re.sub(r"\s+", " ", card_node(DOM, "paid").find("ul", "notes").find_all("li")[0].text())
-        self.assertIn(f"partners kept at least {m['partners_kept_vs_near_rev_low_x']}×, and at most {m['near_share_of_partner_fees_max_pct']}% of the fees on partner swaps "
+        self.assertIn(f"the listed partner fees left after that are at least {m['partners_kept_vs_near_rev_low_x']}× NEAR’s revenue, and at most {m['near_share_of_partner_fees_max_pct']}% of the fees on partner swaps "
                       f"with no buyback fee entry reached NEAR", notes)
         self.assertIn(f"{m['partners_kept_vs_near_rev_low_tight_x']}× and {m['near_share_of_partner_fees_max_tight_pct']}%", notes)
         self.assertIn("a role that is inferred, not proven", notes)
@@ -2716,10 +2765,12 @@ class Wording(unittest.TestCase):
                                        ("m", "fee_ev_swapkit_fees_zero_rate_n"), ("d", "fee_ev_other_partner_fees_zero_rate_n+fee_ev_zodl_fees_zero_rate_n")])
         self.assertEqual(re.sub(r"\s+", " ", li.text()),
                          f"In the per-swap sample ({m['fee_ev_swaps_n']} swaps from {m['fee_ev_hours_with_swaps_n']} sampled hours) every non-zero partner fee entry was "
-                         f"matched on chain by a payment of about the listed amount, except {m['fee_ev_partner_fees_nonzero_unmatched_n']} unmatched entry, in a swap whose tokens "
+                         f"matched on chain by a payment of about the listed amount to an account other than NEAR’s two fee collectors, except "
+                         f"{m['fee_ev_partner_fees_nonzero_unmatched_n']} unmatched entry, in a swap whose tokens "
                          f"went into the Confidential Intents escrow, where the public chain shows no fee on that route. A further {m['fee_ev_swapkit_fees_zero_rate_n']} "
                          f"SwapKit entries and {m['fee_ev_other_partner_fees_zero_rate_n'] + m['fee_ev_zodl_fees_zero_rate_n']} others list a zero rate, so nothing is owed "
-                         f"on them and no amount can match. So no split comes out of a listed fee in that sample; whatever 1Click charges on top, and whether it forwards "
+                         f"on them and no amount can match. Who owns those receiving accounts is not shown, so the sample shows the listed amount leaving the swap in "
+                         f"one piece, not who keeps it. So no split comes out of a listed fee in that sample; whatever 1Click charges on top, and whether it forwards "
                          f"any of it to NEAR, is not visible.")
         self.assertNotIn("Partners are paid their full listed fee", card_node(DOM, "paid").text())
         bad = R.Ctx()
@@ -2732,15 +2783,153 @@ class Wording(unittest.TestCase):
             R.card_paid(none)
 
     # ---- the forward card
-    def test_the_forward_card_says_first_dry_run_and_points_at_the_entry(self):
+    def test_the_forward_card_says_first_dry_run_and_points_at_both_entries(self):
+        """Item 7 of the 23:49 UTC entry describes the first dry run only (pinned text). Later dry runs and two direct reads of the buyback wallet's
+        balance touched window days; the 2026-11-08 05:10 UTC entry discloses them, and the card (pending and scored) says so and names both entries.
+        That second entry may still be edited by the owner, so only what the card relies on is pinned: its date and time, and that it is about
+        dry runs and the buyback wallet's balance."""
         entry = addendum_entry("2026-11-06 23:49 UTC")
         self.assertRegex(entry, r"(?m)^7\. \*\*Forward tests\.\*\*.*Its dry run read no day inside 11-06\.\.11-13 for F2-F4 and only the window-opening block for F1")
-        want = ("its first dry run read no scoring-window day for F2 to F4 and only the window-opening block for F1 "
-                "(PREREG-ADDENDUM.md, 2026-11-06 23:49 UTC entry, item 7).")
+        later = addendum_entry("2026-11-08 05:10 UTC")
+        self.assertIn("dry run", later.splitlines()[0], "the heading of the entry the card points at is about dry runs")
+        for needle in ("dry run", "buyback wallet", "window"):
+            self.assertIn(needle, later)
+        first = ("Its first dry run read no scoring-window day for F2 to F4 and only the window-opening block for F1 "
+                 "(PREREG-ADDENDUM.md, 2026-11-06 23:49 UTC entry, item 7).")
+        after = ("Later dry runs, and two direct reads of the buyback wallet’s balance, did touch window days; they are disclosed in the "
+                 "2026-11-08 05:10 UTC entry of PREREG-ADDENDUM.md.")
         for name, dom, _, _ in VARIANTS:
-            text = re.sub(r"\s+", " ", card_node(dom, "forward").find("ul", "notes").text())
-            self.assertIn(want, text, name)
+            card = card_node(dom, "forward")
+            text = re.sub(r"\s+", " ", card.find("ul", "notes").text())
+            self.assertIn(f"{first} {after}", text, name)           # one after the other, in this order
             self.assertNotIn("and its dry run read", text, name)
+            self.assertEqual(text.count("PREREG-ADDENDUM.md"), 2, name)
+            links = [a for a in card.find("ul", "notes").find_all("a")]
+            self.assertEqual([a.attrs["href"] for a in links], [f"{R.REPO_URL}/blob/{R.BRANCH}/PREREG-ADDENDUM.md"] * 2, name)
+            # a dry run is still not a score, and is never shown
+            self.assertIn("a dry run of the scorer is not a score and is never shown here", re.sub(r"\s+", " ", card.find("p", "notshows").text()), name)
+
+    # ---- the ladder: consistent with a privacy feature working as documented
+    def test_the_ladder_says_consistent_with_a_privacy_feature_working_as_documented_not_as_designed(self):
+        """'it is a privacy feature working as designed' stated what the design intended; what the sources show is that the pattern is consistent with the
+        documented feature. The hedge stays, and so does 'Nothing here alleges misconduct'."""
+        want = "Nothing here alleges misconduct. This is consistent with a privacy feature working as documented, and the question is auditability."
+        for name, dom, _, _ in VARIANTS:
+            notes = [re.sub(r"\s+", " ", li.text()) for li in card_node(dom, "ladder").find("ul", "notes").find_all("li")]
+            self.assertTrue(any(want in n for n in notes), name)
+            self.assertNotIn("as designed", re.sub(r"\s+", " ", dom.find("body").text()), name)
+        self.assertNotIn("working as designed", (ROOT / "pipeline/render.py").read_text(encoding="utf-8"))
+
+    # ---- partner fees: what the data show is listed fees, not who keeps them
+    def test_the_partner_fee_card_and_its_contents_label_do_not_say_who_keeps_the_money(self):
+        """The Explorer lists the partner fees, and a payment of about the listed amount reaches an account other than NEAR's two fee collectors; who owns
+        that account is not shown. So 'kept' and 'keeps' are out of the card, its chart text and its label in the contents, except in the sentence that says the
+        sample does not show who keeps it."""
+        for name, dom, page, _ in VARIANTS:
+            card = card_node(dom, "paid")
+
+            def prose(n: Node) -> str:       # the card without its SQL text
+                return "".join(c if isinstance(c, str) else ("" if c.tag == "pre" else prose(c)) for c in n.children)
+
+            text = re.sub(r"\s+", " ", prose(card))
+            self.assertNotRegex(text, r"(?i)\bkept\b", name)
+            self.assertEqual(re.findall(r"(?i)\bkeeps?\b", text), ["keeps"], name)
+            self.assertIn("is not shown, so the sample shows the listed amount leaving the swap in one piece, not who keeps it.", text, name)
+            self.assertNotIn("Who keeps", page, name)
+            self.assertNotIn("Partners kept", page, name)
+        nav = next(n for n in DOM.find_all("nav") if n.attrs.get("aria-label") == "Contents")
+        label = [a.text() for a in nav.find_all("a") if a.attrs["href"] == "#chart-paid"]
+        self.assertEqual(label, ["Partner fees against NEAR's revenue"])
+        card = card_node(DOM, "paid")
+        title = re.sub(r"\s+", " ", " ".join(t.text() for sv in card.find_all("svg", "svg") for t in sv.iter() if t.tag == "title" and "id" in t.attrs))
+        self.assertIn("Partner fees listed by 1Click against NEAR's revenue, and which way 1Click moves NEAR", title)
+
+    # ---- the H1b side measure
+    def test_the_side_measure_note_says_what_pipeline_h1b_does_and_what_the_data_show(self):
+        """The fourth bar of the H1b chart (190.71M) is longer than the upper bound (152.45M): a reader will suspect a bug. pipeline/h1b.py computes it as the
+        level-4 net inflow without the boundary rows of the sourced non-exchange accounts among the unlabelled top-100 receivers. The rows of those accounts net
+        to an outflow, so leaving them out raises the total. Each fact is recomputed here from the committed BigQuery output, not from render.py."""
+        from decimal import Decimal
+        from pipeline import h1b as H
+        m = METRICS
+        li = card_node(DOM, "h1b").find("ul", "notes").find_all("li")[2]
+        self.assertEqual([r for _, r in refs_in(li)], ["h1b_net_inflow_upper_ex_nonexchange_m", "h1b_net_inflow_upper_m"])
+        self.assertEqual(re.sub(r"\s+", " ", li.text()),
+                         f"The fourth bar of Panel A ({m['h1b_net_inflow_upper_ex_nonexchange_m']}M) is longer than the upper bound ({m['h1b_net_inflow_upper_m']}M) although it leaves two "
+                         f"accounts out: it is a side measure, not a tighter bound. It drops the transfers between the sourced non-exchange accounts among the unlabelled top-100 receivers (here "
+                         f"intents.near and a DAO account) and accounts outside the set, which is how pipeline/h1b.py approximates taking them out of the set counted as "
+                         f"exchange-bound. More NEAR left the set through those transfers than entered it, so dropping them raises the total. The verdict uses only the "
+                         f"lower and upper bounds.")
+        self.assertEqual(ROWS[("h1b", 0)][3], ("Side measure: upper bound without sourced non-exchange accounts", ["h1b_net_inflow_upper_ex_nonexchange_m"]))
+        self.assertGreater(m["h1b_net_inflow_upper_ex_nonexchange_m"], m["h1b_net_inflow_upper_m"])
+        # who is dropped: the unlabelled top-100 receivers whose names are pools, intents.near, wrap.near or sputnik-dao DAOs
+        native = json.loads((ROOT / "data/raw/bq/h1b_a_native_flows.json").read_text(encoding="utf-8"))
+        wnear = json.loads((ROOT / "data/raw/bq/h1b_b_wnear_logs.json").read_text(encoding="utf-8"))
+        dropped = sorted(x["account"] for x in native if x["leg"] == "top100" and x["tier"] is None and H._nonexchange(x["account"]))
+        self.assertEqual(len(dropped), 2, dropped)
+        self.assertEqual(dropped[0], "intents.near")
+        self.assertTrue(dropped[1].endswith(".sputnik-dao.near"), dropped)
+        # their level-4 boundary rows (native transfers that are not wraps, and every wNEAR row) net to an outflow
+        names = {"top100:" + a for a in dropped}
+
+        def net(rows: list[dict], keep) -> Decimal:
+            return sum((Decimal(x["near"]) * (1 if x["direction"] == "in" else -1) for x in rows
+                        if x["leg"] == "flow" and int(x["lvl"]) == 4 and x["exchange"] in names and keep(x)), Decimal(0))
+
+        dropped_net = net(native, lambda x: x["note"].startswith("kind=transfer;") and not x["note"].endswith(";cp=wrap")) + net(wnear, lambda x: True)
+        self.assertLess(dropped_net, 0, "more NEAR left the set through those transfers than entered it")
+        upper = H.compute()["total"][4]
+        self.assertEqual(round(float((upper - dropped_net) / 10**6), 2), m["h1b_net_inflow_upper_ex_nonexchange_m"])
+        self.assertEqual(round(float(upper / 10**6), 2), m["h1b_net_inflow_upper_m"])
+
+        # "The verdict uses only the lower and upper bounds": whatever the side measure is, H1b and H1c come out the same
+        def verdicts(side: Decimal) -> tuple[str, str]:
+            c = H.compute()
+            c["upper_ex_nonexchange"] = side
+            out: dict = {"h1a_gross_issuance_90d_m": m["h1a_gross_issuance_90d_m"]}
+            with mock.patch.object(H, "compute", lambda: c):
+                H.h1b(out)
+            return out["h1b_verdict"], out["h1c_verdict"]
+
+        self.assertEqual(verdicts(Decimal(0)), verdicts(Decimal(10**12)))
+        self.assertEqual(verdicts(Decimal(0)), (m["h1b_verdict"], m["h1c_verdict"]))
+
+    def test_the_side_measure_note_stops_the_render_when_the_bar_is_no_longer_the_longer_one(self):
+        R.side_measure_note(R.Ctx())
+        for value in (METRICS["h1b_net_inflow_upper_m"], METRICS["h1b_net_inflow_upper_m"] - 1.0):
+            bad = R.Ctx()
+            bad.m = dict(bad.m, h1b_net_inflow_upper_ex_nonexchange_m=value)
+            with self.assertRaises(SystemExit, msg=str(value)):
+                R.side_measure_note(bad)
+            with self.assertRaises(SystemExit, msg=f"card_h1b {value}"):
+                R.card_h1b(bad)
+
+    # ---- "under both" read as a ceiling
+    def test_a_pass_needs_at_least_25_percent_at_both_bounds_and_the_page_never_says_under_both(self):
+        """H1a's pass is a ceiling ('under 0.5x'); H1c's is a floor. 'A pass needs 25% under both' read the other way round, so every place says
+        'at least 25% at both bounds', and H1b's 'passes at both bounds' no longer uses 'under' for 'at'."""
+        for name, dom, page, _ in VARIANTS:
+            self.assertEqual(page.count("under both"), 0, name)
+            tile = [n for n in dom.find_all("li") if "tile" in n.classes()][2]
+            self.assertTrue(re.sub(r"\s+", " ", tile.find("p", "tnote").text()).endswith("A pass needs at least 25% at both bounds."), name)
+            h3 = re.sub(r"\s+", " ", card_node(dom, "h1c").find("h3").text())
+            self.assertTrue(h3.endswith("; a pass needs at least 25% at both bounds."), name)
+            notes = re.sub(r"\s+", " ", card_node(dom, "h1c").find("ul", "notes").find_all("li")[0].text())
+            self.assertTrue(notes.startswith("With label coverage below 50%, H1c passes only if it reaches at least 25% at both bounds."), name)
+            for sv in card_node(dom, "h1c").find_all("svg", "svg"):
+                labels = [re.sub(r"\s+", " ", t.text()) for t in sv.find_all("text", "rl") if "pass bar" in t.text()]
+                self.assertEqual(labels, ["pass bar: at least 25% at both bounds"], name)
+            h1b_note = re.sub(r"\s+", " ", card_node(dom, "h1b").find("ul", "notes").find_all("li")[0].text())
+            self.assertIn("so the test passes only if it passes at both bounds.", h1b_note, name)
+            tile_a = [n for n in dom.find_all("li") if "tile" in n.classes()][0]
+            self.assertTrue(re.sub(r"\s+", " ", tile_a.find("p", "tnote").text()).endswith("A pass needed under 0.5×."), name)   # a ceiling, and it says so
+            self.assertIn("under 0.5×", re.sub(r"\s+", " ", card_node(dom, "h1a").find("h3").text()), name)
+        # the rule behind the sentence: below 50% label coverage a test passes only if it passes at both bounds
+        from pipeline import h1b as H
+        self.assertEqual(float(H.H1C_MIN), 0.25)
+        self.assertEqual(R.CONSTS["h1c_min_pct"][0], 25.0)
+        self.assertEqual(H._both(True, True, 20.0), "pass")
+        self.assertEqual(H._both(True, False, 20.0), "inconclusive")
 
     # ---- the freeze sentences cannot say more than the manifest does
     def test_the_freeze_sentences_stop_the_render_if_the_manifest_no_longer_supports_them(self):
@@ -2761,6 +2950,163 @@ class Wording(unittest.TestCase):
             if "bigquery" in v.get("source", "").lower():
                 v["fetched_at"] = "2026-11-06T09:00:00Z"
         self.assertEqual(R.freeze_order(late)[1], "more than ten minutes")
+
+
+# ------------------------------------------------------------------ what a reader sees first
+class FirstScreen(unittest.TestCase):
+    """Under the title: the two questions, the answer, and five status chips that link to the five pre-registered cards. A reader who stops
+    there has the pre-registered result, the exploratory range and the labels that say which is which. Also the key-figure rows, whose values
+    share a baseline however many lines a label takes. (How the screen looks, and that it fits at 1280x800 and 390x844, is checked with a browser
+    outside this suite: the suite is standard library only.)"""
+
+    CHIPS = (("h1a", "H1a"), ("h1b", "H1b"), ("h1c", "H1c"), ("rating", "Rating rule"), ("forward", "Forward tests"))
+    NAV = "Pre-registered results at a glance"
+
+    @staticmethod
+    def chips_nav(dom: Node) -> Node:
+        return next(n for n in dom.find("header").find_all("nav") if n.attrs.get("aria-label") == FirstScreen.NAV)
+
+    def test_the_title_stays_the_pre_registered_question_and_the_two_questions_follow_it(self):
+        for name, dom, _, _ in VARIANTS:
+            head = dom.find("header")
+            self.assertEqual(dom.find("h1").text(), "Who buys and who sells NEAR?", name)
+            kids = [c.tag + "".join("." + k for k in sorted(c.classes())) for c in head.children if isinstance(c, Node)]
+            self.assertEqual(kids[:6], ["p.eyebrow", "h1", "p.questions", "div.answer", "nav", "p.lede"], name)
+            self.assertEqual(re.sub(r"\s+", " ", head.find("p", "questions").text()),
+                             "The pre-registered question: who buys and who sells NEAR? The question the evidence can answer: how much of NEAR’s value capture can you verify?", name)
+
+    def test_the_answer_is_the_shared_sentence_with_every_number_a_metric_and_both_labels(self):
+        m = METRICS
+        want = ("Pre-registered result: H1a fails, H1b and H1c are inconclusive, and the frozen rating rule outputs Hold, which carries no view on NEAR. "
+                "Exploratory, chosen after the freeze: over 30 days the NEAR that verifiably reached NEAR’s three Intents revenue wallets was "
+                f"{m['ladder_all_wallets_pct_of_issuance']:.2f}% of net issuance, of which {m['ladder_public_collectors_pct_of_issuance']:.2f} points trace to public fee "
+                f"collectors, {m['ladder_escrow_unshields_pct_of_issuance']:.2f} arrived as releases from an escrow whose fee stream is unattested, and "
+                f"{m['ladder_other_pct_of_issuance']:.2f} came from one other source. So the value capture that can be verified is a range, not a number. "
+                "This is not a valuation and not advice.")
+        self.assertEqual((m["h1a_pass_as_written"], m["h1b_verdict"], m["h1c_verdict"], m["rating_output"]), (False, "inconclusive", "inconclusive", "Hold"))
+        for name, dom, _, _ in VARIANTS:
+            answer = dom.find("header").find("div", "answer")
+            text = re.sub(r"\s+", " ", answer.text()).strip()
+            self.assertTrue(text.startswith(want), (name, text))
+            self.assertEqual(text[len(want):].strip(), "See the value-capture ladder.", name)
+            self.assertEqual([r for _, r in refs_in(answer)], ["rating_output", "ladder_all_wallets_pct_of_issuance", "ladder_public_collectors_pct_of_issuance",
+                                                                 "ladder_escrow_unshields_pct_of_issuance", "ladder_other_pct_of_issuance"], name)
+            self.assertEqual([b.text() for b in answer.find_all("strong")], ["Pre-registered result:", "Exploratory, chosen after the freeze:"], name)
+            self.assertEqual([a.attrs["href"] for a in answer.find_all("a")], ["#chart-ladder"], name)
+        self.assertAlmostEqual(m["ladder_public_collectors_pct_of_issuance"] + m["ladder_escrow_unshields_pct_of_issuance"] + m["ladder_other_pct_of_issuance"],
+                               m["ladder_all_wallets_pct_of_issuance"], delta=0.02, msg="the three sources add up to the total")
+
+    def test_the_answer_stops_the_render_when_the_data_stop_supporting_it(self):
+        R.answer_line(R.Ctx())
+        for key, value in (("h1a_pass_as_written", True), ("h1b_verdict", "pass"), ("h1b_verdict", "pending"), ("h1c_verdict", "fail"),
+                           ("rating_output", "Buy"), ("rating_output", "Avoid"), ("ladder_other_pct_of_issuance", 0.5), ("ladder_all_wallets_pct_of_issuance", 20.0)):
+            bad = R.Ctx()
+            bad.m = dict(bad.m, **{key: value})
+            with self.assertRaises(SystemExit, msg=f"{key}={value}"):
+                R.answer_line(bad)
+            with self.assertRaises(SystemExit, msg=f"header {key}={value}"):
+                R.header(bad)
+        # the three parts are rounded to two decimals, so they may miss the total by up to 0.02, but not by more
+        near, far = R.Ctx(), R.Ctx()
+        near.m = dict(near.m, ladder_other_pct_of_issuance=near.m["ladder_other_pct_of_issuance"] + 0.02)
+        far.m = dict(far.m, ladder_other_pct_of_issuance=far.m["ladder_other_pct_of_issuance"] + 0.03)
+        R.answer_line(near)
+        with self.assertRaises(SystemExit):
+            R.answer_line(far)
+
+    def test_five_chips_link_to_the_five_cards_and_say_what_the_scorecard_tiles_say(self):
+        for name, dom, _, result in VARIANTS:
+            nav = self.chips_nav(dom)
+            chips = nav.find("ul", "chips").find_all("li")
+            tiles = [n for n in dom.find_all("li") if "tile" in n.classes()]
+            self.assertEqual((len(chips), len(tiles)), (5, 5), name)
+            for li, tile, (cid, label), refs in zip(chips, tiles, self.CHIPS, ([("m", "h1a_pass_as_written")], [("m", "h1b_verdict")],
+                                                                              [("m", "h1c_verdict")], [("m", "rating_output")], [])):
+                at = f"{name}/{cid}"
+                a = li.find("a", "chip")
+                self.assertEqual(a.attrs["href"], f"#chart-{cid}", at)
+                self.assertEqual(tile.find("a").attrs["href"], f"#chart-{cid}", at)                   # the card the tile of the scorecard opens
+                self.assertEqual(a.find("span", "chiplab").text(), label, at)
+                word = a.find("span", "chipword")
+                self.assertEqual(word.text().strip(), tile.find("p", "st").text().strip(), at)         # the very word the tile shows
+                self.assertEqual(refs_in(word), refs, at)                                              # from the same metric
+                icon_c, icon_t = a.find("svg", "ico"), tile.find("svg", "ico")
+                self.assertIsNotNone(icon_c, f"{at}: a shape as well as a word")
+                drawing = lambda n: [(c.tag, tuple(sorted(c.attrs.items()))) for c in n.iter() if c is not n]   # noqa: E731
+                self.assertEqual(drawing(icon_c), drawing(icon_t), f"{at}: the shape is the tile's")
+                self.assertEqual(icon_c.attrs.get("aria-hidden"), "true", at)
+            self.assertEqual(chips[4].find("span", "chipword").text().strip(), "scored" if result else "pending", name)
+
+    def test_the_chips_carry_a_visible_pre_registered_label_before_them(self):
+        """The chips are results, and every result on the page says whether it is pre-registered: the label is text on the screen, not only an aria-label."""
+        for name, dom, _, _ in VARIANTS:
+            nav = self.chips_nav(dom)
+            kids = [c for c in nav.children if isinstance(c, Node)]
+            self.assertEqual([k.tag for k in kids], ["p", "ul"], name)
+            self.assertEqual(kids[0].classes(), {"chipcap"}, name)
+            self.assertEqual(kids[0].text().strip(), "Pre-registered results", name)
+
+    def test_the_chips_come_after_the_answer_and_before_everything_else_in_reading_order(self):
+        for name, dom, _, _ in VARIANTS:
+            nodes = list(dom.iter())
+            at = lambda n: nodes.index(n)   # noqa: E731
+            head = dom.find("header")
+            order = [at(dom.find("a", "skip")), at(dom.find("h1")), at(head.find("div", "answer")), at(self.chips_nav(dom)), at(head.find("p", "lede")),
+                     at(head.find("dl", "meta")), at(section_node(dom, "scorecard"))]
+            self.assertEqual(order, sorted(order), name)
+            self.assertEqual(len(set(order)), len(order), name)
+            self.assertEqual(sum(1 for n in dom.find_all("nav") if n.attrs.get("aria-label") == self.NAV), 1, name)
+            self.assertEqual(self.chips_nav(dom).find_all("ul"), [self.chips_nav(dom).find("ul")], name)
+
+    def test_the_chips_wrap_are_touch_sized_take_the_focus_ring_and_do_not_move(self):
+        css = DOM.find("style").text()
+        self.assertRegex(css, r"\.chips\{[^}]*display:flex;flex-wrap:wrap")
+        self.assertRegex(css, r"\.chip\{[^}]*min-height:44px")
+        self.assertNotRegex(css, r"\.chip\{[^}]*(?<![-a-z])(?:width|height):")           # nothing fixed: a chip is as wide as its words
+        self.assertNotRegex(css, r"\.chips?[^{]*\{[^}]*(?:animation|transition)")
+        self.assertRegex(css, r"a:focus-visible,summary:focus-visible[^{]*\{outline:2px solid var\(--focus\)")   # a chip is an <a>
+        for token in ("--ink", "--surface", "--border"):                                    # only theme tokens, so dark mode follows
+            self.assertIn(f"var({token})", re.search(r"\.chip\{[^}]*\}", css).group(0))
+        self.assertNotRegex(re.search(r"\.chip\{[^}]*\}", css).group(0), r"#[0-9a-fA-F]{3,6}")
+
+    def test_the_meta_description_names_both_questions(self):
+        desc = next(mt.attrs["content"] for mt in DOM.find_all("meta") if mt.attrs.get("name") == "description")
+        self.assertIn("The pre-registered question is who buys and who sells NEAR; the question the evidence can answer is how much of NEAR's value capture can you verify.", desc)
+
+    def test_the_dash_of_the_hold_icon_follows_the_theme_so_it_shows_in_both(self):
+        """The Hold icon is a grey circle with a dash. The dash was white, on the light grey of the dark theme; it is now drawn in the surface colour."""
+        css = DOM.find("style").text()
+        self.assertIn(".i-dash{stroke:var(--surface)}", css)
+        holds = [i for i in DOM.find_all("svg", "ico") if any("i-dash" in n.classes() for n in i.iter())]
+        self.assertEqual(len(holds), 2, "the scorecard tile and the chip")
+
+        def lum(h: str) -> float:
+            r, g, b = (int(h.lstrip("#")[i:i + 2], 16) / 255 for i in (0, 2, 4))
+            f = lambda c: c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4  # noqa: E731
+            return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b)
+
+        def ratio(a: str, b: str) -> float:
+            la, lb = sorted((lum(a), lum(b)), reverse=True)
+            return (la + 0.05) / (lb + 0.05)
+
+        light = dict(re.findall(r"--([a-z0-9]+):(#[0-9a-fA-F]{6})", re.search(r":root\{(.*?)\}", css, re.S).group(1)))
+        dark = dict(re.findall(r"--([a-z0-9]+):(#[0-9a-fA-F]{6})", re.search(r':root\[data-theme="dark"\]\{(.*?)\}', css, re.S).group(1)))
+        for theme, t in (("light", light), ("dark", dark)):
+            self.assertGreaterEqual(ratio(t["surface"], t["ink2"]), 3.0, f"{theme}: the dash against the circle (a graphic needs 3:1)")
+
+    def test_key_figure_values_share_a_baseline_when_a_label_wraps(self):
+        """In a row of key figures one label may take two or three lines where its neighbours take one; the values were then on different baselines. They
+        sit on the bottom of the row now (align-items:end), which needs every figure to be a label followed by its value and nothing else."""
+        css = DOM.find("style").text()
+        self.assertRegex(css, r"\.keyfigs\{[^}]*display:grid;[^}]*align-items:end")
+        self.assertRegex(css, r"\.keyfigs dd\{[^}]*margin:0")
+        n = 0
+        for name, dom, _, _ in VARIANTS:
+            for kf in dom.find_all("dl", "keyfigs"):
+                for d in kf.find_all("div"):
+                    self.assertEqual([c.tag for c in d.children if isinstance(c, Node)], ["dt", "dd"], name)
+                    n += 1
+        self.assertGreater(n, 4 * 30)
 
 
 # ------------------------------------------------------------------ data the page cannot be drawn from
