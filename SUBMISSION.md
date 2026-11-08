@@ -165,14 +165,22 @@ PY
 python3 -m pipeline.score_forward --score --from-snapshot data/forward/score_20261114T000000Z
 python3 -m pipeline.render
 python3 -m pipeline.render --check
+python3 - <<'PY'
+# what 2.5 D2 asks of you on the day: README step 6 quotes the page's byte count, and a test compares it with the page
+import re
+from pathlib import Path
+size = len(Path("site/index.html").read_bytes())
+p = Path("README.md")
+p.write_text(re.sub(r"site/index\.html \([\d,]+ bytes\)", f"site/index.html ({size:,} bytes)", p.read_text(encoding="utf-8")), encoding="utf-8")
+PY
 python3 -m unittest discover -s tests
 )
 rm -rf /tmp/rehearsal
 ```
 
-The scoring command prints four lines. F1 says `MISS` (the fixture carries the committed 2026-11-04 balance, which is outside the band) and F2 to F4 say `not scorable` because the fixture ends on 2026-11-04. `render --check` prints `render: site/ matches a fresh render` and the suite ends `OK`. In `--from-snapshot` mode the scorer does not compare the clock with the cutoff and takes a snapshot's recorded times on trust, and this fixture's fetch time is a made-up 2026-11-14, so the folder it writes counts as a real score (`is_score` true). The folder's stamp, `000000`, sorts before any real run.
+The scoring command prints four lines. F1 says `MISS` (the fixture carries the committed 2026-11-04 balance, which is outside the band) and F2 to F4 say `not scorable` because the fixture ends on 2026-11-04. `render --check` prints `render: site/ matches a fresh render`. The next step of the block edits the byte count that README step 6 quotes, as 2.5 D2 asks of you on the day (without that edit the suite ends with exactly one failure, `test_the_byte_count_fingerprint_and_date_the_readme_quotes_are_the_pages`, whose message names the two numbers to write), and the suite then ends `OK`. In `--from-snapshot` mode the scorer does not compare the clock with the cutoff and takes a snapshot's recorded times on trust, and this fixture's fetch time is a made-up 2026-11-14, so the folder it writes counts as a real score (`is_score` true). The folder's stamp, `000000`, sorts before any real run.
 
-**A scored result and the tests.** With a real score present the suite passes once the page is re-rendered. Until then `render --check` and `test_committed_site_is_current` fail, by design: that is the reminder to render and commit `site/index.html` with the score (2.5 D and F). The render tests build their own fixtures and do not depend on what is under `data/forward/`.
+**A scored result and the tests.** With a real score present the suite passes once the page is re-rendered and README step 6's byte count is edited. Until then `render --check`, `test_committed_site_is_current` and the README byte-count test fail, by design: they are the reminder to render and commit `site/index.html` with the score and to refresh the README (2.5 D and F). The other render tests build their own fixtures and do not depend on what is under `data/forward/`.
 
 **Step 4. Check the machine you will use, on November 12 or 13.** Python 3.10 or newer, a correct clock, and the four hosts answering:
 
@@ -345,7 +353,11 @@ Commit every `score_*` folder, including a run with errors. Then watch the Actio
 | A traceback, exit status 1, or you pressed Ctrl-C | No `result.json`. A `score_<stamp>` folder may exist, empty or with only `snapshot.json`. | Delete an empty folder. Keep a folder that has `snapshot.json` and no `result.json` (it is the raw record), say so in the addendum, and never write `result.json` by hand. Run again. |
 | All four lines say `not scorable` and the exit status is 0 | Exit 0 means only that the script ended. Typical cause: no network. | Fix the network. Run again under your rule. |
 | A value sits exactly on a band edge | Bands are inclusive and compared on unrounded values. | Publish as printed. |
-| The page still says pending after `render` | `render` reads only the newest `score_*/result.json` with `is_score` true and `mode` `score`. | Check that the folder name starts with `score_`, that you used `--score`, and that no newer folder is in the way. |
+| `render: data/forward/<folder>/result.json is a scored result … in a folder not named score_YYYYMMDDTHHMMSSZ` | A score sits in a folder the dashboard cannot read by name, so the page would say pending over it. | Rename the folder to `score_<UTC stamp>`, as the scorer writes it, or delete it if it is a rehearsal. |
+| `render: … is a scored result … that holds no results object` | `result.json` says it is a score but holds no `results`: a run that ended early, or a hand edit. | Run again (see the traceback row); never write `result.json` by hand. |
+| `render: F4.intents_share_pct is nan, not a finite number …` | Every venue's volume was zero: the scorer writes F4 as `MISS` with a share of NaN (its quirk: PREREG says missing data is `not scorable`). | Edit the scorer's own output: set F4's `result` to `not scorable` and give a `why` (the numbers of a test that is not scorable are not read), name the edit in a dated addendum entry, and render. |
+| A test fails with `README.md step 6 quotes (N bytes) = …, the page is …` | README step 6 quotes the page's size and the page has changed, which it does when a score is rendered. | Edit those two numbers as the message says (2.5 D2). |
+| The page still says pending after `render` | `render` draws only the newest `score_<stamp>/result.json` that has `is_score` true, `mode` `score` and a `results` object. | Check that you used `--score` (a dry run is not a score), and that no newer `score_<stamp>` folder is in the way. |
 
 ### 2.7 What to commit afterwards
 
@@ -538,7 +550,7 @@ git clone https://github.com/notveiker/near-flow-statement /tmp/judge
 rm -rf /tmp/judge
 ```
 
-Then run `python3 -m pipeline.check --numbers`, commit the README and `git push origin main`. If the table already matches, there is nothing to do. No test pins these numbers (tested).
+Then run `python3 -m pipeline.check --numbers`, commit the README and `git push origin main`. If the table already matches, there is nothing to do. Only step 6's byte count, data fingerprint and date are pinned, by `test_the_byte_count_fingerprint_and_date_the_readme_quotes_are_the_pages`; the test count of step 4 is not.
 
 **Step 4. Scan the history again,** after the last commit. `python3 scripts/scan_secrets.py --history`. Expect `scan_secrets: PASS`; the counts it prints depend on the branches your clone holds, and only the PASS matters.
 

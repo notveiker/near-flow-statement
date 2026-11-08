@@ -211,6 +211,21 @@ class CheckOnATamperedCopy(unittest.TestCase):
         self.assertIn("marker(s) not directly after a number", p.stderr)
         self.assertNotIn("PASS", p.stdout)
 
+    def test_a_marker_whose_key_is_not_a_metric_is_reported(self):
+        """A marker for a key that data/metrics.json does not hold is a problem of its own. With that branch gone the key was skipped, the
+        number was never compared, and `check --numbers` printed PASS over a marker that points at nothing."""
+        for key in ("no_such_metric", "h1a_ratio_as_written_x_old"):
+            with self.subTest(key=key):
+                p = self.append_to_thesis(f"6.56<!--n:{key}-->")
+                self.assertEqual(p.returncode, 1, p.stdout + p.stderr)
+                self.assertEqual(p.stderr, f"FAIL  THESIS.md: unknown metric {key}\n")
+                self.assertEqual(p.stdout, "check: 1 problem(s)\n")
+        # the same in another document the check reads, with THESIS.md back to its committed text: the only problem is that one
+        shutil.copy2(ROOT / "THESIS.md", self.repo / "THESIS.md")
+        (self.repo / "README.md").write_text((ROOT / "README.md").read_text(encoding="utf-8") + "\n1<!--n:no_such_metric-->\n", encoding="utf-8", newline="\n")
+        p = self.run_check("--numbers")
+        self.assertEqual((p.returncode, p.stderr, p.stdout), (1, "FAIL  README.md: unknown metric no_such_metric\n", "check: 1 problem(s)\n"))
+
     def test_a_mistyped_marker_is_reported_not_skipped(self):
         """Each typo alone, on the committed text, must be the only problem and be called a malformed marker."""
         for typo in ("<!--n:h1a-ratio_as_written_x-->", "<!--N:h1a_ratio_as_written_x-->", "<!-- n:h1a_ratio_as_written_x-->",

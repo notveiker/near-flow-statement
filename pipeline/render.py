@@ -41,6 +41,7 @@ from __future__ import annotations
 import argparse
 import ast
 import csv
+import functools
 import hashlib
 import html
 import json
@@ -53,7 +54,7 @@ from pathlib import Path
 
 from . import score_forward as sf
 from .common import ROOT
-from .h1b import COVERAGE_MIN_PCT, H1C_MIN
+from .h1b import COVERAGE_MIN_PCT, H1C_MIN, _nonexchange
 
 REPO_URL = "https://github.com/notveiker/near-flow-statement"
 BRANCH = "main"
@@ -226,6 +227,129 @@ def is_real_score(d: object) -> bool:
     return says_it_is_a_score(d) and isinstance(d.get("results"), dict)
 
 
+FORWARD_IDS = ("F1", "F2", "F3", "F4")
+# The numbers the forward-test card prints for a test the scorer calls PASS or MISS. The first of each is the observed value: the
+# number line, the dot and the dot's label are drawn from it. pipeline/score_forward.py writes every one of them for a PASS or a MISS.
+FORWARD_NUMBERS = {"F1": ("balance_near", "block_height"), "F2": ("mean_near_per_day", "n_deltas"),
+                   "F3": ("take_rate_bp", "revenue_usd", "volume_usd"), "F4": ("intents_share_pct",)}
+# What clears a stop over one test's numbers: the numbers of a test that is not scorable are not read. (Each such message ends with it.)
+NOT_SCORABLE_FIX = ("set the result of that test to 'not scorable' and give a why (the numbers of a test that is not scorable are not read), "
+                    "and say so in a dated addendum entry")
+
+
+def json_kind(v: object) -> str:
+    """A parsed JSON value as a message names it: null, true, a list, an object, the text 'abc', or the number itself."""
+    if v is None:
+        return "null"
+    if isinstance(v, bool):
+        return "true" if v else "false"
+    if isinstance(v, str):
+        return f"the text {v[:30]!r}" + (" (cut)" if len(v) > 30 else "")
+    if isinstance(v, list):
+        return "a list"
+    if isinstance(v, dict):
+        return "an object"
+    return repr(v) if isinstance(v, float) or abs(v) < 10 ** 30 else "an integer too large to print"
+
+
+def forward_number(fid: str, r: dict, key: str, where: str) -> float:
+    """r[key], a number that a PASS or MISS test records, as a finite float. A number the card cannot print or draw (missing, null, a
+    string, true, NaN, infinity, an integer beyond the range of a float) stops the render with a message that names the field and the
+    file, and says what clears it. (A value that is finite but absurd is stopped by the axis, which would otherwise draw millions of ticks.)"""
+    if key not in r:
+        raise SystemExit(f"render: {fid}.{key} is missing from {where}, but {fid} is {r.get('result')} and the card prints it; "
+                         f"put it back or {NOT_SCORABLE_FIX}")
+    v = r[key]
+    if isinstance(v, bool) or not isinstance(v, (int, float)):
+        raise SystemExit(f"render: {fid}.{key} in {where} is {json_kind(v)}, not a number, so the page cannot print it; "
+                         f"correct it or {NOT_SCORABLE_FIX}")
+    try:
+        finite = math.isfinite(v)
+    except OverflowError:       # an integer beyond the range of a float (JSON allows any number of digits)
+        finite = False
+    if not finite:
+        shown = repr(v) if isinstance(v, float) else "an integer too large for a float"
+        raise SystemExit(f"render: {fid}.{key} is {shown}, not a finite number (in {where}), so the page cannot draw it; {NOT_SCORABLE_FIX}")
+    return float(v)
+
+
+def check_forward_results(results: dict, where: str) -> None:
+    """Stop the render, naming the field and the file, on a recorded test the card cannot be drawn from.
+
+    Each of F1 to F4 that the file records must be an object (a string or null made the scorecard raise AttributeError). One that says PASS or
+    MISS must hold every number the card prints, as a finite number (a missing key made the card raise KeyError, a number written as text
+    raised TypeError). One that says anything else is drawn as "not scorable", and its `why`, if it has one, must be text. A test the file does
+    not record at all is drawn as "not scorable" with "no reason recorded", as it always was: the real scorer writes all four."""
+    for fid in FORWARD_IDS:
+        if fid not in results:
+            continue
+        r = results[fid]
+        if not isinstance(r, dict):
+            raise SystemExit(f"render: {fid} in {where} is {json_kind(r)}, not an object; write it as the scorer does: "
+                             '{"result": "not scorable", "why": "..."}, or "PASS" or "MISS" with its numbers')
+        if "result" not in r:
+            raise SystemExit(f"render: {fid} in {where} has no \"result\" key; write it as the scorer does: "
+                             '{"result": "not scorable", "why": "..."}, or "PASS" or "MISS" with its numbers')
+        if r.get("result") in ("PASS", "MISS"):
+            for key in FORWARD_NUMBERS[fid]:
+                forward_number(fid, r, key, where)
+        elif "why" in r and not isinstance(r["why"], str):
+            raise SystemExit(f"render: {fid}.why in {where} is {json_kind(r['why'])}, not text; write the reason as text")
+
+
+def forward_word(fw: dict | None, fid: str) -> str:
+    """What the page prints for one forward test: "pending" without a score, else PASS or MISS as recorded, else "not scorable".
+
+    A test the file does not record, or records with any other word, is "not scorable": the card, the table, the counts and the scorecard
+    all take the word from here."""
+    if not fw:
+        return "pending"
+    r = fw["results"].get(fid)
+    w = str(r.get("result", "not scorable")) if isinstance(r, dict) else "not scorable"
+    return w if w in ("PASS", "MISS") else "not scorable"
+
+
+REASON_LINE = 1000   # characters (as escaped in the page) of a not-scorable reason on one source line
+SOURCE_BREAK = "<!--\n-->"   # a comment that holds only a newline: a browser draws nothing for it and does not split the text at it
+
+
+def wrap_reason(text: str, width: int = REASON_LINE) -> str:
+    """A reason for 'not scorable' as escaped markup whose source lines are no longer than about `width` characters, however long it is.
+
+    The scorer's `why` is the text of an RPC error when F1 cannot be read, which can run to thousands of characters, and one line of the page
+    over 2,000 fails the suite (tests/test_render.py, LineBreaks). Lines are broken at spaces: a newline in place of a space, which a browser
+    collapses back into a space, so what is drawn is the same text. A run of white space becomes one, as it is drawn. A word that no line can
+    hold (an escaped length over `width`; a quote mark escapes to six characters) cannot be broken at a space, so it is cut into pieces of at
+    most `width` characters with SOURCE_BREAK between them: an HTML comment is not drawn and not part of the text, so the word is drawn as
+    one word. In every case the text of the span is the reason, up to white space (tests/test_render_guards.py pins both)."""
+    lines: list[str] = []
+    cur = ""
+    for word in (w for w in re.split(r"[ \t\r\n\f]+", text) if w):      # ASCII white space only: U+00A0 and U+2028 are drawn as they are
+        e = esc(word)
+        if len(e) > width:
+            if cur:
+                lines.append(cur)
+                cur = ""
+            pieces, piece, size = [], [], 0
+            for ch in word:                 # pieces of the word whose escaped length is at most `width`, never cut inside an entity
+                k = len(esc(ch))
+                if piece and size + k > width:
+                    pieces.append("".join(piece))
+                    piece, size = [], 0
+                piece.append(ch)
+                size += k
+            pieces.append("".join(piece))
+            lines.append(SOURCE_BREAK.join(esc(x) for x in pieces))
+        elif cur and len(cur) + 1 + len(e) > width:
+            lines.append(cur)
+            cur = e
+        else:
+            cur = f"{cur} {e}" if cur else e
+    if cur:
+        lines.append(cur)
+    return "\n".join(lines)
+
+
 def load_forward(forward_dir: Path) -> dict | None:
     """The newest data/forward/score_<UTC stamp>/result.json, only if it is a real score (is_score true, mode "score").
 
@@ -236,7 +360,9 @@ def load_forward(forward_dir: Path) -> dict | None:
     file exists would let a stale page pass every check. So does a result that says it is a score (is_score true, mode
     "score") in a score_* folder whose name is not exactly score_YYYYMMDDTHHMMSSZ, the name pipeline.score_forward
     gives it: it would be ignored, and the page would say "pending" over it. The other files of such folders (not a
-    score, a dry run, not JSON) are ignored as before."""
+    score, a dry run, not JSON) are ignored as before. In the newest stamped folder a file that says it is a score but holds
+    no results object stops the render for the same reason, and a score whose tests the card cannot be drawn from stops it
+    too (check_forward_results)."""
     if not forward_dir.is_dir():
         return None
     files = sorted(p for p in forward_dir.glob("score_*/result.json") if p.is_file())
@@ -260,14 +386,19 @@ def load_forward(forward_dir: Path) -> dict | None:
     if not cands:
         return None
     path = cands[-1]
+    where = f"data/forward/{path.parent.name}/result.json"
     try:
         d = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, ValueError, RecursionError) as exc:
-        raise SystemExit(f"render: data/forward/{path.parent.name}/result.json exists but cannot be read as JSON "
+        raise SystemExit(f"render: {where} exists but cannot be read as JSON "
                          f"({type(exc).__name__}); the page would say 'pending'. Fix or remove it.")
-    if not is_real_score(d):
+    if not says_it_is_a_score(d):
         return None
-    d["_path"] = f"data/forward/{path.parent.name}/result.json"
+    if not is_real_score(d):
+        raise SystemExit(f"render: {where} is a scored result (mode \"score\", is_score true) that holds no results object, so the "
+                         "page cannot be drawn from it and would say 'pending' over it. Complete it, or remove it if it is a rehearsal.")
+    check_forward_results(d["results"], where)
+    d["_path"] = where
     return d
 
 
@@ -1232,16 +1363,34 @@ def card_h1a(ctx: Ctx) -> str:
         data=data_details(totals, daily))
 
 
+@functools.lru_cache(maxsize=2)
+def _dropped_accounts(text: str) -> tuple[str, ...]:
+    rows = json.loads(text)
+    return tuple(sorted(x["account"] for x in rows if x["leg"] == "top100" and x["tier"] is None and _nonexchange(x["account"])))
+
+
+def side_measure_dropped(ctx: Ctx) -> list[str]:
+    """The accounts that pipeline/h1b.py drops from the side measure, sorted: the unlabelled top-100 receivers of native NEAR whose names are
+    a pool, intents.near, wrap.near or a sputnik-dao DAO. The rule is h1b's own (_nonexchange), applied to the same committed query result."""
+    return list(_dropped_accounts(ctx.read_text("data/raw/bq/h1b_a_native_flows.json")))
+
+
 def side_measure_note(ctx: Ctx) -> str:
     """Why the fourth bar of the H1b chart is longer than the upper bound (markup, for the card's notes).
 
     That bar is a side measure that pipeline/h1b.py computes as the upper bound (level 4) with the boundary rows of the sourced non-exchange
     accounts among the unlabelled top-100 receivers dropped. It is larger than the upper bound exactly when the dropped rows net to an outflow
-    from the set. If the data stop showing that, the render stops, so the page cannot go on saying it."""
+    from the set. If the data stop showing that, or the accounts dropped stop being the two the sentence names (intents.near and a DAO
+    account), the render stops, so the page cannot go on saying it."""
     m, M = ctx.m, ctx.M
     if not m["h1b_net_inflow_upper_ex_nonexchange_m"] > m["h1b_net_inflow_upper_m"]:
         raise SystemExit("render: the H1b card explains a side measure that is longer than the upper bound because the dropped flows net to an "
                          "outflow; the data no longer show that, so rewrite side_measure_note()")
+    dropped = side_measure_dropped(ctx)
+    daos = [a for a in dropped if a.endswith(".sputnik-dao.near")]
+    if not (len(dropped) == 2 and "intents.near" in dropped and len(daos) == 1):
+        raise SystemExit("render: the H1b card says the side measure leaves two accounts out, intents.near and a DAO account; pipeline/h1b.py now "
+                         f"drops {len(dropped)} ({', '.join(dropped) or 'none'}), so rewrite side_measure_note()")
     return (f'The fourth bar of Panel A ({M("h1b_net_inflow_upper_ex_nonexchange_m")}M) is longer than the upper bound ({M("h1b_net_inflow_upper_m")}M) although it leaves two '
             f'accounts out: it is a side measure, not a tighter bound. It drops the transfers between the sourced non-exchange accounts among the unlabelled top-100 receivers (here '
             f'<code>intents.near</code> and a DAO account) and accounts outside the set, which is how <code>pipeline/h1b.py</code> approximates taking them out of '
@@ -1584,6 +1733,7 @@ def card_forward(ctx: Ctx) -> str:
     m, Mt = ctx.m, ctx.Mt
     fw = ctx.forward
     res = fw["results"] if fw else {}
+    where = fw["_path"] if fw else ""
     opens = sf.SCORE_NOT_BEFORE.strftime("%Y-%m-%d %H:%M UTC")
     w0, w1 = sf.WINDOW
 
@@ -1592,24 +1742,14 @@ def card_forward(ctx: Ctx) -> str:
         return r if isinstance(r, dict) else {}
 
     def word_of(fid: str) -> str:
-        if not fw:
-            return "pending"
-        w = str(result_of(fid).get("result", "not scorable"))
-        return w if w in ("PASS", "MISS") else "not scorable"
+        return forward_word(fw, fid)
 
     def obs_of(fid: str, key: str):
-        v = result_of(fid).get(key)
-        if isinstance(v, (int, float)) and not isinstance(v, bool):
-            try:
-                finite = math.isfinite(v)
-            except OverflowError:       # an integer beyond the range of a float (JSON allows any number of digits)
-                finite = False
-            if not finite:
-                shown = repr(v) if isinstance(v, float) else "an integer too large for a float"
-                raise SystemExit(f"render: {fid}.{key} is {shown}, not a finite number, so the page cannot draw it; "
-                                 "record that test as 'not scorable' by hand and say so in a dated addendum entry")
-            return float(v)
-        return None
+        """The number a PASS or MISS test records under `key`, as a float. A test that is anything else has its numbers ignored (None),
+        so recording it as 'not scorable' by hand is what clears a stop over a number (forward_number says so)."""
+        if word_of(fid) not in ("PASS", "MISS"):
+            return None
+        return forward_number(fid, result_of(fid), key, where)
 
     def ftxt(fid: str, key: str, dec: int, scale: float = 1.0, suffix: str = "") -> Txt | None:
         v = obs_of(fid, key)
@@ -1627,8 +1767,7 @@ def card_forward(ctx: Ctx) -> str:
             ticks = f"{k + 1:,}" if k < 10**9 else "over a billion"
             raise SystemExit(f"render: {what} is {ob:.6g}, which needs an axis of {ticks} ticks; the page draws at most "
                              f"{MAX_AXIS_TICKS}. That is too far from its band to be a measurement of this quantity, so the page cannot "
-                             "draw it. Check the snapshot; if the data are wrong, record that test as 'not scorable' by hand and "
-                             "say so in a dated addendum entry")
+                             f"draw it. Check the snapshot behind {where}; if the data are wrong, {NOT_SCORABLE_FIX}")
         return lo, lo + k * step, [lo + i * step for i in range(k + 1)]
 
     o1, o2, o3, o4 = (obs_of("F1", "balance_near"), obs_of("F2", "mean_near_per_day"),
@@ -1700,7 +1839,7 @@ def card_forward(ctx: Ctx) -> str:
                 nums = (f'Intents share <span data-f="F4.intents_share_pct" data-scale="1">{fmt_value(round(r["intents_share_pct"], 1), 1)}</span>% '
                         f'of peer-set volume.')
         elif fw:
-            why = (f'<span data-f="{fid}.why" data-scale="1">{esc(r["why"])}</span>' if "why" in r else "no reason recorded")
+            why = (f'<span data-f="{fid}.why" data-scale="1">{wrap_reason(r["why"])}</span>' if "why" in r else "no reason recorded")
             nums = f'Not scorable: {why}. It is never estimated.'
         else:
             nums = f"Scored after {esc(opens)}."
@@ -1742,7 +1881,7 @@ def card_forward(ctx: Ctx) -> str:
                  'No scored result is committed yet (<code>data/forward/score_*/result.json</code> with <code>is_score: true</code>).')
     return card(
         cid="forward", kind="pre", headline=headline, shows=shows, notshows=notshows, figure=fig,
-        caption=(f'Window: {esc(w0)} to {esc(w1)} (UTC). Scoring opens {esc(opens)}. Units differ by line and are named in each title; '
+        caption=(f'Window: {esc(w0)} to {esc(w1)} (UTC). Scoring {"opened" if fw else "opens"} {esc(opens)}. Units differ by line and are named in each title; '
                  f'axes do not start at zero because they show a band, not a magnitude.'),
         extra=lst, notes=notes,
         source=source_p(ctx, code=("pipeline/score_forward.py",),
@@ -2629,7 +2768,7 @@ def scorecard(ctx: Ctx) -> str:
                    f'half the required. H1b is {M("h1b_verdict")}, so the rule outputs {M("rating_output")}, which carries no view on NEAR.'), href="#chart-rating"),
     ]
     if fw:
-        words = [str(fw["results"].get(f, {}).get("result", "not scorable")) for f in ("F1", "F2", "F3", "F4")]
+        words = [forward_word(fw, f) for f in FORWARD_IDS]
         npass, nmiss = words.count("PASS"), words.count("MISS")
         nns = 4 - npass - nmiss
         tiles.append(tile(label="Forward tests F1 to F4", status_markup=st["forward"][0], kind=st["forward"][1],
@@ -2926,8 +3065,10 @@ def main(argv: list[str] | None = None) -> int:
     a = ap.parse_args(argv)
     files, ctx = build_site(a.root, a.forward_dir)
     out_dir = a.out if a.out is not None else a.root / SITE_DIR
-    # The site of this repository is named as the README quotes it (site/ and site/index.html); any other place by its real path.
-    own = a.out is None and Path(a.root) == ROOT
+    # The site of this repository is named as the README quotes it (site/ and site/index.html); any other place by its real path. A given
+    # --forward-dir is not this repository's own render: `python3 -m pipeline.render` reads data/forward, not that folder, so the hint
+    # that follows a failed check must carry it.
+    own = a.out is None and Path(a.root) == ROOT and a.forward_dir is None
     shown_dir = f"{SITE_DIR}/" if own else str(out_dir)
     shown_page = f"{SITE_DIR}/{PAGE_NAME}" if own else str(out_dir / PAGE_NAME)
     problems: list[str] = []

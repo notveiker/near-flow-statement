@@ -260,6 +260,7 @@ class SourcesCheckedIsCurrent(unittest.TestCase):
         self.assertNotIn("docs/sources-checked.md", FILES)
         self.assertIn("THESIS.md", FILES)
         self.assertIn("site/index.html", FILES)
+        self.assertIn("pipeline/render.py", FILES, "the code of the dashboard is evidence too: a row that says 'dashboard' quotes it")
         self.assertTrue(any(k.startswith("sql/") for k in FILES))
 
     def test_every_quote_of_the_repository_is_in_the_repository(self):
@@ -358,6 +359,83 @@ class TheCheckerBites(unittest.TestCase):
         self.assertIn('"republish the data in any form without permission"', table[30][5])
         self.assertIn('"may be directed by the 1Click Service', table[32][1])
         self.assertIn('("if any", §6.3)', quoted(table[7][1])[0], "the \\\" escapes inside a quote are read as quote marks")
+
+
+def table(*body: str, head: str = "| # | Statement in this repository | Where it is | Source | What the source says | Verdict |") -> str:
+    """A text with a section 1 as rows() reads it: the header, the rule and the rows given."""
+    return f"{SECTION_1}\n\n{head}\n|---|---|---|---|---|---|\n" + "\n".join(body) + "\n\n## 2. Next\n"
+
+
+def row(number: int, statement: str, where: str = "THESIS.md", says: str = "the source", verdict: str = "match") -> str:
+    return f"| {number} | {statement} | {where} | https://example.invalid/ | {says} | {verdict} |"
+
+
+class TheCheckersOwnFeaturesBite(unittest.TestCase):
+    """The first bite tests put a staleness into the file and the corpus. These put a defect into the checker's own parts: each of them is
+    something the checker does for the rows that the file has now, and a mutant that removed it left every test green. One test each."""
+
+    def test_a_header_that_changed_is_an_error_not_a_table_to_read_anyway(self):
+        rows(table(row(1, '"a quote"')))                                                   # the control: the header as the file has it
+        for label, head in (
+                ("the statement column renamed", "| # | Statement in the repository | Where it is | Source | What the source says | Verdict |"),
+                ("the verdict column renamed", "| # | Statement in this repository | Where it is | Source | What the source says | Result |"),
+                ("a column added", "| # | Statement in this repository | Where it is | Source | What the source says | Verdict | Notes |"),
+                ("a column dropped", "| # | Statement in this repository | Where it is | Source | Verdict |")):
+            with self.subTest(label), self.assertRaises(ValueError) as caught:
+                rows(table(row(1, '"a quote"'), head=head))
+            self.assertIn("the columns of section 1 changed", str(caught.exception))
+
+    def test_a_row_with_the_wrong_number_of_cells_is_an_error(self):
+        for label, line in (("seven cells", "| 2 | a | b | c | d | e | f |"), ("five cells", "| 2 | a | b | c | d |")):
+            with self.subTest(label), self.assertRaises(ValueError) as caught:
+                rows(table(row(1, '"a quote"'), line))
+            self.assertRegex(str(caught.exception), r"row '2' has [57] cells, not 6")
+
+    def test_a_number_marker_is_not_part_of_the_text_a_quote_is_looked_up_in(self):
+        self.assertEqual(norm("the ratio is 6.56<!--n:h1a_ratio_as_written_x-->× of rewards"), "the ratio is 6.56× of rewards")
+        self.assertEqual(norm("a <!--\na note\nover lines --> b"), "a b")
+        self.assertTrue(occurs("the ratio is 6.56×", {"README.md": norm("so the ratio is 6.56<!--n:h1a_ratio_as_written_x-->× of rewards")}))
+
+    def test_typographic_quotes_are_the_same_as_plain_ones_on_both_sides(self):
+        for curly, plain in (("‘", "'"), ("’", "'"), ("“", '"'), ("”", '"')):
+            with self.subTest(curly):
+                self.assertEqual(norm(f"it{curly}s"), f"it{plain}s")
+        self.assertEqual(norm("NEAR’s “fee” isn‘t ”x“"), "NEAR's \"fee\" isn't \"x\"")
+        self.assertTrue(occurs("NEAR's revenue", {"THESIS.md": norm("NEAR’s revenue")}))
+        self.assertTrue(occurs("NEAR’s revenue", {"THESIS.md": norm("NEAR's revenue")}))
+
+    def test_an_html_entity_is_read_in_the_page_and_the_code_but_not_in_markdown(self):
+        self.assertEqual(norm("a &amp; b &lt;c&gt; &rsquo;d", "html"), "a & b <c> 'd")
+        self.assertEqual(norm("a &amp; b &quot;q&quot;", "py"), 'a & b "q"')
+        self.assertEqual(norm("a &amp; b"), "a &amp; b", "markdown is read as it is written")
+        self.assertTrue(occurs("fees & partners", {"site/index.html": norm("<p>fees &amp; partners</p>", "html")}))
+
+    def test_what_a_page_holds_for_the_browser_and_not_for_the_reader_is_not_looked_in(self):
+        page = "<p>a </p><script>var secret = 'only in the script';</script><style>.q{content:'only in the style'}</style><p> b</p>"
+        text = norm(page, "html")
+        self.assertEqual(text, "a b")
+        self.assertFalse(occurs("only in the script", {"site/index.html": text}))
+        self.assertFalse(occurs("only in the style", {"site/index.html": text}))
+        self.assertIn("<script>keep</script>", norm("<script>keep</script>"), "and only for the page: markdown keeps what it holds")
+
+    def test_a_pipe_inside_backticks_or_written_escaped_does_not_split_a_cell(self):
+        self.assertEqual(split_row("| 1 | a `x | y` b | c | d | e | f |"), ["1", "a `x | y` b", "c", "d", "e", "f"])
+        self.assertEqual(split_row("| 1 | a `x | y` b `z | w` | c | d | e | f |"), ["1", "a `x | y` b `z | w`", "c", "d", "e", "f"])
+        self.assertEqual(split_row("| 1 | a \\| b | c | d | e | f |"), ["1", "a | b", "c", "d", "e", "f"])
+        self.assertEqual(split_row("| 1 | a | b | c | d | e | f |"), ["1", "a", "b", "c", "d", "e", "f"], "a pipe outside backticks does")
+
+    def test_dashboard_in_the_where_column_means_the_page_and_the_code_that_renders_it(self):
+        files = {"site/index.html": "x", "pipeline/render.py": "y", "THESIS.md": "z"}
+        self.assertEqual(named_files("the dashboard text; THESIS.md", files), {"site/index.html", "pipeline/render.py", "THESIS.md"})
+        # a quote that only the renderer has, in a row that names the dashboard, is where the row says it is
+        text = table(row(1, '"the sentence that only the renderer has"', where="dashboard text"))
+        only_in_the_code = {"site/index.html": "a page without it", "pipeline/render.py": "the sentence that only the renderer has", "THESIS.md": "other"}
+        self.assertEqual(problems(text, only_in_the_code, allow={}), [])
+        # and the same quote in neither of the two files the row names is reported, though THESIS.md has it
+        elsewhere = {"site/index.html": "a page without it", "pipeline/render.py": "nor does the code", "THESIS.md": "the sentence that only the renderer has"}
+        found = problems(text, elsewhere, allow={})
+        self.assertEqual(len(found), 1, found)
+        self.assertIn("is in THESIS.md but not in the files the row names (pipeline/render.py, site/index.html)", found[0])
 
 
 if __name__ == "__main__":

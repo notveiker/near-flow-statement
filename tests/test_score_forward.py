@@ -265,9 +265,21 @@ class OnlyARealScoreIsRendered(unittest.TestCase):
         """The control for the next test: the same folder name and the same content, except for the one field it changes."""
         self.assertEqual(self.loaded({f"{self.STAMPED}/result.json": self.GOOD}), f"data/forward/{self.STAMPED}/result.json")
 
+    def test_a_score_without_a_results_object_stops_the_render_instead_of_being_ignored(self):
+        """It says it is a score (is_score true, mode score) and has nothing to draw: ignoring it left the page saying pending over it."""
+        bad = f"{self.STAMPED}/result.json"
+        for label, obj in (("no results", {k: v for k, v in self.GOOD.items() if k != "results"}),
+                           ("results that is not an object", {**self.GOOD, "results": []})):
+            with self.subTest(label), tempfile.TemporaryDirectory() as tmp:
+                f = Path(tmp) / bad
+                f.parent.mkdir(parents=True)
+                f.write_text(json.dumps(obj), encoding="utf-8")
+                with self.assertRaises(SystemExit) as caught:
+                    R.load_forward(Path(tmp))
+                self.assertIn(f"data/forward/{bad}", str(caught.exception))
+
     def test_nothing_else_under_data_forward_is_rendered_as_a_score(self):
         bad = f"{self.STAMPED}/result.json"
-        no_results = {k: v for k, v in self.GOOD.items() if k != "results"}
         for label, layout in (
                 ("dry-run folder", {"dry-run_20261108T000000Z/DRY_RUN_result_NOT_A_SCORE.json": self.GOOD}),
                 ("dry-run file inside a score folder", {f"{self.STAMPED}/DRY_RUN_result_NOT_A_SCORE.json": self.GOOD}),
@@ -278,8 +290,6 @@ class OnlyARealScoreIsRendered(unittest.TestCase):
                 ("is_score missing", {bad: {k: v for k, v in self.GOOD.items() if k != "is_score"}}),
                 ("mode DRY-RUN", {bad: {**self.GOOD, "mode": "DRY-RUN"}}),
                 ("mode missing", {bad: {k: v for k, v in self.GOOD.items() if k != "mode"}}),
-                ("no results", {bad: no_results}),
-                ("results that is not an object", {bad: {**self.GOOD, "results": []}}),
                 ("a JSON array", {bad: []}),
                 ("a JSON number", {bad: 7}),
                 ("a deeper folder", {f"{self.STAMPED}/sub/result.json": self.GOOD}),

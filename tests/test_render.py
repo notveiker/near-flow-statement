@@ -264,8 +264,15 @@ def path_points(d: str) -> list[tuple[float, float]]:
     return pts
 
 
+def ascii_words(text: str) -> list[str]:
+    """`text` cut at ASCII white space only: the page breaks a long reason at spaces and tabs and line ends, never at U+00A0 or U+2028."""
+    return [w for w in re.split(r"[ \t\r\n\f]+", text) if w]
+
+
 def check_forward_numbers(tc: unittest.TestCase, dom: Node, result: dict) -> int:
-    """Every data-f span in the page equals the number (or text) in the scored result it names. Returns how many there are."""
+    """Every data-f span in the page equals the number (or text) in the scored result it names. Returns how many there are.
+
+    A text is compared up to white space: the page breaks a long reason at spaces (a newline for a space), which a browser draws as the same text."""
     res = result["results"]
     seen = 0
     for n in dom.iter():
@@ -281,7 +288,7 @@ def check_forward_numbers(tc: unittest.TestCase, dom: Node, result: dict) -> int
             fid, key = path.split(".")
             value = res[fid][key]
             if isinstance(value, str):
-                tc.assertEqual(text, value, path)
+                tc.assertEqual(ascii_words(text), ascii_words(value), path)
             else:
                 tc.assertAlmostEqual(num(text), value / scale, delta=0.5 * 10 ** -decimals(text) + 1e-9, msg=path)
         seen += 1
@@ -304,11 +311,9 @@ REPO_RAW = ROOT / "data" / "raw"
 SCORED_WINDOW = ("2026-10-28", "2026-11-04")  # eight days the committed snapshots cover
 
 
-def realistic_result() -> dict:
-    """What `python3 -m pipeline.score_forward --score` writes, with the real scorer run on the committed snapshots.
-
-    The same field layout as score_forward.main() builds, so a change there that the page does not follow fails here."""
-    fetched = "2026-11-14T01:00:00Z"
+def realistic_snapshot(fetched: str = "2026-11-14T01:00:00Z") -> dict:
+    """A snapshot as `pipeline.score_forward` saves it (fetch_all), filled from the committed raw files: the peers' volume, Intents' revenue,
+    Nearblocks, and the buyback wallet at the block the committed RPC snapshot reads. The sources are the ones score() reads."""
     src: dict = {}
     for peer in sf.PEERS:
         src[f"llama_volume_{peer}"] = {"url": "repo", "fetched_at": fetched,
@@ -321,12 +326,23 @@ def realistic_result() -> dict:
     src["rpc_f1"] = {"url": "repo", "fetched_at": fetched, "data": {
         "target_utc": "2026-11-14T00:00:00Z", "block_height": wallets["at_block"], "block_hash": "x", "block_timestamp_ns": 0,
         "view_account": wallets["accounts"][sf.BUYBACK]}}
-    snap = {"fetched_at": fetched, "sources": src, "errors": {}}
-    res = sf.score(snap, SCORED_WINDOW, sf.SCORE_NOT_BEFORE)
-    out = {"mode": "score", "is_score": True, "window": SCORED_WINDOW, "f1_block_target_utc": sf.iso(sf.F1_T),
+    return {"fetched_at": fetched, "sources": src, "errors": {}}
+
+
+def scored_result(snap: dict, window: tuple[str, str] = SCORED_WINDOW) -> dict:
+    """What `python3 -m pipeline.score_forward --score` writes into result.json for a snapshot: score() and the layout of main()."""
+    res = sf.score(snap, window, sf.SCORE_NOT_BEFORE)
+    out = {"mode": "score", "is_score": True, "window": window, "f1_block_target_utc": sf.iso(sf.F1_T),
            "scored_at": "2026-11-14T01:02:03Z", "snapshot_fetched_at": snap["fetched_at"], "fetch_errors": snap["errors"],
            "urls": {k: v["url"] for k, v in snap["sources"].items()}, "results": res}
-    return json.loads(json.dumps(out, default=str))     # the scorer writes json.dumps(out, default=str)
+    return json.loads(json.dumps(out, default=str))     # the scorer writes json.dumps(out, default=str): a NaN stays one, a tuple is a list
+
+
+def realistic_result() -> dict:
+    """What `python3 -m pipeline.score_forward --score` writes, with the real scorer run on the committed snapshots.
+
+    The same field layout as score_forward.main() builds, so a change there that the page does not follow fails here."""
+    return scored_result(realistic_snapshot())
 
 
 def write_forward(tmp: Path, name: str, obj: dict, fname: str = "result.json") -> None:
@@ -929,10 +945,12 @@ class ForwardTests(unittest.TestCase):
         self.assertGreater(check_forward_numbers(self, dom, result), 10)
 
     def test_odd_but_parseable_files_are_ignored(self):
+        """What does not say it is a score is ignored. (A file that says it is one but holds no results object is not ignored: it stops the
+        render, see tests/test_render_guards.py, MisnamedScoreFolders.)"""
         with tempfile.TemporaryDirectory() as d:
             tmp = Path(d)
-            write_forward(tmp, "score_20261114T020000Z", {"is_score": True, "mode": "score"})  # no results
-            self.assertIsNone(R.load_forward(tmp))
+            write_forward(tmp, "score_20261114T020000Z", fixture_result())
+            self.assertEqual(R.load_forward(tmp)["_path"], "data/forward/score_20261114T020000Z/result.json", "the control: a real score is found")
             write_forward(tmp, "score_20261114T030000Z", fixture_result(is_score=False, mode="rehearsal"))
             self.assertIsNone(R.load_forward(tmp), "a newer file that is not a real score hides an older real one")
             self.assertIsNone(R.load_forward(tmp / "missing"))
@@ -972,6 +990,129 @@ class ForwardTests(unittest.TestCase):
                 with self.assertRaises(SystemExit) as caught:
                     R.render(forward_dir=tmp)
                 self.assertIn("F4.intents_share_pct", str(caught.exception))
+
+    # ---- the card that is published on 2026-11-14, pinned beyond its numbers (the fixture and the real scorer's output)
+    def scored_variants(self) -> list[tuple[str, Node, dict]]:
+        found = [(name, dom, result) for name, dom, _, result in VARIANTS if name in ("scored", "scored-real")]
+        self.assertEqual([n for n, _, _ in found], ["scored", "scored-real"])
+        return found
+
+    def test_the_table_of_the_frozen_predictions_says_what_the_list_says(self):
+        """The 'Forward tests as frozen' table has a Status column. It printed the word 'pending' on a scored page and nothing noticed."""
+        for name, dom, _, result in VARIANTS:
+            card = self.card(dom)
+            listed = [n.text().strip() for n in card.find_all("span") if "data-status" in n.attrs]
+            table = next(t for t in card.find_all("table") if t.find("caption").text() == "Forward tests as frozen")
+            self.assertEqual([th.text() for th in table.find_all("th")],
+                             ["Test", "Prior probability", "Status", "Frozen prediction (PREREG.md, verbatim)"], name)
+            rows = [tr for tr in table.find_all("tr") if tr.find_all("td")]
+            self.assertEqual([tr.attrs["data-k"] for tr in rows], list(R.FORWARD_IDS), name)
+            self.assertEqual([tr.find_all("td")[2].text().strip() for tr in rows], listed, name)
+            self.assertEqual(listed, ["pending"] * 4 if result is None else [result["results"][f]["result"] for f in R.FORWARD_IDS], name)
+
+    def test_a_result_word_other_than_pass_or_miss_is_drawn_as_not_scorable_and_its_numbers_are_not_read(self):
+        """The scorer writes PASS, MISS or 'not scorable'. Any other word (a lower-case 'pass', null, 'n/a') is drawn as 'not scorable',
+        everywhere the word appears: the list, the table, the counts in the headline and the scorecard tile. Its numbers draw no dot."""
+        res = fixture_result()
+        res["results"]["F1"] = {**res["results"]["F1"], "result": "pass"}
+        res["results"]["F2"] = {**res["results"]["F2"], "result": "PASSED"}
+        res["results"]["F3"] = {**res["results"]["F3"], "result": "n/a"}
+        res["results"]["F4"] = {"result": None, "why": "x", "intents_share_pct": 9e99}
+        with tempfile.TemporaryDirectory() as d:
+            write_forward(Path(d), "score_20261114T010203Z", res)
+            dom, _ = forward_dom(Path(d))
+        card = self.card(dom)
+        self.assertEqual([n.text().strip() for n in card.find_all("span") if "data-status" in n.attrs], ["not scorable"] * 4)
+        table = next(t for t in card.find_all("table") if t.find("caption").text() == "Forward tests as frozen")
+        self.assertEqual([tr.find_all("td")[2].text().strip() for tr in table.find_all("tr") if tr.find_all("td")], ["not scorable"] * 4)
+        self.assertEqual(re.sub(r"\s+", " ", card.find("h3").text()), "Forward tests scored: 0 passed, 0 missed and 4 not scorable of 4.")
+        tile = [n for n in dom.find_all("li") if "tile" in n.classes()][4]
+        self.assertIn("0 pass, 0 miss", tile.text())
+        self.assertIn("4 not scorable", tile.text())
+        for svg in card.find_all("svg", "svg"):
+            self.assertEqual(svg.find_all("circle", "sk"), [], "no dot for a test whose word is not PASS or MISS")
+            self.assertEqual([float(g.attrs["data-hi"]) for g in svg.find_all("g", "nl")], [2.6, 94.0, 8.0, 100.0], "and no axis widened for its numbers")
+
+    def test_an_entry_with_no_result_key_stops_the_render_and_names_the_file_and_the_test(self):
+        """A word other than PASS or MISS is a way of saying 'not scorable'; an entry with no word at all is not a result the scorer writes, and tests
+        that read the committed score (the live-page ties, the geometry) read the word, so the render stops instead of drawing half a file."""
+        res = fixture_result()
+        res["results"]["F3"] = {k: v for k, v in res["results"]["F3"].items() if k != "result"}
+        with tempfile.TemporaryDirectory() as d:
+            write_forward(Path(d), "score_20261114T010203Z", res)
+            with self.assertRaises(SystemExit) as caught:
+                R.load_forward(Path(d))
+        self.assertIn("F3", str(caught.exception))
+        self.assertIn('"result"', str(caught.exception))
+        self.assertIn("score_20261114T010203Z/result.json", str(caught.exception))
+
+    def test_the_observed_values_are_printed_with_the_decimals_the_card_promises(self):
+        """In the list: the F1 balance and the F2 mean as whole numbers, the take rate to two decimals, the share to one. In the label of the dot:
+        the balance in million NEAR to three decimals, the mean in thousand NEAR to one, the take rate to two, the share to one. The text of each
+        span is the value formatted here, independently, so a dropped or added decimal fails, and so does a value rounded to one place and printed
+        with another."""
+        label = {"F1": (3, 1e6, "M"), "F2": (1, 1e3, "K"), "F3": (2, 1.0, " bp"), "F4": (1, 1.0, "%")}
+        listed = {"F1.balance_near": 0, "F1.block_height": 0, "F2.mean_near_per_day": 0, "F2.n_deltas": 0, "F3.take_rate_bp": 2,
+                  "F3.revenue_usd": 0, "F3.volume_usd": 0, "F4.intents_share_pct": 1}
+        expected = {"scored": {"label": 3 * 2, "list": 2 + 2 + 3}, "scored-real": {"label": 4 * 2, "list": 2 + 2 + 3 + 1}}   # two drawings of each dot's label
+        for name, dom, result in self.scored_variants():
+            seen = {"label": 0, "list": 0}
+            for n in self.card(dom).iter():
+                path = n.attrs.get("data-f")
+                if path is None or path.startswith("@count.") or path.endswith(".why") or path in ("scored_at", "snapshot_fetched_at"):
+                    continue
+                fid, key = path.split(".")
+                value = result["results"][fid][key]
+                if any(a.tag == "text" for a in n.ancestors()):
+                    dec, scale, suffix = label[fid]
+                    where = "label"
+                    full = re.sub(r"\s+", " ", next(a for a in n.ancestors() if a.tag == "text").text()).strip()
+                    self.assertEqual(full, f"observed {value / scale:,.{dec}f}{suffix}", f"{name}: the label of {path}")
+                else:
+                    dec, scale = listed[path], 1.0
+                    where = "list"
+                self.assertEqual(float(n.attrs["data-scale"]), scale, f"{name}: {path} in the {where}")
+                self.assertEqual(n.text().strip(), f"{value / scale:,.{dec}f}", f"{name}: {path} in the {where}")
+                seen[where] += 1
+            self.assertEqual(seen, expected[name], f"{name}: the scan found a different number of spans, so it proves less than it should")
+
+    def test_the_scored_card_cites_the_operational_readings_and_says_every_result_is_published(self):
+        """The card cites item 7 of the 2026-11-08 02:03 UTC entry. That entry may still be revised, so only what the citation relies on is
+        pinned: that its item 7 is about the scorer's operational readings."""
+        item7 = next(line for line in addendum_entry("2026-11-08 02:03 UTC").splitlines() if line.startswith("7. "))
+        self.assertIn("pipeline/score_forward.py", item7)
+        self.assertIn("operational readings", item7)
+        for name, dom, result in self.scored_variants():
+            card = self.card(dom)
+            self.assertEqual(re.sub(r"\s+", " ", card.find("p", "shows").text()).strip(),
+                             "What it shows: The four predictions frozen in PREREG.md before the window 2026-11-06 to 2026-11-13, scored as written, with the "
+                             "scorer’s operational readings (PREREG-ADDENDUM.md, 2026-11-08 02:03 UTC entry, item 7), by python3 -m pipeline.score_forward "
+                             f"--score on {result['scored_at']} from data fetched at {result['snapshot_fetched_at']}.", name)
+            notes = [re.sub(r"\s+", " ", li.text()).strip() for li in card.find("ul", "notes").find_all("li")]
+            self.assertEqual(len(notes), 2, name)
+            self.assertEqual(notes[0], 'Every result is published, misses included. A test with missing data is scored "not scorable" and never estimated.', name)
+            self.assertTrue(notes[1].startswith("The bands are the frozen predictions and the dot is the observed value. The predictions were frozen before "
+                                                "the window; the scorer was written on 2026-11-06, after the window opened. "), name)
+
+    def test_a_test_that_is_not_scorable_says_so_and_that_it_is_never_estimated(self):
+        for name, dom, result in self.scored_variants():
+            for li in self.card(dom).find("ol", "fwd").find_all("li"):
+                fid = li.attrs["data-k"]
+                r = result["results"][fid]
+                note = re.sub(r"\s+", " ", li.find("p", "tnote").text()).strip()
+                if r["result"] == "not scorable":
+                    self.assertEqual(note, f"Not scorable: {r['why']}. It is never estimated.", f"{name}/{fid}")
+                else:
+                    self.assertFalse(note.startswith("Not scorable"), f"{name}/{fid}")
+                    self.assertNotIn("never estimated", note, f"{name}/{fid}")
+
+    def test_the_caption_says_scoring_opened_once_it_has_and_opens_before(self):
+        """The figure caption was in the present tense on a scored page too ('Scoring opens 2026-11-14 00:00 UTC.')."""
+        for name, dom, _, result in VARIANTS:
+            caption = re.sub(r"\s+", " ", self.card(dom).find("figcaption").text())
+            self.assertIn("Scoring opened 2026-11-14 00:00 UTC." if result else "Scoring opens 2026-11-14 00:00 UTC.", caption, name)
+            self.assertNotIn("Scoring opens" if result else "Scoring opened", caption, name)
+            self.assertTrue(caption.startswith("Window: 2026-11-06 to 2026-11-13 (UTC). Scoring "), name)
 
 
 class CheckMode(unittest.TestCase):
@@ -2903,6 +3044,67 @@ class Wording(unittest.TestCase):
                 R.side_measure_note(bad)
             with self.assertRaises(SystemExit, msg=f"card_h1b {value}"):
                 R.card_h1b(bad)
+
+    def test_the_side_measure_note_stops_the_render_unless_h1b_drops_exactly_intents_near_and_one_dao_account(self):
+        """The note says the bar 'leaves two accounts out' ('here intents.near and a DAO account'). Only the bar being the longer one was checked, so
+        a data refresh that made pipeline/h1b.py drop a third account, or another one, would have left the sentence wrong and the render green. The
+        render now computes the accounts with h1b's own rule from the same committed query result."""
+        from pipeline import h1b as H
+        rows = json.loads((ROOT / "data/raw/bq/h1b_a_native_flows.json").read_text(encoding="utf-8"))
+        top = [x for x in rows if x["leg"] == "top100"]
+        independent = sorted(x["account"] for x in top if x["tier"] is None and H._nonexchange(x["account"]))
+        ctx = R.Ctx()
+        self.assertEqual(R.side_measure_dropped(ctx), independent)
+        self.assertEqual(len(independent), 2)
+        R.side_measure_note(ctx)
+        plain = next(x["account"] for x in top if x["tier"] is None and not H._nonexchange(x["account"]))     # an unlabelled receiver that is kept
+        tier1 = next(x["account"] for x in top if x["tier"] == "1")
+        flow = next(x for x in rows if x["leg"] != "top100")
+        dao = next(a for a in independent if a != "intents.near")
+
+        def renamed(*changes: tuple[str, str]) -> R.Ctx:
+            """A context whose h1b_a_native_flows.json has some top-100 receivers called something else."""
+            by = dict(changes)
+            edited = [{**x, "account": by.get(x["account"], x["account"])} if x["leg"] == "top100" else x for x in rows]
+            return self.ctx_with_rows(edited)
+
+        for label, changes, want in (
+                ("a third unlabelled receiver that is a pool", ((plain, "someone.poolv1.near"),), 3),
+                ("a third that is wrap.near", ((plain, "wrap.near"),), 3),
+                ("a third DAO", ((plain, "other.sputnik-dao.near"),), 3),
+                ("a DAO instead of intents.near", (("intents.near", "other.sputnik-dao.near"),), 2),
+                ("wrap.near instead of intents.near", (("intents.near", "wrap.near"),), 2),
+                ("a pool instead of intents.near", (("intents.near", "x.poolv1.near"),), 2),
+                ("wrap.near instead of the DAO", ((dao, "wrap.near"),), 2),
+                ("a pool instead of the DAO", ((dao, "x.pool.near"),), 2),
+                ("only intents.near", ((dao, "an-exchange-looking.near"),), 1),
+                ("only the DAO", (("intents.near", "an-exchange-looking.near"),), 1),
+                ("neither", (("intents.near", "a.near"), (dao, "b.near")), 0)):
+            with self.subTest(label):
+                bad = renamed(*changes)
+                self.assertEqual(len(R.side_measure_dropped(bad)), want)
+                with self.assertRaises(SystemExit) as caught:
+                    R.side_measure_note(bad)
+                message = str(caught.exception)
+                self.assertIn("rewrite side_measure_note()", message)
+                self.assertIn(f"drops {want} ({', '.join(R.side_measure_dropped(bad)) or 'none'})", message, "it names the accounts it found")
+                with self.assertRaises(SystemExit):
+                    R.card_h1b(bad)
+        # what h1b does not drop is not counted: a labelled receiver whose name looks like a pool, and a row of the flows that is not a top-100 receiver
+        kept = self.ctx_with_rows([{**x, "account": "labelled.poolv1.near"} if x["leg"] == "top100" and x["account"] == tier1 else x for x in rows]
+                                  + [{**flow, "account": "a.pool.near", "tier": None}])
+        self.assertEqual(R.side_measure_dropped(kept), independent)
+        R.side_measure_note(kept)
+        crafted = [{"leg": "top100", "tier": None, "account": a} for a in ("z.sputnik-dao.near", "intents.near", "a.poolv1.near", "b.near")]
+        self.assertEqual(R.side_measure_dropped(self.ctx_with_rows(crafted)), ["a.poolv1.near", "intents.near", "z.sputnik-dao.near"], "sorted, whatever the rank")
+
+    @staticmethod
+    def ctx_with_rows(rows: list[dict]) -> "R.Ctx":
+        """A context that reads these rows as data/raw/bq/h1b_a_native_flows.json and every other file as it is."""
+        ctx = R.Ctx()
+        read = ctx.read_text
+        ctx.read_text = lambda rel: json.dumps(rows) if rel == "data/raw/bq/h1b_a_native_flows.json" else read(rel)    # type: ignore[method-assign]
+        return ctx
 
     # ---- "under both" read as a ceiling
     def test_a_pass_needs_at_least_25_percent_at_both_bounds_and_the_page_never_says_under_both(self):

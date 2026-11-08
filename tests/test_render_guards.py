@@ -1,12 +1,19 @@
 """The paths of pipeline/render.py that stop the render or refuse a value, and the parts of a scored page that
 tests/test_render.py leaves to the live data. Each test here was written together with a mutant of the code that must fail it.
 
-  * MisnamedScoreFolders           a real score in a score_* folder not named score_YYYYMMDDTHHMMSSZ stops the render
+  * MisnamedScoreFolders           a real score in a score_* folder not named score_YYYYMMDDTHHMMSSZ stops the render, and so does a
+                                   stamped one that says it is a score and holds no results
   * ObservedValuesTheAxisCannotDraw  an observed value no axis can draw stops the render with a message, not with memory
   * TheAxisWidens                  the forward-test axes widen for an observed value outside the frozen band
   * ScoredStatusIcons              the icon of each F1-F4 row of a scored card
+  * HandEditedResults              a result.json a person has edited, or a shape the scorer does not write: a stop that names the file and
+                                   the field and says what clears it, never a traceback
+  * WhatTheScorerCanWrite          every result the real scorer writes on a snapshot with a missing day, a failed fetch or a zero volume
+                                   renders (the one that cannot, a share of zero over zero, stops with the message that clears it)
+  * LongReasons                    a long reason for 'not scorable' (an RPC error text) keeps every line of the page short, and its text
   * FreezeOrder                    the render stops unless the manifest puts the first BigQuery record after the freeze
-  * WhatMainReports                `--out` is reported as written, and the folder given with --forward-dir is the one used
+  * WhatMainReports                `--out` is reported as written, the folder given with --forward-dir is the one used and is named in
+                                   the hint, and the page size, fingerprint and date the README quotes are the page's
 
 The fixtures come from tests/test_render.py (fixture_result), so they follow the layout pipeline.score_forward writes.
 Run: python3 -m unittest discover -s tests
@@ -14,8 +21,11 @@ Run: python3 -m unittest discover -s tests
 from __future__ import annotations
 
 import contextlib
+import copy
+import html
 import io
 import json
+import math
 import re
 import shutil
 import subprocess
@@ -32,7 +42,9 @@ ROOT = HERE.parent
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(HERE))
 from pipeline import render as R  # noqa: E402
-from test_render import card_node, fixture_result, forward_dom, write_forward  # noqa: E402
+from pipeline import score_forward as sf  # noqa: E402
+from test_render import (Node, ascii_words, card_node, check_forward_numbers, fixture_result, forward_dom, parse, realistic_result,  # noqa: E402
+                         realistic_snapshot, scored_result, write_forward)
 
 PAGE_KEY = f"{R.SITE_DIR}/{R.PAGE_NAME}"
 STAMPED = "score_20261114T060000Z"      # a folder name pipeline.score_forward could have written
@@ -71,8 +83,8 @@ class MisnamedScoreFolders(unittest.TestCase):
         "a JSON array": [],
         "a JSON string": "score",
     }
-    # It says it is a score but is not complete. It could not be drawn if its folder were named right, and in a folder that is not,
-    # it still stops the render: the claim is what matters to a person who looks for the score and finds a page that says pending.
+    # It says it is a score but is not complete. It cannot be drawn, so it stops the render in a folder named as the scorer names it
+    # and in one that is not: the claim is what matters to a person who looks for the score and finds a page that says pending.
     INCOMPLETE_SCORES = {
         "no results": {"is_score": True, "mode": "score"},
         "results that is not an object": {**fixture_result(), "results": []},
@@ -122,10 +134,46 @@ class MisnamedScoreFolders(unittest.TestCase):
                 with self.assertRaises(SystemExit) as caught:
                     R.load_forward(tmp)
                 self.assertIn("data/forward/score_final/result.json", str(caught.exception))
-                write_forward(tmp, STAMPED, obj)                       # while in a folder named as the scorer names it, it is ignored
-                (tmp / "score_final" / "result.json").unlink()
-                (tmp / "score_final").rmdir()
-                self.assertIsNone(R.load_forward(tmp))
+
+    def test_a_result_that_says_it_is_a_score_stops_the_render_in_a_folder_named_as_the_scorer_names_it_even_if_it_is_incomplete(self):
+        """It used to be ignored there without a word: the render and `render --check` passed and the page said pending (a hand-made
+        {"is_score": true, "mode": "score"} in score_20261114T060000Z, which is what a half-copied or hand-trimmed result looks like)."""
+        for label, obj in self.INCOMPLETE_SCORES.items():
+            with self.subTest(label), tempfile.TemporaryDirectory() as d:
+                tmp = Path(d)
+                write_forward(tmp, STAMPED, obj)
+                with self.assertRaises(SystemExit) as caught:
+                    R.load_forward(tmp)
+                message = str(caught.exception)
+                self.assertTrue(message.startswith(f"render: data/forward/{STAMPED}/result.json is a scored result"), message)
+                self.assertIn("holds no results object", message)
+                self.assertIn("'pending'", message)
+                with self.assertRaises(SystemExit):
+                    R.render(forward_dir=tmp)
+                with self.assertRaises(SystemExit):
+                    R.Ctx(forward_dir=tmp)
+                for args in (["--check"], []):                          # the reviewer's commands: rc 0 and "matches a fresh render" before the fix
+                    with tempfile.TemporaryDirectory() as out:
+                        p = subprocess.run([sys.executable, "-m", "pipeline.render", *args, "--forward-dir", str(tmp), "--out", out],
+                                           cwd=ROOT, capture_output=True, text=True, encoding="utf-8", check=False)
+                        self.assertEqual((p.returncode, p.stdout), (1, ""), (args, p.stderr))
+                        self.assertTrue(p.stderr.startswith(f"render: data/forward/{STAMPED}/result.json is a scored result"), p.stderr)
+                        self.assertEqual(list(Path(out).iterdir()), [], "a refused render writes nothing")
+
+    def test_only_the_newest_stamped_result_is_looked_at_and_an_incomplete_one_does_not_fall_back_to_an_older_score(self):
+        with tempfile.TemporaryDirectory() as d:
+            tmp = Path(d)
+            write_forward(tmp, "score_20261114T050000Z", fixture_result())
+            self.assertEqual(R.load_forward(tmp)["_path"], "data/forward/score_20261114T050000Z/result.json")
+            write_forward(tmp, STAMPED, {"is_score": True, "mode": "score"})
+            with self.assertRaises(SystemExit) as caught:
+                R.load_forward(tmp)
+            self.assertIn(STAMPED, str(caught.exception))
+        with tempfile.TemporaryDirectory() as d:                         # while an older incomplete one under a newer complete one is not read
+            tmp = Path(d)
+            write_forward(tmp, "score_20261114T050000Z", {"is_score": True, "mode": "score"})
+            write_forward(tmp, STAMPED, fixture_result())
+            self.assertEqual(R.load_forward(tmp)["_path"], f"data/forward/{STAMPED}/result.json")
 
     def test_a_misnamed_folder_with_a_file_that_cannot_be_read_stays_ignored(self):
         real = json.dumps(fixture_result()).encode("utf-8")
@@ -271,7 +319,7 @@ from pipeline import render as R
 from test_render import fixture_result, write_forward
 for fid, key, value in json.loads(sys.stdin.read()):
     res = fixture_result()
-    res["results"][fid][key] = value
+    res["results"][fid] = {**res["results"][fid], "result": "MISS", key: value}   # the numbers of a test that is not scorable are not read
     with tempfile.TemporaryDirectory() as d:
         write_forward(Path(d), "score_20261114T060000Z", res)
         try:
@@ -460,6 +508,448 @@ class ScoredStatusIcons(unittest.TestCase):
                 self.assertEqual(R.status_kind(word), kind)
 
 
+REALISTIC = realistic_result()      # what the real scorer writes on the committed snapshots: all four tests have numbers
+
+
+def base() -> dict:
+    """A scored result with a number under every test (a copy: the tests change it)."""
+    return copy.deepcopy(REALISTIC)
+
+
+def context(res: dict) -> R.Ctx:
+    """The context a render builds from this result. The folder is read when it is built, so it can go at once."""
+    with tempfile.TemporaryDirectory() as d:
+        write_forward(Path(d), STAMPED, res)
+        return R.Ctx(forward_dir=Path(d))
+
+
+def parsed(markup: str) -> Node:
+    dom, errors = parse(markup)
+    assert not errors, errors
+    return dom
+
+
+class HandEditedResults(unittest.TestCase):
+    """A result.json that a person has edited, or a shape the scorer does not write. The stop over an unusable number said to 'record that
+    test as not scorable by hand', and doing exactly that still stopped the render, because the number was read whatever the word said. Other
+    shapes did not stop it with a message at all: a test written as a string or null raised AttributeError in the scorecard, a PASS or MISS
+    without a number the card prints raised KeyError, and a number written as text raised TypeError. Each now stops the render with a
+    message that names the file and the field, and the stop that is about a number is cleared by what its message says."""
+
+    @staticmethod
+    def page(res: dict) -> Node:
+        """The forward card the render draws for this result, parsed (the rest of the page does not depend on it)."""
+        return parsed(R.card_forward(context(res)))
+
+    def stop(self, res: dict, at_load: bool = True) -> str:
+        """The message of the stop. The render stops with it; so do the loader and the context, unless the value is finite and only the axis
+        cannot draw it (at_load False): that stop comes when the card is built."""
+        with tempfile.TemporaryDirectory() as d:
+            write_forward(Path(d), STAMPED, res)
+            with self.assertRaises(SystemExit) as caught:
+                R.render(forward_dir=Path(d))
+            if at_load:
+                with self.assertRaises(SystemExit) as at:
+                    R.load_forward(Path(d))
+                with self.assertRaises(SystemExit):
+                    R.Ctx(forward_dir=Path(d))
+                self.assertEqual(str(at.exception), str(caught.exception))
+        return str(caught.exception)
+
+    @staticmethod
+    def changed(fid: str, entry: object) -> dict:
+        res = base()
+        res["results"][fid] = entry
+        return res
+
+    # ---- a stop over a number is cleared by recording the test as not scorable
+    NUMBERS = (   # (test, key, value, whether the loader stops over it: a finite value is stopped by the axis, when the card is built)
+        ("F4", "intents_share_pct", float("nan"), True), ("F4", "intents_share_pct", float("inf"), True), ("F4", "intents_share_pct", float("-inf"), True),
+        ("F1", "balance_near", 1 << 2000, True),                      # an integer beyond the range of a float
+        ("F3", "take_rate_bp", 1e12, False), ("F2", "mean_near_per_day", 1e300, False), ("F1", "balance_near", 1e12, False),
+        ("F4", "intents_share_pct", "45.9", True), ("F1", "balance_near", None, True), ("F3", "take_rate_bp", True, True),
+        ("F2", "mean_near_per_day", [1.0], True), ("F1", "block_height", float("nan"), True), ("F2", "n_deltas", "8", True),
+        ("F3", "revenue_usd", float("inf"), True), ("F3", "volume_usd", {"a": 1}, True),
+    )
+
+    def test_recording_the_test_as_not_scorable_clears_a_stop_over_its_numbers_and_the_message_says_so(self):
+        for fid, key, value, at_load in self.NUMBERS:
+            with self.subTest(f"{fid}.{key} = {str(value)[:14]}"):
+                res = base()
+                res["results"][fid][key] = value
+                message = self.stop(res, at_load)
+                self.assertTrue(message.startswith(f"render: {fid}.{key}"), message)
+                self.assertIn(f"data/forward/{STAMPED}/result.json", message, "the file")
+                self.assertIn("set the result of that test to 'not scorable' and give a why (the numbers of a test that is not scorable are not read)",
+                              message, "what clears it")
+                self.assertLess(len(message), 700)
+                # what the message says: change the word and give a reason. The numbers stay in the file and are not read.
+                res["results"][fid].update(result="not scorable", why="recorded by hand")
+                card = card_node(self.page(res), "forward")
+                row = next(li for li in card.find_all("li") if li.attrs.get("data-k") == fid)
+                self.assertEqual(row.find("span", "fword").text().strip(), "not scorable")
+                self.assertIn("Not scorable: recorded by hand. It is never estimated.", re.sub(r"\s+", " ", row.text()))
+                self.assertEqual(len(card.find_all("circle", "sk")), 2 * 3, "a dot for each of the other three tests, in two drawings")
+
+    def test_the_numbers_of_a_test_that_is_not_scorable_draw_nothing_and_widen_nothing(self):
+        """The scorer's own output for a zero total (F4 a MISS with a share of NaN) after the hand edit its message asked for, and an F1
+        that carries junk beside its reason."""
+        res = base()
+        res["results"]["F4"].update(result="not scorable", why="zero total volume")
+        res["results"]["F1"] = {"result": "not scorable", "why": "no RPC read", "balance_near": 9e99, "block_height": "x"}
+        res["results"]["F4"]["intents_share_pct"] = float("nan")
+        card = card_node(self.page(res), "forward")
+        self.assertEqual([li.find("span", "fword").text().strip() for li in card.find_all("li") if li.attrs.get("data-k")],
+                         ["not scorable", "PASS", "MISS", "not scorable"])
+        for svg in card.find_all("svg", "svg"):
+            by_id = {g.attrs["data-id"]: g for g in svg.find_all("g", "nl")}
+            self.assertEqual((by_id["F1"].find("circle", "sk"), by_id["F4"].find("circle", "sk")), (None, None))
+            self.assertEqual((float(by_id["F1"].attrs["data-hi"]), float(by_id["F4"].attrs["data-hi"])), (2.6, 100.0), "the default axes")
+        self.assertEqual([n.text() for n in card.iter() if n.attrs.get("data-f", "").startswith("F4.") and not n.attrs["data-f"].endswith(".why")], [])
+
+    # ---- shapes that raised a traceback
+    def test_a_test_that_is_not_an_object_stops_the_render_naming_the_file_and_the_test(self):
+        for label, value in (("a string", "not scorable"), ("null", None), ("a list", []), ("a number", 5), ("true", True), ("a float", 1.5)):
+            with self.subTest(label):
+                message = self.stop(self.changed("F4", value))
+                self.assertTrue(message.startswith(f"render: F4 in data/forward/{STAMPED}/result.json is "), message)
+                self.assertIn("not an object", message)
+                self.assertIn('"result": "not scorable"', message, "it shows what to write")
+
+    def test_each_of_the_four_tests_is_looked_at(self):
+        for fid in R.FORWARD_IDS:
+            with self.subTest(fid):
+                self.assertTrue(self.stop(self.changed(fid, None)).startswith(f"render: {fid} in "))
+
+    def test_a_pass_or_miss_without_a_number_the_card_prints_stops_the_render(self):
+        keys = [(fid, key) for fid, names in R.FORWARD_NUMBERS.items() for key in names]
+        self.assertEqual(len(keys), 8, "eight numbers are printed in the list")
+        for fid, key in keys:
+            with self.subTest(f"{fid}.{key}"):
+                res = base()
+                del res["results"][fid][key]
+                message = self.stop(res)
+                self.assertTrue(message.startswith(f"render: {fid}.{key} is missing from data/forward/{STAMPED}/result.json"), message)
+                self.assertIn(f"but {fid} is {res['results'][fid]['result']} and the card prints it", message)
+                self.assertIn("set the result of that test to 'not scorable' and give a why", message)
+
+    def test_a_number_that_is_not_a_number_stops_the_render_and_the_message_says_what_it_is(self):
+        for fid, names in R.FORWARD_NUMBERS.items():
+            for key in names:
+                for label, value, said in (("text", "12.5", "the text '12.5'"), ("null", None, "null"), ("true", True, "true"), ("false", False, "false"),
+                                           ("a list", [1], "a list"), ("an object", {"a": 1}, "an object")):
+                    with self.subTest(f"{fid}.{key} as {label}"), tempfile.TemporaryDirectory() as d:
+                        res = base()
+                        res["results"][fid][key] = value
+                        write_forward(Path(d), STAMPED, res)
+                        with self.assertRaises(SystemExit) as caught:
+                            R.load_forward(Path(d))
+                        self.assertIn(f"render: {fid}.{key} in data/forward/{STAMPED}/result.json is {said}, not a number", str(caught.exception))
+
+    def test_a_long_text_in_a_message_is_cut(self):
+        res = base()
+        res["results"]["F4"]["intents_share_pct"] = "9" * 500
+        message = self.stop(res)
+        self.assertIn("(cut)", message)
+        self.assertLess(len(message), 700)
+
+    def test_a_reason_that_is_not_text_stops_the_render_but_only_where_it_is_printed(self):
+        for label, value in (("null", None), ("a number", 5), ("a list", ["x"]), ("an object", {"a": 1}), ("true", True)):
+            with self.subTest(label):
+                message = self.stop(self.changed("F4", {"result": "not scorable", "why": value}))
+                self.assertTrue(message.startswith(f"render: F4.why in data/forward/{STAMPED}/result.json is "), message)
+                self.assertIn("not text", message)
+        res = base()
+        res["results"]["F3"]["why"] = 5          # a PASS or MISS does not print a reason, so one it carries is not read
+        self.assertIsNotNone(card_node(self.page(res), "forward"))
+
+    def test_a_test_the_file_does_not_record_is_drawn_as_not_scorable_with_no_reason_recorded(self):
+        """As it always was, and as tests/test_score_forward.py pins (its fixture records F1 only). The scorer writes all four."""
+        res = base()
+        del res["results"]["F2"]
+        del res["results"]["F3"]
+        card = card_node(self.page(res), "forward")
+        rows = {li.attrs["data-k"]: re.sub(r"\s+", " ", li.find("p", "tnote").text()).strip() for li in card.find_all("li") if li.attrs.get("data-k")}
+        self.assertEqual(rows["F2"], "Not scorable: no reason recorded. It is never estimated.")
+        self.assertEqual(rows["F3"], "Not scorable: no reason recorded. It is never estimated.")
+        self.assertEqual(re.sub(r"\s+", " ", card.find("h3").text()), "Forward tests scored: 0 passed, 2 missed and 2 not scorable of 4.")
+
+    def test_a_value_is_named_in_a_message_as_what_it_is(self):
+        kind = R.json_kind
+        self.assertEqual([kind(None), kind(True), kind(False), kind([1]), kind({}), kind(5), kind(2.5), kind(float("nan"))],
+                         ["null", "true", "false", "a list", "an object", "5", "2.5", "nan"])
+        self.assertEqual(kind("x" * 30), "the text " + repr("x" * 30), "thirty characters are shown whole")
+        self.assertEqual(kind("x" * 31), "the text " + repr("x" * 30) + " (cut)")
+        self.assertEqual(kind(10 ** 30 - 1), str(10 ** 30 - 1))
+        self.assertEqual(kind(10 ** 30), "an integer too large to print")
+
+    def test_the_word_the_page_prints_for_a_test_comes_from_one_place(self):
+        fw = {"results": {"F1": {"result": "PASS"}, "F2": {"result": "MISS"}, "F3": {"result": "not scorable"}, "F4": "anything", "F5": {"result": "PASS"}}}
+        self.assertEqual([R.forward_word(fw, f) for f in R.FORWARD_IDS], ["PASS", "MISS", "not scorable", "not scorable"])
+        self.assertEqual(R.forward_word({"results": {}}, "F2"), "not scorable", "a test the file does not record")
+        self.assertEqual(R.forward_word({"results": {"F1": {}}}, "F1"), "not scorable", "a test with no word")
+        self.assertEqual([R.forward_word(None, f) for f in R.FORWARD_IDS], ["pending"] * 4)
+
+    def test_the_scorecard_counts_with_the_word_of_the_card_even_for_a_context_the_loader_did_not_build(self):
+        """The scorecard read the word on its own and raised AttributeError for a test that is not an object. The loader stops those now; the
+        scorecard no longer depends on that."""
+        ctx = R.Ctx()
+        ctx.forward = {"results": {"F1": {"result": "PASS"}, "F2": "x", "F3": None, "F4": {"result": "MISS"}}, "_path": "p"}
+        tile = [n for n in parsed(R.scorecard(ctx)).find_all("li") if "tile" in n.classes()][4]
+        self.assertIn("1 pass, 1 miss", tile.text())
+        self.assertIn("2 not scorable", tile.text())
+
+    def test_keys_and_tests_the_card_does_not_know_are_ignored(self):
+        res = base()
+        res["results"]["F5"] = "anything"
+        res["results"]["F1"]["something_new"] = {"a": [1, 2]}
+        self.assertEqual(len([li for li in card_node(self.page(res), "forward").find_all("li") if li.attrs.get("data-k")]), 4)
+
+
+# ---- what the real scorer can write
+RPC_ERROR = ("RuntimeError: rpc block {'finality': 'final'}: {'name': 'HANDLER_ERROR', 'cause': {'info': {}, 'name': 'UNKNOWN_BLOCK'}, "
+             "'code': -32000, 'message': 'Server error', 'data': 'DB Not Found Error: BLOCK HEIGHT: 223230811'}")
+LONG_RPC_ERROR = " ".join([RPC_ERROR] * 12)[:2395]     # the reviewer's reproduction: an RPC error text of 2,395 characters
+NS = "not scorable"
+
+
+def without(snap: dict, source: str, error: str) -> dict:
+    """A fetch that failed: no source, and the error text that fetch_all keeps for it."""
+    del snap["sources"][source]
+    snap["errors"][source] = error
+    return snap
+
+
+def drop_day(snap: dict, source: str, day: str) -> dict:
+    """One UTC day taken out of a DefiLlama series."""
+    data = snap["sources"][source]["data"]
+    data["totalDataChart"] = [row for row in data["totalDataChart"] if sf.day_of(row[0]) != day]
+    return snap
+
+
+def drop_supply_day(snap: dict, day: str) -> dict:
+    data = snap["sources"]["nearblocks_charts"]["data"]
+    data["charts"] = [row for row in data["charts"] if row["date"][:10] != day]
+    return snap
+
+
+def zero_volumes(snap: dict, peers: tuple[str, ...] | list[str] = tuple(sf.PEERS)) -> dict:
+    for peer in peers:
+        data = snap["sources"][f"llama_volume_{peer}"]["data"]
+        data["totalDataChart"] = [[t, 0] for t, _ in data["totalDataChart"]]
+    return snap
+
+
+def scorer_inputs() -> list[tuple[str, dict, tuple[str, str, str, str]]]:
+    """(what is wrong with the snapshot, the result.json that the real score() and main() write for it, the word it gives F1 to F4)."""
+    out = []
+
+    def add(label: str, res: dict, words: tuple[str, str, str, str]) -> None:
+        out.append((label, res, words))
+
+    fresh = realistic_snapshot
+    add("the committed snapshots", scored_result(fresh()), ("MISS", "PASS", "MISS", "MISS"))
+    add("F1: the RPC read failed", scored_result(without(fresh(), "rpc_f1", RPC_ERROR)), (NS, "PASS", "MISS", "MISS"))
+    add("F1: the RPC read failed with an error of 2,395 characters", scored_result(without(fresh(), "rpc_f1", LONG_RPC_ERROR)), (NS, "PASS", "MISS", "MISS"))
+    add("F1: no error was kept for the failed read", scored_result({**without(fresh(), "rpc_f1", "x"), "errors": {}}), (NS, "PASS", "MISS", "MISS"))
+    add("F2: Nearblocks failed", scored_result(without(fresh(), "nearblocks_charts", "URLError: <urlopen error timed out>")), ("MISS", NS, "MISS", "MISS"))
+    add("F2: a day of total_supply is missing", scored_result(drop_supply_day(fresh(), "2026-11-01")), ("MISS", NS, "MISS", "MISS"))
+    add("F3: the revenue fetch failed", scored_result(without(fresh(), "llama_revenue_near-intents", "RuntimeError: GET failed")), ("MISS", "PASS", NS, "MISS"))
+    add("F3: a day of revenue is missing", scored_result(drop_day(fresh(), "llama_revenue_near-intents", "2026-11-01")), ("MISS", "PASS", NS, "MISS"))
+    add("F3 and F4: Intents' own volume fetch failed", scored_result(without(fresh(), "llama_volume_near-intents", "RuntimeError: GET failed")),
+        ("MISS", "PASS", NS, NS))
+    add("F3 and F4: fetched before the cutoff", scored_result(fresh("2026-11-13T23:00:00Z")), ("MISS", "PASS", NS, NS))
+    add("F4: a peer's fetch failed", scored_result(without(fresh(), "llama_volume_maya-protocol", "RuntimeError: GET failed")), ("MISS", "PASS", "MISS", NS))
+    add("F4: a day of a peer is missing", scored_result(drop_day(fresh(), "llama_volume_maya-protocol", "2026-11-01")), ("MISS", "PASS", "MISS", NS))
+    add("F3 and F4: Intents' own volume is zero", scored_result(zero_volumes(fresh(), ["near-intents"])), ("MISS", "PASS", NS, "MISS"))
+    every = fresh()
+    every["sources"] = {}
+    every["errors"] = {"rpc_f1": RPC_ERROR, "nearblocks_charts": "URLError: boom"}
+    add("every fetch failed", scored_result(every), (NS, NS, NS, NS))
+    add("the real window, with data that end on 2026-11-04", scored_result(fresh(), sf.WINDOW), ("MISS", NS, NS, NS))
+    return out
+
+
+class WhatTheScorerCanWrite(unittest.TestCase):
+    """The scoring-day inputs: the result.json that the real score() and main() write when the committed snapshots are complete, and when
+    a fetch failed, a day is missing, the volume is zero, or the data stop before the window ends. Every one of them renders, and its page
+    ties to it. The one exception is a share of zero over zero, which the scorer writes as a MISS with a share of NaN: no honest number can
+    be drawn, so the render stops (HandEditedResults) with a message that says how to clear it."""
+
+    def test_each_input_gives_the_words_it_was_built_to_give(self):
+        inputs = scorer_inputs()
+        self.assertGreaterEqual(len(inputs), 15)
+        for label, res, words in inputs:
+            with self.subTest(label):
+                self.assertEqual(tuple(res["results"][f]["result"] for f in R.FORWARD_IDS), words)
+                self.assertEqual((res["mode"], res["is_score"]), ("score", True))
+
+    def test_every_result_the_scorer_writes_renders_and_its_page_ties_to_it(self):
+        for label, res, words in scorer_inputs():
+            with self.subTest(label):
+                ctx = context(res)
+                dom, page = parsed(R.card_forward(ctx)), R.build_page(ctx)
+                card = card_node(dom, "forward")
+                listed = [n.text().strip() for n in card.find_all("span") if "data-status" in n.attrs]
+                self.assertEqual(listed, list(words))
+                table = next(t for t in card.find_all("table") if t.find("caption").text() == "Forward tests as frozen")
+                self.assertEqual([tr.find_all("td")[2].text().strip() for tr in table.find_all("tr") if tr.find_all("td")], list(words))
+                self.assertGreater(check_forward_numbers(self, dom, res), 3)
+                self.assertLessEqual(max(len(line) for line in page.split("\n")), 2000)
+                counts = {w: words.count(w) for w in ("PASS", "MISS", NS)}
+                self.assertEqual(re.sub(r"\s+", " ", card.find("h3").text()),
+                                 f"Forward tests scored: {counts['PASS']} passed, {counts['MISS']} missed and {counts[NS]} not scorable of 4.")
+                tile = [n for n in parsed(R.scorecard(ctx)).find_all("li") if "tile" in n.classes()][4]
+                self.assertIn(f"{counts['PASS']} pass, {counts['MISS']} miss", tile.text())
+                for li in card.find_all("li"):
+                    fid = li.attrs.get("data-k")
+                    if fid in R.FORWARD_IDS and res["results"][fid]["result"] == NS:
+                        why = " ".join(ascii_words(res["results"][fid]["why"]))
+                        self.assertEqual(" ".join(ascii_words(li.find("p", "tnote").text())), f"Not scorable: {why}. It is never estimated.", fid)
+                for svg in card.find_all("svg", "svg"):       # a dot for each test that has a number, none for the others
+                    self.assertEqual(len(svg.find_all("circle", "sk")), sum(1 for w in words if w != NS), label)
+
+    def test_a_zero_total_volume_is_the_one_result_that_cannot_be_drawn_and_it_stops_with_a_message(self):
+        res = scored_result(zero_volumes(realistic_snapshot()))
+        self.assertEqual(tuple(res["results"][f]["result"] for f in R.FORWARD_IDS), ("MISS", "PASS", NS, "MISS"))
+        self.assertEqual(res["results"]["F3"]["why"], "zero volume")
+        self.assertTrue(math.isnan(res["results"]["F4"]["intents_share_pct"]), "the scorer writes a share of NaN, not 'not scorable'")
+        with tempfile.TemporaryDirectory() as d:
+            write_forward(Path(d), STAMPED, res)
+            raw = (Path(d) / STAMPED / "result.json").read_text(encoding="utf-8")
+            self.assertIn('"intents_share_pct": NaN', raw)                # what a file written by json.dumps holds
+            with self.assertRaises(SystemExit) as caught:
+                R.render(forward_dir=Path(d))
+        message = str(caught.exception)
+        self.assertTrue(message.startswith("render: F4.intents_share_pct is nan, not a finite number"), message)
+        self.assertIn(f"data/forward/{STAMPED}/result.json", message)
+        res["results"]["F4"].update(result=NS, why="zero total volume over the window")        # the edit the message asks for
+        dom = parsed(R.card_forward(context(res)))
+        self.assertGreater(check_forward_numbers(self, dom, res), 5)
+        self.assertEqual([n.text().strip() for n in card_node(dom, "forward").find_all("span") if "data-status" in n.attrs],
+                         ["MISS", "PASS", NS, NS])
+
+
+# ---- a long reason
+def longest_line(page: str) -> int:
+    return max(len(line) for line in page.split("\n"))
+
+
+class LongReasons(unittest.TestCase):
+    """F1's reason for 'not scorable' is the text of the RPC error, which can run to thousands of characters, and the suite fails on a line of
+    the page over 2,000 (tests/test_render.py, LineBreaks). A 2,395-character reason made the page a line of 2,623 and the suite fail on
+    scoring day, though `render` and `render --check` passed. The reason is now broken at spaces, one source line at most R.REASON_LINE."""
+
+    @staticmethod
+    def page_with(why: str) -> tuple[Node, str, dict]:
+        """(the forward card parsed, the whole page, the result) for a scored result whose F1 is not scorable for this reason."""
+        res = base()
+        res["results"]["F1"] = {"result": NS, "why": why}
+        ctx = context(res)
+        return parsed(R.card_forward(ctx)), R.build_page(ctx), res
+
+    def span(self, dom: Node) -> Node:
+        found = [n for n in dom.iter() if n.attrs.get("data-f") == "F1.why"]
+        self.assertEqual(len(found), 1)
+        return found[0]
+
+    def test_the_reviewers_2395_character_reason_keeps_every_line_short_and_its_text(self):
+        self.assertEqual(len(LONG_RPC_ERROR), 2395)
+        dom, page, res = self.page_with(LONG_RPC_ERROR)
+        self.assertLessEqual(longest_line(page), 2000)
+        self.assertEqual(ascii_words(self.span(dom).text()), ascii_words(LONG_RPC_ERROR))
+        self.assertGreater(check_forward_numbers(self, dom, res), 3)
+        short = self.page_with("a DefiLlama peer fetch is missing")[1].split("\n")
+        extra = [line for line in page.split("\n") if line not in set(short)]
+        self.assertGreater(len(extra), 2, "the reason takes several lines of the page")
+        self.assertLessEqual(max(len(line) for line in extra), R.REASON_LINE + 120)
+
+    def test_the_old_code_made_a_line_of_more_than_2000_characters_of_the_same_reason(self):
+        """The control: the reason as the old code wrote it, whole on one line (this checks the premise of the test above, not the render)."""
+        _, page, _ = self.page_with(LONG_RPC_ERROR)
+        unwrapped = page.replace(R.wrap_reason(LONG_RPC_ERROR), R.esc(LONG_RPC_ERROR))
+        self.assertNotEqual(unwrapped, page)
+        self.assertGreater(longest_line(unwrapped), 2000)
+
+    def test_one_word_of_3000_characters_has_no_space_to_break_at_and_is_cut_in_the_source_only(self):
+        word = "q" * 3000
+        dom, page, res = self.page_with(word)
+        self.assertLessEqual(longest_line(page), 2000)
+        self.assertEqual(self.span(dom).text(), word, "the text is the word, whole: the break is a comment, which is not text")
+        self.assertEqual(page.count(R.SOURCE_BREAK), 2, "three pieces of at most R.REASON_LINE characters")
+        self.assertGreater(check_forward_numbers(self, dom, res), 3)
+        self.assertIn(R.SOURCE_BREAK, page)
+
+    def test_a_reason_of_quote_marks_is_measured_as_the_page_writes_it(self):
+        """A quote mark is six characters in the page (&#x27;). 1,500 of them are 9,000, so they are cut by what they take in the source."""
+        dom, page, res = self.page_with("'" * 1500)
+        self.assertLessEqual(longest_line(page), 2000)
+        self.assertEqual(self.span(dom).text(), "'" * 1500)
+        words = self.page_with("' " * 3000)
+        self.assertLessEqual(longest_line(words[1]), 2000)
+        self.assertEqual(ascii_words(self.span(words[0]).text()), ["'"] * 3000)
+
+    def test_white_space_in_a_reason_is_drawn_as_one_space_and_a_blank_reason_as_nothing(self):
+        dom, _, _ = self.page_with("a\t b\n\n  c\r\nd")
+        self.assertEqual(ascii_words(self.span(dom).text()), ["a", "b", "c", "d"])
+        for blank in ("", "   \n "):
+            dom, page, _ = self.page_with(blank)
+            self.assertEqual(self.span(dom).text(), "")
+            self.assertLessEqual(longest_line(page), 2000)
+
+    def test_a_non_breaking_space_and_a_line_separator_are_drawn_as_they_are(self):
+        """Only ASCII white space is cut at: str.split() would also turn U+00A0 and U+2028 into spaces, which changes the drawing (a browser does not
+        break at a non-breaking space) and the height of the note on a narrow screen."""
+        why = "a\u00a0b\u2028c d"
+        dom, _, _ = self.page_with(why)
+        self.assertEqual(self.span(dom).text(), why)
+
+    def test_the_line_breaks_of_the_page_still_add_only_newlines_around_a_wrapped_reason(self):
+        for why in (LONG_RPC_ERROR, "q" * 3000, "'" * 1500):
+            with self.subTest(why[:12]):
+                res = base()
+                res["results"]["F1"] = {"result": NS, "why": why}
+                ctx = context(res)
+                plain, broken = R.build_page(ctx, breaks=False), R.build_page(ctx)
+                self.assertGreater(len(broken), len(plain))
+                self.assertEqual(plain.replace("\n", ""), broken.replace("\n", ""), "break_lines added newlines and nothing else")
+                self.assertEqual(R.break_lines(broken), broken, "and it is idempotent on this page")
+
+    # ---- wrap_reason on its own
+    def test_wrap_reason_escapes_and_leaves_a_short_reason_alone(self):
+        self.assertEqual(R.wrap_reason("a DefiLlama peer fetch is missing or before 2026-11-14"), "a DefiLlama peer fetch is missing or before 2026-11-14")
+        self.assertEqual(R.wrap_reason('a < b & "c" \'d\''), "a &lt; b &amp; &quot;c&quot; &#x27;d&#x27;")
+        self.assertEqual(R.wrap_reason(""), "")
+
+    def test_wrap_reason_breaks_at_spaces_and_no_line_is_longer_than_the_width(self):
+        text = " ".join(f"word{i}" for i in range(300))
+        for width in (20, 57, 100, 1000):
+            with self.subTest(width=width):
+                lines = R.wrap_reason(text, width).split("\n")
+                self.assertTrue(all(len(line) <= width for line in lines), max(map(len, lines)))
+                self.assertEqual(" ".join(lines), text, "a newline stands where a space was, and nothing else changed")
+                self.assertTrue(all(len(a) + 1 + len(b.split(" ")[0]) > width for a, b in zip(lines, lines[1:])), "no line is broken early")
+
+    def test_wrap_reason_cuts_a_word_that_no_line_can_hold_without_cutting_an_entity(self):
+        for word in ("x" * 100, "&" * 100, "'" * 70, "a<b" * 40):
+            with self.subTest(word[:6]):
+                marked = R.wrap_reason("start " + word + " end", 30)
+                lines = marked.split("\n")
+                self.assertEqual(lines[0], "start")
+                self.assertEqual(lines[-1], "end")
+                pieces = "\n".join(lines[1:-1]).split(R.SOURCE_BREAK)
+                self.assertGreater(len(pieces), 1)
+                self.assertTrue(all(len(piece) <= 30 for piece in pieces), [len(p) for p in pieces])
+                self.assertEqual(html.unescape("".join(pieces)), word, "no entity is cut: the pieces read back as the word")
+                for piece in pieces:
+                    self.assertEqual(html.unescape(piece).count("&"), piece.count("&amp;"), "a piece holds whole entities")
+
+    def test_the_source_break_is_a_comment_that_holds_only_a_newline(self):
+        self.assertEqual(R.SOURCE_BREAK, "<!--\n-->")
+        dom, errors = parse("<p>ab" + R.SOURCE_BREAK + "cd</p>")
+        self.assertEqual((errors, dom.find("p").text()), ([], "abcd"))
+
+
 class FreezeOrder(unittest.TestCase):
     """The page says the freeze came before the first BigQuery result the repository records only because the manifest says so; if it
     ever does not, the render stops. The boundary is the instant of the freeze commit itself."""
@@ -541,6 +1031,38 @@ class WhatMainReports(unittest.TestCase):
         self.assertRegex(out, r"^render: wrote site/index\.html " + self.SUMMARY + "\n$")
         write.assert_called_once()
         self.assertEqual(write.call_args.args[0], ROOT / R.SITE_DIR / R.PAGE_NAME)
+
+    def test_the_byte_count_fingerprint_and_date_the_readme_quotes_are_the_pages(self):
+        """README.md step 6 prints what `render --check` and `render` print: the size of the page, the data fingerprint and the data date. Nothing
+        compared them with the page, so every commit that changed the page could leave the README quoting an old size (it did, three times)."""
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        quoted = re.findall(r"site/index\.html \(([\d,]+) bytes\), data fingerprint ([0-9a-f]{16}), data as of (\d{4}-\d{2}-\d{2})", readme)
+        self.assertEqual(len(quoted), 2, "step 6 of README.md quotes the line twice: after `render --check` and after `render`")
+        files, ctx = R.build_site()
+        want = (f"{len(files[PAGE_KEY]):,}", ctx.fingerprint, ctx.m["asof"])
+        for got in quoted:
+            self.assertEqual(got, want, f"README.md step 6 quotes (N bytes) = {got[0]}, fingerprint {got[1]}, data as of {got[2]}; the page is "
+                                        f"{want[0]} bytes, fingerprint {want[1]}, data as of {want[2]}. Edit those two lines of README.md to say so "
+                                        "(`python3 -m pipeline.render --check` prints them).")
+
+    def test_a_given_forward_dir_is_not_this_repositorys_own_render_so_the_hint_carries_it(self):
+        """`render --check --forward-dir DIR` without --out was taken for the repository's own check, and its hint said to run
+        `python3 -m pipeline.render` and commit the result, which reads data/forward and not DIR: following it could not make the check pass."""
+        with tempfile.TemporaryDirectory() as d:
+            scored = Path(d) / "scored"
+            res = fixture_result()
+            res["scored_at"] = "1999-12-31T23:59:59Z"                  # a score no committed page can contain, even a rehearsal built from the fixture
+            write_forward(scored, STAMPED, res)                        # so this page differs from the committed one, pending or scored
+            code, out, err = self.run_main("--check", "--forward-dir", str(scored))
+            site = ROOT / R.SITE_DIR
+            self.assertEqual((code, out), (1, ""))
+            self.assertIn(f"FAIL  differs from a fresh render: {site / R.PAGE_NAME}", err)
+            self.assertIn(f"render: {site} is out of date; run `python3 -m pipeline.render --forward-dir {scored} --out {site}`", err)
+            self.assertNotIn("and commit the result", err)
+            # and the hint works: the check passes against the folder the hint writes
+            elsewhere = Path(d) / "site"
+            self.assertEqual(self.run_main("--forward-dir", str(scored), "--out", str(elsewhere))[0], 0)
+            self.assertEqual(self.run_main("--check", "--forward-dir", str(scored), "--out", str(elsewhere))[0], 0)
 
     def test_the_hint_for_a_root_that_is_not_this_repo_carries_its_arguments(self):
         """Following the hint must render THAT root and THAT forward folder, not this repository's data."""
