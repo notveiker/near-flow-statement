@@ -1315,7 +1315,10 @@ def card_h1c(ctx: Ctx) -> str:
         notes=(f'With label coverage below {ctx.K("h1b_coverage_min_pct")}%, H1c passes only if it clears {ctx.K("h1c_min_pct")}% under both bounds. '
                f'It clears the bar against the lower bound and falls far short against the upper, so it is inconclusive; it inherits every limit of '
                f'H1b, including the {ctx.M("h1b_coverage_count_pct")}% label coverage.',
-               'ETF and treasury-company holdings are not part of the test. The buyback wallet&rsquo;s NEAR is held, not burned.'),
+               f'The balance growth is the pre-registered numerator and all of it is used. {ctx.M("bb_deliveries_90d_m")}M NEAR of it is delivery from <code>intents.near</code> in the committed escrow table; '
+               f'the other {ctx.M("bb_growth_not_delivered_m")}M NEAR ({ctx.M("bb_growth_not_delivered_pct")}%) is not, and a read of the chain on 2026-11-08 traces most of it to a DAO transfer from another NEAR revenue wallet '
+               f'(THESIS.md, Limits). The verdict is inconclusive whichever numerator is used.',
+               'ETF and treasury-company holdings are not part of the test: PREREG.md says they would be reported where they can be measured, and none was measured. The buyback wallet&rsquo;s NEAR is held, not burned.'),
         source=source_p(ctx, sql=("sql/h1b_a_native_flows.sql", "sql/h1b_b_wnear_logs.sql"),
                         raw=("raw/rpc/buyback_balance_endpoints.json", "raw/bq/h1b_a_native_flows.json", "raw/bq/h1b_b_wnear_logs.json"),
                         code=("pipeline/h1b.py",),
@@ -1420,7 +1423,7 @@ def card_rating(ctx: Ctx) -> str:
         extra=f'{rule}{figs}',
         notes=(f'G_req is the annual growth in captured Intents revenue ({ctx.M("rating_r90_usd_m")}M USD over the last 90 days, DefiLlama) needed for it to equal '
                f'the USD value of net new supply by 2031-11-04. G_obs is the growth of the last 180 days over the 180 before, annualized.',
-               'G_req assumes HSP-029&rsquo;s issuance ramp. Its on-chain timelock ends on 2026-11-16, after the submission deadline, and the proposal text also says the cut needs validator adoption through a protocol upgrade; we state it as a pending resolver and do not predict it.',
+               'G_req assumes HSP-029&rsquo;s issuance ramp. Its on-chain timelock ends on 2026-11-16 by our sum of the proposal&rsquo;s voting start, voting period and timelock period (no published text gives the date), after the submission deadline, and the proposal text also says the cut needs validator adoption through a protocol upgrade; we state it as a pending resolver and do not predict it.',
                f'Under the range rule as read before the results, a low-coverage H1b can come out pass or inconclusive, never fail, so the Avoid branch cannot be '
                f'reached while coverage is below {ctx.K("h1b_coverage_min_pct")}%. The exploratory ladder below does not feed the rule.'),
         source=source_p(ctx, raw=("raw/rpc/rating_assumptions.json", "raw/rpc/epoch_issuance.json",
@@ -1622,7 +1625,7 @@ def card_forward(ctx: Ctx) -> str:
         headline = (f'Forward tests scored: <span data-f="@count.PASS" data-scale="1">{counts["PASS"]}</span> passed, '
                     f'<span data-f="@count.MISS" data-scale="1">{counts["MISS"]}</span> missed and '
                     f'<span data-f="@count.not scorable" data-scale="1">{counts["not scorable"]}</span> not scorable of 4.')
-        shows = (f'The four predictions frozen in PREREG.md before the window {esc(w0)} to {esc(w1)}, scored exactly as written by '
+        shows = (f'The four predictions frozen in PREREG.md before the window {esc(w0)} to {esc(w1)}, scored as written, with the scorer&rsquo;s operational readings (PREREG-ADDENDUM.md, 2026-11-08 02:03 UTC entry, item 7), by '
                  f'<code>python3 -m pipeline.score_forward --score</code> on <span data-f="scored_at" data-scale="1">{esc(fw.get("scored_at", ""))}</span> '
                  f'from data fetched at <span data-f="snapshot_fetched_at" data-scale="1">{esc(fw.get("snapshot_fetched_at", ""))}</span>.')
         notes = ('Every result is published, misses included. A test with missing data is scored "not scorable" and never estimated.',
@@ -1946,7 +1949,7 @@ def card_take(ctx: Ctx) -> str:
                f'{ctx.M("take_b3_vol_with_bb_pct")}% in the last), not because SwapKit&rsquo;s share fell: it stayed between {ctx.M("take_b1_swapkit_vol_pct")}% and '
                f'{ctx.M("take_b3_swapkit_vol_pct")}%.',
                f'1Click&rsquo;s share of DefiLlama&rsquo;s volume falls from {ctx.M("oneclick_share_of_llama_week_before_0901_pct")}% in the week before 2026-09-01 to '
-               f'{ctx.M("oneclick_share_of_llama_week_after_0901_pct")}% in the week from that day, with no matching change in 1Click&rsquo;s own volume. That is consistent with '
+               f'{ctx.M("oneclick_share_of_llama_week_after_0901_pct")}% in the week from that day, with no matching change in 1Click&rsquo;s own volume (both shares are on the halved, one-sided basis used elsewhere on this page; on DefiLlama&rsquo;s reported basis they would be half as large). That is consistent with '
                f'DefiLlama counting more of Intents&rsquo; volume from that date; if so, the first block&rsquo;s {ctx.M("take_b1_captured_bp")} bp is overstated and the true '
                f'rise is, if anything, larger.',
                'Partner numbers rest on one key-gated source, the Explorer API.'),
@@ -2264,7 +2267,7 @@ def card_revenue(ctx: Ctx) -> str:
                  f'Units: USD million (Panel A) and basis points (Panel B). Both axes start at zero.'),
         extra=figs,
         notes=(f'Revenue before the 2026-02-23 fee switch counts as captured, as DefiLlama labels it. Reported volume was ${ctx.S("intents_monthly.2026-10.vol_b")}B in October. '
-               f'The volume is DefiLlama&rsquo;s reported leg-sum, which steps up on 2026-09-01 (see the take chart above).',
+               f'The volume is what DefiLlama reports (it appears to count both legs of a swap; its adapter states no methodology), and it steps up on 2026-09-01 (see the take chart above).',
                f'The last month covers {partial_month_note(ctx)} only. Forward test F3 asks whether the captured take over 2026-11-06 to 2026-11-13 is below '
                f'{ctx.K("f3_max_bp")} bp; this chart is context for it, not the test.'),
         source=source_p(ctx, raw=("raw/llama/volume_near-intents.json", "raw/llama/dailyRevenue_near-intents.json", "raw/llama/fees_near-intents.json"),
@@ -2332,7 +2335,7 @@ def card_supply(ctx: Ctx) -> str:
         headline=(f'NEAR&rsquo;s supply grew {ctx.M("net_supply_growth_365d_pct")}% over 365 days; net issuance ran at {ctx.M("net_issuance_near_per_day_30d_k")}K NEAR a day '
                   f'over the last 30 days.'),
         shows=(f'Total NEAR supply at each month end and day-to-day net issuance (mint minus burn) over the 90 days {window_text(ctx, 90)}; net issuance is the quantity the ladder is measured against.'),
-        notshows=('Who receives the issuance, or what changes after HSP-029, an issuance cut whose on-chain timelock ends on 2026-11-16, after the deadline, and which also needs validator adoption.'),
+        notshows=('Who receives the issuance, or what changes after HSP-029, an issuance cut whose on-chain timelock ends on 2026-11-16 by our own sum of the contract&rsquo;s periods, after the deadline, and which also needs validator adoption.'),
         figure=fig,
         caption=f'Window: Panel A, month ends from {esc(me_dates[0])} to {esc(me_dates[-1])} (the last point is the as-of date); Panel B, the 90 days {window_text(ctx, 90)} (UTC). Units: million NEAR and thousand NEAR a day.',
         extra=figs,
@@ -2566,8 +2569,8 @@ def not_computed(ctx: Ctx) -> str:
         ("Who the sellers were.", 'NEAR is fungible, so every flow here is a market-wide balance. Nothing says which coins were sold.'),
         ("Longer-dated predictions P1 to P3.", 'They resolve on 2027-05-04 and 2027-11-04 and cannot be scored yet.'),
         ("HSP-029&rsquo;s issuance cut.",
-         'Its on-chain timelock ends on 2026-11-16, after the submission deadline, and the proposal text also says the cut needs validator adoption through a protocol upgrade. G_req assumes the ramp; we state it as a pending resolver and do not predict it.'),
-        ("Earlier work.", 'Prior exploratory work on NEAR&rsquo;s revenue dashboard and the front-end fund&rsquo;s history is not in this repo and is not cited.'),
+         'Its on-chain timelock ends on 2026-11-16 by our sum of the proposal&rsquo;s voting start, voting period and timelock period (no published text gives the date), after the submission deadline, and the proposal text also says the cut needs validator adoption through a protocol upgrade. G_req assumes the ramp; we state it as a pending resolver and do not predict it.'),
+        ("Earlier work.", f'An earlier analysis of {ctx.M("unstakers_a14_n")} accounts that reach one unlabelled hub (THESIS.md, the supply-side section, and docs/supply-side.md) is exploratory and is not reproduced here; the repository does not record when it was done or whether it preceded the freeze (PREREG-ADDENDUM.md, 2026-11-08 02:03 UTC entry, item 5). No card on this page uses it.'),
     ]
     lis = "".join(f"<li><strong>{a}</strong> {b}</li>" for a, b in items)
     return (f'<section id="not-computed" aria-labelledby="nc-h"><h2 id="nc-h">Not computed here</h2>'
@@ -2626,7 +2629,7 @@ def limits(ctx: Ctx) -> str:
         ("The name-filter check", 'behind the lst-pool.near sensitivity read sampled validator sets, not every epoch.'),
         ("The upper bound is mechanical.", 'It treats every unlabelled top-100 receiver as an exchange, including accounts that are probably not.'),
         ("DefiLlama&rsquo;s revenue", 'is NEAR delivered to the wallets, not fees accrued, and its volume series steps up on 2026-09-01.'),
-        ("Not reproduced here.", 'Prior exploratory work on NEAR&rsquo;s revenue dashboard and the front-end fund&rsquo;s history is not in this repo and is not cited.'),
+        ("Not reproduced here.", f'An earlier analysis of {ctx.M("unstakers_a14_n")} accounts that reach one unlabelled hub (THESIS.md, the supply-side section, and docs/supply-side.md) is exploratory and is not reproduced here; the repository does not record when it was done or whether it preceded the freeze. No card on this page uses it.'),
     ]
     lis = "".join(f"<li><strong>{a}</strong> {b}</li>" for a, b in items)
     return (f'<section id="limits" aria-labelledby="limits-h"><h2 id="limits-h">Limits</h2>'
@@ -2723,8 +2726,9 @@ def build_page(ctx: Ctx, breaks: bool = True) -> str:
         f'Method choices made afterwards are dated in <a href="{esc(gh("PREREG-ADDENDUM.md"))}">PREREG-ADDENDUM.md</a>. Results are published whether they pass, fail or are inconclusive.</p>'
         f'{pre}</section>'
         f'<section id="exploratory" aria-labelledby="exp-h"><h2 id="exp-h">Exploratory (chosen after the freeze)</h2>'
-        f'<p class="note">These exhibits were not pre-registered: the author chose them after the freeze. The headline ladder was chosen on 2026-11-07, after H1a, '
-        f'H1b and H1c had been scored (<a href="{esc(gh("PREREG-ADDENDUM.md"))}">addendum</a>, 2026-11-07 00:21 UTC entry). None changes a hypothesis, threshold, '
+        f'<p class="note">These exhibits were not pre-registered: the author chose them after the freeze. The headline ladder was developed alongside the pre-registered tests, not after them: a first split of the buyback wallet&rsquo;s inflows into two collectors and single-use accounts funded from one account was committed on 2026-11-06 03:00 UTC, '
+        f'the ladder&rsquo;s code and escrow dataset on 2026-11-06 23:19 UTC, before the H1b and H1c results (2026-11-06 23:23 UTC) and the H1a-as-written result (2026-11-06 23:49 UTC) were committed, '
+        f'and it became the thesis headline on 2026-11-07 00:21 UTC (<a href="{esc(gh("PREREG-ADDENDUM.md"))}">addendum</a>, 2026-11-08 02:03 UTC entry, item 1). None changes a hypothesis, threshold, '
         f'probability or the rating rule, and none feeds it. Treat them as evidence the author chose to show, not as tests.</p>'
         f'{exp}</section>'
         f'{not_computed(ctx)}{reproduce(ctx)}{limits(ctx)}</main>'

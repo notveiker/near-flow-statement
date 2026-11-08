@@ -99,6 +99,8 @@ def load_manifest() -> dict:
 
 # A user:password@ part in a URL, or a query parameter whose name says it is a key, token or secret (api_key, apikey,
 # access_token, x_cg_demo_api_key, client_secret, password, jwt, key, sig, auth ...). Not "design", "author" or "keyword".
+# On purpose it fails closed: any parameter name containing token, secret, passw, apikey or jwt is refused (so tokens_sold
+# would be too). A fetcher with such a URL should record endpoint_origin(url) or a keyless description instead.
 _URL_USERINFO = re.compile(r"://[^\s/?#@]*@")
 _URL_KEY_PARAM = re.compile(
     r"(?i)[?&;](?:[^=&;#\s]*(?:token|secret|passw|apikey|api[_-]?key|jwt)[^=&;#\s]*"

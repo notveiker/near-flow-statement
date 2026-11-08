@@ -26,6 +26,7 @@ set -euo pipefail
 
 FROZEN_PREREG_SHA256=19e470be5398f67ce7b6b5a51f007c0c7a0fcc059b61853c52caf7401452e240
 FREEZE_TAG=prereg-freeze
+FREEZE_COMMIT=413d776164a42ddb2b1288bb02bd7bd112bc7f06
 # Files a judge needs: named in the README or run by the checks. A copy without one of them is not ready to submit.
 REQUIRED_FILES="README.md AGENTS.md CLAUDE.md THESIS.md PREREG.md PREREG-ADDENDUM.md LICENSE Makefile .gitignore .gitattributes
 data/MANIFEST.json data/metrics.json data/series.json pipeline/check.py pipeline/compute.py pipeline/render.py
@@ -306,6 +307,8 @@ s_prereg_tag() {
   tagged=$(cd "$CHECKOUT" && git cat-file blob "$FREEZE_TAG:PREREG.md" | sha256_stdin)
   [ "$tagged" = "$FROZEN_PREREG_SHA256" ] || { echo "detail: PREREG.md at tag $FREEZE_TAG has sha256 $tagged"; return 1; }
   (cd "$CHECKOUT" && git diff --exit-code "$FREEZE_TAG" HEAD -- PREREG.md) || { echo "detail: PREREG.md differs from tag $FREEZE_TAG"; return 1; }
+  tagc=$(cd "$CHECKOUT" && git rev-parse "$FREEZE_TAG^{commit}")
+  [ "$tagc" = "$FREEZE_COMMIT" ] || { echo "detail: tag $FREEZE_TAG points at commit $tagc, not the freeze commit $FREEZE_COMMIT"; return 1; }
   echo "detail: git diff $FREEZE_TAG HEAD -- PREREG.md is empty (tag commit $(cd "$CHECKOUT" && git rev-parse --short "$FREEZE_TAG^{commit}"))"
 }
 

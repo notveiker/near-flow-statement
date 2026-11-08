@@ -34,6 +34,7 @@ from pipeline.check import check_manifest  # noqa: E402
 
 FROZEN_PREREG_SHA256 = "19e470be5398f67ce7b6b5a51f007c0c7a0fcc059b61853c52caf7401452e240"
 FREEZE_TAG = "prereg-freeze"
+FREEZE_COMMIT = "413d776164a42ddb2b1288bb02bd7bd112bc7f06"   # the commit the tag must name: the freeze time claims attach to it
 
 ALNUM = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 B58 = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
@@ -119,6 +120,9 @@ class FrozenPrereg(unittest.TestCase):
             diff = git("diff", FREEZE_TAG, *other, "--", "PREREG.md", text=True, encoding="utf-8")
             self.assertEqual(diff.returncode, 0, diff.stderr)
             self.assertEqual(diff.stdout, "", f"PREREG.md differs from tag {FREEZE_TAG}:\n{diff.stdout[:500]}")
+        named = git("rev-parse", f"{FREEZE_TAG}^{{commit}}", text=True)
+        self.assertEqual(named.stdout.strip(), FREEZE_COMMIT,
+                         f"tag {FREEZE_TAG} names {named.stdout.strip()}, not the freeze commit {FREEZE_COMMIT}")
         ancestor = git("merge-base", "--is-ancestor", FREEZE_TAG, "HEAD")
         self.assertEqual(ancestor.returncode, 0, f"tag {FREEZE_TAG} is not an ancestor of HEAD")
 
@@ -200,7 +204,7 @@ class RawDataManifest(unittest.TestCase):
 # ------------------------------------------------------------------------------------ line endings survive a checkout
 class LineEndings(unittest.TestCase):
     """data/MANIFEST.json, PREREG.md and site/index.html are byte-hashed. A checkout with core.autocrlf=true (commonly set
-    by a Git for Windows install) turns LF into CRLF: 43 of the 45 manifest hashes, the PREREG.md hash and the page then
+    by a Git for Windows install) turns LF into CRLF: 44 of the 46 manifest hashes, the PREREG.md hash and the page then
     fail although nobody edited anything. `* -text` in .gitattributes switches that conversion off for every path."""
 
     BYTE_HASHED = ("PREREG.md", "PREREG-ADDENDUM.md", "data/MANIFEST.json", "data/metrics.json", "data/series.json",
@@ -435,6 +439,13 @@ class SecretScannerDetects(unittest.TestCase):
         # a different hash is still flagged
         other = fake(64, HEX, "someone-else")
         self.assertIn("hex-private-key", {f.rule for f in self.ss.scan_text("s", text, self.ss.Allow({other}))})
+
+    def test_a_placeholder_password_in_a_url_is_quiet_and_a_random_one_is_not(self):
+        """Removing the placeholder rule (is_placeholder) from _url_password_ok would make every example URL a finding."""
+        quiet = self.ss.scan_text("s", "DATABASE_URL = postgres://svc:your_password_here_1234@db.example/x", self.ss.Allow())
+        self.assertEqual([f.rule for f in quiet], [])
+        loud = self.ss.scan_text("s", "DATABASE_URL = postgres://svc:" + fake(20, ALNUM, "url-pw") + "@db.example/x", self.ss.Allow())
+        self.assertEqual([f.rule for f in loud], ["url-with-password"])
 
     def test_weak_values_get_no_fingerprint(self):
         f = self.ss.scan_text("s", "postgres://app:" + "hunter2x" + "@db.internal/x", self.ss.Allow())[0]
@@ -757,7 +768,8 @@ class FetchersRecordNoCredentials(unittest.TestCase):
         self.assertIn("scheme and host", FI.__doc__)
 
     def test_record_and_write_raw_refuse_a_url_that_carries_a_credential(self):
-        for source in (self.KEYED, "https://rpc.example/v2?api_key=abc", "https://rpc.example/?access_token=abc",
+        for source in (self.KEYED, "https://rpc.example/v2?api_key=abc", "https://rpc.example/v2?apikey=abc",
+                       "https://rpc.example/v2?api-key=abc", "https://rpc.example/?access_token=abc",
                        "see https://rpc.example/x?x_cg_demo_api_key=abc", "https://rpc.example/?Authorization=abc",
                        "https://rpc.example/?client_secret=abc"):
             with self.subTest(source=source), tempfile.TemporaryDirectory() as tmp:
@@ -769,6 +781,19 @@ class FetchersRecordNoCredentials(unittest.TestCase):
                     self.assertNotIn("abc", str(caught.exception))
                     self.assertFalse((data / "raw" / "rpc" / "x.json").exists(), "nothing is written when the source is refused")
                     self.assertFalse((data / "MANIFEST.json").exists())
+
+    def test_record_refuses_a_credential_in_its_extra_fields_and_writes_no_manifest(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            data = Path(tmp) / "data"
+            (data / "raw" / "x").mkdir(parents=True)
+            path = data / "raw" / "x" / "y.json"
+            path.write_bytes(b'{"a":1}\n')
+            with mock.patch.object(C, "DATA", data), mock.patch.object(C, "RAW", data / "raw"), \
+                    mock.patch.object(C, "MANIFEST", data / "MANIFEST.json"):
+                with self.assertRaises(ValueError) as caught:
+                    C.record(path, "ok", {"note": "https://x.example/?api_key=abc"})
+                self.assertNotIn("abc", str(caught.exception))
+                self.assertFalse((data / "MANIFEST.json").exists())
 
     def test_record_and_write_raw_still_accept_the_sources_the_fetchers_use(self):
         for source in ("https://api.llama.fi/summary/dexs/near-intents?dataType=dailyVolume",

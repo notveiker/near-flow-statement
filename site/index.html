@@ -2087,7 +2087,8 @@ SELECT &#x27;qa&#x27;, &#x27;transfers_total&#x27;, COUNT(*), NULL, NULL, NULL, 
 <dd><span data-m="h1b_net_inflow_upper_m">152.45</span>M NEAR</dd></div></dl>
 <ul class="notes">
 <li>With label coverage below <span data-k="h1b_coverage_min_pct">50</span>%, H1c passes only if it clears <span data-k="h1c_min_pct">25</span>% under both bounds. It clears the bar against the lower bound and falls far short against the upper, so it is inconclusive; it inherits every limit of H1b, including the <span data-m="h1b_coverage_count_pct">20.0</span>% label coverage.</li>
-<li>ETF and treasury-company holdings are not part of the test. The buyback wallet&rsquo;s NEAR is held, not burned.</li></ul>
+<li>The balance growth is the pre-registered numerator and all of it is used. <span data-m="bb_deliveries_90d_m">0.97</span>M NEAR of it is delivery from <code>intents.near</code> in the committed escrow table; the other <span data-m="bb_growth_not_delivered_m">0.511</span>M NEAR (<span data-m="bb_growth_not_delivered_pct">34.5</span>%) is not, and a read of the chain on 2026-11-08 traces most of it to a DAO transfer from another NEAR revenue wallet (THESIS.md, Limits). The verdict is inconclusive whichever numerator is used.</li>
+<li>ETF and treasury-company holdings are not part of the test: PREREG.md says they would be reported where they can be measured, and none was measured. The buyback wallet&rsquo;s NEAR is held, not burned.</li></ul>
 <div class="source">
 <p><strong>Source:</strong></p>
 <ul>
@@ -2694,7 +2695,7 @@ SELECT &#x27;qa&#x27;, NULL, NULL, NULL, NULL, fmt, ROUND(SUM(near), 6), COUNT(*
 <dd><span data-m="rating_if_h1b_fail">Hold</span></dd></div></dl>
 <ul class="notes">
 <li>G_req is the annual growth in captured Intents revenue (<span data-m="rating_r90_usd_m">4.84</span>M USD over the last 90 days, DefiLlama) needed for it to equal the USD value of net new supply by 2031-11-04. G_obs is the growth of the last 180 days over the 180 before, annualized.</li>
-<li>G_req assumes HSP-029&rsquo;s issuance ramp. Its on-chain timelock ends on 2026-11-16, after the submission deadline, and the proposal text also says the cut needs validator adoption through a protocol upgrade; we state it as a pending resolver and do not predict it.</li>
+<li>G_req assumes HSP-029&rsquo;s issuance ramp. Its on-chain timelock ends on 2026-11-16 by our sum of the proposal&rsquo;s voting start, voting period and timelock period (no published text gives the date), after the submission deadline, and the proposal text also says the cut needs validator adoption through a protocol upgrade; we state it as a pending resolver and do not predict it.</li>
 <li>Under the range rule as read before the results, a low-coverage H1b can come out pass or inconclusive, never fail, so the Avoid branch cannot be reached while coverage is below <span data-k="h1b_coverage_min_pct">50</span>%. The exploratory ladder below does not feed the rule.</li></ul>
 <div class="source">
 <p><strong>Source:</strong></p>
@@ -2983,7 +2984,7 @@ SELECT &#x27;qa&#x27;, NULL, NULL, NULL, NULL, fmt, ROUND(SUM(near), 6), COUNT(*
 <td class="t"><span class="verbatim">NEAR Intents&#x27; share of the peer-set volume (reported basis) over the window is ≥ 50%</span></td></tr></tbody></table></div></details></section></section>
 <section id="exploratory" aria-labelledby="exp-h">
 <h2 id="exp-h">Exploratory (chosen after the freeze)</h2>
-<p class="note">These exhibits were not pre-registered: the author chose them after the freeze. The headline ladder was chosen on 2026-11-07, after H1a, H1b and H1c had been scored (<a href="https://github.com/notveiker/near-flow-statement/blob/main/PREREG-ADDENDUM.md">addendum</a>, 2026-11-07 00:21 UTC entry). None changes a hypothesis, threshold, probability or the rating rule, and none feeds it. Treat them as evidence the author chose to show, not as tests.</p>
+<p class="note">These exhibits were not pre-registered: the author chose them after the freeze. The headline ladder was developed alongside the pre-registered tests, not after them: a first split of the buyback wallet&rsquo;s inflows into two collectors and single-use accounts funded from one account was committed on 2026-11-06 03:00 UTC, the ladder&rsquo;s code and escrow dataset on 2026-11-06 23:19 UTC, before the H1b and H1c results (2026-11-06 23:23 UTC) and the H1a-as-written result (2026-11-06 23:49 UTC) were committed, and it became the thesis headline on 2026-11-07 00:21 UTC (<a href="https://github.com/notveiker/near-flow-statement/blob/main/PREREG-ADDENDUM.md">addendum</a>, 2026-11-08 02:03 UTC entry, item 1). None changes a hypothesis, threshold, probability or the rating rule, and none feeds it. Treat them as evidence the author chose to show, not as tests.</p>
 <section class="card" id="chart-ladder" aria-labelledby="chart-ladder-h">
 <div class="cardtop"><span class="badge badge-exp"><svg class="ico" viewBox="0 0 20 20" width="14" height="14" aria-hidden="true" focusable="false"><circle class="i-line" cx="10" cy="10" r="8" /><path class="i-line" d="M12.9 7.1l-1.7 4.1-4.1 1.7 1.7-4.1z" /></svg> Exploratory, chosen after the freeze</span><a href="#chart-ladder" aria-label="Link to this chart">#</a></div>
 <h3 id="chart-ladder-h">NEAR delivered to NEAR&rsquo;s three Intents revenue wallets equalled <span data-m="ladder_all_wallets_pct_of_issuance">15.81</span>% of net issuance; only <span data-m="ladder_public_collectors_pct_of_issuance">4.53</span> points trace to public fee collectors and <span data-m="ladder_escrow_unshields_pct_of_issuance">11.25</span> arrive as unshields from the Confidential Intents escrow, fee stream unattested.</h3>
@@ -3502,7 +3503,7 @@ ORDER BY 1, 2, 3
 <figcaption>Windows: 2026-08-07 to 2026-11-04 in three 30-day blocks (UTC). Unit: basis points. The axis starts at zero. Grey bars use a different denominator and are not like-for-like with the other two.</figcaption></figure>
 <ul class="notes">
 <li>NEAR&rsquo;s explicit take rose mainly because more volume carries a buyback fee entry (<span data-m="take_b1_vol_with_bb_pct">23.6</span>% of volume in the first block, <span data-m="take_b3_vol_with_bb_pct">43.0</span>% in the last), not because SwapKit&rsquo;s share fell: it stayed between <span data-m="take_b1_swapkit_vol_pct">35.6</span>% and <span data-m="take_b3_swapkit_vol_pct">38.2</span>%.</li>
-<li>1Click&rsquo;s share of DefiLlama&rsquo;s volume falls from <span data-m="oneclick_share_of_llama_week_before_0901_pct">86.2</span>% in the week before 2026-09-01 to <span data-m="oneclick_share_of_llama_week_after_0901_pct">60.8</span>% in the week from that day, with no matching change in 1Click&rsquo;s own volume. That is consistent with DefiLlama counting more of Intents&rsquo; volume from that date; if so, the first block&rsquo;s <span data-m="take_b1_captured_bp">2.89</span> bp is overstated and the true rise is, if anything, larger.</li>
+<li>1Click&rsquo;s share of DefiLlama&rsquo;s volume falls from <span data-m="oneclick_share_of_llama_week_before_0901_pct">86.2</span>% in the week before 2026-09-01 to <span data-m="oneclick_share_of_llama_week_after_0901_pct">60.8</span>% in the week from that day, with no matching change in 1Click&rsquo;s own volume (both shares are on the halved, one-sided basis used elsewhere on this page; on DefiLlama&rsquo;s reported basis they would be half as large). That is consistent with DefiLlama counting more of Intents&rsquo; volume from that date; if so, the first block&rsquo;s <span data-m="take_b1_captured_bp">2.89</span> bp is overstated and the true rise is, if anything, larger.</li>
 <li>Partner numbers rest on one key-gated source, the Explorer API.</li></ul>
 <div class="source">
 <p><strong>Source:</strong></p>
@@ -4732,7 +4733,7 @@ ORDER BY 1, 2, 3
 <dt>Captured share of gross fees, 30 days</dt>
 <dd><span data-m="capture_share_30d_pct">32.5</span>%</dd></div></dl>
 <ul class="notes">
-<li>Revenue before the 2026-02-23 fee switch counts as captured, as DefiLlama labels it. Reported volume was $<span data-s="intents_monthly.2026-10.vol_b">3.99</span>B in October. The volume is DefiLlama&rsquo;s reported leg-sum, which steps up on 2026-09-01 (see the take chart above).</li>
+<li>Revenue before the 2026-02-23 fee switch counts as captured, as DefiLlama labels it. Reported volume was $<span data-s="intents_monthly.2026-10.vol_b">3.99</span>B in October. The volume is what DefiLlama reports (it appears to count both legs of a swap; its adapter states no methodology), and it steps up on 2026-09-01 (see the take chart above).</li>
 <li>The last month covers 1-4 November only. Forward test F3 asks whether the captured take over 2026-11-06 to 2026-11-13 is below <span data-k="f3_max_bp">4.0</span> bp; this chart is context for it, not the test.</li></ul>
 <div class="source">
 <p><strong>Source:</strong></p>
@@ -4918,7 +4919,7 @@ ORDER BY 1, 2, 3
 <div class="cardtop"><span class="badge badge-exp"><svg class="ico" viewBox="0 0 20 20" width="14" height="14" aria-hidden="true" focusable="false"><circle class="i-line" cx="10" cy="10" r="8" /><path class="i-line" d="M12.9 7.1l-1.7 4.1-4.1 1.7 1.7-4.1z" /></svg> Exploratory, chosen after the freeze</span><a href="#chart-supply" aria-label="Link to this chart">#</a></div>
 <h3 id="chart-supply-h">NEAR&rsquo;s supply grew <span data-m="net_supply_growth_365d_pct">2.48</span>% over 365 days; net issuance ran at <span data-m="net_issuance_near_per_day_30d_k">88.2</span>K NEAR a day over the last 30 days.</h3>
 <p class="shows"><strong>What it shows:</strong> Total NEAR supply at each month end and day-to-day net issuance (mint minus burn) over the 90 days 2026-08-07 to 2026-11-04; net issuance is the quantity the ladder is measured against.</p>
-<p class="notshows"><strong>What it does not show:</strong> Who receives the issuance, or what changes after HSP-029, an issuance cut whose on-chain timelock ends on 2026-11-16, after the deadline, and which also needs validator adoption.</p>
+<p class="notshows"><strong>What it does not show:</strong> Who receives the issuance, or what changes after HSP-029, an issuance cut whose on-chain timelock ends on 2026-11-16 by our own sum of the contract&rsquo;s periods, after the deadline, and which also needs validator adoption.</p>
 <figure class="chart-fig">
 <div class="chart">
 <div class="cv cv-wide"><svg class="svg" viewBox="0 0 720 379.5" role="img" aria-labelledby="chart-supply-w-t chart-supply-w-d" focusable="false">
@@ -7723,8 +7724,8 @@ L276.3,133.1L277,131.1L277.6,133.1L278.2,133.1L278.9,133.4L279.5,133.6L280.1,133
 <li><strong>The track brief&rsquo;s BigQuery topics for daily active accounts and transaction counts.</strong> No BigQuery query was written for them: the committed queries cover staking, exchange and Intents flows. The usage card uses Nearblocks aggregates instead, and says so; this repository applies no sybil or bot filter to them.</li>
 <li><strong>Who the sellers were.</strong> NEAR is fungible, so every flow here is a market-wide balance. Nothing says which coins were sold.</li>
 <li><strong>Longer-dated predictions P1 to P3.</strong> They resolve on 2027-05-04 and 2027-11-04 and cannot be scored yet.</li>
-<li><strong>HSP-029&rsquo;s issuance cut.</strong> Its on-chain timelock ends on 2026-11-16, after the submission deadline, and the proposal text also says the cut needs validator adoption through a protocol upgrade. G_req assumes the ramp; we state it as a pending resolver and do not predict it.</li>
-<li><strong>Earlier work.</strong> Prior exploratory work on NEAR&rsquo;s revenue dashboard and the front-end fund&rsquo;s history is not in this repo and is not cited.</li></ul></section>
+<li><strong>HSP-029&rsquo;s issuance cut.</strong> Its on-chain timelock ends on 2026-11-16 by our sum of the proposal&rsquo;s voting start, voting period and timelock period (no published text gives the date), after the submission deadline, and the proposal text also says the cut needs validator adoption through a protocol upgrade. G_req assumes the ramp; we state it as a pending resolver and do not predict it.</li>
+<li><strong>Earlier work.</strong> An earlier analysis of <span data-m="unstakers_a14_n">14</span> accounts that reach one unlabelled hub (THESIS.md, the supply-side section, and docs/supply-side.md) is exploratory and is not reproduced here; the repository does not record when it was done or whether it preceded the freeze (PREREG-ADDENDUM.md, 2026-11-08 02:03 UTC entry, item 5). No card on this page uses it.</li></ul></section>
 <section id="reproduce" aria-labelledby="repro-h">
 <h2 id="repro-h">Reproduce</h2>
 <p class="note">Do each step in order and compare with what you should see. <code>make reproduce</code> runs steps 2 to 4; <code>make render-check</code> runs step 6; <code>make site</code> runs steps 2 to 4 and then step 7, from the raw data to every chart in one offline command.</p>
@@ -7764,7 +7765,7 @@ L276.3,133.1L277,131.1L277.6,133.1L278.2,133.1L278.9,133.4L279.5,133.6L280.1,133
 <li><strong>The name-filter check</strong> behind the lst-pool.near sensitivity read sampled validator sets, not every epoch.</li>
 <li><strong>The upper bound is mechanical.</strong> It treats every unlabelled top-100 receiver as an exchange, including accounts that are probably not.</li>
 <li><strong>DefiLlama&rsquo;s revenue</strong> is NEAR delivered to the wallets, not fees accrued, and its volume series steps up on 2026-09-01.</li>
-<li><strong>Not reproduced here.</strong> Prior exploratory work on NEAR&rsquo;s revenue dashboard and the front-end fund&rsquo;s history is not in this repo and is not cited.</li></ul></section></main>
+<li><strong>Not reproduced here.</strong> An earlier analysis of <span data-m="unstakers_a14_n">14</span> accounts that reach one unlabelled hub (THESIS.md, the supply-side section, and docs/supply-side.md) is exploratory and is not reproduced here; the repository does not record when it was done or whether it preceded the freeze. No card on this page uses it.</li></ul></section></main>
 <footer>
 <p><strong>Research, not investment advice.</strong> Nothing here is an offer or a recommendation. Licence: MIT (<a href="https://github.com/notveiker/near-flow-statement/blob/main/LICENSE">LICENSE</a>). Source of this page: <a href="https://github.com/notveiker/near-flow-statement/blob/main/pipeline/render.py">pipeline/render.py</a>.</p></footer></div>
 </body>

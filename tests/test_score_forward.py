@@ -126,7 +126,7 @@ class T(unittest.TestCase):
 
 
 class FromSnapshot(unittest.TestCase):
-    """`--score --from-snapshot DIR` re-scores a saved snapshot offline. It never reads the clock, it writes into DIR, and
+    """`--score --from-snapshot DIR` re-scores a saved snapshot offline. It does not compare the clock with the 2026-11-14 cutoff (it still stamps scored_at), it writes into DIR, and
     it believes the snapshot's own recorded times: the refusal before 2026-11-14 belongs to the live command, which fetches.
 
     What a snapshot has to show (established by running the code on fixtures):
@@ -158,7 +158,7 @@ class FromSnapshot(unittest.TestCase):
     def written(d: Path) -> dict:
         return json.loads((d / "result.json").read_text(encoding="utf-8"))
 
-    def test_it_does_not_read_the_clock(self):
+    def test_it_does_not_gate_on_the_clock(self):
         d = self.folder(repo_snapshot(fetched_at="2026-11-14T06:00:00Z"))      # a fixture that claims a post-cutoff fetch
         p = self.cli("--score", "--from-snapshot", str(d))
         self.assertEqual(p.returncode, 0, p.stderr)                            # exit 0 on any day, before the cutoff too
