@@ -291,6 +291,7 @@
  "fee_ev_hours_with_swaps_n": 3,
  "fee_ev_other_partner_fees_listed_n": 83,
  "fee_ev_other_partner_fees_paid_onchain_n": 79,
+ "fee_ev_other_partner_fees_zero_rate_n": 3,
  "fee_ev_partner_fee_accounts": {
   "0x76a3B8FeA6F6C7D7af5B47885563955F3ACd9BC2": "4faff52a16b3c47cc80b6d31cc4a0e01d603791542de478e6ebe0850a3be5ab6",
   "0xB324De4ADd083B74856082Ed2EA0B8b6F3864827": "0xb324de4add083b74856082ed2ea0b8b6f3864827",
@@ -315,8 +316,11 @@
   "xgramswapkit.near": "ee3e854603e2b603e753ce6e0d6c50f5e0f830e5ec747295e45d9d368aac38cf",
   "zodlswaps.near": "d78abd5477432c9d9c5e32c4a1a0056cd7b8be6580d3c49e1f97185b786592db"
  },
+ "fee_ev_partner_fees_nonzero_unmatched_escrow_n": 1,
+ "fee_ev_partner_fees_nonzero_unmatched_n": 1,
  "fee_ev_swapkit_fees_listed_n": 112,
  "fee_ev_swapkit_fees_paid_onchain_n": 102,
+ "fee_ev_swapkit_fees_zero_rate_n": 10,
  "fee_ev_swapkit_swaps_n": 67,
  "fee_ev_swaps_n": 195,
  "fee_ev_unlisted_collector_a_paid_n": 0,
@@ -326,6 +330,7 @@
  ],
  "fee_ev_zodl_fees_listed_n": 9,
  "fee_ev_zodl_fees_paid_onchain_n": 9,
+ "fee_ev_zodl_fees_zero_rate_n": 0,
  "fefunds_escrow_path_usd_k": 616.9,
  "fefunds_wallet_near_m": 1.978,
  "gas_burn_share_pct": 100.0,

@@ -314,6 +314,10 @@ def fee_evidence(m: dict) -> None:
                 k = "sk" if sk else "zodl" if sw["channel"] == "zodl" else "other"
                 c[f"p_{k}_listed"] += 1
                 c[f"p_{k}_paid"] += hit is not None
+                c[f"p_{k}_zero"] += f["fee"] == 0  # a zero-rate entry is listed but nothing is owed on it
+                if hit is None and f["fee"] != 0:
+                    c["p_nz_miss"] += 1
+                    c["p_nz_miss_escrow"] += any(x["to"] == PRIVATE_TREASURY_ESCROW for x in mv)
                 if hit and k == "zodl":
                     zodl_to.add(hit["to"])
                 if hit:
@@ -344,6 +348,13 @@ def fee_evidence(m: dict) -> None:
     m["fee_ev_zodl_fee_accounts"] = sorted(zodl_to)
     m["fee_ev_other_partner_fees_listed_n"] = c["p_other_listed"]
     m["fee_ev_other_partner_fees_paid_onchain_n"] = c["p_other_paid"]
+    m["fee_ev_swapkit_fees_zero_rate_n"] = c["p_sk_zero"]
+    m["fee_ev_zodl_fees_zero_rate_n"] = c["p_zodl_zero"]
+    m["fee_ev_other_partner_fees_zero_rate_n"] = c["p_other_zero"]
+    # Listed partner fees with a non-zero rate that no movement in the swap's NEAR txs matches, and how many
+    # of those swaps moved tokens into the Confidential Intents escrow (where the public chain shows no fee).
+    m["fee_ev_partner_fees_nonzero_unmatched_n"] = c["p_nz_miss"]
+    m["fee_ev_partner_fees_nonzero_unmatched_escrow_n"] = c["p_nz_miss_escrow"]
     m["fee_ev_swapkit_swaps_n"] = c["sk_swaps"]
     m["fee_ev_hours_with_swaps_n"] = len({x["hour"] for x in ex["swaps"]})
     m["fee_ev_partner_fee_accounts"] = {k: max(v, key=v.get) for k, v in sorted(recips.items())
