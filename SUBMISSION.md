@@ -32,7 +32,7 @@ Dates are suggestions, not organizer deadlines; times are UTC. Every command in 
 
 - [ ] Copy this file out of the repository now (`cp SUBMISSION.md ~/near-runbook.md`; if the file is not in your folder: `git show origin/claude/near-hackathon-dashboard:SUBMISSION.md > ~/near-runbook.md`) and read the copy; keep any draft video and screenshots you were given outside the repository too (3, step 2a; 5.3).
 - [ ] Read the addendum entry of 2026-11-08 02:03 UTC, which the assistant wrote, and confirm each statement as you remember it (section 1).
-- [ ] Decide section 8 items 1, 2, 11, 20, 21 (the squash variant) and 23 (DefiLlama's terms): they gate Monday (and 3 and 25 if you will not take the recommendation).
+- [ ] Decide section 8 items 1, 2, 11, 20, 21 (the squash variant), 23 (DefiLlama's terms) and 26 (the research-notes branch): they gate Monday (and 3 and 25 if you will not take the recommendation).
 - [ ] Ask the assistant to say the working branch is final; you write down its tip when you squash (3, step 2a).
 - [ ] GitHub, Settings, Emails: tick "Keep my email addresses private" and "Block command line pushes that expose my email" (section 1).
 - [ ] Prerequisite: Python 3.10 or newer, and a GitHub credential that can push workflow files (3, step 0).
@@ -48,7 +48,7 @@ Dates are suggestions, not organizer deadlines; times are UTC. Every command in 
 - [ ] Steps 0 and 1: tools, then your commit email.
 - [ ] **Careful, step 2a, the squash:** once, only when the branch is final and your copy of this file exists. Afterwards never merge the working branch again; work on `main`.
 - [ ] Step 2b: `git push origin main`; in the Actions tab CI should turn green, and a red Pages run is likely and harmless.
-- [ ] **Careful, step 2c, deleting the branch:** hold a local copy first, then unset its upstream, and never run `git push` while it is checked out.
+- [ ] **Careful, step 2c, deleting the branch:** hold a local copy first, then unset its upstream, and never run `git push` while it is checked out. Do the same for `claude/research-notes`, unless you decide to publish it (section 8, item 26).
 - [ ] Steps 3, 3b and 4: rehearse as a judge, check the README's example outputs, scan the history.
 - [ ] Section 8 item 23 settled, and the branch's CI runs dealt with (2c), before step 5.
 - [ ] **Careful, step 5, making it public:** assume everything in the history is copied from then on, including the personal email address in your first 29 commits (section 1).
@@ -56,7 +56,7 @@ Dates are suggestions, not organizer deadlines; times are UTC. Every command in 
 
 **Thursday 2026-11-12**
 
-- [ ] Decide section 8 items 4 to 10 and 16; append Drafts 2 and 3 (2.10) and read the disclosure entry that is already in the addendum (Draft 1); anchor `PREREG.md` (4a) or record that you did not (4b).
+- [ ] Decide section 8 items 4 to 10 and 16; append Drafts 2, 3 and 4 (2.10) and read the disclosure entry that is already in the addendum (Draft 1); anchor `PREREG.md` (4a) or record that you did not (4b).
 - [ ] Write the scoring-procedure entry (2.8a); commit and `git push origin main`; `git status -sb` must show no "ahead" (2.3, step 2).
 - [ ] **Careful, the rehearsal (2.3, step 3):** paste the block exactly as shown, from the repository root; it clones your repository into /tmp/rehearsal and works only there. If a folder `data/forward/score_20261114T...` ever appears in your repository, delete it.
 
@@ -99,7 +99,7 @@ Sources: [`SUBMITTING.md`](https://github.com/nearai/near-hackathon-prompt-examp
 - **The three "never publish" lines in `.gitignore`** (`near-research.md`, `notes/`, `private/`) are in the first commit (`a2cb97c`); deleting them changes nothing in history, and the README and `THESIS.md` already say that prior work exists outside the repository. Leaving them is the recommendation (section 8, item 3).
 - **The addendum entry of 2026-11-08 02:03 UTC was written by the assistant.** From `git log` and `data/MANIFEST.json` it records what the history shows against the earlier story: the ladder was built before two of the three pre-registered results were committed; five commits changed nine lines of an addendum called append-only; the H1a timing rests on the author's own clock; the 14-account work is undated; `PREREG.md` is not anchored. Read it before the repository goes public and confirm each statement as you remember it. Once public, an edit of it is an integrity problem: correct it with a new dated entry (also if you anchor, section 4a, which makes its item 6 untrue).
 - **The tag is on GitHub:** `git ls-remote --tags origin 'prereg-freeze^{}'` prints `413d776164a42ddb2b1288bb02bd7bd112bc7f06`.
-- **State of the work (2026-11-08).** The new work is committed on the branch `claude/near-hackathon-dashboard` and pushed to GitHub (check with `git ls-remote --heads origin`); `main` and `origin/main` are still at `38e1c4c`. A judge sees only what is on the public branches. **That branch's history contains this file (added in `552c63b`), the `Claude-Session:` trailers and its CI runs, and every branch becomes public with the repository, so the branch must come off GitHub first (section 3, step 2c).**
+- **State of the work (2026-11-08).** The new work is committed on the branch `claude/near-hackathon-dashboard` and pushed to GitHub (check with `git ls-remote --heads origin`); `main` and `origin/main` are still at `38e1c4c`. A judge sees only what is on the public branches. **That branch's history contains this file (added in `552c63b`), the `Claude-Session:` trailers and its CI runs, and every branch becomes public with the repository, so the branch must come off GitHub first (section 3, step 2c).** Since 2026-11-09 a second branch is on GitHub: `claude/research-notes`, an orphan branch that holds only a `research/` folder (the research sweep of 2026-11-08, its synthesis and its checks). It shares no history with the working branch or `main`, the squash cannot carry it, and it has no workflow files. It must also come off GitHub before the repository goes public, unless you decide to publish it (2c; section 8, item 26).
 
 ## 2. The November 14 forward-test runbook
 
@@ -443,7 +443,7 @@ One trap: its window is "the last 8 complete UTC days" and its block target is 0
 
 ### 2.10 Draft addendum entries awaiting approval
 
-Drafts 2 and 3 have not been appended to `PREREG-ADDENDUM.md`; they await your decision. Draft 1 was appended on 2026-11-08 at 05:04 UTC (see below). The addendum is append-only: add an entry at the end, with its own dated heading, and do not edit an earlier one. (Five earlier commits did edit nine existing lines; its 2026-11-08 entry lists them, and the text above that entry is pinned by SHA-256 in `tests/test_integrity.py`, so an edit of it fails the tests while an appended entry does not.) After appending, run `python3 -m pipeline.check --numbers` and `python3 -m unittest discover -s tests`, then commit and `git push origin main` (an unpushed commit carries only your own clock). Draft 2 contains dates only, no metric values; Draft 3 is a template with blanks that only you can fill.
+Drafts 2, 3 and 4 have not been appended to `PREREG-ADDENDUM.md`; they await your decision. Draft 1 was appended on 2026-11-08 at 05:04 UTC (see below). The addendum is append-only: add an entry at the end, with its own dated heading, and do not edit an earlier one. (Five earlier commits did edit nine existing lines; its 2026-11-08 entry lists them, and the text above that entry is pinned by SHA-256 in `tests/test_integrity.py`, so an edit of it fails the tests while an appended entry does not.) After appending, run `python3 -m pipeline.check --numbers` and `python3 -m unittest discover -s tests`, then commit and `git push origin main` (an unpushed commit carries only your own clock). Draft 2 contains dates only, no metric values; Draft 3 is a template with blanks that only you can fill.
 
 **Draft 1 (done on 2026-11-08, 05:04 UTC): later dry runs and in-window reads.** Item 7 of the 2026-11-06 23:49 UTC entry says the scorer's dry run read no day inside 2026-11-06..13 for F2-F4. That was true of the first dry run only. The assistant appended an entry to `PREREG-ADDENDUM.md` (heading "2026-11-08 05:04 UTC: disclosure: later dry runs and direct reads that touched the forward-test window"), because the dashboard's forward-test card already said "first dry run" and nothing public recorded a later one. It states five things, each checked against the session transcripts and `git log`: (1) a second dry run on 2026-11-07 at about 18:15 UTC read one in-window day, and the assistant saw all four printed readings; at about 18:22 UTC it told you in the chat that the run touched one window day and that F4's reading was well below the 50% line; (2) a third dry run at about 19:57 UTC, by a subagent testing this runbook, sent its output to a scratch file that nobody opened; (3) the buyback wallet's balance, which F1 is about, was read from the chain at least five times inside the window (two values are in `docs/intents-fee-flows.md` and `docs/sources-checked.md`, three more were made by checking tools and are listed in the entry with their blocks; the latest, about 04:33 UTC, was 2,210,686.84 NEAR, above F1's lower edge of 2.21M); (4) a mutation test started a copy of the scorer with its refusal removed, with the proxy variables unset; it was stopped after about 80 seconds, and this sandbox cannot resolve host names without its proxy, so it could not fetch anything; (5) nothing was changed because of these reads. The entry is not pinned, so you may edit it until the repository is public (the tests do not fail); afterwards correct it only with a new dated entry. **Before step 5 of section 3, read it and change anything that is wrong or that you remember differently**, in particular the 18:22 UTC chat message in item 1, which only you can confirm. The dashboard's forward-test card names the entry.
 
@@ -475,6 +475,22 @@ python3 -c "import datetime,sys; print(datetime.datetime.fromtimestamp(int(sys.a
 ```
 
 How long the job history reaches back is UNVERIFIED. If the earliest H1a job precedes 2026-11-05 22:53:29 UTC, the claim that `PREREG.md` was frozen before any BigQuery flow query had run is false and the README must say so: its Summary, "Integrity rules" and "Pre-registration" now say only that the freeze was two minutes before the first BigQuery result the repository records, which would stay literally true but mislead; the dashboard has similar wording; and `PREREG.md` line 20 ("We had not run any query on staking-pool flows, exchange deposits or Intents event logs") would be wrong and cannot be edited, so the entry itself must say so. If item 1 shows the earlier analysis preceded the freeze, say that too, for the same reason.
+
+**Draft 4 (needs your approval): pages seen during the research sweep of 2026-11-08.** At your request the assistant ran a research sweep on 2026-11-08: seven subagent lanes, then its own checks. Every lane was told not to read or record any F1-F4 quantity for a date on or after 2026-11-05. Some pages they opened showed such data anyway, and each lane listed them under "Window exposure" (branch `claude/research-notes`, folder `research/2026-11-08-sweep/lanes/`). The research is exploratory and is not in the repository's write-up. This entry only discloses the exposure, as the 05:04 UTC entry did for the later dry runs. It has no metric value, so it needs no marker. Append it before scoring if you approve it. Correct anything you know differently, and check the times against the lane reports.
+
+```markdown
+## <YYYY-MM-DD HH:MM> UTC: disclosure: pages seen during a research sweep on 2026-11-08
+
+On 2026-11-08, between about 19:05 and 19:45 UTC, research subagents run by the assistant surveyed existing work and public data for this thesis. They were told not to read or record any F1-F4 quantity for a date on or after 2026-11-05. Some pages they opened showed such data anyway:
+
+1. revenue.near.org (read about 19:14 and 19:15 UTC). Its embedded data held daily NEAR Intents fee, volume and revenue series through 2026-11-08 and an all-time "received" amount for each revenue wallet, including `buybacks.multisignature.near`. One lane masked the digits. In the other, the wallet amount appeared once in a tool output before the page was deleted.
+2. A rival hackathon entry's `THESIS.md` (read about 19:09 UTC). It states a balance of `buybacks.multisignature.near` fetched on 2026-11-07 and the wallet's inflows through 2026-11-07. A CSV in the same repository holds withdrawals to that wallet dated 2026-11-05 and 2026-11-06, and one total the lane computed before filtering included them.
+3. prices.intear.tech (about 19:13 UTC). Its entry for wrap.near carries a current total-supply field, close to the quantity F2 measures. Separately, a Nearblocks statistics endpoint, which may carry the current total supply, was called once to test reachability; its answer was discarded unread.
+4. nearstats.org (about 19:27 UTC) and several web-search result summaries (about 19:21 to 19:33 UTC). They showed NEAR Intents volume, or DefiLlama revenue, fees or volume, for trailing periods that may include 2026-11-06 to 2026-11-13. One summary showed buyback-wallet balance figures of unknown date.
+5. A public export of a Binance-hack tracer (about 19:22 UTC). It lists swaps by the hacker's accounts through NEAR Intents after 2026-11-05; the lane looked at counts only.
+
+None of these values was recorded, used or passed on, and the downloaded copies were deleted. The assistant that wrote this entry saw only the lanes' reports, which contain none of them. Its own checks read the access keys and the confirmation count of `buybacks.multisignature.near`, never its balance. F1-F4, their bands and the scoring rule were fixed in `PREREG.md` before the window opened. Nothing in the repository was changed because of these pages.
+```
 
 ## 3. Making the repository public and hosting the dashboard
 
@@ -534,6 +550,17 @@ git branch -vv                                                  # you are on mai
 ```
 
 Without the second command, a later plain `git push` made while that branch is checked out puts the branch, this file and the `Claude-Session:` links back on GitHub (tested). Stay on `main`, and push with `git push origin main`.
+
+The research notes of 2026-11-08 live on a second branch, `claude/research-notes`. It holds only `research/` and shares no history with the working branch or `main`. Unless you decide to publish them (section 8, item 26), take them off GitHub too, after keeping a copy:
+
+```
+git fetch origin claude/research-notes
+git branch -f claude/research-notes origin/claude/research-notes      # your copy
+git push origin --delete claude/research-notes
+git branch --unset-upstream claude/research-notes                    # "has no upstream information" is fine
+```
+
+That branch has no workflow files, so pushing it started no CI run (UNVERIFIED until you look at the Actions tab).
 
 Deleting the branch does not delete its CI runs (UNVERIFIED), and step 5 makes Actions history visible to everyone; each run shows a commit title and hash. Delete them before step 5 (Actions tab, open a run, the "..." menu, "Delete workflow run"; or `gh run list --branch claude/near-hackathon-dashboard --limit 100 --json databaseId --jq '.[].databaseId'` prints the ids and `gh run delete <id>` deletes one; deleting was not tried), or accept that those titles and hashes become public. Also UNVERIFIED: whether GitHub keeps serving a deleted branch's commits by hash. For certainty use a new repository (section 8, item 20): rename this one to `near-flow-statement-old`, create an empty `near-flow-statement` under the same account, and from the squashed `main` run `git push <new-repository-url> main prereg-freeze`, which sends `main` and the tag and nothing else (tested into an empty local repository) and keeps every address valid. The rename was not tried; set up Pages again (steps 6 and 7), and keep the old repository private or delete it.
 
@@ -886,7 +913,7 @@ Each row is a weak point visible in the repository itself, with the short answer
 
 ## 8. Open decisions
 
-One line each. Items 1, 2, 11, 20, 21 and 23 (and 3 and 25 if you will not take the recommendation) gate Monday 2026-11-09; items 4 to 10 and 16 are due by Thursday 2026-11-12; items 13 and 14 by Friday 2026-11-13 (Start here lists them by date).
+One line each. Items 1, 2, 11, 20, 21, 23 and 26 (and 3 and 25 if you will not take the recommendation) gate Monday 2026-11-09; items 4 to 10 and 16 are due by Thursday 2026-11-12; items 13 and 14 by Friday 2026-11-13 (Start here lists them by date).
 
 1. Make the repository public now (recommended, so the scoring push is public) or on November 13? Decide by 2026-11-09.
 2. Which address will the new commits use: your GitHub noreply address (recommended)? Set it before the squash commit in section 3, step 2.
@@ -903,7 +930,7 @@ One line each. Items 1, 2, 11, 20, 21 and 23 (and 3 and 25 if you will not take 
 13. Who is team lead, what is the team size, and which email goes on the form? By 2026-11-13; write it in your private file (6.1).
 14. Which mainnet account receives the payout? By 2026-11-13; check it on chain (6.1).
 15. Resolved on 2026-11-08: `HACKATHON.md` requires the tags @NEARProtocol and #NEARHackathon and the demo video or screenshots (Q-012: screenshots are not enough when judges cannot open the demo, so the plan is a video); the drafts in 5.1 and 5.2 carry the tags. It adds no rule on commits after the deadline beyond "development ends" at 2026-11-14T23:59:00Z. Read the live file once more on November 13, because it says dates and rules may change.
-16. Approve Drafts 2 and 3 in section 2.10, and fill Draft 3's blanks only with what you know to be true? (Draft 1 is already in the addendum; read it and correct it before step 5 if needed.) Draft 3 is the only way the repository can learn when the earlier analysis was done and when the H1a queries ran.
+16. Approve Drafts 2, 3 and 4 in section 2.10, and fill Draft 3's blanks only with what you know to be true? (Draft 1 is already in the addendum; read it and correct it before step 5 if needed.) Draft 3 is the only way the repository can learn when the earlier analysis was done and when the H1a queries ran.
 17. Item 6 of the 2026-11-08 addendum entry ("Not anchored") says no anchor is recorded in the repository. If you anchor (4a) after the repository is public, do not edit that entry: the 4a addendum entry corrects the record. Before it is public you may reword it. Decide by 2026-11-12.
 18. Media: the assistant made a silent captioned draft video and screenshots on 2026-11-08 from the page of that day; they are not in the repository, and the page changed afterwards. Keep a copy outside the repository now, measure the draft against X's video limit for your account (UNVERIFIED), and re-record the parts that show the page from the final page (5.3).
 19. The brief's BigQuery usage queries (daily active accounts, transaction counts, contract usage) were not run, and the usage figures are Nearblocks aggregates. Run one cheap `block_date`-filtered query through `pipeline.bq_run` (a new file in `sql/`, a new addendum entry, new metrics with markers), or leave it as `THESIS.md` Limits states it?
@@ -913,6 +940,7 @@ One line each. Items 1, 2, 11, 20, 21 and 23 (and 3 and 25 if you will not take 
 23. DefiLlama's terms (clause 8) forbid mirroring or republishing their data without permission, and the repository commits DefiLlama API responses under the MIT licence. Settle it before step 5 of section 3 (making the repository public): ask DefiLlama, or document the exception in the README. `docs/sources-checked.md` has the quote. Not read: the terms of CoinGecko, Nearblocks and FastNEAR.
 24. The SQL of the BigQuery job that traced the escrow funding hops is not in the repository (job `bqjob_r275b038b73d7c093_000001a1af3708a8_1`, in `data/MANIFEST.json`). If you have the Google Cloud project that ran it, `bq show --job=true --location=US --project_id=<PROJECT> --format=prettyjson bqjob_r275b038b73d7c093_000001a1af3708a8_1` prints it (metadata only, no bytes billed). Committing it under `sql/` closes the one reproducibility gap in the escrow table.
 25. The 29 earliest commits name a model version in their `Co-Authored-By` trailer. Leave them (recommended), or publish from a new repository with rewritten history, which changes every hash that the README, `THESIS.md`, the docs and the addendum cite and breaks the `prereg-freeze` tag? The recommendation is to leave them.
+26. The research notes of 2026-11-08 on `claude/research-notes`: delete that branch from GitHub before step 5 (recommended; 2c has the commands), or publish it? The notes hold the lane reports as written, with two known errors flagged in their README, and raw material on accounts linked to the NEAR Foundation. What is verified would reach the write-up only through the exploratory build its `SYNTHESIS.md` proposes, if you approve that build.
 
 ## Sources and limits of this document
 
