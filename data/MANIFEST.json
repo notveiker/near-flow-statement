@@ -72,6 +72,18 @@
    "sha256": "4e1b90af3b259723a27fe8211cc7448340dbdbf73ae2f63bb25d44d56e2f3b2e",
    "source": "bigquery: sql/staking_pool_totals_endpoints.sql"
   },
+  "raw/builders/crates.json": {
+   "bytes": 290,
+   "fetched_at": "2026-11-11T05:49:14Z",
+   "sha256": "b65bd43b09a7fa4d2319d952e42a4e0440b1bbacc5a41d3948d1b9c2bed58d15",
+   "source": "https://crates.io/api/v1/crates"
+  },
+  "raw/builders/npm_daily.json": {
+   "bytes": 87652,
+   "fetched_at": "2026-11-11T05:49:13Z",
+   "sha256": "61faa1384e38f4490eb9105d5a568fd65b94fe74bc524b30704b48eb6514bc02",
+   "source": "https://api.npmjs.org/downloads/range"
+  },
   "raw/coingecko/majors_90d.json": {
    "bytes": 28442,
    "fetched_at": "2026-11-06T02:57:28Z",

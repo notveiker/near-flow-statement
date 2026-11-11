@@ -46,6 +46,11 @@ def rpc(url: str, method: str, params: dict, retries: int = 6, gap: float = 0.0)
                 time.sleep(gap)
             return d
         except urllib.error.HTTPError as e:
+            if e.code in (400, 422):  # a skipped height or unknown block: the body is a JSON-RPC error, not a transport failure
+                try:
+                    return json.loads(e.read())
+                except json.JSONDecodeError:
+                    pass
             last = e
             time.sleep(max(gap, 5) * (i + 1))
         except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as e:
