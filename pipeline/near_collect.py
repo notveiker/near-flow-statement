@@ -58,7 +58,8 @@ class Bucket:
             t = self.now()
         self.next = max(self.next, t - 4 * self.interval) + self.interval
 
-    def slow_down(self, factor: float = 1.5, floor_per_min: float = 20) -> None:
+    def slow_down(self, factor: float = 1.5, floor_per_min: float = 5) -> None:
+        # Raise the interval (slow the rate), but never below floor_per_min requests a minute.
         self.interval = min(self.interval * factor, 60.0 / floor_per_min)
 
 

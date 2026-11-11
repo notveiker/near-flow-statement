@@ -560,7 +560,20 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
       $("#f-lst").textContent = lstRows.map(p => `${p.name} $${((p.tvl_now || 0) / 1e6).toFixed(0)}M now` + (p.tvl_365d_ago ? ` (was $${(p.tvl_365d_ago / 1e6).toFixed(0)}M a year ago)` : "")).join(". ") + ".";
     }
   }
-  $("#chain-lede").textContent = "Two chain-level sources sit behind this section: a stratified random sample of blocks across the chain's life, and a block-by-block census from our own node covering the days since it synced. Both are hashed and re-runnable. Fee and liquid-staking figures are DefiLlama snapshots.";
+    if (Pr && Pr.etf) {
+    const e = Pr.etf;
+    body.insertAdjacentHTML("beforeend", `<div class="grid3" style="margin-top:var(--s4)">
+      <div class="card reveal"><h3>Bitwise NEAR ETF (NRR)</h3><div class="stat" style="padding:0;border:0;background:none"><div class="v" style="font-size:30px">$${(e.total_net_assets_usd/1e6).toFixed(1)}M</div></div><p class="sub" style="margin:var(--s2) 0 0">Net assets on ${e.asof_utc.slice(0,10)}; ${e.share_of_near_mcap_pct}% of NEAR market cap. Cumulative net inflow $${(e.cumulative_net_inflow_usd/1e6).toFixed(1)}M since launch. Fee ${e.fee_pct}%.</p></div>
+      <div class="card reveal"><h3>Liquid staking share of stake</h3><div class="stat" style="padding:0;border:0;background:none"><div class="v" style="font-size:30px" id="lst-share"></div></div><p class="sub" style="margin:var(--s2) 0 0" id="lst-share-n"></p></div>
+      <div class="card reveal"><h3>Validator set</h3><div class="stat" style="padding:0;border:0;background:none"><div class="v" style="font-size:30px" id="val-n"></div></div><p class="sub" style="margin:var(--s2) 0 0" id="val-n2"></p></div>
+    </div>`);
+  }
+  const lstStake = D.prop && D.prop.lst_vs_stake;
+  if (lstStake && $("#lst-share")) { $("#lst-share").textContent = lstStake.lst_share_of_stake_pct.toFixed(1) + "%"; $("#lst-share-n").textContent = `LiNEAR + Meta Pool + RHEA LST TVL over the $${(lstStake.stake_usd/1e9).toFixed(2)}B of NEAR staked.`; }
+  const vs = D.prop && D.prop.validators;
+  if (vs && $("#val-n")) { $("#val-n").textContent = vs.nakamoto_third + " · " + vs.validators; $("#val-n2").textContent = `Nakamoto (one third of stake) and validator count. Top validator ${ (vs.top1_share*100).toFixed(1)}% of stake; HHI ${vs.hhi.toFixed(3)}.`; }
+
+$("#chain-lede").textContent = "Two chain-level sources sit behind this section: a stratified random sample of blocks across the chain's life, and a block-by-block census from our own node covering the days since it synced. Both are hashed and re-runnable. Fee and liquid-staking figures are DefiLlama snapshots.";
 }
 
 /* ---------------- 07 rating ---------------- */

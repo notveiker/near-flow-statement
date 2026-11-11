@@ -239,6 +239,9 @@ def prop() -> dict | None:
         "lst": [{"name": p["name"], "tvl_now": p.get("tvl_now"), "tvl_365d_ago": p.get("tvl_365d_ago"),
                  "quarterly": p.get("quarterly_end", [])[-6:]} for p in (lst or {}).get("protocols", []) if not p.get("error")],
         "github": [r for r in (gh or {}).get("repos", []) if not r.get("error")],
+        "etf": _load(root / "etf_nrr.json") if (root / "etf_nrr.json").exists() else None,
+        "lst_vs_stake": _load(root / "lst_vs_stake.json") if (root / "lst_vs_stake.json").exists() else None,
+        "validators": _load(root / "validators_summary.json") if (root / "validators_summary.json").exists() else None,
     }
 
 

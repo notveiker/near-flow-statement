@@ -348,6 +348,12 @@
    "sha256": "10315b160bb6d694275c97f9a3dfce778838f79addc5f63fbc9ab41a39af025a",
    "source": "DefiLlama overview/dexs/near"
   },
+  "raw/prop/etf_nrr.json": {
+   "bytes": 961,
+   "fetched_at": "2026-11-11T06:31:02Z",
+   "sha256": "feffadf22ddc9ea668b3be15984a9c8216b0f5139a2ab8e67e7a50b94255ce48",
+   "source": "https://sosovalue.com/assets/etf/us-near-spot"
+  },
   "raw/prop/fees_near.json": {
    "bytes": 10470,
    "fetched_at": "2026-11-11T06:27:16Z",

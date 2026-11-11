@@ -141,3 +141,10 @@ Post-freeze. Changes no hypothesis, threshold, probability or the rating rule.
 1. **Preliminary sample rows.** 43 sealed clusters (of 268 under the amended round caps) were copied from the collector and scored offline. `data/derived/history_results.json` and `data/derived/sample_extras.jsonl` are stamped `preliminary: true`. Provisional verdicts: U1, U2, U4, U5 fail; U3 is not scorable yet (2025Q1 sample had no intents receipts). The Intents receipts series is rising; base-layer series are not. Final verdicts wait for the stopping rule.
 2. **Prop extras.** `pipeline/fetch_prop_extras.py` pulls DefiLlama fee and DEX hierarchy on NEAR, liquid-staking TVL and public GitHub metadata into `data/raw/prop/`. None of it feeds a pre-registered test.
 3. **Second sampler.** A second NEARDATA collector runs on a different provider (one polite IP per provider) against the same frozen plan, writing to its own root. Clusters are merged by id when sealed.
+
+## 2026-11-11 06:35 UTC: Bitwise NRR ETF assets observed; sampler rate-limit floor lowered
+
+Post-freeze. Changes no hypothesis, threshold, probability or the rating rule.
+
+1. **ETF assets.** `data/raw/prop/etf_nrr.json` records a point-in-time reading of the SoSoValue NEAR spot ETF dashboard (ticker NRR): about $55.9M net assets and about $80.5M cumulative net inflow on 2026-11-11. The page is dynamic; the file states that.
+2. **Sampler polite floor.** `Bucket.slow_down` previously could not go below 20 requests a minute, which sped up runs that had been started slower than that after the first 429. The floor is now 5/min so a polite collector can actually back off.
