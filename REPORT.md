@@ -32,7 +32,7 @@ Against the majors, NEAR's trailing returns on Binance daily closes to 2026-11-1
 | 180 days | +138.3% | -7.5% | -6.7% | -7.0% |
 | 365 days | +44.5% | -39.8% | -46.2% | -28.6% |
 
-The last 30 days were a pullback for the whole group, NEAR -27.7% against -15.9% for ETH, -21.3% for SOL and -10.1% for BTC. NEAR's perpetual futures funding averaged about 0.006% per eight hours over 90 days, the long-short account ratio is 1.36, and open interest is $163M. Binance spot trades about $112M of NEAR a day. The market capitalisation is $4.82 <!--n:mcap_usd_b-->B at $3.67.
+The last 30 days were a pullback for the whole group, NEAR -27.7% against -15.9% for ETH, -21.3% for SOL and -10.1% for BTC. NEAR's perpetual futures funding averaged about 0.006% per eight hours over 90 days, the long-short account ratio is 1.36, and open interest is $163M (down about **42%** from ~$280M thirty daily points earlier — deleveraging into the pullback; `data/derived/perps_positioning.json`). Binance spot trades about $112M of NEAR a day. The market capitalisation is $4.82 <!--n:mcap_usd_b-->B at $3.67.
 
 ## 5. What the price has to believe
 
