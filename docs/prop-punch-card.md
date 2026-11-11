@@ -60,5 +60,6 @@
 | 54 | Channel HHI (SwapKit merged) | ~0.20 (moderate band) | Commercial concentration; logo volume ≠ capture |
 | 55 | Capital-light yield | PCI ~0.057; ~$0.11 fee/$ inventory/yr | Flexibility vs bonded peers; trust cost elsewhere |
 | 56 | Pitch sequence | Quality dials → HSP-029 → attestation → volume | Do not lead with AI/ETF/npm |
+| 57 | History intents growth (extras) | ~1.3× intents Q25Q3→Q26Q3; signs ~26.0× | Sample-extras exploratory; on-chain volume path |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.

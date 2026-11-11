@@ -1,0 +1,57 @@
+{
+ "series_nonzero": [
+  {
+   "quarter": "2025Q2",
+   "intents_per_day_point": 6941.0,
+   "clusters": 5,
+   "signs_point": 224.0,
+   "executed_point": 3806.0
+  },
+  {
+   "quarter": "2025Q3",
+   "intents_per_day_point": 100451.0,
+   "clusters": 5,
+   "signs_point": 1411.0,
+   "executed_point": 74210.0
+  },
+  {
+   "quarter": "2025Q4",
+   "intents_per_day_point": 68224.0,
+   "clusters": 5,
+   "signs_point": 2516.0,
+   "executed_point": 29079.0
+  },
+  {
+   "quarter": "2026Q1",
+   "intents_per_day_point": 83724.0,
+   "clusters": 5,
+   "signs_point": 7974.0,
+   "executed_point": 27908.0
+  },
+  {
+   "quarter": "2026Q2",
+   "intents_per_day_point": 70618.0,
+   "clusters": 5,
+   "signs_point": 25731.0,
+   "executed_point": 29162.0
+  },
+  {
+   "quarter": "2026Q3",
+   "intents_per_day_point": 130188.0,
+   "clusters": 5,
+   "signs_point": 36633.0,
+   "executed_point": 44805.0
+  },
+  {
+   "quarter": "2026Q4",
+   "intents_per_day_point": 163416.0,
+   "clusters": 5,
+   "signs_point": 16400.0,
+   "executed_point": 116851.0
+  }
+ ],
+ "first_last_x": 23.5,
+ "q2025Q3_to_q2026Q3_x": 1.3,
+ "signs_2025Q3_to_2026Q3_x": 26.0,
+ "note": "Exploratory sample_extras (not U1\u2013U5). Intents receipt intensity rose sharply 2025H2\u21922026; CS signatures scaled with it. Preliminary cluster counts per quarter. Point estimates only."
+}
