@@ -1,3 +1,5 @@
+> One-pager: [prop-punch-card.md](prop-punch-card.md)
+
 # Proprietary research index
 
 *Exploratory / post-freeze. Judge-facing notes first; working detail under `research_notes/NEAR catalysts and path/`. As of 2026-11-12.*
