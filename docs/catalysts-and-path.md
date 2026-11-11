@@ -10,6 +10,8 @@ The investment-relevant path for NEAR is not “more L1 transactions.” It is a
 
 **2026-11-16.** HSP-029’s timelock ends. The proposal ramps the annual issuance cap from **2.5% to 1.6%** over 24 months, starting one quarter after ratification. The frozen rating rule’s required growth (**33.2%/yr**) already assumes that path. If the ramp activates and captured revenue only stays where it is, issuance offset moves from **15.81%** today to about **24%** (derived: 15.81 × 2.46 ÷ 1.6). That is the issuance lever alone — no volume growth required.
 
+**HSP-007 (open / execution).** MPC node infrastructure financed via protocol emissions — a competing claim on the **same issuance pool** Intents fees try to offset (`data/derived/governance_catalysts.json`). Treat as opex on mint, not free Chain Signatures capacity. Magnitudes are a Gap without full proposal bodies in-repo.
+
 ## The cleanest NEAR-side lever: buyback-fee attachment
 
 Across three consecutive 30-day blocks, the share of 1Click volume carrying an explicit buyback fee entry rose **23.6% → 43.0%**, and explicit buyback take rose **1.83 → 4.08 bp**, while SwapKit’s volume share stayed roughly flat. Implied take on the *attached* slice in the latest block is about **9.5 bp** (4.08 ÷ 0.43). Holding that rate on attached volume and raising attachment is arithmetic, not a new commercial deal with SwapKit.

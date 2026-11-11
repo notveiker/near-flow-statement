@@ -1,0 +1,47 @@
+{
+  "asof_utc": "2026-11-12T01:30:00Z",
+  "source": "data/raw/governance/top_yearly.json",
+  "items": [
+    {
+      "id": 42644,
+      "title": "HSP-029: Establish a 24-Month Issuance Ramp to a 1.6% Target Rate Of NEAR Token Emissions",
+      "likes": 101,
+      "views": 2221,
+      "kind": "issuance",
+      "note": "Timelock end 2026-11-16; already in frozen rating path."
+    },
+    {
+      "id": 41984,
+      "title": "HSP-007: Establish a Sustainable MPC Node Infrastructure Financing Program Funded via Protocol Emissions",
+      "likes": 212,
+      "views": 2392,
+      "kind": "mpc_opex",
+      "note": "Emissions claim for MPC/CS infrastructure — competes with the same issuance pool fee capture tries to offset."
+    },
+    {
+      "id": 42147,
+      "title": "HSP-007 Execution: MPC Node Infrastructure Financing Program",
+      "likes": 23,
+      "views": 1297,
+      "kind": "mpc_opex_execution",
+      "note": "Execution thread; Gap on paid amounts without primary post body in repo."
+    },
+    {
+      "id": 42760,
+      "title": "HSP-XXX: Sovereign Yield Engine: Treasury-Backed Venture & Protocol Buyback Model for NEAR Intents",
+      "likes": 1,
+      "views": 181,
+      "kind": "buyback_proposal_weak",
+      "note": "Low engagement draft — not a priced catalyst; shows appetite for formalizing Intents buybacks."
+    },
+    {
+      "id": 42664,
+      "title": "Failed NEAR Intents 1-Click swap — 575,830 TRX (~$193K) stuck",
+      "likes": 1,
+      "views": 270,
+      "kind": "ops_incident",
+      "note": "Anecdotal operational risk; not systematic. Relayer/solver concentration makes such incidents first-order for UX trust."
+    }
+  ],
+  "note": "Titles/engagement only from committed governance snapshot. Full proposal bodies Gap unless fetched."
+}
