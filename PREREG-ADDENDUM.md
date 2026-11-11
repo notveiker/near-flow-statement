@@ -148,3 +148,10 @@ Post-freeze. Changes no hypothesis, threshold, probability or the rating rule.
 
 1. **ETF assets.** `data/raw/prop/etf_nrr.json` records a point-in-time reading of the SoSoValue NEAR spot ETF dashboard (ticker NRR): about $55.9M net assets and about $80.5M cumulative net inflow on 2026-11-11. The page is dynamic; the file states that.
 2. **Sampler polite floor.** `Bucket.slow_down` previously could not go below 20 requests a minute, which sped up runs that had been started slower than that after the first 429. The floor is now 5/min so a polite collector can actually back off.
+
+## 2026-11-11 20:10 UTC: structural prop research note (exploratory)
+
+Post-freeze. Changes no hypothesis, threshold, probability or the rating rule.
+
+1. **`docs/structural-thesis.md`** synthesises four research tracks (capture stack, Confidential Intents, capital markets, competitive structure) from primary sources and from numbers already in this repository. It is labelled exploratory wherever it appears and feeds no pre-registered test.
+2. Working notes sit under `research_notes/NEAR Intents structural thesis/`; the judge-facing copy is the docs file.
