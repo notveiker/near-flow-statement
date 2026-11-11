@@ -1,0 +1,12 @@
+{
+ "asof": "2026-11-12",
+ "mcap_to_rev_multiples_30d_annualized": {
+  "near_intents_style": 217,
+  "thorchain": 16,
+  "chainflip": 5,
+  "maya": 23
+ },
+ "note": "DefiLlama-style revenue multiples \u2014 not like-for-like token claims (Intents wallets held; Chainflip burn; Maya 10%). Volume share without capture discipline overstates value. Exploratory.",
+ "intents_vol_share_30d_pct": 55.7,
+ "near_multiple_vs_thor_x": 13.6
+}

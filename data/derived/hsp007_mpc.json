@@ -1,0 +1,64 @@
+{
+  "asof_utc": "2026-11-12T00:00:00Z",
+  "note": "HSP-007 MPC financing via emissions as opex claim on issuance pool Intents fees try to offset. Title/engagement only. No bull case. Gaps labeled.",
+  "sources": [
+    "data/raw/governance/top_yearly.json",
+    "data/derived/governance_catalysts.json",
+    "REPORT.md",
+    "research_notes/NEAR catalysts and path/chain-signatures-value-link.md",
+    "data/derived/chain_signatures_link.json",
+    "docs/float-sink.md",
+    "data/derived/float_sink.json",
+    "docs/catalysts-and-path.md",
+    "docs/structural-thesis.md"
+  ],
+  "verdict": {
+    "read": "opex_claim_on_issuance_pool",
+    "not": "free_cs_reliability_or_fee_product",
+    "competes_with": ["HSP-029_issuance_cut", "intents_fee_issuance_offset"]
+  },
+  "hsp007": {
+    "establish_topic_id": 41984,
+    "title": "HSP-007: Establish a Sustainable MPC Node Infrastructure Financing Program Funded via Protocol Emissions",
+    "created_at": "2026-01-23T00:50:35.850Z",
+    "likes": 212,
+    "views": 2392,
+    "posts_count": 70,
+    "execution_topic_id": 42147,
+    "execution_title": "HSP-007 Execution: MPC Node Infrastructure Financing Program",
+    "execution_likes": 23,
+    "execution_views": 1297,
+    "funding_source_from_title": "protocol_emissions",
+    "target_from_title": "mpc_node_infrastructure",
+    "proposal_body_in_repo": false,
+    "gap": "Full proposal text, NEAR/year budget, % of emissions, recipient set not in committed raw"
+  },
+  "interaction": {
+    "hsp029": {
+      "timelock_end": "2026-11-16",
+      "cap_path": "2.5% → 1.6% over 24 months",
+      "flat_capture_held_offset_pct": {"today": 15.81, "post_hsp_approx": 24.31},
+      "note": "Shrinks mint; HSP-007 earmarks mint for MPC — net after both Gap without budget"
+    },
+    "chain_signatures": {
+      "role": "necessary_condition_for_intents_cross_chain",
+      "signature_fee_in_waterfall": false,
+      "token_touch_committed": "L1_gas_v1_signer",
+      "v1_signer_gas_share": 0.0283,
+      "census_respond_per_day_k": 15.7
+    },
+    "fee_capture": {
+      "annualised_usd_m": 24.2,
+      "net_issuance_near_per_day": 88295.0,
+      "held_offset_pct_of_issuance": 15.81,
+      "buybacks": "held_not_burned",
+      "read": "Fee offset ratios are gross until MPC emissions claim netted"
+    }
+  },
+  "proprietary_cut": "Score MPC financing as opex claim on the same issuance pool Intents fees try to offset",
+  "falsifiers": [
+    "Published NEAR/year MPC emissions schedule material vs net mint",
+    "Paid signature tariff replacing emissions subsidy",
+    "Proposal body shows MPC funded entirely off emissions (zero mint claim)"
+  ]
+}
