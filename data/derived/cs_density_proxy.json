@@ -1,0 +1,6 @@
+{
+ "signatures_per_day_k": 15.7,
+ "intents_deposits_per_day_m": 79.7,
+ "usd_per_signature_proxy": 5076.4,
+ "note": "Census: ~15.7k CS signatures/day against ~$79.7M Intents deposits/day \u2192 ~$5.1k deposit notional per signature (proxy). CS is settlement rail density, not a fee line. Exploratory window arithmetic."
+}

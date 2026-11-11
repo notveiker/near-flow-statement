@@ -43,3 +43,4 @@ Score **τ, C, L, AITR, attachment %** before peer volume share. Volume share wi
 
 Realized cost runs about **8.5 bp** above listed appFees on the Explorer sample. On ~**$1.10B** of Explorer notional that is about **$0.94M** in the window — solver/gas/pip residual, **not** NEAR wallet capture. Listed partner fees were about **$4.45M**; buybacks from appFees about **$0.45M**. Exact solver P&L split inside the excess is a Gap (`data/derived/solver_excess.json`).
 
+No-referrer dollar concentration: `data/derived/noref_dollar_concentration.json` (~2.45× buyback-$ vs vol share).

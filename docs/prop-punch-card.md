@@ -52,5 +52,7 @@
 | 46 | Attach/AITR ceiling vs 50× | Full-venue AITR ~$46M (~0.48× need); 1Click 100% ~$13M | Volume binding — attach cannot close 50× alone |
 | 47 | Intents ≈ NEAR DEX surface | ~99% of DefiLlama NEAR DEX 30d vol | Venue *is* the chain's DEX story |
 | 48 | ETF NRR vs Intents fee | Implied NRR ~$0.4M/yr vs Intents ~$24M | ETF = float/narrative; fee engine is Intents |
+| 49 | No-ref dollar concentration | 18.7% vol → 45.8% buyback $ (~2.45×) | Default path is the fee engine |
+| 50 | CS density proxy | ~$5.1k deposit notional / signature | Rail density ≠ fee line |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.
