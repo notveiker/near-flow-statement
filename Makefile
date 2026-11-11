@@ -1,7 +1,7 @@
 # near-flow-statement: every target is plain Python 3.10+ (standard library only).
 PY ?= python3
 
-.PHONY: reproduce fetch explorer bq compute render check test all sample sample-verify sample-rows history-results
+.PHONY: reproduce fetch explorer bq compute render check test all sample sample-verify sample-rows history-results dashboard
 
 reproduce: ## Offline: verify raw-data hashes, then recompute every number into data/metrics.json
 	$(PY) -m pipeline.check --manifest
@@ -34,6 +34,9 @@ sample-rows: ## Raw clusters -> one small row per cluster (committed in data/der
 
 history-results: ## Offline: committed cluster rows -> quarter series, U1-U5 verdicts and the counter-evidence table
 	$(PY) -m pipeline.sample_metrics results --plan data/sample/plan.json --rows data/derived/sample_clusters.jsonl --out data/derived/history_results.json --issuance-near-per-day 88295
+
+dashboard: ## Offline: committed data -> dashboard/index.html (self-contained, no network)
+	$(PY) -m pipeline.build_dashboard
 
 check:
 	$(PY) -m pipeline.check --manifest --numbers

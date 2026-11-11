@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NEAR flow statement: where intents settle and what it earns the token</title>
+<meta name="description" content="A re-runnable token flow statement for NEAR: Intents volume and share, how revenue reaches the token, the issuance path, and what the market would have to believe.">
+<style>
+:root{
+  --bg:#060908;--bg-2:#0a0e0d;--surface:rgba(17,25,22,.62);--surface-2:rgba(23,32,29,.9);--solid:#0c1210;
+  --ink:#eef4f0;--soft:#c4d4cc;--muted:#8b9a92;--faint:#5d6a64;
+  --line:rgba(190,211,200,.14);--line-strong:rgba(190,211,200,.26);
+  --accent:#78d8b6;--accent-strong:#9fe7cb;--accent-soft:rgba(120,216,182,.14);
+  --amber:#d4b46f;--danger:#e58468;
+  --g1:#8b9a92;--g2:#5d6a64;--g3:#3a4540;
+  --r-sm:6px;--r-md:9px;--r-lg:12px;--shadow:0 16px 40px rgba(0,0,0,.34);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:48px;--s8:64px;--s9:96px;
+  color:var(--ink);background:var(--bg);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  -webkit-font-smoothing:antialiased;text-rendering:geometricPrecision;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);line-height:1.6;font-size:16px;font-weight:420}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--accent-strong)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.mono{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
+.wrap{width:min(1180px,100% - 48px);margin:0 auto}
+
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:rgba(6,9,8,.72);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:var(--s6);height:56px}
+.brand{display:flex;align-items:center;gap:var(--s3);font-weight:600;letter-spacing:-.01em;color:var(--ink)}
+.mark{width:22px;height:22px;border:1.5px solid var(--accent);border-radius:6px;position:relative}
+.mark::after{content:"";position:absolute;inset:5px;background:var(--accent);border-radius:2px}
+nav .links{display:flex;gap:var(--s5);margin-left:auto;font-size:13px;font-weight:500}
+nav .links a{color:var(--muted);transition:color .2s var(--ease)}
+nav .links a:hover{color:var(--ink)}
+
+/* hero */
+.hero{padding:var(--s9) 0 var(--s7)}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:clamp(38px,5.4vw,64px);line-height:1.02;letter-spacing:-.025em;font-weight:620;margin:var(--s4) 0 var(--s5);max-width:15em}
+.lede{font-size:19px;color:var(--soft);max-width:44em;margin:0}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--s3);margin-top:var(--s7)}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s5);transition:transform .25s var(--ease),border-color .25s var(--ease)}
+.stat:hover{transform:translateY(-3px);border-color:var(--line-strong)}
+.stat .k{min-height:2.6em;font-size:12px;font-weight:550;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.stat .v{font-size:34px;font-weight:600;letter-spacing:-.02em;margin:var(--s2) 0 var(--s1);line-height:1.05}
+.stat .v small{font-size:15px;font-weight:500;color:var(--muted);margin-left:2px}
+.stat .n{font-size:13px;color:var(--muted);line-height:1.45}
+
+/* sections */
+section{padding:var(--s9) 0 0}
+section>.wrap>.head{display:grid;grid-template-columns:1fr 1.1fr;gap:var(--s7);align-items:end;margin-bottom:var(--s6)}
+h2{font-size:34px;line-height:1.08;letter-spacing:-.02em;font-weight:610;margin:var(--s2) 0 0}
+.head p{margin:0;color:var(--soft);font-size:17px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s4)}
+.grid2>*,.grid3>*,.explorer>*,.cols>*,.stats>*{min-width:0}
+html,body{overflow-x:hidden}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s5);position:relative;transition:border-color .25s var(--ease)}
+.card:hover{border-color:var(--line-strong)}
+.card h3{font-size:15px;font-weight:600;letter-spacing:-.005em;margin:0 0 var(--s1)}
+.card .sub{font-size:13px;color:var(--muted);margin:0 0 var(--s4);line-height:1.5}
+.card .foot{font-size:12px;color:var(--faint);margin-top:var(--s3);line-height:1.5}
+.chart{width:100%;position:relative}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.axis text{fill:var(--faint);font-size:11px}
+.axis line,.axis path,.grid line{stroke:var(--line)}
+.legend{display:flex;gap:var(--s4);flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:var(--s3)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.tip{position:fixed;pointer-events:none;background:var(--solid);border:1px solid var(--line-strong);border-radius:var(--r-md);padding:var(--s2) var(--s3);font-size:12px;box-shadow:var(--shadow);z-index:50;opacity:0;transition:opacity .12s var(--ease);max-width:260px}
+.tip b{font-weight:600}
+.pill{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:3px 9px;border-radius:99px;border:1px solid var(--line-strong);color:var(--muted)}
+.pill.on{color:var(--accent);border-color:rgba(120,216,182,.4);background:var(--accent-soft)}
+.pill.warn{color:var(--amber);border-color:rgba(212,180,111,.4)}
+
+/* ladder + meters */
+.hbar{display:grid;grid-template-columns:230px 1fr 64px;gap:var(--s3);align-items:center;font-size:13px;padding:7px 0}
+.hbar .t{height:10px;border-radius:5px;background:rgba(190,211,200,.08);overflow:hidden}
+.hbar .t i{display:block;height:100%;background:var(--accent);border-radius:5px;transform-origin:left;animation:grow 1.1s var(--ease) both}
+.hbar.alt .t i{background:var(--g1)}
+.hbar .p{text-align:right;color:var(--ink);font-weight:550}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* explorer */
+.explorer{display:grid;grid-template-columns:1fr 1.15fr;gap:var(--s6)}
+.ctl{margin-bottom:var(--s5)}
+.ctl label{display:flex;justify-content:space-between;font-size:13px;color:var(--soft);margin-bottom:var(--s2);font-weight:500}
+.ctl output{color:var(--accent);font-weight:600}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.outs{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)}
+.out{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-md);padding:var(--s4)}
+.out .k{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.out .v{font-size:28px;font-weight:600;letter-spacing:-.02em;margin-top:var(--s1)}
+.out .n{font-size:12px;color:var(--muted);margin-top:2px}
+.preset{display:flex;gap:var(--s2);flex-wrap:wrap;margin-bottom:var(--s5)}
+button.chip{font:inherit;font-size:12px;font-weight:550;color:var(--soft);background:transparent;border:1px solid var(--line-strong);border-radius:99px;padding:6px 12px;cursor:pointer;transition:all .2s var(--ease)}
+button.chip:hover,button.chip.on{color:var(--accent);border-color:rgba(120,216,182,.5);background:var(--accent-soft)}
+
+/* tables */
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);text-align:left;padding:0 0 var(--s2);border-bottom:1px solid var(--line-strong)}
+td{padding:9px 0;border-bottom:1px solid var(--line);color:var(--soft)}
+th.r,td.r{text-align:right}
+td.r{font-variant-numeric:tabular-nums;color:var(--ink)}
+tr:last-child td{border-bottom:0}
+
+/* meter */
+.meter{position:relative;height:12px;border-radius:6px;background:rgba(190,211,200,.08);margin:var(--s4) 0 var(--s2)}
+.meter i{position:absolute;left:0;top:0;bottom:0;border-radius:6px;background:var(--accent)}
+.meter b{position:absolute;top:-5px;bottom:-5px;width:2px;background:var(--ink)}
+.meter-l{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
+
+.risks{padding:var(--s9) 0 var(--s8)}
+.risks .card{padding:var(--s4) var(--s5)}
+.risks ul{margin:0;padding-left:18px;color:var(--muted);font-size:13px;line-height:1.65}
+.risks li{margin:3px 0}
+.small{font-size:13px;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:var(--s6) 0 var(--s8);color:var(--muted);font-size:13px}
+footer code{font-size:12px;color:var(--soft)}
+.cols{display:grid;grid-template-columns:1.2fr 1fr;gap:var(--s7)}
+.cmd{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-md);padding:var(--s3) var(--s4);margin:var(--s2) 0;font-size:12px;color:var(--soft);overflow:auto;white-space:nowrap;max-width:100%}
+
+@supports (animation-timeline:view()){
+  .reveal{animation:rv both linear;animation-timeline:view();animation-range:entry 0% entry 55%}
+  @keyframes rv{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.hbar .t i{transform:none}}
+@media (max-width:980px){.stats{grid-template-columns:repeat(2,1fr)}.grid2,.grid3,.explorer,.cols,section>.wrap>.head{grid-template-columns:1fr}.hbar{grid-template-columns:150px 1fr 56px}nav .links{display:none}}
+</style>
+</head>
+<body>
+<div class="tip" id="tip" role="tooltip"></div>
+<nav aria-label="Sections"><div class="wrap">
+  <a class="brand" href="#top"><span class="mark" aria-hidden="true"></span>NEAR flow statement</a>
+  <div class="links"><a href="#intents">Intents</a><a href="#capture">Capture</a><a href="#supply">Supply</a><a href="#explorer">Scenarios</a><a href="#market">Market</a><a href="#chain">Chain data</a><a href="#method">Method</a></div>
+</div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+  <div class="eyebrow">NEAR Hackathon · Investment Thesis</div>
+  <h1>Where cross-chain intents settle, and what that earns the token</h1>
+  <p class="lede" id="lede"></p>
+  <div class="stats" id="stats"></div>
+</div></header>
+
+<section id="intents"><div class="wrap">
+  <div class="head"><div><div class="eyebrow">01 · Intents</div><h2>From a standing start to most of its peer set in under two years</h2></div>
+  <p id="intents-lede"></p></div>
+  <div class="grid2">
+    <div class="card reveal"><h3>Monthly volume</h3><p class="sub">NEAR Intents reported volume, USD billions (DefiLlama).</p><div class="chart" id="c-vol"></div><div class="foot" id="f-vol"></div></div>
+    <div class="card reveal"><h3>Share of the native cross-chain venues</h3><p class="sub">Share of monthly reported volume among NEAR Intents, THORChain, Chainflip and Maya.</p><div class="legend" id="lg-share"></div><div class="chart" id="c-share"></div><div class="foot" id="f-share"></div></div>
+  </div>
+</div></section>
+
+<section id="capture"><div class="wrap">
+  <div class="head"><div><div class="eyebrow">02 · Capture</div><h2>Fees reach the token, to the yoctoNEAR</h2></div>
+  <p id="capture-lede"></p></div>
+  <div class="grid2">
+    <div class="card reveal"><h3>Captured revenue and take rate</h3><p class="sub">Monthly captured revenue (bars, USD millions) and captured take (line, basis points of volume). The last month is partial.</p><div class="chart" id="c-rev"></div><div class="foot">DefiLlama near-intents dailyRevenue and dailyVolume.</div></div>
+    <div class="card reveal"><h3>How much of each day's new NEAR is offset</h3><p class="sub">30 days to 2026-11-04, as a share of net issuance (88,295 NEAR a day). Rungs are not nested.</p><div id="ladder"></div><div class="foot" id="f-ladder"></div></div>
+  </div>
+  <div class="grid3" style="margin-top:var(--s4)" id="cap-cards"></div>
+</div></section>
+
+<section id="supply"><div class="wrap">
+  <div class="head"><div><div class="eyebrow">03 · Supply</div><h2>Issuance is set to fall while revenue grows</h2></div>
+  <p id="supply-lede"></p></div>
+  <div class="grid2">
+    <div class="card reveal"><h3>Issuance cap under HSP-029</h3><p class="sub">Annual issuance cap, percent of supply. The timelock ends 2026-11-16 and the ramp starts one quarter after.</p><div class="chart" id="c-cap"></div><div class="foot">Constants from <span class="mono">data/raw/rpc/rating_assumptions.json</span>.</div></div>
+    <div class="card reveal"><h3>Growth required against growth observed</h3><p class="sub">Annual growth in captured revenue the pre-registered rating rule needs, and what the last 180 days delivered.</p><div class="chart" id="c-growth"></div><div class="foot" id="f-growth"></div></div>
+  </div>
+</div></section>
+
+<section id="explorer"><div class="wrap">
+  <div class="head"><div><div class="eyebrow">04 · Scenarios</div><h2>What the price has to believe</h2></div>
+  <p>Move the inputs. Every output is arithmetic on the measured baseline, so the sliders start at where NEAR is today. These are scenarios, not forecasts.</p></div>
+  <div class="card reveal"><div class="explorer">
+    <div>
+      <div class="preset" id="presets"></div>
+      <div class="ctl"><label for="s-vol">Intents volume, against the last 30 days' pace <output id="o-vol"></output></label><input type="range" id="s-vol" min="0.5" max="6" step="0.1" value="1"></div>
+      <div class="ctl"><label for="s-take">Captured take, basis points of volume <output id="o-take"></output></label><input type="range" id="s-take" min="1" max="20" step="0.01" value="5"></div>
+      <div class="ctl"><label for="s-cap">Issuance cap, percent of supply a year <output id="o-cap"></output></label><input type="range" id="s-cap" min="1.6" max="2.5" step="0.01" value="2.46"></div>
+      <div class="ctl"><label for="s-px">NEAR price, USD <output id="o-px"></output></label><input type="range" id="s-px" min="1" max="12" step="0.01" value="3.67"></div>
+    </div>
+    <div>
+      <div class="outs" id="outs"></div>
+      <p class="small" style="margin-top:var(--s4)" id="exp-note"></p>
+    </div>
+  </div></div>
+</div></section>
+
+<section id="market"><div class="wrap">
+  <div class="head"><div><div class="eyebrow">05 · Market</div><h2>Relative strength against the majors</h2></div>
+  <p id="market-lede"></p></div>
+  <div class="grid2">
+    <div class="card reveal"><h3>Price indexed to 100, trailing year</h3><p class="sub">Binance spot daily closes, weekly points.</p><div class="legend" id="lg-px"></div><div class="chart" id="c-px"></div></div>
+    <div class="card reveal"><h3>Return over trailing windows</h3><p class="sub">NEAR against ETH, SOL and BTC, to the latest daily close.</p><div class="chart" id="c-perf"></div><div class="foot" id="f-perf"></div></div>
+  </div>
+</div></section>
+
+<section id="chain"><div class="wrap">
+  <div class="head"><div><div class="eyebrow">06 · Chain data</div><h2>Read from the chain itself</h2></div>
+  <p id="chain-lede"></p></div>
+  <div id="chain-body"></div>
+</div></section>
+
+<section id="rating"><div class="wrap">
+  <div class="head"><div><div class="eyebrow">07 · Rating path</div><h2>One input separates the frozen rule's Hold from Buy</h2></div>
+  <p id="rating-lede"></p></div>
+  <div class="grid2">
+    <div class="card reveal"><h3>Pre-registered scorecard</h3><p class="sub">Frozen on 2026-11-05, before any flow query. Results are published as they came out.</p><table id="score"></table></div>
+    <div class="card reveal"><h3>Exchange-label coverage</h3><p class="sub">Share of the top-100 NEAR receivers with a citable exchange label. The pre-registration needs 50% to score H1b on its point estimate.</p><div class="meter" id="meter"></div><div class="meter-l"><span>0%</span><span id="m-now"></span><span>50% needed</span></div><p class="small" style="margin-top:var(--s4)" id="trail-note"></p></div>
+  </div>
+</div></section>
+
+<section class="risks" id="risks"><div class="wrap">
+  <div class="eyebrow" style="margin-bottom:var(--s3)">Risks and context</div>
+  <div class="card"><ul id="risk-list"></ul></div>
+</div></section>
+
+<footer id="method"><div class="wrap"><div class="cols">
+  <div>
+    <div class="eyebrow" style="margin-bottom:var(--s3)">Method and reproducibility</div>
+    <p style="margin-top:0">Every number on this page is read from files committed in this repository. Raw snapshots are hashed in <span class="mono">data/MANIFEST.json</span>; the offline rebuild recomputes every metric; the sampling plan was frozen with a SHA-256 before any sampled block was read.</p>
+    <div class="cmd mono">make reproduce &amp;&amp; make test &amp;&amp; make dashboard</div>
+    <div class="cmd mono">make sample-verify &amp;&amp; make history-results</div>
+    <p class="small" id="repro"></p>
+  </div>
+  <div class="small">
+    <div style="margin-bottom:var(--s2);color:var(--soft)">Sources</div>
+    DefiLlama (volume, fees, revenue, TVL, stablecoins), Nearblocks daily charts, NEAR JSON-RPC (final state and archival reads), the NEAR Intents Explorer API, the pre-registered flow-test queries in <span class="mono">sql/</span>, Binance public market data, gov.near.org, and a full node we operate for block-by-block census data.
+    <p>Rating inputs and every post-freeze choice are dated in <a href="https://github.com/notveiker/near-flow-statement/blob/main/PREREG-ADDENDUM.md">PREREG-ADDENDUM.md</a>. The written report is <a href="https://github.com/notveiker/near-flow-statement/blob/main/REPORT.md">REPORT.md</a>.</p>
+    <p>Not investment advice.</p>
+  </div>
+</div></div></footer>
+
+<script id="data" type="application/json">__DATA__</script>
+<script>
+"use strict";
+const D = JSON.parse(document.getElementById("data").textContent);
+const M = D.metrics, S = D.series;
+const $ = (s, r = document) => r.querySelector(s);
+const NS = "http://www.w3.org/2000/svg";
+const C = {accent: "#78d8b6", g1: "#8b9a92", g2: "#5d6a64", g3: "#3a4540", amber: "#d4b46f", danger: "#e58468", ink: "#eef4f0"};
+const fmt = {
+  n: (v, d = 0) => Number(v).toLocaleString("en-US", {maximumFractionDigits: d, minimumFractionDigits: d}),
+  usd: (v, d = 1) => v >= 1e9 ? "$" + (v / 1e9).toFixed(d) + "B" : v >= 1e6 ? "$" + (v / 1e6).toFixed(d) + "M" : v >= 1e3 ? "$" + (v / 1e3).toFixed(d) + "K" : "$" + v.toFixed(d),
+  pct: (v, d = 1) => (v >= 0 ? "+" : "") + (v * 100).toFixed(d) + "%",
+};
+function el(tag, attrs = {}, kids = []) {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  kids.forEach(c => e.appendChild(c));
+  return e;
+}
+function h(tag, attrs = {}, html = "") { const e = document.createElement(tag); for (const k in attrs) e.setAttribute(k, attrs[k]); e.innerHTML = html; return e; }
+const tip = $("#tip");
+function showTip(ev, html) { tip.innerHTML = html; tip.style.opacity = 1; const w = tip.offsetWidth; tip.style.left = Math.min(ev.clientX + 14, innerWidth - w - 12) + "px"; tip.style.top = (ev.clientY + 14) + "px"; }
+function hideTip() { tip.style.opacity = 0; }
+
+/* generic chart frame */
+function frame(host, {w = 560, ht = 260, ml = 44, mr = 12, mt = 10, mb = 26}) {
+  host.innerHTML = "";
+  const svg = el("svg", {viewBox: `0 0 ${w} ${ht}`, role: "img"});
+  host.appendChild(svg);
+  return {svg, w, ht, ml, mr, mt, mb, iw: w - ml - mr, ih: ht - mt - mb};
+}
+function niceMax(v) { const p = Math.pow(10, Math.floor(Math.log10(v || 1))); const f = v / p; return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * p; }
+function yAxis(f, max, fmtY, ticks = 4) {
+  const g = el("g", {class: "axis"});
+  for (let i = 0; i <= ticks; i++) {
+    const y = f.mt + f.ih - (i / ticks) * f.ih;
+    g.appendChild(el("line", {x1: f.ml, x2: f.w - f.mr, y1: y, y2: y, opacity: i === 0 ? 1 : .55}));
+    const t = el("text", {x: f.ml - 8, y: y + 4, "text-anchor": "end"}); t.textContent = fmtY(max * i / ticks); g.appendChild(t);
+  }
+  f.svg.appendChild(g);
+}
+function xLabels(f, labels, every) {
+  const g = el("g", {class: "axis"}), n = labels.length, step = f.iw / n;
+  labels.forEach((l, i) => { if (i % every === 0) { const t = el("text", {x: f.ml + step * (i + .5), y: f.ht - 6, "text-anchor": "middle"}); t.textContent = l; g.appendChild(t); } });
+  f.svg.appendChild(g);
+}
+
+function bars(host, rows, o = {}) {
+  const f = frame(host, o), max = o.max || niceMax(Math.max(...rows.map(r => r.v)) * 1.05);
+  yAxis(f, max, o.fy || (v => fmt.n(v, max < 10 ? 1 : 0)));
+  const step = f.iw / rows.length, bw = Math.max(2, step * .66);
+  rows.forEach((r, i) => {
+    const x = f.ml + step * i + (step - bw) / 2, hgt = Math.max(0, r.v / max * f.ih), y = f.mt + f.ih - hgt;
+    const rect = el("rect", {x, y, width: bw, height: hgt, rx: 2, fill: r.color || (r.partial ? C.g2 : C.accent), opacity: r.partial ? .7 : 1});
+    f.svg.appendChild(rect);
+    const hit = el("rect", {x: f.ml + step * i, y: f.mt, width: step, height: f.ih, fill: "transparent"});
+    hit.addEventListener("mousemove", e => { rect.setAttribute("opacity", .8); showTip(e, `<b>${r.label}</b><br>${(o.ft || (v => fmt.n(v, 2)))(r.v)}${r.partial ? " · partial month" : ""}`); });
+    hit.addEventListener("mouseleave", () => { rect.setAttribute("opacity", r.partial ? .7 : 1); hideTip(); });
+    f.svg.appendChild(hit);
+  });
+  xLabels(f, rows.map(r => r.label), o.every || Math.ceil(rows.length / 8));
+  return f;
+}
+
+function lines(host, labels, series, o = {}) {
+  const f = frame(host, o), all = series.flatMap(s => s.v.filter(x => x != null));
+  const max = o.max || niceMax(Math.max(...all) * 1.05), min = o.min || 0, n = labels.length;
+  const X = i => f.ml + (i / (n - 1)) * f.iw, Y = v => f.mt + f.ih - ((v - min) / (max - min)) * f.ih;
+  const g = el("g", {class: "axis"});
+  for (let i = 0; i <= 4; i++) { const v = min + (max - min) * i / 4, y = Y(v); g.appendChild(el("line", {x1: f.ml, x2: f.w - f.mr, y1: y, y2: y, opacity: i ? .55 : 1})); const t = el("text", {x: f.ml - 8, y: y + 4, "text-anchor": "end"}); t.textContent = (o.fy || (x => fmt.n(x, 0)))(v); g.appendChild(t); }
+  f.svg.appendChild(g);
+  series.forEach((s, si) => {
+    let d = "", prev = false;
+    s.v.forEach((v, i) => { if (v == null) { prev = false; return; } d += (prev ? "L" : "M") + X(i).toFixed(1) + " " + Y(v).toFixed(1); prev = true; });
+    if (s.area) f.svg.appendChild(el("path", {d: d + `L${X(n - 1)} ${Y(min)}L${X(0)} ${Y(min)}Z`, fill: s.color, opacity: .12}));
+    const p = el("path", {d, fill: "none", stroke: s.color, "stroke-width": s.w || 2, "stroke-linejoin": "round", "stroke-linecap": "round", pathLength: 1});
+    if (!matchMedia("(prefers-reduced-motion:reduce)").matches) { p.style.strokeDasharray = 1; p.style.strokeDashoffset = 1; p.animate([{strokeDashoffset: 1}, {strokeDashoffset: 0}], {duration: 1400, easing: "cubic-bezier(.16,1,.3,1)", fill: "forwards"}); }
+    f.svg.appendChild(p);
+  });
+  const guide = el("line", {y1: f.mt, y2: f.mt + f.ih, stroke: C.g2, "stroke-dasharray": "3 3", opacity: 0}); f.svg.appendChild(guide);
+  const hit = el("rect", {x: f.ml, y: f.mt, width: f.iw, height: f.ih, fill: "transparent"});
+  hit.addEventListener("mousemove", e => {
+    const r = f.svg.getBoundingClientRect(), px = (e.clientX - r.left) / r.width * f.w, i = Math.max(0, Math.min(n - 1, Math.round((px - f.ml) / f.iw * (n - 1))));
+    guide.setAttribute("x1", X(i)); guide.setAttribute("x2", X(i)); guide.setAttribute("opacity", 1);
+    showTip(e, `<b>${labels[i]}</b>` + series.map(s => s.v[i] == null ? "" : `<br><span style="color:${s.color}">●</span> ${s.name}: ${(o.ft || (x => fmt.n(x, 1)))(s.v[i])}`).join(""));
+  });
+  hit.addEventListener("mouseleave", () => { guide.setAttribute("opacity", 0); hideTip(); });
+  f.svg.appendChild(hit);
+  const step = Math.ceil(n / (o.xticks || 6)), gx = el("g", {class: "axis"});
+  labels.forEach((l, i) => { if (i % step === 0) { const t = el("text", {x: X(i), y: f.ht - 6, "text-anchor": "middle"}); t.textContent = l; gx.appendChild(t); } });
+  f.svg.appendChild(gx);
+  return f;
+}
+
+function stacked100(host, labels, series, o = {}) {
+  const f = frame(host, o), n = labels.length, X = i => f.ml + (i / (n - 1)) * f.iw, Y = v => f.mt + f.ih - v * f.ih;
+  yAxis(f, 100, v => v.toFixed(0) + "%");
+  const tot = labels.map((_, i) => series.reduce((a, s) => a + s.v[i], 0) || 1);
+  let base = labels.map(() => 0);
+  series.forEach(s => {
+    const top = s.v.map((v, i) => base[i] + v / tot[i]);
+    let d = top.map((v, i) => (i ? "L" : "M") + X(i).toFixed(1) + " " + Y(v).toFixed(1)).join("");
+    d += base.slice().reverse().map((v, k) => "L" + X(n - 1 - k).toFixed(1) + " " + Y(v).toFixed(1)).join("") + "Z";
+    f.svg.appendChild(el("path", {d, fill: s.color, opacity: s.accent ? .95 : .8}));
+    base = top;
+  });
+  const guide = el("line", {y1: f.mt, y2: f.mt + f.ih, stroke: C.ink, "stroke-dasharray": "3 3", opacity: 0}); f.svg.appendChild(guide);
+  const hit = el("rect", {x: f.ml, y: f.mt, width: f.iw, height: f.ih, fill: "transparent"});
+  hit.addEventListener("mousemove", e => {
+    const r = f.svg.getBoundingClientRect(), px = (e.clientX - r.left) / r.width * f.w, i = Math.max(0, Math.min(n - 1, Math.round((px - f.ml) / f.iw * (n - 1))));
+    guide.setAttribute("x1", X(i)); guide.setAttribute("x2", X(i)); guide.setAttribute("opacity", .6);
+    showTip(e, `<b>${labels[i]}</b>` + series.map(s => `<br><span style="color:${s.color}">●</span> ${s.name}: ${(s.v[i] / tot[i] * 100).toFixed(1)}%`).join(""));
+  });
+  hit.addEventListener("mouseleave", () => { guide.setAttribute("opacity", 0); hideTip(); });
+  f.svg.appendChild(hit);
+  const step = Math.ceil(n / 6), gx = el("g", {class: "axis"});
+  labels.forEach((l, i) => { if (i % step === 0) { const t = el("text", {x: X(i), y: f.ht - 6, "text-anchor": "middle"}); t.textContent = l; gx.appendChild(t); } });
+  f.svg.appendChild(gx);
+}
+function legend(host, items) { host.innerHTML = items.map(i => `<span><i style="background:${i.color}"></i>${i.name}</span>`).join(""); }
+const mlab = s => { const [y, m] = s.split("-"); return ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][+m - 1] + " \u2019" + y.slice(2); };
+
+/* ---------------- hero ---------------- */
+const peer = M.peers[0];
+const run = M.intents_rev_30d_m * 365 / 30;
+$("#lede").textContent = `NEAR Intents carries ${M.intents_share_peerset_30d_pct}% of the volume among native cross-chain venues, with $${peer.vol_30d_b.toFixed(1)}B in the last 30 days. About ${M.ladder_all_wallets_pct_of_issuance.toFixed(1)}% of the NEAR minted each day is already delivered to NEAR's revenue wallets, issuance is scheduled to fall, and the revenue behind that delivery grew ${M.rating_g_obs_pct}% a year against the ${M.rating_g_req_pct}% the rating rule asks for.`;
+const stats = [
+  ["Intents volume, 30 days", `$${peer.vol_30d_b.toFixed(1)}<small>B</small>`, `$${peer.vol_365d_b}B over the trailing 365 days (DefiLlama)`],
+  ["Share of peer-set volume", `${M.intents_share_peerset_30d_pct}<small>%</small>`, `${M.intents_share_peerset_365d_pct}% over 365 days against THORChain, Chainflip and Maya`],
+  ["Captured revenue run-rate", `$${run.toFixed(1)}<small>M a year</small>`, `last 30 days annualised; $${M.intents_rev_365d_m}M in the trailing 365 days`],
+  ["Buyback wallet", `${M.buyback_wallet_near_m}<small>M NEAR</small>`, `held, not burned; $${(M.buyback_wallet_near_m * D.price_usd).toFixed(1)}M at $${D.price_usd}`],
+  ["Revenue growth, observed", `${M.rating_g_obs_pct.toFixed(0)}<small>% a year</small>`, `against ${M.rating_g_req_pct}% required by the frozen rating rule`],
+];
+$("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}</div><div class="v">${s[1]}</div><div class="n">${s[2]}</div></div>`).join("");
+
+/* ---------------- 01 intents ---------------- */
+{
+  const im = S.intents_monthly.filter(r => r.vol_b > 0);
+  const last = im[im.length - 1];
+  bars($("#c-vol"), im.map(r => ({label: mlab(r.month), v: r.vol_b, partial: r.month === last.month && last.month >= "2026-11"})), {every: 3, ft: v => "$" + v.toFixed(2) + "B", fy: v => "$" + v.toFixed(v < 5 ? 1 : 0) + "B"});
+  const first = im[0], peak = im.reduce((a, r) => r.vol_b > a.vol_b ? r : a, im[0]);
+  $("#f-vol").textContent = `From $${first.vol_b}B in ${mlab(first.month)} to a peak of $${peak.vol_b}B in ${mlab(peak.month)}.`;
+  $("#intents-lede").textContent = `Monthly reported volume went from about $${first.vol_b}B in ${mlab(first.month)} to $${peak.vol_b}B in ${mlab(peak.month)}. Over the same stretch NEAR Intents went from a rounding error to the largest of the four native cross-chain venues, and its blended fee, ${peer.fee_bp_30d} bp, sits above THORChain's and Maya's.`;
+  const ps = S.peer_share_monthly.filter(r => r["near-intents"] > 0);
+  const keys = [["near-intents", "NEAR Intents", C.accent, 1], ["thorchain-dex", "THORChain", C.g1, 0], ["chainflip-amm", "Chainflip", C.g2, 0], ["maya-protocol", "Maya", C.g3, 0]];
+  const ser = keys.map(k => ({name: k[1], color: k[2], accent: k[3], v: ps.map(r => r[k[0]])}));
+  legend($("#lg-share"), ser);
+  stacked100($("#c-share"), ps.map(r => mlab(r.month)), ser);
+  const L = ps[ps.length - 1];
+  $("#f-share").textContent = `${mlab(L.month)}: NEAR Intents ${L["near-intents"]}% (partial month). Trailing windows: ${M.intents_share_peerset_30d_pct}% over 30 days, ${M.intents_share_peerset_365d_pct}% over 365.`;
+}
+
+/* ---------------- 02 capture ---------------- */
+{
+  const im = S.intents_monthly.filter(r => r.month >= "2025-10");
+  const f = bars($("#c-rev"), im.map(r => ({label: mlab(r.month), v: r.rev_m, partial: r.month >= "2026-11"})), {every: 2, max: 2.5, ft: v => "$" + v.toFixed(2) + "M", fy: v => "$" + v.toFixed(1) + "M", mr: 40});
+  const step = f.iw / im.length, bpMax = 6, Y = v => f.mt + f.ih - v / bpMax * f.ih;
+  const d = im.map((r, i) => (i ? "L" : "M") + (f.ml + step * (i + .5)).toFixed(1) + " " + Y(r.captured_bp).toFixed(1)).join("");
+  f.svg.insertBefore(el("path", {d, fill: "none", stroke: C.ink, "stroke-width": 1.8, "stroke-linejoin": "round", opacity: .9}), f.svg.children[f.svg.children.length - 1 - im.length]);
+  const lg = el("g", {class: "axis"});
+  [0, 2, 4, 6].forEach(v => { const t = el("text", {x: f.w - f.mr + 6, y: Y(v) + 4}); t.textContent = v + " bp"; lg.appendChild(t); });
+  f.svg.appendChild(lg);
+  const tx = h("div", {class: "legend", style: "margin-top:12px"}, `<span><i style="background:${C.accent}"></i>Revenue, USD millions</span><span><i style="background:${C.ink}"></i>Captured take, bp (right axis)</span>`);
+  $("#c-rev").after(tx);
+  $("#capture-lede").textContent = `The ${M.escrow_funded_exact_30d_n} deliveries into NEAR's revenue wallets in the window were funded for the exact amount, to the yoctoNEAR, and the three-wallet total is ${M.revwallets_vs_llama_rev_pct}% of the revenue DefiLlama reports for the same days. Captured take rose from ${M.take_b1_bb_explicit_bp} bp to ${M.take_b3_bb_explicit_bp} bp across three 30-day blocks, as the share of volume carrying a buyback fee went from ${M.take_b1_vol_with_bb_pct}% to ${M.take_b3_vol_with_bb_pct}%.`;
+  const rows = [
+    ["Delivered to all three revenue wallets", M.ladder_all_wallets_pct_of_issuance, 0],
+    ["of which the buyback wallet alone", M.ladder_buyback_only_pct_of_issuance, 0],
+    ["Traceable to two public fee collectors", M.ladder_public_collectors_pct_of_issuance, 1],
+    ["Released from the confidential escrow", M.ladder_escrow_unshields_pct_of_issuance, 1],
+  ];
+  $("#ladder").innerHTML = rows.map(r => `<div class="hbar ${r[2] ? "alt" : ""}"><span>${r[0]}</span><span class="t"><i style="width:${r[1] / 20 * 100}%"></i></span><span class="p mono">${r[1].toFixed(1)}%</span></div>`).join("");
+  $("#f-ladder").textContent = `The top rung reconciles to ${M.revwallets_near_k}K NEAR delivered. The split between the lower rungs depends on fee attribution NEAR has not published.`;
+  const cards = [
+    ["Public fee collectors", `${M.take_captured_bp_30d} bp`, `Captured take on reported volume, ${M.capture_share_30d_pct}% of the ${M.take_gross_bp_30d} bp gross fee.`],
+    ["Intents against base-layer fees", `${M.intents_rev_vs_l1fees_30d_x}×`, `Intents revenue over NEAR's own chain fees in the same 30 days.`],
+    ["Channel diversity", `HHI ${M.volume_channel_hhi}`, `Volume is spread across many channels. Merging SwapKit's routes lifts it to ${M.volume_channel_hhi_swapkit_merged}.`],
+  ];
+  $("#cap-cards").innerHTML = cards.map(c => `<div class="card reveal"><h3>${c[0]}</h3><div class="stat" style="padding:0;border:0;background:none"><div class="v" style="font-size:30px">${c[1]}</div></div><p class="sub" style="margin:var(--s2) 0 0">${c[2]}</p></div>`).join("");
+}
+
+/* ---------------- 03 supply ---------------- */
+{
+  const p = D.hsp029.path;
+  lines($("#c-cap"), p.map(r => r.date.slice(0, 7)), [{name: "Issuance cap, % a year", color: C.accent, v: p.map(r => r.cap_pct), area: true}], {min: 1.4, max: 2.6, fy: v => v.toFixed(1) + "%", ft: v => v.toFixed(2) + "%", xticks: 5});
+  const cov0 = M.ladder_all_wallets_pct_of_issuance, g = M.net_supply_growth_30d_annualized_pct, cov1 = cov0 * g / D.hsp029.target_cap_pct;
+  $("#supply-lede").textContent = `Net supply grows ${g}% a year today. HSP-029 ramps the cap from ${D.hsp029.start_cap_pct}% to ${D.hsp029.target_cap_pct}% over ${D.hsp029.ramp_months} months once its timelock ends on 2026-11-16. If captured revenue only stays at today's level, the share of issuance it offsets moves from ${cov0}% to about ${cov1.toFixed(0)}%, before any growth in revenue.`;
+  bars($("#c-growth"), [{label: "Required", v: M.rating_g_req_pct, color: C.g1}, {label: "Observed", v: M.rating_g_obs_pct}], {max: 700, ft: v => v.toFixed(1) + "% a year", fy: v => v.toFixed(0) + "%", ml: 52, ht: 250});
+  $("#f-growth").textContent = `Observed is captured revenue over the last 180 days against the 180 before, annualised, in USD. In NEAR terms it is ${M.rating_g_obs_near_pct}%, because part of the USD growth is price.`;
+}
+
+/* ---------------- 04 scenarios ---------------- */
+{
+  const V0 = M.intents_vol_30d_b * 365 / 30, c0 = M.take_captured_bp_30d, R0 = M.intents_rev_30d_m * 365 / 30, g0 = M.net_supply_growth_30d_annualized_pct, P0 = D.price_usd, cov0 = M.ladder_all_wallets_pct_of_issuance, SUP = M.total_supply_m;
+  const set = (id, v) => { $("#" + id).value = v; };
+  const presets = [["Today", 1, c0, g0, P0], ["Cap cut, same revenue", 1, c0, 1.6, P0], ["Volume doubles", 2, c0, 1.6, P0], ["Take reaches 10 bp", 2, 10, 1.6, P0], ["Volume 4×, take 8 bp", 4, 8, 1.6, P0]];
+  $("#presets").innerHTML = presets.map((p, i) => `<button class="chip" data-i="${i}" type="button">${p[0]}</button>`).join("");
+  const outs = () => {
+    const v = +$("#s-vol").value, c = +$("#s-take").value, cap = +$("#s-cap").value, px = +$("#s-px").value;
+    $("#o-vol").textContent = v.toFixed(1) + "× ($" + (V0 * v).toFixed(0) + "B a year)"; $("#o-take").textContent = c.toFixed(1) + " bp"; $("#o-cap").textContent = cap.toFixed(2) + "%"; $("#o-px").textContent = "$" + px.toFixed(2);
+    const R = R0 * v * (c / c0), mcap = px * SUP / 1000, mult = mcap * 1000 / R, cov = cov0 * (R / R0) * (P0 / px) * (g0 / Math.min(cap, g0));
+    const need = (m) => (mcap * 1000 / m);
+    const items = [
+      ["Captured revenue", "$" + R.toFixed(1) + "M", `${(R / R0).toFixed(1)}× today's run-rate of $${R0.toFixed(1)}M`],
+      ["Market cap multiple", mult.toFixed(0) + "×", `market cap $${mcap.toFixed(2)}B at $${px.toFixed(2)}; today ${M.mcap_to_rev_30d_annualized_x.toFixed(0)}×`],
+      ["Issuance offset", cov.toFixed(0) + "%", `of net issuance, from ${cov0}% today`],
+      ["Revenue to hold 50× at this price", "$" + need(50).toFixed(0) + "M", `${(need(50) / R).toFixed(1)}× this scenario's revenue`],
+    ];
+    $("#outs").innerHTML = items.map(i => `<div class="out"><div class="k">${i[0]}</div><div class="v">${i[1]}</div><div class="n">${i[2]}</div></div>`).join("");
+  };
+  $("#exp-note").textContent = `Revenue scales from the measured last-30-day run-rate with volume and take. Issuance offset scales the measured ${cov0}% with revenue, price and the cap. Market cap uses ${fmt.n(SUP, 0)}M NEAR total supply. Derived in this page from data/metrics.json; nothing is forecast.`;
+  document.querySelectorAll("input[type=range]").forEach(i => i.addEventListener("input", () => { document.querySelectorAll(".chip").forEach(c => c.classList.remove("on")); outs(); }));
+  document.querySelectorAll(".chip").forEach(b => b.addEventListener("click", () => { const p = presets[+b.dataset.i]; set("s-vol", p[1]); set("s-take", p[2]); set("s-cap", p[3]); set("s-px", p[4]); outs(); document.querySelectorAll(".chip").forEach(c => c.classList.remove("on")); b.classList.add("on"); }));
+  set("s-take", c0); set("s-cap", g0); outs();
+}
+
+/* ---------------- 05 market ---------------- */
+{
+  const mk = D.market, w = mk.weekly, lab = w.map(r => new Date(r.t * 1000).toISOString().slice(0, 7));
+  const ser = [["near", "NEAR", C.accent, 2.4], ["eth", "ETH", C.g1, 1.5], ["sol", "SOL", C.g2, 1.5], ["btc", "BTC", "#b8c4bd", 1.5]].map(k => ({name: k[1], color: k[2], w: k[3], v: w.map(r => r[k[0]])}));
+  legend($("#lg-px"), ser);
+  lines($("#c-px"), lab, ser, {min: 0, max: Math.ceil(Math.max(...w.map(r => r.near)) / 50) * 50, fy: v => v.toFixed(0), ft: v => v.toFixed(0)});
+  const wins = ["30", "90", "180", "365"], names = ["near", "eth", "sol", "btc"], cols = [C.accent, C.g1, C.g2, "#b8c4bd"];
+  const f = frame($("#c-perf"), {ht: 260, ml: 52});
+  const all = wins.flatMap(x => names.map(n => mk.perf[x][n] * 100)), mx = Math.ceil(Math.max(...all) / 50) * 50, mn = Math.floor(Math.min(...all) / 50) * 50;
+  const Y = v => f.mt + f.ih - (v - mn) / (mx - mn) * f.ih;
+  const g = el("g", {class: "axis"});
+  for (let v = mn; v <= mx; v += 50) { g.appendChild(el("line", {x1: f.ml, x2: f.w - f.mr, y1: Y(v), y2: Y(v), opacity: v === 0 ? 1 : .5})); const t = el("text", {x: f.ml - 8, y: Y(v) + 4, "text-anchor": "end"}); t.textContent = v.toFixed(0) + "%"; g.appendChild(t); }
+  f.svg.appendChild(g);
+  const gw = f.iw / wins.length;
+  wins.forEach((x, wi) => {
+    const bw = gw * .16;
+    names.forEach((n, ni) => {
+      const v = mk.perf[x][n] * 100, bx = f.ml + gw * wi + gw * .12 + ni * (bw + 3);
+      const r = el("rect", {x: bx, y: Math.min(Y(0), Y(v)), width: bw, height: Math.abs(Y(v) - Y(0)), rx: 2, fill: cols[ni]});
+      r.addEventListener("mousemove", e => showTip(e, `<b>${n.toUpperCase()} · ${x} days</b><br>${v.toFixed(1)}%`)); r.addEventListener("mouseleave", hideTip);
+      f.svg.appendChild(r);
+    });
+    const t = el("text", {x: f.ml + gw * wi + gw / 2, y: f.ht - 6, "text-anchor": "middle", class: "axis"}); t.setAttribute("fill", "#5d6a64"); t.setAttribute("font-size", 11); t.textContent = x + " days"; f.svg.appendChild(t);
+  });
+  $("#c-perf").after(h("div", {class: "legend", style: "margin-top:12px"}, names.map((n, i) => `<span><i style="background:${cols[i]}"></i>${n.toUpperCase()}</span>`).join("")));
+  const p = mk.perf;
+  $("#market-lede").textContent = `Over 90 days NEAR returned ${fmt.pct(p["90"].near, 0)} against ${fmt.pct(p["90"].eth, 0)} for ETH, ${fmt.pct(p["90"].sol, 0)} for SOL and ${fmt.pct(p["90"].btc, 0)} for BTC; over 365 days ${fmt.pct(p["365"].near, 0)} against ${fmt.pct(p["365"].eth, 0)}, ${fmt.pct(p["365"].sol, 0)} and ${fmt.pct(p["365"].btc, 0)}. Binance spot trades about $${(mk.near_spot_usd_per_day_30d / 1e6).toFixed(0)}M of NEAR a day.`;
+  $("#f-perf").textContent = `The last 30 days were a pullback: NEAR ${fmt.pct(p["30"].near, 0)}, ETH ${fmt.pct(p["30"].eth, 0)}, SOL ${fmt.pct(p["30"].sol, 0)}, BTC ${fmt.pct(p["30"].btc, 0)}. Latest close ${mk.asof}.`;
+}
+
+/* ---------------- 06 chain data ---------------- */
+{
+  const body = $("#chain-body"), H = D.history, C0 = D.census, T = D.hub_trail;
+  const nb = D.nearblocks_q;
+  let html = "";
+  if (H && H.series && H.series.length) {
+    html += `<div class="grid2"><div class="card reveal"><h3>Receipts executed on intents.near per day</h3><p class="sub">Stratified random sample of the whole chain, 90% intervals (bootstrap over clusters).</p><div class="chart" id="c-intents-rc"></div><div class="foot" id="f-intents-rc"></div></div>
+    <div class="card reveal"><h3>Sampler against an independent daily series</h3><p class="sub">Sampled transactions a day against Nearblocks' daily count, by quarter, log scale.</p><div class="chart" id="c-calib"></div><div class="foot" id="f-calib"></div></div></div>`;
+  } else {
+    html += `<div class="card reveal"><h3>Sampled history is being collected</h3><p class="sub">A stratified random sample of 26 quarters (design and hypotheses frozen in <span class="mono">docs/history-sample-prereg.md</span>) is being pulled at a polite rate. The charts appear here when the build includes it.</p></div>`;
+  }
+  body.innerHTML = html;
+  if (H && H.series && H.series.length) {
+    const s = H.series.filter(r => r.intents_per_day && r.intents_per_day.point > 0);
+    const f = lines($("#c-intents-rc"), s.map(r => r.quarter), [{name: "Receipts per day", color: C.accent, v: s.map(r => r.intents_per_day.point), area: true}, {name: "90% low", color: C.g2, w: 1, v: s.map(r => r.intents_per_day.lo90)}, {name: "90% high", color: C.g2, w: 1, v: s.map(r => r.intents_per_day.hi90)}], {fy: v => fmt.n(v / 1000, 0) + "K", ft: v => fmt.n(v, 0)});
+    const nbm = Object.fromEntries(nb.map(r => [r.q, r.tx_per_day]));
+    const c = H.series.filter(r => nbm[r.quarter] && r.tx_per_day.point > 0);
+    const lg = v => Math.log10(Math.max(v, 1));
+    lines($("#c-calib"), c.map(r => r.quarter), [{name: "Sample estimate", color: C.accent, v: c.map(r => lg(r.tx_per_day.point))}, {name: "Nearblocks daily mean", color: C.g1, v: c.map(r => lg(nbm[r.quarter]))}], {min: 2, max: 7, fy: v => "10^" + v.toFixed(0), ft: v => fmt.n(Math.pow(10, v), 0)});
+  }
+  if (C0) {
+    body.insertAdjacentHTML("beforeend", `<div class="grid3" style="margin-top:var(--s4)">${(C0.cards || []).map(c => `<div class="card reveal"><h3>${c.title}</h3><div class="v" style="font-size:30px;font-weight:600;letter-spacing:-.02em">${c.value}</div><p class="sub" style="margin:var(--s2) 0 0">${c.note}</p></div>`).join("")}</div>`);
+  }
+  $("#chain-lede").textContent = "Two chain-level sources sit behind this section: a stratified random sample of blocks across the chain's life, and a block-by-block census from our own node covering the days since it synced. Both are hashed and re-runnable.";
+}
+
+/* ---------------- 07 rating ---------------- */
+{
+  $("#score").innerHTML = `<tr><th>Test</th><th>Result</th><th class="r">Value</th></tr>
+    <tr><td>H1a · net staking outflow under 50% of rewards</td><td><span class="pill warn">fails</span></td><td class="r">net outflow ${M.h1a_ratio_as_written_x}× rewards</td></tr>
+    <tr><td>H1b · less NEAR reaches exchanges than is minted</td><td><span class="pill">inconclusive</span></td><td class="r">${M.h1b_net_inflow_lower_m}M to ${M.h1b_net_inflow_upper_m}M vs ${M.h1a_gross_issuance_90d_m}M</td></tr>
+    <tr><td>H1c · identified buying at least 25% of exchange inflow</td><td><span class="pill">inconclusive</span></td><td class="r">${M.h1c_identified_buying_m}M NEAR bought</td></tr>
+    <tr><td>Growth observed against required</td><td><span class="pill on">clears</span></td><td class="r">${M.rating_g_obs_pct}% vs ${M.rating_g_req_pct}%</td></tr>
+    <tr><td><b>Rating from the frozen rule</b></td><td><span class="pill">${M.rating_output}</span></td><td class="r">Buy if H1b passes</td></tr>`;
+  $("#rating-lede").textContent = `The frozen rule outputs ${M.rating_output}. It would output Buy if H1b passed, because observed growth is far above what the rule requires. H1b is inconclusive for one reason: only ${M.h1b_coverage_count_pct}% of the top-100 receivers carry a citable exchange label, and the rule needs 50%. Its lower bound, ${M.h1b_net_inflow_lower_m}M NEAR, is already below the ${M.h1a_gross_issuance_90d_m}M minted.`;
+  $("#meter").innerHTML = `<i style="width:${M.h1b_coverage_count_pct * 2}%"></i><b style="left:100%"></b>`;
+  $("#m-now").textContent = M.h1b_coverage_count_pct + "% labelled today";
+  const T = D.hub_trail;
+  $("#trail-note").textContent = T ? T.note : "A trace of where the unlabelled top receivers send NEAR, using a census from our own node, is in progress. Any label it produces is reported as a separate tier and enters the rule only if the repository owner accepts it by addendum (docs/hub-trail-method.md).";
+}
+
+/* ---------------- risks ---------------- */
+{
+  const nb = D.nearblocks_q, byq = Object.fromEntries(nb.map(r => [r.q, r])), pk = nb.reduce((a, r) => r.tx_per_day > a.tx_per_day ? r : a, nb[0]), last = nb[nb.length - 2], E = D.ecosystem;
+  const stPk = Object.entries(E.stable_q).reduce((a, r) => r[1] > a[1] ? r : a), tvPk = Object.entries(E.tvl_q).reduce((a, r) => r[1] > a[1] ? r : a);
+  const items = [
+    `Base-layer activity is far below its 2024 peak: Nearblocks counts ${fmt.n(last.tx_per_day / 1e3, 0)}K transactions a day in ${last.q} against ${fmt.n(pk.tx_per_day / 1e6, 1)}M in ${pk.q}, and ${fmt.n(last.active_per_day / 1e3, 0)}K active accounts a day against ${fmt.n(byq[pk.q].active_per_day / 1e6, 2)}M. Stablecoins on NEAR are $${(E.stable_now / 1e6).toFixed(0)}M against a peak of $${(stPk[1] / 1e6).toFixed(0)}M (${stPk[0]}); chain TVL is $${(E.tvl_now / 1e6).toFixed(0)}M against $${(tvPk[1] / 1e6).toFixed(0)}M (${tvPk[0]}).`,
+    `Net staking outflow was ${M.h1a_ratio_as_written_x}× staking rewards over the 90 days (H1a fails),.`,
+    `Partners keep at least ${M.partners_kept_vs_near_rev_low_tight_x}× NEAR's captured revenue, SwapKit routes ${M.swapkit_vol_share_pct}% of 1Click volume, and ${M.escrow_share_of_buyback_near_30d_pct}% of the buyback wallet's NEAR arrived through an escrow whose fee stream NEAR has not attested.`,
+    `1Click was a net route out of NEAR: $${M.explorer_out_of_near_usd_m}M out against $${M.explorer_into_near_usd_m}M in, and only ${M.explorer_near_side_swap_share_pct}% of its volume has NEAR on one side.`,
+    `Volume over the last 30 days was ${((1 - M.intents_vol_30d_b / M.intents_vol_prior30d_b) * 100).toFixed(0)}% below the prior 30 days. The market capitalisation is ${M.mcap_to_rev_30d_annualized_x.toFixed(0)}× annualised 30-day captured revenue (${M.mcap_to_rev_365d_x.toFixed(0)}× over the trailing year). NEAR returned ${fmt.pct(D.market.perf["30"].near, 0)} over the last 30 days.`,
+    `HSP-029 is not yet ratified when this is built, and the pre-registered forward tests F1 to F4 resolve on 2026-11-14.`,
+  ];
+  $("#risk-list").innerHTML = items.map(i => `<li>${i}</li>`).join("");
+  const R = D.repro;
+  $("#repro").innerHTML = `Manifest: ${R.manifest_files} raw files, SHA-256 <span class="mono">${R.manifest_sha256.slice(0, 16)}…</span>. Pre-registration SHA-256 <span class="mono">${R.prereg_sha256.slice(0, 16)}…</span>.` + (R.sample_plan_sha256 ? ` Sampling plan SHA-256 <span class="mono">${R.sample_plan_sha256.slice(0, 16)}…</span>.` : "");
+}
+</script>
+</body>
+</html>
