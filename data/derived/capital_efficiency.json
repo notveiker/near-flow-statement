@@ -1,0 +1,18 @@
+{
+  "asof_utc": "2026-11-12T01:40:00Z",
+  "intents": {
+    "inventory_usd_m": 229.2,
+    "vol_30d_b": 4.0,
+    "turnover_x_per_30d": 17.4,
+    "days_of_volume_in_inventory": 1.7,
+    "bond_to_tvl_required": null,
+    "inventory_risk_bearer": "solvers_as_principal_plus_contract_balances",
+    "protocol_controlled_capital_per_1b_vol_30d_m": 57.3
+  },
+  "peers_structural": {
+    "thor_maya_chainflip": "native assets in L1-controlled threshold vaults; continuous bond-to-TVL underwriting (exact ratios Gap in repo)",
+    "note": "Peers scale security with bonded capital; Intents scales with solver inventory + PoA/TEE assumptions."
+  },
+  "read": "Capital-light wins on long-tail asset coverage and speed to list; loses on trust incidents and relayer/solver concentration. Token value still routes through fee capture, not through inventory ownership.",
+  "note": "Exploratory. protocol_controlled_capital_per_1b_vol = 229.2 / 4.0."
+}
