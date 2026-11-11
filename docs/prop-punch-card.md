@@ -24,5 +24,7 @@
 | 18 | HSP-007 is opex on the issuance pool | MPC via emissions | Magnitudes tiny / expired |
 | 19 | Capital-light: ~$57M inventory per $1B vol | **1.7** days of volume in contract | Trust/ops incident |
 | 20 | Confidential TVL ~70% of inventory | **$160M** / **$229M** | Privacy flow mean-reverts |
+| 21 | Volume/capture index | **1.7×** (55.7% / 32.5%) | Capture share rises to match volume |
+| 22 | Multiple richness vs THOR | ~**14×** (217× / 16×) | Multiple compresses |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.
