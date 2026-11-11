@@ -58,6 +58,10 @@ Deposits into the contract ran at $79.7 <!--c:deposits_per_day_m-->M a day and w
 
 ## 8. What else the chain shows (exploratory)
 
+The contract's own inventory tells the same story in quantities, not just in reported volume. Month-start supplies of the largest assets inside `intents.near`, valued at a fixed price list so the series measures deposits rather than mark-to-market, rose from about $0.5M in January 2025 to about $180M by November 2026 (`data/raw/intents/holdings_history.json`). That is working capital sitting in the settlement venue, not TVL in a farm.
+
+
+
 These figures are from keyless snapshots under `data/raw/prop/` and from a **preliminary** read of the history sample (43 of the capped clusters sealed as of 2026-11-11). They feed no pre-registered test.
 
 - **Intents is most of NEAR's fee surface.** Over 30 days, NEAR Intents was 87% of all fees DefiLlama attributes to protocols and the chain on NEAR, and 93% of reported DEX volume on NEAR. The next venue, Rhea Dex, was about a tenth of Intents' fees.
