@@ -34,7 +34,7 @@
 | 28 | Issuance coverage (fees ÷ net mint $) | ~0.21× today; ~0.48× at HSP-029+stack37 | Need ~18× volume at 4.98 bp for 1×; policy helps denom |
 | 29 | THOR-multiple bridge | ~$301M rev (~12× today) for 16× at current mcap | ~45× vol at 4.98 bp or ~22× at 10 bp |
 | 30 | Attestation band compression | 4.5–15.8% → ±1pp sketch | Disclosure catalyst; not a take-rate raise |
-| 31 | ZEC inventory 2× @ 17× turnover | ~$1.9M/yr fee uplift sketch | Privacy/CIF inventory dial; not volume growth |
-| 32 | Agent vol bounds (0.5–5%) | ~$0.1–1.1M/yr at τ | AI narrative fee-immaterial until labeled |
+| 31 | ZEC inventory 2× @ 17× turnover | ~$2.8M/yr fee uplift sketch | Privacy/CIF inventory dial; not volume growth |
+| 32 | Agent vol bounds (0.5–5%) | ~$0.03–0.33M/yr at τ | AI narrative fee-immaterial until labeled |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.

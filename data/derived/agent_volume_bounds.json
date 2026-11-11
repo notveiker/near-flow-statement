@@ -19,5 +19,5 @@
    "fee_run_rate_m": 0.33
   }
  ],
- "note": "No agent-originated series published. These are sizing bounds: even 5% agent share is only ~$1.1M/yr at current take \u2014 AI narrative is not yet a fee catalyst until labeled. Exploratory upper bounds."
+ "note": "No agent-originated series published. Sizing bounds: even 5% agent share \u2248 ~$0.33M/yr at current take \u2014 AI narrative is fee-immaterial until labeled. Exploratory upper bounds."
 }
