@@ -1,0 +1,7 @@
+{
+ "bitwise_nrr_m_approx": 56.0,
+ "intents_fee_run_rate_m": 24.2,
+ "intents_vs_bitwise_nrr_x": 0.43,
+ "combined_fee_like_stack_m": 80.2,
+ "note": "Bitwise-style NRR is a different claim (product AUM fees) than Intents buyback capture. Stacking them is not double-count-safe for the token; shows institutional fee surface size vs protocol capture. Exploratory."
+}

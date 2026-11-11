@@ -32,5 +32,7 @@
 | 26 | No-referrer = ~46% of buyback dollars | 18.7% vol @ 10 bp | Defaults lose share |
 | 27 | Partner-path dials (Trust→direct + no-ref + LI.FI→AITR) | ~$3.3M/yr sketch stack | Distribution conversion inventory; not additive with attach-60 |
 | 28 | Issuance coverage (fees ÷ net mint $) | ~0.21× today; ~0.48× at HSP-029+stack37 | Need ~18× volume at 4.98 bp for 1×; policy helps denom |
+| 29 | THOR-multiple bridge | ~$301M rev (~12× today) for 16× at current mcap | ~45× vol at 4.98 bp or ~22× at 10 bp |
+| 30 | Attestation band compression | 4.5–15.8% → ±1pp sketch | Disclosure catalyst; not a take-rate raise |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.
