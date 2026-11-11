@@ -281,6 +281,7 @@ def build() -> dict:
             "scores": optional("derived/prop_scores.json"),
             "contestability": optional("derived/contestability.json"),
             "float_sink": optional("derived/float_sink.json"),
+            "inventory_mix": optional("derived/inventory_mix.json"),
         },
         "repro": reproducibility(),
     }
