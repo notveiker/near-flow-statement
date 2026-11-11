@@ -1,0 +1,77 @@
+{
+ "asof_utc": "2026-11-11T06:27:16Z",
+ "repos": [
+  {
+   "repo": "near/nearcore",
+   "stars": 2621,
+   "forks": 805,
+   "open_issues": 580,
+   "pushed_at": "2026-11-11T04:35:19Z",
+   "days_since_push": 0.1
+  },
+  {
+   "repo": "near/near-sdk-rs",
+   "stars": 517,
+   "forks": 281,
+   "open_issues": 111,
+   "pushed_at": "2026-11-05T14:26:17Z",
+   "days_since_push": 5.7
+  },
+  {
+   "repo": "near/near-api-js",
+   "stars": 430,
+   "forks": 269,
+   "open_issues": 13,
+   "pushed_at": "2026-11-11T04:25:14Z",
+   "days_since_push": 0.1
+  },
+  {
+   "repo": "near/intents",
+   "stars": 63,
+   "forks": 56,
+   "open_issues": 21,
+   "pushed_at": "2026-11-10T13:13:55Z",
+   "days_since_push": 0.7
+  },
+  {
+   "repo": "near/mpc",
+   "stars": 47,
+   "forks": 49,
+   "open_issues": 504,
+   "pushed_at": "2026-11-11T04:10:00Z",
+   "days_since_push": 0.1
+  },
+  {
+   "repo": "defuse-protocol/one-click-sdk-typescript",
+   "stars": 14,
+   "forks": 5,
+   "open_issues": 5,
+   "pushed_at": "2026-09-22T19:16:44Z",
+   "days_since_push": 49.5
+  },
+  {
+   "repo": "defuse-protocol/sdk-monorepo",
+   "stars": 18,
+   "forks": 25,
+   "open_issues": 29,
+   "pushed_at": "2026-11-10T12:47:50Z",
+   "days_since_push": 0.7
+  },
+  {
+   "repo": "defuse-protocol/near-intents-amm-solver",
+   "stars": 29,
+   "forks": 15,
+   "open_issues": 4,
+   "pushed_at": "2026-08-12T10:12:01Z",
+   "days_since_push": 90.8
+  }
+ ],
+ "fresh_push_3d": [
+  "near/nearcore",
+  "near/near-api-js",
+  "near/intents",
+  "near/mpc",
+  "defuse-protocol/sdk-monorepo"
+ ],
+ "note": "Soft builder pulse only \u2014 stars/issues are vanity-adjacent; recent pushes on nearcore/intents/mpc are the signal. Not a fee catalyst."
+}
