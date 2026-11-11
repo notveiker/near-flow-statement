@@ -1,0 +1,12 @@
+{
+ "asof_utc": "2026-11-12T01:00:00Z",
+ "window": "node census",
+ "relayer_accounts": 25,
+ "execute_intents_calls": 45009,
+ "top1_share": 0.8252,
+ "top5_share": 0.9986,
+ "hhi_lower_bound": 0.6885,
+ "hhi_if_number2_takes_rest_of_top5": 0.711,
+ "note": "HHI lower bound assumes equal split of (top5-top1) across four accounts. Both bounds >> 0.25 highly concentrated.",
+ "risk_read": "liveness + rent-extraction both live; gasless 43% of chain txs is product feature that weakens NEAR-for-gas demand"
+}
