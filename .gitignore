@@ -14,3 +14,8 @@ __pycache__/
 .DS_Store
 # local scratch
 .cache/
+
+# raw sampled blocks and open parts (large; rebuilt from plan.json by `near_sample run`)
+data/sample/clusters/
+data/sample/part/
+data/sample/log.jsonl
