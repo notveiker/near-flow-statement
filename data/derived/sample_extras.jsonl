@@ -49,6 +49,7 @@
 {"deposits":21,"executed":26,"heights":100,"id":"2026Q1_02","intents":81,"signs":5,"stratum":"2026Q1","token_diff":81,"withdrawals":23}
 {"deposits":13,"executed":13,"heights":100,"id":"2026Q2_02","intents":38,"signs":18,"stratum":"2026Q2","token_diff":39,"withdrawals":12}
 {"deposits":16,"executed":25,"heights":100,"id":"2026Q3_02","intents":76,"signs":18,"stratum":"2026Q3","token_diff":70,"withdrawals":18}
+{"deposits":22,"executed":30,"heights":100,"id":"2026Q4_02","intents":51,"signs":14,"stratum":"2026Q4","token_diff":24,"withdrawals":26}
 {"deposits":0,"executed":0,"heights":100,"id":"2020Q3_03","intents":0,"signs":0,"stratum":"2020Q3","token_diff":0,"withdrawals":0}
 {"deposits":0,"executed":0,"heights":100,"id":"2020Q4_03","intents":0,"signs":0,"stratum":"2020Q4","token_diff":0,"withdrawals":0}
 {"deposits":0,"executed":0,"heights":100,"id":"2021Q1_03","intents":0,"signs":0,"stratum":"2021Q1","token_diff":0,"withdrawals":0}
@@ -74,6 +75,7 @@
 {"deposits":14,"executed":16,"heights":100,"id":"2026Q1_03","intents":48,"signs":3,"stratum":"2026Q1","token_diff":47,"withdrawals":11}
 {"deposits":15,"executed":24,"heights":100,"id":"2026Q2_03","intents":80,"signs":22,"stratum":"2026Q2","token_diff":82,"withdrawals":11}
 {"deposits":21,"executed":32,"heights":100,"id":"2026Q3_03","intents":84,"signs":26,"stratum":"2026Q3","token_diff":66,"withdrawals":15}
+{"deposits":7,"executed":17,"heights":100,"id":"2026Q4_03","intents":30,"signs":6,"stratum":"2026Q4","token_diff":18,"withdrawals":11}
 {"deposits":0,"executed":0,"heights":100,"id":"2020Q3_04","intents":0,"signs":0,"stratum":"2020Q3","token_diff":0,"withdrawals":0}
 {"deposits":0,"executed":0,"heights":100,"id":"2020Q4_04","intents":0,"signs":0,"stratum":"2020Q4","token_diff":0,"withdrawals":0}
 {"deposits":0,"executed":0,"heights":100,"id":"2021Q1_04","intents":0,"signs":0,"stratum":"2021Q1","token_diff":0,"withdrawals":0}
@@ -95,6 +97,7 @@
 {"deposits":0,"executed":0,"heights":100,"id":"2025Q1_04","intents":0,"signs":0,"stratum":"2025Q1","token_diff":0,"withdrawals":0}
 {"deposits":0,"executed":0,"heights":100,"id":"2025Q2_04","intents":0,"signs":0,"stratum":"2025Q2","token_diff":0,"withdrawals":0}
 {"deposits":6,"executed":194,"heights":100,"id":"2025Q3_04","intents":194,"signs":1,"stratum":"2025Q3","token_diff":0,"withdrawals":1}
+{"deposits":17,"executed":15,"heights":100,"id":"2025Q4_04","intents":26,"signs":1,"stratum":"2025Q4","token_diff":16,"withdrawals":9}
 {"deposits":0,"executed":0,"heights":100,"id":"2020Q3_05","intents":0,"signs":0,"stratum":"2020Q3","token_diff":0,"withdrawals":0}
 {"deposits":0,"executed":0,"heights":100,"id":"2020Q4_05","intents":0,"signs":0,"stratum":"2020Q4","token_diff":0,"withdrawals":0}
 {"deposits":0,"executed":0,"heights":100,"id":"2021Q1_05","intents":0,"signs":0,"stratum":"2021Q1","token_diff":0,"withdrawals":0}
