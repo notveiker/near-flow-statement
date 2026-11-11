@@ -1,0 +1,8 @@
+{
+ "stack_rr_m": 37.0,
+ "vol_x_for_1x_coverage_today_mint": 3.2,
+ "vol_x_for_1x_coverage_hsp029_mint": 2.08,
+ "vol_x_for_50x_from_stack": 2.61,
+ "vol_x_for_thor16_from_stack": 8.14,
+ "note": "From the ~$37M controllable stack: still need ~3.2\u00d7 fee (\u2248vol at flat take) for 1\u00d7 mint coverage today, ~2.1\u00d7 after HSP-029 target mint, ~2.6\u00d7 for 50\u00d7 multiple, ~8.1\u00d7 for THOR-like 16\u00d7. Stack improves quality; volume closes gaps. Exploratory."
+}

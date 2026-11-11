@@ -54,5 +54,6 @@
 | 48 | ETF NRR vs Intents fee | Implied NRR ~$0.4M/yr vs Intents ~$24M | ETF = float/narrative; fee engine is Intents |
 | 49 | No-ref dollar concentration | 18.7% vol → 45.8% buyback $ (~2.45×) | Default path is the fee engine |
 | 50 | CS density proxy | ~$5.1k deposit notional / signature | Rail density ≠ fee line |
+| 51 | Volume multiples from stack | 3.2× for 1× mint$; 2.6× for 50×; 8× for THOR-16 | Stack improves quality; volume closes gaps |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.
