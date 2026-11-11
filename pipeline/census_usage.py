@@ -22,6 +22,7 @@ STABLES = {
     "17208628f84f5d6ad33f0da3bbbeb27ffcb398eac501a31bd6ad2011e36133a1": ("USDC", 6),
 }
 FOCUS = ("intents.near", "v1.signer")
+FLOWS = ("deposit", "withdraw", "swap_in", "swap_out", "fees")  # raw token units per token id, from intents.near events
 TOP = 40
 
 
@@ -47,6 +48,36 @@ def target_of(tx: dict) -> tuple[str, bool, str | None]:
     return recv, delegate, None
 
 
+def _flows(logs, flows: dict, referrals: Counter) -> None:
+    """Deposits (mt_mint, memo deposit), withdrawals (mt_burn, memo withdraw), public swap legs and fees (token_diff)."""
+    for lg in logs:
+        if not lg.startswith("EVENT_JSON:"):
+            continue
+        try:
+            e = json.loads(lg[11:])
+        except json.JSONDecodeError:
+            continue
+        ev, data = e.get("event"), e.get("data")
+        if not isinstance(data, list):
+            continue
+        if ev in ("mt_mint", "mt_burn"):
+            key = "deposit" if ev == "mt_mint" else "withdraw"
+            if (ev == "mt_mint" and "deposit" not in str(data[0].get("memo", "")).lower()) or (ev == "mt_burn" and "withdraw" not in str(data[0].get("memo", "")).lower()):
+                continue
+            for x in data:
+                for tid, amt in zip(x.get("token_ids", []), x.get("amounts", [])):
+                    flows[key][tid] += int(amt)
+        elif ev == "token_diff":
+            for x in data:
+                for tid, amt in (x.get("diff") or {}).items():
+                    a = int(amt)
+                    flows["swap_in" if a > 0 else "swap_out"][tid] += abs(a)
+                for tid, amt in (x.get("fees_collected") or {}).items():
+                    flows["fees"][tid] += int(amt)
+                if x.get("referral"):
+                    referrals[x["referral"]] += 1
+
+
 def shard_usage(blocks) -> dict:
     tx_by: Counter = Counter()
     ok_by: Counter = Counter()
@@ -55,6 +86,8 @@ def shard_usage(blocks) -> dict:
     methods: dict[str, Counter] = {k: Counter() for k in FOCUS}
     out = Counter()
     relayers: Counter = Counter()
+    flows: dict[str, Counter] = {k: Counter() for k in FLOWS}
+    referrals: Counter = Counter()
     stable: dict[str, Counter] = {k: Counter() for k in STABLES}
     for d in blocks:
         b = d["b"]
@@ -79,6 +112,8 @@ def shard_usage(blocks) -> dict:
                 gas_by[ex] += oc["gas_burnt"]
                 burn_by[ex] += int(oc["tokens_burnt"])
                 out["gas"] += oc["gas_burnt"]
+                if ex == "intents.near" and not _failed(oc["status"]):
+                    _flows(oc["logs"], flows, referrals)
                 if ex in stable and not _failed(oc["status"]):
                     for lg in oc["logs"]:
                         if not lg.startswith("EVENT_JSON:"):
@@ -92,7 +127,7 @@ def shard_usage(blocks) -> dict:
                                 stable[ex]["transfers"] += 1
                                 stable[ex]["raw"] += int(x.get("amount", 0))
     return {"out": dict(out), "tx_by": tx_by, "ok_by": ok_by, "gas_by": gas_by, "burn_by": burn_by,
-            "methods": methods, "relayers": relayers, "stable": {k: dict(v) for k, v in stable.items()}}
+            "methods": methods, "relayers": relayers, "flows": flows, "referrals": referrals, "stable": {k: dict(v) for k, v in stable.items()}}
 
 
 def _work(args):
@@ -102,12 +137,15 @@ def _work(args):
 
 def merge(parts: list[dict]) -> dict:
     tot: dict = {"out": Counter(), "tx_by": Counter(), "ok_by": Counter(), "gas_by": Counter(), "burn_by": Counter(),
-                 "methods": {k: Counter() for k in FOCUS}, "relayers": Counter(), "stable": {k: Counter() for k in STABLES}}
+                 "methods": {k: Counter() for k in FOCUS}, "relayers": Counter(), "flows": {k: Counter() for k in FLOWS}, "referrals": Counter(), "stable": {k: Counter() for k in STABLES}}
     for p in parts:
         tot["out"].update(p["out"])
         for k in ("tx_by", "ok_by", "gas_by", "burn_by"):
             tot[k].update(p[k])
         tot["relayers"].update(p["relayers"])
+        tot["referrals"].update(p["referrals"])
+        for k in FLOWS:
+            tot["flows"][k].update(p["flows"][k])
         for k in FOCUS:
             tot["methods"][k].update(p["methods"][k])
         for k in STABLES:
@@ -126,8 +164,12 @@ def report(tot: dict, first: int, last: int) -> dict:
     n_rl = sum(rl.values())
     relayers = {"calls": n_rl, "distinct": len(rl), "top1_share": rl.most_common(1)[0][1] / n_rl if n_rl else None,
                 "top5_share": sum(v for _, v in rl.most_common(5)) / n_rl if n_rl else None}
+    flows: dict[str, dict] = {}
+    for k in FLOWS:
+        for tid, v in tot["flows"][k].items():
+            flows.setdefault(tid, {})[k] = str(v)
     return {
-        "relayers": relayers, "first_height": first, "last_height": last, "blocks": o["blocks"], "txs": txs, "ok_share": o["ok_txs"] / txs if txs else None,
+        "flows": flows, "referrals": dict(tot["referrals"].most_common(15)), "relayers": relayers, "first_height": first, "last_height": last, "blocks": o["blocks"], "txs": txs, "ok_share": o["ok_txs"] / txs if txs else None,
         "delegate_share": o["delegate_txs"] / txs if txs else None, "contracts": contracts, "gas_burners": burners,
         "methods": {k: dict(v.most_common(12)) for k, v in tot["methods"].items()}, "stablecoins": stable,
         "note": "target = inner receiver for delegate (relayed) transactions; gas share is by executing account",

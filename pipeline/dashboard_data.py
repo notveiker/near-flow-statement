@@ -174,6 +174,25 @@ def peers() -> dict | None:
     return {"asof": datetime.fromtimestamp(r["series"]["near-intents"]["dailyFees"][-1][0], timezone.utc).date().isoformat(), "venues": rows}
 
 
+def usage_flows(usage: dict | None) -> dict | None:
+    """Deposits, withdrawals and public swap legs from the census, valued at the holdings snapshot's prices."""
+    snap = RAW / "intents" / "holdings_snapshot.json"
+    if not usage or "flows" not in usage or not snap.exists():
+        return None
+    tok = {t["token_id"]: t for t in _load(snap)["tokens"]}
+    usd = {"deposit": 0.0, "withdraw": 0.0, "swap_in": 0.0}
+    unpriced = set()
+    for tid, f in usage["flows"].items():
+        t = tok.get(tid)
+        if not t:
+            unpriced.add(tid)
+            continue
+        for k in usd:
+            if k in f:
+                usd[k] += int(f[k]) / 10 ** t["decimals"] * t["price_usd"]
+    return {**usd, "token_ids": len(usage["flows"]), "unpriced_ids": len(unpriced)}
+
+
 def builders() -> dict | None:
     p = RAW / "builders" / "npm_daily.json"
     if not p.exists():
@@ -227,7 +246,7 @@ def build() -> dict:
         "nearblocks_q": nearblocks_quarterly(), "market": market(), "ecosystem": ecosystem(), "governance": governance(),
         "hsp029": hsp029(assump), "price_usd": assump["price_usd"],
         "history": optional("derived/history_results.json"), "census": optional("derived/census_summary.json"),
-        "hub_trail": optional("derived/hub_trail.json"), "census_hourly": optional("derived/census_hourly.json"), "usage": optional("derived/census_usage.json"),
+        "hub_trail": optional("derived/hub_trail.json"), "census_hourly": optional("derived/census_hourly.json"), "usage": optional("derived/census_usage.json"), "usage_flows": usage_flows(optional("derived/census_usage.json")),
         "sample_extras": optional("derived/sample_extras_results.json"),
         "holdings": holdings(), "peers": peers(), "builders": builders(), "validators": validators(), "web_facts": web_facts(),
         "repro": reproducibility(),

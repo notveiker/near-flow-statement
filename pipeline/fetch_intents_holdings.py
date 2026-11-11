@@ -34,7 +34,7 @@ GAP = 0.0 if "127.0.0.1" in FAST or "localhost" in FAST else 1.0
 ARCHIVAL_GAP_S = 3.0  # conservative on the free tier
 
 
-def rpc(url: str, method: str, params: dict, retries: int = 6, gap: float = 0.0) -> dict:
+def rpc(url: str, method: str, params: dict, retries: int = 8, gap: float = 0.0) -> dict:
     body = json.dumps({"jsonrpc": "2.0", "id": 1, "method": method, "params": params}).encode()
     last = None
     for i in range(retries):
@@ -52,7 +52,8 @@ def rpc(url: str, method: str, params: dict, retries: int = 6, gap: float = 0.0)
                 except json.JSONDecodeError:
                     pass
             last = e
-            time.sleep(max(gap, 5) * (i + 1))
+            wait = e.headers.get("Retry-After") if e.code == 429 else None  # honour the server's own back-off
+            time.sleep(min(float(wait), 300) if wait and wait.isdigit() else max(gap, 5) * (i + 1))
         except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as e:
             last = e
             time.sleep(3 * (i + 1))

@@ -26,12 +26,19 @@ class T(unittest.TestCase):
             "2": tx("usdt.tether-token.near", [{"FunctionCall": {"method_name": "ft_transfer"}}], outs=[oc("usdt.tether-token.near", 10, [ev])]),
             "3": tx("v1.signer", [{"FunctionCall": {"method_name": "sign"}}], status={"Failure": {}}, outs=[oc("v1.signer", 10)]),
         }}}
+        diff = "EVENT_JSON:" + json.dumps({"event": "token_diff", "data": [{"diff": {"nep141:a": "-100", "nep141:b": "90"}, "fees_collected": {"nep141:a": "1"}, "referral": "ref.tg"}]})
+        mint = "EVENT_JSON:" + json.dumps({"event": "mt_mint", "data": [{"token_ids": ["nep141:a"], "amounts": ["7"], "memo": "deposit"}]})
+        burn = "EVENT_JSON:" + json.dumps({"event": "mt_burn", "data": [{"token_ids": ["nep141:a"], "amounts": ["3"], "memo": "withdraw"}]})
+        blk["b"]["txs"]["4"] = tx("intents.near", [{"FunctionCall": {"method_name": "execute_intents"}}], outs=[oc("intents.near", 5, [diff, mint, burn])])
         r = report(merge([shard_usage([blk])]), 1, 2)
-        self.assertEqual(r["txs"], 3)
-        self.assertAlmostEqual(r["ok_share"], 2 / 3)
+        self.assertEqual(r["flows"]["nep141:a"], {"swap_out": "100", "fees": "1", "deposit": "7", "withdraw": "3"})
+        self.assertEqual(r["flows"]["nep141:b"], {"swap_in": "90"})
+        self.assertEqual(r["referrals"], {"ref.tg": 1})
+        self.assertEqual(r["txs"], 4)
+        self.assertAlmostEqual(r["ok_share"], 3 / 4)
         self.assertEqual(r["stablecoins"]["USDT"], {"transfers": 2, "usd": 3.0})
         self.assertEqual(r["methods"]["v1.signer"], {"sign": 1})
-        self.assertAlmostEqual(r["gas_burners"][0]["gas_share"], 30 / 50)
+        self.assertAlmostEqual(r["gas_burners"][0]["gas_share"], 35 / 55)
 
 
 if __name__ == "__main__":
