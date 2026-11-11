@@ -57,3 +57,7 @@ At today’s market cap, about **$96M**/year of captured revenue is needed for a
 ## How to score the path
 
 Score **attachment %, capture share, escrow attestation, near.com mix, and HSP-029 activation** before you score AI roadmap slides or ETF AUM. Volume share without capture-rate discipline overstates what the token earns. The path that compounds is attachment + mix + issuance cut + attestation — the same commercial map as [`docs/structural-thesis.md`](structural-thesis.md), with dates and arithmetic attached.
+
+## Dial rank (derived)
+
+Ranked run-rate deltas vs the $24.2M baseline are in `data/derived/catalyst_dial_rank.json`. Attach and near.com mix dominate; partner-path and CIF sketches are low-single-digit $M/yr. **Volume remains the binding constraint** for 50× and for a THOR-like multiple.

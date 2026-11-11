@@ -285,6 +285,7 @@ def build() -> dict:
             "thor_bridge": optional("derived/thor_multiple_bridge.json"),
             "partner_dials": optional("derived/partner_path_uplift_stack.json"),
             "controllable_stack": optional("derived/controllable_stack.json"),
+            "dial_rank": optional("derived/catalyst_dial_rank.json"),
             "inventory_mix": optional("derived/inventory_mix.json"),
         },
         "repro": reproducibility(),
