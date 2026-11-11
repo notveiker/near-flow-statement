@@ -1,0 +1,9 @@
+{
+ "aurora_tvl_now_m": 3.75,
+ "aurora_tvl_peak_m": 1356.5,
+ "aurora_tvl_vs_peak_pct": 0.276,
+ "aurora_fees_30d_usd": 5.309999999999997,
+ "intents_rev_30d_m": 1.99,
+ "intents_rev_vs_aurora_fees_x": 374765.0,
+ "note": "Aurora is not the thesis \u2014 residual TVL ~0.28% of peak; Intents 30d revenue is orders of magnitude above Aurora fees. Exploratory confirmation of scope."
+}
