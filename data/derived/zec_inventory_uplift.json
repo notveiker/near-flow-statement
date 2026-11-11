@@ -1,0 +1,11 @@
+{
+ "zec_inventory_m": 27.43,
+ "zec_share_pct": 12.0,
+ "inventory_total_m": 229.2,
+ "turnover_30d_approx": 17,
+ "scenario": "zec_inventory_2x_same_turnover",
+ "extra_notional_30d_m": 466.3,
+ "fee_uplift_30d_m": 0.232,
+ "fee_uplift_run_rate_m": 2.83,
+ "note": "If ZEC inventory doubles and turns at protocol ~17\u00d7/30d with average capture 4.98 bp. Privacy/CIF narrative size, not a forecast. Exploratory."
+}
