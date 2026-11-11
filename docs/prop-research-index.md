@@ -39,3 +39,15 @@ History sample: preliminary **133** sealed clusters (primary) with payloads; dua
 
 `buyback_channel_map`, `ledger_swapkit_tax`, `swapkit_tax_total`, `volume_capture_index`, `dual_concentration`, `capital_efficiency`, `inventory_mix`, `near_exit_vs_capture`, `perps_positioning`, `concentration_overlays`, `intents_vs_l1_flow`, `float_sink`, `path_to_50x`, `mix_shift_math`, `prop_scores`, `catalyst_math`, `aurora_residual`, `lst_vs_buyback`, `rhea_lst_growth`, `builder_npm_pulse`, `governance_catalysts`, `hsp007_mpc`, `relayer_risk`, `solver_excess`, `contestability`, `fee_per_download`.
 - `data/derived/issuance_fee_coverage.json` — fee run-rate vs net mint $; volume multiple for 1× coverage
+- `data/derived/controllable_stack.json` — NEAR-controllable attach+mix stack vs 50× need
+- `data/derived/partner_path_uplift_stack.json` — Trust/no-ref/LI.FI dial inventory
+- `data/derived/thor_multiple_bridge.json` — Rev/vol need for THOR-like 16×
+- `data/derived/attestation_band_compression.json` — Disclosure collapses capture-share band
+- `data/derived/bitwise_vs_intents.json` — Institutional NRR vs Intents fee surface
+- `data/derived/zec_inventory_uplift.json` — ZEC inventory 2× fee sketch
+- `data/derived/agent_volume_bounds.json` — AI agent vol fee upper bounds
+- `data/derived/whale_attach_prize.json` — +10pp attach on ≥$10k tranche
+- `data/derived/rent_map_ratios.json` — Solver+partner vs NEAR capture
+- `data/derived/exit_vs_buyback_stock.json` — Net NEAR exit vs buyback wallet stock
+- `data/derived/noreferrer_mix_uplift.json` — +5pp no-referrer at 10 bp
+- `data/derived/trust_path_uplift.json` — Trust SwapKit→direct 20 bp path

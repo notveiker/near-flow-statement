@@ -1,0 +1,8 @@
+{
+ "asof": "2026-11-11",
+ "hsp029_timelock_end": "2026-11-16",
+ "days_to_timelock_end": 5,
+ "hackathon_deadline_utc": "2026-11-14T23:59:00Z",
+ "days_to_hackathon_deadline": 3,
+ "ordering_note": "Hackathon submit (14 Nov) precedes HSP-029 timelock end (16 Nov) by ~2 days \u2014 pitch must treat issuance ramp as pending-not-live."
+}
