@@ -63,6 +63,7 @@
 | 57 | History intents growth (extras) | ~23.5× intents first→latest nonzero quarter | Sample-extras exploratory; CS scaled with venue |
 | 58 | Relayer outage sketch (top1 half-day) | ~$55M notional / ~$28k fee | Fee $ small; UX/share risk large |
 | 59 | DIC vs scarcity half-life | DIC ~25d; half-life ~60d (~2.4×) | Stock is a buffer, not permanent scarcity |
-| 60 | Soft-sink ladder (DIC days) | NRR ~178d ≫ buyback ~25d ≫ AI stake ~8.5d | Largest sink exits in 1–2d; quality ≠ size |
+| 60 | Soft-sink ladder (DIC days) | LST ~611d ≫ NRR ~178d ≫ buyback ~25d ≫ AI ~8.5d | Size ≠ stickiness; LST/ETF liquid |
+| 61 | Soft-sink gross sum | ~2.3yr mint days (non-additive) | Mostly liquid exits — not permanent scarcity |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.
