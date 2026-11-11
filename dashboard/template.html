@@ -603,7 +603,7 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     const ic = U.contracts.find(c => c.account === "intents.near"), sg = U.methods["v1.signer"], sgn = (sg.respond || 0) / hrs * 24;
     const st = U.stablecoins, stUsd = (st.USDC.usd + st.USDT.usd) / hrs * 24, stN = (st.USDC.transfers + st.USDT.transfers) / hrs * 24;
     const rows = [
-      ["NEAR Intents", `${(ic.tx_share * 100).toFixed(0)}% of transactions`, `${(ic.ok_share * 100).toFixed(0)}% succeed`],
+      ["NEAR Intents", `${(ic.tx_share * 100).toFixed(0)}% of transactions target it`, `${(ic.ok_share * 100).toFixed(0)}% succeed`],
       ["Chain Signatures", `${fmt.n(Math.round(sgn / 100) * 100)} signatures a day`, "delivered by the MPC network"],
       ["Stablecoin transfers", `${fmt.n(Math.round(stN / 100) * 100)} a day`, `${fmt.usd(stUsd, 0)} moved a day (USDC, USDT)`],
       ["Relayed, gasless", `${(U.delegate_share * 100).toFixed(0)}% of transactions`, "users who never hold NEAR for gas"],
