@@ -36,3 +36,8 @@ Attachment rose **23.6% → 43.0%** of 1Click volume while SwapKit share stayed 
 Score **τ, C, L, AITR, attachment %** before peer volume share. Volume share without those overstates NEAR’s claim on the waterfall.
 
 *Not investment advice.*
+
+## Solver / excess residual (1Click Explorer)
+
+Realized cost runs about **8.5 bp** above listed appFees on the Explorer sample. On ~**$1.10B** of Explorer notional that is about **$0.94M** in the window — solver/gas/pip residual, **not** NEAR wallet capture. Listed partner fees were about **$4.45M**; buybacks from appFees about **$0.45M**. Exact solver P&L split inside the excess is a Gap (`data/derived/solver_excess.json`).
+
