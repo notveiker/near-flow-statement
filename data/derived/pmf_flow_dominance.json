@@ -1,0 +1,7 @@
+{
+ "intents_deposits_per_day_m": 79.7,
+ "stablecoin_usd_per_day_m": 13.2,
+ "deposit_vs_stable_x": 6.0,
+ "intents_gas_share_pct": 9.4,
+ "note": "Intents deposits ~6\u00d7 on-chain stablecoin USD/day in the census window and ~9.4% of gas \u2014 the venue is the chain's primary value-moving surface. Fee capture still lags volume leadership (volume/capture index ~1.7\u00d7). Exploratory window."
+}

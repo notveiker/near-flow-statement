@@ -1,0 +1,28 @@
+{
+ "net_issuance_usd_yr_m": 118.3,
+ "intents_fee_rr_m": 24.2,
+ "hsp007_budget_unknown": true,
+ "illustrative_claims": [
+  {
+   "emissions_claim_pct": 5,
+   "usd_yr_m": 5.9,
+   "vs_intents_fee_rr_x": 0.24
+  },
+  {
+   "emissions_claim_pct": 10,
+   "usd_yr_m": 11.8,
+   "vs_intents_fee_rr_x": 0.49
+  },
+  {
+   "emissions_claim_pct": 20,
+   "usd_yr_m": 23.7,
+   "vs_intents_fee_rr_x": 0.98
+  },
+  {
+   "emissions_claim_pct": 30,
+   "usd_yr_m": 35.5,
+   "vs_intents_fee_rr_x": 1.47
+  }
+ ],
+ "note": "HSP-007 budget not in repo. Illustrative: a 10% emissions claim \u2248 $11.8M/yr (~0.5\u00d7 Intents fee RR) competing for the same issuance pool fees try to offset. Exploratory."
+}
