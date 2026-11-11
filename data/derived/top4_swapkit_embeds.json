@@ -1,0 +1,12 @@
+{
+ "top4_swapkit_embeds": [
+  "swapkit/ledgerswapkit.near",
+  "swapkit/thorswap.near",
+  "swapkit/trustswapkit.near",
+  "swapkit/tangemswapkit.near"
+ ],
+ "combined_vol_share_pct": 33.2,
+ "combined_partner_fee_usd_m": 3.28,
+ "vs_near_capture_x": 1.65,
+ "note": "Ledger+THORSwap+Trust+Tangem via SwapKit = ~33% of 1Click vol and ~$3.3M listed partner fees (~1.6\u00d7 NEAR capture)."
+}
