@@ -54,6 +54,7 @@ def shard_usage(blocks) -> dict:
     burn_by: Counter = Counter()
     methods: dict[str, Counter] = {k: Counter() for k in FOCUS}
     out = Counter()
+    relayers: Counter = Counter()
     stable: dict[str, Counter] = {k: Counter() for k in STABLES}
     for d in blocks:
         b = d["b"]
@@ -70,6 +71,8 @@ def shard_usage(blocks) -> dict:
             ok_by[recv] += ok
             if recv in methods and method:
                 methods[recv][method] += 1
+            if recv == "intents.near" and method == "execute_intents":
+                relayers[t["transaction"]["signer_id"]] += 1
             for o in t.get("receipts_outcome", []):
                 oc = o["outcome"]
                 ex = oc["executor_id"]
@@ -89,7 +92,7 @@ def shard_usage(blocks) -> dict:
                                 stable[ex]["transfers"] += 1
                                 stable[ex]["raw"] += int(x.get("amount", 0))
     return {"out": dict(out), "tx_by": tx_by, "ok_by": ok_by, "gas_by": gas_by, "burn_by": burn_by,
-            "methods": methods, "stable": {k: dict(v) for k, v in stable.items()}}
+            "methods": methods, "relayers": relayers, "stable": {k: dict(v) for k, v in stable.items()}}
 
 
 def _work(args):
@@ -99,11 +102,12 @@ def _work(args):
 
 def merge(parts: list[dict]) -> dict:
     tot: dict = {"out": Counter(), "tx_by": Counter(), "ok_by": Counter(), "gas_by": Counter(), "burn_by": Counter(),
-                 "methods": {k: Counter() for k in FOCUS}, "stable": {k: Counter() for k in STABLES}}
+                 "methods": {k: Counter() for k in FOCUS}, "relayers": Counter(), "stable": {k: Counter() for k in STABLES}}
     for p in parts:
         tot["out"].update(p["out"])
         for k in ("tx_by", "ok_by", "gas_by", "burn_by"):
             tot[k].update(p[k])
+        tot["relayers"].update(p["relayers"])
         for k in FOCUS:
             tot["methods"][k].update(p["methods"][k])
         for k in STABLES:
@@ -118,8 +122,12 @@ def report(tot: dict, first: int, last: int) -> dict:
                   "gas_share": tot["gas_by"][a] / gas if gas else 0.0} for a, n in tot["tx_by"].most_common(TOP)]
     burners = [{"account": a, "gas_share": g / gas, "burn_near": tot["burn_by"][a] / 1e24} for a, g in tot["gas_by"].most_common(TOP)]
     stable = {STABLES[k][0]: {"transfers": v["transfers"], "usd": v["raw"] / 10 ** STABLES[k][1]} for k, v in tot["stable"].items()}
+    rl = tot["relayers"]
+    n_rl = sum(rl.values())
+    relayers = {"calls": n_rl, "distinct": len(rl), "top1_share": rl.most_common(1)[0][1] / n_rl if n_rl else None,
+                "top5_share": sum(v for _, v in rl.most_common(5)) / n_rl if n_rl else None}
     return {
-        "first_height": first, "last_height": last, "blocks": o["blocks"], "txs": txs, "ok_share": o["ok_txs"] / txs if txs else None,
+        "relayers": relayers, "first_height": first, "last_height": last, "blocks": o["blocks"], "txs": txs, "ok_share": o["ok_txs"] / txs if txs else None,
         "delegate_share": o["delegate_txs"] / txs if txs else None, "contracts": contracts, "gas_burners": burners,
         "methods": {k: dict(v.most_common(12)) for k, v in tot["methods"].items()}, "stablecoins": stable,
         "note": "target = inner receiver for delegate (relayed) transactions; gas share is by executing account",
