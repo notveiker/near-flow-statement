@@ -366,6 +366,12 @@
    "sha256": "67fc7fc0350953610ba5ca601c4cc53a39f7082d962edfc39160836dbba4484c",
    "source": "DefiLlama protocol TVL for LiNEAR, Meta Pool, RHEA LST"
   },
+  "raw/prop/lst_vs_stake.json": {
+   "bytes": 396,
+   "fetched_at": "2026-11-11T06:29:12Z",
+   "sha256": "c90475d54dd85b8e9181301e690eb934e9dbd571d8941917bc650c12f52407df",
+   "source": "DefiLlama LST TVL / validators total stake"
+  },
   "raw/prop/nearblocks_stats.json": {
    "bytes": 739,
    "fetched_at": "2026-11-11T06:27:20Z",
