@@ -36,5 +36,8 @@
 | 30 | Attestation band compression | 4.5–15.8% → ±1pp sketch | Disclosure catalyst; not a take-rate raise |
 | 31 | ZEC inventory 2× @ 17× turnover | ~$2.8M/yr fee uplift sketch | Privacy/CIF inventory dial; not volume growth |
 | 32 | Agent vol bounds (0.5–5%) | ~$0.03–0.33M/yr at τ | AI narrative fee-immaterial until labeled |
+| 33 | Whale attach prize (+10pp on ≥$10k) | ~$1.0M/yr at AITR | 3.4% of swaps = 77% vol — commercial terms on whales |
+| 34 | Rent map tiers | Solver~0.5× + partners~2.2× vs NEAR capture | Non-NEAR claims ~2.7× protocol on same sample |
+| 35 | Exit vs buyback stock | Wallet ~0.85× one-window net exit; rev ~0.21× | Stock ≠ flow offset |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.

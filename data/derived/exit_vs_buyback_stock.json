@@ -1,0 +1,8 @@
+{
+ "net_near_sold_30d_m": 9.4,
+ "buyback_wallet_usd_m": 8.0,
+ "captured_rev_30d_m": 1.99,
+ "wallet_covers_net_exit_x": 0.85,
+ "rev_covers_net_exit_x": 0.21,
+ "note": "Buyback wallet stock (~$8M) covers ~0.85\u00d7 one window of net NEAR exit (~$9.4M); period revenue covers ~0.21\u00d7. Stock \u2260 flow offset. Exploratory window arithmetic."
+}

@@ -1,0 +1,8 @@
+{
+ "whale_vol_share_pct": 77.1,
+ "whale_swap_count_pct": 3.4,
+ "scenario": "+10pp_attach_on_ge10k_tranche_at_AITR",
+ "uplift_30d_m": 0.081,
+ "uplift_run_rate_m": 0.98,
+ "note": "3.4% of swaps carry 77% of volume. A 10pp attach lift on that tranche at AITR (~9.5 bp) is a ~$1.0M/yr sketch \u2014 whale commercial terms dominate retail attach math. Exploratory."
+}

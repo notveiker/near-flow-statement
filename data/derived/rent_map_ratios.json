@@ -1,0 +1,8 @@
+{
+ "solver_excess_30d_m": 0.938,
+ "near_captured_30d_m": 1.99,
+ "partner_fees_30d_m": 4.45,
+ "solver_excess_vs_near_capture_x": 0.47,
+ "solver_plus_partner_vs_near_x": 2.71,
+ "note": "Solver/gas/pip residual (~$0.94M/30d) is ~0.47\u00d7 NEAR captured revenue; partners alone ~2.2\u00d7. Combined non-NEAR claims ~2.7\u00d7 protocol capture on the same Explorer sample. Rent map, not a forecast."
+}
