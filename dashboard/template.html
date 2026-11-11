@@ -455,12 +455,16 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
   if (Cm && Cm.attachment && Cm.attachment.scenarios) {
     const sc = Cm.attachment.scenarios;
     const Mx = D.catalysts && D.catalysts.mix;
+    const Fs = D.catalysts && D.catalysts.float_sink;
     const mixLine = Mx && Mx.capture_per_pp_mix_to_nearcom
       ? ` Mix dial: ~$${Mx.capture_per_pp_mix_to_nearcom.run_rate_m_per_pp.toFixed(2)}M/year per pp moved from 0 bp pipes to a 20 bp 100%-fee front.`
       : "";
+    const dicLine = Fs && Fs.proprietary_metrics
+      ? ` Buyback DIC: ~${Fs.proprietary_metrics.days_of_issuance_covered_DIC} days of issuance held (not burned); scarcity half-life ~${Fs.proprietary_metrics.scarcity_half_life_days}d if recirculated.`
+      : "";
     $("#attach-path").innerHTML = `<div class="hbar"><span>Attach %</span><span class="t"></span><span class="p mono">Run-rate</span></div>` +
       sc.map(s => `<div class="hbar"><span>${s.attach_pct.toFixed(0)}% · ${s.bb_explicit_bp.toFixed(2)} bp explicit</span><span class="t"><i style="width:${Math.min(100, s.run_rate_m / 45 * 100)}%"></i></span><span class="p mono">$${s.run_rate_m.toFixed(1)}M · ${s.issuance_offset_pct_approx.toFixed(1)}% offset</span></div>`).join("") +
-      `<p class="sub" style="margin-top:var(--s3)">Inventory: $${Cm.inventory.held_usd_m}M held / $${Cm.inventory.vol_30d_b}B vol ≈ ${Cm.inventory.turnover_x_per_30d}× per 30d (${Cm.inventory.days_of_volume_in_inventory} days of volume). At 1.6% cap + 60% attach ≈ ${Cm.issuance_coverage.at_1_6_cap_and_attach_60_pct}% of net issuance.${mixLine}</p>`;
+      `<p class="sub" style="margin-top:var(--s3)">Inventory: $${Cm.inventory.held_usd_m}M held / $${Cm.inventory.vol_30d_b}B vol ≈ ${Cm.inventory.turnover_x_per_30d}× per 30d (${Cm.inventory.days_of_volume_in_inventory} days of volume). At 1.6% cap + 60% attach ≈ ${Cm.issuance_coverage.at_1_6_cap_and_attach_60_pct}% of net issuance.${mixLine}${dicLine}</p>`;
   } else {
     $("#attach-path").innerHTML = `<p class="sub">Attachment scenarios appear when catalyst_math is in the build.</p>`;
   }

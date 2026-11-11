@@ -280,6 +280,7 @@ def build() -> dict:
             "mix": optional("derived/mix_shift_math.json"),
             "scores": optional("derived/prop_scores.json"),
             "contestability": optional("derived/contestability.json"),
+            "float_sink": optional("derived/float_sink.json"),
         },
         "repro": reproducibility(),
     }
