@@ -102,6 +102,7 @@ make dashboard      # rebuild dashboard/index.html
 
 ## Risks and context
 
+- **Volume is binding.** Attach/mix/leakage dials raise run-rate toward ~$37–45M; even full-venue AITR is ~$46M — 50× still needs ~2–4× volume (`data/derived/attach_ceiling_50x.json`).
 - **Base-layer activity is far below its 2024 peak.** Nearblocks counts about 739K transactions a day in 2026Q3 against 7.7M in 2024Q2, and 79K active accounts a day against 1.86M. Stablecoins on NEAR are $131M, against $651M at the 2024Q3 peak. Chain TVL is $169M, against $274M in 2022Q3.
 - **The multiple is high.** 199 <!--n:mcap_to_rev_30d_annualized_x-->× annualised 30-day captured revenue, and 510 <!--n:mcap_to_rev_365d_x-->× over the trailing year. NEAR is down 27.7% over the last 30 days, and the last 30 days' Intents volume was below the prior 30 days' ($4.0B against $4.56 <!--n:intents_vol_prior30d_b-->B).
 - **Capture is partly unattested.** Only 4.53 <!--n:ladder_public_collectors_pct_of_issuance-->% of issuance traces to public fee collectors. The other 11.25 <!--n:ladder_escrow_unshields_pct_of_issuance-->% arrives as releases from the confidential escrow, and 58.8 <!--n:escrow_share_of_buyback_near_30d_pct-->% of the buyback wallet's NEAR came that way.
