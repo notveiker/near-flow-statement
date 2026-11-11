@@ -176,3 +176,10 @@ Post-freeze. Changes no hypothesis, threshold, probability or the rating rule.
 
 1. **`docs/confidential-attestation.md`** states the investment split: confidential rails can raise economic take (AppFee zero) while thinning public proof; ~59% escrow-dependence of buyback NEAR; CIF forwarding is a contractual kill switch.
 2. Working detail in `research_notes/NEAR catalysts and path/confidential-trust-attestation.md`. Feeds no pre-registered test.
+
+## 2026-11-12 00:05 UTC: mix-shift arithmetic (exploratory)
+
+Post-freeze. Changes no hypothesis, threshold, probability or the rating rule.
+
+1. **`data/derived/mix_shift_math.json`** and the catalysts note quantify capture per percentage point of volume moved from zero-buyback pipes to a 20 bp 100%-fee front (~$0.97M/year per pp on today's volume).
+2. Working note: `research_notes/NEAR catalysts and path/mix-shift-arithmetic.md`. Feeds no pre-registered test.

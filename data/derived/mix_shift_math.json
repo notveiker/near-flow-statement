@@ -1,0 +1,169 @@
+{
+  "asof_utc": "2026-11-11T23:00:00Z",
+  "note": "Derived MIX-SHIFT arithmetic on committed metrics; scenarios are arithmetic not forecasts. Differential assumes volume moved from SwapKit-class (0 explicit buyback bp) to near.com-class (20 bp, 100% fee direction by stated policy).",
+  "window": "2026-10-06..2026-11-04",
+  "baselines": {
+    "intents_vol_30d_b": 4.0,
+    "oneclick_usd_m": 1104.0,
+    "captured_bp": 4.98,
+    "gross_bp": 15.3,
+    "capture_share_pct": 32.5,
+    "rev_30d_m": 1.99,
+    "run_rate_m": 24.2,
+    "issuance_offset_pct": 15.81,
+    "net_issuance_usd_30d_m": 12.71,
+    "aitr_bp": 9.49,
+    "attach_pct": 43.0,
+    "bb_explicit_bp": 4.08,
+    "nearcom_policy_bp": 20.0,
+    "swapkit_explicit_bb_bp": 0.0,
+    "whale_share_of_1click_vol_pct": 77.1,
+    "whale_share_of_count_pct": 3.4
+  },
+  "mix_model": {
+    "denominator": "intents_volume",
+    "buckets": [
+      {
+        "bucket": "near_com_class",
+        "share_pct": 25.0,
+        "share_basis": "Q3_2026_Nansen_Intents_volume",
+        "capture_bp_policy": 20.0,
+        "capture_note": "Stated 100% fee direction to NEAR revenue wallet; 20 bp native frontend rate in fee docs",
+        "nov_window_share_gap": true,
+        "fefunds_implied_share_pct_at_20bp": 7.7,
+        "fefunds_implied_note": "revwallets_frontend $616.9K / 20bp ⇒ ~$308M ≈ 7.7% of $4.0B; Q3 25% does not reconcile 1:1 to Nov wallet print"
+      },
+      {
+        "bucket": "swapkit_class",
+        "share_pct_of_1click": 38.2,
+        "share_pct_of_intents": 21.1,
+        "capture_bp_explicit": 0.0,
+        "swapkit_buyback_fees_usd_30d": 159.0,
+        "swapkit_partner_fees_usd_k": 3528.9,
+        "capture_note": "Explicit buyback ≈ 0; partner fees paid full listed on chain"
+      },
+      {
+        "bucket": "other",
+        "share_pct_of_intents_if_q3_near_com": 53.9,
+        "includes": "no-referrer, LI.FI, Rango, Trust direct, ZODL, non-1Click residual, escrow-unattested",
+        "implied_capture_bp_if_q3_25pct_near_com_at_20bp": -0.04,
+        "implied_capture_bp_if_fefunds_7_7pct_at_20bp": 4.83,
+        "public_attached_reference_bp": 9.49,
+        "gap": "Other rate is residual identity, not a measured channel take; Q3-policy identity overshoots measured 4.98 bp"
+      }
+    ]
+  },
+  "differential": {
+    "from_bp": 0.0,
+    "to_bp": 20.0,
+    "delta_bp_per_intents_pp": 0.2,
+    "delta_rev_30d_usd_per_intents_pp": 80000.0,
+    "capture_per_point_mix": {
+      "definition": "Annualised dollars of NEAR wallet capture per percentage point of Intents volume moved from zero-buyback (SwapKit-class) to 100%-fee front (near.com-class at 20 bp)",
+      "usd_30d_per_pp": 80000.0,
+      "usd_annualised_per_pp": 973333.0,
+      "usd_annualised_per_pp_m": 0.973,
+      "delta_captured_bp_per_pp": 0.2,
+      "alternate_1click_pp": {
+        "note": "If pp is of 1Click volume ($1.104B) rather than Intents ($4.0B)",
+        "delta_captured_bp_on_intents_per_1click_pp": 0.055,
+        "usd_annualised_per_pp_m": 0.269
+      }
+    }
+  },
+  "capture_per_pp_mix_to_nearcom": {
+    "bp_lift_vs_zero_buyback": 20.0,
+    "rev_30d_m_per_pp_on_4b_vol": 0.08,
+    "run_rate_m_per_pp": 0.973,
+    "note": "1 pp of $4.0B/30d volume moving from 0 bp explicit buyback to 20 bp near.com-class = 0.01 * 4e9 * 0.0020 = $80k/30d ≈ $0.97M annualised."
+  },
+  "scenarios_intents_pp": [
+    {
+      "label": "baseline",
+      "mix_pp_swapkit_to_near_com": 0,
+      "captured_bp": 4.98,
+      "delta_bp": 0.0,
+      "capture_share_pct": 32.5,
+      "rev_30d_m": 1.99,
+      "run_rate_m": 24.2,
+      "issuance_offset_pct": 15.8,
+      "near_com_share_pct_after_q3_anchor": 25.0,
+      "swapkit_intents_share_pct_after": 21.1
+    },
+    {
+      "label": "+5pp",
+      "mix_pp_swapkit_to_near_com": 5,
+      "captured_bp": 5.98,
+      "delta_bp": 1.0,
+      "capture_share_pct": 39.1,
+      "rev_30d_m": 2.39,
+      "delta_rev_30d_m": 0.4,
+      "run_rate_m": 29.1,
+      "delta_run_rate_m": 4.9,
+      "issuance_offset_pct": 19.0,
+      "near_com_share_pct_after_q3_anchor": 30.0,
+      "swapkit_intents_share_pct_after": 16.1
+    },
+    {
+      "label": "+10pp",
+      "mix_pp_swapkit_to_near_com": 10,
+      "captured_bp": 6.98,
+      "delta_bp": 2.0,
+      "capture_share_pct": 45.6,
+      "rev_30d_m": 2.79,
+      "delta_rev_30d_m": 0.8,
+      "run_rate_m": 34.0,
+      "delta_run_rate_m": 9.7,
+      "issuance_offset_pct": 22.2,
+      "near_com_share_pct_after_q3_anchor": 35.0,
+      "swapkit_intents_share_pct_after": 11.1
+    },
+    {
+      "label": "+15pp",
+      "mix_pp_swapkit_to_near_com": 15,
+      "captured_bp": 7.98,
+      "delta_bp": 3.0,
+      "capture_share_pct": 52.2,
+      "rev_30d_m": 3.19,
+      "delta_rev_30d_m": 1.2,
+      "run_rate_m": 38.8,
+      "delta_run_rate_m": 14.6,
+      "issuance_offset_pct": 25.4,
+      "near_com_share_pct_after_q3_anchor": 40.0,
+      "swapkit_intents_share_pct_after": 6.1,
+      "note": "+15 Intents pp consumes most of SwapKit's 21.1% Intents share — arithmetic upper use of SK headroom, not a path claim"
+    }
+  ],
+  "scenarios_pp_from_zero_buyback_to_nearcom": [
+    {"pp": 0, "extra_rev_30d_m": 0.0, "run_rate_m": 24.2, "captured_bp_approx": 4.98, "issuance_offset_pct_approx": 15.8},
+    {"pp": 5, "extra_rev_30d_m": 0.4, "run_rate_m": 29.1, "captured_bp_approx": 5.98, "issuance_offset_pct_approx": 19.0},
+    {"pp": 10, "extra_rev_30d_m": 0.8, "run_rate_m": 34.0, "captured_bp_approx": 6.98, "issuance_offset_pct_approx": 22.2},
+    {"pp": 15, "extra_rev_30d_m": 1.2, "run_rate_m": 38.8, "captured_bp_approx": 7.98, "issuance_offset_pct_approx": 25.4}
+  ],
+  "whale_concentration": {
+    "swaps_10k_plus_n_pct": 3.4,
+    "swaps_10k_plus_vol_pct": 77.1,
+    "implication": "Mix and capture are ticket-fragile: a thin whale cohort can reallocate Intents pp across pipes without retail share moving"
+  },
+  "swapkit_exit_reference": {
+    "traceable_rev_loss_pct": 2.0,
+    "ceiling_pct": 43.0,
+    "ceiling_all_escrow_pct": 73.7,
+    "vol_share_1click_pct": 38.2,
+    "vol_share_intents_pct": 21.1
+  },
+  "falsifiers": [
+    "Mix reverses: SwapKit-class / zero-buyback share rises vs near.com-class",
+    "SwapKit or Ledger-inside-SwapKit exits or re-routes (volume narrative hit; traceable rev −2%, escrow ceiling up to 43–74%)",
+    "Confidential default remains near.com-only; partner pipes stay public with explicit buyback ≈ 0",
+    "near.com 20 bp / 100% direction fails to land in DefiLlama revenue wallets at stated rate (CIF retained; attestation Gap)",
+    "Attachment on contestable public flow rolls over while mix stays SwapKit-heavy"
+  ],
+  "gaps": [
+    "near.com share of Intents in Nov 2026 window (Q3 Nansen ~25% only)",
+    "Per-stream attestation: escrow unshields vs near.com fees vs CIF",
+    "Whether near.com volume is inside or outside Explorer 1Click channel table",
+    "Elasticity of whale tickets to frontend UX / confidential default",
+    "Commercial Agreement text with SwapKit / Ledger / Trust / Tangem"
+  ]
+}
