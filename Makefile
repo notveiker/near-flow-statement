@@ -36,6 +36,9 @@ history-results: ## Offline: committed cluster rows -> quarter series, U1-U5 ver
 	$(PY) -m pipeline.sample_metrics results --plan data/sample/plan.json --rows data/derived/sample_clusters.jsonl --out data/derived/history_results.json --issuance-near-per-day 88295
 
 dashboard: ## Offline: committed data -> dashboard/index.html (self-contained, no network)
+
+prop-extras: ## Live, keyless: LST TVL, fee/DEX hierarchy, GitHub pulse, Nearblocks stats
+	$(PY) -m pipeline.fetch_prop_extras
 	$(PY) -m pipeline.build_dashboard
 
 census-metrics: ## Offline: committed census files -> data/derived/census_metrics.json

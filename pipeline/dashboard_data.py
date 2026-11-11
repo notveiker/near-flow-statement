@@ -221,6 +221,27 @@ def web_facts() -> dict | None:
     return {f["id"]: {"claim": f["claim"], "url": f["url"], "quote": f["quote"]} for f in _load(p)["facts"]} if p.exists() else None
 
 
+def prop() -> dict | None:
+    """Fee / DEX dominance, liquid-staking TVL and GitHub pulse from data/raw/prop/."""
+    root = RAW / "prop"
+    if not (root / "fees_near.json").exists():
+        return None
+    fees, dexs = _load(root / "fees_near.json"), _load(root / "dexs_near.json")
+    lst = _load(root / "lst.json") if (root / "lst.json").exists() else None
+    gh = _load(root / "github.json") if (root / "github.json").exists() else None
+    return {
+        "fees_top_share_30d_pct": fees.get("top_share_30d_pct"),
+        "fees_chain_30d": fees.get("chain_total30d"),
+        "fees_protocols": fees.get("protocols", [])[:6],
+        "dex_top_share_30d_pct": dexs.get("top_share_30d_pct"),
+        "dex_chain_30d": dexs.get("chain_total30d"),
+        "dex_protocols": dexs.get("protocols", [])[:6],
+        "lst": [{"name": p["name"], "tvl_now": p.get("tvl_now"), "tvl_365d_ago": p.get("tvl_365d_ago"),
+                 "quarterly": p.get("quarterly_end", [])[-6:]} for p in (lst or {}).get("protocols", []) if not p.get("error")],
+        "github": [r for r in (gh or {}).get("repos", []) if not r.get("error")],
+    }
+
+
 def optional(rel: str):
     p = DATA / rel
     return _load(p) if p.exists() else None
@@ -249,6 +270,7 @@ def build() -> dict:
         "hub_trail": optional("derived/hub_trail.json"), "census_hourly": optional("derived/census_hourly.json"), "usage": optional("derived/census_usage.json"), "usage_flows": usage_flows(optional("derived/census_usage.json")),
         "sample_extras": optional("derived/sample_extras_results.json"),
         "holdings": holdings(), "peers": peers(), "builders": builders(), "validators": validators(), "web_facts": web_facts(),
+        "prop": prop(),
         "repro": reproducibility(),
     }
 

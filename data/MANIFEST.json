@@ -336,6 +336,36 @@
    "sha256": "2080f19288fbb0aea0416cfc87caf13ff4d54c37c97aa5e800e825ec1c3eb59c",
    "source": "https://api.llama.fi/summary/fees/{slug}?dataType="
   },
+  "raw/prop/dexs_near.json": {
+   "bytes": 10730,
+   "fetched_at": "2026-11-11T06:27:16Z",
+   "sha256": "10315b160bb6d694275c97f9a3dfce778838f79addc5f63fbc9ab41a39af025a",
+   "source": "DefiLlama overview/dexs/near"
+  },
+  "raw/prop/fees_near.json": {
+   "bytes": 10470,
+   "fetched_at": "2026-11-11T06:27:16Z",
+   "sha256": "69553b22be3f1c08ef81ca3cbfc9b0eb052d4787b58f295a421ac4c8b3c2eb8d",
+   "source": "DefiLlama overview/fees/near"
+  },
+  "raw/prop/github.json": {
+   "bytes": 1470,
+   "fetched_at": "2026-11-11T06:27:19Z",
+   "sha256": "8b54bbe7a192c3aeee8ecebc8b3c872bbc31f2399f98652563efb76a89d3569e",
+   "source": "GitHub public repo metadata"
+  },
+  "raw/prop/lst.json": {
+   "bytes": 4514,
+   "fetched_at": "2026-11-11T06:27:16Z",
+   "sha256": "67fc7fc0350953610ba5ca601c4cc53a39f7082d962edfc39160836dbba4484c",
+   "source": "DefiLlama protocol TVL for LiNEAR, Meta Pool, RHEA LST"
+  },
+  "raw/prop/nearblocks_stats.json": {
+   "bytes": 739,
+   "fetched_at": "2026-11-11T06:27:20Z",
+   "sha256": "5307f1fff9fdc47106055c8ada9a9ee1b153af107ab310623380fa15fadb1b8e",
+   "source": "Nearblocks /v1/stats"
+  },
   "raw/rpc/buyback_balance_endpoints.json": {
    "bytes": 721,
    "fetched_at": "2026-11-06T23:23:25Z",

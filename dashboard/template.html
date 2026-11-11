@@ -520,7 +520,8 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
   const nb = D.nearblocks_q;
   let html = "";
   if (H && H.series && H.series.length) {
-    html += `<div class="grid2"><div class="card reveal"><h3>Receipts executed on intents.near per day</h3><p class="sub">Stratified random sample of the whole chain, 90% intervals (bootstrap over clusters).</p><div class="chart" id="c-intents-rc"></div><div class="foot" id="f-intents-rc"></div></div>
+    const prelim = H.preliminary ? `<p class="sub" style="color:var(--amber)">Preliminary: ${H.clusters_used || "?"} of the capped clusters sealed. Quarters with one cluster have zero-width intervals; verdicts update as more seal.</p>` : "";
+    html += prelim + `<div class="grid2"><div class="card reveal"><h3>Receipts executed on intents.near per day</h3><p class="sub">Stratified random sample of the whole chain, 90% intervals (bootstrap over clusters).</p><div class="chart" id="c-intents-rc"></div><div class="foot" id="f-intents-rc"></div></div>
     <div class="card reveal"><h3>Sampler against an independent daily series</h3><p class="sub">Sampled transactions a day against Nearblocks' daily count, by quarter, log scale.</p><div class="chart" id="c-calib"></div><div class="foot" id="f-calib"></div></div></div>`;
   } else {
     html += `<div class="card reveal"><h3>Sampled history is being collected</h3><p class="sub">A stratified random sample of 26 quarters (design and hypotheses frozen in <span class="mono">docs/history-sample-prereg.md</span>) is being pulled at a polite rate. The charts appear here when the build includes it.</p></div>`;
@@ -528,16 +529,38 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
   body.innerHTML = html;
   if (H && H.series && H.series.length) {
     const s = H.series.filter(r => r.intents_per_day && r.intents_per_day.point > 0);
-    const f = lines($("#c-intents-rc"), s.map(r => r.quarter), [{name: "Receipts per day", color: C.accent, v: s.map(r => r.intents_per_day.point), area: true}, {name: "90% low", color: C.g2, w: 1, v: s.map(r => r.intents_per_day.lo90)}, {name: "90% high", color: C.g2, w: 1, v: s.map(r => r.intents_per_day.hi90)}], {fy: v => fmt.n(v / 1000, 0) + "K", ft: v => fmt.n(v, 0)});
+    lines($("#c-intents-rc"), s.map(r => r.quarter), [{name: "Receipts per day", color: C.accent, v: s.map(r => r.intents_per_day.point), area: true}, {name: "90% low", color: C.g2, w: 1, v: s.map(r => r.intents_per_day.lo90)}, {name: "90% high", color: C.g2, w: 1, v: s.map(r => r.intents_per_day.hi90)}], {fy: v => fmt.n(v / 1000, 0) + "K", ft: v => fmt.n(v, 0)});
+    const first = s[0], last = s[s.length - 1];
+    const topQ4 = H.series.find(r => r.quarter === "2026Q4");
+    $("#f-intents-rc").textContent = (first && last ? `From ${fmt.n(first.intents_per_day.point / 1e3, 0)}K a day in ${first.quarter} to ${fmt.n(last.intents_per_day.point / 1e3, 0)}K in ${last.quarter}.` : "") + (topQ4 && topQ4.top_receiver === "intents.near" ? ` In ${topQ4.quarter}, intents.near was the single busiest receiver on the sampled blocks (${(topQ4.top_receiver_share.point * 100).toFixed(0)}% of transactions).` : "");
     const nbm = Object.fromEntries(nb.map(r => [r.q, r.tx_per_day]));
     const c = H.series.filter(r => nbm[r.quarter] && r.tx_per_day.point > 0);
     const lg = v => Math.log10(Math.max(v, 1));
     lines($("#c-calib"), c.map(r => r.quarter), [{name: "Sample estimate", color: C.accent, v: c.map(r => lg(r.tx_per_day.point))}, {name: "Nearblocks daily mean", color: C.g1, v: c.map(r => lg(nbm[r.quarter]))}], {min: 2, max: 7, fy: v => "10^" + v.toFixed(0), ft: v => fmt.n(Math.pow(10, v), 0)});
+    $("#f-calib").textContent = H.tests ? `Provisional sample verdicts: U1 ${H.tests.U1.verdict}, U2 ${H.tests.U2.verdict}, U3 ${H.tests.U3.verdict}, U4 ${H.tests.U4.verdict}, U5 ${H.tests.U5.verdict}. Base-layer growth tests fail; Intents receipts are the rising series.` : "";
   }
   if (C0) {
     body.insertAdjacentHTML("beforeend", `<div class="grid3" style="margin-top:var(--s4)">${(C0.cards || []).map(c => `<div class="card reveal"><h3>${c.title}</h3><div class="v" style="font-size:30px;font-weight:600;letter-spacing:-.02em">${c.value}</div><p class="sub" style="margin:var(--s2) 0 0">${c.note}</p></div>`).join("")}</div>`);
   }
-  $("#chain-lede").textContent = "Two chain-level sources sit behind this section: a stratified random sample of blocks across the chain's life, and a block-by-block census from our own node covering the days since it synced. Both are hashed and re-runnable.";
+  const Pr = D.prop;
+  if (Pr) {
+    const feeRows = (Pr.fees_protocols || []).slice(0, 5);
+    const lstRows = Pr.lst || [];
+    body.insertAdjacentHTML("beforeend", `<div class="grid2" style="margin-top:var(--s4)">
+      <div class="card reveal"><h3>Where NEAR chain fees come from</h3><p class="sub">DefiLlama fees on NEAR over 30 days. Intents is ${Pr.fees_top_share_30d_pct}% of the chain total.</p><div id="fee-bars"></div><div class="foot">Chain total $${fmt.n(Pr.fees_chain_30d / 1e6, 1)}M. Intents is also ${Pr.dex_top_share_30d_pct}% of reported DEX volume on NEAR.</div></div>
+      <div class="card reveal"><h3>Liquid staking TVL</h3><p class="sub">LiNEAR, Meta Pool and RHEA LST, end of quarter, USD.</p><div class="chart" id="c-lst"></div><div class="foot" id="f-lst"></div></div>
+    </div>`);
+    const mx = Math.max(...feeRows.map(r => r.total30d || 0));
+    $("#fee-bars").innerHTML = feeRows.map(r => `<div class="hbar ${/intent/i.test(r.name) ? "" : "alt"}"><span>${r.name}</span><span class="t"><i style="width:${(r.total30d || 0) / mx * 100}%"></i></span><span class="p mono">$${((r.total30d || 0) / 1e6).toFixed(2)}M</span></div>`).join("");
+    if (lstRows.length) {
+      const qs = [...new Set(lstRows.flatMap(p => (p.quarterly || []).map(q => q.q)))].sort();
+      const cols = [C.accent, C.g1, C.g2];
+      lines($("#c-lst"), qs, lstRows.map((p, i) => ({name: p.name, color: cols[i % cols.length], v: qs.map(q => { const hit = (p.quarterly || []).find(x => x.q === q); return hit ? hit.tvl / 1e6 : null; })})), {fy: v => "$" + v.toFixed(0) + "M", ft: v => "$" + v.toFixed(1) + "M", xticks: 6});
+      $("#c-lst").before(h("div", {class: "legend"}, lstRows.map((p, i) => `<span><i style="background:${cols[i % cols.length]}"></i>${p.name}</span>`).join("")));
+      $("#f-lst").textContent = lstRows.map(p => `${p.name} $${((p.tvl_now || 0) / 1e6).toFixed(0)}M now` + (p.tvl_365d_ago ? ` (was $${(p.tvl_365d_ago / 1e6).toFixed(0)}M a year ago)` : "")).join(". ") + ".";
+    }
+  }
+  $("#chain-lede").textContent = "Two chain-level sources sit behind this section: a stratified random sample of blocks across the chain's life, and a block-by-block census from our own node covering the days since it synced. Both are hashed and re-runnable. Fee and liquid-staking figures are DefiLlama snapshots.";
 }
 
 /* ---------------- 07 rating ---------------- */

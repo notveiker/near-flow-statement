@@ -54,6 +54,18 @@ Deposits into the contract ran at $80.3 <!--c:deposits_per_day_m-->M a day and w
 
 [`docs/history-sample-prereg.md`](docs/history-sample-prereg.md) freezes a stratified random sample of blocks across 26 quarters, with hypotheses and pass rules fixed before any sampled block was read. Its results, with 90% intervals, are in `data/derived/history_results.json` and in section 6 of the dashboard when the build includes them. They are published whichever way each hypothesis falls.
 
+
+
+## 8. What else the chain shows (exploratory)
+
+These figures are from keyless snapshots under `data/raw/prop/` and from a **preliminary** read of the history sample (43 of the capped clusters sealed as of 2026-11-11). They feed no pre-registered test.
+
+- **Intents is most of NEAR's fee surface.** Over 30 days, NEAR Intents was 87% of all fees DefiLlama attributes to protocols and the chain on NEAR, and 93% of reported DEX volume on NEAR. The next venue, Rhea Dex, was about a tenth of Intents' fees.
+- **Intents receipts are rising in the sampled history.** Receipts executed on `intents.near` per day, from the stratified sample, go from about 51K in 2025Q3 to about 265K in 2026Q3, and about 886K in the still-thin 2026Q4 draw. In that 2026Q4 draw, `intents.near` itself was the single busiest receiver (23.5% of transactions). Base-layer growth tests U1, U2, U4 and U5 fail on the same sample; that is the base-layer decline already visible in Nearblocks.
+- **Chain Signatures show up in the same sample.** Exploratory counts of `sign` receipts on `v1.signer` rise from about 1.4K a day in 2025Q3 to about 61K in 2026Q3 (one cluster per recent quarter so far; intervals will widen the estimate).
+- **Liquid staking is live next to Intents.** LiNEAR about $47M, Meta Pool about $80M, RHEA LST about $69M of TVL (DefiLlama). RHEA LST is about 4× its level a year ago.
+- **The node census (about 10 hours).** Intents is 13% of transactions and 9% of gas; 43% of transactions are relayed (gasless); about 16K Chain Signatures a day; about $13M a day of stablecoin transfers; about $80M of deposits and $76M of withdrawals a day into and out of Intents, for a net about +$4.6M a day. Relayer concentration is high: one account sends 83% of relayed transactions.
+
 ## Reproduce
 
 ```

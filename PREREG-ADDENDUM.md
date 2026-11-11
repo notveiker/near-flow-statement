@@ -133,3 +133,11 @@ Post-freeze and exploratory. They change no hypothesis, threshold, probability o
 4. **Contract holdings, builder downloads, peer revenue to holders, third-party facts** (`pipeline/fetch_intents_holdings.py`, `fetch_builder_activity.py`, `fetch_peers.py`, `fetch_web_facts.py`). Each fetched fact keeps its source URL and an exact quote re-checked by `fetch_web_facts verify`.
 5. **Exploratory counts on the sampled clusters** (`pipeline/sample_extras.py`): `intents_executed` events, deposits, withdrawals and Chain Signatures requests per quarter. They use the same frozen clusters and design as U1-U5 and are labelled exploratory wherever they appear.
 6. **Source notes.** `archival-rpc.mainnet.near.org` is deprecated and answers 429 to every request, so archival reads go to FastNEAR's archival host. Archival `validators` calls for old epochs return "Unknown epoch", so no monthly validator series was possible and none is shown.
+
+## 2026-11-11 06:30 UTC: preliminary history-sample rows; prop extras; second sampler IP
+
+Post-freeze. Changes no hypothesis, threshold, probability or the rating rule.
+
+1. **Preliminary sample rows.** 43 sealed clusters (of 268 under the amended round caps) were copied from the collector and scored offline. `data/derived/history_results.json` and `data/derived/sample_extras.jsonl` are stamped `preliminary: true`. Provisional verdicts: U1, U2, U4, U5 fail; U3 is not scorable yet (2025Q1 sample had no intents receipts). The Intents receipts series is rising; base-layer series are not. Final verdicts wait for the stopping rule.
+2. **Prop extras.** `pipeline/fetch_prop_extras.py` pulls DefiLlama fee and DEX hierarchy on NEAR, liquid-staking TVL and public GitHub metadata into `data/raw/prop/`. None of it feeds a pre-registered test.
+3. **Second sampler.** A second NEARDATA collector runs on a different provider (one polite IP per provider) against the same frozen plan, writing to its own root. Clusters are merged by id when sealed.
