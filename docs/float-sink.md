@@ -31,3 +31,5 @@ At metrics price, Intents fee run-rate (~$24M) covers about **0.21×** of net is
 DIC (~25d) vs scarcity half-life (~60d): `data/derived/dic_vs_half_life.json` — stock is a buffer, not permanent removal.
 
 Soft-sink ladder: `data/derived/soft_sink_ladder.json` — NRR holdings cover ~7× more mint days than the buyback wallet but unbond in 1–2 days.
+
+Burn materiality: `data/derived/burn_materiality.json` — 25% of mint as permanent removal needs ~122% of today’s fee capture.

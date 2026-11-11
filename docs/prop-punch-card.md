@@ -65,5 +65,6 @@
 | 59 | DIC vs scarcity half-life | DIC ~25d; half-life ~60d (~2.4×) | Stock is a buffer, not permanent scarcity |
 | 60 | Soft-sink ladder (DIC days) | LST ~611d ≫ NRR ~178d ≫ buyback ~25d ≫ AI ~8.5d | Size ≠ stickiness; LST/ETF liquid |
 | 61 | Soft-sink gross sum | ~2.3yr mint days (non-additive) | Mostly liquid exits — not permanent scarcity |
+| 62 | Burn materiality (25% of mint) | Needs ~122% of today’s fee capture as hard removal | Held buybacks ≠ permanent scarcity |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.

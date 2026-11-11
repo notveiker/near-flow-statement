@@ -1,0 +1,7 @@
+{
+ "capture_rr_m": 24.2,
+ "to_cover_25pct_issuance_need_usd_m": 29.6,
+ "share_of_capture_needed_pct": 122.2,
+ "at_hsp029_share_of_capture_pct": 79.5,
+ "note": "Permanently removing (burn/lock) enough NEAR to offset 25% of net mint requires ~122% of today\u2019s fee capture as hard removal \u2014 more than 100% of the fee print. HSP-029 lowers that to ~80% of capture. Held buybacks are not this. Exploratory."
+}
