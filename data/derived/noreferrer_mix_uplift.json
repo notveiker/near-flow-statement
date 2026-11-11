@@ -1,0 +1,6 @@
+{
+ "scenario": "+5pp_1click_vol_to_no_referrer_at_10bp",
+ "uplift_30d_m": 0.055,
+ "uplift_run_rate_m": 0.67,
+ "note": "Moving 5pp of 1Click volume from zero-buyback SwapKit to no-referrer 10 bp default. Complements mix-shift near.com 20 bp path. Exploratory arithmetic."
+}
