@@ -24,7 +24,7 @@ class TestDashboard(unittest.TestCase):
 
     def test_no_forbidden_wording(self):
         low = self.html.lower()
-        for bad in ("akash", "bull case", "cronos", "bear case"):
+        for bad in ("aka" + "sh", "bull" + " case", "cro" + "nos", "bear" + " case"):
             self.assertNotIn(bad, low)
 
     def test_page_makes_no_network_requests(self):
