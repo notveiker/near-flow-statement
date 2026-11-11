@@ -10,7 +10,7 @@
 | Written report (`REPORT.md`) | Live; risks compact at bottom; Hold rating |
 | Structural + catalyst prop docs | Live; see `docs/prop-research-index.md` + punch card |
 | Pre-reg / addendum honesty | Frozen tests untouched; exploratory labelled |
-| History sample | Preliminary **134** clusters; still sealing early rounds |
+| History sample | Preliminary **135** clusters; still sealing early rounds |
 | Forward tests F1–F4 | Resolve **2026-11-14** — score and publish |
 | Public repo / X demo | Still to do before deadline |
 | No Akash mention in deliverable | Enforced in prose |
@@ -23,7 +23,9 @@
 4. near.com mix $ / pp  
 5. HSP-029 activation  
 6. Path-to-50× needs volume beyond attach/mix  
-7. Relayer HHI / ops concentration  
-8. Inventory mix (ZEC #2) + capital efficiency  
+7. Fee÷mint$ coverage (~0.21×) + THOR-multiple bridge  
+8. Relayer HHI / ops concentration  
+9. Inventory mix (ZEC #2) + CIF sensitivity  
+10. Rent map (solver+partners ~2.7× NEAR capture)  
 
 AI / ETF / npm are second-order until measured as fee flow.

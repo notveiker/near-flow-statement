@@ -1,0 +1,35 @@
+{
+ "baseline_run_rate_m": 24.2,
+ "controllable_stack_m": 37.0,
+ "sum_small_dials_m": 7.46,
+ "dials": [
+  {
+   "file": "trust_path_uplift.json",
+   "metric": "uplift_run_rate_m",
+   "m": 1.72
+  },
+  {
+   "file": "swapkit_to_noref_uplift.json",
+   "metric": "uplift_run_rate_m",
+   "m": 1.34
+  },
+  {
+   "file": "zec_inventory_uplift.json",
+   "metric": "fee_uplift_run_rate_m",
+   "m": 2.83
+  },
+  {
+   "file": "noreferrer_mix_uplift.json",
+   "metric": "uplift_run_rate_m",
+   "m": 0.67
+  },
+  {
+   "file": "lifi_attach_uplift.json",
+   "metric": "uplift_run_rate_m_approx",
+   "m": 0.9
+  }
+ ],
+ "issuance_coverage_today_x": 0.205,
+ "thor_rev_need_m": 301.2,
+ "note": "Inventory of exploratory dials. Small dials are not additive with attach/mix stack. Volume remains the binding constraint for 50\u00d7 and THOR-like multiples."
+}
