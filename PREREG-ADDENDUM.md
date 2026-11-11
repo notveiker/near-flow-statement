@@ -190,3 +190,9 @@ Post-freeze. Changes no hypothesis, threshold, probability or the rating rule.
 
 1. **History sample.** `sample_metrics` / `sample_extras` now skip seals that lack a `.jsonl.gz` payload. Preliminary recompute uses **80** primary clusters with both manifest and payload (`data/derived/history_results.json` stamped `preliminary: true`). Dual-sampler merge still pending while remaining payloads sync.
 2. **`data/derived/contestability.json`** and `research_notes/NEAR catalysts and path/distribution-contestability.md` frame SwapKit / REVSHARE embed risk vs captive near.com mix.
+
+## 2026-11-12 00:35 UTC: path-to-50× arithmetic (exploratory)
+
+Post-freeze. Changes no hypothesis, threshold, probability or the rating rule.
+
+1. **`data/derived/path_to_50x.json`** shows attach/mix alone reach ~0.4× of the ~$96M revenue need for a 50× multiple at current mcap; volume growth remains required for multiple compression without a price cut.

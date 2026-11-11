@@ -48,6 +48,10 @@ near.com handled about a **quarter** of Intents volume in Q3 2026, with stated 1
 
 **Roadmap infrastructure (Q4 2026–Q1 2027).** near-kit, TEE enforcement, heterogeneous TEEs, single-block cross-shard — second-order for the Intents capture thesis; first-order only if they unlock measurable Intents or AI fee flow.
 
+## What gets the multiple to 50×
+
+At today’s market cap, about **$96M**/year of captured revenue is needed for a **50×** multiple (`data/derived/path_to_50x.json`). Attachment and mix alone — even attach **80%** or attach **60%** plus **+10 pp** near.com mix — land near **~$41–42M** run-rate, about **0.4×** of that need. The volume paths that clear 50× on arithmetic are familiar: about **4×** volume at ~5 bp, or **2×** volume at ~10 bp. Capture discipline raises the quality of the numerator; **volume still has to grow** for the multiple to compress without a price cut. That is why attachment and mix are scored first (they are NEAR-side and measurable) and volume second (it is larger but less controllable).
+
 ## How to score the path
 
 Score **attachment %, capture share, escrow attestation, near.com mix, and HSP-029 activation** before you score AI roadmap slides or ETF AUM. Volume share without capture-rate discipline overstates what the token earns. The path that compounds is attachment + mix + issuance cut + attestation — the same commercial map as [`docs/structural-thesis.md`](structural-thesis.md), with dates and arithmetic attached.

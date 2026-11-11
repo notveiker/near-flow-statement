@@ -1,0 +1,61 @@
+{
+ "asof_utc": "2026-11-12T00:30:00Z",
+ "mcap_b": 4.82,
+ "run_rate_m": 24.2,
+ "rev_for_50x_m": 96.4,
+ "multiple_today": 199.0,
+ "paths": [
+  {
+   "name": "today",
+   "vol_x": 1,
+   "take_bp": 4.98,
+   "run_rate_m": 24.2,
+   "vs_need_50x": 0.25
+  },
+  {
+   "name": "volume_4x_take_5bp",
+   "vol_x": 4,
+   "take_bp": 5,
+   "run_rate_m": 97.3,
+   "vs_need_50x": 1.01
+  },
+  {
+   "name": "volume_2x_take_10bp",
+   "vol_x": 2,
+   "take_bp": 10,
+   "run_rate_m": 97.3,
+   "vs_need_50x": 1.01
+  },
+  {
+   "name": "attach_80_only",
+   "vol_x": 1,
+   "take_bp": 8.49,
+   "run_rate_m": 41.3,
+   "note": "catalyst_math",
+   "vs_need_50x": 0.43
+  },
+  {
+   "name": "attach_60_plus_mix_10",
+   "vol_x": 1,
+   "take_bp": 8.6,
+   "run_rate_m": 41.7,
+   "note": "mix sketch; independence Gap",
+   "vs_need_50x": 0.43
+  },
+  {
+   "name": "attach_80_mix_10_vol_1_5",
+   "vol_x": 1.5,
+   "take_bp": 9.5,
+   "run_rate_m": 69.3,
+   "vs_need_50x": 0.72
+  },
+  {
+   "name": "volume_2x_attach_style_8bp",
+   "vol_x": 2,
+   "take_bp": 8,
+   "run_rate_m": 77.9,
+   "vs_need_50x": 0.81
+  }
+ ],
+ "note": "Arithmetic paths toward ~50\u00d7 on current mcap; not forecasts. Capture levers alone (~attach/mix) get to ~0.4\u00d7 of the 50\u00d7 revenue need; volume growth is required for the multiple to compress to 50\u00d7 without a price cut."
+}
