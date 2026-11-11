@@ -463,12 +463,18 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
       ? ` Buyback DIC: ~${Fs.proprietary_metrics.days_of_issuance_covered_DIC} days of issuance held (not burned); scarcity half-life ~${Fs.proprietary_metrics.scarcity_half_life_days}d if recirculated.`
       : "";
     const Im = D.catalysts && D.catalysts.inventory_mix;
+
+  const Ic = D.catalysts && D.catalysts.issuance_coverage;
+  const icLine = Ic ? ` Fee÷mint$: ~${Ic.fee_covers_issuance_x}× today; ~${Ic.stack37_covers_hsp029_target_x}× at HSP-029+stack.` : "";
+  const Tb = D.catalysts && D.catalysts.thor_bridge;
+  const tbLine = Tb ? ` THOR-like 16× needs ~$${Tb.rev_need_m}M rev (~${Tb.gap_x}× today).` : "";
+
     const invLine = Im && Im.zec_share_pct != null
       ? ` Inventory mix: wNEAR ${Im.wnear_share_pct}%, ZEC ${Im.zec_share_pct}% (#2), stables ~${Im.stable_share_pct}%.`
       : "";
     $("#attach-path").innerHTML = `<div class="hbar"><span>Attach %</span><span class="t"></span><span class="p mono">Run-rate</span></div>` +
       sc.map(s => `<div class="hbar"><span>${s.attach_pct.toFixed(0)}% · ${s.bb_explicit_bp.toFixed(2)} bp explicit</span><span class="t"><i style="width:${Math.min(100, s.run_rate_m / 45 * 100)}%"></i></span><span class="p mono">$${s.run_rate_m.toFixed(1)}M · ${s.issuance_offset_pct_approx.toFixed(1)}% offset</span></div>`).join("") +
-      `<p class="sub" style="margin-top:var(--s3)">Inventory: $${Cm.inventory.held_usd_m}M held / $${Cm.inventory.vol_30d_b}B vol ≈ ${Cm.inventory.turnover_x_per_30d}× per 30d (${Cm.inventory.days_of_volume_in_inventory} days of volume). At 1.6% cap + 60% attach ≈ ${Cm.issuance_coverage.at_1_6_cap_and_attach_60_pct}% of net issuance.${mixLine}${dicLine}${invLine}</p>`;
+      `<p class="sub" style="margin-top:var(--s3)">Inventory: $${Cm.inventory.held_usd_m}M held / $${Cm.inventory.vol_30d_b}B vol ≈ ${Cm.inventory.turnover_x_per_30d}× per 30d (${Cm.inventory.days_of_volume_in_inventory} days of volume). At 1.6% cap + 60% attach ≈ ${Cm.issuance_coverage.at_1_6_cap_and_attach_60_pct}% of net issuance.${mixLine}${dicLine}${invLine}${icLine}${tbLine}</p>`;
   } else {
     $("#attach-path").innerHTML = `<p class="sub">Attachment scenarios appear when catalyst_math is in the build.</p>`;
   }

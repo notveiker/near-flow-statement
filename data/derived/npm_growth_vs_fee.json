@@ -1,0 +1,39 @@
+{
+ "intents_sdk_oct_dl": 43879,
+ "intents_sdk_may_dl": 14804,
+ "may_to_oct_x": 2.96,
+ "mom": [
+  {
+   "from": "2026-05",
+   "to": "2026-06",
+   "x": 1.53,
+   "dl": 22616
+  },
+  {
+   "from": "2026-06",
+   "to": "2026-07",
+   "x": 1.88,
+   "dl": 42564
+  },
+  {
+   "from": "2026-07",
+   "to": "2026-08",
+   "x": 0.88,
+   "dl": 37512
+  },
+  {
+   "from": "2026-08",
+   "to": "2026-09",
+   "x": 1.02,
+   "dl": 38436
+  },
+  {
+   "from": "2026-09",
+   "to": "2026-10",
+   "x": 1.14,
+   "dl": 43879
+  }
+ ],
+ "captured_usd_per_download_oct": 17.39,
+ "note": "Intents SDK downloads ~3\u00d7 May\u2192Oct but fee/$dl is a vanity ratio (CI noise). Builder adoption leads tooling, not proven attach. Exploratory."
+}

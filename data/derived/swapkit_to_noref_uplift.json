@@ -1,0 +1,6 @@
+{
+ "scenario": "10pp_swapkit_to_noreferrer_10bp",
+ "uplift_30d_m": 0.11,
+ "uplift_run_rate_m": 1.34,
+ "note": "If 10pp of SwapKit volume (currently 0 buyback) routed as no-referrer at 10 bp default. Commercial renegotiation, not product ship. Exploratory."
+}

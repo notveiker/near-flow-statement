@@ -44,5 +44,7 @@
 | 38 | LST vs annual mint $ | LST ~1.7×; buyback wallet ~0.07× | Soft float ≠ fee claim |
 | 39 | OI vs fee decouple | OI −42% / fee print held | Positioning overlay ≠ fee engine |
 | 40 | History sample | 135 preliminary clusters | Early strata sealing; overall still not supported |
+| 41 | SwapKit→no-ref (+10pp at 10 bp) | ~$1.3M/yr sketch | Renegotiation dial on 38% channel |
+| 42 | npm SDK May→Oct | ~3× downloads | Tooling ≠ attach; vanity $/dl |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.
