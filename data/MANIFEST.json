@@ -90,6 +90,36 @@
    "sha256": "199d54d4131b432f73fa7f8aa81a2cf168ac4dec7791aac7629d8f1674bef4c2",
    "source": "https://api.coingecko.com/api/v3/coins/near"
   },
+  "raw/ecosystem/chain_tvl.json": {
+   "bytes": 67997,
+   "fetched_at": "2026-11-11T02:49:58Z",
+   "sha256": "499fcc0882d823e7db5e4fc86b4f627559860364d56964f09bb3730bd9ef6f20",
+   "source": "defillama: v2/historicalChainTvl/Near"
+  },
+  "raw/ecosystem/dex_volume.json": {
+   "bytes": 42358,
+   "fetched_at": "2026-11-11T02:49:59Z",
+   "sha256": "219da4627d4c3a612458cded4f0ca1d9e914f9b37dc12caa447f158999b8da3b",
+   "source": "defillama: overview/dexs/near"
+  },
+  "raw/ecosystem/fees.json": {
+   "bytes": 19050,
+   "fetched_at": "2026-11-11T02:49:59Z",
+   "sha256": "17181565ff3ebf840f90cb0131d99628da0223cbdd65965a6dd48819e02eb8f5",
+   "source": "defillama: overview/fees/near"
+  },
+  "raw/ecosystem/protocols_on_near.json": {
+   "bytes": 17849,
+   "fetched_at": "2026-11-11T02:50:01Z",
+   "sha256": "19ce5317d0fd4c93384a0a71997a946fecd0beb2e977f0bf2ca276b2b5629e5d",
+   "source": "defillama: protocols filtered to chain Near"
+  },
+  "raw/ecosystem/stablecoins.json": {
+   "bytes": 367850,
+   "fetched_at": "2026-11-11T02:50:00Z",
+   "sha256": "fe914f1be0ca3ce06abb9c734bfaeaaf80d4c5959425957833203dc20957cb96",
+   "source": "defillama stablecoins: stablecoincharts/Near"
+  },
   "raw/escrow/deliveries.csv": {
    "bytes": 895289,
    "fetched_at": "2026-11-06T23:19:12Z",
@@ -125,6 +155,24 @@
    "fetched_at": "2026-11-07T02:52:18Z",
    "sha256": "bf77c7832108ebcb0f80ae066ab0d1ce508de779cf27905f9c86082be7b3b70e",
    "source": "https://explorer.near-intents.org/api/v0/transactions?statuses=SUCCESS (per-day cursor pull, 2026-08-07..2026-11-04)"
+  },
+  "raw/governance/categories.json": {
+   "bytes": 681,
+   "fetched_at": "2026-11-11T02:52:12Z",
+   "sha256": "0a94dc0cae3e194026f96ff00c98ce8ac227719ffd344753cfd42401a8de5f20",
+   "source": "gov.near.org categories.json"
+  },
+  "raw/governance/top_yearly.json": {
+   "bytes": 8751,
+   "fetched_at": "2026-11-11T02:52:13Z",
+   "sha256": "5218078f8390b674ccb3e1d518869954c3d69c7629ca52455e489d74880262c7",
+   "source": "gov.near.org top.json yearly"
+  },
+  "raw/governance/topics.json": {
+   "bytes": 482644,
+   "fetched_at": "2026-11-11T02:52:12Z",
+   "sha256": "533ee9ae368c813edfb8cfda3c583a78c24ee06e82494a9450b17cf3bcb256bb",
+   "source": "gov.near.org latest.json, paged"
   },
   "raw/labels/binance_por_address_2026-11-06.json": {
    "bytes": 91766,
@@ -203,6 +251,48 @@
    "fetched_at": "2026-11-05T22:51:08Z",
    "sha256": "33f4253959332e1a3d4d83a07fc8a731bd1cf56bf332605c604d564f77ac1a75",
    "source": "https://api.llama.fi/summary/dexs/thorchain-dex?dataType=dailyVolume"
+  },
+  "raw/market/futures_funding_nearusdt.json": {
+   "bytes": 61601,
+   "fetched_at": "2026-11-11T02:53:19Z",
+   "sha256": "eb83d66a39ab49157ef8bfc0b8c8fe6d72c547b7fb38135619a75b8fd3ce210b",
+   "source": "binance futures fundingRate NEARUSDT"
+  },
+  "raw/market/futures_longshort_nearusdt_1d.json": {
+   "bytes": 3632,
+   "fetched_at": "2026-11-11T02:53:19Z",
+   "sha256": "a4d9d8e36a63658ede958f62c15866dc7b2ab0aaa93f19db4d1278c4e6dd10a6",
+   "source": "binance futures globalLongShortAccountRatio NEARUSDT"
+  },
+  "raw/market/futures_oi_nearusdt_1d.json": {
+   "bytes": 5252,
+   "fetched_at": "2026-11-11T02:53:19Z",
+   "sha256": "f2531faa46a78a33b1a2b389358ab99edcaa30ddd2cd3f511d10044b19c9db38",
+   "source": "binance futures openInterestHist NEARUSDT"
+  },
+  "raw/market/spot_btcusdt_1d.json": {
+   "bytes": 409777,
+   "fetched_at": "2026-11-11T02:53:18Z",
+   "sha256": "a9c7332fbe233d4b8df03a8a7fba96579a15f29f2c1bd3d8fcc0b59a9a3c75d3",
+   "source": "binance spot klines BTCUSDT 1d"
+  },
+  "raw/market/spot_ethusdt_1d.json": {
+   "bytes": 402257,
+   "fetched_at": "2026-11-11T02:53:14Z",
+   "sha256": "0b7515b883a6d662211424278923addc1f6ad0e2a8cf096b251c81da4543b7fd",
+   "source": "binance spot klines ETHUSDT 1d"
+  },
+  "raw/market/spot_nearusdt_1d.json": {
+   "bytes": 371806,
+   "fetched_at": "2026-11-11T02:53:12Z",
+   "sha256": "b5e9d0bc896c0b027d76065efec3923210f8579ec8117b7734afa5546140111f",
+   "source": "binance spot klines NEARUSDT 1d"
+  },
+  "raw/market/spot_solusdt_1d.json": {
+   "bytes": 388341,
+   "fetched_at": "2026-11-11T02:53:16Z",
+   "sha256": "53f74bcb473de11793a6881a72441eff8092f85918c693f1fc5b1dbe7628fc52",
+   "source": "binance spot klines SOLUSDT 1d"
   },
   "raw/nearblocks/charts.json": {
    "bytes": 1538633,
