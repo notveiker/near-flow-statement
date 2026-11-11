@@ -30,5 +30,6 @@
 | 24 | Aurora is not the thesis | TVL ~**0.28%** of peak | — |
 | 25 | Ledger-via-SwapKit partner fees ≈ NEAR capture | ~**$2.0M** vs **$1.99M** | Attach/renegotiate that pipe |
 | 26 | No-referrer = ~46% of buyback dollars | 18.7% vol @ 10 bp | Defaults lose share |
+| 27 | Partner-path dials (Trust→direct + no-ref + LI.FI→AITR) | ~$3.3M/yr sketch stack | Distribution conversion inventory; not additive with attach-60 |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.

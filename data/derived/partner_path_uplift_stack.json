@@ -10,18 +10,9 @@
   },
   {
    "id": "lifi_attach_uplift",
-   "raw_keys": [
-    "lifi_vol_share_pct",
-    "current_buyback_bp",
-    "aitr_bp",
-    "current_buyback_usd_m_approx",
-    "at_aitr_buyback_usd_m_approx",
-    "uplift_usd_m_approx",
-    "uplift_run_rate_m_approx",
-    "note"
-   ]
+   "uplift_run_rate_m": 0.9
   }
  ],
- "sum_uplift_run_rate_m": 2.39,
- "note": "Exploratory partner-path uplift sketches. Not additive with attach-60 path; dial inventory only."
+ "sum_uplift_run_rate_m": 3.29,
+ "note": "Exploratory partner-path uplift sketches (Trust SwapKit\u2192direct, +5pp no-referrer, LI.FI\u2192AITR). Not additive with attach-60; dial inventory."
 }
