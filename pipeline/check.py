@@ -1,7 +1,7 @@
 """Integrity checks the screeners (and CI) run.
 
   --manifest  every file in data/raw matches the SHA-256 recorded in data/MANIFEST.json
-  --numbers   every <!--n:key--> marker in README.md, THESIS.md, PREREG-ADDENDUM.md and docs/*.md
+  --numbers   every <!--n:key--> marker in README.md, THESIS.md, REPORT.md, PREREG-ADDENDUM.md and docs/*.md
               matches data/metrics.json
 """
 from __future__ import annotations
@@ -30,7 +30,7 @@ def check_numbers() -> list[str]:
         return ["data/metrics.json missing: run `make compute` first"]
     m = json.loads(METRICS.read_text())
     problems = []
-    files = [ROOT / "README.md", ROOT / "THESIS.md", ROOT / "PREREG-ADDENDUM.md"] + sorted((ROOT / "docs").glob("*.md"))
+    files = [ROOT / "README.md", ROOT / "THESIS.md", ROOT / "REPORT.md", ROOT / "PREREG-ADDENDUM.md"] + sorted((ROOT / "docs").glob("*.md"))
     for f in files:
         name = str(f.relative_to(ROOT))
         if not f.exists():

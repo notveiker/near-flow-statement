@@ -1,0 +1,67 @@
+# NEAR: where intents settle, and what that earns the token
+
+*Investment Thesis track. Window for value capture: the 30 days to 2026-11-04. Window for supply: the 90 days 2026-08-07 to 2026-11-04. The interactive version is [`dashboard/index.html`](dashboard/index.html); this is the same story in prose. Every figure with an `n:` marker is recomputed from committed data by `make reproduce` and checked by `make check`. Figures marked (derived) show their arithmetic. The longer methods note is [`THESIS.md`](THESIS.md), and the pre-registration is [`PREREG.md`](PREREG.md).*
+
+**Rating from the frozen rule: Hold, with Buy one input away.** The rule was fixed on 2026-11-05 before any flow query. Observed growth in captured revenue, 619.0 <!--n:rating_g_obs_pct-->% a year, is far above the 33.2 <!--n:rating_g_req_pct-->% the rule requires. The rule returns Buy if H1b passes, and H1b is inconclusive for a single reason: only 20.0 <!--n:h1b_coverage_count_pct-->% of the top-100 NEAR receivers carry a citable exchange label, and the rule needs 50%.
+
+## 1. NEAR Intents is the largest venue in its peer set
+
+NEAR Intents carries 55.7 <!--n:intents_share_peerset_30d_pct-->% of the reported volume among the four native cross-chain venues over 30 days, and 62.1 <!--n:intents_share_peerset_365d_pct-->% over 365 days, against THORChain, Chainflip and Maya. Reported volume was $4.0 <!--n:intents_vol_30d_b-->B in the last 30 days and $32.9 <!--n:intents_vol_365d_b-->B over the trailing year. In January 2025 the same series read about $0.01B a month. The venue went from a rounding error to the largest of its peers in under two years.
+
+It also prices above the others. Its blended fee was 15.3 bp of volume, against 12.3 bp for THORChain and 9.4 bp for Maya, on more than twice THORChain's volume. Chainflip charges more, 31.5 bp, on a fraction of the volume.
+
+## 2. The fees reach the token, exactly
+
+Over the 30 days NEAR's revenue wallets received 418.8 <!--n:revwallets_near_k-->K NEAR. That total is 100.9 <!--n:revwallets_vs_llama_rev_pct-->% of the Intents revenue DefiLlama reports for the same days, so an independent source reproduces it. Of the deliveries that came out of the confidential escrow, all 909 <!--n:escrow_funded_exact_30d_n--> were funded for the exact amount, to the yoctoNEAR.
+
+Captured revenue was $1.99 <!--n:intents_rev_30d_m-->M in the last 30 days against $9.44 <!--n:intents_rev_365d_m-->M in the trailing 365. Annualised, the last 30 days is about $24.2M (derived: 1.99 × 365 ÷ 30), 2.6 times the trailing year (derived: 24.2 ÷ 9.44). NEAR's explicit take inside 1Click rose from 1.83 <!--n:take_b1_bb_explicit_bp-->bp of volume to 4.08 <!--n:take_b3_bb_explicit_bp-->bp across three consecutive 30-day blocks, as the share of volume carrying a buyback fee went from 23.6 <!--n:take_b1_vol_with_bb_pct-->% to 43.0 <!--n:take_b3_vol_with_bb_pct-->%. Intents revenue was 11.2 <!--n:intents_rev_vs_l1fees_30d_x-->× the base layer's own transaction fees in the same window.
+
+**What it offsets.** NEAR mints 88,295 <!--n:net_issuance_near_per_day_window-->NEAR a day. The NEAR that verifiably reached the three revenue wallets equals 15.81 <!--n:ladder_all_wallets_pct_of_issuance-->% of that, and the buyback wallet alone holds 2.187 <!--n:buyback_wallet_near_m-->M NEAR. It is held, not burned.
+
+## 3. Issuance is scheduled to fall
+
+HSP-029 ramps the annual issuance cap from 2.5% to 1.6% over 24 months, starting one quarter after its timelock ends on 2026-11-16. Net supply growth is 2.46 <!--n:net_supply_growth_30d_annualized_pct-->% a year today. If captured revenue only stays where it is, and issuance falls to the 1.6% cap, the share of issuance that revenue offsets moves from 15.81% to about 24% (derived: 15.81 × 2.46 ÷ 1.6). That is arithmetic on one scenario and ignores any growth in revenue. The dashboard lets you move volume, take, cap and price and see all of it recomputed.
+
+## 4. The market has started to price a different NEAR
+
+Against the majors, NEAR's trailing returns on Binance daily closes to 2026-11-11 are below (from `data/raw/market/`).
+
+| Window | NEAR | ETH | SOL | BTC |
+|---|---|---|---|---|
+| 90 days | +124.6% | +9.1% | +9.1% | +15.9% |
+| 180 days | +138.3% | -7.5% | -6.7% | -7.0% |
+| 365 days | +44.5% | -39.8% | -46.2% | -28.6% |
+
+The last 30 days were a pullback for the whole group, NEAR -27.7% against -15.9% for ETH, -21.3% for SOL and -10.1% for BTC. NEAR's perpetual futures funding averaged about 0.006% per eight hours over 90 days, the long-short account ratio is 1.36, and open interest is $163M. Binance spot trades about $112M of NEAR a day. The market capitalisation is $4.82 <!--n:mcap_usd_b-->B at $3.67.
+
+## 5. What the price has to believe
+
+At $4.82B the market pays 199 <!--n:mcap_to_rev_30d_annualized_x-->× annualised 30-day captured revenue. The valuation question is therefore about the numerator. For the multiple to fall to 50×, captured revenue has to reach about $96M a year (derived: 4,820 ÷ 50), 4.0 times today's run-rate. Two levers get there without a new venue: volume at four times the last 30 days' pace with the take at about 5 bp, or volume at twice the pace with the take near 10 bp, a rate partner channels already charge. Volume has been the faster-moving lever; in nine months monthly volume rose from $1.9B (2026-04) to a peak of $4.8B (2026-09).
+
+## 6. Where the rule goes from Hold to Buy
+
+Pre-registered result: H1a, that most staking rewards stay staked, fails, with net staking outflow at 6.56 <!--n:h1a_ratio_as_written_x-->× rewards. H1b and H1c are inconclusive. H1b's lower bound for net exchange inflow, 4.42 <!--n:h1b_net_inflow_lower_m-->M NEAR, is already below the 8.0098 <!--n:h1a_gross_issuance_90d_m-->M NEAR minted in the 90 days, and its upper bound is 152.45 <!--n:h1b_net_inflow_upper_m-->M. More citable exchange labels narrow that range. We are tracing where the unlabelled top receivers send their NEAR using a block-by-block census from our own node ([`docs/hub-trail-method.md`](docs/hub-trail-method.md)). Any label found that way is reported as a separate tier and enters the rule only if the repository owner accepts it by dated addendum.
+
+## 7. What is observable on the chain
+
+[`docs/history-sample-prereg.md`](docs/history-sample-prereg.md) freezes a stratified random sample of blocks across 26 quarters, with hypotheses and pass rules fixed before any sampled block was read. Its results, with 90% intervals, are in `data/derived/history_results.json` and in section 6 of the dashboard when the build includes them. They are published whichever way each hypothesis falls.
+
+## Reproduce
+
+```
+make reproduce      # rebuild every metric offline from committed raw snapshots
+make check          # manifest hashes and every n: marker in this file
+make test           # unit tests
+make dashboard      # rebuild dashboard/index.html
+```
+
+## Risks and context
+
+- **Base-layer activity is far below its 2024 peak.** Nearblocks counts about 739K transactions a day in 2026Q3 against 7.7M in 2024Q2, and 79K active accounts a day against 1.86M. Stablecoins on NEAR are $131M, against $651M at the 2024Q3 peak. Chain TVL is $169M, against $274M in 2022Q3.
+- **The multiple is high.** 199 <!--n:mcap_to_rev_30d_annualized_x-->× annualised 30-day captured revenue, and 510 <!--n:mcap_to_rev_365d_x-->× over the trailing year. NEAR is down 27.7% over the last 30 days, and the last 30 days' Intents volume was below the prior 30 days' ($4.0B against $4.56 <!--n:intents_vol_prior30d_b-->B).
+- **Capture is partly unattested.** Only 4.53 <!--n:ladder_public_collectors_pct_of_issuance-->% of issuance traces to public fee collectors. The other 11.25 <!--n:ladder_escrow_unshields_pct_of_issuance-->% arrives as releases from the confidential escrow, and 58.8 <!--n:escrow_share_of_buyback_near_30d_pct-->% of the buyback wallet's NEAR came that way.
+- **Partners keep more than NEAR does.** At least 1.81 <!--n:partners_kept_vs_near_rev_low_tight_x-->× NEAR's captured revenue. SwapKit routes 38.2 <!--n:swapkit_vol_share_pct-->% of 1Click volume.
+- **1Click was a net route out of NEAR**: $24.0 <!--n:explorer_out_of_near_usd_m-->M out against $14.6 <!--n:explorer_into_near_usd_m-->M in.
+- **Pending.** HSP-029 clears its timelock after this is written, and the forward tests F1 to F4 are scored after 2026-11-14. The rating moves to Avoid if observed growth falls below about 17% a year with H1b failing.
+
+*Not investment advice.*

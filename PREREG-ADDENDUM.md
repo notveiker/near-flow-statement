@@ -114,3 +114,11 @@ The thesis (`THESIS.md`) leads with an exhibit that was not pre-registered: the 
 - after H1b and H1c came out inconclusive (2026-11-06 23:23 UTC).
 
 It changes no hypothesis, threshold, probability or the rating rule. The rule's output, Hold, stands, and the ladder does not feed it. `THESIS.md` reports the pre-registered scorecard in its first paragraph, before any exploratory result, and labels the ladder exploratory wherever it appears. The escrow dataset the ladder rests on was committed on 2026-11-06 (`51e396b`).
+
+## 2026-11-11 03:10 UTC: dashboard and report added; what we already knew about the history sample
+
+Post-freeze. It changes no hypothesis, threshold, probability or the rating rule, and the rule's output, Hold, stands.
+
+1. **`dashboard/index.html` and `REPORT.md` are exploratory presentation of data already in the repository.** Both are built only from committed files (`make dashboard`, `make check`). Their scenario explorer is arithmetic on measured baselines and makes no forecast.
+2. **We saw the independent daily series before the sample returned any block.** `data/raw/nearblocks/charts.json` was committed before the history sample was frozen. It shows transactions a day, active accounts a day and fees burnt a day well below their 2024 peaks. The sample's hypotheses U1, U2, U4 and U5 (`docs/history-sample-prereg.md`) are therefore likely to fail, and we keep them as registered and report each verdict as it falls. The dashboard lists the base-layer decline in its risks section for the same reason.
+3. **Market and ecosystem snapshots** (`data/raw/market/`, `data/raw/ecosystem/`, `data/raw/governance/`) were pulled on 2026-11-10 and 2026-11-11, are hashed in `data/MANIFEST.json`, and feed no pre-registered test.
