@@ -1,0 +1,8 @@
+{
+ "DIC_days": 24.8,
+ "DIC_at_hsp029_days": 38.1,
+ "scarcity_half_life_days": 60.5,
+ "scarcity_exhaustion_days": 121.1,
+ "ratio_half_life_to_DIC": 2.44,
+ "note": "Buyback wallet covers ~25 days of net mint (DIC); if spends continue without new buys, half the stock recirculates in ~60 days \u2014 ~2.4\u00d7 DIC. Stock is a buffer, not permanent scarcity. Exploratory."
+}

@@ -27,3 +27,5 @@ Burn, irrevocable lock, or vote-escrow of buyback NEAR would turn DIC from a *ba
 ## Fee vs net issuance (derived)
 
 At metrics price, Intents fee run-rate (~$24M) covers about **0.21×** of net issuance dollar value (~$118M/yr). HSP-029 target alone lifts coverage to ~0.32×; stacking attach/mix dials to ~$37M still leaves ~**0.48×** at the lower mint. Closing to 1× at today’s take needs roughly **~18×** volume (`data/derived/issuance_fee_coverage.json`). Policy tightens the denominator; capture quality does not substitute for flow.
+
+DIC (~25d) vs scarcity half-life (~60d): `data/derived/dic_vs_half_life.json` — stock is a buffer, not permanent removal.
