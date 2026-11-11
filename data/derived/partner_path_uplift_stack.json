@@ -1,0 +1,14 @@
+{
+ "items": [
+  {
+   "id": "trust_path_uplift",
+   "uplift_run_rate_m": 1.72
+  },
+  {
+   "id": "noreferrer_mix_uplift",
+   "uplift_run_rate_m": 0.67
+  }
+ ],
+ "sum_uplift_run_rate_m": 2.39,
+ "note": "Sum of exploratory partner-path uplift sketches (Trust+no-ref+LI.FI). Not additive with attach-60 path; illustrates distribution dials. Ledger tax is opportunity cost already booked separately."
+}
