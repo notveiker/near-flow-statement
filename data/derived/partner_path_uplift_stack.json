@@ -7,8 +7,21 @@
   {
    "id": "noreferrer_mix_uplift",
    "uplift_run_rate_m": 0.67
+  },
+  {
+   "id": "lifi_attach_uplift",
+   "raw_keys": [
+    "lifi_vol_share_pct",
+    "current_buyback_bp",
+    "aitr_bp",
+    "current_buyback_usd_m_approx",
+    "at_aitr_buyback_usd_m_approx",
+    "uplift_usd_m_approx",
+    "uplift_run_rate_m_approx",
+    "note"
+   ]
   }
  ],
  "sum_uplift_run_rate_m": 2.39,
- "note": "Sum of exploratory partner-path uplift sketches (Trust+no-ref+LI.FI). Not additive with attach-60 path; illustrates distribution dials. Ledger tax is opportunity cost already booked separately."
+ "note": "Exploratory partner-path uplift sketches. Not additive with attach-60 path; dial inventory only."
 }
