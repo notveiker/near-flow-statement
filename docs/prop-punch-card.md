@@ -19,5 +19,8 @@
 | 13 | CS is Intents infra, not a second fee line | Signs **1.4K→37K**/day then **16K** | Paid signature fees |
 | 14 | HSP-007 competes for the issuance pool | MPC via emissions | Magnitudes tiny vs mint |
 | 15 | Builder tooling follows Intents, not L1 | 1Click SDK **~37×** vs near-api-js **~2.6×** | Tooling mean-reverts without volume |
+| 16 | Intents deposits dwarf L1 stablecoin flow | ~**$80M**/d vs ~**$13M**/d (~**6×**) | Census window not persistent |
+| 17 | Peer multiple rich vs volume share | NEAR ~**217×** vs THOR ~**16×** (~**14×** richer) | Multiple compresses via capture or price |
+| 18 | HSP-007 is opex on the issuance pool | MPC via emissions | Magnitudes tiny / expired |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.
