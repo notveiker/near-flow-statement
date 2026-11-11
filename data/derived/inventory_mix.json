@@ -1,0 +1,83 @@
+{
+ "asof_utc": "2026-11-11T05:46:21Z",
+ "total_usd_m": 229.2,
+ "top12": [
+  {
+   "symbol": "wNEAR",
+   "chain": "near",
+   "value_usd_m": 62.58,
+   "share_pct": 27.3
+  },
+  {
+   "symbol": "ZEC",
+   "chain": "zec",
+   "value_usd_m": 27.43,
+   "share_pct": 12.0
+  },
+  {
+   "symbol": "USDC",
+   "chain": "eth",
+   "value_usd_m": 26.48,
+   "share_pct": 11.6
+  },
+  {
+   "symbol": "USDT",
+   "chain": "eth",
+   "value_usd_m": 12.8,
+   "share_pct": 5.6
+  },
+  {
+   "symbol": "BTC",
+   "chain": "near",
+   "value_usd_m": 11.25,
+   "share_pct": 4.9
+  },
+  {
+   "symbol": "WBTC",
+   "chain": "eth",
+   "value_usd_m": 11.12,
+   "share_pct": 4.9
+  },
+  {
+   "symbol": "USDT",
+   "chain": "tron",
+   "value_usd_m": 6.69,
+   "share_pct": 2.9
+  },
+  {
+   "symbol": "BTC",
+   "chain": "btc",
+   "value_usd_m": 6.44,
+   "share_pct": 2.8
+  },
+  {
+   "symbol": "XLM",
+   "chain": "stellar",
+   "value_usd_m": 5.7,
+   "share_pct": 2.5
+  },
+  {
+   "symbol": "QTC",
+   "chain": "qtc",
+   "value_usd_m": 5.25,
+   "share_pct": 2.3
+  },
+  {
+   "symbol": "ETH",
+   "chain": "eth",
+   "value_usd_m": 4.67,
+   "share_pct": 2.0
+  },
+  {
+   "symbol": "USDT(DEPRECATED)",
+   "chain": "bsc",
+   "value_usd_m": 3.75,
+   "share_pct": 1.6
+  }
+ ],
+ "wnear_share_pct": 27.3,
+ "zec_share_pct": 12.0,
+ "stable_share_pct": 20.1,
+ "btc_share_pct": 12.6,
+ "note": "Settlement inventory mix at snapshot \u2014 ZEC #2 is a privacy-asset working-capital signal for Confidential Intents, not a farm TVL claim."
+}

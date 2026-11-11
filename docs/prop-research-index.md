@@ -9,6 +9,7 @@
 | [fee-waterfall.md](fee-waterfall.md) | τ≈5 bp, C=32.5%, L≈10×, AITR≈9.5 bp; SwapKit pipe-level ~0 |
 | [confidential-attestation.md](confidential-attestation.md) | Escrow-dependence ~59%; CIF forwarding is the kill switch |
 | [float-sink.md](float-sink.md) | Buyback DIC ~25 days; held not burned; scarcity half-life ~60d |
+| [inventory mix / CS](../research_notes/NEAR%20catalysts%20and%20path/inventory-mix.md) | ZEC ~12% of Intents inventory (#2); CS is Intents infra not a second fee line |
 | Working: `research_notes/NEAR catalysts and path/relayer-concentration.md` | Relayer HHI ≫ 0.25; top1 ~83% of execute_intents |
 | Machine: `data/derived/{catalyst_math,mix_shift_math,prop_scores,path_to_50x,float_sink,contestability,catalyst_calendar}.json` | Scenario arithmetic, not forecasts |
 

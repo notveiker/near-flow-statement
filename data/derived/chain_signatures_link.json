@@ -1,0 +1,48 @@
+{
+ "asof": "2026-11-12",
+ "sample_signs_per_day": [
+  {
+   "quarter": "2025Q1",
+   "signs_per_day": 306,
+   "n": 5
+  },
+  {
+   "quarter": "2025Q2",
+   "signs_per_day": 224,
+   "n": 5
+  },
+  {
+   "quarter": "2025Q3",
+   "signs_per_day": 1411,
+   "n": 5
+  },
+  {
+   "quarter": "2025Q4",
+   "signs_per_day": 2516,
+   "n": 5
+  },
+  {
+   "quarter": "2026Q1",
+   "signs_per_day": 7974,
+   "n": 5
+  },
+  {
+   "quarter": "2026Q2",
+   "signs_per_day": 25731,
+   "n": 5
+  },
+  {
+   "quarter": "2026Q3",
+   "signs_per_day": 36633,
+   "n": 5
+  },
+  {
+   "quarter": "2026Q4",
+   "signs_per_day": 16400,
+   "n": 5
+  }
+ ],
+ "census_signatures_per_day_k": 15.7,
+ "read": "Necessary condition for Intents cross-chain; no separate holders-revenue line found in committed metrics. Gas only unless paid signature API appears.",
+ "note": "Exploratory"
+}
