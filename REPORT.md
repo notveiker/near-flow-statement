@@ -104,7 +104,7 @@ make dashboard      # rebuild dashboard/index.html
 - **Settlement runs through few relayers.** In the census window one account submitted 83 <!--c:relayer_top1_pct-->% of `execute_intents` calls and five submitted 99.9 <!--c:relayer_top5_pct-->%, out of 25 <!--c:relayer_accounts--> accounts in all.
 - **Peers cost less per dollar of revenue.** On DefiLlama's revenue definition, the token market capitalisation is 217 <!--c:peer_mult_near-->× annualised 30-day revenue for NEAR, 16 <!--c:peer_mult_thorchain-->× for THORChain and 5 <!--c:peer_mult_chainflip-->× for Chainflip.
 - **Partners keep more than NEAR does.** At least 1.81 <!--n:partners_kept_vs_near_rev_low_tight_x-->× NEAR's captured revenue. SwapKit routes 38.2 <!--n:swapkit_vol_share_pct-->% of 1Click volume.
-- **1Click was a net route out of NEAR**: $24.0 <!--n:explorer_out_of_near_usd_m-->M out against $14.6 <!--n:explorer_into_near_usd_m-->M in.
+- **1Click was a net route out of NEAR**: $24.0 <!--n:explorer_out_of_near_usd_m-->M out against $14.6 <!--n:explorer_into_near_usd_m-->M in — net about **$9.4M**, roughly **4.7×** the same window’s captured revenue ($1.99M). Fee capture and NEAR-asset flow are different scoreboards (`data/derived/near_exit_vs_capture.json`).
 - **Pending.** HSP-029 clears its timelock after this is written, and the forward tests F1 to F4 are scored after 2026-11-14. The rating moves to Avoid if observed growth falls below about 17% a year with H1b failing.
 
 *Not investment advice.*

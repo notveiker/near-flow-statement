@@ -1,0 +1,10 @@
+{
+ "asof": "2026-11-12",
+ "explorer_into_near_usd_m": 14.6,
+ "explorer_out_of_near_usd_m": 24.0,
+ "net_near_sold_usd_m": 9.4,
+ "captured_rev_30d_m": 1.99,
+ "buyback_wallet_usd_m": 8.0,
+ "net_exit_vs_captured_rev_x": 4.72,
+ "note": "1Click was a net NEAR exit in the window. Captured revenue buybacks hold NEAR but do not automatically offset the venue exit flow 1:1 in the same window. Exploratory."
+}
