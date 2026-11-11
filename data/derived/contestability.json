@@ -1,0 +1,192 @@
+{
+  "asof_utc": "2026-11-11T23:00:00Z",
+  "window": "2026-10-06..2026-11-04",
+  "note": "Derived DISTRIBUTION CONTESTABILITY arithmetic on committed metrics. Scenarios are arithmetic, not forecasts. No bull case. Gaps labeled.",
+  "sources": [
+    "data/metrics.json",
+    "docs/partner-concentration.md",
+    "docs/fee-waterfall.md",
+    "docs/structural-thesis.md",
+    "docs/catalysts-and-path.md",
+    "research_notes/NEAR Intents structural thesis/competitive-structure.md",
+    "data/derived/mix_shift_math.json"
+  ],
+  "baselines": {
+    "intents_vol_30d_b": 4.0,
+    "oneclick_usd_m": 1104.0,
+    "oneclick_to_intents_net_factor": 0.5524,
+    "captured_rev_30d_m": 1.99,
+    "gross_fees_30d_m": 6.12,
+    "capture_share_pct": 32.5,
+    "captured_bp": 4.98,
+    "gross_bp": 15.3,
+    "intents_peerset_share_pct": 55.7,
+    "peer_vol_b": {
+      "near_intents": 4.0,
+      "thorchain": 1.8,
+      "chainflip": 0.85,
+      "maya": 0.53,
+      "total": 7.18
+    }
+  },
+  "revshare_threat": {
+    "mechanism": "ADR-029 pays affiliates a share of liquidity fees from reserve (cap 50%) so affiliate margin rises without raising user fee",
+    "target_pipe": "SwapKit multi-venue embed",
+    "swapkit_monetizes_intents_beside": [
+      "THORChain",
+      "Maya",
+      "Chainflip",
+      "Garden",
+      "Mayan",
+      "1inch",
+      "Jupiter"
+    ],
+    "early_blog_signal": "SwapKit REVSHARE week-one: ~2x volume on rev-shared flow; THOR still single-digit % of SwapKit trades",
+    "why_hits_intents": "SK is 38.2% of 1Click with ~0 explicit NEAR buyback; contest is affiliate P&L and quote-win on overlapping pairs",
+    "gap": "No long-window public Intents vs THOR win-rate inside SwapKit after REVSHARE in repo metrics"
+  },
+  "swapkit_pipe": {
+    "vol_share_1click_pct": 38.2,
+    "vol_share_intents_pct": 21.1,
+    "vol_usd_30d_b": 0.844,
+    "partner_fees_usd_k": 3528.9,
+    "buyback_fees_usd": 159.0,
+    "near_share_of_sk_partner_fees_pct": 0.0045,
+    "subchannels_top": [
+      {"channel": "ledgerswapkit.near", "vol_share_1click_pct": 13.7, "partner_fee_bp": 132.6},
+      {"channel": "thorswap.near", "vol_share_1click_pct": 8.4, "partner_fee_bp": 51.6},
+      {"channel": "trustswapkit.near", "vol_share_1click_pct": 6.4, "partner_fee_bp": 70.0},
+      {"channel": "tangemswapkit.near", "vol_share_1click_pct": 4.7, "partner_fee_bp": 58.0}
+    ],
+    "trust_dual_path": {
+      "direct_vol_share_1click_pct": 2.4,
+      "direct_buyback_bp": 20.0,
+      "via_swapkit_vol_share_1click_pct": 6.4,
+      "via_swapkit_buyback_bp": 0.0,
+      "via_swapkit_partner_bp": 70.0,
+      "read": "Same wallet already prefers zero-NEAR route for most Trust volume"
+    }
+  },
+  "swapkit_exit_scenarios": {
+    "traceable_rev_loss_pct": 2.0,
+    "traceable_rev_loss_usd_k": 39.9,
+    "ceiling_bb_escrow_pct": 43.0,
+    "ceiling_all_escrow_pct": 73.7,
+    "vol_loss_1click_pp": 38.2,
+    "vol_loss_intents_pp": 21.1,
+    "vol_loss_usd_b": 0.844,
+    "peer_share_if_vol_leaves_peerset_pct": 49.8,
+    "peer_share_if_vol_to_thor": {
+      "intents_pct": 44.0,
+      "thor_pct": 36.8,
+      "note": "Peer-set total held at 7.18B; SK 0.844B reassigned Intents→THOR"
+    },
+    "hypothetical_force_tau_on_sk_volume": {
+      "assume_captured_bp": 4.98,
+      "sk_vol_b": 0.844,
+      "extra_rev_30d_usd_k_if_volume_stays": 420.3,
+      "extra_as_pct_of_current_captured": 21.1,
+      "vs_current_explicit_sk_usd": 159.0,
+      "read": "Paper upside only if volume stays; REVSHARE designed to contest this exact fight",
+      "not_a_path": true
+    },
+    "asymmetry_read": "Traceable revenue barely depends on SK; volume narrative and peer share do"
+  },
+  "meta_router_risk": {
+    "interchangeability_when": [
+      "Standard order schema (ERC-7683) lets solvers respond on multiple rails",
+      "Frontend optimizes net output after its own fee, not exclusive Intents routing",
+      "Coverage/quote gaps that forced Intents shrink or split across specialists"
+    ],
+    "actors": {
+      "lifi": {
+        "vol_share_1click_pct": 10.0,
+        "vol_share_intents_pct": 5.52,
+        "buyback_bp_channel_table": 2.8,
+        "role": "Intents integrator and meta-router"
+      },
+      "rango": {
+        "vol_share_1click_pct": 5.8,
+        "vol_share_intents_pct": 3.2,
+        "buyback_bp_channel_table": 4.1,
+        "role": "Multi-venue aggregator"
+      },
+      "across_uniswapx_erc7683": {
+        "role": "RFQ / standardized intent orders; settlement rail interchangeable",
+        "gap": "Volume overlap with Intents peer set not in metrics.json"
+      }
+    }
+  },
+  "distribution_contestability": {
+    "definition": "Share of Intents volume in multi-venue embeds (can fill away from NEAR without new wallet integration) vs captive near.com-class fronts",
+    "multi_venue_embeds": {
+      "channels": ["swapkit", "lifi", "rango"],
+      "share_1click_pct": 54.0,
+      "share_intents_pct": 29.83,
+      "components_intents_pct": {
+        "swapkit": 21.1,
+        "lifi": 5.52,
+        "rango": 3.2
+      }
+    },
+    "captive_nearcom": {
+      "share_intents_pct_q3_nansen": 25.0,
+      "policy_capture_bp": 20.0,
+      "nov_window_share_gap": true,
+      "fefunds_implied_share_pct_at_20bp": 7.7,
+      "fefunds_implied_note": "revwallets_frontend $616.9K / 20bp ⇒ ~$308M ≈ 7.7% of $4.0B"
+    },
+    "contestability_of_owned_plus_embed_pct": 54.4,
+    "formula": "multi_venue_intents / (multi_venue_intents + captive_nearcom_q3)",
+    "volume_channel_hhi_swapkit_merged": 0.2,
+    "volume_channel_hhi_split": 0.087,
+    "whale_fragility": {
+      "swaps_10k_plus_n_pct": 3.4,
+      "swaps_10k_plus_vol_pct": 77.1,
+      "ledger_via_sk_1click_pct": 13.7,
+      "ledger_via_sk_intents_pct_approx": 7.6
+    }
+  },
+  "levers_without_take_rate_war": {
+    "works": [
+      {
+        "lever": "attachment_creep",
+        "evidence": "23.6% → 43.0% of 1Click with SK share flat; AITR ~9.5 bp",
+        "attach_60_sketch": "captured ~6.59 bp, run-rate ~$32M, offset ~21% (32% at 1.6% issuance cap)"
+      },
+      {
+        "lever": "mix_to_nearcom",
+        "usd_30d_per_intents_pp": 80000,
+        "usd_annualised_per_pp_m": 0.973,
+        "plus_10pp_run_rate_m": 34.0
+      },
+      {
+        "lever": "confidential_plus_attestation",
+        "note": "Can raise economic take (no AppFee on CIF) only if sweeps continue; attestation collapses 4.5–15.8% issuance-offset range"
+      }
+    ],
+    "fails": [
+      "Forced SwapKit 50/50 / take-rate war (paper ~$420K/30d if vol stays; exit costs 21 Intents pp)",
+      "Matching REVSHARE by cutting NEAR buyback line (protects share, destroys tau)",
+      "Volume-share scoreboard without captured bp / attachment",
+      "Assuming escrow unshields are SK-proof (ceiling 43–74%)",
+      "Treating LI.FI / ERC-7683 integrator share as captive distribution"
+    ]
+  },
+  "falsifiers": [
+    "SwapKit or Ledger-inside-SK exits or re-routes to THOR/CEX",
+    "REVSHARE sustained quote wins on BTC/ETH/stables inside SK",
+    "Multi-venue embed share rises while near.com-class share falls",
+    "Attachment rolls over on non-SK public flow",
+    "Meta-routers standardize away Intents-exclusive coverage gaps",
+    "Escrow disclosure shows partner/SK-linked private settlement"
+  ],
+  "gaps": [
+    "near.com share of Intents in Nov 2026 window",
+    "Long-window SK quote win-rate Intents vs THOR post-REVSHARE",
+    "Per-stream escrow attestation (partner vs near.com vs CIF)",
+    "Across/UniswapX volume overlap with peer set",
+    "Commercial Agreement text SwapKit/Ledger/Trust/Tangem",
+    "CEX share of solver inventory"
+  ]
+}

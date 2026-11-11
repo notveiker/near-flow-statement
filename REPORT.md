@@ -62,7 +62,7 @@ The contract's own inventory tells the same story in quantities, not just in rep
 
 
 
-These figures are from keyless snapshots under `data/raw/prop/` and from a **preliminary** read of the history sample (43 of the capped clusters sealed as of 2026-11-11). They feed no pre-registered test.
+These figures are from keyless snapshots under `data/raw/prop/` and from a **preliminary** read of the history sample (80 of the capped clusters with both seal and payload as of 2026-11-12; more seals still syncing). They feed no pre-registered test.
 
 - **Intents is most of NEAR's fee surface.** Over 30 days, NEAR Intents was 87% of all fees DefiLlama attributes to protocols and the chain on NEAR, and 93% of reported DEX volume on NEAR. The next venue, Rhea Dex, was about a tenth of Intents' fees.
 - **Intents receipts are rising in the sampled history.** Receipts executed on `intents.near` per day, from the stratified sample, go from about 51K in 2025Q3 to about 265K in 2026Q3, and about 886K in the still-thin 2026Q4 draw. In that 2026Q4 draw, `intents.near` itself was the single busiest receiver (23.5% of transactions). Base-layer growth tests U1, U2, U4 and U5 fail on the same sample; that is the base-layer decline already visible in Nearblocks.

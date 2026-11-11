@@ -4,11 +4,9 @@
   "seed": 20261112
  },
  "label": "exploratory, post-freeze; not part of U1-U5",
- "note": "Partial sample: 43 of 268 capped clusters sealed as of 2026-11-11 ~06:20 UTC. Quarters with 1 cluster have zero-width intervals. Verdicts are provisional until the amended stopping rule.",
- "preliminary": true,
  "series": [
   {
-   "clusters": 2,
+   "clusters": 6,
    "deposits": {
     "hi90": 0.0,
     "lo90": 0.0,
@@ -42,7 +40,7 @@
    }
   },
   {
-   "clusters": 2,
+   "clusters": 5,
    "deposits": {
     "hi90": 0.0,
     "lo90": 0.0,
@@ -76,7 +74,7 @@
    }
   },
   {
-   "clusters": 2,
+   "clusters": 5,
    "deposits": {
     "hi90": 0.0,
     "lo90": 0.0,
@@ -110,7 +108,7 @@
    }
   },
   {
-   "clusters": 2,
+   "clusters": 5,
    "deposits": {
     "hi90": 0.0,
     "lo90": 0.0,
@@ -144,7 +142,7 @@
    }
   },
   {
-   "clusters": 2,
+   "clusters": 5,
    "deposits": {
     "hi90": 0.0,
     "lo90": 0.0,
@@ -178,7 +176,7 @@
    }
   },
   {
-   "clusters": 2,
+   "clusters": 5,
    "deposits": {
     "hi90": 0.0,
     "lo90": 0.0,
@@ -212,7 +210,7 @@
    }
   },
   {
-   "clusters": 2,
+   "clusters": 5,
    "deposits": {
     "hi90": 0.0,
     "lo90": 0.0,
@@ -246,7 +244,7 @@
    }
   },
   {
-   "clusters": 2,
+   "clusters": 5,
    "deposits": {
     "hi90": 0.0,
     "lo90": 0.0,
@@ -280,7 +278,7 @@
    }
   },
   {
-   "clusters": 2,
+   "clusters": 5,
    "deposits": {
     "hi90": 0.0,
     "lo90": 0.0,
@@ -314,7 +312,7 @@
    }
   },
   {
-   "clusters": 2,
+   "clusters": 5,
    "deposits": {
     "hi90": 0.0,
     "lo90": 0.0,
@@ -348,7 +346,7 @@
    }
   },
   {
-   "clusters": 2,
+   "clusters": 5,
    "deposits": {
     "hi90": 0.0,
     "lo90": 0.0,
@@ -382,7 +380,7 @@
    }
   },
   {
-   "clusters": 2,
+   "clusters": 5,
    "deposits": {
     "hi90": 0.0,
     "lo90": 0.0,

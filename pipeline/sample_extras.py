@@ -74,7 +74,8 @@ def cluster_extras(cluster: dict, blocks) -> dict:
 
 def rows_cmd(root: Path, out: Path) -> int:
     plan = load_plan(root)
-    done = {p.stem for p in (Path(root) / "clusters").glob("*.json")}
+    root = Path(root)
+    done = {p.stem for p in (root / "clusters").glob("*.json") if (root / "clusters" / f"{p.stem}.jsonl.gz").exists()}
     old = {}
     if Path(out).exists():
         old = {json.loads(x)["id"]: x for x in Path(out).read_text().splitlines() if x}

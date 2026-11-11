@@ -183,3 +183,10 @@ Post-freeze. Changes no hypothesis, threshold, probability or the rating rule.
 
 1. **`data/derived/mix_shift_math.json`** and the catalysts note quantify capture per percentage point of volume moved from zero-buyback pipes to a 20 bp 100%-fee front (~$0.97M/year per pp on today's volume).
 2. Working note: `research_notes/NEAR catalysts and path/mix-shift-arithmetic.md`. Feeds no pre-registered test.
+
+## 2026-11-12 00:20 UTC: history sample refresh + contestability (exploratory)
+
+Post-freeze. Changes no hypothesis, threshold, probability or the rating rule.
+
+1. **History sample.** `sample_metrics` / `sample_extras` now skip seals that lack a `.jsonl.gz` payload. Preliminary recompute uses **80** primary clusters with both manifest and payload (`data/derived/history_results.json` stamped `preliminary: true`). Dual-sampler merge still pending while remaining payloads sync.
+2. **`data/derived/contestability.json`** and `research_notes/NEAR catalysts and path/distribution-contestability.md` frame SwapKit / REVSHARE embed risk vs captive near.com mix.
