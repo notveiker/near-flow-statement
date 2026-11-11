@@ -11,6 +11,11 @@
    "effect": "cut mint denom; coverage 0.21\u2192~0.3\u20130.5\u00d7"
   },
   {
+   "step": "2b",
+   "action": "quality_policy (burn split / attestation / CIF card)",
+   "effect": "hardens underwriting without volume"
+  },
+  {
    "step": 3,
    "action": "attestation disclosure",
    "effect": "collapse 4.5\u201315.8% band; unlock underwriting"

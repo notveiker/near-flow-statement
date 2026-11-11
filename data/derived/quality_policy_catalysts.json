@@ -1,0 +1,29 @@
+{
+ "policies": [
+  {
+   "id": "auto_split_burn",
+   "effect": "X% of buyback inflows auto-burned",
+   "closes": "governance_discretion",
+   "volume_required": false
+  },
+  {
+   "id": "programmatic_burn",
+   "effect": "convert held offset to hard float cut",
+   "closes": "held_not_burned",
+   "volume_required": false
+  },
+  {
+   "id": "stream_attestation_map",
+   "effect": "publish fee-stream\u2192wallet map",
+   "closes": "4.5_15.8_band",
+   "volume_required": false
+  },
+  {
+   "id": "cif_rate_card",
+   "effect": "public CIF bp by route",
+   "closes": "conf_margin_opacity",
+   "volume_required": false
+  }
+ ],
+ "note": "Quality catalysts that improve underwriting without volume. None close 50\u00d7 alone. Rank for pitch after attach/mix, before volume ask. Exploratory."
+}
