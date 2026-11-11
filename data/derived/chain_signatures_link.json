@@ -1,48 +1,132 @@
 {
- "asof": "2026-11-12",
- "sample_signs_per_day": [
-  {
-   "quarter": "2025Q1",
-   "signs_per_day": 306,
-   "n": 5
+  "asof_utc": "2026-11-12T00:00:00Z",
+  "note": "Derived Chain Signatures → NEAR token value-link read. CS is infrastructure for Intents cross-chain; no separate holders-revenue line in committed metrics. Exploratory. No bull case. Gaps labeled.",
+  "sources": [
+    "REPORT.md",
+    "data/derived/census_usage.json",
+    "data/derived/census_metrics.json",
+    "data/derived/sample_extras_results.json",
+    "pipeline/sample_extras.py",
+    "pipeline/census_metrics.py",
+    "docs/structural-thesis.md",
+    "docs/intents-fee-flows.md",
+    "docs/fee-waterfall.md",
+    "research_notes/NEAR Intents structural thesis/competitive-structure.md",
+    "research_notes/NEAR catalysts and path/chain-signatures-value-link.md",
+    "https://www.near.org/blog/chain-signatures-tee"
+  ],
+  "verdict": {
+    "token_value_link": "necessary_condition_for_intents_volume",
+    "separate_cash_flow": false,
+    "read": "Treat CS as necessary infrastructure for Intents cross-chain volume, not an additive holders-revenue / burn / staking-claim line — unless falsifiers fire."
   },
-  {
-   "quarter": "2025Q2",
-   "signs_per_day": 224,
-   "n": 5
+  "census": {
+    "hours": 10.3,
+    "txs_k": 343,
+    "first_height": 223963000,
+    "last_height": 224027999,
+    "blocks": 64992,
+    "signatures_per_day_k": 15.7,
+    "signatures_metric_method": "respond",
+    "signatures_metric_note": "census_metrics.signatures_per_day_k = v1.signer.respond / hrs * 24 / 1e3",
+    "v1_signer_methods_window": {
+      "respond": 6755,
+      "sign": 285,
+      "submit_participant_info": 166,
+      "respond_verify_foreign_tx": 122
+    },
+    "implied_sign_per_day_approx": 663,
+    "v1_signer_tx_share": 0.0214,
+    "v1_signer_gas_share": 0.0283,
+    "v1_signer_burn_near_window": 10.87,
+    "intents_tx_share_pct": 13.2,
+    "intents_gas_share_pct": 9.4
   },
-  {
-   "quarter": "2025Q3",
-   "signs_per_day": 1411,
-   "n": 5
+  "sample_extras_signs": {
+    "label": "exploratory, post-freeze; not part of U1-U5",
+    "definition": "receipts on v1.signer with FunctionCall method_name == sign (Chain Signatures requests)",
+    "not_the_same_as": "history U4 signers_per_100 (distinct tx signers per 100-block cluster)",
+    "bootstrap": {"B": 2000, "seed": 20261112},
+    "series": [
+      {"quarter": "2025Q1", "clusters": 5, "point": 306, "lo90": 0, "hi90": 611},
+      {"quarter": "2025Q2", "clusters": 5, "point": 224, "lo90": 0, "hi90": 672},
+      {"quarter": "2025Q3", "clusters": 5, "point": 1411, "lo90": 1411, "hi90": 1411},
+      {"quarter": "2025Q4", "clusters": 5, "point": 2516, "lo90": 1398, "hi90": 3635},
+      {"quarter": "2026Q1", "clusters": 5, "point": 7974, "lo90": 3973, "hi90": 13954},
+      {"quarter": "2026Q2", "clusters": 5, "point": 25731, "lo90": 23158, "hi90": 28590},
+      {"quarter": "2026Q3", "clusters": 5, "point": 36633, "lo90": 26207, "hi90": 47905},
+      {"quarter": "2026Q4", "clusters": 5, "point": 16400, "lo90": 12886, "hi90": 19329}
+    ],
+    "report_shorthand_per_day": "1.4K → 2.5K → 8.0K → 26K → 37K → 16K (2025Q3–2026Q4)",
+    "trend_read": "Rising through 2026Q3; 2026Q4 point lower; intervals wide; exploratory only"
   },
-  {
-   "quarter": "2025Q4",
-   "signs_per_day": 2516,
-   "n": 5
+  "tee_mpc_network": {
+    "threshold": "11-of-17",
+    "tee": "Intel TDX (as cited)",
+    "source_type": "architecture_cited_in_repo_not_independent_census",
+    "cited_operators_examples": [
+      "SVRN",
+      "Bitwise",
+      "Nansen",
+      "Greenfield",
+      "Everstake",
+      "Near One",
+      "Luganodes"
+    ],
+    "audits_cited": "Trail of Bits (as cited in near.org / competitive-structure note)",
+    "read_mpc_note": "≥3 of 5 whitelisted RPCs before threshold signing for foreign-chain deposits (cited)",
+    "do_not_conflate_with": "Confidential Intents seven permissioned private-shard validators"
   },
-  {
-   "quarter": "2026Q1",
-   "signs_per_day": 7974,
-   "n": 5
+  "fee_claim": {
+    "signature_fee_layer_in_waterfall": false,
+    "holders_revenue_from_signatures": false,
+    "defillama_cs_adapter_line": false,
+    "near_burn_tied_to_signatures": false,
+    "stake_to_sign_fee_claim": false,
+    "observed_token_touch": "L1 gas on v1.signer only (in committed metrics)",
+    "intents_capture_path_unchanged": "appFees / 1Click-CIF / pip → intents.near → three revenue wallets; buybacks held not burned",
+    "governance_context": "HSP-007 discusses MPC node financing via protocol emissions (forum) — subsidy direction, not a measured per-signature tariff",
+    "gap": "Off-chain MPC operator commercial terms not attested in this repo"
   },
-  {
-   "quarter": "2026Q2",
-   "signs_per_day": 25731,
-   "n": 5
+  "how_cs_enables_intents": {
+    "role": "Threshold signing rail for foreign-chain legs under solver + MPC settlement (vs bonded vault peers)",
+    "cash_flow": "Enables Intents volume that may feed existing Intents fee capture; does not add a second token-claimable fee line",
+    "ingress_caveat": "Many deposits still PoA; OmniBridge-style paths roll out chain-by-chain",
+    "gap": "No audited chain-by-chain residual-risk table (PoA vs OmniBridge) in-repo"
   },
-  {
-   "quarter": "2026Q3",
-   "signs_per_day": 36633,
-   "n": 5
+  "proprietary_cut": {
+    "rule": "Necessary condition for Intents volume; not additive revenue line",
+    "scoreboard_unchanged": [
+      "token_claimable_bp",
+      "capture_share_pct",
+      "attach_pct",
+      "attestation",
+      "mix"
+    ],
+    "do_not": "Double-count CS growth as a second fee engine in path/issuance-offset math",
+    "operational_risk": "CS threshold/attestation failure is an Intents volume/trust kill switch, not a missed P&L line"
   },
-  {
-   "quarter": "2026Q4",
-   "signs_per_day": 16400,
-   "n": 5
+  "falsifiers": [
+    {
+      "id": "paid_signature_api",
+      "description": "Published paid signature API with NEAR or stable tariff per sign/respond routing to a named collector"
+    },
+    {
+      "id": "near_denominated_signature_fees",
+      "description": "NEAR-denominated signature fees in DefiLlama holders-revenue wallets or a distinct CS adapter line"
+    },
+    {
+      "id": "stake_to_sign_fee_claim",
+      "description": "Mandatory stake-to-sign with slashable bond earning signature fees"
+    },
+    {
+      "id": "signature_tied_burn",
+      "description": "Protocol burn mechanically tied to signature count (beyond ordinary L1 gas burn)"
+    }
+  ],
+  "method_conflation_warning": {
+    "census_headline": "respond",
+    "sample_extras": "sign",
+    "warning": "Do not treat census ~16K/day and sample signs/day as one continuous series without method alignment"
   }
- ],
- "census_signatures_per_day_k": 15.7,
- "read": "Necessary condition for Intents cross-chain; no separate holders-revenue line found in committed metrics. Gas only unless paid signature API appears.",
- "note": "Exploratory"
 }
