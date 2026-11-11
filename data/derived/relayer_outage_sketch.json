@@ -1,0 +1,7 @@
+{
+ "relayer_top1_share_pct": 83,
+ "scenario": "1d_top1_outage_halves_its_flow",
+ "approx_vol_lost_1d_m": 55.3,
+ "approx_fee_lost_1d_m": 0.0276,
+ "note": "Ops concentration: top relayer ~83% of execute_intents. A one-day half-outage on that share is ~$55M notional / ~$28k fee at \u03c4 \u2014 small fee $ but large UX/share risk. Exploratory."
+}

@@ -61,5 +61,6 @@
 | 55 | Capital-light yield | PCI ~0.057; ~$0.11 fee/$ inventory/yr | Flexibility vs bonded peers; trust cost elsewhere |
 | 56 | Pitch sequence | Quality dials → HSP-029 → attestation → volume | Do not lead with AI/ETF/npm |
 | 57 | History intents growth (extras) | ~23.5× intents first→latest nonzero quarter | Sample-extras exploratory; CS scaled with venue |
+| 58 | Relayer outage sketch (top1 half-day) | ~$55M notional / ~$28k fee | Fee $ small; UX/share risk large |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.
