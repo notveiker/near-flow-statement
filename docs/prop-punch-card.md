@@ -57,5 +57,6 @@
 | 51 | Volume multiples from stack | 3.2× for 1× mint$; 2.6× for 50×; 8× for THOR-16 | Stack improves quality; volume closes gaps |
 | 52 | SwapKit exit share impact | Intents peerset ~55.7→~45.2 | Leadership survives; distribution surface does not |
 | 53 | Capture-share path (40–60%) | ~$30–45M RR at flat 15.3 gross | Leakage cut helps; still <0.5× of 50× need |
+| 54 | Channel HHI (SwapKit merged) | ~0.20 (moderate band) | Commercial concentration; logo volume ≠ capture |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.

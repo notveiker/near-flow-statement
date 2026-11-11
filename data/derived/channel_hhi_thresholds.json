@@ -1,0 +1,10 @@
+{
+ "channel_hhi": 0.087,
+ "channel_hhi_swapkit_merged": 0.2,
+ "doj_moderate_threshold": 0.15,
+ "doj_high_threshold": 0.25,
+ "merged_above_moderate": true,
+ "merged_above_high": false,
+ "top1_swapkit_pct": 38.2,
+ "note": "Unmerged channel HHI ~0.087 (unconcentrated); merging SwapKit subchannels \u2192 ~0.20 (moderate). Distribution risk is a commercial-concentration fact, not an antitrust claim. Exploratory analogy only."
+}
