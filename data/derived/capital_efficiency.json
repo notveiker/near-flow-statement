@@ -1,18 +1,118 @@
 {
-  "asof_utc": "2026-11-12T01:40:00Z",
+  "asof_utc": "2026-11-11",
+  "note": "Exploratory. Protocol capital intensity (PCI) = protocol-controlled capital / 30d volume. Intents numerator is intents.near inventory only (excludes off-balance solver/CEX). Peer live bond-to-TVL ratios Gap. Conceptual THOR 2:1 stack is docs arithmetic, not Midgard pull. Twin note: research_notes/NEAR catalysts and path/capital-efficiency.md",
+  "sources": [
+    "docs/structural-thesis.md",
+    "research_notes/NEAR Intents structural thesis/competitive-structure.md",
+    "data/derived/catalyst_math.json",
+    "REPORT.md",
+    "docs/fee-waterfall.md"
+  ],
   "intents": {
     "inventory_usd_m": 229.2,
     "vol_30d_b": 4.0,
+    "vol_30d_usd_m": 4000.0,
     "turnover_x_per_30d": 17.4,
     "days_of_volume_in_inventory": 1.7,
-    "bond_to_tvl_required": null,
-    "inventory_risk_bearer": "solvers_as_principal_plus_contract_balances",
-    "protocol_controlled_capital_per_1b_vol_30d_m": 57.3
+    "implied_daily_vol_usd_m": 133.3,
+    "pci_30d": 0.0573,
+    "pci_usd_capital_per_usd_volume": 0.0573,
+    "pci_note": "inventory / 30d volume; settlement float not farm TVL; most inventory non-NEAR",
+    "month_start_stock_usd_m": {
+      "2025-01": 0.5,
+      "2026-11": 179.8
+    },
+    "census_flow_usd_m_per_day": {
+      "deposits": 79.7,
+      "withdrawals": 74.8,
+      "note": "Hours-long census window; venue-speed turns"
+    }
   },
-  "peers_structural": {
-    "thor_maya_chainflip": "native assets in L1-controlled threshold vaults; continuous bond-to-TVL underwriting (exact ratios Gap in repo)",
-    "note": "Peers scale security with bonded capital; Intents scales with solver inventory + PoA/TEE assumptions."
+  "peer_volumes_30d_b": {
+    "intents": 4.0,
+    "thorchain": 1.8,
+    "chainflip": 0.85,
+    "maya": 0.53
   },
-  "read": "Capital-light wins on long-tail asset coverage and speed to list; loses on trust incidents and relayer/solver concentration. Token value still routes through fee capture, not through inventory ownership.",
-  "note": "Exploratory. protocol_controlled_capital_per_1b_vol = 229.2 / 4.0."
+  "vault_bond_docs": {
+    "thorchain": {
+      "design": "Proof-of-Bond; Incentive Pendulum target ~2:1 bonded RUNE to non-RUNE vault liquidity; theft slash ~1.5x",
+      "live_bond_to_tvl": null,
+      "live_bond_to_tvl_status": "Gap — not in repo metrics"
+    },
+    "chainflip": {
+      "design": "FROST vaults; FLIP stake slashable; stake expected to scale with vault liquidity",
+      "live_bond_to_tvl": null,
+      "live_bond_to_tvl_status": "Gap — not in repo metrics"
+    },
+    "maya": {
+      "design": "THOR fork; secondary vaults ~1.5x bond slash; liquidity-node deposits bonded CACAO into pools",
+      "defillama_tvl_usd_m": 5.2,
+      "tvl_only_pci_30d": 0.0098,
+      "tvl_only_turnover_x_per_30d": 101.9,
+      "tvl_only_days_of_volume": 0.3,
+      "live_bond_to_tvl": null,
+      "live_bond_to_tvl_status": "Gap — CACAO bond vs vault not pulled; TVL-only PCI understates and reflects thin book"
+    }
+  },
+  "conceptual_thor_matched_stack": {
+    "assumed_vault_tvl_usd_m": 229.2,
+    "bond_multiple_docs": 2.0,
+    "implied_bond_usd_m": 458.4,
+    "implied_total_underwriting_usd_m": 687.6,
+    "implied_pci_30d_on_intents_volume": 0.1719,
+    "vs_intents_inventory_pci_x": 3.0,
+    "label": "illustrative docs-ratio thought experiment — not observed THOR Midgard state"
+  },
+  "inventory_risk_bearer": {
+    "intents": {
+      "liquidity": "solvers_as_principal",
+      "security": "bridges_mpc_tee_no_continuous_token_bond",
+      "ops_failure": "liveness_preferential_execution_inventory_refusal"
+    },
+    "vault_peers": {
+      "liquidity": "lps",
+      "security": "bonded_nodes_slashable",
+      "ops_failure": "bond_to_tvl_break_slash_vault_halt"
+    }
+  },
+  "token_value_link": {
+    "intents_claim_design": "discretionary_wallet_buyback_held_not_burned",
+    "protocol_on_chain_fee": "1_pip",
+    "token_claimable_bp": 4.98,
+    "capture_share_pct": 32.5,
+    "gross_bp": 15.3,
+    "capital_light_creates_near_bond_demand": false,
+    "peer_claim_designs": {
+      "thorchain": "bond_pendulum_system_income_after_lp_node_split",
+      "chainflip": "network_fee_flip_buy_burn",
+      "maya": "hard_10pct_protocol_fees_to_holders"
+    },
+    "mcap_to_rev_multiples_30d_annualized": {
+      "near_intents_style": 217,
+      "thorchain": 16,
+      "chainflip": 5,
+      "maya": 23
+    }
+  },
+  "when_capital_light": {
+    "wins": [
+      "long_tail_asset_chain_onboarding_without_2_to_1_bond_scale",
+      "wallet_embed_coverage_over_vault_pair_depth",
+      "privacy_asset_settlement_stock_without_bonded_vault_gate"
+    ],
+    "loses": [
+      "poa_bridge_verifier_agent_tee_trust_incident",
+      "solver_inventory_refusal_or_cex_fill_dryup",
+      "relayer_submit_concentration_liveness",
+      "no_mechanical_token_underwriting_floor_in_stress"
+    ]
+  },
+  "gaps": [
+    "Live bonded RUNE/FLIP/CACAO vs vault TVL on same as-of as Intents inventory",
+    "Off-balance solver/CEX inventory share for Intents system-wide PCI",
+    "Cross-venue DefiLlama TVL vs intents.near holdings methodology alignment",
+    "Idle float vs active settlement WIP split inside intents.near",
+    "Conceptual 2:1→3V stack not a live Midgard observation"
+  ]
 }
