@@ -24,5 +24,5 @@
  "sum_near_m": 72.61,
  "sum_DIC_days": 822.3,
  "sum_vs_annual_mint_days": 2.25,
- "note": "Summing soft sinks double-counts overlapping claims and mixes exit speeds. Directional: ~0.6 year of mint days across soft sinks, mostly ETF-fast. Not additive scarcity. Exploratory."
+ "note": "Summing soft sinks mixes exit speeds (ETF 1\u20132d, LST liquid, buyback governance). Directional gross ~2.3 years of mint days \u2014 mostly liquid/fast exits. Not additive permanent scarcity. Exploratory."
 }
