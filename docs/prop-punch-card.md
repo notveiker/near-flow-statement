@@ -46,7 +46,7 @@
 | 40 | History sample | 135 preliminary clusters | Early strata sealing; overall still not supported |
 | 41 | SwapKit→no-ref (+10pp at 10 bp) | ~$1.3M/yr sketch | Renegotiation dial on 38% channel |
 | 42 | npm SDK May→Oct | ~3× downloads | Tooling ≠ attach; vanity $/dl |
-| 43 | SwapKit prize extremes | Full→AITR ~$4.1M/yr; exit costs vol not buyback $ | 38% channel is distribution prize |
+| 43 | SwapKit prize extremes | Full→AITR ~$4.9M/yr; exit costs vol not buyback $ | 38% channel is distribution prize |
 | 44 | PMF flow dominance | Deposits ~6× stablecoin $/day; gas ~9.4% | Venue is value surface; capture still lags |
 | 45 | HSP-007 claim bounds | 10% emissions ≈ ~$12M/yr (~0.5× fee RR) | Budget unknown; competes with fee offset |
 

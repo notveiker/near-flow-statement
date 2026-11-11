@@ -4,5 +4,5 @@
  "scenario_convert_all_to_aitr_uplift_30d_m": 0.4,
  "scenario_convert_all_to_aitr_run_rate_m": 4.87,
  "buyback_today_from_sk_bp": 0,
- "note": "SwapKit is ~38% of 1Click vol at 0 buyback. Exit costs volume/share not current buyback $. Full conversion to AITR is ~$4.1M/yr sketch \u2014 the distribution prize. Exploratory extremes."
+ "note": "SwapKit is ~38% of 1Click vol at 0 buyback. Exit costs volume/share not current buyback $. Full conversion to AITR is ~$4.9M/yr sketch \u2014 the distribution prize. Exploratory extremes."
 }

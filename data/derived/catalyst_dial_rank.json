@@ -1,0 +1,79 @@
+{
+ "ranked_by_run_rate_delta": [
+  {
+   "id": "controllable_stack",
+   "run_rate_delta_m": 12.8,
+   "feasibility": "mixed",
+   "note": "attach60 + half mix10"
+  },
+  {
+   "id": "mix_10pp_nearcom",
+   "run_rate_delta_m": 9.7,
+   "feasibility": "commercial",
+   "note": "+10pp near.com 20bp"
+  },
+  {
+   "id": "attach_60",
+   "run_rate_delta_m": 7.900000000000002,
+   "feasibility": "product_mix",
+   "note": "raise attach 43\u219260 at AITR"
+  },
+  {
+   "id": "swapkit_full_aitr",
+   "run_rate_delta_m": 4.87,
+   "feasibility": "hard_commercial",
+   "note": "38% channel to AITR"
+  },
+  {
+   "id": "cif_1bp_proxy",
+   "run_rate_delta_m": 3.31,
+   "feasibility": "policy_rate_card",
+   "note": "1bp on conf TVL\u00d7turnover"
+  },
+  {
+   "id": "zec_inv_2x",
+   "run_rate_delta_m": 2.83,
+   "feasibility": "inventory",
+   "note": "ZEC inventory double"
+  },
+  {
+   "id": "trust_path",
+   "run_rate_delta_m": 1.72,
+   "feasibility": "commercial",
+   "note": "Trust SK\u2192direct"
+  },
+  {
+   "id": "swapkit_10pp_noref",
+   "run_rate_delta_m": 1.34,
+   "feasibility": "commercial",
+   "note": "10pp SK\u2192no-ref"
+  },
+  {
+   "id": "whale_attach_10pp",
+   "run_rate_delta_m": 0.98,
+   "feasibility": "commercial",
+   "note": "+10pp attach on \u226510k"
+  },
+  {
+   "id": "lifi_to_aitr",
+   "run_rate_delta_m": 0.9,
+   "feasibility": "commercial",
+   "note": "LI.FI\u2192AITR"
+  },
+  {
+   "id": "noref_5pp",
+   "run_rate_delta_m": 0.67,
+   "feasibility": "mix",
+   "note": "+5pp no-ref"
+  },
+  {
+   "id": "hsp029_denom_only",
+   "run_rate_delta_m": 0,
+   "feasibility": "governance_dated",
+   "note": "cuts mint; coverage 0.21\u21920.32 at flat fees",
+   "coverage_delta": 0.11000000000000001
+  }
+ ],
+ "binding_constraint": "volume_for_50x_and_thor_bridge",
+ "note": "Ranking of exploratory dials by run-rate delta vs $24.2M baseline. Not additive. HSP-029 is denominator-only. Volume remains binding for multiple compression."
+}
