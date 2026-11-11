@@ -1,0 +1,41 @@
+{
+ "swaps_ge_10k_count_pct": 3.4,
+ "swaps_ge_10k_vol_pct": 77.1,
+ "channel_hhi": 0.087,
+ "channel_hhi_swapkit_merged": 0.2,
+ "top_channels": [
+  {
+   "channel": "swapkit",
+   "share_pct": 38.2
+  },
+  {
+   "channel": "(none)",
+   "share_pct": 18.7
+  },
+  {
+   "channel": "lifi",
+   "share_pct": 10.0
+  },
+  {
+   "channel": "zodl",
+   "share_pct": 6.1
+  },
+  {
+   "channel": "rango",
+   "share_pct": 5.8
+  },
+  {
+   "channel": "trustwallet",
+   "share_pct": 2.4
+  },
+  {
+   "channel": "new.intents-referral.near",
+   "share_pct": 2.0
+  },
+  {
+   "channel": "stableflow",
+   "share_pct": 1.7
+  }
+ ],
+ "note": "Whale tickets (3.4% of count, 77% of vol) + SwapKit 38% = dual concentration: size and distribution. Mix/attachment scenarios are desk- and pipe-sensitive. Exploratory."
+}
