@@ -1,0 +1,15 @@
+{
+ "price_usd": 3.67,
+ "net_issuance_near_per_day": 88295.0,
+ "issuance_usd_per_day_m": 0.324,
+ "issuance_usd_per_year_m": 118.3,
+ "fee_run_rate_m": 24.2,
+ "fee_covers_issuance_x": 0.205,
+ "hsp029_target_issuance_usd_yr_m": 76.9,
+ "fee_covers_at_hsp029_target_x": 0.315,
+ "stack37_covers_today_x": 0.313,
+ "stack37_covers_hsp029_target_x": 0.481,
+ "vol_30d_m_for_1x_coverage_at_498bp": 19520.6,
+ "vol_run_rate_need_vs_today_x": 17.68,
+ "note": "Fee run-rate vs net issuance dollar value at metrics price. Coverage <<1 today; HSP-029 helps denominator; volume still required for 1\u00d7. Exploratory arithmetic."
+}
