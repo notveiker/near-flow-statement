@@ -192,6 +192,12 @@
    "sha256": "533ee9ae368c813edfb8cfda3c583a78c24ee06e82494a9450b17cf3bcb256bb",
    "source": "gov.near.org latest.json, paged"
   },
+  "raw/intents/holdings_history.json": {
+   "bytes": 8920,
+   "fetched_at": "2026-11-11T06:33:16Z",
+   "sha256": "2788592e2b89194adbaa64d5ef6d5471fbf32c81b571ec535aa31ebcb326f2b9",
+   "source": "archival mt_supply month starts; prices from 1Click token list at snapshot"
+  },
   "raw/intents/holdings_snapshot.json": {
    "bytes": 48042,
    "fetched_at": "2026-11-11T05:46:40Z",
