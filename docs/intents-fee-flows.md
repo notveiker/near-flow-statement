@@ -35,7 +35,7 @@ The revenue wallets settle which reading holds:
 
 Over the window, partners kept between **1.75 <!--n:partners_kept_vs_near_rev_low_x-->×** and **2.22 <!--n:partners_kept_vs_near_rev_high_x-->×** NEAR's entire captured Intents revenue. That figure counts only the 1Click half of Intents.
 
-Why it matters: the bull case treats Intents fee revenue as value flowing to NEAR. On this evidence, the distribution layer (hardware and mobile wallets) captures most of the fee economics. NEAR's take appears to depend on partner terms and on what Intents Technology forwards (an inference from the wallet arithmetic, not a documented policy), and SwapKit alone routes 38.2% of 1Click volume.
+Why it matters: the common reading treats Intents fee revenue as value flowing to NEAR. On this evidence, the distribution layer (hardware and mobile wallets) captures most of the fee economics. NEAR's take appears to depend on partner terms and on what Intents Technology forwards (an inference from the wallet arithmetic, not a documented policy), and SwapKit alone routes 38.2% of 1Click volume.
 
 ### 3. Users pay the listed fee plus an execution cost
 
