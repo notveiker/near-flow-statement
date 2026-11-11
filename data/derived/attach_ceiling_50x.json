@@ -1,8 +1,12 @@
 {
- "vol_30d_m": 1103.9,
- "aitr_bp": 9.49,
- "rev_need_50x_m": 96.4,
- "attach_pct_needed_at_current_vol": 756.3,
- "attach_today_pct": 43.0,
- "note": "At current 1Click volume and AITR, attachment would need to exceed 100% to hit $96M \u2014 impossible. Proves attach alone cannot close 50\u00d7; volume must rise. Exploratory."
+ "intents_vol_30d_m": 4000.0,
+ "oneclick_vol_30d_m": 1103.9,
+ "need_rr_50x_m": 96.4,
+ "rr_at_498bp_current_vol_m": 24.2,
+ "rr_at_aitr_on_full_intents_m": 46.2,
+ "vol_x_needed_at_498bp": 3.98,
+ "vol_x_needed_at_aitr": 2.09,
+ "rr_if_oneclick_100pct_aitr_m": 12.7,
+ "oneclick_100aitr_vs_need_x": 0.13,
+ "note": "Corrected: 50\u00d7 path is Intents-wide. At current $4B/30d, 4.98 bp \u2192 ~$24M; need ~4\u00d7 volume. Even putting AITR on all Intents volume only \u2192 ~$46M (~0.48\u00d7 of need). 1Click at 100% AITR alone is ~$13M. Volume is binding. Exploratory."
 }

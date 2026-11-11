@@ -49,5 +49,6 @@
 | 43 | SwapKit prize extremes | Full→AITR ~$4.9M/yr; exit costs vol not buyback $ | 38% channel is distribution prize |
 | 44 | PMF flow dominance | Deposits ~6× stablecoin $/day; gas ~9.4% | Venue is value surface; capture still lags |
 | 45 | HSP-007 claim bounds | 10% emissions ≈ ~$12M/yr (~0.5× fee RR) | Budget unknown; competes with fee offset |
+| 46 | Attach/AITR ceiling vs 50× | Full-venue AITR ~$46M (~0.48× need); 1Click 100% ~$13M | Volume binding — attach cannot close 50× alone |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.
