@@ -122,6 +122,86 @@ def hsp029(assump: dict) -> dict:
             "ratification": h["ratification_utc"], "ramp_months": h["ramp_months"], "path": pts}
 
 
+def holdings() -> dict | None:
+    snap = RAW / "intents" / "holdings_snapshot.json"
+    if not snap.exists():
+        return None
+    s = _load(snap)
+    by_chain: dict[str, float] = {}
+    for t in s["tokens"]:
+        by_chain[t.get("chain") or "other"] = by_chain.get(t.get("chain") or "other", 0) + t.get("value_usd", 0)
+    wn = next((t for t in s["tokens"] if t["token_id"] == "nep141:wrap.near"), None)
+    out = {"asof_utc": s["asof_utc"], "block_height": s["block_height"], "total_usd": s["total_value_usd"], "tokens": s["token_count"],
+           "top": [{k: t[k] for k in ("symbol", "chain", "amount", "value_usd")} for t in s["tokens"][:10]],
+           "by_chain": sorted(({"chain": k, "usd": v} for k, v in by_chain.items()), key=lambda r: -r["usd"])[:8],
+           "wnear_amount": wn["amount"] if wn else None, "wnear_usd": wn["value_usd"] if wn else None, "history": None}
+    hist = RAW / "intents" / "holdings_history.json"
+    if hist.exists():
+        h = _load(hist)
+        px = {t["token_id"]: (t["price_usd"], t["decimals"]) for t in h["tokens"]}
+        pts = []
+        for p in h["points"]:
+            tot, wnv = 0.0, 0.0
+            for tid, raw in p["supply_raw"].items():
+                if raw is None:
+                    continue
+                price, dec = px[tid]
+                v = int(raw) / 10 ** dec * (price or 0)
+                tot += v
+                if tid == "nep141:wrap.near":
+                    wnv = int(raw) / 10 ** dec
+            pts.append({"month": p["month"], "usd": tot, "wnear": wnv})
+        out["history"] = pts
+        out["history_tokens"] = len(h["tokens"])
+        ids = {t["token_id"] for t in h["tokens"]}
+        out["history_now_usd"] = sum(t.get("value_usd", 0) for t in _load(snap)["tokens"] if t["token_id"] in ids)
+    return out
+
+
+def peers() -> dict | None:
+    p = RAW / "peers" / "revenue.json"
+    if not p.exists():
+        return None
+    r = _load(p)
+    mc = {c["id"]: c for c in _load(RAW / "peers" / "market_caps.json")["coins"]}
+    tok = {"near-intents": "near", "thorchain-dex": "thorchain", "chainflip-amm": "chainflip", "maya-protocol": "cacao"}
+    rows = []
+    for slug, name in r["venues"].items():
+        ser = r["series"][slug]
+        f = lambda k, n=30: sum(v for _, v in ser[k][-n:])
+        rows.append({"slug": slug, "venue": name, "fees_30d": f("dailyFees"), "revenue_30d": f("dailyRevenue"),
+                     "holders_30d": f("dailyHoldersRevenue"), "token_mcap": mc[tok[slug]]["market_cap"]})
+    return {"asof": datetime.fromtimestamp(r["series"]["near-intents"]["dailyFees"][-1][0], timezone.utc).date().isoformat(), "venues": rows}
+
+
+def builders() -> dict | None:
+    p = RAW / "builders" / "npm_daily.json"
+    if not p.exists():
+        return None
+    d = _load(p)
+    out = {}
+    for pkg, rows in d["packages"].items():
+        m: dict[str, int] = {}
+        for day, n in rows:
+            m[day[:7]] = m.get(day[:7], 0) + n
+        out[pkg] = [{"month": k, "n": v} for k, v in sorted(m.items())]
+    return {"end": d["end"], "packages": out}
+
+
+def validators() -> dict | None:
+    p = RAW / "rpc" / "validators_epochs.json"
+    if not p.exists():
+        return None
+    e = _load(p)["epochs"]
+    m = RAW / "rpc" / "validators_monthly.json"
+    return {"latest": e[-1], "monthly": _load(m)["months"] if m.exists() else None}
+
+
+def web_facts() -> dict | None:
+    p = RAW / "web" / "third_party_facts.json"
+    return {f["id"]: {"claim": f["claim"], "url": f["url"], "quote": f["quote"]} for f in _load(p)["facts"]} if p.exists() else None
+
+
 def optional(rel: str):
     p = DATA / rel
     return _load(p) if p.exists() else None
@@ -147,7 +227,8 @@ def build() -> dict:
         "nearblocks_q": nearblocks_quarterly(), "market": market(), "ecosystem": ecosystem(), "governance": governance(),
         "hsp029": hsp029(assump), "price_usd": assump["price_usd"],
         "history": optional("derived/history_results.json"), "census": optional("derived/census_summary.json"),
-        "hub_trail": optional("derived/hub_trail.json"),
+        "hub_trail": optional("derived/hub_trail.json"), "census_hourly": optional("derived/census_hourly.json"),
+        "holdings": holdings(), "peers": peers(), "builders": builders(), "validators": validators(), "web_facts": web_facts(),
         "repro": reproducibility(),
     }
 

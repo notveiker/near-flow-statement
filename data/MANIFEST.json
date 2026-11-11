@@ -84,6 +84,12 @@
    "sha256": "61faa1384e38f4490eb9105d5a568fd65b94fe74bc524b30704b48eb6514bc02",
    "source": "https://api.npmjs.org/downloads/range"
   },
+  "raw/census/edges_223963000_224021999.json.gz": {
+   "bytes": 107354,
+   "fetched_at": "2026-11-11T06:02:48Z",
+   "sha256": "dd4585fd62781fa7898d4d20d374fc1153519f134c3bc2ae0794ee4f62582277",
+   "source": "own-node census, pipeline.census_graph edges+merge, full graph, blocks 223963000..224021999"
+  },
   "raw/coingecko/majors_90d.json": {
    "bytes": 28442,
    "fetched_at": "2026-11-06T02:57:28Z",
@@ -318,6 +324,18 @@
    "sha256": "2b7345969508264434d8c4dfec406d2734108d136159595ce8be3326e528e566",
    "source": "https://api.nearblocks.io/v1/charts"
   },
+  "raw/peers/market_caps.json": {
+   "bytes": 509,
+   "fetched_at": "2026-11-11T05:55:51Z",
+   "sha256": "2d71a9d68533fc5b1d0dff9d6e0da5310891c255394f1cb4c0b703e2acc3e09f",
+   "source": "https://api.coingecko.com/api/v3/coins/markets"
+  },
+  "raw/peers/revenue.json": {
+   "bytes": 86396,
+   "fetched_at": "2026-11-11T05:55:51Z",
+   "sha256": "2080f19288fbb0aea0416cfc87caf13ff4d54c37c97aa5e800e825ec1c3eb59c",
+   "source": "https://api.llama.fi/summary/fees/{slug}?dataType="
+  },
   "raw/rpc/buyback_balance_endpoints.json": {
    "bytes": 721,
    "fetched_at": "2026-11-06T23:23:25Z",
@@ -365,6 +383,12 @@
    "fetched_at": "2026-11-05T22:51:18Z",
    "sha256": "fc982e0204c342a80d56676c6ce4367b40861f6c51c2c7423d78b0ed974efa48",
    "source": "rpc validators [null]"
+  },
+  "raw/rpc/validators_epochs.json": {
+   "bytes": 730,
+   "fetched_at": "2026-11-11T06:01:02Z",
+   "sha256": "17ccf515afbe528a6619a753ec9c95e708ad5b9f2efd10ea54cc6a8ad057f0be",
+   "source": "http://127.0.0.1:3030 (own node) validators RPC, current and previous epoch"
   },
   "raw/rpc/wallets.json": {
    "bytes": 568,

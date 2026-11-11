@@ -1,0 +1,72 @@
+{
+ "candidates": 78,
+ "candidates_with_enough_outflow": 26,
+ "census": {
+  "first_height": 223963000,
+  "last_height": 224021999,
+  "shards": 59
+ },
+ "coverage": {
+  "tier4_count": 1,
+  "tiers_1_3_pct": 20,
+  "tiers_1_4_pct": 21
+ },
+ "dropped": true,
+ "generated_utc": "2026-11-11T06:02:49Z",
+ "h1b_side_report": {
+  "coverage_pct": 21,
+  "gross_issuance_near_m": 8.0098,
+  "label": "if tier 4 is accepted; the frozen rule and primary coverage are unchanged",
+  "lower_near_m": 12.819579034819,
+  "primary_lower_near_m": 4.422446010237,
+  "upper_near_m": 152.451486772282,
+  "verdict": "inconclusive"
+ },
+ "labels": [
+  {
+   "account": "3e93b62aec7f1275a2eb6a0145d1d6406fd94f6c44f7fd705711f8139b5d25f9",
+   "depth": 1,
+   "sent_near": 14162.852414158106,
+   "share_to_labelled": 0.8493942500088603,
+   "to": [
+    {
+     "account": "24439b592ea8537cff88cd7cb8dc487a39ea42fe2732376f39569579f30dd0d3",
+     "label": "tier1-3",
+     "near": 11000.11
+    },
+    {
+     "account": "e0fbd06c55b0e7deaa1d593a29f97c1646facd5a92a7cf76b5efe5ec9c995e7c",
+     "label": "tier1-3",
+     "near": 580.20503894
+    },
+    {
+     "account": "ec16682f10d35da8ed125a6c679d203d048e25da0586434ec68c4bdc6ad70e1b",
+     "label": "tier1-3",
+     "near": 297.29175193
+    },
+    {
+     "account": "6a91fcea8a4fb71b6d26873428a120eeac4860aff58b2972a8519c3088f7321a",
+     "label": "tier1-3",
+     "near": 152.23861344
+    }
+   ],
+   "window_net_inflow_near": 8397133.024582
+  }
+ ],
+ "rule": {
+  "hops": 3,
+  "min_sent_near": 1000,
+  "share": 0.8
+ },
+ "sensitivity": {
+  "one_hop": {
+   "tier4_count": 1
+  },
+  "rule": {
+   "tier4_count": 1
+  },
+  "strict_95pct": {
+   "tier4_count": 0
+  }
+ }
+}

@@ -137,7 +137,7 @@ footer code{font-size:12px;color:var(--soft)}
 <div class="tip" id="tip" role="tooltip"></div>
 <nav aria-label="Sections"><div class="wrap">
   <a class="brand" href="#top"><span class="mark" aria-hidden="true"></span>NEAR flow statement</a>
-  <div class="links"><a href="#intents">Intents</a><a href="#capture">Capture</a><a href="#supply">Supply</a><a href="#explorer">Scenarios</a><a href="#market">Market</a><a href="#chain">Chain data</a><a href="#method">Method</a></div>
+  <div class="links"><a href="#intents">Intents</a><a href="#capture">Capture</a><a href="#builders">Builders</a><a href="#supply">Supply</a><a href="#explorer">Scenarios</a><a href="#market">Market</a><a href="#chain">Chain data</a><a href="#method">Method</a></div>
 </div></nav>
 
 <header class="hero" id="top"><div class="wrap">
@@ -154,6 +154,11 @@ footer code{font-size:12px;color:var(--soft)}
     <div class="card reveal"><h3>Monthly volume</h3><p class="sub">NEAR Intents reported volume, USD billions (DefiLlama).</p><div class="chart" id="c-vol"></div><div class="foot" id="f-vol"></div></div>
     <div class="card reveal"><h3>Share of the native cross-chain venues</h3><p class="sub">Share of monthly reported volume among NEAR Intents, THORChain, Chainflip and Maya.</p><div class="legend" id="lg-share"></div><div class="chart" id="c-share"></div><div class="foot" id="f-share"></div></div>
   </div>
+  <div class="grid2" style="margin-top:var(--s4)" id="hold-row">
+    <div class="card reveal"><h3>What the contract holds</h3><p class="sub" id="s-hold">Assets deposited into <span class="mono">intents.near</span>, read from chain state and priced at the 1Click token list.</p><div id="hold-bars"></div><div class="foot" id="f-hold"></div></div>
+    <div class="card reveal"><h3 id="t-hold2">Value held through time</h3><p class="sub" id="s-hold2"></p><div class="chart" id="c-hold"></div><div class="foot" id="f-hold2"></div></div>
+  </div>
+  <div class="grid3" style="margin-top:var(--s4)" id="act-cards"></div>
 </div></section>
 
 <section id="capture"><div class="wrap">
@@ -163,20 +168,34 @@ footer code{font-size:12px;color:var(--soft)}
     <div class="card reveal"><h3>Captured revenue and take rate</h3><p class="sub">Monthly captured revenue (bars, USD millions) and captured take (line, basis points of volume). The last month is partial.</p><div class="chart" id="c-rev"></div><div class="foot">DefiLlama near-intents dailyRevenue and dailyVolume.</div></div>
     <div class="card reveal"><h3>How much of each day's new NEAR is offset</h3><p class="sub">30 days to 2026-11-04, as a share of net issuance (88,295 NEAR a day). Rungs are not nested.</p><div id="ladder"></div><div class="foot" id="f-ladder"></div></div>
   </div>
+  <div class="grid2" style="margin-top:var(--s4)">
+    <div class="card reveal"><h3>Revenue that reaches the token, last 30 days</h3><p class="sub">DefiLlama protocol revenue and holders revenue for the four native cross-chain venues, USD millions.</p><div class="legend" id="lg-peer"></div><div class="chart" id="c-peer"></div><div class="foot" id="f-peer"></div></div>
+    <div class="card reveal"><h3>Capture share of gross fees</h3><p class="sub">Protocol revenue as a share of the fees each venue's users paid, last 30 days.</p><div id="peer-cap"></div><div class="foot">DefiLlama dailyRevenue over dailyFees. NEAR's own figure, reconciled to its revenue wallets, is in the ladder above.</div></div>
+  </div>
   <div class="grid3" style="margin-top:var(--s4)" id="cap-cards"></div>
 </div></section>
 
+<section id="builders"><div class="wrap">
+  <div class="head"><div><div class="eyebrow">03 · Builders</div><h2>Tooling downloads are up several-fold in under two years</h2></div>
+  <p id="builders-lede"></p></div>
+  <div class="grid2">
+    <div class="card reveal"><h3>Intents tooling, monthly npm downloads</h3><p class="sub">The 1Click swap client and the Intents SDK, in thousands of downloads a month.</p><div class="legend" id="lg-b1"></div><div class="chart" id="c-b1"></div><div class="foot">npm download counts include CI runs and mirrors, so the level overstates people. The shape is what matters. The last month is partial.</div></div>
+    <div class="card reveal"><h3>Core NEAR libraries, monthly npm downloads</h3><p class="sub">near-api-js and the wallet selector, in thousands of downloads a month.</p><div class="legend" id="lg-b2"></div><div class="chart" id="c-b2"></div><div class="foot" id="f-b2"></div></div>
+  </div>
+</div></section>
+
 <section id="supply"><div class="wrap">
-  <div class="head"><div><div class="eyebrow">03 · Supply</div><h2>Issuance is set to fall while revenue grows</h2></div>
+  <div class="head"><div><div class="eyebrow">04 · Supply</div><h2>Issuance is set to fall while revenue grows</h2></div>
   <p id="supply-lede"></p></div>
   <div class="grid2">
     <div class="card reveal"><h3>Issuance cap under HSP-029</h3><p class="sub">Annual issuance cap, percent of supply. The timelock ends 2026-11-16 and the ramp starts one quarter after.</p><div class="chart" id="c-cap"></div><div class="foot">Constants from <span class="mono">data/raw/rpc/rating_assumptions.json</span>.</div></div>
     <div class="card reveal"><h3>Growth required against growth observed</h3><p class="sub">Annual growth in captured revenue the pre-registered rating rule needs, and what the last 180 days delivered.</p><div class="chart" id="c-growth"></div><div class="foot" id="f-growth"></div></div>
   </div>
+  <div class="grid3" style="margin-top:var(--s4)" id="net-cards"></div>
 </div></section>
 
 <section id="explorer"><div class="wrap">
-  <div class="head"><div><div class="eyebrow">04 · Scenarios</div><h2>What the price has to believe</h2></div>
+  <div class="head"><div><div class="eyebrow">05 · Scenarios</div><h2>What the price has to believe</h2></div>
   <p>Move the inputs. Every output is arithmetic on the measured baseline, so the sliders start at where NEAR is today. These are scenarios, not forecasts.</p></div>
   <div class="card reveal"><div class="explorer">
     <div>
@@ -194,22 +213,23 @@ footer code{font-size:12px;color:var(--soft)}
 </div></section>
 
 <section id="market"><div class="wrap">
-  <div class="head"><div><div class="eyebrow">05 · Market</div><h2>Relative strength against the majors</h2></div>
+  <div class="head"><div><div class="eyebrow">06 · Market</div><h2>Relative strength against the majors</h2></div>
   <p id="market-lede"></p></div>
   <div class="grid2">
     <div class="card reveal"><h3>Price indexed to 100, trailing year</h3><p class="sub">Binance spot daily closes, weekly points.</p><div class="legend" id="lg-px"></div><div class="chart" id="c-px"></div></div>
     <div class="card reveal"><h3>Return over trailing windows</h3><p class="sub">NEAR against ETH, SOL and BTC, to the latest daily close.</p><div class="chart" id="c-perf"></div><div class="foot" id="f-perf"></div></div>
   </div>
+  <div class="grid3" style="margin-top:var(--s4)" id="inst-cards"></div>
 </div></section>
 
 <section id="chain"><div class="wrap">
-  <div class="head"><div><div class="eyebrow">06 · Chain data</div><h2>Read from the chain itself</h2></div>
+  <div class="head"><div><div class="eyebrow">07 · Chain data</div><h2>Read from the chain itself</h2></div>
   <p id="chain-lede"></p></div>
   <div id="chain-body"></div>
 </div></section>
 
 <section id="rating"><div class="wrap">
-  <div class="head"><div><div class="eyebrow">07 · Rating path</div><h2>One input separates the frozen rule's Hold from Buy</h2></div>
+  <div class="head"><div><div class="eyebrow">08 · Rating path</div><h2>What separates the frozen rule's Hold from Buy</h2></div>
   <p id="rating-lede"></p></div>
   <div class="grid2">
     <div class="card reveal"><h3>Pre-registered scorecard</h3><p class="sub">Frozen on 2026-11-05, before any flow query. Results are published as they came out.</p><table id="score"></table></div>
@@ -522,7 +542,108 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
   $("#meter").innerHTML = `<i style="width:${M.h1b_coverage_count_pct * 2}%"></i><b style="left:100%"></b>`;
   $("#m-now").textContent = M.h1b_coverage_count_pct + "% labelled today";
   const T = D.hub_trail;
-  $("#trail-note").textContent = T ? T.note : "A trace of where the unlabelled top receivers send NEAR, using a census from our own node, is in progress. Any label it produces is reported as a separate tier and enters the rule only if the repository owner accepts it by addendum (docs/hub-trail-method.md).";
+  if (T) {
+    const sr = T.h1b_side_report;
+    $("#trail-note").textContent = `Census of blocks ${fmt.n(T.census.first_height)} to ${fmt.n(T.census.last_height)}: ${T.candidates_with_enough_outflow} of ${T.candidates} unlabelled candidates sent the 1,000 NEAR the method needs, and ${T.coverage.tier4_count} met the 80% test, short of the ${10} the method set as its cut-off, so H1b stays inconclusive. ${T.coverage.tier4_count ? `The labelled account's own net inflow lifts the lower bound from ${sr.primary_lower_near_m.toFixed(1)}M to ${sr.lower_near_m.toFixed(1)}M NEAR against ${sr.gross_issuance_near_m.toFixed(1)}M minted, so more labels do not by themselves favour a pass. ` : ""}Labels from this trace enter the rule only if the repository owner accepts them by addendum.`;
+  } else $("#trail-note").textContent = "A trace of where the unlabelled top receivers send NEAR, using a census from our own node, is in progress. Any label it produces is reported as a separate tier and enters the rule only if the repository owner accepts it by addendum (docs/hub-trail-method.md).";
+}
+
+/* ---------------- holdings, activity, peers, builders, network, institutions ---------------- */
+{
+  const Hd = D.holdings;
+  if (Hd) {
+    const top = Hd.top.slice(0, 8), max = top[0].value_usd;
+    $("#hold-bars").innerHTML = top.map(t => `<div class="hbar ${t.symbol === "wNEAR" ? "" : "alt"}"><span>${t.symbol} <span style="color:var(--faint)">${t.chain}</span></span><span class="t"><i style="width:${t.value_usd / max * 100}%"></i></span><span class="p mono">${fmt.usd(t.value_usd, 1)}</span></div>`).join("");
+    const share = Hd.wnear_usd / Hd.total_usd, ofSupply = Hd.wnear_amount / (M.total_supply_m * 1e6);
+    $("#s-hold").innerHTML = `${fmt.usd(Hd.total_usd, 0)} sits in <span class="mono">intents.near</span>. ${(share * 100).toFixed(0)}% of it is wrapped NEAR, ${fmt.n(Hd.wnear_amount / 1e6, 1)}M NEAR, ${(ofSupply * 100).toFixed(2)}% of total supply.`;
+    $("#f-hold").textContent = `Read from the contract's mt_supply at block ${fmt.n(Hd.block_height)} (${Hd.asof_utc.slice(0, 10)}) for the ${Hd.tokens} assets in the 1Click token list, at that list's prices. Further token ids in the contract are unpriced and left out.`;
+    if (Hd.history && Hd.history.length > 1) {
+      const hs = Hd.history.concat([{month: "now", usd: Hd.history_now_usd, wnear: Hd.wnear_amount}]);
+      const px = Hd.wnear_usd / Hd.wnear_amount;
+      lines($("#c-hold"), hs.map(r => r.month === "now" ? "Now" : mlab(r.month)), [
+        {name: "Twelve largest assets, USD millions", color: C.g1, v: hs.map(r => r.usd / 1e6), w: 1.8},
+        {name: "of which wrapped NEAR, USD millions", color: C.accent, v: hs.map(r => r.wnear * px / 1e6), area: true}],
+        {fy: v => "$" + v.toFixed(0) + "M", ft: v => "$" + v.toFixed(1) + "M", xticks: 6});
+      $("#s-hold2").textContent = "Quantities at the start of each month, valued at today's prices so that the line shows deposits, not price moves.";
+      $("#f-hold2").textContent = "Archival reads of mt_supply for the twelve largest assets, taken at the archival node's published rate. wNEAR is valued at today's NEAR price.";
+    } else {
+      $("#s-hold2").textContent = "Month-start quantities are being read from archival state and appear here when the build includes them.";
+      $("#c-hold").innerHTML = "";
+    }
+  } else { $("#hold-row").style.display = "none"; }
+
+  const CH = D.census_hourly;
+  if (CH) {
+    const hs = CH.hours.filter(r => r.blocks >= 5000), tx = hs.reduce((a, r) => a + r.txs, 0), it = hs.reduce((a, r) => a + r.intents_txs, 0);
+    const perDay = it / hs.length * 24;
+    const cards = [
+      ["Share of NEAR transactions", `${(it / tx * 100).toFixed(0)}%`, `of all transactions over ${hs.length} full hours touched intents.near, one in ${(tx / it).toFixed(1)}. Counted from every receipt on our own node.`],
+      ["Intents transactions a day", `${fmt.n(Math.round(perDay / 1000) * 1000)}`, `At the observed hourly rate. ${fmt.n(Math.round(hs.reduce((a, r) => a + r.deposits, 0) / hs.length * 24 / 100) * 100)} deposits and ${fmt.n(Math.round(hs.reduce((a, r) => a + r.withdrawals, 0) / hs.length * 24 / 100) * 100)} withdrawals a day at the same rate.`],
+      ["Accounts in executed intents", fmt.n(CH.window.distinct_intents_accounts), `Distinct account ids named in executed intents over the ${CH.hours.length} hours of census, solvers included.`],
+    ];
+    $("#act-cards").innerHTML = cards.map(c => `<div class="card reveal"><h3>${c[0]}</h3><div class="stat" style="padding:0;border:0;background:none"><div class="v" style="font-size:30px">${c[1]}</div></div><p class="sub" style="margin:var(--s2) 0 0">${c[2]}</p></div>`).join("");
+  }
+
+  const P = D.peers;
+  if (P) {
+    const vs = P.venues.slice().sort((a, b) => b.holders_30d - a.holders_30d);
+    const f = frame($("#c-peer"), {ht: 240, ml: 52}), mx = niceMax(Math.max(...vs.map(v => v.revenue_30d)) / 1e6 * 1.1);
+    yAxis(f, mx, v => "$" + v.toFixed(1) + "M");
+    const gw = f.iw / vs.length;
+    vs.forEach((v, i) => {
+      [["revenue_30d", C.g2], ["holders_30d", C.accent]].forEach(([k, col], j) => {
+        const val = v[k] / 1e6, bw = gw * .26, x = f.ml + gw * i + gw * .22 + j * (bw + 4), hgt = val / mx * f.ih;
+        const r = el("rect", {x, y: f.mt + f.ih - hgt, width: bw, height: hgt, rx: 2, fill: col});
+        r.addEventListener("mousemove", e => showTip(e, `<b>${v.venue}</b><br>${k === "holders_30d" ? "Holders revenue" : "Protocol revenue"}: $${val.toFixed(2)}M`)); r.addEventListener("mouseleave", hideTip);
+        f.svg.appendChild(r);
+      });
+      const t = el("text", {x: f.ml + gw * i + gw / 2, y: f.ht - 6, "text-anchor": "middle"}); t.setAttribute("fill", "#8b9a92"); t.setAttribute("font-size", 11); t.textContent = v.venue; f.svg.appendChild(t);
+    });
+    legend($("#lg-peer"), [{name: "Protocol revenue", color: C.g2}, {name: "Revenue to token holders", color: C.accent}]);
+    const near = vs[0], next = vs[1];
+    $("#f-peer").textContent = `To ${near.venue}'s token holders: $${(near.holders_30d / 1e6).toFixed(2)}M, ${(near.holders_30d / next.holders_30d).toFixed(1)}× ${next.venue}'s $${(next.holders_30d / 1e6).toFixed(2)}M. THORChain's protocol revenue is larger than its holders' share, because most of it goes to liquidity providers and its reserve. Window to ${P.asof}.`;
+    const rows = P.venues.slice().sort((a, b) => b.revenue_30d / b.fees_30d - a.revenue_30d / a.fees_30d);
+    $("#peer-cap").innerHTML = rows.map(v => `<div class="hbar ${v.slug === "near-intents" ? "" : "alt"}"><span>${v.venue}</span><span class="t"><i style="width:${v.revenue_30d / v.fees_30d * 100}%"></i></span><span class="p mono">${(v.revenue_30d / v.fees_30d * 100).toFixed(0)}%</span></div>`).join("");
+  } else { document.querySelectorAll("#c-peer").forEach(e => e.closest(".grid2").style.display = "none"); }
+
+  const B = D.builders;
+  if (B) {
+    const mm = r => r.filter(x => x.month < B.end.slice(0, 7));
+    const months = mm(B.packages["near-api-js"]).map(x => x.month);
+    const sr = (pkg, name, color, w) => { const m = Object.fromEntries(B.packages[pkg].map(x => [x.month, x.n])); return {name, color, w, v: months.map(k => (m[k] || 0) / 1000)}; };
+    const s1 = [sr("@defuse-protocol/one-click-sdk-typescript", "1Click swap client", C.accent, 2.4), sr("@defuse-protocol/intents-sdk", "Intents SDK", C.g1, 1.8)];
+    const s2 = [sr("near-api-js", "near-api-js", C.g1, 1.8), sr("@near-wallet-selector/core", "Wallet selector", C.accent, 2.4)];
+    legend($("#lg-b1"), s1); legend($("#lg-b2"), s2);
+    lines($("#c-b1"), months.map(mlab), s1, {fy: v => v.toFixed(0) + "K", ft: v => v.toFixed(1) + "K"});
+    lines($("#c-b2"), months.map(mlab), s2, {fy: v => v.toFixed(0) + "K", ft: v => v.toFixed(0) + "K"});
+    const at = (pkg, m) => (B.packages[pkg].find(x => x.month === m) || {n: 0}).n, last = months[months.length - 1];
+    const oc = at("@defuse-protocol/one-click-sdk-typescript", last), oc0 = at("@defuse-protocol/one-click-sdk-typescript", "2025-05");
+    const na = at("near-api-js", last), na0 = at("near-api-js", "2025-05"), ws = at("@near-wallet-selector/core", last), ws0 = at("@near-wallet-selector/core", "2025-05");
+    $("#builders-lede").textContent = `Monthly downloads of the 1Click swap client went from ${fmt.n(Math.round(oc0 / 1000))}K in May 2025 to ${fmt.n(Math.round(oc / 1000))}K in ${mlab(last)}, ${(oc / oc0).toFixed(0)} times as many. The core library near-api-js is at ${(na / na0).toFixed(1)}× its May 2025 level and the wallet selector at ${(ws / ws0).toFixed(1)}×.`;
+    $("#f-b2").textContent = `${mlab(last)} against May 2025: near-api-js ${fmt.n(Math.round(na / 1000))}K against ${fmt.n(Math.round(na0 / 1000))}K, wallet selector ${fmt.n(Math.round(ws / 1000))}K against ${fmt.n(Math.round(ws0 / 1000))}K.`;
+  } else { $("#builders").style.display = "none"; }
+
+  const V = D.validators;
+  if (V) {
+    const L = V.latest, cards = [
+      ["Validators", fmt.n(L.validators), `${(L.total_stake_near / 1e6).toFixed(1)}M NEAR staked, ${M.staked_share_pct}% of supply, at a ${M.gross_staking_yield_pct}% gross yield. The largest validator holds ${(L.top1_share * 100).toFixed(1)}% and the top ten ${(L.top10_share * 100).toFixed(0)}%.`],
+      ["Nakamoto coefficient", String(L.nakamoto_third), "Validators it takes to hold more than one third of stake, the amount that can halt finality."],
+      ["Block production", (L.block_uptime * 100).toFixed(2) + "%", "Expected blocks produced by the current epoch's validators, read from the validators RPC."],
+    ];
+    $("#net-cards").innerHTML = cards.map(c => `<div class="card reveal"><h3>${c[0]}</h3><div class="stat" style="padding:0;border:0;background:none"><div class="v" style="font-size:30px">${c[1]}</div></div><p class="sub" style="margin:var(--s2) 0 0">${c[2]}</p></div>`).join("");
+  } else { $("#net-cards").style.display = "none"; }
+
+  const W = D.web_facts;
+  if (W) {
+    const host = u => new URL(u).hostname.replace("www.", "");
+    const src = id => `<a href="${W[id].url}" rel="noopener">${host(W[id].url)}</a>`;
+    const cards = [
+      ["US spot ETF", "NYSE Arca: NRR", `Bitwise's NEAR ETF began trading on 29 September 2026 at a 0.75% fee and stakes the NEAR it holds. Source: ${src("etf_launch")}.`],
+      ["Confidential Intents TVL", "about $160M", `At the end of Q3 2026 according to Nansen's quarterly report, which also puts Q3 Intents volume at about $10.4B. Source: ${src("conf_tvl")}.`],
+      ["Staked through partners", "5M and 750K NEAR", `About 5M NEAR staked through near.com and more than 750,000 NEAR staked for NEAR AI inference, per the same report. Source: ${src("nearcom_staked")}.`],
+    ];
+    $("#inst-cards").innerHTML = cards.map(c => `<div class="card reveal"><h3>${c[0]}</h3><div class="stat" style="padding:0;border:0;background:none"><div class="v" style="font-size:26px">${c[1]}</div></div><p class="sub" style="margin:var(--s2) 0 0">${c[2]}</p></div>`).join("");
+  } else { $("#inst-cards").style.display = "none"; }
 }
 
 /* ---------------- risks ---------------- */
@@ -531,7 +652,7 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
   const stPk = Object.entries(E.stable_q).reduce((a, r) => r[1] > a[1] ? r : a), tvPk = Object.entries(E.tvl_q).reduce((a, r) => r[1] > a[1] ? r : a);
   const items = [
     `Base-layer activity is far below its 2024 peak: Nearblocks counts ${fmt.n(last.tx_per_day / 1e3, 0)}K transactions a day in ${last.q} against ${fmt.n(pk.tx_per_day / 1e6, 1)}M in ${pk.q}, and ${fmt.n(last.active_per_day / 1e3, 0)}K active accounts a day against ${fmt.n(byq[pk.q].active_per_day / 1e6, 2)}M. Stablecoins on NEAR are $${(E.stable_now / 1e6).toFixed(0)}M against a peak of $${(stPk[1] / 1e6).toFixed(0)}M (${stPk[0]}); chain TVL is $${(E.tvl_now / 1e6).toFixed(0)}M against $${(tvPk[1] / 1e6).toFixed(0)}M (${tvPk[0]}).`,
-    `Net staking outflow was ${M.h1a_ratio_as_written_x}× staking rewards over the 90 days (H1a fails),.`,
+    `Net staking outflow was ${M.h1a_ratio_as_written_x}× staking rewards over the 90 days (H1a fails).`,
     `Partners keep at least ${M.partners_kept_vs_near_rev_low_tight_x}× NEAR's captured revenue, SwapKit routes ${M.swapkit_vol_share_pct}% of 1Click volume, and ${M.escrow_share_of_buyback_near_30d_pct}% of the buyback wallet's NEAR arrived through an escrow whose fee stream NEAR has not attested.`,
     `1Click was a net route out of NEAR: $${M.explorer_out_of_near_usd_m}M out against $${M.explorer_into_near_usd_m}M in, and only ${M.explorer_near_side_swap_share_pct}% of its volume has NEAR on one side.`,
     `Volume over the last 30 days was ${((1 - M.intents_vol_30d_b / M.intents_vol_prior30d_b) * 100).toFixed(0)}% below the prior 30 days. The market capitalisation is ${M.mcap_to_rev_30d_annualized_x.toFixed(0)}× annualised 30-day captured revenue (${M.mcap_to_rev_365d_x.toFixed(0)}× over the trailing year). NEAR returned ${fmt.pct(D.market.perf["30"].near, 0)} over the last 30 days.`,

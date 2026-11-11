@@ -28,8 +28,9 @@ class TestDashboard(unittest.TestCase):
             self.assertNotIn(bad, low)
 
     def test_page_makes_no_network_requests(self):
-        self.assertNotRegex(self.html, r'(src|href)="https?://(?!github\.com/notveiker)')
-        self.assertNotIn("fetch(", self.html)
+        self.assertNotRegex(self.html, r'(src|<link[^>]*href)="https?://')
+        for bad in ("fetch(", "XMLHttpRequest", "import(", "@import"):
+            self.assertNotIn(bad, self.html)
 
     def test_hsp029_path_monotone_and_bounded(self):
         a = json.loads(open("data/raw/rpc/rating_assumptions.json").read())
