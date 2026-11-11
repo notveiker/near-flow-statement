@@ -41,5 +41,8 @@
 | 35 | Exit vs buyback stock | Wallet ~0.85× one-window net exit; rev ~0.21× | Stock ≠ flow offset |
 | 36 | CIF sensitivity (1–5 bp on conf TVL×turnover) | ~$3.2–16M/yr proxy | Rate card unpublished; escrow already ~59% of buyback NEAR |
 | 37 | Calendar ordering | Submit 14 Nov; HSP-029 timelock 16 Nov | Pitch must say issuance ramp pending-not-live |
+| 38 | LST vs annual mint $ | LST ~1.7×; buyback wallet ~0.07× | Soft float ≠ fee claim |
+| 39 | OI vs fee decouple | OI −42% / fee print held | Positioning overlay ≠ fee engine |
+| 40 | History sample | 135 preliminary clusters | Early strata sealing; overall still not supported |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.

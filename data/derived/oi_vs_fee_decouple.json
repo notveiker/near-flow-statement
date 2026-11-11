@@ -1,0 +1,5 @@
+{
+ "oi_change_30d_pct": -41.7,
+ "fee_run_rate_m": 24.2,
+ "note": "Perps OI \u221242% over the fee window while Intents capture print held \u2014 positioning risk is not the fee engine. Overlay for pitch risk footer only."
+}

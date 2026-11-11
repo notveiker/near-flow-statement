@@ -1,0 +1,8 @@
+{
+ "lst_tvl_m": 195.9,
+ "net_issuance_usd_yr_m": 118.3,
+ "lst_covers_annual_net_mint_x": 1.66,
+ "buyback_wallet_m": 8.0,
+ "buyback_covers_annual_net_mint_x": 0.068,
+ "note": "LST TVL (~$196M) is ~1.7\u00d7 one year of net mint dollars \u2014 a soft float sink, not a fee claim. Buyback wallet covers ~0.07\u00d7 annual mint $. Orthogonal to Intents capture. Exploratory."
+}
