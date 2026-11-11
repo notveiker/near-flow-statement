@@ -1,0 +1,21 @@
+{
+ "lst_tvl_sum_m": 195.9,
+ "protocols": [
+  {
+   "name": "LiNEAR",
+   "tvl_m": 47.0
+  },
+  {
+   "name": "Meta Pool",
+   "tvl_m": 79.8
+  },
+  {
+   "name": "RHEA LST",
+   "tvl_m": 69.2
+  }
+ ],
+ "buyback_wallet_usd_m": 8.0,
+ "note": "LST TVL is liquid and exit-able; buyback wallet is discretionary hold. LST is a larger soft float sink than buybacks but does not route Intents fees. Exploratory.",
+ "lst_tvl_sum_m_from_report_components": 196,
+ "lst_vs_buyback_wallet_x": 24.5
+}
