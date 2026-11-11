@@ -26,5 +26,7 @@
 | 20 | Confidential TVL ~70% of inventory | **$160M** / **$229M** | Privacy flow mean-reverts |
 | 21 | Volume/capture index | **1.7×** (55.7% / 32.5%) | Capture share rises to match volume |
 | 22 | Multiple richness vs THOR | ~**14×** (217× / 16×) | Multiple compresses |
+| 23 | LST soft float ≫ buyback stock | ~**$196M** vs ~**$8M** (~**25×**) | Unstake / LST exit |
+| 24 | Aurora is not the thesis | TVL ~**0.28%** of peak | — |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.
