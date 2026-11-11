@@ -1,0 +1,9 @@
+{
+ "scenario": "trust_swapkit_to_trust_direct_20bp",
+ "vol_share_pct": 6.4,
+ "from_bp": 0,
+ "to_bp": 20,
+ "uplift_30d_m": 0.141,
+ "uplift_run_rate_m": 1.72,
+ "note": "If Trust volume inside SwapKit (6.4%) paid Trust-direct 20 bp buyback instead of 0. High friction \u2014 same wallet, different commercial path. Exploratory arithmetic."
+}
