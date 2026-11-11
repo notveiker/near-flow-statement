@@ -1,0 +1,28 @@
+{
+ "soft_sinks": [
+  {
+   "name": "buyback_wallet_held",
+   "near_m": 2.187,
+   "DIC_days": 24.8
+  },
+  {
+   "name": "ai_inference_stake_floor",
+   "near_m": 0.75,
+   "DIC_days": 8.5
+  },
+  {
+   "name": "nrr_etf_holdings",
+   "near_m": 15.69,
+   "DIC_days": 177.7
+  },
+  {
+   "name": "lst_tvl_linear_metapool_rhea",
+   "near_m": 53.978,
+   "DIC_days": 611.3
+  }
+ ],
+ "sum_near_m": 72.61,
+ "sum_DIC_days": 822.3,
+ "sum_vs_annual_mint_days": 2.25,
+ "note": "Summing soft sinks double-counts overlapping claims and mixes exit speeds. Directional: ~0.6 year of mint days across soft sinks, mostly ETF-fast. Not additive scarcity. Exploratory."
+}

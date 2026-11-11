@@ -286,6 +286,7 @@ def build() -> dict:
             "partner_dials": optional("derived/partner_path_uplift_stack.json"),
             "controllable_stack": optional("derived/controllable_stack.json"),
             "dial_rank": optional("derived/catalyst_dial_rank.json"),
+            "soft_sink_ladder": optional("derived/soft_sink_ladder.json"),
             "inventory_mix": optional("derived/inventory_mix.json"),
         },
         "repro": reproducibility(),
