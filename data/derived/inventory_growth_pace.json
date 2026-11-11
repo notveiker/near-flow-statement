@@ -1,0 +1,6 @@
+{
+ "inventory_usd_m": 229.2,
+ "net_deposits_per_day_m": 4.9,
+ "days_to_double_inventory_if_sustained": 46.8,
+ "note": "Census window net deposits ~$4.9M/day. If sustained (it will not be \u2014 hours window), inventory doubles in ~47 days. Directional only: recent inventory path from holdings_history already rose $0.5M\u2192$180M over ~22 months. Exploratory."
+}
