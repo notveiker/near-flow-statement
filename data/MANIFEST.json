@@ -336,6 +336,12 @@
    "sha256": "2080f19288fbb0aea0416cfc87caf13ff4d54c37c97aa5e800e825ec1c3eb59c",
    "source": "https://api.llama.fi/summary/fees/{slug}?dataType="
   },
+  "raw/prop/aurora.json": {
+   "bytes": 619,
+   "fetched_at": "2026-11-11T06:28:33Z",
+   "sha256": "0e5e2e1e2c08363eb43cf6270fe8c48115081efdd82b4b6d54a606b02ff20771",
+   "source": "DefiLlama historicalChainTvl/Aurora + overview/fees/aurora"
+  },
   "raw/prop/dexs_near.json": {
    "bytes": 10730,
    "fetched_at": "2026-11-11T06:27:16Z",
@@ -365,6 +371,12 @@
    "fetched_at": "2026-11-11T06:27:20Z",
    "sha256": "5307f1fff9fdc47106055c8ada9a9ee1b153af107ab310623380fa15fadb1b8e",
    "source": "Nearblocks /v1/stats"
+  },
+  "raw/prop/validators_summary.json": {
+   "bytes": 232,
+   "fetched_at": "2026-11-11T06:28:33Z",
+   "sha256": "7004973e5ef877cb25a1f9e255fb8733dc70c48f8f9fcf92df0baad321adc7fd",
+   "source": "derived from data/raw/rpc/validators_epochs.json"
   },
   "raw/rpc/buyback_balance_endpoints.json": {
    "bytes": 721,

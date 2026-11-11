@@ -34,9 +34,10 @@ def reconcile(usage: dict, tokens: list[dict], read=supply) -> dict:
         if s0 is None or s1 is None:
             continue
         d = s1 - s0
-        scale = 10 ** t["decimals"] * t["price_usd"]
-        rows.append({"symbol": t["symbol"], "chain": t["chain"], "token_id": t["token_id"], "supply_change_usd": d / scale,
-                     "census_net_usd": net_census / scale, "gap_usd": (d - net_census) / scale})
+        # raw → tokens → USD: (raw / 10**decimals) * price
+        to_usd = (1 / 10 ** t["decimals"]) * t["price_usd"]
+        rows.append({"symbol": t["symbol"], "chain": t["chain"], "token_id": t["token_id"], "supply_change_usd": d * to_usd,
+                     "census_net_usd": net_census * to_usd, "gap_usd": (d - net_census) * to_usd})
     gross = sum(abs(r["census_net_usd"]) for r in rows)
     gap = sum(abs(r["gap_usd"]) for r in rows)
     exact = sum(1 for r in rows if abs(r["gap_usd"]) < 1.0)
