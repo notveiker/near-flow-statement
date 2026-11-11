@@ -19,3 +19,5 @@ __pycache__/
 data/sample/clusters/
 data/sample/part/
 data/sample/log.jsonl
+# fetched HTML dumps (sha256 recorded in primary_pages.json)
+data/raw/web/pages/

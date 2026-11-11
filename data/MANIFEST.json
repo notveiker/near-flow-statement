@@ -193,9 +193,9 @@
    "source": "gov.near.org latest.json, paged"
   },
   "raw/intents/holdings_history.json": {
-   "bytes": 8920,
-   "fetched_at": "2026-11-11T06:33:16Z",
-   "sha256": "2788592e2b89194adbaa64d5ef6d5471fbf32c81b571ec535aa31ebcb326f2b9",
+   "bytes": 20809,
+   "fetched_at": "2026-11-11T20:00:50Z",
+   "sha256": "f97930fc1cffdd9106693b6fe49c9c9707614b220d7ad0512f81140dba16c56f",
    "source": "archival mt_supply month starts; prices from 1Click token list at snapshot"
   },
   "raw/intents/holdings_snapshot.json": {
@@ -479,6 +479,12 @@
    "fetched_at": "2026-11-06T23:50:01Z",
    "sha256": "0d2782ddce85bbe2e1fbce662c0c894108a636c18b2d354966ca75979e86f968",
    "source": "event-level NEAR moved into intents.near by large unstakers, 2026-08-07..11-04 (BigQuery q1-q6 + FastNEAR; lane unstakers-intents, 63.9 GB)"
+  },
+  "raw/web/primary_pages.json": {
+   "bytes": 1064,
+   "fetched_at": "2026-11-11T20:00:47Z",
+   "sha256": "9934b2653496ce1eae72c133a088a34d36eb756c359da7378407d338d439fad7",
+   "source": "hashes of primary NEAR/Bitwise/Nansen pages fetched for structural research"
   },
   "raw/web/third_party_facts.json": {
    "bytes": 4797,
