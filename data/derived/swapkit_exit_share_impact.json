@@ -1,0 +1,7 @@
+{
+ "swapkit_pp_of_intents_vol": 10.5,
+ "intents_share_today_pct": 55.7,
+ "intents_share_if_sk_exits_peerset_pct": 45.2,
+ "still_largest_peer": true,
+ "note": "SwapKit is ~10.5 pp of Intents peerset volume (38% of 1Click \u00d7 1Click/Intents). Full exit drops Intents peerset share ~55.7\u219245.2 without destroying leadership \u2014 but destroys the distribution surface. Exploratory."
+}

@@ -55,5 +55,7 @@
 | 49 | No-ref dollar concentration | 18.7% vol → 45.8% buyback $ (~2.45×) | Default path is the fee engine |
 | 50 | CS density proxy | ~$5.1k deposit notional / signature | Rail density ≠ fee line |
 | 51 | Volume multiples from stack | 3.2× for 1× mint$; 2.6× for 50×; 8× for THOR-16 | Stack improves quality; volume closes gaps |
+| 52 | SwapKit exit share impact | Intents peerset ~55.7→~45.2 | Leadership survives; distribution surface does not |
+| 53 | Capture-share path (40–60%) | ~$30–45M RR at flat 15.3 gross | Leakage cut helps; still <0.5× of 50× need |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.
