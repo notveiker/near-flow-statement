@@ -1,0 +1,9 @@
+{
+ "intents_pci_30d": 0.0573,
+ "inventory_m": 229.2,
+ "fee_run_rate_m": 24.2,
+ "annual_fee_per_inventory_dollar": 0.106,
+ "turnover_x_30d": 17.4,
+ "days_of_volume_in_inventory": 1.7,
+ "note": "Intents settles ~$17\u00d7 inventory per 30d with PCI ~0.057 \u2014 capital-light vs bonded-vault peers. Annual fee/$ inventory \u2248 $0.11. Flexibility cost is trust/ops concentration. Exploratory."
+}

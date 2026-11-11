@@ -28,4 +28,5 @@
 9. Inventory mix (ZEC #2) + CIF sensitivity  
 10. Rent map (solver+partners ~2.7× NEAR capture)  
 
+Lead: attach/AITR, capture share, no-ref $, Intents≈NEAR DEX, fee÷mint$, volume binding.
 AI / ETF / npm are second-order until measured as fee flow.

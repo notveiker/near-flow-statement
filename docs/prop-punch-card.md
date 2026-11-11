@@ -58,5 +58,7 @@
 | 52 | SwapKit exit share impact | Intents peerset ~55.7→~45.2 | Leadership survives; distribution surface does not |
 | 53 | Capture-share path (40–60%) | ~$30–45M RR at flat 15.3 gross | Leakage cut helps; still <0.5× of 50× need |
 | 54 | Channel HHI (SwapKit merged) | ~0.20 (moderate band) | Commercial concentration; logo volume ≠ capture |
+| 55 | Capital-light yield | PCI ~0.057; ~$0.11 fee/$ inventory/yr | Flexibility vs bonded peers; trust cost elsewhere |
+| 56 | Pitch sequence | Quality dials → HSP-029 → attestation → volume | Do not lead with AI/ETF/npm |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.

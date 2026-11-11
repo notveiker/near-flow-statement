@@ -1,0 +1,38 @@
+{
+ "sequence": [
+  {
+   "step": 1,
+   "action": "attach + mix + leakage",
+   "effect": "raise RR toward ~$37\u201345M"
+  },
+  {
+   "step": 2,
+   "action": "HSP-029",
+   "effect": "cut mint denom; coverage 0.21\u2192~0.3\u20130.5\u00d7"
+  },
+  {
+   "step": 3,
+   "action": "attestation disclosure",
+   "effect": "collapse 4.5\u201315.8% band; unlock underwriting"
+  },
+  {
+   "step": 4,
+   "action": "volume 2\u20134\u00d7",
+   "effect": "close 50\u00d7 / approach mint coverage"
+  }
+ ],
+ "do_not_lead_with": [
+  "AI agents",
+  "ETF NRR",
+  "npm downloads"
+ ],
+ "lead_with": [
+  "attach/AITR",
+  "capture share",
+  "no-ref concentration",
+  "Intents=NEAR DEX",
+  "fee\u00f7mint$",
+  "volume binding"
+ ],
+ "note": "Pitch sequence for judges: quality dials first (evidenced), volume as binding closer. Exploratory synthesis."
+}
