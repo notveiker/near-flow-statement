@@ -12,7 +12,8 @@ Excluded: receipts from "system" (gas refunds), failed receipts, NEAR attached t
 Run (on the machine with the census):
     python3 -m pipeline.census_graph edges --root /data/near/archive --interest interest.json --out /data/near/edges --workers 24
     python3 -m pipeline.census_graph merge --edges /data/near/edges --out /data/near/edges_merged.json.gz
-interest.json is a list of account ids. Per shard we keep every edge that touches an interest account, plus every
+Without --interest the whole graph is kept (every edge of at least --min-near NEAR per shard), which is what multi-hop
+tracing needs. With interest.json, a list of account ids, per shard we keep every edge that touches an interest account, plus every
 edge sent by an account that sent to an interest account in that shard (so a sender's total outflow can be judged).
 """
 from __future__ import annotations
@@ -34,8 +35,11 @@ def _failed(status) -> bool:
     return isinstance(status, dict) and "Failure" in status
 
 
-def shard_edges(blocks, interest: frozenset) -> list[list]:
-    """blocks: iterable of {"h", "b"} census rows -> [[from, to, n, yocto], ...] restricted as described above."""
+def shard_edges(blocks, interest: frozenset | None, min_yocto: int = 0) -> list[list]:
+    """blocks: iterable of {"h", "b"} census rows -> [[from, to, n, yocto], ...] restricted as described above.
+
+    interest=None keeps every edge whose shard total is at least min_yocto (the full-graph mode used by hub_trail).
+    """
     e: dict[tuple[str, str], list[int]] = defaultdict(lambda: [0, 0])
     for d in blocks:
         b = d["b"]
@@ -57,26 +61,29 @@ def shard_edges(blocks, interest: frozenset) -> list[list]:
                             x = e[(pred, r["receiver_id"])]
                             x[0] += 1
                             x[1] += amt
+    if interest is None:
+        return [[a, b, n, y] for (a, b), (n, y) in e.items() if y >= min_yocto]
     into = {a for (a, b) in e if b in interest}
     return [[a, b, n, y] for (a, b), (n, y) in e.items() if a in interest or b in interest or a in into]
 
 
 def _work(args):
-    root, a, b, interest, out = args
+    root, a, b, interest, out, min_yocto = args
     dst = Path(out) / f"{name(a, b)}.json.gz"
     if dst.exists():
         return 0
-    rows = shard_edges(read_shard(Path(root), a, b), interest)
+    rows = shard_edges(read_shard(Path(root), a, b), interest, min_yocto)
     tmp = dst.with_suffix(".tmp")
     tmp.write_bytes(gzip.compress(json.dumps(rows, separators=(",", ":")).encode(), 6, mtime=0))
     tmp.rename(dst)
     return len(rows)
 
 
-def edges_cmd(root: Path, interest_path: Path, out: Path, workers: int) -> int:
-    interest = frozenset(json.loads(Path(interest_path).read_text()))
+def edges_cmd(root: Path, interest_path: Path | None, out: Path, workers: int, min_near: float = 1.0) -> int:
+    interest = frozenset(json.loads(Path(interest_path).read_text())) if interest_path else None
+    min_yocto = int(min_near * YOCTO)
     Path(out).mkdir(parents=True, exist_ok=True)
-    jobs = [(str(root), a, b, interest, str(out)) for a, b in list_sealed(root)]
+    jobs = [(str(root), a, b, interest, str(out), min_yocto) for a, b in list_sealed(root)]
     with Pool(workers) as p:
         n = sum(p.imap_unordered(_work, jobs))
     print(f"{len(jobs)} shards, {n} new edge rows")
@@ -104,7 +111,8 @@ def main(argv=None) -> int:
     sub = ap.add_subparsers(dest="cmd", required=True)
     p = sub.add_parser("edges")
     p.add_argument("--root", required=True)
-    p.add_argument("--interest", required=True)
+    p.add_argument("--interest", help="JSON list of accounts; omit for the full graph (edges of at least --min-near per shard)")
+    p.add_argument("--min-near", type=float, default=1.0)
     p.add_argument("--out", required=True)
     p.add_argument("--workers", type=int, default=16)
     p = sub.add_parser("merge")
@@ -112,7 +120,7 @@ def main(argv=None) -> int:
     p.add_argument("--out", required=True)
     a = ap.parse_args(argv)
     if a.cmd == "edges":
-        return edges_cmd(Path(a.root), Path(a.interest), Path(a.out), a.workers)
+        return edges_cmd(Path(a.root), Path(a.interest) if a.interest else None, Path(a.out), a.workers, a.min_near)
     return merge_cmd(Path(a.edges), Path(a.out))
 
 

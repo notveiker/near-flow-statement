@@ -174,6 +174,12 @@
    "sha256": "533ee9ae368c813edfb8cfda3c583a78c24ee06e82494a9450b17cf3bcb256bb",
    "source": "gov.near.org latest.json, paged"
   },
+  "raw/intents/holdings_snapshot.json": {
+   "bytes": 48042,
+   "fetched_at": "2026-11-11T05:46:40Z",
+   "sha256": "cbc6b4d951e7a9ff6db0b7f37dcd4a81c6637f8ab14d13dc772e8341550dbfc9",
+   "source": "http://127.0.0.1:3030 mt_tokens/mt_supply on intents.near at block 224024093; https://1click.chaindefuser.com/v0/tokens"
+  },
   "raw/labels/binance_por_address_2026-11-06.json": {
    "bytes": 91766,
    "fetched_at": "2026-11-06T23:10:36Z",
@@ -377,6 +383,12 @@
    "fetched_at": "2026-11-06T23:50:01Z",
    "sha256": "0d2782ddce85bbe2e1fbce662c0c894108a636c18b2d354966ca75979e86f968",
    "source": "event-level NEAR moved into intents.near by large unstakers, 2026-08-07..11-04 (BigQuery q1-q6 + FastNEAR; lane unstakers-intents, 63.9 GB)"
+  },
+  "raw/web/third_party_facts.json": {
+   "bytes": 4797,
+   "fetched_at": "2026-11-11T05:47:52Z",
+   "sha256": "daaac0bdf3f632ef68dbfd33eb312dfae2344e2d2da84324ae214a11baa8e891",
+   "source": "https://bitwiseinvestments.com/newsroom/the-bitwise-near-etf-nrr-launches-as-first-spot-near-etp-in-the-us; https://brave.com/blog/near-intents/; https://cryptoetf.today/en/crypto-etf-filings/coin/near; https://nansen.ai/post/near-q3-2026-report"
   }
  }
 }
