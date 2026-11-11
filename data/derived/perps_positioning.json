@@ -1,0 +1,11 @@
+{
+ "asof_utc": "2026-11-12",
+ "funding_mean_8h_approx_90d": 5.899e-05,
+ "funding_median_8h": 9.401e-05,
+ "funding_annualized_approx_pct": 6.46,
+ "oi_usd_m_latest": 162.9,
+ "oi_usd_m_30d_ago": 279.6,
+ "oi_change_30d_pct": -41.7,
+ "long_short_ratio_latest": 1.3613,
+ "note": "OI fell ~42% over the 30d window while L/S stayed >1 and funding mildly positive \u2014 deleveraging into the pullback, not a short squeeze setup. Overlay only; fee engine unchanged. Exploratory."
+}
