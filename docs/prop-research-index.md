@@ -24,6 +24,7 @@
 | Inventory mix | `inventory_mix.json` | ZEC #2 (~12%) in settlement stock |
 | NEAR exit | `near_exit_vs_capture.json` | Net exit ~4.7× same-window capture |
 | Chain Signatures | `chain_signatures_link.json` | Intents infra, not separate τ |
+| npm pulse | `builder_npm_pulse.json` | 1Click SDK ~37× vs near-api-js ~2.6× |
 | Builder pulse | `builder_pulse.json` | Soft: nearcore/intents/mpc fresh pushes |
 | AI agents | ai-agents-evidence.md | >750k NEAR inference stake — second-order |
 

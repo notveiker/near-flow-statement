@@ -1,0 +1,131 @@
+{
+ "asof": "2026-11-11",
+ "window": [
+  "2025-01-01",
+  "2026-11-11"
+ ],
+ "packages": {
+  "@defuse-protocol/intents-sdk": {
+   "month_first": "2025-05",
+   "dl_first": 0,
+   "month_last": "2026-10",
+   "dl_last": 43879,
+   "growth_x": null,
+   "monthly": {
+    "2026-05": 14804,
+    "2026-06": 22616,
+    "2026-07": 42564,
+    "2026-08": 37512,
+    "2026-09": 38436,
+    "2026-10": 43879
+   }
+  },
+  "@defuse-protocol/one-click-sdk-typescript": {
+   "month_first": "2025-05",
+   "dl_first": 3127,
+   "month_last": "2026-10",
+   "dl_last": 114401,
+   "growth_x": 36.58,
+   "monthly": {
+    "2026-05": 72863,
+    "2026-06": 68281,
+    "2026-07": 68725,
+    "2026-08": 65208,
+    "2026-09": 74051,
+    "2026-10": 114401
+   }
+  },
+  "@hot-labs/near-connect": {
+   "month_first": "2025-05",
+   "dl_first": 583,
+   "month_last": "2026-10",
+   "dl_last": 31502,
+   "growth_x": 54.03,
+   "monthly": {
+    "2026-05": 6604,
+    "2026-06": 7197,
+    "2026-07": 14889,
+    "2026-08": 9437,
+    "2026-09": 21742,
+    "2026-10": 31502
+   }
+  },
+  "@near-js/accounts": {
+   "month_first": "2025-05",
+   "dl_first": 176052,
+   "month_last": "2026-10",
+   "dl_last": 658844,
+   "growth_x": 3.74,
+   "monthly": {
+    "2026-05": 683628,
+    "2026-06": 714293,
+    "2026-07": 794673,
+    "2026-08": 670276,
+    "2026-09": 722285,
+    "2026-10": 658844
+   }
+  },
+  "@near-js/providers": {
+   "month_first": "2025-05",
+   "dl_first": 248122,
+   "month_last": "2026-10",
+   "dl_last": 951561,
+   "growth_x": 3.84,
+   "monthly": {
+    "2026-05": 857291,
+    "2026-06": 889506,
+    "2026-07": 971354,
+    "2026-08": 846992,
+    "2026-09": 893757,
+    "2026-10": 951561
+   }
+  },
+  "@near-js/signers": {
+   "month_first": "2025-05",
+   "dl_first": 314545,
+   "month_last": "2026-10",
+   "dl_last": 1067835,
+   "growth_x": 3.39,
+   "monthly": {
+    "2026-05": 957555,
+    "2026-06": 964197,
+    "2026-07": 1015880,
+    "2026-08": 922433,
+    "2026-09": 961124,
+    "2026-10": 1067835
+   }
+  },
+  "@near-wallet-selector/core": {
+   "month_first": "2025-05",
+   "dl_first": 20284,
+   "month_last": "2026-10",
+   "dl_last": 184077,
+   "growth_x": 9.07,
+   "monthly": {
+    "2026-05": 57897,
+    "2026-06": 94135,
+    "2026-07": 155887,
+    "2026-08": 136626,
+    "2026-09": 162767,
+    "2026-10": 184077
+   }
+  },
+  "near-api-js": {
+   "month_first": "2025-05",
+   "dl_first": 301739,
+   "month_last": "2026-10",
+   "dl_last": 789418,
+   "growth_x": 2.62,
+   "monthly": {
+    "2026-05": 781300,
+    "2026-06": 774199,
+    "2026-07": 856285,
+    "2026-08": 726192,
+    "2026-09": 779746,
+    "2026-10": 789418
+   }
+  }
+ },
+ "captured_rev_growth_obs_pct_yr": 619.0,
+ "note": "npm downloads include CI; level overstates people. Compare shape to fee capture \u2014 builder adoption can lead or lag token capture. Exploratory soft signal."
+}
