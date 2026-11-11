@@ -20,7 +20,7 @@ Window: 30 days, 2026-10-06 → 2026-11-04 (UTC). Every number marked with an `n
 | Ceiling (also counting all NEAR unshielded from the Confidential Intents escrow to the buyback wallet, fee stream unattested) | 43.0 <!--n:swapkit_exit_ceiling_pct-->% |
 | Wider ceiling (the same logic applied to the escrow-path NEAR that reached `fefundsadmin` too) | 73.7 <!--n:swapkit_exit_ceiling_all_escrow_pct-->% |
 
-The volume exposure is larger and certain. SwapKit routes 38.2 <!--n:swapkit_vol_share_pct-->% of 1Click volume, about 21.1 <!--n:swapkit_share_of_intents_net_pct-->% of all Intents volume (one-sided). Every bull case cites Intents' volume share against THORChain, Chainflip and Maya, so losing SwapKit would hit the volume narrative much harder than the revenue line.
+The volume exposure is larger and certain. SwapKit routes 38.2 <!--n:swapkit_vol_share_pct-->% of 1Click volume, about 21.1 <!--n:swapkit_share_of_intents_net_pct-->% of all Intents volume (one-sided). Most arguments for NEAR cite Intents' volume share against THORChain, Chainflip and Maya, so losing SwapKit would hit the volume narrative much harder than the revenue line.
 
 ## 1. Volume is spread out, but NEAR's explicit fees are concentrated elsewhere
 
