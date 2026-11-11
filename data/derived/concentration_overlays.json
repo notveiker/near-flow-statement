@@ -1,0 +1,9 @@
+{
+ "volume_channel_hhi": 0.087,
+ "volume_channel_hhi_swapkit_merged": 0.2,
+ "swapkit_vol_share_pct": 38.2,
+ "intents_inventory_usd_m": 229.2,
+ "confidential_tvl_q3_usd_m": 160,
+ "conf_tvl_vs_inventory_pct": 69.8,
+ "note": "Confidential TVL (~$160M Q3 Nansen) is ~70% of total Intents inventory (~$229M) \u2014 privacy balances are a large share of working capital, consistent with ZEC #2. Channel HHI rises when SwapKit routes are merged. Exploratory."
+}
