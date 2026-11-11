@@ -1,0 +1,8 @@
+{
+ "baseline_run_rate_m": 24.2,
+ "attach60_run_rate_m": 32.1,
+ "mix10_run_rate_m": 33.9,
+ "stacked_conservative_run_rate_m": 37.0,
+ "vs_50x_need_96m": 0.38,
+ "note": "Conservative stack: attach-60 path plus half the +10pp near.com mix uplift to avoid double-counting overlapping volume. Still ~0.4\u00d7 of 50\u00d7 revenue need. Exploratory."
+}
