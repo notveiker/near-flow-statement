@@ -31,5 +31,6 @@
 | 25 | Ledger-via-SwapKit partner fees ≈ NEAR capture | ~**$2.0M** vs **$1.99M** | Attach/renegotiate that pipe |
 | 26 | No-referrer = ~46% of buyback dollars | 18.7% vol @ 10 bp | Defaults lose share |
 | 27 | Partner-path dials (Trust→direct + no-ref + LI.FI→AITR) | ~$3.3M/yr sketch stack | Distribution conversion inventory; not additive with attach-60 |
+| 28 | Issuance coverage (fees ÷ net mint $) | ~0.21× today; ~0.48× at HSP-029+stack37 | Need ~18× volume at 4.98 bp for 1×; policy helps denom |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.

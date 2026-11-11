@@ -22,3 +22,8 @@ Annualised capture is **~$24.2M**. Permanently removing **100%** of that from fl
 Burn, irrevocable lock, or vote-escrow of buyback NEAR would turn DIC from a *balance* into a *removal*. Without that, the token link is fee → discretionary hold → possible recirculation. Score **DIC, scarcity half-life, and burn/lock policy** before treating DefiLlama “holders revenue” as scarcity.
 
 *Not investment advice.*
+
+
+## Fee vs net issuance (derived)
+
+At metrics price, Intents fee run-rate (~$24M) covers about **0.21×** of net issuance dollar value (~$118M/yr). HSP-029 target alone lifts coverage to ~0.32×; stacking attach/mix dials to ~$37M still leaves ~**0.48×** at the lower mint. Closing to 1× at today’s take needs roughly **~18×** volume (`data/derived/issuance_fee_coverage.json`). Policy tightens the denominator; capture quality does not substitute for flow.

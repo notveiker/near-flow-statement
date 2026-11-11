@@ -38,3 +38,4 @@ History sample: preliminary **133** sealed clusters (primary) with payloads; dua
 ## Latest derived JSON (machine)
 
 `buyback_channel_map`, `ledger_swapkit_tax`, `swapkit_tax_total`, `volume_capture_index`, `dual_concentration`, `capital_efficiency`, `inventory_mix`, `near_exit_vs_capture`, `perps_positioning`, `concentration_overlays`, `intents_vs_l1_flow`, `float_sink`, `path_to_50x`, `mix_shift_math`, `prop_scores`, `catalyst_math`, `aurora_residual`, `lst_vs_buyback`, `rhea_lst_growth`, `builder_npm_pulse`, `governance_catalysts`, `hsp007_mpc`, `relayer_risk`, `solver_excess`, `contestability`, `fee_per_download`.
+- `data/derived/issuance_fee_coverage.json` — fee run-rate vs net mint $; volume multiple for 1× coverage
