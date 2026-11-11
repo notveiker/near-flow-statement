@@ -169,3 +169,10 @@ Post-freeze. Changes no hypothesis, threshold, probability or the rating rule.
 
 1. **`docs/fee-waterfall.md`** summarises token-claimable bp (~5), capture share (32.5%), 1Click leakage (~10×), AITR (~9.5 bp), and peer claim designs. Working detail under `research_notes/NEAR catalysts and path/`.
 2. **`data/derived/prop_scores.json`** holds the machine-readable scoreboard. Feeds no pre-registered test.
+
+## 2026-11-11 23:55 UTC: confidential attestation surface (exploratory)
+
+Post-freeze. Changes no hypothesis, threshold, probability or the rating rule.
+
+1. **`docs/confidential-attestation.md`** states the investment split: confidential rails can raise economic take (AppFee zero) while thinning public proof; ~59% escrow-dependence of buyback NEAR; CIF forwarding is a contractual kill switch.
+2. Working detail in `research_notes/NEAR catalysts and path/confidential-trust-attestation.md`. Feeds no pre-registered test.

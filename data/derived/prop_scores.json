@@ -36,5 +36,7 @@
   "aitr_bp",
   "attach_b3_pct",
   "attestation_gap_pp"
- ]
+ ],
+ "confidential_share_of_wallet_capture_pct": 71.2,
+ "cif_forwarding": "unattested"
 }
