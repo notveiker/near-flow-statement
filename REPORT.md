@@ -62,7 +62,7 @@ The contract's own inventory tells the same story in quantities, not just in rep
 
 
 
-These figures are from keyless snapshots under `data/raw/prop/` and from a **preliminary** read of the history sample (80 of the capped clusters with both seal and payload as of 2026-11-12; more seals still syncing). They feed no pre-registered test.
+These figures are from keyless snapshots under `data/raw/prop/` and from a **preliminary** read of the history sample (**120** clusters with both seal and payload as of 2026-11-12, including sample2 fill for some missing primary payloads; more seals still syncing). With more clusters, sampled Intents receipts in 2025Q3 read about **281K**/day (was ~51K on a one-cluster draw). They feed no pre-registered test. Buyback quality / float-sink metrics are in [`docs/float-sink.md`](docs/float-sink.md).
 
 - **Intents is most of NEAR's fee surface.** Over 30 days, NEAR Intents was 87% of all fees DefiLlama attributes to protocols and the chain on NEAR, and 93% of reported DEX volume on NEAR. The next venue, Rhea Dex, was about a tenth of Intents' fees.
 - **Intents receipts are rising in the sampled history.** Receipts executed on `intents.near` per day, from the stratified sample, go from about 51K in 2025Q3 to about 265K in 2026Q3, and about 886K in the still-thin 2026Q4 draw. In that 2026Q4 draw, `intents.near` itself was the single busiest receiver (23.5% of transactions). Base-layer growth tests U1, U2, U4 and U5 fail on the same sample; that is the base-layer decline already visible in Nearblocks.
@@ -84,6 +84,7 @@ The path that compounds is not “more L1 transactions.” It is attachment, mix
 - **Inventory turns like a venue.** `intents.near` held about **$229M** against **$4.0B** of 30-day volume — about **17×** monthly turnover, or **1.7 days** of volume as working capital. Month-start supplies (fixed prices) rose from about **$0.5M** (Jan 2025) to about **$180M** (Nov 2026).
 - **Dated near-term.** Forward tests F1–F4 resolve **2026-11-14**. HSP-029’s timelock ends **2026-11-16**. Open policy items that collapse the investment range: per-stream escrow attestation (today’s capture is a **4.5–15.8%** band) and exchange labels past **50%** of the top-100 receivers (the only frozen input still separating Hold from Buy).
 - **Score first.** Attachment %, capture share, escrow attestation, near.com mix, HSP-029 activation — before AI roadmap slides or ETF AUM. AI staking for inference (>750k NEAR) and NRR (~$56M / 1.2% mcap) are real but second-order to the fee engine until agent-originated volume or sustained high-single-digit % of mcap shows up.
+- **Multiple math.** About **$96M**/year of captured revenue is needed for a **50×** multiple at today’s mcap. Attach/mix alone top out near **~$42M** (~**0.4×** of that need); clearing 50× on arithmetic still wants about **4×** volume at ~5 bp or **2×** at ~10 bp (`data/derived/path_to_50x.json`). Capture levers raise numerator quality; volume still has to grow for the multiple to compress without a price cut.
 
 ## Reproduce
 

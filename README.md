@@ -24,6 +24,7 @@
 - [`docs/catalysts-and-path.md`](docs/catalysts-and-path.md): what has to happen next — attachment / issuance / inventory arithmetic and the near-term calendar.
 - [`docs/fee-waterfall.md`](docs/fee-waterfall.md): who keeps the basis points — token-claimable bp, leakage, AITR, peer claim designs.
 - [`docs/confidential-attestation.md`](docs/confidential-attestation.md): confidential rails raise economic take while thinning public proof — escrow-dependence and the CIF kill switch.
+- [`docs/float-sink.md`](docs/float-sink.md): buyback quality — days-of-issuance covered, scarcity half-life, held vs burned.
 - [`REPORT.md`](REPORT.md): the written report. Intents share and volume, how fees reach the token, the issuance path, the market, and a compact risks section. Every figure is checked against `data/metrics.json`.
 - [`THESIS.md`](THESIS.md): the investment thesis. It opens with the pre-registered scorecard (H1a fails; H1b and H1c inconclusive; the frozen rule rates NEAR **Hold**), then leads with an **exploratory, post-freeze** exhibit: how much of NEAR's value capture can be verified on chain (4.5-15.8% of net issuance).
 - [`docs/intents-fee-flows.md`](docs/intents-fee-flows.md): who earns from NEAR Intents fees, and whether Intents volume touches the NEAR token. Covers 30 days of 1Click swaps reconciled against NEAR's revenue wallets on chain.

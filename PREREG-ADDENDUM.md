@@ -196,3 +196,10 @@ Post-freeze. Changes no hypothesis, threshold, probability or the rating rule.
 Post-freeze. Changes no hypothesis, threshold, probability or the rating rule.
 
 1. **`data/derived/path_to_50x.json`** shows attach/mix alone reach ~0.4× of the ~$96M revenue need for a 50× multiple at current mcap; volume growth remains required for multiple compression without a price cut.
+
+## 2026-11-12 00:50 UTC: history at 120 clusters + float-sink (exploratory)
+
+Post-freeze. Changes no hypothesis, threshold, probability or the rating rule.
+
+1. **History sample.** Preliminary recompute on **120** clusters (primary payloads plus sample2-only fill). Sampled Intents receipts/day in 2025Q3 revise up vs the one-cluster draw. `history_results.json` remains `preliminary: true`.
+2. **`docs/float-sink.md`** / `data/derived/float_sink.json`: buyback wallet covers ~25 days of issuance (DIC); scarcity half-life ~60 days if recirculated at capture rate; permanent removal of 100% of today's capture covers only ~20% of annual mint.

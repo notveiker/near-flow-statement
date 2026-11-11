@@ -1,0 +1,162 @@
+{
+  "asof": "2026-11-11",
+  "window_metrics_asof": "2026-11-04",
+  "price_usd_metrics": 3.67,
+  "price_usd_etf_snapshot": 3.56,
+  "price_usd_lst_snapshot": 3.63,
+  "net_issuance_near_per_day": 88295.0,
+  "net_supply_growth_30d_annualized_pct": 2.46,
+  "hsp029": {
+    "timelock_end": "2026-11-16",
+    "activation_approx": "2027-02-14",
+    "start_cap_pct": 2.5,
+    "target_cap_pct": 1.6,
+    "ramp_months": 24,
+    "approx_issuance_near_per_day_at_target": 57427.6,
+    "note": "Linear scale of current net mint by 1.6/2.46; not a protocol schedule print."
+  },
+  "buyback_wallet": {
+    "address": "buybacks.multisignature.near",
+    "balance_near_m": 2.187,
+    "status": "held_not_burned",
+    "governance": "discretionary; 'no specific mechanism is guaranteed' (Evolving NEAR Tokenomics)",
+    "escrow_share_of_recent_inflows_pct": 58.8,
+    "vs_three_wallet_implied_pct": 68.5
+  },
+  "annualised_capture": {
+    "usd_m": 24.2,
+    "method": "1.99 * 365/30",
+    "near_m_at_metrics_price": 6.594,
+    "near_per_day": 18065.8,
+    "pct_of_annual_net_issuance_if_permanently_removed": 20.46,
+    "pct_of_post_hsp_annual_issuance_if_permanently_removed": 31.46,
+    "current_held_offset_pct_of_issuance": 15.81,
+    "post_hsp_held_offset_pct_of_issuance_same_capture": 24.31
+  },
+  "materiality_permanent_removal": {
+    "definition": "Share of $24.2M annualised capture that must be permanently removed (burn/irrevocable lock) to cover X% of net daily issuance, no volume growth.",
+    "annual_net_issuance_usd_m_at_metrics_price": 118.3,
+    "annual_net_issuance_usd_m_at_hsp_1_6_approx": 76.9,
+    "thresholds": [
+      {
+        "label": "25_pct_of_issuance",
+        "usd_m_needed_today_mint": 29.6,
+        "share_of_24_2m_capture_today_mint": 122.2,
+        "usd_m_needed_at_hsp_1_6": 19.2,
+        "share_of_24_2m_capture_at_hsp_1_6": 79.5
+      },
+      {
+        "label": "50_pct_of_issuance",
+        "usd_m_needed_today_mint": 59.1,
+        "share_of_24_2m_capture_today_mint": 244.4,
+        "usd_m_needed_at_hsp_1_6": 38.5,
+        "share_of_24_2m_capture_at_hsp_1_6": 158.9
+      },
+      {
+        "label": "100_pct_of_issuance",
+        "usd_m_needed_today_mint": 118.3,
+        "share_of_24_2m_capture_today_mint": 488.7,
+        "usd_m_needed_at_hsp_1_6": 76.9,
+        "share_of_24_2m_capture_at_hsp_1_6": 317.9
+      }
+    ]
+  },
+  "proprietary_metrics": {
+    "days_of_issuance_covered_DIC": 24.8,
+    "days_of_issuance_covered_at_hsp_1_6": 38.1,
+    "scarcity_half_life_days": 60.5,
+    "scarcity_exhaustion_days": 121.1,
+    "definition_scarcity_half_life": "Days to recirculate half of buyback stock if governance spends/opex at current annualised-capture NEAR rate with buys paused (stock drawdown only).",
+    "definition_DIC": "buyback_wallet_NEAR / net_issuance_NEAR_per_day"
+  },
+  "soft_sinks": [
+    {
+      "name": "buyback_wallet_held",
+      "near_m": 2.187,
+      "days_of_issuance": 24.8,
+      "days_of_issuance_at_hsp_1_6": 38.1,
+      "sink_type": "governance_discretion",
+      "unbond_or_exit": null,
+      "note": "held not burned; opex/spend can recirculate"
+    },
+    {
+      "name": "ai_inference_stake_floor",
+      "near_m": 0.75,
+      "days_of_issuance": 8.5,
+      "days_of_issuance_at_hsp_1_6": 13.1,
+      "sink_type": "product_collateral",
+      "unbond_or_exit": null,
+      "note": ">750k NEAR staked for inference; not fee capture"
+    },
+    {
+      "name": "nrr_etf_holdings",
+      "near_m": 15.69,
+      "days_of_issuance": 177.7,
+      "days_of_issuance_at_hsp_1_6": 273.2,
+      "sink_type": "etf_inhouse_stake",
+      "unbond_or_exit": "1-2 days unbond",
+      "note": "~$55.9M AUM / ~15.69M NEAR; soft sink"
+    },
+    {
+      "name": "lst_tvl_linear_metapool_rhea",
+      "near_m": 53.978,
+      "days_of_issuance": 611.3,
+      "days_of_issuance_at_hsp_1_6": 939.9,
+      "sink_type": "liquid_staking",
+      "unbond_or_exit": "LST liquid",
+      "note": "$195.9M TVL; tokens tradeable"
+    }
+  ],
+  "policy_hardening": [
+    {
+      "policy": "programmatic_burn",
+      "effect": "Converts held offset into hard float reduction; same $24.2M ≈20.5% of annual mint today, ≈31.5% at 1.6% cap",
+      "volume_growth_required": false
+    },
+    {
+      "policy": "irrevocable_time_lock",
+      "effect": "Removes opex/spend recirculation for lock tenor; soft until unlock",
+      "volume_growth_required": false
+    },
+    {
+      "policy": "vote_escrow_veNEAR",
+      "effect": "Binds buyback NEAR to governance lock curve; recirculation delayed not destroyed",
+      "volume_growth_required": false
+    },
+    {
+      "policy": "auto_split_rule",
+      "effect": "X% of wallet inflows auto-burned / locked by contract — removes 'no mechanism guaranteed' discretion",
+      "volume_growth_required": false
+    }
+  ],
+  "lst_breakdown_usd_m": {
+    "LiNEAR": 46.97,
+    "Meta_Pool": 79.77,
+    "RHEA_LST": 69.2,
+    "total": 195.94,
+    "lst_share_of_stake_pct": 9.27
+  },
+  "nrr": {
+    "net_assets_usd_m": 55.86,
+    "share_of_mcap_pct": 1.2,
+    "holdings_near_m_approx": 15.69,
+    "unbond_days": "1-2",
+    "sponsor_fee_usd_m_yr_approx": 0.42
+  },
+  "gaps": [
+    "No on-chain burn of buyback wallet observed; future spend/opex policy unpublished",
+    "CIF forwarding to buybacks unattested (~59% escrow path)",
+    "Exact NRR staked vs unstaked split after mid-Oct 2026 not primary-confirmed",
+    "AI inference stake is a floor (>750k); live total Gap",
+    "Exchange float share of circulating not pinned (H1b labels 20%)"
+  ],
+  "sources": [
+    "REPORT.md",
+    "docs/structural-thesis.md",
+    "docs/catalysts-and-path.md",
+    "data/metrics.json",
+    "research_notes/NEAR Intents structural thesis/capital-markets.md",
+    "data/raw/prop/etf_nrr.json",
+    "data/raw/prop/lst_vs_stake.json"
+  ]
+}
