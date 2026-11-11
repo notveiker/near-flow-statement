@@ -1,0 +1,12 @@
+{
+ "asof": "2026-11-12",
+ "census_hours": 10.3,
+ "intents_deposits_per_day_m": 79.7,
+ "intents_withdrawals_per_day_m": 74.8,
+ "net_deposits_per_day_m": 4.9,
+ "stablecoin_usd_per_day_m": 13.2,
+ "intents_deposit_vs_stablecoin_x": 6.0,
+ "intents_tx_share_pct": 13.2,
+ "intents_gas_share_pct": 9.4,
+ "note": "In the node census window, Intents deposit notional/day is several\u00d7 measured on-chain stablecoin transfer USD/day. Intents is the dominant value-moving surface, not only the fee surface. Window of hours \u2014 not a trend. Exploratory."
+}
