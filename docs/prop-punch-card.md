@@ -50,5 +50,7 @@
 | 44 | PMF flow dominance | Deposits ~6× stablecoin $/day; gas ~9.4% | Venue is value surface; capture still lags |
 | 45 | HSP-007 claim bounds | 10% emissions ≈ ~$12M/yr (~0.5× fee RR) | Budget unknown; competes with fee offset |
 | 46 | Attach/AITR ceiling vs 50× | Full-venue AITR ~$46M (~0.48× need); 1Click 100% ~$13M | Volume binding — attach cannot close 50× alone |
+| 47 | Intents ≈ NEAR DEX surface | ~99% of DefiLlama NEAR DEX 30d vol | Venue *is* the chain's DEX story |
+| 48 | ETF NRR vs Intents fee | Implied NRR ~$0.4M/yr vs Intents ~$24M | ETF = float/narrative; fee engine is Intents |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.

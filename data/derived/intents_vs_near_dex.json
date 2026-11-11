@@ -1,0 +1,9 @@
+{
+ "near_dex_vol_30d_b": 4.05,
+ "intents_vol_30d_b": 4.0,
+ "intents_share_of_near_dex_pct": 98.8,
+ "near_fees_30d_m": 6.28,
+ "intents_captured_30d_m": 1.99,
+ "intents_vs_chain_fees_listed_x": 0.32,
+ "note": "DefiLlama NEAR DEX 30d \u2248 Intents volume \u2014 Intents is the chain's DEX surface, not a side venue. Chain fees_30d includes protocol fees beyond L1 gas (different from REPORT L1-fee \u00d7). Exploratory cross-check."
+}
