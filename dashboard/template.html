@@ -79,6 +79,12 @@ html,body{overflow-x:hidden}
 .pill.warn{color:var(--amber);border-color:rgba(212,180,111,.4)}
 
 /* ladder + meters */
+.irow{display:grid;grid-template-columns:150px 1fr;gap:2px var(--s3);padding:13px 0;border-top:1px solid var(--line)}
+.irow:first-child{border-top:0}
+.irow .k{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);grid-row:span 2;align-self:center}
+.irow .v{font-size:18px;color:var(--ink);font-weight:560}
+.irow .n{font-size:12.5px;color:var(--muted)}
+@media (max-width:980px){.irow{grid-template-columns:1fr}.irow .k{grid-row:auto}}
 .hbar{display:grid;grid-template-columns:230px 1fr 64px;gap:var(--s3);align-items:center;font-size:13px;padding:7px 0}
 .hbar .t{height:10px;border-radius:5px;background:rgba(190,211,200,.08);overflow:hidden}
 .hbar .t i{display:block;height:100%;background:var(--accent);border-radius:5px;transform-origin:left;animation:grow 1.1s var(--ease) both}
@@ -159,6 +165,10 @@ footer code{font-size:12px;color:var(--soft)}
     <div class="card reveal"><h3 id="t-hold2">Value held through time</h3><p class="sub" id="s-hold2"></p><div class="chart" id="c-hold"></div><div class="foot" id="f-hold2"></div></div>
   </div>
   <div class="grid3" style="margin-top:var(--s4)" id="act-cards"></div>
+  <div class="grid2" style="margin-top:var(--s4)" id="usage-row">
+    <div class="card reveal"><h3>Where the chain's compute goes</h3><p class="sub" id="s-use">Share of gas burnt, by the account that executed the work.</p><div id="use-bars"></div><div class="foot" id="f-use"></div></div>
+    <div class="card reveal"><h3>What the chain is used for</h3><p class="sub" id="s-use2"></p><div id="use-cards"></div><div class="foot" id="f-use2"></div></div>
+  </div>
 </div></section>
 
 <section id="capture"><div class="wrap">
@@ -583,6 +593,26 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     ];
     $("#act-cards").innerHTML = cards.map(c => `<div class="card reveal"><h3>${c[0]}</h3><div class="stat" style="padding:0;border:0;background:none"><div class="v" style="font-size:30px">${c[1]}</div></div><p class="sub" style="margin:var(--s2) 0 0">${c[2]}</p></div>`).join("");
   }
+
+  const U = D.usage;
+  if (U) {
+    const hrs = U.blocks / 1.75 / 3600, named = {"game.hot.tg": "HOT game", "token.sweat": "SWEAT token", "claim.sweat": "SWEAT claims", "v2.jars.sweat": "SWEAT jars", "intents.near": "NEAR Intents", "v1.signer": "Chain Signatures", "omni.bridge.near": "Omni bridge", "v2.ref-finance.near": "Ref Finance", "dclv2.ref-labs.near": "Ref DCL", "wrap.near": "wNEAR"};
+    const nm = a => named[a] || (a.length > 22 ? a.slice(0, 10) + "…" + a.slice(-6) : a);
+    const top = U.gas_burners.slice(0, 9), mx = Math.max(...top.map(t => t.gas_share));
+    $("#use-bars").innerHTML = top.map(t => `<div class="hbar ${t.account === "intents.near" ? "" : "alt"}"><span>${nm(t.account)}</span><span class="t"><i style="width:${t.gas_share / mx * 100}%"></i></span><span class="p mono">${(t.gas_share * 100).toFixed(1)}%</span></div>`).join("");
+    const ic = U.contracts.find(c => c.account === "intents.near"), sg = U.methods["v1.signer"], sgn = (sg.respond || 0) / hrs * 24;
+    const st = U.stablecoins, stUsd = (st.USDC.usd + st.USDT.usd) / hrs * 24, stN = (st.USDC.transfers + st.USDT.transfers) / hrs * 24;
+    const rows = [
+      ["NEAR Intents", `${(ic.tx_share * 100).toFixed(0)}% of transactions`, `${(ic.ok_share * 100).toFixed(0)}% succeed`],
+      ["Chain Signatures", `${fmt.n(Math.round(sgn / 100) * 100)} signatures a day`, "delivered by the MPC network"],
+      ["Stablecoin transfers", `${fmt.n(Math.round(stN / 100) * 100)} a day`, `${fmt.usd(stUsd, 0)} moved a day (USDC, USDT)`],
+      ["Relayed, gasless", `${(U.delegate_share * 100).toFixed(0)}% of transactions`, "users who never hold NEAR for gas"],
+    ];
+    $("#use-cards").innerHTML = rows.map(r => `<div class="irow"><span class="k">${r[0]}</span><span class="v mono">${r[1]}</span><span class="n">${r[2]}</span></div>`).join("");
+    $("#s-use2").textContent = `Counted from every transaction over ${hrs.toFixed(0)} hours (${fmt.n(U.txs)} transactions) on our own node.`;
+    $("#f-use").textContent = "Gas burnt is a measure of compute used, not of value. Consumer games and token claims sit alongside finance in the top five.";
+    $("#f-use2").textContent = "Transfers counted from NEP-141 ft_transfer events on the USDC and USDT contracts. Chain Signatures counts respond calls on v1.signer.";
+  } else { $("#usage-row").style.display = "none"; }
 
   const P = D.peers;
   if (P) {

@@ -227,7 +227,8 @@ def build() -> dict:
         "nearblocks_q": nearblocks_quarterly(), "market": market(), "ecosystem": ecosystem(), "governance": governance(),
         "hsp029": hsp029(assump), "price_usd": assump["price_usd"],
         "history": optional("derived/history_results.json"), "census": optional("derived/census_summary.json"),
-        "hub_trail": optional("derived/hub_trail.json"), "census_hourly": optional("derived/census_hourly.json"),
+        "hub_trail": optional("derived/hub_trail.json"), "census_hourly": optional("derived/census_hourly.json"), "usage": optional("derived/census_usage.json"),
+        "sample_extras": optional("derived/sample_extras_results.json"),
         "holdings": holdings(), "peers": peers(), "builders": builders(), "validators": validators(), "web_facts": web_facts(),
         "repro": reproducibility(),
     }
