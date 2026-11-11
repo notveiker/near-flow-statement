@@ -33,6 +33,8 @@ Intents leads on volume and extracts more gross bp than THOR/Maya; peers with va
 
 Attachment rose **23.6% → 43.0%** of 1Click volume while SwapKit share stayed roughly flat — AITR × attach is the dial NEAR can turn on contestable public flow. Mix toward near.com (stated 100% fee direction) raises capture share without lifting user all-in on partner wallets. Attesting escrow unshields collapses the **4.5–15.8%** issuance-offset range; it does not create revenue. Forcing SwapKit 50/50 is high arithmetic upside and high exit risk on **38%** of 1Click volume. THOR’s REVSHARE is structured to steal that flow **without** cutting the user’s fee — the race-to-zero risk sits on NEAR’s **buyback line**, not on partner bp.
 
+Channel map detail: about **46%** of explicit buyback fee dollars come from **no-referrer** flow (18.7% of volume at 10 bp). LI.FI is 10% of volume at only 2.8 bp. Trust *direct* is 20 bp on 2.4% volume. SwapKit subchannels keep high partner bp with ~0 explicit buyback (`data/derived/buyback_channel_map.json`). Chase defaults and high-bp directs for attach — not the wallet logos inside SwapKit.
+
 Score **τ, C, L, AITR, attachment %** before peer volume share. Volume share without those overstates NEAR’s claim on the waterfall.
 
 *Not investment advice.*
