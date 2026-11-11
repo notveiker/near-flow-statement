@@ -1,0 +1,12 @@
+{
+ "mcap_m": 4820,
+ "thor_like_multiple": 16,
+ "rev_need_m": 301.2,
+ "today_run_rate_m": 24.2,
+ "gap_x": 12.4,
+ "at_498bp_vol_30d_need_m": 49719.0,
+ "at_498bp_vol_vs_today_x": 45.0,
+ "at_10bp_vol_30d_need_m": 24760.0,
+ "at_10bp_vol_vs_today_x": 22.4,
+ "note": "Revenue needed for THOR-like ~16\u00d7 mcap/rev at current mcap. Shows how far capture+volume must move before multiple compression matches the peer that already monetizes. Exploratory; not a price target."
+}
