@@ -74,7 +74,7 @@ These figures are from keyless snapshots under `data/raw/prop/` and from a **pre
 - **The node census (about 10 hours).** Intents is 13% of transactions and 9% of gas; 43% of transactions are relayed (gasless); about 16K Chain Signatures a day; about $13M a day of stablecoin transfers; about $80M of deposits and $76M of withdrawals a day into and out of Intents, for a net about +$4.6M a day. Relayer concentration is high: one account sends 83% of relayed transactions.
 
 
-The structural layer — who owns the margin, what Confidential Intents changes, what the ETF stack does to float, and why Intents won share — is in [`docs/structural-thesis.md`](docs/structural-thesis.md). It is exploratory prop research, not a pre-registered test.
+The structural layer — who owns the margin, what Confidential Intents changes, what the ETF stack does to float, and why Intents won share — is in [`docs/structural-thesis.md`](docs/structural-thesis.md). The fee waterfall (user all-in vs token-claimable bp, leakage ~10× on 1Click, AITR ~9.5 bp) is in [`docs/fee-waterfall.md`](docs/fee-waterfall.md). Both are exploratory prop research, not pre-registered tests.
 
 ## 9. What has to happen next (path arithmetic)
 

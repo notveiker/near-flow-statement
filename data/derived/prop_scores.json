@@ -1,0 +1,40 @@
+{
+ "asof_utc": "2026-11-11T23:30:00Z",
+ "note": "Derived prop scores from committed metrics; exploratory.",
+ "capture_share_pct": 32.5,
+ "gross_bp": 15.3,
+ "captured_bp": 4.98,
+ "token_claimable_bp": 4.98,
+ "distribution_tax_bp_approx": 10.32,
+ "partners_kept_vs_near_x": 1.81,
+ "issuance_offset_top_pct": 15.81,
+ "issuance_offset_public_floor_pct": 4.53,
+ "attestation_gap_pp": 11.28,
+ "escrow_dependence_of_buyback_pct": 58.8,
+ "swapkit_vol_share_pct": 38.2,
+ "intents_share_peerset_30d_pct": 55.7,
+ "rev_vs_l1_fees_x": 11.2,
+ "mcap_to_rev_x": 199.0,
+ "attach_b1_pct": 23.6,
+ "attach_b3_pct": 43.0,
+ "attach_delta_pp": 19.4,
+ "volume_without_capture_overstatement": {
+  "peer_share_pct": 55.7,
+  "capture_share_pct": 32.5,
+  "note": "Share of peer volume vs share of gross fees that reaches wallets \u2014 gap is the overstatement if one prices volume leadership as cash-flow control."
+ },
+ "distribution_tax_pct_of_gross": 67.5,
+ "leakage_ratio_L": 9.88,
+ "aitr_bp": 9.49,
+ "all_in_token_claim_alpha_pct": 20.9,
+ "swapkit_near_share_of_sk_partner_fees_pct": 0.0045,
+ "maya_token_claimable_bp_structural": 0.94,
+ "scoreboard": [
+  "token_claimable_bp",
+  "capture_share_pct",
+  "leakage_ratio_L",
+  "aitr_bp",
+  "attach_b3_pct",
+  "attestation_gap_pp"
+ ]
+}

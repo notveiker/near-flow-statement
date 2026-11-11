@@ -162,3 +162,10 @@ Post-freeze. Changes no hypothesis, threshold, probability or the rating rule.
 
 1. **`docs/catalysts-and-path.md`** attaches dated events (F1–F4 on 2026-11-14; HSP-029 timelock 2026-11-16; open attestation / labels / mix items) to scenario arithmetic on committed metrics.
 2. **`data/derived/catalyst_math.json`** holds attachment scenarios (43%→80% attach), issuance-coverage at the 1.6% cap, and inventory turnover (~17× per 30d / ~1.7 days of volume). **`data/derived/catalyst_calendar.json`** is the dated list. Neither feeds a pre-registered test; both are labelled exploratory in the dashboard Capture section.
+
+## 2026-11-11 23:40 UTC: fee-waterfall scoreboard (exploratory)
+
+Post-freeze. Changes no hypothesis, threshold, probability or the rating rule.
+
+1. **`docs/fee-waterfall.md`** summarises token-claimable bp (~5), capture share (32.5%), 1Click leakage (~10×), AITR (~9.5 bp), and peer claim designs. Working detail under `research_notes/NEAR catalysts and path/`.
+2. **`data/derived/prop_scores.json`** holds the machine-readable scoreboard. Feeds no pre-registered test.
