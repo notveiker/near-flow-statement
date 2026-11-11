@@ -1,0 +1,9 @@
+{
+ "buyback_DIC_days": 24.8,
+ "nrr_DIC_days": 177.7,
+ "ai_stake_DIC_days": 8.5,
+ "nrr_vs_buyback_DIC_x": 7.2,
+ "nrr_unbond_days": "1-2",
+ "nrr_holdings_near_m": 15.69,
+ "note": "NRR ETF holdings \u2248178 days of net mint vs buyback wallet \u224825 days (~7\u00d7). But ETF exits in 1\u20132 days \u2014 softest large sink. Buyback is smaller but governance-gated. AI stake floor ~8.5 days, not fee capture. Exploratory."
+}
