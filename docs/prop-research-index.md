@@ -51,3 +51,22 @@ History sample: preliminary **133** sealed clusters (primary) with payloads; dua
 - `data/derived/exit_vs_buyback_stock.json` — Net NEAR exit vs buyback wallet stock
 - `data/derived/noreferrer_mix_uplift.json` — +5pp no-referrer at 10 bp
 - `data/derived/trust_path_uplift.json` — Trust SwapKit→direct 20 bp path
+- `data/derived/attach_ceiling_50x.json — full-venue AITR ceiling vs 50× need`
+- `data/derived/capture_share_path.json — leakage compression scenarios`
+- `data/derived/catalyst_dial_rank.json — dials ranked by run-rate delta`
+- `data/derived/cif_sensitivity.json — CIF bp sensitivity on conf TVL`
+- `data/derived/cs_density_proxy.json — deposit notional per CS signature`
+- `data/derived/dial_inventory_summary.json — dial inventory rollup`
+- `data/derived/etf_aum_vs_intents_fee.json — ETF NRR vs Intents fee RR`
+- `data/derived/intents_vs_near_dex.json — Intents share of NEAR DEX vol`
+- `data/derived/noref_dollar_concentration.json — no-ref buyback-$ concentration`
+- `data/derived/npm_growth_vs_fee.json — SDK downloads vs fee vanity`
+- `data/derived/pmf_flow_dominance.json — deposits vs stablecoin flow`
+- `data/derived/swapkit_exit_share_impact.json — peerset share if SK exits`
+- `data/derived/swapkit_prize_extremes.json — SK full AITR vs exit`
+- `data/derived/swapkit_to_noref_uplift.json — 10pp SK→no-ref`
+- `data/derived/volume_multiples_from_stack.json — vol× needed from $37M stack`
+- `data/derived/calendar_ordering.json — submit vs HSP-029 ordering`
+- `data/derived/hsp007_claim_bounds.json — illustrative emissions claims`
+- `data/derived/lst_vs_issuance.json — LST vs annual mint $`
+- `data/derived/oi_vs_fee_decouple.json — perps OI vs fee print`
