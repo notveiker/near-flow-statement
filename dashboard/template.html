@@ -183,6 +183,10 @@ footer code{font-size:12px;color:var(--soft)}
     <div class="card reveal"><h3>Capture share of gross fees</h3><p class="sub">Protocol revenue as a share of the fees each venue's users paid, last 30 days.</p><div id="peer-cap"></div><div class="foot">DefiLlama dailyRevenue over dailyFees. NEAR's own figure, reconciled to its revenue wallets, is in the ladder above.</div></div>
   </div>
   <div class="grid3" style="margin-top:var(--s4)" id="cap-cards"></div>
+  <div class="grid2" style="margin-top:var(--s4)">
+    <div class="card reveal"><h3>Attachment path (scenario arithmetic)</h3><p class="sub">Hold the ~9.5 bp take on attached 1Click volume and raise the share of volume that carries an explicit buyback line. Not a forecast — arithmetic on the latest 30-day block.</p><div id="attach-path"></div><div class="foot">From <span class="mono">data/derived/catalyst_math.json</span>. Baseline attach 43% → $24.2M run-rate.</div></div>
+    <div class="card reveal"><h3>What has to happen next</h3><p class="sub">Dated where known; open items are policy or mix paths. Exploratory — feeds no pre-registered test.</p><div id="cat-cal"></div><div class="foot"><a href="https://github.com/notveiker/near-flow-statement/blob/main/docs/catalysts-and-path.md">docs/catalysts-and-path.md</a></div></div>
+  </div>
 </div></section>
 
 <section id="builders"><div class="wrap">
@@ -263,7 +267,7 @@ footer code{font-size:12px;color:var(--soft)}
   <div class="small">
     <div style="margin-bottom:var(--s2);color:var(--soft)">Sources</div>
     DefiLlama (volume, fees, revenue, TVL, stablecoins), Nearblocks daily charts, NEAR JSON-RPC (final state and archival reads), the NEAR Intents Explorer API, the pre-registered flow-test queries in <span class="mono">sql/</span>, Binance public market data, gov.near.org, and a full node we operate for block-by-block census data.
-    <p>Rating inputs and every post-freeze choice are dated in <a href="https://github.com/notveiker/near-flow-statement/blob/main/PREREG-ADDENDUM.md">PREREG-ADDENDUM.md</a>. The written report is <a href="https://github.com/notveiker/near-flow-statement/blob/main/REPORT.md">REPORT.md</a>. Structural prop research (who owns the margin, Confidential Intents, ETFs, peer competition) is in <a href="https://github.com/notveiker/near-flow-statement/blob/main/docs/structural-thesis.md">docs/structural-thesis.md</a>.</p>
+    <p>Rating inputs and every post-freeze choice are dated in <a href="https://github.com/notveiker/near-flow-statement/blob/main/PREREG-ADDENDUM.md">PREREG-ADDENDUM.md</a>. The written report is <a href="https://github.com/notveiker/near-flow-statement/blob/main/REPORT.md">REPORT.md</a>. Structural prop research (who owns the margin, Confidential Intents, ETFs, peer competition) is in <a href="https://github.com/notveiker/near-flow-statement/blob/main/docs/structural-thesis.md">docs/structural-thesis.md</a>. Path arithmetic and the near-term calendar are in <a href="https://github.com/notveiker/near-flow-statement/blob/main/docs/catalysts-and-path.md">docs/catalysts-and-path.md</a>.</p>
     <p>Not investment advice.</p>
   </div>
 </div></div></footer>
@@ -447,6 +451,20 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     ["Channel diversity", `HHI ${M.volume_channel_hhi}`, `Volume is spread across many channels. Merging SwapKit's routes lifts it to ${M.volume_channel_hhi_swapkit_merged}.`],
   ];
   $("#cap-cards").innerHTML = cards.map(c => `<div class="card reveal"><h3>${c[0]}</h3><div class="stat" style="padding:0;border:0;background:none"><div class="v" style="font-size:30px">${c[1]}</div></div><p class="sub" style="margin:var(--s2) 0 0">${c[2]}</p></div>`).join("");
+  const Cm = D.catalysts && D.catalysts.math, Cc = D.catalysts && D.catalysts.calendar;
+  if (Cm && Cm.attachment && Cm.attachment.scenarios) {
+    const sc = Cm.attachment.scenarios;
+    $("#attach-path").innerHTML = `<div class="hbar"><span>Attach %</span><span class="t"></span><span class="p mono">Run-rate</span></div>` +
+      sc.map(s => `<div class="hbar"><span>${s.attach_pct.toFixed(0)}% · ${s.bb_explicit_bp.toFixed(2)} bp explicit</span><span class="t"><i style="width:${Math.min(100, s.run_rate_m / 45 * 100)}%"></i></span><span class="p mono">$${s.run_rate_m.toFixed(1)}M · ${s.issuance_offset_pct_approx.toFixed(1)}% offset</span></div>`).join("") +
+      `<p class="sub" style="margin-top:var(--s3)">Inventory: $${Cm.inventory.held_usd_m}M held / $${Cm.inventory.vol_30d_b}B vol ≈ ${Cm.inventory.turnover_x_per_30d}× per 30d (${Cm.inventory.days_of_volume_in_inventory} days of volume). At 1.6% cap + 60% attach ≈ ${Cm.issuance_coverage.at_1_6_cap_and_attach_60_pct}% of net issuance.</p>`;
+  } else {
+    $("#attach-path").innerHTML = `<p class="sub">Attachment scenarios appear when catalyst_math is in the build.</p>`;
+  }
+  if (Cc && Cc.items) {
+    $("#cat-cal").innerHTML = Cc.items.slice(0, 8).map(it => `<div class="hbar"><span class="mono">${it.date}</span><span class="t" style="background:none;border:0"><span style="font-size:13px;color:var(--ink)">${it.event}</span></span><span class="p" style="width:auto;max-width:9rem;font-size:11px;color:var(--mute)">${it.kind}</span></div>`).join("");
+  } else {
+    $("#cat-cal").innerHTML = `<p class="sub">Calendar appears when catalyst_calendar is in the build.</p>`;
+  }
 }
 
 /* ---------------- 03 supply ---------------- */

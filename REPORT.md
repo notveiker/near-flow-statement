@@ -76,6 +76,15 @@ These figures are from keyless snapshots under `data/raw/prop/` and from a **pre
 
 The structural layer — who owns the margin, what Confidential Intents changes, what the ETF stack does to float, and why Intents won share — is in [`docs/structural-thesis.md`](docs/structural-thesis.md). It is exploratory prop research, not a pre-registered test.
 
+## 9. What has to happen next (path arithmetic)
+
+The path that compounds is not “more L1 transactions.” It is attachment, mix, issuance cut, and attestation — dated where known in [`docs/catalysts-and-path.md`](docs/catalysts-and-path.md) and `data/derived/catalyst_{math,calendar}.json`.
+
+- **Buyback-fee attachment** rose 23.6% → 43.0% of 1Click volume across three 30-day blocks while SwapKit share stayed roughly flat. Implied take on the *attached* slice is about **9.5 bp**. Holding that rate and lifting attachment to **60%** raises run-rate from about **$24M** to about **$32M** and issuance offset from **15.8%** to about **21%**; at the **1.6%** issuance cap that same attach-60 path is about **32%** of net issuance — still a minority of mint, roughly double today’s share, with no volume growth assumed.
+- **Inventory turns like a venue.** `intents.near` held about **$229M** against **$4.0B** of 30-day volume — about **17×** monthly turnover, or **1.7 days** of volume as working capital. Month-start supplies (fixed prices) rose from about **$0.5M** (Jan 2025) to about **$180M** (Nov 2026).
+- **Dated near-term.** Forward tests F1–F4 resolve **2026-11-14**. HSP-029’s timelock ends **2026-11-16**. Open policy items that collapse the investment range: per-stream escrow attestation (today’s capture is a **4.5–15.8%** band) and exchange labels past **50%** of the top-100 receivers (the only frozen input still separating Hold from Buy).
+- **Score first.** Attachment %, capture share, escrow attestation, near.com mix, HSP-029 activation — before AI roadmap slides or ETF AUM. AI staking for inference (>750k NEAR) and NRR (~$56M / 1.2% mcap) are real but second-order to the fee engine until agent-originated volume or sustained high-single-digit % of mcap shows up.
+
 ## Reproduce
 
 ```

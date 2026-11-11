@@ -1,0 +1,60 @@
+{
+ "asof_utc": "2026-11-11T23:00:48Z",
+ "items": [
+  {
+   "date": "2026-11-14",
+   "event": "Forward tests F1\u2013F4 resolve",
+   "kind": "pre-registered",
+   "note": "Scored by pipeline/score_forward.py; misses published."
+  },
+  {
+   "date": "2026-11-16",
+   "event": "HSP-029 timelock ends",
+   "kind": "governance",
+   "note": "Issuance ramp 2.5%\u21921.6% over 24 months starts one quarter after ratification; G_req assumes it."
+  },
+  {
+   "date": "2026-Q4",
+   "event": "near-kit 1.0 / TEE enforcement (roadmap)",
+   "kind": "roadmap",
+   "note": "From roadmap.near.org timeline; product, not tokenomics."
+  },
+  {
+   "date": "open",
+   "event": "Per-stream escrow attestation",
+   "kind": "capture",
+   "note": "Would collapse 4.5\u201315.8% issuance-offset range to one number; NEAR's choice."
+  },
+  {
+   "date": "open",
+   "event": "Exchange labels \u226550% of top-100 receivers",
+   "kind": "rating",
+   "note": "Only input separating frozen Hold from Buy (with G_obs already above G_req)."
+  },
+  {
+   "date": "open",
+   "event": "Buyback-fee attachment continues rising",
+   "kind": "capture",
+   "note": "23.6%\u219243.0% of volume in three 30d blocks; cleanest NEAR-side lever without SwapKit fight."
+  },
+  {
+   "date": "open",
+   "event": "near.com mix share vs SwapKit",
+   "kind": "distribution",
+   "note": "near.com ~25% of Q3 Intents volume with 100% fee direction by stated policy."
+  },
+  {
+   "date": "open",
+   "event": "NRR / ETP AUM path",
+   "kind": "capital-markets",
+   "note": "~$56M / 1.2% mcap; additive demand, not fee substitute. Watch for high-single-digit % of mcap."
+  },
+  {
+   "date": "2027-Q1",
+   "event": "Heterogeneous TEEs / single-block cross-shard (roadmap)",
+   "kind": "roadmap",
+   "note": "Infrastructure; second-order for Intents thesis."
+  }
+ ],
+ "note": "Dated where known; 'open' items are policy/market paths, not scheduled. Exploratory."
+}

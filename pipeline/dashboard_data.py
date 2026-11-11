@@ -274,6 +274,10 @@ def build() -> dict:
         "sample_extras": optional("derived/sample_extras_results.json"),
         "holdings": holdings(), "peers": peers(), "builders": builders(), "validators": validators(), "web_facts": web_facts(),
         "prop": prop(),
+        "catalysts": {
+            "math": optional("derived/catalyst_math.json"),
+            "calendar": optional("derived/catalyst_calendar.json"),
+        },
         "repro": reproducibility(),
     }
 

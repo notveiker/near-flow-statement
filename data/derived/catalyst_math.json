@@ -1,0 +1,166 @@
+{
+ "asof_utc": "2026-11-11T23:00:47Z",
+ "note": "Derived arithmetic on committed metrics; scenarios not forecasts. Attachment rate_on_attached from block3 explicit bb / attach share.",
+ "attachment": {
+  "b1_attach_pct": 23.6,
+  "b3_attach_pct": 43.0,
+  "b1_bb_bp": 1.83,
+  "b3_bb_bp": 4.08,
+  "implied_bb_rate_on_attached_volume_bp": 9.49,
+  "scenarios": [
+   {
+    "attach_pct": 43.0,
+    "bb_explicit_bp": 4.08,
+    "captured_bp_approx": 4.98,
+    "rev_30d_m_approx": 1.99,
+    "run_rate_m": 24.2,
+    "issuance_offset_pct_approx": 15.8
+   },
+   {
+    "attach_pct": 50.0,
+    "bb_explicit_bp": 4.74,
+    "captured_bp_approx": 5.64,
+    "rev_30d_m_approx": 2.26,
+    "run_rate_m": 27.5,
+    "issuance_offset_pct_approx": 17.9
+   },
+   {
+    "attach_pct": 60.0,
+    "bb_explicit_bp": 5.69,
+    "captured_bp_approx": 6.59,
+    "rev_30d_m_approx": 2.64,
+    "run_rate_m": 32.1,
+    "issuance_offset_pct_approx": 20.9
+   },
+   {
+    "attach_pct": 70.0,
+    "bb_explicit_bp": 6.64,
+    "captured_bp_approx": 7.54,
+    "rev_30d_m_approx": 3.02,
+    "run_rate_m": 36.7,
+    "issuance_offset_pct_approx": 23.9
+   },
+   {
+    "attach_pct": 80.0,
+    "bb_explicit_bp": 7.59,
+    "captured_bp_approx": 8.49,
+    "rev_30d_m_approx": 3.4,
+    "run_rate_m": 41.3,
+    "issuance_offset_pct_approx": 27.0
+   }
+  ]
+ },
+ "issuance_coverage": {
+  "today_pct": 15.81,
+  "at_1_6_cap_same_revenue_pct": 24.3,
+  "at_1_6_cap_and_attach_60_pct": 32.1,
+  "net_supply_growth_pct": 2.46
+ },
+ "inventory": {
+  "held_usd_m": 229.2,
+  "vol_30d_b": 4.0,
+  "turnover_x_per_30d": 17.4,
+  "days_of_volume_in_inventory": 1.7,
+  "holdings_monthly_usd_m": [
+   {
+    "month": "2025-01",
+    "usd_m": 0.5
+   },
+   {
+    "month": "2025-02",
+    "usd_m": 1.4
+   },
+   {
+    "month": "2025-03",
+    "usd_m": 10.8
+   },
+   {
+    "month": "2025-04",
+    "usd_m": 7.0
+   },
+   {
+    "month": "2025-05",
+    "usd_m": 21.5
+   },
+   {
+    "month": "2025-06",
+    "usd_m": 35.6
+   },
+   {
+    "month": "2025-07",
+    "usd_m": 40.2
+   },
+   {
+    "month": "2025-08",
+    "usd_m": 29.9
+   },
+   {
+    "month": "2025-09",
+    "usd_m": 31.0
+   },
+   {
+    "month": "2025-10",
+    "usd_m": 37.5
+   },
+   {
+    "month": "2025-11",
+    "usd_m": 56.3
+   },
+   {
+    "month": "2025-12",
+    "usd_m": 86.3
+   },
+   {
+    "month": "2026-01",
+    "usd_m": 62.0
+   },
+   {
+    "month": "2026-02",
+    "usd_m": 73.3
+   },
+   {
+    "month": "2026-03",
+    "usd_m": 83.0
+   },
+   {
+    "month": "2026-04",
+    "usd_m": 90.3
+   },
+   {
+    "month": "2026-05",
+    "usd_m": 85.1
+   },
+   {
+    "month": "2026-06",
+    "usd_m": 97.4
+   },
+   {
+    "month": "2026-07",
+    "usd_m": 118.8
+   },
+   {
+    "month": "2026-08",
+    "usd_m": 130.7
+   },
+   {
+    "month": "2026-09",
+    "usd_m": 140.6
+   },
+   {
+    "month": "2026-10",
+    "usd_m": 185.4
+   },
+   {
+    "month": "2026-11",
+    "usd_m": 179.8
+   }
+  ]
+ },
+ "baselines": {
+  "captured_bp": 4.98,
+  "gross_bp": 15.3,
+  "capture_share_pct": 32.5,
+  "rev_30d_m": 1.99,
+  "run_rate_m": 24.2
+ }
+}

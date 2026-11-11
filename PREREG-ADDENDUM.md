@@ -155,3 +155,10 @@ Post-freeze. Changes no hypothesis, threshold, probability or the rating rule.
 
 1. **`docs/structural-thesis.md`** synthesises four research tracks (capture stack, Confidential Intents, capital markets, competitive structure) from primary sources and from numbers already in this repository. It is labelled exploratory wherever it appears and feeds no pre-registered test.
 2. Working notes sit under `research_notes/NEAR Intents structural thesis/`; the judge-facing copy is the docs file.
+
+## 2026-11-11 23:15 UTC: catalyst path arithmetic (exploratory)
+
+Post-freeze. Changes no hypothesis, threshold, probability or the rating rule.
+
+1. **`docs/catalysts-and-path.md`** attaches dated events (F1–F4 on 2026-11-14; HSP-029 timelock 2026-11-16; open attestation / labels / mix items) to scenario arithmetic on committed metrics.
+2. **`data/derived/catalyst_math.json`** holds attachment scenarios (43%→80% attach), issuance-coverage at the 1.6% cap, and inventory turnover (~17× per 30d / ~1.7 days of volume). **`data/derived/catalyst_calendar.json`** is the dated list. Neither feeds a pre-registered test; both are labelled exploratory in the dashboard Capture section.
