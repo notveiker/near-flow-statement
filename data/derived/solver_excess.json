@@ -1,0 +1,10 @@
+{
+ "asof": "2026-11-12",
+ "explorer_usd_in_m": 1103.9,
+ "listed_appfees_bp": 44.4,
+ "excess_over_listed_bp": 8.5,
+ "excess_usd_m_approx": 0.938,
+ "partner_fees_usd_m": 4.45,
+ "buyback_from_appfees_usd_m": 0.45,
+ "note": "Excess over listed is solver/gas/pip residual on 1Click Explorer sample; not NEAR wallet capture. Gap: exact solver P&L split."
+}

@@ -1,12 +1,160 @@
 {
- "asof_utc": "2026-11-12T01:00:00Z",
- "window": "node census",
- "relayer_accounts": 25,
- "execute_intents_calls": 45009,
- "top1_share": 0.8252,
- "top5_share": 0.9986,
- "hhi_lower_bound": 0.6885,
- "hhi_if_number2_takes_rest_of_top5": 0.711,
- "note": "HHI lower bound assumes equal split of (top5-top1) across four accounts. Both bounds >> 0.25 highly concentrated.",
- "risk_read": "liveness + rent-extraction both live; gasless 43% of chain txs is product feature that weakens NEAR-for-gas demand"
+  "asof_utc": "2026-11-11T23:00:00Z",
+  "note": "Derived RELAYER / SOLVER operational concentration risk from node census + fee-waterfall structural facts. HHI bounded from top1/top5 aggregates (full share vector not exported). Scenarios are arithmetic, not forecasts. No bull case. Gaps labeled.",
+  "sources": [
+    "REPORT.md",
+    "data/derived/census_usage.json",
+    "data/derived/census_metrics.json",
+    "docs/structural-thesis.md",
+    "docs/fee-waterfall.md",
+    "research_notes/NEAR catalysts and path/fee-waterfall-capture.md",
+    "research_notes/NEAR catalysts and path/relayer-concentration.md"
+  ],
+  "census_window": {
+    "hours": 10.3,
+    "txs_k": 343,
+    "first_height": 223963000,
+    "last_height": 224027999,
+    "blocks": 64992
+  },
+  "baselines": {
+    "relayer_accounts": 25,
+    "execute_intents_calls": 45009,
+    "relayer_top1_share": 0.8252127352307317,
+    "relayer_top1_pct": 83,
+    "relayer_top5_share": 0.9985558443866782,
+    "relayer_top5_pct": 99.9,
+    "delegate_share_pct": 43,
+    "intents_tx_share_pct": 13.2,
+    "intents_gas_share_pct": 9.4,
+    "intents_touch_share_pct": 16,
+    "solver_model": "principal",
+    "excess_over_listed_bp": 8.5,
+    "token_claimable_bp": 4.98,
+    "gross_defillama_bp": 15.3,
+    "protocol_fee_pips": 1,
+    "validator_hhi": 0.022,
+    "validator_nakamoto_one_third": 9
+  },
+  "risk_classification": {
+    "liveness": true,
+    "rent_extraction": true,
+    "verdict": "both",
+    "read": "Top-1 submit choke is operational liveness; solver-as-principal plus submit monopoly sits on the ~8.5 bp excess channel (rent). Neither implies the other is absent."
+  },
+  "gasless_vs_near_gas_demand": {
+    "chain_delegate_share_pct": 43,
+    "implication": "End users of relayed txs do not need NEAR for gas; gas demand concentrates in operator working balances",
+    "intents_second_order": "Intents thesis scoreboard is token-claimable bp / capture / attachment — not retail L1 gas demand from Intents users",
+    "weakens": "Narrative that Intents adoption mechanically lifts broad NEAR gas demand",
+    "gap": "No split of 8.5 bp excess into destination gas vs solver margin vs pip; no relayer NEAR buy vs recycle series"
+  },
+  "proprietary_metrics": {
+    "relayer_hhi": {
+      "method": "Bound from top1_share and top5_share; full 25-vector not in census_usage export",
+      "hhi_lower": 0.6885,
+      "hhi_upper": 0.7110,
+      "assumptions": {
+        "lower": "top1 fixed; remaining top5 mass split equally across next 4; residual mass split equally across bottom 20",
+        "upper": "top1 fixed; #2 takes entire remainder of top5; bottom residual negligible"
+      },
+      "effective_n_at_hhi_lower": 1.45,
+      "effective_n_at_hhi_upper": 1.41,
+      "effective_n_range": [1.41, 1.45],
+      "compare_validator_hhi": 0.022,
+      "concentration_vs_validators_x_approx": 31
+    },
+    "single_relayer_downtime_impact": {
+      "metric": "SRDI_top1",
+      "definition": "Share of execute_intents lost if top-1 offline with zero failover",
+      "srdi_top1": 0.825,
+      "residual_capacity_share": 0.175,
+      "srdi_top5": 0.999,
+      "residual_if_top5_down": 0.001,
+      "intents_settlement_throughput_drop_pct_no_failover": 83,
+      "chain_tx_share_impact_pp_upper_bound": 11,
+      "chain_tx_share_impact_note": "≈ intents_tx_share_pct × top1_share; assumes no substitute submitters and Intents txs ≈ execute_intents",
+      "gap": "No measured outage / failover latency series in repo"
+    }
+  },
+  "falsifiers_operational_risk_contained": [
+    {
+      "id": "F1_persistence",
+      "condition": "top1_share >= 0.80 or HHI >= 0.65 across multi-day census windows"
+    },
+    {
+      "id": "F2_failover",
+      "condition": "Documented top-1 outage with Intents settlement drop >= 50% lasting >15-30 minutes without residual absorption"
+    },
+    {
+      "id": "F3_rent_channel",
+      "condition": "Realized excess over listed rises materially above ~8.5 bp in high top-1 windows"
+    },
+    {
+      "id": "F4_identity_collapse",
+      "condition": "Dominant relayer(s) = dominant solver / inventory economic agents"
+    },
+    {
+      "id": "F5_fee_engine_hit",
+      "condition": "Captured bp or attachment falls coincident with settlement ops glitch"
+    },
+    {
+      "id": "F6_gas_narrative_mismatch",
+      "condition": "Retail NEAR gas-demand narrative persists while delegate share stays ~40%+ and Intents remains relayer-submitted"
+    }
+  ],
+  "containment_would_require": {
+    "top1_pct_below": 40,
+    "hhi_below": 0.20,
+    "failover_minutes_below": 2,
+    "other": [
+      "Published independent operator diversity",
+      "Excess bp stable or falling as share disperses"
+    ],
+    "status": "not evidenced in current census"
+  },
+  "vs_vault_peers": {
+    "intents_failure_mode": "liveness / preferential execution / solver inventory refusal on concentrated submit path",
+    "vault_failure_mode": "bond-to-TVL economic underwriting break / slash / vault halt (THOR, Maya, Chainflip)",
+    "read": "Different failure modes — not a smaller version of the same risk. Low validator HHI does not contain Intents relayer risk.",
+    "score_separately": [
+      "relayer_HHI",
+      "SRDI",
+      "excess_bp"
+    ],
+    "vault_scoreboard": [
+      "bond_to_tvl",
+      "node_set_concentration"
+    ]
+  },
+  "fee_engine_link": {
+    "silent_dependency": "tau / capture / attachment arithmetic assumes continuous concentrated settlement",
+    "who_owns_stack": {
+      "listed_bp": "distribution / partners",
+      "excess_bp": "solvers as principal (+ gas/pip residual)",
+      "submit_gate": "relayers",
+      "token_claim": "three revenue wallets after the above"
+    },
+    "near_claim_does_not_rise_with_relayer_concentration": true
+  },
+  "gaps": [
+    "Full relayer share vector not exported — HHI bounded only",
+    "No labeled outage / failover time series",
+    "Relayer to solver entity graph unknown",
+    "8.5 bp excess composition unknown",
+    "10.3h census window — persistence untested",
+    "Chain-wide delegate_share vs Intents execute_intents relayer set are related but not identical populations"
+  ],
+  "proprietary_punch": [
+    "Settlement is a single-account product: top relayer 83% of execute_intents; top-5 99.9%; N=25 is cosmetic",
+    "HHI ~0.69-0.71 vs validator HHI 0.022 — Intents ops ~30x more concentrated than consensus",
+    "SRDI ≈ 0.83: top-1 downtime without failover ≈ -83% Intents settlement throughput",
+    "Risk is both liveness and rent: principal solvers + submit monopoly sit on the ~8.5 bp excess path",
+    "43% gasless means Intents growth does not scale retail NEAR gas demand; operators hold the gas float",
+    "Fee-engine numerator (tau / attachment) silently assumes the concentrated submit path stays up and non-extractive",
+    "Vault peers fail on bond economics; Intents fails on operator continuity / preferential execution",
+    "Operational risk contained is falsified by persistent top-1 >=80%, slow failover, excess-bp spike, or relayer=solver collapse",
+    "Score relayer HHI + SRDI + excess bp beside capture metrics; volume share without them overstates fee-engine durability",
+    "Effective operator count 1/HHI ≈ 1.4 — underwrite settlement as near-monopoly relay, not decentralized solver mesh"
+  ]
 }
