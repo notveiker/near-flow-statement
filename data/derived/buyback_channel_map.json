@@ -1,0 +1,94 @@
+{
+ "asof": "2026-11-12",
+ "buyback_fee_by_channel": [
+  {
+   "buyback_bp": 10.0,
+   "channel": "(none)",
+   "share_pct": 45.8,
+   "vol_share_pct": 18.7
+  },
+  {
+   "buyback_bp": 20.0,
+   "channel": "trustwallet",
+   "share_pct": 12.0,
+   "vol_share_pct": 2.4
+  },
+  {
+   "buyback_bp": 71.1,
+   "channel": "e1a72603-64b3-4be1-8265-8bae5970d396",
+   "share_pct": 7.2,
+   "vol_share_pct": 0.4
+  },
+  {
+   "buyback_bp": 2.8,
+   "channel": "lifi",
+   "share_pct": 6.9,
+   "vol_share_pct": 10.0
+  },
+  {
+   "buyback_bp": 20.0,
+   "channel": "arbie",
+   "share_pct": 6.9,
+   "vol_share_pct": 1.4
+  },
+  {
+   "buyback_bp": 4.1,
+   "channel": "rango",
+   "share_pct": 5.8,
+   "vol_share_pct": 5.8
+  },
+  {
+   "buyback_bp": 19.8,
+   "channel": "leodex",
+   "share_pct": 1.9,
+   "vol_share_pct": 0.4
+  },
+  {
+   "buyback_bp": 19.9,
+   "channel": "enot",
+   "share_pct": 1.5,
+   "vol_share_pct": 0.3
+  }
+ ],
+ "no_referrer_share_of_buyback_fee_dollars_pct": 45.8,
+ "no_referrer_vol_share_pct": 18.7,
+ "no_referrer_buyback_bp": 10.0,
+ "lifi_vol_share_pct": 10.0,
+ "lifi_buyback_bp": 2.8,
+ "trustwallet_direct_buyback_bp": 20.0,
+ "trustwallet_direct_vol_share_pct": 2.4,
+ "swapkit_subchannels": [
+  {
+   "channel": "swapkit/ledgerswapkit.near",
+   "partner_fee_bp": 132.6,
+   "vol_share_pct": 13.7
+  },
+  {
+   "channel": "swapkit/thorswap.near",
+   "partner_fee_bp": 51.6,
+   "vol_share_pct": 8.4
+  },
+  {
+   "channel": "swapkit/trustswapkit.near",
+   "partner_fee_bp": 70.0,
+   "vol_share_pct": 6.4
+  },
+  {
+   "channel": "swapkit/tangemswapkit.near",
+   "partner_fee_bp": 58.0,
+   "vol_share_pct": 4.7
+  },
+  {
+   "channel": "swapkit/hvlnear.near",
+   "partner_fee_bp": 45.8,
+   "vol_share_pct": 1.3
+  },
+  {
+   "channel": "swapkit/notconfig.near",
+   "partner_fee_bp": 13.8,
+   "vol_share_pct": 0.6
+  }
+ ],
+ "insight": "Almost half of explicit buyback fee dollars come from no-referrer flow at 10 bp \u2014 not from the big wallet embeds. LI.FI has 10% vol at only 2.8 bp buyback. Trust direct is high-bp low-vol. Proprietary channel map for attachment strategy.",
+ "note": "Exploratory from committed metrics."
+}
