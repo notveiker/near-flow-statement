@@ -16,7 +16,7 @@ import argparse
 import sys
 
 from .common import YOCTO, utc_now, write_raw
-from .fetch_intents_holdings import ARCHIVAL, ARCHIVAL_GAP_S, FAST, GAP, block_at, height_at, month_starts, rpc
+from .fetch_intents_holdings import FAST, GAP, rpc
 
 
 def epoch_row(v: dict, ts_ns: int | None) -> dict:
@@ -41,10 +41,7 @@ def epoch_row(v: dict, ts_ns: int | None) -> dict:
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--epochs", type=int, default=28)
-    ap.add_argument("--monthly-from", help="YYYY-MM: also read the validator set at each month start from archival RPC (4 requests a minute)")
     a = ap.parse_args(argv)
-    if a.monthly_from:
-        return monthly(a.monthly_from)
     rows = []
     v = rpc(FAST, "validators", [None], gap=GAP)["result"]
     for _ in range(a.epochs):
@@ -67,44 +64,6 @@ def main(argv=None) -> int:
     write_raw("rpc/validators_epochs.json", {"asof_utc": utc_now(), "epochs": rows,
               "note": "current epoch is partial: block_uptime covers blocks produced so far"}, f"{FAST} validators")
     print(len(rows), "epochs; latest", rows[-1])
-    return 0
-
-
-def monthly(first: str) -> int:
-    """Validator set at each month start, from archival state. Uptime is left out: a mid-epoch block gives a partial count."""
-    tip = block_at(FAST, None, GAP)
-    lo = 129_000_000  # 2024-10-01
-    rows = []
-    for d in month_starts(first):
-        target = int(d.timestamp() * 10**9)
-        if target >= tip["timestamp"]:
-            continue
-        h, ts = height_at(ARCHIVAL, target, lo, tip["height"], ARCHIVAL_GAP_S)
-        v = rpc(ARCHIVAL, "validators", [h], gap=ARCHIVAL_GAP_S)["result"]
-        r = epoch_row(v, ts)
-        r.update({"month": d.strftime("%Y-%m"), "height": h, "block_uptime": None})
-        rows.append(r)
-        print(r["month"], r["validators"], round(r["total_stake_near"] / 1e6, 1), r["nakamoto_third"], file=sys.stderr, flush=True)
-        write_raw("rpc/validators_monthly.json", {"asof_utc": utc_now(), "months": rows}, f"{ARCHIVAL} validators at month-start heights")
-    return 0
-
-
-def monthly(first: str) -> int:
-    """Validator set at each month start, from archival state. Uptime is left out: a mid-epoch block gives a partial count."""
-    tip = block_at(FAST, None, GAP)
-    lo = 129_000_000  # 2024-10-01
-    rows = []
-    for d in month_starts(first):
-        target = int(d.timestamp() * 10**9)
-        if target >= tip["timestamp"]:
-            continue
-        h, ts = height_at(ARCHIVAL, target, lo, tip["height"], ARCHIVAL_GAP_S)
-        v = rpc(ARCHIVAL, "validators", [h], gap=ARCHIVAL_GAP_S)["result"]
-        r = epoch_row(v, ts)
-        r.update({"month": d.strftime("%Y-%m"), "height": h, "block_uptime": None})
-        rows.append(r)
-        print(r["month"], r["validators"], round(r["total_stake_near"] / 1e6, 1), r["nakamoto_third"], file=sys.stderr, flush=True)
-        write_raw("rpc/validators_monthly.json", {"asof_utc": utc_now(), "months": rows}, f"{ARCHIVAL} validators at month-start heights")
     return 0
 
 

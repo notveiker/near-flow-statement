@@ -6,7 +6,7 @@
 read at month starts from archival state for the largest tokens, at the archival node's published rate.
 
     python3 -m pipeline.fetch_intents_holdings snapshot                 # current state, public RPC
-    python3 -m pipeline.fetch_intents_holdings history --from 2025-01    # archival reads, ~4 requests a minute
+    python3 -m pipeline.fetch_intents_holdings history --from 2025-01    # archival reads, one request per 3 s
 
 Outputs: data/raw/intents/holdings_snapshot.json, data/raw/intents/holdings_history.json.
 Prices are today's 1Click prices applied to every date, so the history is a quantity series valued at one price list.
@@ -28,10 +28,10 @@ from .common import RAW, USER_AGENT, http_json, utc_now, write_raw
 
 CONTRACT = "intents.near"
 FAST = os.environ.get("NEAR_RPC", "https://free.rpc.fastnear.com")  # set NEAR_RPC=http://127.0.0.1:3030 on a machine with a node
-ARCHIVAL = "https://archival-rpc.mainnet.near.org"
+ARCHIVAL = "https://archival-rpc.mainnet.fastnear.com"  # the near.org archival host is deprecated and answers 429 to everything
 TOKENS_URL = "https://1click.chaindefuser.com/v0/tokens"
 GAP = 0.0 if "127.0.0.1" in FAST or "localhost" in FAST else 1.0
-ARCHIVAL_GAP_S = 16.0  # NEAR's notice: 4 requests a minute
+ARCHIVAL_GAP_S = 3.0  # conservative on the free tier
 
 
 def rpc(url: str, method: str, params: dict, retries: int = 6, gap: float = 0.0) -> dict:
