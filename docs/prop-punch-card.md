@@ -39,5 +39,7 @@
 | 33 | Whale attach prize (+10pp on ≥$10k) | ~$1.0M/yr at AITR | 3.4% of swaps = 77% vol — commercial terms on whales |
 | 34 | Rent map tiers | Solver~0.5× + partners~2.2× vs NEAR capture | Non-NEAR claims ~2.7× protocol on same sample |
 | 35 | Exit vs buyback stock | Wallet ~0.85× one-window net exit; rev ~0.21× | Stock ≠ flow offset |
+| 36 | CIF sensitivity (1–5 bp on conf TVL×turnover) | ~$3.2–16M/yr proxy | Rate card unpublished; escrow already ~59% of buyback NEAR |
+| 37 | Calendar ordering | Submit 14 Nov; HSP-029 timelock 16 Nov | Pitch must say issuance ramp pending-not-live |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.

@@ -22,3 +22,5 @@ In the 30 days to 2026-11-04, about **59%** of buyback-wallet NEAR arrived as es
 Confidential TVL (~$160M at Q3-end) and near.com’s privacy default are product signals. They are margin-positive for the token **only if** CIF continues to be swept. Peers need not copy Nightshade to pressure the wedge — dark-enough UX inside the same wallet embeds, or meta-routers that treat NEAR settlement as interchangeable, is enough.
 
 *Not investment advice.*
+
+Derived CIF sensitivity sketch: `data/derived/cif_sensitivity.json` (1 bp on TVL×~17×/30d proxy).

@@ -1,0 +1,11 @@
+{
+ "confidential_tvl_m_approx": 160.0,
+ "inventory_total_m": 229.2,
+ "conf_tvl_vs_inventory_pct": 69.8,
+ "escrow_share_of_buyback_near_pct": 59.0,
+ "proxy_conf_notional_30d_m": 2720.0,
+ "cif_1bp_fee_30d_m": 0.272,
+ "cif_1bp_run_rate_m": 3.31,
+ "cif_5bp_run_rate_m": 16.55,
+ "note": "Confidential TVL \u224870% of settlement inventory. CIF rate card unpublished \u2014 1 bp on proxy notional (TVL\u00d717\u00d7/30d) \u2248 $0.3M/30d. Escrow already ~59% of buyback NEAR without stream attestation. Exploratory proxy; turnover of private shard may differ."
+}
