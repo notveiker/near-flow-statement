@@ -63,3 +63,7 @@ Score **attachment %, capture share, escrow attestation, near.com mix, and HSP-0
 Ranked run-rate deltas vs the $24.2M baseline are in `data/derived/catalyst_dial_rank.json`. Attach and near.com mix dominate; partner-path and CIF sketches are low-single-digit $M/yr. **Volume remains the binding constraint** for 50× and for a THOR-like multiple.
 
 Capture-share dial: `data/derived/capture_share_path.json`. Volume multiples from stack: `data/derived/volume_multiples_from_stack.json`.
+
+## Pitch sequence (derived)
+
+See `data/derived/pitch_sequence.json`: lead with attach/AITR, capture share, no-ref dollar concentration, Intents≈NEAR DEX, fee÷mint$, then volume as the binding closer. Do not lead with AI/ETF/npm.
