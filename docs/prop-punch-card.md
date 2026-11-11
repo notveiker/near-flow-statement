@@ -28,5 +28,7 @@
 | 22 | Multiple richness vs THOR | ~**14×** (217× / 16×) | Multiple compresses |
 | 23 | LST soft float ≫ buyback stock | ~**$196M** vs ~**$8M** (~**25×**) | Unstake / LST exit |
 | 24 | Aurora is not the thesis | TVL ~**0.28%** of peak | — |
+| 25 | Ledger-via-SwapKit partner fees ≈ NEAR capture | ~**$2.0M** vs **$1.99M** | Attach/renegotiate that pipe |
+| 26 | No-referrer = ~46% of buyback dollars | 18.7% vol @ 10 bp | Defaults lose share |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.
