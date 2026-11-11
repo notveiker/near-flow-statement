@@ -279,6 +279,7 @@ def build() -> dict:
             "calendar": optional("derived/catalyst_calendar.json"),
             "mix": optional("derived/mix_shift_math.json"),
             "scores": optional("derived/prop_scores.json"),
+            "contestability": optional("derived/contestability.json"),
         },
         "repro": reproducibility(),
     }
