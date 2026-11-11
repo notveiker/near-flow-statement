@@ -2,7 +2,7 @@
 
   --manifest  every file in data/raw matches the SHA-256 recorded in data/MANIFEST.json
   --numbers   every <!--n:key--> marker in README.md, THESIS.md, REPORT.md, PREREG-ADDENDUM.md and docs/*.md
-              matches data/metrics.json
+              matches data/metrics.json; every <!--c:key--> marker matches data/derived/census_metrics.json
 """
 from __future__ import annotations
 
@@ -14,6 +14,9 @@ from .common import METRICS, RAW, ROOT, load_manifest, verify_manifest
 
 MARK = re.compile(r"([-\d.,]+)\s*<!--n:([a-z0-9_]+)-->")
 TAG = re.compile(r"<!--n:[a-z0-9_]+-->")
+CMARK = re.compile(r"([-\d.,]+)\s*<!--c:([a-z0-9_]+)-->")
+CTAG = re.compile(r"<!--c:[a-z0-9_]+-->")
+CENSUS = ROOT / "data" / "derived" / "census_metrics.json"
 
 
 def check_manifest() -> list[str]:
@@ -39,6 +42,15 @@ def check_numbers() -> list[str]:
         n_tags, found = len(TAG.findall(text)), MARK.findall(text)
         if n_tags != len(found):
             problems.append(f"{name}: {n_tags - len(found)} marker(s) not directly after a number")
+        cm = json.loads(CENSUS.read_text()) if CENSUS.exists() else {}
+        c_found = CMARK.findall(text)
+        if len(CTAG.findall(text)) != len(c_found):
+            problems.append(f"{name}: {len(CTAG.findall(text)) - len(c_found)} census marker(s) not directly after a number")
+        for value, key in c_found:
+            if key not in cm:
+                problems.append(f"{name}: unknown census metric {key}")
+            elif float(value.replace(",", "")) != float(cm[key]):
+                problems.append(f"{name}: {key} says {value}, census_metrics.json says {cm[key]}")
         for value, key in found:
             if key not in m:
                 problems.append(f"{name}: unknown metric {key}")

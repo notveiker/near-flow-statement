@@ -1,7 +1,7 @@
 # near-flow-statement: every target is plain Python 3.10+ (standard library only).
 PY ?= python3
 
-.PHONY: reproduce fetch explorer bq compute render check test all sample sample-verify sample-rows history-results dashboard
+.PHONY: reproduce fetch explorer bq compute render check test all sample sample-verify sample-rows history-results dashboard census-metrics
 
 reproduce: ## Offline: verify raw-data hashes, then recompute every number into data/metrics.json
 	$(PY) -m pipeline.check --manifest
@@ -37,6 +37,9 @@ history-results: ## Offline: committed cluster rows -> quarter series, U1-U5 ver
 
 dashboard: ## Offline: committed data -> dashboard/index.html (self-contained, no network)
 	$(PY) -m pipeline.build_dashboard
+
+census-metrics: ## Offline: committed census files -> data/derived/census_metrics.json
+	$(PY) -m pipeline.census_metrics
 
 check:
 	$(PY) -m pipeline.check --manifest --numbers
