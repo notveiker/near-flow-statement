@@ -1,10 +1,10 @@
 {
   "asof": "2026-11-12",
-  "clusters": 225,
+  "clusters": 226,
   "intents_x": 182.1798,
   "l1_yoy_tx_x": 0.2254,
   "gap_x": 808.0,
   "overall": "not supported",
-  "implication": "At 225 clusters under _15 dense, Intents still ~182\u00d7 vs L1 YoY ~0.23\u00d7 \u2014 OoM holds; overall still not supported",
-  "read": "@225: intents~182\u00d7 vs L1~0.23\u00d7. OoM holds. Exploratory."
+  "implication": "At 226 clusters, Intents still ~182\u00d7 vs L1 ~0.23\u00d7 \u2014 OoM holds",
+  "read": "@226: intents~182\u00d7 vs L1~0.23\u00d7. OoM holds. Exploratory."
 }

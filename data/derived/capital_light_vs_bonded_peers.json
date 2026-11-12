@@ -1,0 +1,37 @@
+{
+  "asof": "2026-11-12",
+  "intents_pci_30d": 0.0573,
+  "intents_days_inventory": 1.7,
+  "vault_bond_docs": {
+    "thorchain": {
+      "design": "Proof-of-Bond; Incentive Pendulum target ~2:1 bonded RUNE to non-RUNE vault liquidity; theft slash ~1.5x",
+      "live_bond_to_tvl": null,
+      "live_bond_to_tvl_status": "Gap \u2014 not in repo metrics"
+    },
+    "chainflip": {
+      "design": "FROST vaults; FLIP stake slashable; stake expected to scale with vault liquidity",
+      "live_bond_to_tvl": null,
+      "live_bond_to_tvl_status": "Gap \u2014 not in repo metrics"
+    },
+    "maya": {
+      "design": "THOR fork; secondary vaults ~1.5x bond slash; liquidity-node deposits bonded CACAO into pools",
+      "defillama_tvl_usd_m": 5.2,
+      "tvl_only_pci_30d": 0.0098,
+      "tvl_only_turnover_x_per_30d": 101.9,
+      "tvl_only_days_of_volume": 0.3,
+      "live_bond_to_tvl": null,
+      "live_bond_to_tvl_status": "Gap \u2014 CACAO bond vs vault not pulled; TVL-only PCI understates and reflects thin book"
+    }
+  },
+  "conceptual_thor": {
+    "assumed_vault_tvl_usd_m": 229.2,
+    "bond_multiple_docs": 2.0,
+    "implied_bond_usd_m": 458.4,
+    "implied_total_underwriting_usd_m": 687.6,
+    "implied_pci_30d_on_intents_volume": 0.1719,
+    "vs_intents_inventory_pci_x": 3.0,
+    "label": "illustrative docs-ratio thought experiment \u2014 not observed THOR Midgard state"
+  },
+  "implication": "Bonded-peer docs imply capital lockup Intents avoids \u2014 capital-light is a structural feature; do not invent bond demand as NEAR catalyst",
+  "read": "Intents PCI~0.057 vs bonded peer vault docs \u2014 capital-light feature, leakage still binds. Exploratory."
+}

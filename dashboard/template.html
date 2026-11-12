@@ -786,6 +786,8 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     const C640 = D.catalysts && D.catalysts.commits_640;
     if (Pl) bits.push(`PCI~${Pl.pci_30d} / ~${Pl.days_of_volume_in_inventory}d inventory — leakage $${Pl.leakage_m}M binds.`);
     if (C640) bits.push(`~${C640.commits} commits / ${C640.clusters} clusters — delivery still binds.`);
+    const Bp = D.catalysts && D.catalysts.bonded_peers;
+    if (Bp) bits.push(`Capital-light vs bonded peers (PCI~${Bp.intents_pci_30d}) — no bond-demand catalyst.`);
     const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);

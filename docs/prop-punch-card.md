@@ -625,3 +625,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Capital-efficiency ⇒ leakage binds | PCI light; not WC constrained | capital_efficiency_leakage_binds |
 | PCI capital-light ⇒ leakage binds | PCI~0.0573; turnover~17.4×/30d (~1.7d). Leakage binds. Exploratory. | pci_capital_light_leakage_binds |
 | 640+ commits milestone | 640c/225cl — delivery still binds | commits_640_milestone |
+| History 226 / 2026Q2_15 | intents~182× OoM; not supported | history_progress_2026q2_15 |
+| Capital-light vs bonded peers | PCI~0.057 vs vault-bond docs — no bond-demand catalyst | capital_light_vs_bonded_peers |
