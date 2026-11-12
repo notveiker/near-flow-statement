@@ -36,7 +36,7 @@ The last 30 days were a pullback for the whole group, NEAR -27.7% against -15.9%
 
 ## 5. What the price has to believe
 
-At $4.82B the market pays 199 <!--n:mcap_to_rev_30d_annualized_x-->× annualised 30-day captured revenue. The valuation question is therefore about the numerator. For the multiple to fall to 50×, captured revenue has to reach about $96M a year (derived: 4,820 ÷ 50), 4.0 times today's run-rate. Two levers get there without a new venue: volume at four times the last 30 days' pace with the take at about 5 bp, or volume at twice the pace with the take near 10 bp, a rate partner channels already charge. Volume has been the faster-moving lever; in nine months monthly volume rose from $1.9B (2026-04) to a peak of $4.8B (2026-09).
+At $4.82B the market pays 199 <!--n:mcap_to_rev_30d_annualized_x-->× annualised 30-day captured revenue (the frozen rating window’s trailing-90d revenue is only ~$4.84M — ~0.2× the 30d run-rate; `data/derived/r90_vs_run_rate.json`). The valuation question is therefore about the numerator. For the multiple to fall to 50×, captured revenue has to reach about $96M a year (derived: 4,820 ÷ 50), 4.0 times today's run-rate. Two levers get there without a new venue: volume at four times the last 30 days' pace with the take at about 5 bp, or volume at twice the pace with the take near 10 bp, a rate partner channels already charge. Volume has been the faster-moving lever; in nine months monthly volume rose from $1.9B (2026-04) to a peak of $4.8B (2026-09).
 
 ## 6. Where the rule goes from Hold to Buy
 
