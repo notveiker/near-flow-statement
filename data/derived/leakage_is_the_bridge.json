@@ -1,0 +1,8 @@
+{
+ "at_full_gross_capture_15_3bp": {
+  "rr_m": 74.5,
+  "vol_x_for_1x_hsp029_mint": 1.03,
+  "vol_x_for_50x": 1.29
+ },
+ "read": "Full gross absorb after HSP \u2248 1\u00d7 mint at current vol; 50\u00d7 needs ~1.3\u00d7 vol \u2014 leakage pool is the bridge, volume the last mile."
+}

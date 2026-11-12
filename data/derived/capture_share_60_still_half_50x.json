@@ -1,0 +1,26 @@
+{
+ "gross_bp": 15.3,
+ "today_capture_share_pct": 32.5,
+ "scenarios": [
+  {
+   "capture_share_pct": 40,
+   "captured_bp": 6.12,
+   "run_rate_m": 29.8,
+   "vs_50x": 0.31
+  },
+  {
+   "capture_share_pct": 50,
+   "captured_bp": 7.65,
+   "run_rate_m": 37.2,
+   "vs_50x": 0.39
+  },
+  {
+   "capture_share_pct": 60,
+   "captured_bp": 9.18,
+   "run_rate_m": 44.7,
+   "vs_50x": 0.46
+  }
+ ],
+ "note": "Holding gross take 15.3 bp and raising capture share (cutting leakage). Even 60% capture \u2192 ~$45M RR (~0.46\u00d7 of 50\u00d7 need). Leakage compression helps; volume still required. Exploratory.",
+ "read": "Even 60% capture share \u2192 ~$45M RR (~0.46\u00d7 of 50\u00d7 need). Leakage helps; volume still required."
+}

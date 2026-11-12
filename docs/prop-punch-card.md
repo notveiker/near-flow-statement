@@ -312,3 +312,6 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 158 dense | 158 clusters through 2025Q2_07; Q3_07 sealing — still not supported | history_progress_2025q2_07 |
 | Ledger discipline board | Capture ~$18M conservative ≠ defense $5.7M ≠ CIF Gap $3.3M — do not sum ledgers | ledger_discipline_board |
 | History 159 dense Q3 | 159 clusters through 2025Q3_07 — still not supported | history_progress_2025q3_07 |
+| BB funding majority escrow | Escrow ~59% of BB $ vs collectors ~41% — confidential is majority rail | bb_funding_majority_escrow |
+| Leakage is the bridge | Full gross+HSP ≈1× mint; 50× then ~1.3× vol — leakage first | leakage_is_the_bridge |
+| Capture-share 60% still half 50× | 60% capture → ~$45M ≈0.46× of $96M need | capture_share_60_still_half_50x |
