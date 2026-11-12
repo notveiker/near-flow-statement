@@ -56,3 +56,5 @@
 
 Explorer partner/appfee vs DefiLlama gross are not a clean partition (sum can exceed 100%). Partners>capture uses Explorer dollars.
 28. **Three ~$10M magnitudes** — SK-tax, attest escrow, HSP-007 10% claim — net the mint narrative.
+29. **LST ~611 DIC days** (~25× buyback) but only ~9.3% of stake — soft-sink size ≠ stake share.
+30. **Intents ~87% of NEAR protocol fees**; Aurora TVL −99.7% with residual widget referrals.
