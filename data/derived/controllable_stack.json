@@ -60,5 +60,6 @@
   "l1_active_rebound"
  ],
  "stance": "Hold until H1b",
- "note": "Capture-share ~3\u00d7 more valuable per pp than volume. Leakage/conversion first. Overlap discipline applies. Exploratory."
+ "note": "Capture-share ~3\u00d7 more valuable per pp than volume. Leakage/conversion first. Overlap discipline applies. Exploratory.",
+ "no_bb_partner_share_pct": 94.6
 }

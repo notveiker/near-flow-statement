@@ -126,3 +126,7 @@ High-density fronts (Trust/Arbie/Enot/Leodex) print ~20 bp on thin volume. LI.FI
 ## Quality-on-cool context
 
 MoM vol −12% is real, but 30d daily notional is still ~1.5× the year average — quality improved on a cool-off from an elevated print.
+
+## No-BB partner set
+
+~94.6% of listed partner fees have no buyback line ($4.21M of $4.45M). Conversion dials target that set — not diffuse attach rhetoric.
