@@ -193,3 +193,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | NEAR-side minority | Only **3.5%** Explorer swaps are NEAR-side — product is cross-chain settlement | near_side_minority |
 | High-density fronts | Trust/Arbie/Enot/Leodex ~20bp thin-vol + mystery 71bp — attach template vs aggregator dilutives | high_density_fronts |
 | Trust-template expansion | LI.FI 2.8→20bp ≈ **$2.31M/yr**; all sub-10bp→10bp ≈ $1.43M/yr | trust_template_expansion |
+| Fee stack identity | Partners listed ~$4.45M > NEAR capture ~$1.99M on 30d — distribution owns the print | fee_stack_identity |
+| 50× path composition | Leakage→15.3bp + HSP ≈ 1× mint then ~1.3× vol (vs ~4× today) | path_50x_composition |

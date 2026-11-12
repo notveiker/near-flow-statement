@@ -1,0 +1,12 @@
+{
+ "gross_fees_30d_m": 6.12,
+ "captured_rev_30d_m": 1.99,
+ "partner_fees_all_30d_m": 4.454,
+ "partner_fees_no_bb_30d_m": 4.213,
+ "appfees_30d_m": 4.905,
+ "solver_excess_bp": 8.5,
+ "identity_check": "gross \u2248 capture + partners + solver/gas residual (approx)",
+ "capture_over_gross": 0.325,
+ "partners_over_gross": 0.728,
+ "note": "30d stack: gross fees $6.12M, NEAR capture ~$1.99M (33%), listed partners ~$4.45M. Partners > capture in dollars \u2014 distribution owns the fee print. Exploratory; windows/definitions differ slightly."
+}

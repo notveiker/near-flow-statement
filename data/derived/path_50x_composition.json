@@ -1,0 +1,10 @@
+{
+ "today_fee_mint_x": 0.21,
+ "hsp029_alone_x": 0.32,
+ "stack_hsp_x": 0.48,
+ "full_gross_hsp_approx_x": 1.0,
+ "vol_x_after_full_gross_hsp_for_50x": 1.3,
+ "vol_x_today_at_5bp_for_50x": 4.0,
+ "leakage_then_volume": true,
+ "note": "50\u00d7 path: close leakage toward 15.3 bp + HSP-029 \u2248 1\u00d7 mint coverage, then ~1.3\u00d7 volume \u2014 vs ~4\u00d7 volume at today\u2019s ~5 bp. Leakage first. Exploratory."
+}

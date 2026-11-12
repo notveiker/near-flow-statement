@@ -62,3 +62,7 @@ Capture vs gas burn (NEAR): `data/derived/capture_vs_gas_burn_near.json`.
 ## Conversion gap
 
 Only ~9.2% of Explorer-listed appfees print as buybacks in-window; ~68% of revwallet buyback dollars lack a mapped fee-event. Fee print ≠ attested scarcity loop.
+
+## Stack identity (30d)
+
+Gross Intents fees ~$6.12M; NEAR capture ~$1.99M; listed partner fees ~$4.45M. **Partners exceed capture in dollars** — distribution owns the fee print. Conversion (9.2% appfees→BB) and renegotiation are how capture share moves.
