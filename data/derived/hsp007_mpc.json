@@ -1,6 +1,6 @@
 {
   "asof_utc": "2026-11-12T00:00:00Z",
-  "note": "HSP-007 MPC financing via emissions as opex claim on issuance pool Intents fees try to offset. Title/engagement only. No bull case. Gaps labeled.",
+  "note": "HSP-007 MPC financing via emissions as opex claim on issuance pool Intents fees try to offset. Title/engagement only. Gaps labeled.",
   "sources": [
     "data/raw/governance/top_yearly.json",
     "data/derived/governance_catalysts.json",

@@ -1,6 +1,6 @@
 {
   "asof_utc": "2026-11-11T23:00:00Z",
-  "note": "Derived RELAYER / SOLVER operational concentration risk from node census + fee-waterfall structural facts. HHI bounded from top1/top5 aggregates (full share vector not exported). Scenarios are arithmetic, not forecasts. No bull case. Gaps labeled.",
+  "note": "Derived RELAYER / SOLVER operational concentration risk from node census + fee-waterfall structural facts. HHI bounded from top1/top5 aggregates (full share vector not exported). Scenarios are arithmetic, not forecasts. Gaps labeled.",
   "sources": [
     "REPORT.md",
     "data/derived/census_usage.json",

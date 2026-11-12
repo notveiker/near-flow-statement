@@ -1,6 +1,6 @@
 {
   "asof_utc": "2026-11-12T00:00:00Z",
-  "note": "Derived Chain Signatures → NEAR token value-link read. CS is infrastructure for Intents cross-chain; no separate holders-revenue line in committed metrics. Exploratory. No bull case. Gaps labeled.",
+  "note": "Derived Chain Signatures → NEAR token value-link read. CS is infrastructure for Intents cross-chain; no separate holders-revenue line in committed metrics. Exploratory. Gaps labeled.",
   "sources": [
     "REPORT.md",
     "data/derived/census_usage.json",
