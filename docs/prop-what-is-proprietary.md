@@ -16,7 +16,8 @@
 10. **NEAR-side swaps ~3.5%** — foreign-asset routing on NEAR rails  
 11. **Inventory ~17×/30d** — capital-light settlement float  
 12. **BB funding rails** — collectors ~41% / escrow ~59% of buyback dollars  
-13. **R90 vs run-rate** — T90 ~$4.84M vs ~$24.2M ann. 30d (accelerating window)
+13. **R90 vs run-rate** — T90 ~$4.84M vs ~$24.2M ann. 30d (accelerating window)  
+14. **Vol −12% MoM / capture up** — quality rose on a cooling print
 
 ## Pitch in one sentence
 
