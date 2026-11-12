@@ -146,7 +146,7 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 - **Near-term board:** leakage/trust/defense before volume; quality already 1.72× on cool.
 - **Opacity:** ~71% of measured capture unattested; user all-in ~10.6× token claim.
 - **Delivery blockers:** public repo + X dry-run (~66h to submit).
-- **History:** 165 clusters; denser `_08` running; overall still not supported (~420 commits).
+- **History:** 168 clusters; denser `_08` through 2025 complete; 2026 `_08` next; overall still not supported.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context
