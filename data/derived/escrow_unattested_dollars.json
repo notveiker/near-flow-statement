@@ -1,0 +1,8 @@
+{
+ "bb_from_escrow_usd_k": 823.7,
+ "attestation_high_pct": 15.8,
+ "attested_at_high_usd_k": 130.1,
+ "unattested_at_high_usd_k": 693.6,
+ "unattested_rr_m_if_sustained": 8.4,
+ "note": "Even at the high end of the attestation band (15.8%), ~$694k of the $824k escrow-funded BB window is outside attestation (~$8.4M/yr if sustained). Provenance gap is material in dollars. Exploratory."
+}
