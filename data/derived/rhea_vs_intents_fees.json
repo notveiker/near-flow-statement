@@ -1,0 +1,8 @@
+{
+ "rhea_dex_share_of_near_fees_pct": 8.5,
+ "rhea_lend_share_pct": 4.3,
+ "rhea_combined_pct": 12.8,
+ "intents_pct": 87.0,
+ "intents_vs_rhea_dex_x": 10.2,
+ "note": "Rhea Dex+Lend together ~12.8% of NEAR protocol fees vs Intents 87% (~10\u00d7 Rhea Dex alone). On-chain AMM/lending residual is not the fee story. Exploratory."
+}

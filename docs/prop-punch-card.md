@@ -226,3 +226,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History through 2024Q4 | 148 preliminary clusters through 2024Q4_06 — entering 2025; still not supported | history_progress_2024_complete |
 | NEAR fee HHI floor | Intents ~87% ⇒ fee HHI ≥0.76 — chain fees are a single-venue story | near_fee_hhi_floor |
 | Intents fees MoM cool | DefiLlama Intents fees **−31.6% MoM** with vol −12% — quality path offsets absolute cool | intents_fees_mom_cool |
+| Rhea vs Intents fees | Rhea Dex+Lend ~12.8% vs Intents **87%** (~10× Rhea Dex) — AMM residual not the fee story | rhea_vs_intents_fees |
