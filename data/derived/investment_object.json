@@ -37,5 +37,16 @@
   "cs_as_fee"
  ],
  "issuance_tension": "hsp007_emissions_claim_vs_hsp029",
- "provenance_stack": "escrow_majority_unexplained_majority_h1b_minority"
+ "provenance_stack": "escrow_majority_unexplained_majority_h1b_minority",
+ "one_liner": "Intents fee engine owned by distribution; leakage/conversion dials beat volume at the margin; Hold until H1b closes provenance.",
+ "lead_catalysts": [
+  "sk_tax_renegotiation",
+  "appfees_conversion",
+  "trust_template",
+  "mix_nearcom_wallet_real"
+ ],
+ "path_50x": "full_gross_plus_hsp_then_1.3x_vol",
+ "falsifiers": "docs/f1-f4-scorecard.md",
+ "spine": "docs/pitch-spine.md",
+ "clusters_preliminary": 144
 }
