@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "intents_deposits_per_day_m": 79.7,
+  "stablecoin_usd_per_day_m": 13.2,
+  "intents_deposit_vs_stablecoin_x": 6.0,
+  "intents_tx_share_pct": 13.2,
+  "implication": "Intents deposit notional/day ~6\u00d7 on-chain stablecoin transfer USD \u2014 fee engine sits on the dominant value-moving surface, not a niche app",
+  "read": "Intents deposits/day ~$79.7M \u22486.0\u00d7 stablecoin L1 $13.2M. Exploratory."
+}

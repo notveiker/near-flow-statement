@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "conf_tvl_vs_inventory_pct": 69.8,
+  "confidential_share_of_measured_capture_pct": 71.2,
+  "unattested_rr_m": 8.4,
+  "vs_sk_tax_x": 0.82,
+  "implication": "Confidential ~70% of inventory AND ~71% of measured capture \u2014 double opacity; attestation gap ~$8.4M (~0.8\u00d7 SK-tax) is a top-tier dollar surface parallel to capture dials",
+  "read": "Double opacity: inventory conf~69.8% / capture conf~71.2%; unattested~$8.4M (~0.82\u00d7 SK). Exploratory."
+}

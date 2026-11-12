@@ -138,3 +138,10 @@ Fee-engine≠L1 divergence now ~**132×** intents vs ~**0.19×** L1 tx YoY on 17
 - Hold flip = **H1b**, not more strata (223 clusters still not supported).
 - Catalyst order: public+X → SK-tax → conversion → HSP → attach.
 <!-- /AUTO:SWEEP15 -->
+
+<!-- AUTO:SWEEP17 -->
+- Fee≠L1 @224: intents~182× vs L1~0.23×.
+- Dist tax~10.32bp > captured τ~4.98bp; partners keep ~1.81×.
+- Double opacity inv~69.8% + capture~71.2%; attest gap~$8.4M.
+- CS infra≠fee; HSP-007 vs fee-offset; SK HHI leverage; Intents deposits~6× stablecoin L1.
+<!-- /AUTO:SWEEP17 -->

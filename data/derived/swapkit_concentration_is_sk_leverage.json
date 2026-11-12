@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "swapkit_vol_share_pct": 38.2,
+  "hhi_raw": 0.087,
+  "hhi_sk_merged": 0.2,
+  "sk_tax_rr_m": 10.2,
+  "implication": "SwapKit ~38% vol; HHI jumps 0.087\u21920.20 when SK routes merge \u2014 concentration is leverage for the SK-tax desk, not a diversification comfort story",
+  "read": "SK~38.2% vol; HHI 0.087\u21920.2 merged. Concentration = SK-tax leverage. Exploratory."
+}

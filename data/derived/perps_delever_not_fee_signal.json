@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "oi_change_30d_pct": -41.7,
+  "oi_usd_m_latest": 162.9,
+  "funding_annualized_approx_pct": 6.46,
+  "long_short_ratio_latest": 1.3613,
+  "implication": "OI \u221242% with L/S>1 and mild +funding = deleveraging overlay, not a fee-engine signal \u2014 keep perps off the pitch lead",
+  "read": "Perps OI 279.6\u2192162.9M (-41.7%); funding~6.46%. Overlay only. Exploratory."
+}

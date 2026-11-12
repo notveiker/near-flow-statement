@@ -90,3 +90,10 @@ Prop/dashboard/judge packet ready (~437 commits, 168 clusters preliminary). **Mu
 - ETF/AI immaterial (~0.02× SK-tax); peerset leadership ≠ prize.
 - Five ledgers lead capture; Trust nested under SK; mutex naive-sum trap.
 <!-- /AUTO:SWEEP16 -->
+
+<!-- AUTO:SWEEP17 -->
+- Fee≠L1 @224: intents~182× vs L1~0.23×.
+- Dist tax~10.32bp > captured τ~4.98bp; partners keep ~1.81×.
+- Double opacity inv~69.8% + capture~71.2%; attest gap~$8.4M.
+- CS infra≠fee; HSP-007 vs fee-offset; SK HHI leverage; Intents deposits~6× stablecoin L1.
+<!-- /AUTO:SWEEP17 -->

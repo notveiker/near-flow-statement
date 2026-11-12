@@ -1,0 +1,33 @@
+{
+  "asof": "2026-11-12",
+  "verdict": {
+    "token_value_link": "necessary_condition_for_intents_volume",
+    "separate_cash_flow": false,
+    "read": "Treat CS as necessary infrastructure for Intents cross-chain volume, not an additive holders-revenue / burn / staking-claim line \u2014 unless falsifiers fire."
+  },
+  "fee_claim": {
+    "signature_fee_layer_in_waterfall": false,
+    "holders_revenue_from_signatures": false,
+    "defillama_cs_adapter_line": false,
+    "near_burn_tied_to_signatures": false,
+    "stake_to_sign_fee_claim": false,
+    "observed_token_touch": "L1 gas on v1.signer only (in committed metrics)",
+    "intents_capture_path_unchanged": "appFees / 1Click-CIF / pip \u2192 intents.near \u2192 three revenue wallets; buybacks held not burned",
+    "governance_context": "HSP-007 discusses MPC node financing via protocol emissions (forum) \u2014 subsidy direction, not a measured per-signature tariff",
+    "gap": "Off-chain MPC operator commercial terms not attested in this repo"
+  },
+  "proprietary_cut": {
+    "rule": "Necessary condition for Intents volume; not additive revenue line",
+    "scoreboard_unchanged": [
+      "token_claimable_bp",
+      "capture_share_pct",
+      "attach_pct",
+      "attestation",
+      "mix"
+    ],
+    "do_not": "Double-count CS growth as a second fee engine in path/issuance-offset math",
+    "operational_risk": "CS threshold/attestation failure is an Intents volume/trust kill switch, not a missed P&L line"
+  },
+  "implication": "Chain Signatures enables Intents cross-chain settlement but has no separate holders-revenue line \u2014 do not pitch CS as additive fee capture; it is infrastructure inside the Intents fee engine",
+  "read": "CS value-link: {'rule': 'Necessary condition for Intents volume; not additive revenue line', 'scoreboard_unchanged': ['token_claimable_bp', 'capture_share_pct', 'attach_pct', 'attestation', 'mix'. Exploratory."
+}

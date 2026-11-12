@@ -141,10 +141,10 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~630 commits / 223 clusters / ~55h.** `_15` filling. Overall still **not supported**.
-- Protocol ~**9.4%** of user all-in; leakage ~**$50.2M** dial option (SK+conv+attach ~$24M).
-- Soft-sink/burn/ETF/AI **do not** move the ~42.8% wall; fidelity high ⇒ leakage is **terms**; foreign rail ≠ NEAR demand.
-- Peerset leadership ≠ prize; five ledgers → **lead capture**; Trust nested under SK; mutex forbids naive sum.
+- **~632 commits / 224 clusters / ~55h.** `_15` through 2025Q4; 2026Q1 sealing. Overall still **not supported**.
+- Fee≠L1 holds: intents~**182×** vs L1~**0.23×**. Dist tax~**10.32 bp** > τ~**4.98 bp**.
+- Double opacity: conf inventory~**69.8%** + conf capture~**71.2%**; unattested~**$8.4M**.
+- CS=infra not additive fee; HSP-007 competes with fee offset; perps/relayer are overlays not τ dials; SK concentration = tax leverage.
 - Catalyst order: **public+X → SK-tax → conversion → HSP → attach**. Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 

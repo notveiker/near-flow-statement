@@ -1,0 +1,40 @@
+{
+  "asof": "2026-11-12",
+  "total_usd_m": 229.2,
+  "top5": [
+    {
+      "symbol": "wNEAR",
+      "chain": "near",
+      "value_usd_m": 62.58,
+      "share_pct": 27.3
+    },
+    {
+      "symbol": "ZEC",
+      "chain": "zec",
+      "value_usd_m": 27.43,
+      "share_pct": 12.0
+    },
+    {
+      "symbol": "USDC",
+      "chain": "eth",
+      "value_usd_m": 26.48,
+      "share_pct": 11.6
+    },
+    {
+      "symbol": "USDT",
+      "chain": "eth",
+      "value_usd_m": 12.8,
+      "share_pct": 5.6
+    },
+    {
+      "symbol": "BTC",
+      "chain": "near",
+      "value_usd_m": 11.25,
+      "share_pct": 4.9
+    }
+  ],
+  "wnear_share_pct": 27.3,
+  "zec_share_pct": 12.0,
+  "implication": "Inventory is wNEAR(~27%)+ZEC(~12%)+stables \u2014 privacy + foreign rails dominate working capital; reinforces foreign-rail and double-opacity reads",
+  "read": "Inventory $229.2M: wNEAR~27.3% ZEC~12.0% USDC~11.6%. Exploratory."
+}

@@ -584,3 +584,14 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Peerset leadership ≠ prize | Peerset gross~55.7% net~38.6% (gap 17.1pp); prize = SK-tax $10.2M not share. Exploratory. | peerset_leadership_not_the_prize |
 | Trust nested under SK-tax | Trust-SK partner vs direct BB ×9.3; counterfactual ~$1.72M RR. Nest under SK desk. Exploratory. | trust_nested_sk_tax_conversation |
 | Mutex naive-sum trap | Mutex trap: naive $25.4M (>105.8 vol-pp). Call-order + elasticity 3.07×. Exploratory. | mutex_naive_sum_trap |
+| History 224 / 2025Q4_15 | intents~182× still OoM; overall not supported | history_progress_2025q4_15 |
+| CS = infra not additive fee | CS value-link: {'rule': 'Necessary condition for Intents volume; not additive revenue line', 'scoreboard_unchanged': ['token_claimable_bp',  | cs_infra_not_additive_fee |
+| HSP-007 competes w/ fee offset | HSP-007 ~$11.8M mint-claim surface vs Intents RR~$24.2M — issuance opex vs fee offset; do not stack. Exploratory. | hsp007_competes_with_fee_offset |
+| Perps delever ≠ fee signal | Perps OI 279.6→162.9M (-41.7%); funding~6.46%. Overlay only. Exploratory. | perps_delever_not_fee_signal |
+| Double opacity inv+capture | Double opacity: inventory conf~69.8% / capture conf~71.2%; unattested~$8.4M (~0.82× SK). Exploratory. | double_opacity_inventory_and_capture |
+| Relayer = resilience not capture | Relayer concentration 83%; vol/fee outage ×2004. Ops≠τ. Exploratory. | relayer_resilience_not_capture |
+| Intents dominates value surface | Intents deposits/day ~$79.7M ≈6.0× stablecoin L1 $13.2M. Exploratory. | intents_dominates_value_surface |
+| Inventory privacy+foreign heavy | Inventory $229.2M: wNEAR~27.3% ZEC~12.0% USDC~11.6%. Exploratory. | inventory_privacy_foreign_heavy |
+| Dist tax > token claim | Dist tax~10.32bp vs τ~4.98bp; partners~1.81×; escrow BB dep~58.8%. Exploratory. | distribution_tax_exceeds_token_claim |
+| SK concentration = tax leverage | SK~38.2% vol; HHI 0.087→0.2 merged. Concentration = SK-tax leverage. Exploratory. | swapkit_concentration_is_sk_leverage |
+| Fee≠L1 holds @224 | @224: intents~182× vs L1~0.23× (gap~808×). OoM holds. Exploratory. | fee_neq_l1_holds_at_224 |

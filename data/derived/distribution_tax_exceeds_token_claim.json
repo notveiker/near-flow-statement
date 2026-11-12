@@ -1,0 +1,10 @@
+{
+  "asof": "2026-11-12",
+  "captured_bp": 4.98,
+  "distribution_tax_bp_approx": 10.32,
+  "partners_kept_vs_near_x": 1.81,
+  "capture_share_pct": 32.5,
+  "escrow_dependence_of_buyback_pct": 58.8,
+  "implication": "Distribution tax ~10.32 bp vs captured ~4.98 bp (partners keep ~1.81\u00d7 NEAR) \u2014 the commercial prize is taxing distribution, not raising \u03c4 from thin air",
+  "read": "Dist tax~10.32bp vs \u03c4~4.98bp; partners~1.81\u00d7; escrow BB dep~58.8%. Exploratory."
+}

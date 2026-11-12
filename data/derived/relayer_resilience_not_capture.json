@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "top1_share_pct": 83,
+  "vol_to_fee_x": 2004.0,
+  "vol_lost_1d_m": 55.3,
+  "fee_lost_1d_m": 0.0276,
+  "implication": "Relayer top1~83%; 1d outage loses ~$55M vol vs ~$28k fees (~2000\u00d7) \u2014 diversify for resilience/share, not as a capture dial",
+  "read": "Relayer concentration 83%; vol/fee outage \u00d72004. Ops\u2260\u03c4. Exploratory."
+}

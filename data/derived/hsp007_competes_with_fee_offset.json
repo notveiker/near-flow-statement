@@ -1,0 +1,49 @@
+{
+  "asof": "2026-11-12",
+  "hsp007": {
+    "establish_topic_id": 41984,
+    "title": "HSP-007: Establish a Sustainable MPC Node Infrastructure Financing Program Funded via Protocol Emissions",
+    "created_at": "2026-01-23T00:50:35.850Z",
+    "likes": 212,
+    "views": 2392,
+    "posts_count": 70,
+    "execution_topic_id": 42147,
+    "execution_title": "HSP-007 Execution: MPC Node Infrastructure Financing Program",
+    "execution_likes": 23,
+    "execution_views": 1297,
+    "funding_source_from_title": "protocol_emissions",
+    "target_from_title": "mpc_node_infrastructure",
+    "proposal_body_in_repo": false,
+    "gap": "Full proposal text, NEAR/year budget, % of emissions, recipient set not in committed raw"
+  },
+  "interaction": {
+    "hsp029": {
+      "timelock_end": "2026-11-16",
+      "cap_path": "2.5% \u2192 1.6% over 24 months",
+      "flat_capture_held_offset_pct": {
+        "today": 15.81,
+        "post_hsp_approx": 24.31
+      },
+      "note": "Shrinks mint; HSP-007 earmarks mint for MPC \u2014 net after both Gap without budget"
+    },
+    "chain_signatures": {
+      "role": "necessary_condition_for_intents_cross_chain",
+      "signature_fee_in_waterfall": false,
+      "token_touch_committed": "L1_gas_v1_signer",
+      "v1_signer_gas_share": 0.0283,
+      "census_respond_per_day_k": 15.7
+    },
+    "fee_capture": {
+      "annualised_usd_m": 24.2,
+      "net_issuance_near_per_day": 88295.0,
+      "held_offset_pct_of_issuance": 15.81,
+      "buybacks": "held_not_burned",
+      "read": "Fee offset ratios are gross until MPC emissions claim netted"
+    }
+  },
+  "proprietary_cut": "Score MPC financing as opex claim on the same issuance pool Intents fees try to offset",
+  "intents_rr_m": 24.2,
+  "four_ten_hsp007_rr_m": 11.8,
+  "implication": "HSP-007 is an emissions/opex claim on the same issuance pool Intents fees offset \u2014 mint-side narrative competes with fee coverage; net don't double-count with capture dials",
+  "read": "HSP-007 ~$11.8M mint-claim surface vs Intents RR~$24.2M \u2014 issuance opex vs fee offset; do not stack. Exploratory."
+}
