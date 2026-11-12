@@ -1,0 +1,15 @@
+{
+ "agent_5pct_rr_m": 0.33,
+ "whale_10pp_rr_m": 0.98,
+ "cif_1bp_rr_m": 3.31,
+ "tg_half_10bp_rr_m": 1.37,
+ "sk_tax_25_rr_m": 10.2,
+ "ranked_immaterial_to_material": [
+  "agent_5pct",
+  "whale_10pp",
+  "tg_half",
+  "cif_1bp",
+  "sk_tax_25"
+ ],
+ "note": "AI 5% bound ~$0.33M \u226a whale \u226a TG \u226a CIF 1bp \u226a SK-tax. Do not lead AI. Exploratory upper bounds."
+}

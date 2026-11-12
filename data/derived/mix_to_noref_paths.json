@@ -1,0 +1,15 @@
+{
+ "swapkit_to_noref": {
+  "scenario": "10pp_swapkit_to_noreferrer_10bp",
+  "uplift_30d_m": 0.11,
+  "uplift_run_rate_m": 1.34,
+  "note": "If 10pp of SwapKit volume (currently 0 buyback) routed as no-referrer at 10 bp default. Commercial renegotiation, not product ship. Exploratory."
+ },
+ "noref_5pp": {
+  "scenario": "+5pp_1click_vol_to_no_referrer_at_10bp",
+  "uplift_30d_m": 0.055,
+  "uplift_run_rate_m": 0.67,
+  "note": "Moving 5pp of 1Click volume from zero-buyback SwapKit to no-referrer 10 bp default. Complements mix-shift near.com 20 bp path. Exploratory arithmetic."
+ },
+ "note": "Mix dials without near.com wallet fiction: SK\u2192no-ref at default bp and +5pp noref are commercial renegotiation paths that land in the fee engine (no-ref already ~46% of BB $). Exploratory."
+}

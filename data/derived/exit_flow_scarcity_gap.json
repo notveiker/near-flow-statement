@@ -1,0 +1,30 @@
+{
+ "bb_wallet_covers_exit_window_x": null,
+ "raw": {
+  "net_near_sold_30d_m": 9.4,
+  "buyback_wallet_usd_m": 8.0,
+  "captured_rev_30d_m": 1.99,
+  "wallet_covers_net_exit_x": 0.85,
+  "rev_covers_net_exit_x": 0.21,
+  "note": "Buyback wallet stock (~$8M) covers ~0.85\u00d7 one window of net NEAR exit (~$9.4M); period revenue covers ~0.21\u00d7. Stock \u2260 flow offset. Exploratory window arithmetic."
+ },
+ "near_exit": {
+  "asof": "2026-11-12",
+  "explorer_into_near_usd_m": 14.6,
+  "explorer_out_of_near_usd_m": 24.0,
+  "net_near_sold_usd_m": 9.4,
+  "captured_rev_30d_m": 1.99,
+  "buyback_wallet_usd_m": 8.0,
+  "net_exit_vs_captured_rev_x": 4.72,
+  "note": "1Click was a net NEAR exit in the window. Captured revenue buybacks hold NEAR but do not automatically offset the venue exit flow 1:1 in the same window. Exploratory."
+ },
+ "note": "1Click prints net NEAR exit in-window; buyback wallet stock covers ~0.85\u00d7 one exit window and period revenue only ~0.21\u00d7. Fee capture does not auto-offset venue NEAR exit 1:1 \u2014 scarcity loop is not closed on flow. Exploratory.",
+ "exit_vs_buyback": {
+  "net_near_sold_30d_m": 9.4,
+  "buyback_wallet_usd_m": 8.0,
+  "captured_rev_30d_m": 1.99,
+  "wallet_covers_net_exit_x": 0.85,
+  "rev_covers_net_exit_x": 0.21,
+  "note": "Buyback wallet stock (~$8M) covers ~0.85\u00d7 one window of net NEAR exit (~$9.4M); period revenue covers ~0.21\u00d7. Stock \u2260 flow offset. Exploratory window arithmetic."
+ }
+}

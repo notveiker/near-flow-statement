@@ -273,3 +273,8 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Unknown+TG surface dominate | Census unknown+TG ≈53% tagged > SK+LI.FI — label frontier | unknown_tg_surface_dominance |
 | CS load shape | execute≫respond≫sign (~7×/~24×) — bursty completion, not fee line | cs_load_shape |
 | Aurora not thesis | TVL ~0.28% of peak; Intents ≫ Aurora fees — do not lead | aurora_not_thesis |
+
+| Exit flow scarcity gap | BB stock ~0.85× one NEAR-exit window; period rev ~0.21× — fee≠auto offset exit | exit_flow_scarcity_gap |
+| Mix to no-ref paths | SK→noref / +5pp noref land in fee engine (noref already ~46% BB $) | mix_to_noref_paths |
+| Confidential inventory majority | Conf TVL ~70% of inventory — CIF+attest are same surface | confidential_inventory_majority |
+| Immaterial→material ladder | AI $0.33 < whale $1.0 < TG $1.4 < CIF 1bp $3.3 < SK-tax $10.2 | immaterial_to_material_ladder |
