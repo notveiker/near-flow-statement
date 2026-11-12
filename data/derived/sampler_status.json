@@ -1,8 +1,6 @@
 {
- "primary_clusters_local": 143,
- "sample2_clusters_local": 91,
- "last_ingested": "2023Q3_06",
+ "primary_clusters_local": 144,
+ "last_ingested": "2023Q4_06",
  "overall": "not_supported_preliminary",
- "commits_since_structural_approx": 252,
- "note": "Ingested 2023Q3_06. 143 primary clusters preliminary. Hyper sweep continuing."
+ "note": "ingested 2023Q4_06"
 }
