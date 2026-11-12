@@ -71,5 +71,5 @@ Prop/dashboard/judge packet ready (~437 commits, 168 clusters preliminary). **Mu
 <!-- /AUTO:DELIVERY -->
 
 <!-- AUTO:TOPLINE_NOW -->
-**Now (~62h / 186 clusters / 505 commits):** Capture-pp≈3.07×vol · SK-tax≈42.5 vol-pp · escrow BB 17→59% · intents~147× vs L1~0.2× YoY · THOR two-step 3.1× then 4.4× · Hold until H1b · repo still private.
+**Now (~59h / 201 clusters / 554 commits):** Capture-pp≈3.07×vol · SK-tax≈42.5 vol-pp · escrow BB 17→59% · intents~189× vs L1~0.21× YoY · THOR two-step 3.1× then 4.4× · Hold until H1b · repo still private.
 <!-- /AUTO:TOPLINE_NOW -->
