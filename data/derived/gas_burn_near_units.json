@@ -1,0 +1,7 @@
+{
+ "hot_burn_near_window": 36.22,
+ "intents_burn_near_window": 34.25,
+ "intents_vs_hot_burn_x": 0.95,
+ "census_hours": 10.3,
+ "note": "In the ~10h census, Intents burned ~34 NEAR of gas vs HOT ~36 \u2014 nearly tied on NEAR burned despite fewer txs. Heavier settlement confirmed in NEAR units. Exploratory."
+}
