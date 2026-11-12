@@ -361,3 +361,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History not blocking submit | Preliminary history ≠ submit blocker; public repo + X are | history_not_blocking_submit |
 | History 168 / _08 through 2025 | Denser _08 through 2025Q4 complete — still not supported | history_progress_2025q4_08 |
 | What moves Hold | H1b>50% flips stance; capture dials improve object under Hold | what_moves_hold |
+| History 169 / 2026Q1_08 | Contest-year _08 filling — still not supported | history_progress_2026q1_08 |
