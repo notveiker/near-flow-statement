@@ -482,6 +482,7 @@ def build() -> dict:
             "sk_merged_hhi": optional("derived/sk_merged_hhi_is_tax_leverage.json"),
             "headline_leakage": optional("derived/headline_leakage_is_the_bridge.json"),
             "non_leads_pack": optional("derived/judge_non_leads_pack.json"),
+            "commits_680": optional("derived/commits_680_milestone.json"),
             "noref_core": optional("derived/noref_concentration_is_fee_core.json"),
             "f1_f4": optional("derived/f1_f4_on_submit_day.json"),
         },

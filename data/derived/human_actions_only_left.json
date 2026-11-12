@@ -1,21 +1,25 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 53.9,
-  "clusters": 229,
-  "commits": 661,
+  "hours_to_submit": 53.3,
+  "clusters": 233,
+  "commits": 680,
+  "severity": "CRITICAL",
   "dense_15_complete": true,
+  "headline": "leakage_is_the_bridge",
+  "x_script_path": "docs/x-demo-talking-points.md",
   "actions_left": [
     {
       "action": "flip_repo_public",
       "owner": "human",
       "blocks": "submit",
-      "status": "OPEN_URGENT"
+      "status": "CRITICAL_OPEN"
     },
     {
-      "action": "x_demo_dry_run",
+      "action": "x_demo_dry_run_90s",
       "owner": "human",
       "blocks": "submit",
-      "status": "OPEN_URGENT"
+      "status": "CRITICAL_OPEN",
+      "script": "docs/x-demo-talking-points.md"
     }
   ],
   "agent_cannot": [
@@ -23,6 +27,6 @@
     "x_recording"
   ],
   "prop_ready_excl_must_ship": 0.98,
-  "implication": "URGENT: only public+X left; agent prop is packaging surplus",
-  "read": "URGENT human-only @~54h: public + X. Exploratory."
+  "implication": "Agent done on prop EV; human must flip public + record 90s X now",
+  "read": "CRITICAL @~53h: public + X 90s. Exploratory."
 }
