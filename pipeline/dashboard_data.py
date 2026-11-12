@@ -300,6 +300,11 @@ def build() -> dict:
             "judge_capture_card": optional("derived/judge_capture_card.json"),
             "immaterial_ladder": optional("derived/immaterial_to_material_ladder.json"),
             "inventory_mix": optional("derived/inventory_mix.json"),
+            "dial_elasticity": optional("derived/dial_elasticity_board.json"),
+            "opacity_product": optional("derived/opacity_product_stack.json"),
+            "coverage_no_vol": optional("derived/coverage_path_no_vol.json"),
+            "fee_engine_vs_l1": optional("derived/history_fee_engine_vs_l1.json"),
+            "history_counter": optional("derived/history_counter_evidence_board.json"),
         },
         "repro": reproducibility(),
     }

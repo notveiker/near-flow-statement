@@ -33,7 +33,7 @@
 <!-- /AUTO:X_CONVO -->
 
 <!-- AUTO:X_FINAL -->
-**Demo close (~65h to submit):** Partners>capture → four ~$10M (Ledger-first) → ladder → quality-on-cool → leakage then 1.3× vol → Hold until H1b / F1–F4. History 171 clusters preliminary. Must-ship: public repo dry-run.
+**Demo close (~65h to submit):** Partners>capture → elasticity (capture-pp≈3×vol) → four ~$10M Ledger-first → opacity product → no-vol coverage path → quality-on-cool → Hold until H1b / F1–F4. History 172 clusters preliminary; fee engine ≠ L1. Must-ship: public repo dry-run.
 <!-- /AUTO:X_FINAL -->
 
 Card: `data/derived/judge_capture_card.json` — open with partners>capture, close with Hold until H1b.

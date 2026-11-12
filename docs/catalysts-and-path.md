@@ -202,3 +202,15 @@ Ledger SK-tax ~$10.2M · attest ~$8.4M · ADR defense ~$5.7M · conversion ~$5.5
 
 Frozen rule: **H1b labels past 50%** flips Hold→Buy. Capture dials (Ledger SK-tax, attest, CIF, conversion, ADR defense) improve the object under Hold. Peer-share/volume/AI/npm/ETF do not flip stance.
 <!-- /AUTO:HOLD -->
+
+<!-- AUTO:ELASTICITY_OPACITY -->
+## Dial elasticity and opacity-as-product (exploratory)
+
+Marginal arithmetic in `dial_elasticity_board.json`: **+1pp capture-share ≈ $0.74M/yr** vs **+1pp volume ≈ $0.24M/yr** (×**3.07**). SK-tax ~$10.2M is roughly **~42.5 volume percentage points** of run-rate — renegotiation dominates cheerleading on the same dollar board. Do not double-count mutex pairs in `dial_overlap_map.json`.
+
+Opacity is inventory, not a side risk: ~**71%** of measured capture arrives unattested (`confidential_share_of_capture.json`). The product stack is attestation (**~$8.4M** trust) plus a published CIF rate card (**~$3.3M** at 1bp Gap) — institutional underwriting of dollars already in the print (`opacity_product_stack.json`).
+
+No-volume coverage path (`coverage_path_no_vol.json`): today ~**15.8%** → HSP-029 alone ~**24.7%** → attach 60% + HSP ~**32.7%** → conservative capture stack + HSP ~**42.8%**. Still short of full issuance offset; **volume remains the last mile for 50×**. Pitch HSP-029 as **pending-not-live** until the 16 Nov timelock.
+
+History honesty (`history_fee_engine_vs_l1.json`, `history_counter_evidence_board.json`): L1 YoY activity ~0.18–0.26× while intents.near receipts ~100× vs 2025Q1 — the investable object is the Intents fee engine on a cooling base layer. Overall pre-registered usage growth remains **not supported**.
+<!-- /AUTO:ELASTICITY_OPACITY -->

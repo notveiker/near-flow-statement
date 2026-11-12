@@ -40,3 +40,9 @@ Telegram (`intents.tg`) is a live referral surface in census (~20% of tagged) bu
 - **TG attach dial bounded**: half@10bp ≈ $1.37M/yr; fee map still Gap (`tg_attach_dial`)
 - **SK exit resilience split**: fee low / distribution high (`sk_exit_resilience_split`)
 - **Relayer fee≠UX**: ~2000× vol/fee asymmetry on top1 outage (`relayer_fee_ux_asymmetry`)
+
+### Also closed-enough this sweep
+- **Fee engine ≠ L1** sized from preliminary history (`history_fee_engine_vs_l1`)
+- **Dial elasticity** capture-pp ≈3.07× vol-pp; SK-tax ≈42.5 vol-pp (`dial_elasticity_board`)
+- **Opacity product stack** attest+CIF framed as underwriting product (`opacity_product_stack`)
+- **No-vol coverage path** to ~43% with HSP+conservative stack (`coverage_path_no_vol`)

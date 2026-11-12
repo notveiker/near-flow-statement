@@ -1,20 +1,20 @@
 {
- "hours_to_submit": 66.7,
- "score": {
-  "prop_docs": 1.0,
-  "dashboard": 1.0,
-  "derived_coverage": 1.0,
-  "punch_depth": 1.0,
-  "history_preliminary": 0.5,
-  "public_repo": 0.0,
-  "x_demo_dry_run": 0.0
- },
- "blocker": [
-  "public_repo",
-  "X_demo_dry_run"
- ],
- "clusters": 163,
- "commits": 410,
- "note": "Readiness: prop/dashboard/punch strong; history preliminary by design; blockers are public_repo + X dry-run. ~66.7h to submit. Exploratory ops score.",
- "overall_excl_must_ship": 0.9
+  "hours_to_submit": 65.0,
+  "score": {
+    "prop_docs": 1.0,
+    "dashboard": 1.0,
+    "derived_coverage": 1.0,
+    "punch_depth": 1.0,
+    "history_preliminary": 0.55,
+    "public_repo": 0.0,
+    "x_demo_dry_run": 0.0
+  },
+  "blocker": [
+    "public_repo",
+    "X_demo_dry_run"
+  ],
+  "clusters": 172,
+  "commits": 454,
+  "overall_excl_must_ship": 0.91,
+  "note": "Readiness: prop/dashboard/punch strong; history denser (172); blockers public_repo + X. ~65.0h. Exploratory ops score."
 }

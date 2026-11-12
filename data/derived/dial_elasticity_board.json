@@ -1,0 +1,80 @@
+{
+  "asof": "2026-11-12",
+  "marginal_capture_share_pp_rr_m": 0.74,
+  "marginal_volume_pp_rr_m": 0.24,
+  "capture_vs_volume_x": 3.07,
+  "rows": [
+    {
+      "dial": "sk_tax_25",
+      "rr_m": 10.2,
+      "type": "capture",
+      "volume_pp_equivalent": 42.5,
+      "note": "capture-side"
+    },
+    {
+      "dial": "mix_10pp_nearcom",
+      "rr_m": 9.7,
+      "type": "capture",
+      "volume_pp_equivalent": 40.4,
+      "note": "capture-side"
+    },
+    {
+      "dial": "attest_escrow",
+      "rr_m": 8.4,
+      "type": "trust",
+      "volume_pp_equivalent": 35.0,
+      "note": "trust/defense not additive to capture elasticity"
+    },
+    {
+      "dial": "conversion_2x",
+      "rr_m": 5.5,
+      "type": "capture",
+      "volume_pp_equivalent": 22.9,
+      "note": "capture-side"
+    },
+    {
+      "dial": "adr_half",
+      "rr_m": 5.71,
+      "type": "defense",
+      "volume_pp_equivalent": 23.8,
+      "note": "trust/defense not additive to capture elasticity"
+    },
+    {
+      "dial": "cif_1bp",
+      "rr_m": 3.31,
+      "type": "gap",
+      "volume_pp_equivalent": 13.8,
+      "note": "capture-side"
+    },
+    {
+      "dial": "conservative_capture_stack",
+      "rr_m": 18.0,
+      "type": "stack",
+      "volume_pp_equivalent": 75.0,
+      "note": "capture-side"
+    }
+  ],
+  "headline": "+1pp capture-share \u2248 $0.74M/yr vs +1pp volume \u2248 $0.24M/yr (\u00d73.07). SK-tax ~$10.2M \u2248 ~42.5 volume-pp \u2014 renegotiation beats cheerleading. Exploratory.",
+  "mutex_reminder": [
+    {
+      "a": "sk_tax_25",
+      "b": "no_bb_half_redirect",
+      "why": "both claim partner fee pool"
+    },
+    {
+      "a": "sk_tax_25",
+      "b": "gross_5pp_to_near",
+      "why": "gross share path overlaps tax renegotiation"
+    },
+    {
+      "a": "mix_nearcom_10pp",
+      "b": "wallet_implied_7_7",
+      "why": "stated mix overstates fee-touch"
+    },
+    {
+      "a": "attest_escrow",
+      "b": "underwriting_band",
+      "why": "same disclosure event; $ vs confidence"
+    }
+  ]
+}

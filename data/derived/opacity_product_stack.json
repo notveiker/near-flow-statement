@@ -1,0 +1,24 @@
+{
+  "asof": "2026-11-12",
+  "confidential_share_of_measured_capture_pct": 71.2,
+  "user_all_in_vs_capture_x": 10.6,
+  "product_legs": [
+    {
+      "leg": "attestation",
+      "rr_m_trust": 8.4,
+      "job": "collapse 4.5\u201315.8% underwriting band; unlock institutional buy of existing dollars"
+    },
+    {
+      "leg": "cif_rate_card_1bp",
+      "rr_m_gap": 3.31,
+      "job": "price confidential inventory; Gap until published"
+    },
+    {
+      "leg": "selective_disclosure_tooling",
+      "rr_m": null,
+      "job": "auditor GA \u2014 diligence product, not take-rate"
+    }
+  ],
+  "stack_trust_plus_gap_rr_m": 11.71,
+  "read": "~71.2% of measured capture is unattested escrow \u2014 opacity is the inventory. Attestation ($8.4M trust) + CIF 1bp Gap ($3.3M) is an underwriting product stack, not a volume story. User all-in still ~10.6\u00d7 token claim. Exploratory."
+}

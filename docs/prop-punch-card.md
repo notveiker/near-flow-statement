@@ -366,3 +366,10 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 170 / 2026Q2_08 | _08 contest-year continuing — still not supported | history_progress_2026q2_08 |
 | History 171 / 2026Q3_08 | Q4_08 last of 2026 _08 — still not supported | history_progress_2026q3_08 |
 | Sweep ~451 identity | Distribution owns margin; leakage then volume; Hold until H1b; must-ship public+X | sweep_450_identity |
+| Fee engine ≠ L1 | History U1/U4/U5 ~0.18–0.26× YoY while intents ~100× vs 2025Q1 — object is Intents fees on cooling L1 | history_fee_engine_vs_l1 |
+| Dial elasticity | +1pp capture-share ≈3.07× +1pp vol; SK-tax ~$10.2M ≈ ~42.5 volume-pp | dial_elasticity_board |
+| Opacity product stack | Attest $8.4M + CIF 1bp $3.3M underwrites ~71% unattested capture — product not volume | opacity_product_stack |
+| Coverage path no vol | Today ~15.8% → HSP-029 ~24.7% → attach60+HSP ~32.7% → cons.stack+HSP ~42.8%; still <100% | coverage_path_no_vol |
+| History counter-evidence | Burn/signers/tx fell many quarters; intents fell 2025Q4–2026Q2 — Hold binder | history_counter_evidence_board |
+| History 172 / 2026Q4_08 | _08 through 2026 complete; entering _09 — still not supported | history_progress_2026q4_08 |
+| Q4 Ref concentration flag | 2026Q4 top-receiver Ref ~44% / ok-receipt ~0.90 — stratum caution | history_counter_evidence_board |

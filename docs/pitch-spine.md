@@ -83,3 +83,8 @@ DefiLlama Intents fees −31.6% MoM with vol −12% — absolute cool; quality p
 <!-- AUTO:LEDGERS -->
 **Ledgers (do not sum):** capture raise (SK-tax/conversion/…) · trust raise (attest) · defense (ADR) · mint tension (HSP-007) · contestable rent (solver residual).
 <!-- /AUTO:LEDGERS -->
+
+<!-- AUTO:SPINE_ELASTIC -->
+**Elasticity line:** Every capture-share point is worth ~3× a volume point in $/yr — open on leakage, close on volume only after the dials (`dial_elasticity_board.json`).
+**L1 line:** Base-layer YoY is ~0.2×; Intents receipts are ~100× vs early-2025 — do not sell L1 recovery (`history_fee_engine_vs_l1.json`).
+<!-- /AUTO:SPINE_ELASTIC -->

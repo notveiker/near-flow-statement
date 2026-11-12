@@ -77,3 +77,11 @@ Do not lead: AI, npm, ETF, peer-share, L1 actives, CS-as-fee.
 <!-- /AUTO:WHAT_PROP -->
 
 *Sweep inventory: ~415 commits · 164 clusters · ~322 punch · Hold until H1b · must-ship public repo + X.*
+
+<!-- AUTO:PROP_BATCH_ELASTIC -->
+### Fresh this sweep
+- **Fee engine ≠ L1** — Intents receipts ~100× vs 2025Q1 while L1 tx/signers/burn ~0.18–0.26× YoY (`history_fee_engine_vs_l1.json`).
+- **Dial elasticity** — capture-share pp worth ~3.07× volume pp; SK-tax ≈ ~42.5 vol-pp (`dial_elasticity_board.json`).
+- **Opacity product** — attest + CIF rate card underwrites ~71% unattested capture (`opacity_product_stack.json`).
+- **Coverage without volume** — path to ~43% coverage via HSP-029 + conservative capture stack; volume still last mile for 50× (`coverage_path_no_vol.json`).
+<!-- /AUTO:PROP_BATCH_ELASTIC -->

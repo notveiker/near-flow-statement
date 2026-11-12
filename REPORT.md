@@ -141,12 +141,12 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **Four ~$10M surfaces:** SK-tax ~$10.2M · attest ~$8.4M · HSP-007 10% ~$11.8M · solver residual ~$11.4M. Do not sum.
-- **Call order:** Ledger → attest → CIF → ADR defense → conversion → TG → LI.FI → dense fronts.
-- **Near-term board:** leakage/trust/defense before volume; quality already 1.72× on cool.
-- **Opacity:** ~71% of measured capture unattested; user all-in ~10.6× token claim.
-- **Delivery blockers:** public repo + X dry-run (~66h to submit).
-- **History:** 170 clusters; denser `_08` through mid-2026; overall still not supported.
+- **Fee engine ≠ L1:** YoY tx/signers/burn ~0.18–0.26× while intents.near ~100× vs 2025Q1 — pitch Intents capture, not L1 rebound (`history_fee_engine_vs_l1`).
+- **Dial elasticity:** +1pp capture-share ≈ **3.07×** +1pp volume; SK-tax ~$10.2M ≈ **~42.5 volume-pp** (`dial_elasticity_board`).
+- **Opacity product:** attest $8.4M + CIF 1bp $3.3M underwrites ~71% unattested capture — disclosure product, not cheerleading.
+- **No-vol coverage path:** ~15.8% → HSP-029 ~24.7% → attach60+HSP ~32.7% → conservative stack+HSP ~42.8% (still short of full offset; volume last mile for 50×).
+- **Four ~$10M + call order** unchanged; Hold until H1b; must-ship public repo + X (~65h).
+- **History:** 172 clusters; `_08` through 2026 done; entering denser `_09`; overall still not supported.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context

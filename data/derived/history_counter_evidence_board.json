@@ -1,0 +1,23 @@
+{
+  "asof": "2026-11-12",
+  "clusters_used": 172,
+  "n_quarters_burn_fell": 12,
+  "n_quarters_tx_fell": 10,
+  "n_quarters_signers_fell": 14,
+  "recent_intents_fell": [
+    "2025Q4",
+    "2026Q1",
+    "2026Q2"
+  ],
+  "top_receiver_2026q3": {
+    "account": "game.hot.tg",
+    "share": 0.13465298142717497
+  },
+  "q4_2026_flag": {
+    "top_receiver": "v2.ref-finance.near",
+    "top_receiver_share_point": 0.444,
+    "ok_receipt_share_point": 0.896,
+    "note": "2026Q4 sample: Ref Finance ~44% top-receiver / ok-receipt share ~0.90 \u2014 denser stratum caution, not a thesis flip."
+  },
+  "honesty": "Burn fell in 12 quarters; signers fell in 14; intents/day fell 2025Q4\u20132026Q2. Counter-evidence is the Hold binder beside H1b \u2014 pitch quality-on-cool, not L1 recovery. Preliminary."
+}

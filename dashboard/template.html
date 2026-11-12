@@ -195,6 +195,10 @@ footer code{font-size:12px;color:var(--soft)}
     <div class="card reveal"><h3>Four ~$10M surfaces</h3><p class="sub">Capture raise · trust raise · mint claim · contestable rent. Do not sum. Exploratory.</p><div id="four-ten"></div><div class="foot">From <span class="mono">four_ten_m_board.json</span> / <span class="mono">judge_one_pager_stack.json</span>.</div></div>
     <div class="card reveal"><h3>Immaterial → material ladder</h3><p class="sub">Lead the right end. AI/npm/ETF stay off the open.</p><div id="immaterial-ladder"></div><div class="foot">From <span class="mono">immaterial_to_material_ladder.json</span>. CIF 1bp is a Gap dial (unpublished rate card).</div></div>
   </div>
+  <div class="grid2" style="margin-top:var(--s4)">
+    <div class="card reveal"><h3>Dial elasticity (capture vs volume)</h3><p class="sub">How many volume points equal one capture dial. Exploratory — not a forecast.</p><div id="dial-elasticity"></div><div class="foot">From <span class="mono">dial_elasticity_board.json</span>. Prefer leakage renegotiation before volume cheerleading.</div></div>
+    <div class="card reveal"><h3>Fee engine ≠ L1 + no-vol coverage</h3><p class="sub">Preliminary history: Intents on a cooling base layer. Coverage path without assuming 4× volume.</p><div id="fee-engine-l1"></div><div class="foot">From <span class="mono">history_fee_engine_vs_l1.json</span> / <span class="mono">coverage_path_no_vol.json</span> / <span class="mono">opacity_product_stack.json</span>.</div></div>
+  </div>
 </div></section>
 
 <section id="builders"><div class="wrap">
@@ -538,6 +542,30 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     const maxC = Math.max(...top.map(r => +r.rr_m_at_stake || 0), 1);
     $("#immaterial-ladder").innerHTML += `<p class="sub" style="margin-top:var(--s3)"><b>Call order</b></p>` +
       top.map(r => `<div class="hbar"><span>${r.who}</span><span class="t"><i style="width:${Math.min(100, (+r.rr_m_at_stake||0)/maxC*100)}%"></i></span><span class="p mono">~$${(+r.rr_m_at_stake||0).toFixed(1)}M</span></div>`).join("");
+  }
+  const El = D.catalysts && D.catalysts.dial_elasticity;
+  if (El && El.rows && $("#dial-elasticity")) {
+    const show = El.rows.filter(r => r.type !== 'trust' && r.type !== 'defense').slice(0, 6);
+    const maxE = Math.max(...show.map(r => +r.volume_pp_equivalent || 0), 1);
+    $("#dial-elasticity").innerHTML =
+      `<p class="sub">Capture-share pp ≈ <b class="mono">${El.capture_vs_volume_x}×</b> volume pp in $/yr.</p>` +
+      show.map(r => `<div class="hbar"><span>${r.dial}</span><span class="t"><i style="width:${Math.min(100,(+r.volume_pp_equivalent||0)/maxE*100)}%"></i></span><span class="p mono">~${(+r.volume_pp_equivalent||0).toFixed(0)} vol-pp</span></div>`).join("") +
+      `<p class="sub" style="margin-top:var(--s3)">${(El.headline||'').split('.')[0]}.</p>`;
+  } else if ($("#dial-elasticity")) {
+    $("#dial-elasticity").innerHTML = `<p class="sub">Elasticity board appears when dial_elasticity_board is in the build.</p>`;
+  }
+  const Fe = D.catalysts && D.catalysts.fee_engine_vs_l1;
+  const Cov = D.catalysts && D.catalysts.coverage_no_vol;
+  const Op = D.catalysts && D.catalysts.opacity_product;
+  if ($("#fee-engine-l1")) {
+    const bits = [];
+    if (Fe) bits.push(`L1 YoY tx ~<b class="mono">${Fe.l1_yoy_tx_x}×</b> / signers ~${Fe.l1_yoy_signers_x}× / burn ~${Fe.l1_yoy_burn_x}×; intents.near ~<b class="mono">${Math.round(Fe.intents_vs_2025q1_x)}×</b> vs 2025Q1. Overall: <b>${Fe.overall}</b>.`);
+    if (Op) bits.push(`Opacity product: attest + CIF 1bp ≈ ~$${(Op.stack_trust_plus_gap_rr_m||0).toFixed(1)}M underwriting stack on ~${Op.confidential_share_of_measured_capture_pct}% unattested capture.`);
+    if (Cov && Cov.steps) {
+      const last = Cov.steps[Cov.steps.length - 1];
+      bits.push(`No-vol coverage path → ~<b class="mono">${last.coverage_pct}%</b> at conservative stack + HSP-029 (still short of 100%; volume last mile for 50×).`);
+    }
+    $("#fee-engine-l1").innerHTML = bits.length ? `<p class="sub">${bits.join(' ')}</p>` : `<p class="sub">Fee-engine / coverage cards appear when derived JSON is in the build.</p>`;
   }
 }
 

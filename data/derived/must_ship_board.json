@@ -1,36 +1,39 @@
 {
- "hours_to_submit": 65.2,
- "clusters": 171,
- "commits": 449,
- "prop_ready": true,
- "dashboard_ready": true,
- "history_preliminary": true,
- "must_ship": [
-  {
-   "item": "public_repo",
-   "status": "TODO"
-  },
-  {
-   "item": "X_demo_dry_run",
-   "status": "TODO"
-  },
-  {
-   "item": "F1-F4_on_day",
-   "status": "scheduled_14_nov"
-  }
- ],
- "shipped": [
-  "pitch_spine",
-  "submit_packet",
-  "prop_topline",
-  "f1_f4",
-  "controllable_dials",
-  "four_ten_m",
-  "call_order",
-  "pitch_locked_lines",
-  "near_term_board",
-  "risks_compact",
-  "judge_capture_card"
- ],
- "note": "Prop ready. Must-ship public repo + X. ~65.2h. 171 clusters preliminary. ~449 commits."
+  "hours_to_submit": 65.0,
+  "clusters": 172,
+  "commits": 454,
+  "prop_ready": true,
+  "dashboard_ready": true,
+  "history_preliminary": true,
+  "must_ship": [
+    {
+      "item": "public_repo",
+      "status": "TODO"
+    },
+    {
+      "item": "X_demo_dry_run",
+      "status": "TODO"
+    },
+    {
+      "item": "F1-F4_on_day",
+      "status": "scheduled_14_nov"
+    }
+  ],
+  "shipped": [
+    "pitch_spine",
+    "submit_packet",
+    "prop_topline",
+    "f1_f4",
+    "controllable_dials",
+    "four_ten_m",
+    "call_order",
+    "pitch_locked_lines",
+    "near_term_board",
+    "risks_compact",
+    "dial_elasticity",
+    "opacity_product",
+    "coverage_path_no_vol",
+    "fee_engine_vs_l1"
+  ],
+  "note": "Prop ready; blockers still public_repo + X dry-run; ~65.0h; 172 clusters / 454 commits."
 }

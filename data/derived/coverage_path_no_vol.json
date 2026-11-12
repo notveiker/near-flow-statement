@@ -1,0 +1,40 @@
+{
+  "asof": "2026-11-12",
+  "steps": [
+    {
+      "step": "today",
+      "coverage_pct": 15.81,
+      "needs_vol": false
+    },
+    {
+      "step": "hsp029_cap_1_6_alone",
+      "coverage_pct": 24.7,
+      "needs_vol": false,
+      "note": "issuance dial only; pending-not-live until after 16 Nov"
+    },
+    {
+      "step": "attach_60_current_mint",
+      "coverage_pct": 20.9,
+      "needs_vol": false
+    },
+    {
+      "step": "attach_60_plus_hsp029",
+      "coverage_pct": 32.7,
+      "needs_vol": false
+    },
+    {
+      "step": "conservative_capture_stack_18m",
+      "coverage_pct": 27.4,
+      "needs_vol": false,
+      "fee_mult": 1.74
+    },
+    {
+      "step": "conservative_stack_plus_hsp029",
+      "coverage_pct": 42.8,
+      "needs_vol": false
+    }
+  ],
+  "breakeven_x_today": 6.4,
+  "still_short_of_100": true,
+  "read": "No-vol coverage path: today ~15.81% \u2192 HSP-029 alone ~24.7% \u2192 attach60+HSP ~32.7% \u2192 conservative capture stack (~$18.0M)+HSP ~42.8%. Still short of full offset; volume remains last mile for 50\u00d7. HSP-029 is pending-not-live for pitch (timelock 16 Nov). Exploratory arithmetic."
+}
