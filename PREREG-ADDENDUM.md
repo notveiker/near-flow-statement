@@ -215,3 +215,7 @@ Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. R
 ## 2026-11-12 23:43 UTC: follow-up F1 on the escrow's solver family, method fixed before it runs
 
 Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. Written after the Q1 to Q4 results, in response to Q1's finding that most escrow wNEAR belongs to one solver family. Question, rule and falsifier are in the F1 section of `docs/chain-rebuild-method.md`, committed with the two queries before either runs.
+
+## 2026-11-12 23:44 UTC: follow-up F1 result and follow-up F2, method fixed before it runs
+
+Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. **F1 ran at 23:43 UTC, after its method commit (`29f1697`, 23:43:24 UTC):** H-F1 (the escrow is a solver liquidity pool) is **falsified**: external wNEAR deposits into the solver family are 30.8M NEAR, 78.5% of the family's 39.2M gross inflow to the escrow (the falsifier was 50%); recycling ratio 2.4 (support needed 5). All external deposits were signed by `bridge-mng.near` (transaction receiver `wrap.near`): 0.8M in July, 5.4M August, 19.3M September, 5.3M October. Withdrawals from the family: 14.4M `mt_burn` and 13.6M native NEAR to one account (`d6b77389…`). F2 asks who funds `bridge-mng.near`; its question, rule and falsifier are in the F2 section of `docs/chain-rebuild-method.md`, committed with its query before it runs.

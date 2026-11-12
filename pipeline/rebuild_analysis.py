@@ -285,8 +285,39 @@ def q4() -> dict:
     }
 
 
+# ------------------------------------------------------------------ F1
+FAMILY = {"solver-priv-liq.near", "solver-multichain-asset.near", "solver-multichain-asset-escrow.near", "solver-multichain-asset-2.near"}
+
+
+def f1() -> dict:
+    rows = [r for r in load("rb_q1a_escrow_ledger") if r["event"] == "mt_transfer"]
+    gin = sum(int(r["mt_yocto"]) for r in rows if r["new_owner"] == ESCROW and r["old_owner"] in FAMILY) / Y
+    gout = sum(int(r["mt_yocto"]) for r in rows if r["old_owner"] == ESCROW and r["new_owner"] in FAMILY) / Y
+    dep = load("rb_f1a_family_deposits")
+    by_signer = Counter()
+    month = Counter()
+    for r in dep:
+        by_signer[(r["signer"], r["tx_receiver"])] += int(r["yocto"]) / Y
+        month[r["day"][:7]] += int(r["yocto"]) / Y
+    wd = load("rb_f1b_family_withdrawals")
+    burn = sum(int(r["yocto"] or 0) for r in wd if r["event"] == "mt_burn") / Y
+    native = Counter()
+    for r in wd:
+        if r["event"] == "native_withdraw":
+            native[r["receiver_id"]] += int(r["yocto"] or 0) / Y
+    ext = sum(by_signer.values())
+    net = ext - burn
+    unst = set(json.loads((RAW / "unstakers" / "account_set.json").read_text())["accounts"])
+    return {"family": sorted(FAMILY), "gross_inflow_to_escrow_near": gin, "gross_outflow_from_escrow_near": gout,
+            "external_mint_deposits_near": ext, "external_deposits_over_gross_inflow": ext / gin, "mt_burn_near": burn,
+            "native_withdraw_by_receiver_near": dict(native), "net_external_near": net, "recycling_ratio": gin / net if net > 0 else None,
+            "H_F1_supported": (net > 0 and gin / net >= 5 and ext / gin < 0.25), "H_F1_falsified": ext / gin >= 0.5,
+            "deposits_by_signer": [{"signer": a, "tx_receiver": b, "near": v, "in_unstakers_set": a in unst} for (a, b), v in by_signer.most_common(5)],
+            "top5_signer_share": sum(v for _, v in by_signer.most_common(5)) / ext, "deposits_by_month_near": dict(month)}
+
+
 def main() -> int:
-    res = {"cutoff_block": 223_088_015, "windows": {"q1_q2": [WINDOW_START, CUTOFF_DATE], "q3_q4": [SWAP_START, CUTOFF_DATE]}, "q1": q1(), "q2": q2(), "q3": q3(), "q4": q4()}
+    res = {"cutoff_block": 223_088_015, "windows": {"q1_q2": [WINDOW_START, CUTOFF_DATE], "q3_q4": [SWAP_START, CUTOFF_DATE]}, "q1": q1(), "q2": q2(), "q3": q3(), "q4": q4(), "f1": f1()}
     jobs = [json.loads(l) for l in (OUT / "jobs.jsonl").read_text().splitlines()]
     res["bytes_billed_total"] = sum(j["bytes_billed"] for j in jobs)
     dest = ROOT / "data" / "derived" / "rebuild_results.json"

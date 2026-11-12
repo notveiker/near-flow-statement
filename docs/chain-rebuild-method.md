@@ -41,3 +41,9 @@ Question: Q1 found the escrow's wNEAR is mostly the inventory of a small solver 
 - **Hypothesis H-F1: the escrow is a solver liquidity pool, not a user deposit venue.** Supported if recycling ratio >= 5 and external deposits are under 25% of the family's gross inflow to the escrow. **Falsified** if external deposits (mint, by transaction signer) are at least 50% of that gross inflow.
 - **Depositor concentration:** top-5 share of external deposits by signer, and whether any signer is in the unstakers set or the exchange list. A named link to staking exits or exchanges is reported either way; a signer is the initiator, not proof of ownership (INFERRED).
 - Queries: `sql/rebuild/rb_f1a_family_deposits.sql`, `rb_f1b_family_withdrawals.sql`. Outputs, job IDs and hashes follow the same rules as above.
+
+## F2 (follow-up to F1; fixed before it runs)
+Question: F1 found 30.8M NEAR of wNEAR deposited into the solver family by one signer, `bridge-mng.near`. Who funds that account?
+- Source: `ft_events` for `wrap.near` with `bridge-mng.near` as the affected account, window 2026-07-07..2026-11-04: inflows by counterparty and cause (`MINT` = native NEAR wrapped by the account itself, origin not visible in this table; otherwise a transfer from the counterparty), and outflows.
+- **Hypothesis H-F2: the funding is concentrated and not from staking exits or exchanges.** Supported if the top 5 counterparties are at least 80% of transfer inflow and none is in the unstakers set or the exchange list. **Falsified** (as "not from staking/exchanges") if counterparties in either list supply at least 10% of inflow. If `MINT` is more than half of inflow the origin is not resolvable from this table and the question stays open (reported, not guessed).
+- Output tagged INFERRED where it reads ownership from a counterparty.

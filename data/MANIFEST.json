@@ -420,6 +420,20 @@
    "sha256": "e4e0d835c4755c7bb5eaa17042674dc0629b4fb88b3d0986120af4d045e2caf8",
    "source": "archival RPC mt_balance_of via pipeline.rebuild_rpc"
   },
+  "raw/rebuild/rb_f1a_family_deposits.json": {
+   "bytes": 13418,
+   "fetched_at": "2026-11-12T23:43:35Z",
+   "rows": 87,
+   "sha256": "9aa9ddd6b31888a712a0e406f1bf37467a7fcfc4fe1f335d0d2640f56abc81a1",
+   "source": "bigquery job rb_rb_f1a_family_deposits_20261112T234332Z: sql/rebuild/rb_f1a_family_deposits.sql"
+  },
+  "raw/rebuild/rb_f1b_family_withdrawals.json": {
+   "bytes": 77929,
+   "fetched_at": "2026-11-12T23:43:39Z",
+   "rows": 415,
+   "sha256": "3bd7249106dea960ef8dc2ec86edba117b200861b20d91a65cd0b7ffd1a06134",
+   "source": "bigquery job rb_rb_f1b_family_withdrawals_20261112T234336Z: sql/rebuild/rb_f1b_family_withdrawals.sql"
+  },
   "raw/rebuild/rb_q1a_escrow_ledger.json": {
    "bytes": 23579147,
    "fetched_at": "2026-11-12T23:32:49Z",

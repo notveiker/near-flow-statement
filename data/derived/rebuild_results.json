@@ -1,6 +1,41 @@
 {
- "bytes_billed_total": 383208390656,
+ "bytes_billed_total": 401107582976,
  "cutoff_block": 223088015,
+ "f1": {
+  "H_F1_falsified": true,
+  "H_F1_supported": false,
+  "deposits_by_month_near": {
+   "2026-07": 809840.9591037201,
+   "2026-08": 5380998.157517361,
+   "2026-09": 19336521.80477765,
+   "2026-10": 5271612.592879571
+  },
+  "deposits_by_signer": [
+   {
+    "in_unstakers_set": false,
+    "near": 30798973.514278293,
+    "signer": "bridge-mng.near",
+    "tx_receiver": "wrap.near"
+   }
+  ],
+  "external_deposits_over_gross_inflow": 0.7849563634781269,
+  "external_mint_deposits_near": 30798973.514278293,
+  "family": [
+   "solver-multichain-asset-2.near",
+   "solver-multichain-asset-escrow.near",
+   "solver-multichain-asset.near",
+   "solver-priv-liq.near"
+  ],
+  "gross_inflow_to_escrow_near": 39236542.24269056,
+  "gross_outflow_from_escrow_near": 25445504.668348655,
+  "mt_burn_near": 14388794.345124844,
+  "native_withdraw_by_receiver_near": {
+   "d6b77389d5d0a14f5516dc022a0c7fbf39109af066c8b22dca2ce027efed47c3": 13606732.021309018
+  },
+  "net_external_near": 16410179.169153448,
+  "recycling_ratio": 2.390988047007086,
+  "top5_signer_share": 1.0
+ },
  "q1": {
   "attack_test": {
    "S_accounts": [
