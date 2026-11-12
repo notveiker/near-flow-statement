@@ -329,6 +329,7 @@ def build() -> dict:
             "delivery_countdown": optional("derived/delivery_countdown.json"),
             "one_breath": optional("derived/judge_one_breath.json"),
             "call_order_elasticity": optional("derived/call_order_elasticity.json"),
+            "sweep_depth": optional("derived/sweep_depth_board.json"),
         },
         "repro": reproducibility(),
     }

@@ -588,6 +588,8 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);
     if (Dc) bits.push(`Delivery: ~${Dc.hours_to_submit}h — blockers public repo + X.`);
+    const Sd = D.catalysts && D.catalysts.sweep_depth;
+    if (Sd) bits.push(`Sweep depth: ~${Sd.commits} commits / ${Sd.clusters} clusters / ~${Sd.punch_table_rows_approx} punch rows.`);
     $("#fee-engine-l1").innerHTML = bits.length ? `<p class="sub">${bits.join(' ')}</p>` : `<p class="sub">Fee-engine / coverage cards appear when derived JSON is in the build.</p>`;
   }
 }
