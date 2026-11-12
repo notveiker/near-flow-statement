@@ -1,10 +1,10 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 60.7,
-  "hours_to_hsp029": 84.7,
+  "hours_to_submit": 60.2,
+  "hours_to_hsp029": 84.2,
   "prop_ready": true,
-  "history_clusters": 194,
-  "commits_since_structural": 531,
+  "history_clusters": 197,
+  "commits_since_structural": 540,
   "blockers": [
     {
       "item": "public_repo",
@@ -19,9 +19,9 @@
   ],
   "non_blockers": [
     "history_preliminary",
-    "_11_seals"
+    "_12_seals"
   ],
   "readme_judge_path": "READY",
   "x_script": "READY",
-  "read": "~60.7h. Prop OK. Public+X bind. Exploratory."
+  "read": "~60.2h. Prop OK (540 commits / 197 clusters). Public+X bind. Exploratory."
 }
