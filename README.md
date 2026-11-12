@@ -50,3 +50,5 @@ MIT
 ## Proprietary hyper-sweep (judge path)
 
 Start at `docs/prop-topline.md` → `docs/x-demo-talking-points.md` → dashboard Capture **Controllable dials**. Densest JSON: `data/derived/judge_one_pager_stack.json`. Stance: Hold until H1b; HSP-029 pending-not-live.
+
+Judge spine: [`docs/pitch-spine.md`](docs/pitch-spine.md).

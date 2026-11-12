@@ -31,3 +31,5 @@ Does **not** move τ: perps OI, npm downloads, unlabeled AI volume, CS signature
 ## Close
 
 Pre-registered F1–F4 in `docs/f1-f4-scorecard.md`. History sample preliminary — not a supported claim.
+
+Full spine: [`pitch-spine.md`](pitch-spine.md).

@@ -1,17 +1,20 @@
 {
- "asof_utc": "2026-11-12T01:20:00Z",
- "commits_since_structural": 237,
- "derived_json_approx": 161,
- "punch_rows_approx": 130,
+ "asof_utc": "2026-11-12T01:24:00Z",
+ "commits_since_structural": 249,
+ "derived_json_approx": 185,
+ "punch_rows_approx": 160,
  "history_clusters_preliminary": 142,
+ "hours_to_submit_approx": 70,
  "headline_props": [
   "leakage_bridge_sk_tax",
   "ledger_equals_near_capture",
   "appfees_conversion_9pct",
   "quality_on_cool",
-  "trust_path_1_7m",
-  "unexplained_bb_68pct",
-  "attach_path_evidenced_1_72x"
+  "nearcom_wallet_gap",
+  "channel_bb_density",
+  "h1b_still_binding",
+  "peerset_softening",
+  "what_moves_tau"
  ],
- "note": "Hyper sweep continuing; history seals early-stratum still preliminary."
+ "note": "Hyper sweep past ~250 commits; pitch-spine shipped; 2023Q3_06 still sealing."
 }

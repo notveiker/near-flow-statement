@@ -76,3 +76,5 @@ Investment object: `data/derived/investment_object.json`.
 Stance: **Hold until H1b**. HSP-029 pending-not-live (timelock 16 Nov; submit 14 Nov).
 
 Aggregator dilutives: LI.FI 10% vol @ 2.8 bp (density 0.69×); lift-to-10bp pack with Rango ≈ ~$1.4M/yr. H1b still ~20–25% coverage.
+
+Full spine: [`pitch-spine.md`](pitch-spine.md).
