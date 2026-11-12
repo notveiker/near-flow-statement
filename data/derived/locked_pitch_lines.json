@@ -1,17 +1,17 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 53.1,
-  "clusters": 233,
-  "commits": 682,
+  "hours_to_submit": 52.3,
+  "clusters": 238,
+  "commits": 704,
   "lines": [
-    "Fee\u2260L1 OoM: Intents ~180\u2013192\u00d7 (drifts; always \u226b100\u00d7) vs L1 ~0.22\u00d7.",
-    "Intents \u224898.8% of NEAR DEX \u2014 the chain's DEX surface is Intents distribution.",
-    "Leakage is the bridge: close ~$50M \u2192 50\u00d7 needs only ~1.29\u00d7 vol.",
-    "Default/no-ref rail IS the fee engine (18.7% vol \u2192 45.8% BB$); logos = vol w/o capture.",
+    "Fee\u2260L1 OoM: Intents ~175\u2013202\u00d7 (drifts; always \u226b100\u00d7) vs L1 ~0.22\u00d7.",
+    "Intents \u224898.8% of NEAR DEX \u2014 the chain's DEX surface is Intents.",
+    "HEADLINE: Leakage is the bridge \u2014 close ~$50M \u2192 50\u00d7 needs only ~1.29\u00d7 vol.",
+    "Default/no-ref rail IS the fee engine (18.7%\u219245.8% BB$); logos = vol w/o capture.",
     "SK-tax ~$10.2M first; mcap/rev 217\u00d7 vs THOR 16\u00d7 = discretionary claim; Hold until H1b.",
-    "No-vol wall ~42.8%; capital-light; attest ~5.7\u00d7 Trust payoff.",
-    "History densified; overall not supported \u2014 honesty.",
-    "URGENT: public repo + X 90s dry-run (script ready)."
+    "Escrow BB rail \u219258.5% \u2014 Trust urgency; attest ~5.7\u00d7 band compression.",
+    "704 commits / _12\u2013_16 densified; overall not supported \u2014 honesty.",
+    "NOW: flip repo public + record X 90s (script ready) + submit."
   ],
   "do_not_lead": [
     "AI",
@@ -23,7 +23,11 @@
     "perps",
     "bond-demand",
     "pip",
-    "volume-alone"
+    "volume-alone",
+    "builder pulse",
+    "Aurora",
+    "H1c",
+    "Bitwise"
   ],
-  "read": "Locked 8 lines @~53h/233cl/682c. Exploratory."
+  "read": "Locked 8 lines @~52h/238cl/704c. Exploratory."
 }
