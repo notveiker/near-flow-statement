@@ -833,6 +833,10 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (Lvn) bits.push(`Logo partners = volume without capture; convert logos→BB rails.`);
     const T10 = D.catalysts && D.catalysts.top10_prop;
     if (T10) bits.push(`<b>Top-10:</b> ${T10.top10_proprietary.map(x=>x.claim).slice(0,5).join(' · ')} …`);
+    const H29m = D.catalysts && D.catalysts.hsp029_mint;
+    const Ap = D.catalysts && D.catalysts.attest_payoff;
+    if (H29m) bits.push(`HSP-029 alone = mint↓ not capture dial.`);
+    if (Ap) bits.push(`Attest band compression = Trust payoff (parallel to SK-tax).`);
     const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);

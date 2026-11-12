@@ -1,0 +1,14 @@
+{
+  "asof": "2026-11-12",
+  "hsp029": {
+    "issuance_offset_today_pct": 15.81,
+    "issuance_offset_at_16_cap_flat_fees_pct": 24.3,
+    "fee_covers_mint_today_x": 0.205,
+    "fee_covers_mint_hsp029_x": 0.315,
+    "hsp029_alone_closes_gap_to_1x": false,
+    "remaining_gap_x_at_hsp029": 3.17,
+    "note": "HSP-029 alone lifts fee\u00f7mint$ from ~0.21\u00d7 to ~0.32\u00d7 and issuance-offset from ~16% to ~24% at flat fees \u2014 helpful denominator, not a close. Still ~3.2\u00d7 fee/volume gap to 1\u00d7 coverage. Exploratory."
+  },
+  "implication": "HSP-029 alone is mint\u2193 not fee\u2191 \u2014 pending-then-lagged coverage helper, not a capture dial",
+  "read": "HSP-029 alone: {'issuance_offset_today_pct': 15.81, 'issuance_offset_at_16_cap_flat_fees_pct': 24.3, 'fee_covers_mint_today_x': 0.205, 'fee_covers_mint_hsp. Exploratory."
+}

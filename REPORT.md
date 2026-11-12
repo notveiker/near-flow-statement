@@ -141,9 +141,9 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~661 commits / 229 clusters / ~54h.** `_16` sealing. Overall still **not supported**.
-- Locked pitch refreshed. Default rail = fee engine; 217× claim design; SK-tax first.
-- **URGENT human-only:** public repo + X dry-run. Hold until H1b.
+- **~662 commits / 229 clusters / ~54h.** `_16` sealing. Overall still **not supported**.
+- HSP-029 alone = mint not capture; full capture still needs volume; attest = Trust payoff.
+- **URGENT:** public + X. Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context

@@ -653,3 +653,7 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Top-10 proprietary for judges | Fee≠L1; leakage; SK-tax; default rail; 217×; wall; opacity; CL; H1b; public+X | top10_proprietary_for_judges |
 | History 229 / 2025Q1_16 | intents~192×; _16 filling; not supported | history_progress_2025q1_16 |
 | 660-commit milestone | intents×~192 rebound under _16; still OoM | commits_660_milestone |
+| Capture-share path = sizing not 50× | Capture-share path: {'gross_bp': 15.3, 'today_capture_share_pct': 32.5, 'scenarios': [{'capture_share_pct': 40, 'captured_bp': 6.12, 'run_ra | capture_share_path_is_sizing_not_50x |
+| Full capture still needs volume | Full-capture extreme: {'at_full_gross_capture_15_3bp': {'rr_m': 74.5, 'vol_x_for_1x_hsp029_mint': 1.03, 'vol_x_for_50x': 1.29}, 'read': 'If  | full_capture_still_needs_volume |
+| HSP-029 alone = mint not capture | HSP-029 alone: {'issuance_offset_today_pct': 15.81, 'issuance_offset_at_16_cap_flat_fees_pct': 24.3, 'fee_covers_mint_today_x': 0.205, 'fee_ | hsp029_alone_is_mint_not_capture |
+| Attest band = Trust payoff | Attest band: {'band_today_pct': [4.5, 15.8], 'band_width_pp': 11.3, 'mid_pct': 10.15, 'post_disclosure_band_pct_sketch': [9.2, 11.2], 'width | attest_band_is_trust_payoff |

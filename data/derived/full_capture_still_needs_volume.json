@@ -1,0 +1,13 @@
+{
+  "asof": "2026-11-12",
+  "extreme": {
+    "at_full_gross_capture_15_3bp": {
+      "rr_m": 74.5,
+      "vol_x_for_1x_hsp029_mint": 1.03,
+      "vol_x_for_50x": 1.29
+    },
+    "read": "If NEAR captured the entire 15.3 gross bp (zero leakage) after HSP-029, mint coverage is ~1\u00d7 at current volume; 50\u00d7 needs only ~1.3\u00d7 volume. The leakage pool is the bridge; volume is the last mile. Exploratory extreme."
+  },
+  "implication": "Full-capture extreme still leaves volume residual \u2014 confirms leakage-then-volume",
+  "read": "Full-capture extreme: {'at_full_gross_capture_15_3bp': {'rr_m': 74.5, 'vol_x_for_1x_hsp029_mint': 1.03, 'vol_x_for_50x': 1.29}, 'read': 'If NEAR captured the enti. Exploratory."
+}
