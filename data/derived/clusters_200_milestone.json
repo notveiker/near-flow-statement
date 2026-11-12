@@ -1,0 +1,13 @@
+{
+  "asof": "2026-11-12",
+  "clusters": 200,
+  "commits": 549,
+  "hours_to_submit": 59.6,
+  "overall": "not_supported",
+  "history_not_submit_blocker": true,
+  "must_ship": [
+    "public_repo_STILL_PRIVATE",
+    "X_demo_dry_run"
+  ],
+  "read": "**200 clusters** milestone on denser path through _12/2025. Overall still not supported. Repo still private (~59.6h). Prop ready. Exploratory."
+}

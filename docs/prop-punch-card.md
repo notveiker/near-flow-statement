@@ -455,3 +455,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 198 / 2025Q2_12 | _12 dense continuing — still not supported | history_progress_2025q2_12 |
 | History 199 / 2025Q3_12 | _12 dense continuing — still not supported | history_progress_2025q3_12 |
 | Sweep ~545 identity | Prop ready; public+X bind; Hold until H1b | sweep_545_identity |
+| History 200 / 2025Q4_12 | **200 clusters** milestone; _12 through 2025 — still not supported | clusters_200_milestone |
+| Sweep ~550 identity | 200 clusters; prop ready; public+X bind | sweep_550_identity |
