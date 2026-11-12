@@ -1,0 +1,7 @@
+{
+ "buybacks_unexplained_usd_k": 942.2,
+ "buybacks_unexplained_usd_m": 0.942,
+ "revwallets_buybacks_usd_k": 1392.8,
+ "unexplained_share_of_revwallet_bb_pct": 67.6,
+ "note": "~$0.94M of revwallet buybacks (~68%) lack a mapped fee-event \u2014 attestation/gap is not only escrow share, it is unexplained funding. Exploratory."
+}

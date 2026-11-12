@@ -1,0 +1,10 @@
+{
+ "explorer_appfees_usd_m": 4.905,
+ "appfees_to_buybacks_usd_m": 0.451,
+ "appfees_to_buybacks_pct": 9.2,
+ "partner_fees_all_usd_m": 4.454,
+ "partner_fees_no_bb_usd_m": 4.213,
+ "near_capture_30d_m": 1.99,
+ "appfees_vs_near_capture_x": 2.46,
+ "note": "Only ~9.2% of Explorer appfees ($4.90M) become buybacks ($0.45M). Partners keep ~$4.21M with no BB line. Conversion, not just attach, is the capture dial. Exploratory."
+}

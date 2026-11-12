@@ -143,3 +143,12 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | 1Click coverage of Intents | Explorer 1Click ~28% of Intents $4B — whale/tax maths are on a slice | oneclick_coverage_of_intents |
 | Ledger ≈ NEAR capture | ledgerswapkit.near listed fees **$2.01M/30d ≈ 1.01×** NEAR capture $1.99M — renegotiation is a one-wallet conversation | sk_channel_hhi |
 
+| Trust path BB vs tax | Trust-via-SK 6.4% vol @70bp partner ($0.49M/30d, 0 BB) vs direct 20bp; SK→direct-20bp ≈ **$1.7M/yr** BB dial | trust_path_bb_vs_tax |
+| Appfees→buyback conversion | Only **9.2%** of Explorer appfees become buybacks; partners keep ~$4.21M no-BB | appfees_to_buyback_conversion |
+| Intents vs L1 fee engine | Intents gross fees **~11.2×** L1 fee print — fee thesis is Intents, not base-layer | intents_vs_l1_fee_engine |
+| Unexplained buybacks | **~68%** of revwallet buybacks ($0.94M) lack mapped fee-event | buybacks_unexplained_share |
+| Attach path evidenced | Attach 23.6→43 pp; captured bp 2.89→4.98 (**1.72×**) inside sample — path is observed | attach_path_evidenced |
+| NEAR partner-fee share ceiling | NEAR max ~20–22% of partner-fee pool; partners keep **1.8–2.2×** NEAR rev | near_partner_fee_share_ceiling |
+| TG surface attach gap | intents.tg ~**20%** of tagged referrals — live surface, fee map unmapped | tg_surface_attach_gap |
+| Breakeven multiple lens | Breakeven ~**6.4×** on 30d; ladder offsets ~16% issuance — need fee↑ or mint↓ | breakeven_multiple_lens |
+

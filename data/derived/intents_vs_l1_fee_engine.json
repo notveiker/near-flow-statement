@@ -1,0 +1,6 @@
+{
+ "intents_rev_vs_l1fees_30d_x": 11.2,
+ "l1_fees_30d_k": 178.0,
+ "intents_fees_30d_m": 6.12,
+ "note": "Intents gross fees ~11.2\u00d7 L1 fee print \u2014 base-layer fee decline is not the Intents thesis; Intents is already the fee engine. Still Hold on escrow/attestation. Exploratory."
+}

@@ -7,6 +7,31 @@
    "controllability": "commercial"
   },
   {
+   "dial": "peer_share_to_70pct",
+   "rr_uplift_m": 6.2,
+   "vol_needed": "1.26\u00d7",
+   "controllability": "competitive"
+  },
+  {
+   "dial": "appfees_conversion_double_9_to_18pct",
+   "rr_uplift_m": 5.5,
+   "vol_needed": "none",
+   "controllability": "policy_conversion",
+   "note": "doubling conversion \u2248 +$5.5M/yr if linear"
+  },
+  {
+   "dial": "zec_inventory_2x",
+   "rr_uplift_m": 2.83,
+   "vol_needed": "inventory",
+   "controllability": "solver_balance_sheet"
+  },
+  {
+   "dial": "trust_sk_to_direct_20bp",
+   "rr_uplift_m": 1.72,
+   "vol_needed": "none",
+   "controllability": "distribution"
+  },
+  {
    "dial": "whale_10pp_attach",
    "rr_uplift_m": 0.98,
    "vol_needed": "none",
@@ -19,23 +44,11 @@
    "controllability": "distribution"
   },
   {
-   "dial": "zec_inventory_2x",
-   "rr_uplift_m": 2.83,
-   "vol_needed": "inventory",
-   "controllability": "solver_balance_sheet"
-  },
-  {
-   "dial": "peer_share_to_70pct",
-   "rr_uplift_m": 6.2,
-   "vol_needed": "1.26\u00d7",
-   "controllability": "competitive"
-  },
-  {
    "dial": "agent_5pct_share",
    "rr_uplift_m": 0.33,
    "vol_needed": "labeled origin",
    "controllability": "narrative_only"
   }
  ],
- "note": "Ranked by exploratory $/yr uplift without requiring 4\u00d7 volume. Leakage/partner-tax renegotiation and whale attach dominate controllable dials; AI/npm/peer-share are small or need volume. Not a forecast."
+ "note": "Ranked by exploratory $/yr uplift without requiring 4\u00d7 volume. Conversion + SK-tax renegotiation dominate; AI/npm are small. Not a forecast."
 }

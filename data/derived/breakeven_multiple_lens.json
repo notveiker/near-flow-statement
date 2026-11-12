@@ -1,0 +1,6 @@
+{
+ "breakeven_rev_multiple_30d_x": 6.4,
+ "coverage_rev_usd_30d_pct": 15.7,
+ "ladder_all_wallets_pct_of_issuance": 15.81,
+ "note": "Breakeven revenue multiple on 30d print \u2248 6.4\u00d7; all-wallet ladder offsets ~15.81% of issuance. Multiple compression requires fee\u2191 or mint\u2193 (HSP-029), not soft sinks alone. Exploratory."
+}

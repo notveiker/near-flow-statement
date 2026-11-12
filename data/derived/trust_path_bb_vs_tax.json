@@ -1,0 +1,10 @@
+{
+ "trust_direct_vol_m": 26.49,
+ "trust_sk_vol_m": 70.65,
+ "trust_direct_bb_30d_m": 0.053,
+ "trust_sk_partner_fee_30d_m": 0.4945,
+ "counterfactual_sk_to_direct_20bp_bb_30d_m": 0.1413,
+ "counterfactual_rr_m": 1.72,
+ "sk_path_partner_vs_direct_bb_x": 9.3,
+ "note": "Trust-via-SK (6.4% vol) pays ~0.49M/30d partner tax @70bp with 0 explicit BB; Trust-direct (2.4%) pays 20bp BB. Moving SK Trust to direct-20bp \u2248 $1.7M/yr BB uplift \u2014 a single-wallet distribution dial. Exploratory."
+}

@@ -19,3 +19,9 @@ Until the top gaps close, the honest investment object is a **range with policy 
 SwapKit↔escrow link unknown — exit ceilings span 2–74% (`data/derived/sk_exit_ceilings.json`).
 
 Telegram (`intents.tg`) is a live referral surface in census (~20% of tagged) but fee attribution to buyback is not mapped (`census_tg_surface.json`).
+
+### Closed-enough this sweep
+
+- **Conversion measured**: appfees→buybacks at 9.2%; unexplained BB share ~68% (`appfees_to_buyback_conversion`, `buybacks_unexplained_share`).
+- **Trust path sized**: SK→direct-20bp ~$1.7M/yr (`trust_path_bb_vs_tax`).
+- **Attach path evidenced** inside sample 23.6→43 / 2.89→4.98 bp (`attach_path_evidenced`).

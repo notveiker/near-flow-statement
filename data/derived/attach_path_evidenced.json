@@ -1,0 +1,18 @@
+{
+ "b1": {
+  "attach": 23.6,
+  "captured_bp": 2.89
+ },
+ "b2": {
+  "attach": 39.0,
+  "captured_bp": 4.25
+ },
+ "b3": {
+  "attach": 43.0,
+  "captured_bp": 4.98
+ },
+ "attach_delta_pp": 19.4,
+ "captured_bp_delta": 2.09,
+ "captured_bp_uplift_x": 1.72,
+ "note": "Observed take windows: attach 23.6\u219243.0 pp and captured bp 2.89\u21924.98 (~1.72\u00d7). Capture quality already moved inside the sample \u2014 path is evidenced, not only hypothetical. Exploratory."
+}

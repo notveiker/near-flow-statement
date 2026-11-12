@@ -1,0 +1,7 @@
+{
+ "near_share_of_partner_fees_max_pct": 22.4,
+ "near_share_of_partner_fees_max_tight_pct": 19.6,
+ "partners_kept_vs_near_low_x": 1.75,
+ "partners_kept_vs_near_high_x": 2.22,
+ "note": "NEAR\u2019s max share of partner-fee pool is ~20\u201322%; partners keep ~1.8\u20132.2\u00d7 NEAR revenue. Capture-share ceiling is a distribution negotiation, not a volume problem. Exploratory."
+}

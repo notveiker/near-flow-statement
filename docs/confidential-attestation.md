@@ -28,3 +28,7 @@ Derived CIF sensitivity sketch: `data/derived/cif_sensitivity.json` (1 bp on TVL
 Escrow share climb Jul→Nov (~17.5%→~58.5%): `data/derived/escrow_share_climb.json`.
 
 Buyback funding rails ($): `data/derived/bb_funding_rails.json` — collectors ~41% / escrow ~59%.
+
+## Unexplained buyback funding
+
+Beyond the 4.5–15.8% attestation band on escrow, ~**68%** of revwallet buyback dollars ($0.94M / $1.39M) lack a mapped fee-event in the evidence sample. Hold until H1b remains binding on funding provenance, not only escrow share.

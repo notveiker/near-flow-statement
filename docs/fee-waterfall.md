@@ -58,3 +58,7 @@ Attach vs partner race: `data/derived/attach_vs_partner_race.json`. 1Click cover
 Census vs Explorer distribution lens: `data/derived/census_vs_explorer_lens.json` — count≠notional.
 
 Capture vs gas burn (NEAR): `data/derived/capture_vs_gas_burn_near.json`.
+
+## Conversion gap
+
+Only ~9.2% of Explorer-listed appfees print as buybacks in-window; ~68% of revwallet buyback dollars lack a mapped fee-event. Fee print ≠ attested scarcity loop.

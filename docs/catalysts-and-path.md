@@ -95,3 +95,11 @@ Ranked by approximate annualised uplift **without** requiring ~4× volume:
 
 Leakage renegotiation is the bridge; volume is the last mile. Peer-share and AI narrative are not the path alone.
 
+## Conversion dial (appfees → buybacks)
+
+Explorer lists ~$4.90M appfees / 30d but only **~9.2%** ($0.45M) become buybacks. Partners keep ~$4.21M with no BB line. Capture share is a **conversion** problem as much as an attach problem.
+
+Trust Wallet path is a concrete dial: Trust-via-SK (6.4% vol) pays ~70 bp partner tax and 0 explicit BB; Trust-direct pays 20 bp BB. Moving SK Trust to direct-20bp is ~**$1.7M/yr** BB uplift arithmetic — one distribution conversation.
+
+Observed take windows already moved attach 23.6→43 pp and captured bp 2.89→4.98 (~1.72×) — the quality path is evidenced inside the sample.
+
