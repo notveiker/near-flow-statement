@@ -28,7 +28,9 @@
 9. Inventory mix (ZEC #2) + CIF sensitivity  
 10. Rent map (solver+partners ~2.7× NEAR capture)
 11. Leakage pool ~$50M/yr + SK exit fee asymmetry
-12. Soft-sink ladder (LST≫NRR≫buyback) + burn materiality  
+12. Soft-sink ladder (LST≫NRR≫buyback) + burn materiality
+13. Quality-on-cool + vol deceleration honesty
+14. Fee density 11× L1 / ok-share ~83%  
 
 Lead: [`prop-what-is-proprietary.md`](prop-what-is-proprietary.md) — leakage bridge, SK fee asymmetry, growth honesty.
 Lead dials: attach/AITR, capture share, no-ref $, Intents≈NEAR DEX, fee÷mint$, volume last mile.
