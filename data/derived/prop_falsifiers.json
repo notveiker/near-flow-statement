@@ -29,6 +29,16 @@
    "id": "F_vol_halves",
    "falsifier": "Intents 30d vol halves without take rising enough to hold RR",
    "hits": "volume binding"
+  },
+  {
+   "id": "F_quality_on_cool_reverses",
+   "falsifier": "Attach/\u03c4 fall while volume recovers \u2014 quality was a one-block artifact",
+   "hits": "quality_on_cool"
+  },
+  {
+   "id": "F_leakage_pool_shrinks",
+   "falsifier": "Gross take falls so leakage pool shrinks without capture share rising",
+   "hits": "leakage_bridge"
   }
  ],
  "note": "Proprietary falsifiers for the pitch \u2014 what would kill each dial. Exploratory."
