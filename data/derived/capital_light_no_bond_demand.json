@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "turnover_x_30d": 17.4,
+  "days_of_vol": 1.7,
+  "pci": 0.0573,
+  "leakage_pool_rr_m": 50.2,
+  "implication": "Capital-light Intents (no 2:1 bond) means NEAR gets no RUNE-like security demand \u2014 token claim is the fee waterfall only; leakage renegotiation is the scarce dial",
+  "read": "Capital-light (~1.7d inventory, PCI~0.0573) wins coverage but creates no NEAR bond demand. Token claim stays \u03c4/capture; ~$50.2M leakage is the prize. Exploratory."
+}

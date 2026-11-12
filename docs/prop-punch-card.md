@@ -529,3 +529,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | AI agents = substitute narrative | Stack real; fees still Intents; >750k stake small — do not lead | ai_agents_substitute_narrative |
 | History 211 / 2026Q3_13 | Contest-year _13 continuing — still not supported | history_progress_2026q3_13 |
 | Sweep ~589 identity | Notes follow-up done; public+X bind | sweep_589_identity |
+| Capital-light ⇒ no bond demand | PCI~0.0573; no RUNE-like NEAR security demand — claim is fee waterfall | capital_light_no_bond_demand |

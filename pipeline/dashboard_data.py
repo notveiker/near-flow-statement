@@ -370,6 +370,7 @@ def build() -> dict:
             "research_notes_index": optional("derived/research_notes_followup_index.json"),
             "ai_substitute": optional("derived/ai_agents_substitute_narrative.json"),
             "user_all_in": optional("derived/user_all_in_vs_capture.json"),
+            "no_bond_demand": optional("derived/capital_light_no_bond_demand.json"),
             "diminishing_strata": optional("derived/diminishing_strata_vs_delivery.json"),
             "solver_rent_ledger": optional("derived/solver_rent_vs_capture_ledger.json"),
             "relayer_ops": optional("derived/relayer_ops_not_fee_dial.json"),

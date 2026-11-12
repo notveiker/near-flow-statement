@@ -373,3 +373,10 @@ Chain Signatures sits under Intents execution (execute ≫ respond ≫ sign) —
 - Gross ~**55.7%** vs net ~**38.6%** (gap **17.1** pp) — leadership narrative overstates exclusivity.
 - Softened **-6.4** pp vs 365d. Capture dials remain the prize.
 <!-- /AUTO:PEER_GAP -->
+
+<!-- AUTO:NO_BOND -->
+### Capital-light ⇒ no bond demand (exploratory)
+
+- Intents ~**1.7d** inventory / PCI ~**0.0573** — capital-light vs bonded vault peers.
+- **No RUNE-like NEAR security demand.** Token claim = fee waterfall; leakage ~**$50.2M**/yr is the prize.
+<!-- /AUTO:NO_BOND -->
