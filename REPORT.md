@@ -141,9 +141,9 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~642 commits / 226 clusters / ~55h.** `_15` through 2026Q2; Q3 sealing. Overall still **not supported**.
-- Fee≠L1: intents~**182×** vs L1~**0.23×**. PCI capital-light vs bonded peers; leakage binds.
-- **Repo PRIVATE.** Human-only: public + X. Hold until H1b.
+- **~643 commits / 226 clusters / ~55h.** `_15` Q3 sealing. Overall still **not supported**.
+- Inventory risk off token BS; capital-light falsifier = on-balance inventory. PCI~0.057; leakage binds.
+- Locked pitch refreshed (8 lines). **Repo PRIVATE.** Human-only: public + X. Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context

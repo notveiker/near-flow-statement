@@ -445,6 +445,8 @@ def build() -> dict:
             "pci_light": optional("derived/pci_capital_light_leakage_binds.json"),
             "commits_640": optional("derived/commits_640_milestone.json"),
             "bonded_peers": optional("derived/capital_light_vs_bonded_peers.json"),
+            "inv_risk_off_bs": optional("derived/inventory_risk_not_on_token_bs.json"),
+            "cap_light_falsifier": optional("derived/capital_light_falsifier_is_onbalance_inventory.json"),
             "f1_f4": optional("derived/f1_f4_on_submit_day.json"),
         },
         "repro": reproducibility(),

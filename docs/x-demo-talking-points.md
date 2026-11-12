@@ -57,9 +57,9 @@ Card: `data/derived/judge_capture_card.json` — open with partners>capture, clo
 <!-- /AUTO:X_SCRIPT -->
 
 <!-- AUTO:XLINES -->
-1. Fee≠L1 OoM (~180× Intents vs cooling L1) — open dashboard fee-engine card.
-2. Leakage ~$50M → SK-tax desk first (~$10M); conversion quiet dial (~9% appfees→BB).
-3. Coverage wall ~42.8% without volume; last mile = whale distribution (~77% vol).
-4. Opacity/Trust parallel underwriting — not the lead; Hold until H1b.
-5. Repo+dashboard live; history preliminary not supported — honesty is the rating.
+1. Fee≠L1 OoM (~180×) — dashboard fee-engine card.
+2. Leakage ~$50M → SK-tax first (~$10M); conversion ~9% appfees→BB.
+3. Wall ~42.8% no-vol; last mile = whale distribution (~77% vol).
+4. Capital-light PCI~0.057 — leakage binds; Hold until H1b (attest).
+5. Repo+dashboard; history preliminary not supported — honesty.
 <!-- /AUTO:XLINES -->

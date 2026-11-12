@@ -1,0 +1,38 @@
+{
+  "asof": "2026-11-12",
+  "when_capital_light": {
+    "wins": [
+      "long_tail_asset_chain_onboarding_without_2_to_1_bond_scale",
+      "wallet_embed_coverage_over_vault_pair_depth",
+      "privacy_asset_settlement_stock_without_bonded_vault_gate"
+    ],
+    "loses": [
+      "poa_bridge_verifier_agent_tee_trust_incident",
+      "solver_inventory_refusal_or_cex_fill_dryup",
+      "relayer_submit_concentration_liveness",
+      "no_mechanical_token_underwriting_floor_in_stress"
+    ]
+  },
+  "token_value_link": {
+    "intents_claim_design": "discretionary_wallet_buyback_held_not_burned",
+    "protocol_on_chain_fee": "1_pip",
+    "token_claimable_bp": 4.98,
+    "capture_share_pct": 32.5,
+    "gross_bp": 15.3,
+    "capital_light_creates_near_bond_demand": false,
+    "peer_claim_designs": {
+      "thorchain": "bond_pendulum_system_income_after_lp_node_split",
+      "chainflip": "network_fee_flip_buy_burn",
+      "maya": "hard_10pct_protocol_fees_to_holders"
+    },
+    "mcap_to_rev_multiples_30d_annualized": {
+      "near_intents_style": 217,
+      "thorchain": 16,
+      "chainflip": 5,
+      "maya": 23
+    }
+  },
+  "pci_30d": 0.0573,
+  "implication": "Capital-light holds while solvers fund inventory; if inventory migrates on-balance or bonds appear, PCI rises \u2014 watch that as a falsifier, not a bullish capital raise",
+  "read": "Capital-light conditionality + token value link = fees/capture, not inventory. PCI~0.057. Exploratory."
+}

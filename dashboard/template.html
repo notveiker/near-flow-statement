@@ -788,6 +788,10 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (C640) bits.push(`~${C640.commits} commits / ${C640.clusters} clusters — delivery still binds.`);
     const Bp = D.catalysts && D.catalysts.bonded_peers;
     if (Bp) bits.push(`Capital-light vs bonded peers (PCI~${Bp.intents_pci_30d}) — no bond-demand catalyst.`);
+    const Iro = D.catalysts && D.catalysts.inv_risk_off_bs;
+    const Clf = D.catalysts && D.catalysts.cap_light_falsifier;
+    if (Iro) bits.push(`Inventory risk off token BS — fee capture is the value link.`);
+    if (Clf) bits.push(`Capital-light falsifier = on-balance inventory / bonds (watch, not pitch).`);
     const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);

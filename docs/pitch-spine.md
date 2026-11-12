@@ -102,7 +102,7 @@ Coverage wall ~42.8% · whale desk=SK-tax · conversion~9% appfees→BB · solve
 <!-- /AUTO:COMPOUND -->
 
 <!-- AUTO:SPINE -->
-**Spine (55h / 224 cl / 633 c):** Fee≠L1 → leakage~$50M → SK-tax call-order → wall 42.8% → Hold/H1b → public+X.
+**Spine (55h / 226 cl / 643 c):** Fee≠L1 → leakage~$50M → SK-tax+attest → wall 42.8% → capital-light → Hold/H1b → public+X.
 <!-- /AUTO:SPINE -->
 
 <!-- AUTO:SWEEP19 -->

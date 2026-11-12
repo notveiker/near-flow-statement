@@ -1,0 +1,17 @@
+{
+  "asof": "2026-11-12",
+  "inventory_risk_bearer": {
+    "intents": {
+      "liquidity": "solvers_as_principal",
+      "security": "bridges_mpc_tee_no_continuous_token_bond",
+      "ops_failure": "liveness_preferential_execution_inventory_refusal"
+    },
+    "vault_peers": {
+      "liquidity": "lps",
+      "security": "bonded_nodes_slashable",
+      "ops_failure": "bond_to_tvl_break_slash_vault_halt"
+    }
+  },
+  "implication": "Inventory risk sits with solvers/market-makers, not the NEAR token balance sheet \u2014 capital-light for the token means fee capture is the value link, not inventory carry",
+  "read": "Risk bearer: {'intents': {'liquidity': 'solvers_as_principal', 'security': 'bridges_mpc_tee_no_continuous_token_bond', 'ops_failure': 'liveness_preferential_execution_invent. Token doesn't carry inventory risk. Exploratory."
+}

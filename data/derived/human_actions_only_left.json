@@ -1,8 +1,8 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 55.0,
-  "clusters": 224,
-  "commits": 633,
+  "hours_to_submit": 54.6,
+  "clusters": 226,
+  "commits": 643,
   "actions_left": [
     {
       "action": "flip_repo_public",
@@ -22,6 +22,6 @@
     "x_recording"
   ],
   "prop_ready_excl_must_ship": 0.97,
-  "implication": "Only two human actions left bind submit; agent keeps mining prop but cannot substitute",
-  "read": "~55h left. Human-only: public + X. Agent prop continues. Exploratory."
+  "implication": "Only two human actions bind submit",
+  "read": "~55h. Human-only: public + X. Exploratory."
 }

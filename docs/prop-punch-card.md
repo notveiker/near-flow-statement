@@ -627,3 +627,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | 640+ commits milestone | 640c/225cl — delivery still binds | commits_640_milestone |
 | History 226 / 2026Q2_15 | intents~182× OoM; not supported | history_progress_2026q2_15 |
 | Capital-light vs bonded peers | PCI~0.057 vs vault-bond docs — no bond-demand catalyst | capital_light_vs_bonded_peers |
+| Inventory risk ≠ token BS | Risk bearer: {'intents': {'liquidity': 'solvers_as_principal', 'security': 'bridges_mpc_tee_no_continuous_token_bond', 'ops_failure': 'liven | inventory_risk_not_on_token_bs |
+| Capital-light falsifier = on-balance inventory | Capital-light conditionality + token value link = fees/capture, not inventory. PCI~0.057. Exploratory. | capital_light_falsifier_is_onbalance_inventory |

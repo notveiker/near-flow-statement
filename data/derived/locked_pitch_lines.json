@@ -1,17 +1,17 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 55.0,
-  "clusters": 224,
-  "commits": 633,
+  "hours_to_submit": 54.6,
+  "clusters": 226,
+  "commits": 643,
   "lines": [
-    "Fee engine \u2260 L1: Intents ~180\u00d7 vs cooling base (~0.2\u00d7 YoY) \u2014 pitch OoM, not pinned multiple.",
-    "Users pay ~10.6\u00d7 what the token captures; protocol share of user all-in ~9%.",
-    "Leakage ~$50M/yr is the commercial prize; SK-tax+conversion+attach \u2248$24M option without volume.",
-    "No-vol coverage wall ~42.8%; residual is volume \u2014 and ~77% vol is whale desk = distribution terms.",
-    "Opacity 17.5\u219258.5% buys Trust time, not \u03c4; ~71% of capture is confidential/unattested.",
-    "Call order: SK-tax \u227b conversion \u227b attach-to-60; mutex forbids naive sum; elasticity ~3\u00d7.",
-    "Hold until H1b (attested escrow + capture dials). Density \u2260 support.",
-    "Must-ship before submit: public repo + X dry-run (human-only). HSP-029 pending-then-lagged."
+    "Fee engine \u2260 L1: Intents ~180\u00d7 vs cooling base (~0.23\u00d7 YoY) \u2014 pitch OoM.",
+    "Users pay ~10.6\u00d7 capture; protocol ~9% of user all-in; distribution owns margin.",
+    "Leakage ~$50M/yr dial option; SK-tax+conversion+attach \u2248$24M without volume.",
+    "No-vol wall ~42.8%; last-mile volume = whale desk (~77% vol) = distribution terms.",
+    "Opacity/escrow buys Trust time not \u03c4; fee print \u2260 escrow trust; Hold until H1b.",
+    "Call order: SK-tax \u227b conversion \u227b attach; cross-ledger attest OK; same-ledger mutex.",
+    "Capital-light (PCI~0.057) \u2014 leakage binds, not bonds; peer claimable\u2260gross.",
+    "Must-ship: public repo + X dry-run (human-only). HSP-029 pending-then-lagged."
   ],
   "do_not_lead": [
     "AI/agents",
@@ -20,7 +20,9 @@
     "more strata",
     "opacity-as-capture",
     "CS-as-fee",
-    "perps"
+    "perps",
+    "bond-demand",
+    "pip"
   ],
-  "read": "Locked ~8 lines for ~55h / 224 clusters / 633 commits. Exploratory."
+  "read": "Locked 8 lines @~55h/226cl/643c. Exploratory."
 }
