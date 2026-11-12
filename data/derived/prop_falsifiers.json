@@ -1,0 +1,35 @@
+{
+ "falsifiers": [
+  {
+   "id": "F_attach_stall",
+   "falsifier": "Attachment % stalls or falls for 2+ blocks while SwapKit share flat",
+   "hits": "attach path"
+  },
+  {
+   "id": "F_noref_mix_down",
+   "falsifier": "No-referrer buyback-$ share falls below 30% without AITR uplift elsewhere",
+   "hits": "fee engine locus"
+  },
+  {
+   "id": "F_leakage_up",
+   "falsifier": "Capture share falls below 25% (partners take more)",
+   "hits": "\u03c4 / capture"
+  },
+  {
+   "id": "F_escrow_up_no_map",
+   "falsifier": "Escrow share of buyback NEAR >70% with no stream map",
+   "hits": "attestation"
+  },
+  {
+   "id": "F_h1b_fail",
+   "falsifier": "H1b fails with growth still high \u2014 Hold sticks",
+   "hits": "rating"
+  },
+  {
+   "id": "F_vol_halves",
+   "falsifier": "Intents 30d vol halves without take rising enough to hold RR",
+   "hits": "volume binding"
+  }
+ ],
+ "note": "Proprietary falsifiers for the pitch \u2014 what would kill each dial. Exploratory."
+}

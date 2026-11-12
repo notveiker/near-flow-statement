@@ -76,3 +76,7 @@
 | 70 | HSP-029 alone (flat fees) | Fee÷mint$ 0.21→0.32; offset ~16→24% | Denominator help; still ~3.2× to 1× coverage |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.
+
+## Falsifiers (derived)
+
+See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leakage up, escrow without map, H1b fail, volume halving.
