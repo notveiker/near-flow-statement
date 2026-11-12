@@ -79,3 +79,19 @@ Judge sheet of proprietary arithmetics: [`docs/prop-what-is-proprietary.md`](pro
 Quality on cool: `data/derived/quality_on_cool.json` — attach/τ up while 1Click notional peaked then fell.
 
 50× vs cooling: `data/derived/50x_vs_cooling.json` — path needs ~4× vol while latest print is −12% MoM.
+
+## Controllable dial ROI (exploratory)
+
+Ranked by approximate annualised uplift **without** requiring ~4× volume:
+
+| Dial | ~$/yr uplift | Needs volume? |
+|---|---|---|
+| SK partner-tax 25% renegotiation | ~$10M | No |
+| ZEC inventory 2× same turnover | ~$2.8M | Inventory |
+| Whale +10pp attach (≥$10k) | ~$1.0M | No |
+| +5pp mix to no-referrer @10bp | ~$0.7M | Mix only |
+| Peer share →70% (fixed peerset) | ~+$6M fee if take flat | 1.26× vol |
+| Agent origin 5% bound | ~$0.33M | Labeled |
+
+Leakage renegotiation is the bridge; volume is the last mile. Peer-share and AI narrative are not the path alone.
+

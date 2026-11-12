@@ -119,3 +119,20 @@
 ## Falsifiers (derived)
 
 See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leakage up, escrow without map, H1b fail, volume halving.
+
+## Fresh hyper-sweep (cross-angles)
+
+| Insight | Number | Source |
+|---|---|---|
+| Whale attach vs leakage | +10pp whale attach ≈ $1.0M/yr ≈ **2% of ~$50M leakage pool** — whale terms = margin quality; partner-tax renegotiation = dollar bridge | whale_vs_leakage_prize |
+| SK tax renegotiation headroom | SK subchannels list ~**$41M/yr** partner tax vs ~$24M NEAR capture (~1.7×); 25% take ≈ **~$10M/yr** (~20% of leakage) with **no new volume** | sk_tax_renegotiation_headroom |
+| Agent vs whale immateriality | 5% agent-origin bound ~$0.33M/yr ≈ **0.3×** one whale +10pp attach lift — do not lead with AI settlement | agent_vs_whale_immateriality |
+| Peer-share path ceiling | 55.7%→70% peerset share at fixed peerset ≈ **1.26× vol** — far short of ~4× needed for 50× at ~5 bp | peer_share_path |
+| Inventory vs vol tension | Census deposits still building (~$4.9M/d) while 30d vol **−12% MoM** — BS capacity and fee print temporarily decoupled | inventory_vs_vol_tension |
+| Soft-sink hardness inverse | NRR ~178 DIC days but 1–2d exit; burn needs **~122%** of today’s capture to offset 25% mint — size ⊥ hardness | hardness_vs_size_sinks |
+| npm vs vol decouple | Intents SDK ~3× May→Oct while vol cooled −12% — tooling ≠ fee notional; skip npm in pitch lead | npm_vs_vol_decouple |
+| Whale Intents floor | 77% of 1Click whale tranche floors to only **~21%** of Intents-wide $4B — size labels missing off 1Click | whale_intents_floor |
+| Submit-before-HSP calendar | Contest deadline **2 days before** HSP-029 timelock — pitch pending-not-live; Hold until H1b | calendar_option_submit_before_hsp |
+| Controllable dial ROI | Ranked $/yr without 4× vol: SK-tax 25% ≫ ZEC 2× ≫ whale 10pp ≫ no-ref 5pp ≫ peer 70% ≫ agent 5% | dial_roi_sketch |
+| Judge one-pager stack | Densest fee/path/distribution/quality/escrow/ops numbers in one JSON for X demo | judge_one_pager_stack |
+| Prop artifact density | **131+** derived JSON artifacts from hyper sweep (exploratory inventory) | prop_artifact_count |

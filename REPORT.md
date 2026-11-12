@@ -100,6 +100,12 @@ make test           # unit tests
 make dashboard      # rebuild dashboard/index.html
 ```
 
+
+### Controllable dials (fresh arithmetic)
+
+Partner-tax renegotiation dominates controllable upside without new volume: SwapKit-listed fees alone annualise ~$41M vs ~$24M NEAR capture; a 25% take is ~$10M/yr (~20% of the ~$50M leakage pool). Whale +10pp attach is ~$1M/yr (margin quality). Peer-share to 70% is only ~1.26× volume. Agent/npm leads are fee-immaterial on current bounds. Quality rose on a cooling −12% MoM volume print. Hold until H1b; HSP-029 pending-not-live.
+
+
 ## Risks and context
 
 - **Volume is binding.** Attach/mix/leakage dials raise run-rate toward ~$37–45M; even full-venue AITR is ~$46M — 50× still needs ~2–4× volume (`data/derived/attach_ceiling_50x.json`). Full capture of 15.3 gross bp + HSP-029 ≈ 1× mint; 50× then needs ~1.3× vol (`full_capture_extreme.json`).

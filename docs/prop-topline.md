@@ -64,3 +64,14 @@ Also: fee-evidence fidelity ~97% BB exact; stake 44.5% of supply; punch card row
 Growth honesty: ~619%/yr USD vs ~71%/yr NEAR (`growth_usd_vs_near.json`).
 
 Investment object: `data/derived/investment_object.json`.
+
+## Controllable catalyst stack (fresh)
+
+1. **Leakage / partner-tax renegotiation** — SK listed tax alone ~$41M/yr vs ~$24M NEAR capture; 25% take ≈ ~$10M/yr (~20% of ~$50M leakage pool) with **no new volume**.
+2. **Whale commercial attach** — 3.4% of swaps = 77% of 1Click vol; +10pp attach ≈ $1.0M/yr (margin quality, ~2% of leakage).
+3. **Quality-on-cool** — attach/τ rose while vol −12% MoM; USD fee growth 619% vs NEAR 71%.
+4. **Full-capture extreme** — 15.3 bp + HSP-029 ≈ 1× mint, then ~1.3× vol for 50× (vs ~4× at today’s ~5 bp).
+5. **Do not lead with** AI agents, npm downloads, or peer-share alone (peer 70% ≈ 1.26× vol only).
+
+Stance: **Hold until H1b**. HSP-029 pending-not-live (timelock 16 Nov; submit 14 Nov).
+

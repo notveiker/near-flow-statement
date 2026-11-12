@@ -60,5 +60,37 @@
   "vol_deceleration",
   "quality_on_cool",
   "r90_vs_run_rate"
+ ],
+ "steps": [
+  {
+   "step": 0,
+   "title": "Open with leakage bridge",
+   "line": "Capture ~5 of ~15 bp; SK tax alone ~1.7\u00d7 NEAR capture \u2014 renegotiate before asking for 4\u00d7 volume. Quality rose on \u221212% MoM vol. Hold until H1b."
+  },
+  {
+   "step": 1,
+   "action": "attach + mix + leakage",
+   "effect": "raise RR toward ~$37\u201345M"
+  },
+  {
+   "step": 2,
+   "action": "HSP-029",
+   "effect": "cut mint denom; coverage 0.21\u2192~0.3\u20130.5\u00d7"
+  },
+  {
+   "step": "2b",
+   "action": "quality_policy (burn split / attestation / CIF card)",
+   "effect": "hardens underwriting without volume"
+  },
+  {
+   "step": 3,
+   "action": "attestation disclosure",
+   "effect": "collapse 4.5\u201315.8% band; unlock underwriting"
+  },
+  {
+   "step": 4,
+   "action": "volume 2\u20134\u00d7",
+   "effect": "close 50\u00d7 / approach mint coverage"
+  }
  ]
 }

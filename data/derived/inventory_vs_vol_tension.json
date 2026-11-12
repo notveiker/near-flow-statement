@@ -1,0 +1,7 @@
+{
+ "inventory_usd_m": 229.2,
+ "net_deposits_per_day_m_census": 4.9,
+ "days_to_double_if_sustained": 46.8,
+ "vol_mom_delta_pct": -12.3,
+ "read": "Inventory was still building on the census window while 30d volume cooled \u221212% MoM \u2014 balance-sheet capacity and fee print are temporarily decoupled. Exploratory; hours deposits vs monthly vol."
+}

@@ -13,3 +13,13 @@
 Artifacts: dashboard + `docs/prop-what-is-proprietary.md`.
 
 Falsify if: attach stalls, no-ref mix collapses, capture share <25%, volume halves without take rising (`prop_falsifiers.json`).
+
+## 30-second catalyst stack (numbers only)
+
+- Capture ~5 bp of ~15 bp gross; leakage pool ~$50M/yr — **renegotiation before volume**.
+- SK listed partner tax alone ~1.7× NEAR capture; 25% take ≈ ~$10M/yr, no new volume.
+- Attach/τ up while vol −12% MoM — **quality rose on a cooling print**.
+- Fee÷mint ~0.21× today → ~0.32× HSP-029 → ~0.48× attach/mix stack; full-capture extreme + HSP ≈ 1× mint then ~1.3× vol for 50×.
+- Soft sinks: LST/DIC ≫ NRR ≫ buyback; burn needs ~122% of today’s capture for 25% mint offset.
+- Hold until H1b; HSP-029 pending (timelock after submit).
+

@@ -42,4 +42,8 @@ Punch card now has **100+** rows.
 - [`prop-topline.md`](prop-topline.md)  
 - [`prop-punch-card.md`](prop-punch-card.md) (~86 rows)  
 - [`dashboard/index.html`](../dashboard/index.html)  
-- [`REPORT.md`](../REPORT.md)  
+- [`REPORT.md`](../REPORT.md)
+
+- **SK tax renegotiation headroom** as measurable leakage-bridge dollars (not narrative).
+- **Dial ROI ranking** that falsifies AI/npm/peer-share as lead catalysts.
+- **Inventory-vs-vol tension** and **soft-sink hardness inverse** as float structure props.

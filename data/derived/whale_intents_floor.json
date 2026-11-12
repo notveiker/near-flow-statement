@@ -1,0 +1,7 @@
+{
+ "whale_share_1click_vol_pct": 77.1,
+ "oneclick_usd_b": 1.104,
+ "intents_vol_b": 4.0,
+ "whale_share_of_intents_floor_pct": 21.3,
+ "note": "Whale \u2265$10k tranche is 77% of 1Click; as a floor on Intents-wide that is only ~21% of $4B \u2014 rest of Intents notional is unlabeled for size. Whale commercial prize is concentrated in the measured 1Click slice. Exploratory."
+}

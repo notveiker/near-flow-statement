@@ -1,0 +1,15 @@
+{
+ "ladder_size_DIC_days": {
+  "ai_stake": 8.5,
+  "buyback_wallet": 24.8,
+  "nrr_etf": 177.7
+ },
+ "ladder_hardness_rank": [
+  "permanent_burn",
+  "governance_gated_buyback",
+  "etf_1_2d_exit",
+  "ai_stake_unstake"
+ ],
+ "burn_needs_pct_of_capture": 122.2,
+ "note": "Largest soft sink (NRR ~178 DIC days) is also the softest exit (1\u20132d). Hardest sink (burn) needs ~122% of today\u2019s fee capture to offset 25% of mint. Size and hardness run inverse. Exploratory."
+}

@@ -1,0 +1,28 @@
+{
+ "intents_peerset_share_pct": 55.7,
+ "intents_vol_30d_b": 4.0,
+ "implied_peerset_vol_b": 7.18,
+ "paths": [
+  {
+   "peer_share_pct": 60,
+   "vol_b": 4.31,
+   "vol_x_vs_today": 1.08
+  },
+  {
+   "peer_share_pct": 65,
+   "vol_b": 4.67,
+   "vol_x_vs_today": 1.17
+  },
+  {
+   "peer_share_pct": 70,
+   "vol_b": 5.03,
+   "vol_x_vs_today": 1.26
+  },
+  {
+   "peer_share_pct": 75,
+   "vol_b": 5.39,
+   "vol_x_vs_today": 1.35
+  }
+ ],
+ "note": "At fixed peerset size, lifting Intents peerset share 55.7%\u219270% is only ~1.26\u00d7 volume \u2014 far short of the ~4\u00d7 vol needed for 50\u00d7 at ~5 bp. Peer-share wins are not the path; leakage+volume stack is. Exploratory."
+}

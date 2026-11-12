@@ -13,5 +13,14 @@
  "headline": "Distribution owns the margin; leakage is the bridge; volume is the last mile; quality rose on a cooling print.",
  "note": "From prop-gaps + pitch_sequence. Exploratory.",
  "quality_on_cool": true,
- "vol_cooling_mom_pct": -12.3
+ "vol_cooling_mom_pct": -12.3,
+ "controllable_bridge": "sk_tax_25pct_then_volume",
+ "sk_tax_25pct_rr_m": 10.2,
+ "whale_10pp_rr_m": 0.98,
+ "do_not_lead": [
+  "ai_agents",
+  "npm",
+  "peer_share_alone"
+ ],
+ "stance": "Hold until H1b"
 }

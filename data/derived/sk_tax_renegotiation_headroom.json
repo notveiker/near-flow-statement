@@ -1,0 +1,24 @@
+{
+ "sk_listed_partner_fees_30d_m": 3.36,
+ "sk_listed_partner_fees_rr_m": 40.9,
+ "near_capture_rr_m": 24.2,
+ "sk_tax_vs_near_capture_x": 1.69,
+ "scenarios": [
+  {
+   "near_take_of_sk_tax_pct": 10,
+   "uplift_rr_m": 4.1,
+   "share_of_leakage_pct": 8.2
+  },
+  {
+   "near_take_of_sk_tax_pct": 25,
+   "uplift_rr_m": 10.2,
+   "share_of_leakage_pct": 20.4
+  },
+  {
+   "near_take_of_sk_tax_pct": 50,
+   "uplift_rr_m": 20.4,
+   "share_of_leakage_pct": 40.9
+  }
+ ],
+ "note": "SwapKit subchannels alone list ~$41M/yr partner tax vs ~$24M NEAR capture (~1.7\u00d7). Capturing 25% of that tax via renegotiation \u2248 ~$10M/yr (~20% of leakage pool) without needing new volume. Exploratory arithmetic; commercial feasibility is a gap."
+}
