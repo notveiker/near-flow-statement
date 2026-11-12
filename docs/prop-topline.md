@@ -120,3 +120,9 @@ Prop/dashboard/judge packet ready (~437 commits, 168 clusters preliminary). **Mu
 - Capital-light wins (long-tail/embed/privacy) with loses as risk footer (TEE/solver/relayer/no floor).
 - Explicit: capital_light_creates_near_bond_demand=false; claim=discretionary BB held-not-burned.
 <!-- /AUTO:SWEEP20 -->
+
+<!-- AUTO:SWEEP21 -->
+- mcap/rev: NEAR Intents-style ~**217×** vs THOR~**16×** (≈13.6×) / Maya~23× / CF~5×.
+- Part of the premium is **discretionary held-BB claim design** vs mechanical peer claims.
+- H1b underwrites that discretion; volume alone does not close the multiple gap.
+<!-- /AUTO:SWEEP21 -->

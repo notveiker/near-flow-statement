@@ -145,3 +145,9 @@ Fee-engine≠L1 divergence now ~**132×** intents vs ~**0.19×** L1 tx YoY on 17
 - Double opacity inv~69.8% + capture~71.2%; attest gap~$8.4M.
 - CS infra≠fee; HSP-007 vs fee-offset; SK HHI leverage; Intents deposits~6× stablecoin L1.
 <!-- /AUTO:SWEEP17 -->
+
+<!-- AUTO:SWEEP21 -->
+- mcap/rev: NEAR Intents-style ~**217×** vs THOR~**16×** (≈13.6×) / Maya~23× / CF~5×.
+- Part of the premium is **discretionary held-BB claim design** vs mechanical peer claims.
+- H1b underwrites that discretion; volume alone does not close the multiple gap.
+<!-- /AUTO:SWEEP21 -->

@@ -12,6 +12,13 @@
     "chainflip": "network_fee_flip_buy_burn",
     "maya": "hard_10pct_protocol_fees_to_holders"
   },
-  "implication": "mcap/rev multiples on claimable revenue expose Intents' discretionary BB vs peers' mechanical claims \u2014 multiple gap is partly claim-design, not only growth",
-  "read": "mcap/rev multiples: {\"near_intents_style\": 217, \"thorchain\": 16, \"chainflip\": 5, \"maya\": 23}. Claim design drives part of the gap. Exploratory."
+  "implication": "NEAR Intents-style mcap/rev ~217\u00d7 vs THOR~16\u00d7 / Maya~23\u00d7 / CF~5\u00d7 \u2014 ~13\u00d7 THOR; part of the premium is discretionary claim design (held BB) vs mechanical peer claims, not pure growth optionality",
+  "read": "mcap/rev: NEAR~217\u00d7 vs THOR~16\u00d7 (\u224813.6\u00d7) / Maya~23\u00d7 / CF~5\u00d7. Claim design explains part of the gap. Exploratory.",
+  "mcap_to_rev_x": {
+    "near_intents_style": 217,
+    "thorchain": 16,
+    "chainflip": 5,
+    "maya": 23
+  },
+  "near_vs_thor_x": 13.6
 }

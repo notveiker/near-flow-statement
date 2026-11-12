@@ -452,6 +452,7 @@ def build() -> dict:
             "no_bond_from_cl": optional("derived/no_bond_demand_from_capital_light.json"),
             "claim_design_gap": optional("derived/claim_design_drives_multiple_gap.json"),
             "disc_claim_h1b": optional("derived/discretionary_claim_is_h1b_underwriting.json"),
+            "peer_mcap_rev": optional("derived/peer_mcap_rev_multiple_claim_gap.json"),
             "f1_f4": optional("derived/f1_f4_on_submit_day.json"),
         },
         "repro": reproducibility(),

@@ -634,3 +634,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | No bond demand from capital-light | capital_light_creates_near_bond_demand=false; claim=discretionary BB held. Peers: THOR pendulum / CF burn / Maya 10%. Exploratory. | no_bond_demand_from_capital_light |
 | Claim design drives multiple gap | mcap/rev multiples: {"near_intents_style": 217, "thorchain": 16, "chainflip": 5, "maya": 23}. Claim design drives part of the gap. Explorato | claim_design_drives_multiple_gap |
 | Discretionary claim = H1b underwriting | Claim=discretionary held-BB vs THOR pendulum / CF burn / Maya 10%. H1b underwrites discretion. Exploratory. | discretionary_claim_is_h1b_underwriting |
+| Peer mcap/rev multiple gap | NEAR~217× vs THOR~16× (≈13.6×) — claim design part of premium | peer_mcap_rev_multiple_claim_gap |
