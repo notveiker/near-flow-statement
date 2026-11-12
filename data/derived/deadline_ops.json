@@ -1,7 +1,7 @@
 {
- "asof_utc": "2026-11-12T00:27:31Z",
+ "asof_utc": "2026-11-12T00:55:28Z",
  "deadline_utc": "2026-11-14T23:59:00Z",
- "hours_remaining_approx": 71.5,
+ "hours_remaining_approx": 71.1,
  "must_ship": [
   "public_repo",
   "X_demo_post",
@@ -23,9 +23,9 @@
   "attestation_map"
  ],
  "prop_depth": {
-  "commits_approx": 167,
-  "punch_rows": 92,
-  "history_clusters": 138
+  "commits_approx": 221,
+  "punch_rows": 108,
+  "history_clusters": 140
  },
  "note": "Prop research is deep. Remaining risk is delivery logistics (public repo + X), not thesis content."
 }
