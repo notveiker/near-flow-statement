@@ -1,0 +1,23 @@
+{
+  "asof": "2026-11-12",
+  "sk_tax_rr_m": 10.2,
+  "sk_tax_vol_pp_equiv": 42.5,
+  "illustrative": [
+    {
+      "effort": "Ledger SK-tax renegotiation close",
+      "rr_m_if_done": 10.2,
+      "vol_marketing_weeks_equiv_at_1pp_per_week": 42.5
+    },
+    {
+      "effort": "Attestation publish",
+      "rr_m_trust": 8.4,
+      "note": "trust ledger \u2014 underwriting not print"
+    },
+    {
+      "effort": "CIF 1bp rate card",
+      "rr_m_gap": 3.31,
+      "note": "Gap until published"
+    }
+  ],
+  "read": "Illustrative commercial ROI: closing Ledger SK-tax (~$10.2M) equals ~42.5 weeks of +1pp volume growth at marginal $0.24M/pp. BD on leakage beats volume marketing on the same dollar board. Exploratory sketch \u2014 not a staffing model."
+}
