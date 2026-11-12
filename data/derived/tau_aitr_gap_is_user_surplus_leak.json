@@ -1,0 +1,13 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_submit": 52.0,
+  "clusters": 239,
+  "commits": 709,
+  "tau_bp": 4.98,
+  "aitr_bp": 9.5,
+  "gap_bp": 4.52,
+  "gap_over_tau": 1.91,
+  "claim": "AITR (~9.5 bp) is ~1.91\u00d7 \u03c4 (~4.98 bp). The gap is user all-in cost above protocol capture \u2014 distribution and routing extract the spread. Closing leakage narrows AITR\u2192\u03c4 without needing volume.",
+  "pitch_line": "Users already pay ~9.5 bp; protocol keeps ~5 bp. The missing ~4.5 bp is the bridge.",
+  "read": "\u03c4\u2013AITR gap @~52h. Exploratory."
+}

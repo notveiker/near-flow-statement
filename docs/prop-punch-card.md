@@ -700,3 +700,6 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Hold=H1b honesty not bearish | path exists; claim design + escrow gate Buy | hold_is_h1b_honesty_not_bearish |
 | Default-rail asymmetry = fee proof | 18.7% vol → 45.8% BB$ (×2.45) | default_rail_asymmetry_is_fee_proof |
 | Judge F1–F4 day-of card | leakage bridge / OoM / dials / Hold | judge_f1_f4_day_of |
+| τ–AITR gap = user-surplus leak | ~9.5 vs ~5.0 bp; missing ~4.5 bp is the bridge | tau_aitr_gap_is_user_surplus_leak |
+| Capture/AITR is the KPI | ~52% now; dials that raise it re-rate | capture_over_aitr_is_the_kpi |
+| X 90s beat sheet locked | 5 beats; numbers only; no bull-case words | x_demo_ninety_second_beats |

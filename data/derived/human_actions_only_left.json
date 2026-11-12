@@ -1,38 +1,31 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 52.4,
-  "clusters": 237,
-  "commits": 701,
-  "severity": "CRITICAL",
-  "dense_complete": [
-    "_12",
-    "_13",
-    "_14",
-    "_15",
-    "_16"
-  ],
-  "headline": "leakage_is_the_bridge",
-  "commits_shipped": 701,
-  "actions_left": [
+  "hours_to_submit": 52.0,
+  "commits": 709,
+  "clusters": 239,
+  "repo_private": true,
+  "actions": [
     {
-      "action": "flip_repo_public",
-      "owner": "human",
-      "blocks": "submit",
-      "status": "CRITICAL_OPEN"
+      "rank": 1,
+      "action": "Flip GitHub repo public (Settings \u2192 Danger \u2192 Change visibility)",
+      "blocks": "judges cannot open evidence"
     },
     {
-      "action": "x_demo_dry_run_90s",
-      "owner": "human",
-      "blocks": "submit",
-      "status": "CRITICAL_OPEN",
-      "script": "docs/x-demo-talking-points.md"
+      "rank": 2,
+      "action": "Record X demo from x_demo_ninety_second_beats.json / docs/x-demo-talking-points.md",
+      "blocks": "submission incomplete"
+    },
+    {
+      "rank": 3,
+      "action": "Submit before 14 Nov 23:59 UTC",
+      "blocks": "deadline"
     }
   ],
   "agent_cannot": [
-    "public_repo",
-    "x_recording"
+    "make repo public",
+    "record X",
+    "submit form"
   ],
-  "prop_ready_excl_must_ship": 0.99,
-  "implication": "701 commits shipped; human must flip public + X now",
-  "read": "701c shipped. CRITICAL @~52h: public + X. Exploratory."
+  "agent_has_done": "709 commits, 239 clusters, headline+F1-F4+X script locked",
+  "read": "HUMAN ONLY left @~52h. CRITICAL."
 }

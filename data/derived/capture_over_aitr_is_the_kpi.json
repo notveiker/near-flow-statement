@@ -1,0 +1,8 @@
+{
+  "asof": "2026-11-12",
+  "kpi": "capture_share_of_user_all_in",
+  "now_pct": 52.4,
+  "claim": "Protocol capture is ~52.4% of user all-in (\u03c4/AITR). Every dial that raises this ratio is a re-rate dial; volume that doesn't raise it is theater.",
+  "target_path": "SK-tax + default-rail + attest \u2192 raise capture share before chasing attach-to-50%.",
+  "read": "Capture/all-in KPI. Exploratory."
+}

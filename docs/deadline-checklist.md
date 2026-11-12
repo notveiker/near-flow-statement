@@ -91,3 +91,8 @@ History/`_10` seals are **not** blockers.
 Prop is done. **Flip public. Record X 90s.** Submit.
 Headline: Leakage is the bridge. Intents≈99% NEAR DEX.
 <!-- /AUTO:700 -->
+
+<!-- AUTO:HUMAN 2026-11-12 -->
+- [ ] Flip repo PUBLIC (still private @ 709c / 239cl)
+- [ ] Record X 90s from beats board
+- [ ] Submit by 14 Nov 23:59 UTC (~52h)

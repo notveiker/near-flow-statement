@@ -77,3 +77,6 @@ Card: `data/derived/judge_capture_card.json` — open with partners>capture, clo
 
 **Do not say:** bull case, AI/ETF lead, opacity-as-capture, need more strata.
 <!-- /AUTO:XSCRIPT -->
+
+<!-- AUTO:BEATS 2026-11-12 -->
+See data/derived/x_demo_ninety_second_beats.json — 5 beats / 90s / numbers only. ~52h to deadline. Repo still PRIVATE.
