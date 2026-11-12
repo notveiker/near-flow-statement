@@ -474,3 +474,14 @@ Chain Signatures sits under Intents execution (execute ≫ respond ≫ sign) —
 - Zero leakage after HSP-029 → ~$74.5M RR; mint~1×; 50× needs only ~1.29× vol — **leakage is the bridge**.
 - Attest band compression ~5.7× = Trust payoff (not τ). Aurora/H1c/Bitwise are non-leads.
 <!-- /AUTO:SWEEP23 -->
+
+<!-- AUTO:FINALSTACK -->
+## Near-term stack (~52h / 236 cl / 696 c)
+
+0. **HEADLINE:** Leakage is the bridge (close $50M → 50× needs ~1.29× vol). Intents≈99% NEAR DEX.
+1. Flip repo **PUBLIC**
+2. Record **X 90s** (script ready)
+3. SK-tax whale desk (~$10.2M)
+4. Logos → default BB rails
+5. Conversion / attest / HSP-029 pending-lagged / attach-to-60
+<!-- /AUTO:FINALSTACK -->

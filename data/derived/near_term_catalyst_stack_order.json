@@ -1,23 +1,22 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 54.1,
-  "clusters": 228,
-  "commits": 657,
-  "dense_15_complete": true,
+  "hours_to_submit": 52.5,
+  "clusters": 236,
+  "commits": 696,
+  "dense_12_to_16_complete": true,
   "stack_order": [
     {
       "rank": 1,
       "item": "public_repo",
       "owner": "human",
-      "blocks": "submit",
-      "status": "OPEN"
+      "status": "CRITICAL_OPEN"
     },
     {
       "rank": 2,
-      "item": "x_demo_dry_run",
+      "item": "x_demo_90s",
       "owner": "human",
-      "blocks": "submit",
-      "status": "OPEN"
+      "status": "CRITICAL_OPEN",
+      "script": "docs/x-demo-talking-points.md"
     },
     {
       "rank": 3,
@@ -27,9 +26,8 @@
     },
     {
       "rank": 4,
-      "item": "convert_logos_to_default_bb_rails",
-      "owner": "commercial",
-      "note": "default rail IS fee engine"
+      "item": "logos_to_default_bb_rails",
+      "owner": "commercial"
     },
     {
       "rank": 5,
@@ -39,14 +37,14 @@
     },
     {
       "rank": 6,
-      "item": "hsp029_pending_then_lagged",
-      "owner": "governance"
-    },
-    {
-      "rank": 7,
       "item": "attest_escrow",
       "owner": "trust",
       "rr_m": 8.4
+    },
+    {
+      "rank": 7,
+      "item": "hsp029_pending_then_lagged",
+      "owner": "governance"
     },
     {
       "rank": 8,
@@ -55,14 +53,15 @@
       "rr_m": 7.9
     }
   ],
+  "headline": "leakage_is_the_bridge",
   "do_not_lead_with": [
-    "cif_gap",
+    "cif",
+    "ai",
+    "etf",
     "more_strata",
-    "ai_agents",
     "opacity_as_capture",
     "bond_demand",
-    "volume_alone_multiple"
+    "volume_alone"
   ],
-  "implication": "After _15 complete: delivery\u2192SK-tax\u2192logo\u2192default conversion\u2192HSP\u2192attest\u2192attach; volume last",
-  "read": "Catalyst order refreshed post-_15 @~54h. public+X first. Exploratory."
+  "read": "Stack post-_16 @~52h. public+X CRITICAL. Exploratory."
 }
