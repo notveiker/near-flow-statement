@@ -50,3 +50,16 @@ Do not sum. SK exit: fee resilient (~2% BB) / distribution fragile (~38% 1Click)
 - 50×: capture-alone impossible (~19.8 bp > 15.3 gross).
 - Burn ≠ held buyback (DIC ~25d, half-life ~60d).
 <!-- /AUTO:CIF_UNDERWRITE -->
+
+<!-- AUTO:CALL_ORDER -->
+## Commercial call order
+
+1. **Ledger** (SK-tax ~$10.2M) — ~60% of SK fees  
+2. **Escrow attestation** (~$8.4M + underwriting band)  
+3. **CIF rate card** (1bp ~$3.3M Gap)  
+4. **ADR residual defense** (~$5.7M half)  
+5. **Conversion** (9→18% ~$5.5M)  
+6. **TG label+attach** (~$1.4M) · LI.FI template · protect dense fronts  
+
+Volume last. Hold until H1b.
+<!-- /AUTO:CALL_ORDER -->
