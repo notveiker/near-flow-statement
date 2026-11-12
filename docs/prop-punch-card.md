@@ -217,3 +217,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | HSP-029 coverage lift alone | Flat-fee coverage ~15.8%→~24% (~1.5×) — helpful not sufficient; pending-not-live | hsp029_coverage_lift_alone |
 | Partner no-BB share | **94.6%** of listed partner fees have no buyback line — conversion target set | partner_no_bb_share |
 | No-BB half-redirect ceiling | Half of no-BB partner fees → NEAR ≈ **~$25.6M/yr** — conversion ceiling ≫ volume dials | no_bb_half_redirect_ceiling |
+| Three ~$10M magnitudes | SK-tax ~$10M + attest ~$8.4M + HSP-007 10% claim ~$11.8M — net the mint narrative | three_ten_million_magnitudes |

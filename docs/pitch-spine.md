@@ -50,3 +50,7 @@ AI, npm, peer-share alone, perps, CS-as-fee, L1 active rebound.
 ## Close
 
 Leakage/conversion + attestation are the bridges; volume is the last mile. F1–F4: `docs/f1-f4-scorecard.md`.
+
+## Three ~$10M magnitudes
+
+SK-tax ~$10M (capture) · attest escrow ~$8.4M (trust) · HSP-007 10% emissions claim ~$11.8M (mint opex, Gap). Net the issuance story.

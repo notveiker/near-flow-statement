@@ -130,3 +130,7 @@ MoM vol −12% is real, but 30d daily notional is still ~1.5× the year average 
 ## No-BB partner set
 
 ~94.6% of listed partner fees have no buyback line ($4.21M of $4.45M). Conversion dials target that set — not diffuse attach rhetoric.
+
+## Three ~$10M magnitudes
+
+SK-tax 25% ≈ $10M, attest escrow ≈ $8.4M, HSP-007 illustrative 10% emissions claim ≈ $11.8M. Capture and trust are upsides; HSP-007 competes for mint. Budget Gap on HSP-007.
