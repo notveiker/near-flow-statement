@@ -1,14 +1,14 @@
 {
-  "commits_since_structural": 466,
-  "clusters_preliminary": 176,
-  "hours_to_submit": 64.1,
+  "commits_since_structural": 469,
+  "clusters_preliminary": 177,
+  "hours_to_submit": 64.0,
   "stratum": "_09_dense",
-  "last_ingested": "2025Q4_09",
-  "next": "2026Q1_09",
+  "last_ingested": "2026Q1_09",
+  "next": "2026Q2_09",
   "judge_ready": true,
   "must_ship": [
     "public_repo_STILL_PRIVATE",
     "X_demo_dry_run"
   ],
-  "note": "~466 commits; 176 clusters; peerset\u2260scarce + surface opacity + LIVE private-repo blocker; ~64.1h."
+  "note": "~469 commits; 177 clusters; contest-year _09 filling; repo still private; ~64.0h."
 }
