@@ -1,6 +1,7 @@
 {
  "primary_clusters_local": 164,
  "last_ingested": "2026Q4_07",
+ "next_part": "2025Q1_08",
  "overall": "not_supported_preliminary",
- "stratum": "_07_dense"
+ "note": "164 clusters completed denser _07 through 2026. Entering _08 at 2025Q1. Still preliminary. ~414 commits. ~66.5h."
 }

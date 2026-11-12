@@ -49,12 +49,13 @@
  "confidential_share_of_capture_pct": 71.1,
  "user_allin_vs_capture_x": 10.6,
  "ledger_first": true,
- "clusters_preliminary": 161,
+ "clusters_preliminary": 164,
  "falsifiers": "docs/f1-f4-scorecard.md",
  "spine": "docs/pitch-spine.md",
  "submit": "docs/submit-packet.md",
  "controllable_bridge": "sk_tax_and_attest_then_volume",
  "intents_share_near_protocol_fees_pct": 87,
  "ledger_discipline": "capture_vs_defense_vs_cif_gap",
- "hours_to_submit": 67.1
+ "hours_to_submit": 66.5,
+ "dense_07_complete_through": "2026Q4"
 }

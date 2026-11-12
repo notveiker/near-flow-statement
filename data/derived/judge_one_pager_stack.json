@@ -53,7 +53,7 @@
   "cs_as_fee"
  ],
  "stance": "Hold until H1b",
- "history": "159 clusters through 2025Q3_07 dense preliminary",
+ "history": "164 clusters; _07 through 2026 complete; _08 starting; preliminary",
  "submit": "docs/submit-packet.md",
  "four_ten_m": {
   "sk_tax": 10.2,
@@ -63,7 +63,7 @@
  },
  "solver_residual_rr_m": 11.41,
  "tg_attach_conservative_rr_m": 1.37,
- "hours_to_submit": 68.3,
+ "hours_to_submit": 66.5,
  "sk_exit_resilience": "fee_low_dist_high",
  "ladder_rr_m": {
   "ai": 0.33,

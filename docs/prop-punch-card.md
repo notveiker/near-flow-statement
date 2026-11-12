@@ -351,3 +351,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Submit readiness | Prop/dashboard strong; blockers public_repo + X dry-run; ~67h left | submit_readiness |
 | Delivery catalysts | Public repo + X dry-run are binding path to submit; fee catalysts already researched | delivery_catalysts |
 | History 164 / _07 through 2026 | Denser contest-year complete through 2026Q4 — still not supported | history_progress_2026q4_07 |
+| History entering _08 | _07 through 2026 done; denser 2025Q1_08 started — still not supported | history_entering_08 |
