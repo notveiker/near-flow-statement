@@ -1,7 +1,6 @@
 {
-  "primary_clusters_local": 212,
-  "last_ingested": "2026Q4_13",
-  "overall": "not_supported_preliminary",
-  "stratum": "_13_dense_complete",
-  "hours_to_submit": 57.3
+ "primary_clusters_local": 213,
+ "last_ingested": "2025Q1_14",
+ "overall": "not_supported_preliminary",
+ "stratum": "_10_dense"
 }
