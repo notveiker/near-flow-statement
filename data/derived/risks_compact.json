@@ -1,0 +1,15 @@
+{
+ "risks": [
+  "H1b coverage ~20\u201325% \u2014 Hold binds",
+  "Attestation 4.5\u201315.8%; ~71% measured capture unattested",
+  "Unexplained BB ~68%",
+  "Relayer top1 ~83% \u2014 UX/share risk",
+  "HSP-007 emissions claim Gap (engagement 2.1\u00d7 HSP-029)",
+  "HSP-029 pending-not-live until after submit",
+  "SK commercial agreements Gap \u2014 SK-tax is arithmetic",
+  "CIF rate card unpublished",
+  "Multiple ~199\u00d7 fragile on cool / R90\u226aRR"
+ ],
+ "stance": "Hold until H1b",
+ "note": "Compact risks for pitch bottom. Exploratory."
+}
