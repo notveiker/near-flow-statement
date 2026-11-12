@@ -1,0 +1,11 @@
+{
+  "asof": "2026-11-12",
+  "noref": {
+    "noref_buyback_fee_share_pct": 45.8,
+    "noref_vol_share_pct": 18.7,
+    "buyback_dollar_concentration_x": 2.45,
+    "note": "No-referrer is 18.7% of vol but 45.8% of explicit buyback $ (~2.4\u00d7 dollar concentration). Default path IS the fee engine; logo partners are volume without capture. Exploratory."
+  },
+  "implication": "No-referrer dollar concentration (~2.45\u00d7 buyback-$ vs vol share) \u2014 fee engine core sits in no-ref + dense fronts; attach quality concentrates dollars",
+  "read": "No-ref concentration: {'noref_buyback_fee_share_pct': 45.8, 'noref_vol_share_pct': 18.7, 'buyback_dollar_concentration_x': 2.45, 'note': 'No-r. Exploratory."
+}

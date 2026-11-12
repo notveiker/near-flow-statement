@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "all_in_token_claim_alpha_pct": 21,
+  "formula": "4.98 / (15.3 + 8.5)",
+  "caveat": "still too high on SwapKit paths where explicit NEAR \u2248 0",
+  "user_all_in_vs_capture_x": 10.6,
+  "implication": "Headline \u03b1~21% overstates token claim on SK paths with ~0 explicit NEAR \u2014 use path-conditioned capture, not blended \u03b1, in the pitch",
+  "read": "Blended \u03b1~21% overstates SK paths (explicit NEAR\u22480). Path-condition capture. Exploratory."
+}

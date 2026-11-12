@@ -821,6 +821,12 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (D15c) bits.push(`_15 COMPLETE @${D15c.clusters} — strata EV exhausted; public+X bind.`);
     if (Sbe) bits.push(`SK BB ~${Sbe.sk_near_share_of_partner_fees_pct}% of partner fees (L~${Sbe.leakage_ratio_listed_vs_bb_x}×).`);
     if (Pnb) bits.push(`~${Pnb.partner_fees_no_bb_line_pct}% partner fees have no BB line.`);
+    const E16 = D.catalysts && D.catalysts.entering_16;
+    const Bas = D.catalysts && D.catalysts.blended_alpha_sk;
+    const Cls = D.catalysts && D.catalysts.core_lt_sk;
+    if (E16) bits.push(`Entering _16 after _12–_15 complete — strata EV≪public+X.`);
+    if (Bas) bits.push(`Blended α~${Bas.all_in_token_claim_alpha_pct}% overstates SK paths (explicit NEAR≈0).`);
+    if (Cls) bits.push(`Fee-engine core ~$${Cls.fee_engine_core_noref_dense_fronts_rr_m}M < SK-tax $${Cls.sk_tax_rr_m}M.`);
     const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);

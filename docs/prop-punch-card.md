@@ -644,3 +644,7 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 228 / _15 COMPLETE | intents~180×; not supported; strata EV exhausted | dense_15_complete |
 | SK BB ~0.0045% of partner fees | SK BB ~0.0045% of partner fees; L~9.9×; dist tax 67.5% of gross. Exploratory. | sk_bb_share_of_partner_fees_extreme |
 | ~94.6% partner fees no BB line | ~94.6% partner fees have no BB line; conversion~9.2%. Exploratory. | partner_fees_almost_no_bb_line |
+| Entering _16 after _12–_15 | @228; strata EV≈0 vs public+X | entering_16_dense |
+| Blended α overstates SK paths | Blended α~21% overstates SK paths (explicit NEAR≈0). Path-condition capture. Exploratory. | blended_alpha_overstates_sk_paths |
+| Fee-engine core < SK-tax dial | Fee-engine core (no-ref+dense)~$4.1M < SK-tax $10.2M. Controllable > organic core. Exploratory. | fee_engine_core_lt_sk_tax_dial |
+| No-ref concentration = fee core | buyback-$ vs vol share concentrated | noref_concentration_is_fee_core |

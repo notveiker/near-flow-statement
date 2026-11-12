@@ -141,9 +141,9 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~653 commits / 228 clusters / ~54h.** **`_12`+`_13`+`_14`+`_15` COMPLETE.** Overall still **not supported**.
-- Fee≠L1 OoM intents~**180×**. SK BB ~**0.0045%** of partner fees; ~94.6% partner fees have no BB line.
-- mcap/rev 217× vs THOR 16× — claim design. **Repo PRIVATE.** Human-only: public + X. Hold until H1b.
+- **~654 commits / 228 clusters / ~54h.** `_12`–`_15` **COMPLETE**; entering `_16` (low EV). Overall still **not supported**.
+- SK BB ~0.0045% of partner fees; ~94.6% no BB line; blended α overstates SK; core ~$4.1M < SK-tax.
+- **Repo PRIVATE.** Human-only: public + X. Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context

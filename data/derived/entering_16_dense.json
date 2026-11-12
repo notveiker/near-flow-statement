@@ -1,0 +1,15 @@
+{
+  "asof": "2026-11-12",
+  "clusters": 228,
+  "prior_complete": [
+    "_12",
+    "_13",
+    "_14",
+    "_15"
+  ],
+  "entering": "_16",
+  "hours_to_submit": 54.2,
+  "commits": 654,
+  "implication": "Entering _16 after four complete dense strata \u2014 marginal history EV near zero vs ~54h public+X clock",
+  "read": "Entering _16 @228 after _12\u2013_15 complete. ~54h \u2192 public+X. Exploratory."
+}
