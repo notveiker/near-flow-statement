@@ -476,6 +476,7 @@ def build() -> dict:
             "aurora_not": optional("derived/aurora_not_the_thesis.json"),
             "h1c_thin": optional("derived/h1c_buying_thin_not_catalyst.json"),
             "bitwise_neq": optional("derived/bitwise_nrr_neq_intents_capture.json"),
+            "commits_666": optional("derived/commits_666_milestone.json"),
             "noref_core": optional("derived/noref_concentration_is_fee_core.json"),
             "f1_f4": optional("derived/f1_f4_on_submit_day.json"),
         },

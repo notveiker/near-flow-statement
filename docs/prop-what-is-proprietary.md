@@ -160,14 +160,14 @@ Fee-engine≠L1 divergence now ~**132×** intents vs ~**0.19×** L1 tx YoY on 17
 <!-- AUTO:TOP10 -->
 ## Top 10 proprietary claims (judge-facing)
 
-1. Fee engine ≠ L1 (~180× vs ~0.22×) — pitch OoM; point drifts under densification.
-2. Distribution owns margin; leakage ~$50M/yr is the commercial prize.
-3. SK-tax desk ~$10.2M; call-order SK ≻ conversion ≻ attach (mutex).
-4. Default/no-ref rail IS the fee engine (18.7% vol → 45.8% BB$).
+1. Fee engine ≠ L1 (~180–192× vs ~0.22×) — pitch OoM; point drifts.
+2. **Leakage is the bridge:** zero leakage → ~$74.5M RR; 50× needs only ~**1.29×** volume.
+3. Default/no-ref rail IS the fee engine (18.7% vol → 45.8% BB$).
+4. SK-tax desk ~$10.2M; logo partners = volume without capture.
 5. mcap/rev ~217× vs THOR~16× — discretionary held-BB claim design.
-6. No-vol coverage wall ~42.8%; last-mile volume = whale desk terms.
-7. Opacity buys Trust time, not τ; fee print ≠ escrow trust.
+6. No-vol coverage wall ~42.8%; last-mile volume = whale desk.
+7. Attest band ~5.7× compression = Trust payoff (does not raise τ).
 8. Capital-light (PCI~0.057); no bond demand; leakage binds.
 9. Hold until H1b — underwrite discretionary claim.
-10. Must-ship: **public repo + X** (human-only). `_12`–`_15` done; strata EV exhausted.
+10. **URGENT must-ship:** public repo + X dry-run (human-only).
 <!-- /AUTO:TOP10 -->

@@ -1,15 +1,14 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 54.3,
-  "clusters": 227,
-  "commits": 651,
+  "hours_to_submit": 53.8,
+  "clusters": 230,
+  "commits": 666,
   "sixty_seconds": [
-    "Intents fee engine \u2260 L1 (~180\u00d7 vs ~0.22\u00d7) \u2014 OoM.",
-    "Distribution owns margin; leakage ~$50M; SK-tax desk first (~$10M).",
-    "mcap/rev ~217\u00d7 vs THOR~16\u00d7 \u2014 discretionary claim; Hold until H1b.",
-    "Capital-light; wall ~42.8% no-vol; volume last = whale terms.",
+    "Intents fee\u2260L1 (~180\u00d7) \u2014 OoM.",
+    "Leakage is the bridge: close it and 50\u00d7 needs only ~1.3\u00d7 vol.",
+    "Default rail = fee engine; SK-tax desk first; logos = vol w/o capture.",
+    "mcap/rev 217\u00d7 vs THOR 16\u00d7 \u2014 discretionary claim; Hold until H1b.",
     "Must-ship: public repo + X demo."
   ],
-  "implication": "If judge has 60s: five lines above; punch card is warehouse",
-  "read": "60s card @~54h/227cl/651c. Exploratory."
+  "read": "60s card @~54h. Exploratory."
 }

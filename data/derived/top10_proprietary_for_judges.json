@@ -1,29 +1,29 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 54.1,
-  "clusters": 228,
-  "commits": 656,
-  "derived_json": 521,
+  "hours_to_submit": 53.8,
+  "clusters": 230,
+  "commits": 666,
+  "derived_json": 532,
   "top10_proprietary": [
     {
       "rank": 1,
-      "claim": "Fee engine \u2260 L1 (~180\u00d7 vs ~0.22\u00d7) \u2014 OoM, point drifts",
+      "claim": "Fee engine \u2260 L1 (~180\u2013192\u00d7 vs ~0.22\u00d7) \u2014 OoM, point drifts",
       "key": "fee_neq_l1"
     },
     {
       "rank": 2,
-      "claim": "Distribution owns margin; leakage ~$50M/yr commercial prize",
-      "key": "leakage_prize"
+      "claim": "Leakage is the bridge: zero leak \u2192 50\u00d7 needs only ~1.29\u00d7 vol",
+      "key": "leakage_bridge"
     },
     {
       "rank": 3,
-      "claim": "SK-tax desk ~$10.2M > attach-to-60; call-order SK\u227bconv\u227battach",
-      "key": "sk_tax_call_order"
+      "claim": "Default/no-ref rail IS the fee engine (18.7% vol\u219245.8% BB$)",
+      "key": "default_rail"
     },
     {
       "rank": 4,
-      "claim": "Default/no-ref rail IS fee engine (18.7% vol\u219245.8% BB$)",
-      "key": "default_rail"
+      "claim": "SK-tax desk ~$10.2M; logos = vol without capture",
+      "key": "sk_tax_logos"
     },
     {
       "rank": 5,
@@ -32,13 +32,13 @@
     },
     {
       "rank": 6,
-      "claim": "No-vol coverage wall ~42.8%; last mile = whale distribution",
+      "claim": "No-vol coverage wall ~42.8%; whale desk last mile",
       "key": "coverage_wall"
     },
     {
       "rank": 7,
-      "claim": "Opacity/escrow buys Trust time not \u03c4; fee print \u2260 escrow trust",
-      "key": "opacity_not_capture"
+      "claim": "Attest band ~5.7\u00d7 compression = Trust payoff (not \u03c4)",
+      "key": "attest_trust"
     },
     {
       "rank": 8,
@@ -52,9 +52,9 @@
     },
     {
       "rank": 10,
-      "claim": "Must-ship: public repo + X (human-only); strata EV exhausted",
+      "claim": "URGENT must-ship: public repo + X (human-only)",
       "key": "delivery"
     }
   ],
-  "read": "Top-10 prop @~54h/228cl/656c/521 derived. Exploratory."
+  "read": "Top-10 refreshed \u2014 leakage bridge @#2. Exploratory."
 }
