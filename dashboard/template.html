@@ -855,6 +855,14 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (Hl) bits.push(`<b>HEADLINE:</b> ${Hl.one_liner}`);
         const Nlp = D.catalysts && D.catalysts.non_leads_pack;
     if (Nlp) bits.push(`Non-leads: ${Nlp.do_not_lead.slice(0,4).map(x=>x.item).join(', ')}…`);
+    const Ids = D.catalysts && D.catalysts.intents_dex_surface;
+    const Iou = D.catalysts && D.catalysts.intents_ok_ux;
+    const Hvs = D.catalysts && D.catalysts.hot_vs_settle;
+    const Enl = D.catalysts && D.catalysts.etf_nonlead;
+    if (Ids) bits.push(`Intents IS the NEAR DEX surface (~${Ids.intents_share_of_near_dex_pct}% of chain DEX vol).`);
+    if (Iou) bits.push(`Intents OK~${Iou.intents_ok_share_pct}% — failure tail = UX risk not fee dial.`);
+    if (Hvs) bits.push(`HOT~${Hvs.hot_tx_share_pct}% tx vs Intents~${Hvs.intents_tx_share_pct}% at matched gas — settlement weight.`);
+    if (Enl) bits.push(`ETF NRR~$${Enl.etf_nrr_m}M ≈${Enl.nrr_vs_intents_x}× Intents — non-lead.`);
 const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);

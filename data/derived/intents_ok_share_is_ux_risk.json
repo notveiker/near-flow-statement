@@ -1,0 +1,7 @@
+{
+  "asof": "2026-11-12",
+  "intents_ok_share_pct": 83.4,
+  "intents_tx_share_pct": 13.2,
+  "implication": "Intents success ~83% in census \u2014 fee print is on successful flow; UX/failure tail is a resilience risk, not a fee dial",
+  "read": "Intents OK~83.4% of txs \u2014 failure tail = UX risk. Exploratory."
+}

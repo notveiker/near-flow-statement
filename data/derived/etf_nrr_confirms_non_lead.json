@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "etf_nrr_m": 0.42,
+  "intents_rr_m": 24.2,
+  "nrr_vs_intents_x": 0.017,
+  "aum_drawdown_pct": -38.9,
+  "implication": "ETF NRR ~$0.42M \u22480.017\u00d7 Intents \u2014 confirm non-lead; AUM -38.9%",
+  "read": "ETF NRR~$0.42M vs Intents~$24.2M (\u00d70.017). Non-lead. Exploratory."
+}

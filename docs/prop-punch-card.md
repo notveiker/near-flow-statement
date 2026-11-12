@@ -672,3 +672,8 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Judge non-leads pack | AI/ETF/Aurora/H1c/Bitwise/strata/opacity/CS/bonds/pip/CIF — do not lead | judge_non_leads_pack |
 | History 233 / 2026Q1_16 | intents~192×; contest-year _16; not supported | history_progress_2026q1_16 |
 | 680-commit milestone | headline locked; human public+X CRITICAL | commits_680_milestone |
+| Intents IS the NEAR DEX surface | Intents~98.8% of NEAR DEX vol ($4.0B≈$4.05B). Chain DEX = Intents. Exploratory. | intents_is_the_near_dex_surface |
+| Intents OK% = UX risk not fee dial | Intents OK~83.4% of txs — failure tail = UX risk. Exploratory. | intents_ok_share_is_ux_risk |
+| HOT spam vs Intents settlement | HOT~34.5% tx vs Intents~13.2% at ~9.4% gas. Settlement weight. Exploratory. | hot_spam_vs_intents_settlement |
+| ETF NRR confirms non-lead | ETF NRR~$0.42M vs Intents~$24.2M (×0.017). Non-lead. Exploratory. | etf_nrr_confirms_non_lead |
+| npm tooling ≠ capture scale | ~$/17/download vanity; tooling≠capture. Exploratory. | npm_tooling_neq_capture_scale |

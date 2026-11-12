@@ -141,3 +141,8 @@ Prop/dashboard/judge packet ready (~437 commits, 168 clusters preliminary). **Mu
 - Zero leakage after HSP-029 → ~$74.5M RR; mint~1×; 50× needs only ~1.29× vol — **leakage is the bridge**.
 - Attest band compression ~5.7× = Trust payoff (not τ). Aurora/H1c/Bitwise are non-leads.
 <!-- /AUTO:SWEEP23 -->
+
+<!-- AUTO:SWEEP24 -->
+- Intents ≈**98.8%** of NEAR DEX volume — Intents is the chain DEX surface.
+- Intents OK~83.4% = UX risk tail. ETF NRR confirms non-lead. npm≠capture.
+<!-- /AUTO:SWEEP24 -->
