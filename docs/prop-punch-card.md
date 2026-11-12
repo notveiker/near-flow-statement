@@ -267,3 +267,9 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Burn ≠ held buyback | 25% mint hard-burn needs ~122% of capture; DIC half-life ~2.4× — buffer not burn | burn_vs_held_buyback |
 | Dual concentration desk | Whales 77% vol + SK 38%; HHI 0.087→0.20 SK-merged — desk/pipe sensitive | dual_concentration_desk_risk |
 | Capital-light vs bond | PCI ~0.057 / ~10.6% fee per inventory $ — light capital, weak NEAR-bond demand | capital_light_vs_bond_demand |
+
+| Attach path RR lifts | 43→60% ≈ +$7.9M RR; 43→80% ≈ +$17M — still ≪50× need | attach_path_rr_lifts |
+| Capture share vs SK-tax | 32.5→50% ≈ +$13M; SK-tax ~$10M ≈ ~14 pp of share path | capture_share_vs_sk_tax |
+| Unknown+TG surface dominate | Census unknown+TG ≈53% tagged > SK+LI.FI — label frontier | unknown_tg_surface_dominance |
+| CS load shape | execute≫respond≫sign (~7×/~24×) — bursty completion, not fee line | cs_load_shape |
+| Aurora not thesis | TVL ~0.28% of peak; Intents ≫ Aurora fees — do not lead | aurora_not_thesis |

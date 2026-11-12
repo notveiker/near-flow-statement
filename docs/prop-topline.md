@@ -41,3 +41,12 @@ Do not lead with ETF/NRR fee (~1.7% of Intents RR).
 
 Do not sum. SK exit: fee resilient (~2% BB) / distribution fragile (~38% 1Click). TG surface ~20% tagged unmapped — attach dial ~$1.4M conservative.
 <!-- /AUTO:FOUR_TEN_M -->
+
+<!-- AUTO:CIF_UNDERWRITE -->
+## Institutional dials (not take-rate)
+
+- Attestation disclosure compresses capture uncertainty ~**5.7×** without raising τ.
+- CIF rate card Gap: **1 bp ≈ $3.3M/yr**, 5 bp ≈ $16.6M on confidential proxy.
+- 50×: capture-alone impossible (~19.8 bp > 15.3 gross).
+- Burn ≠ held buyback (DIC ~25d, half-life ~60d).
+<!-- /AUTO:CIF_UNDERWRITE -->

@@ -1,0 +1,31 @@
+{
+ "current_attach_pct": 43.0,
+ "current_rr_m": 24.2,
+ "lifts": [
+  {
+   "attach_pct": 50.0,
+   "rr_m": 27.5,
+   "delta_rr_m": 3.3,
+   "vs_sk_tax_x": 0.32
+  },
+  {
+   "attach_pct": 60.0,
+   "rr_m": 32.1,
+   "delta_rr_m": 7.9,
+   "vs_sk_tax_x": 0.77
+  },
+  {
+   "attach_pct": 70.0,
+   "rr_m": 36.7,
+   "delta_rr_m": 12.5,
+   "vs_sk_tax_x": 1.23
+  },
+  {
+   "attach_pct": 80.0,
+   "rr_m": 41.3,
+   "delta_rr_m": 17.1,
+   "vs_sk_tax_x": 1.68
+  }
+ ],
+ "note": "Attach 43\u219260% \u2248 +$7.9M RR; 43\u219280% \u2248 +$17.1M. Even 80% attach (~$41.3M) is ~0.4\u00d7 of 50\u00d7 need \u2014 attach helps, leakage/volume still bind. Exploratory."
+}

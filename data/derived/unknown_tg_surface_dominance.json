@@ -1,0 +1,33 @@
+{
+ "unknown_plus_tg_pct": 53.6,
+ "swapkit_census_pct": 15.1,
+ "lifi_census_pct": 8.6,
+ "top_surfaces": [
+  {
+   "tag": "1click-unknown",
+   "count": 132,
+   "share_pct": 33.2
+  },
+  {
+   "tag": "intents.tg",
+   "count": 81,
+   "share_pct": 20.4
+  },
+  {
+   "tag": "1click-swapkit",
+   "count": 60,
+   "share_pct": 15.1
+  },
+  {
+   "tag": "1click-lifi",
+   "count": 34,
+   "share_pct": 8.6
+  },
+  {
+   "tag": "1click-rango",
+   "count": 14,
+   "share_pct": 3.5
+  }
+ ],
+ "note": "Census referral surface: unknown+TG \u2248 54% of tagged \u2014 larger than SwapKit+LI.FI combined in this window. Fee map still Explorer/1Click; labeling unknown+TG is the distribution attach frontier. Exploratory hours-window."
+}

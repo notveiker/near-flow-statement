@@ -1,0 +1,6 @@
+{
+ "execute_vs_respond_x": 6.7,
+ "respond_vs_sign_x": 23.7,
+ "read": "CS sign is bursty completion under continuous execute_intents \u2014 infra load shape, not fee line",
+ "do_not_lead": "cs_sign_count_as_fee"
+}
