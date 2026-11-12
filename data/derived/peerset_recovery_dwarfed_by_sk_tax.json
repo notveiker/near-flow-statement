@@ -1,0 +1,8 @@
+{
+  "asof": "2026-11-12",
+  "fee_rr_if_gross_recovery_m": 2.8,
+  "vs_sk_tax_25_x": 0.27,
+  "vol_add_gross_recovery_b": 0.46,
+  "implication": "Recovering peerset gross gap adds ~$2.8M (~0.27\u00d7 SK-tax) \u2014 share recovery is a distraction vs SK-tax desk",
+  "read": "Peerset gross recovery ~$2.8M \u22480.27\u00d7 SK-tax. Share\u2260prize. Exploratory."
+}

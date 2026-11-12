@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "staked_share_pct": 44.5,
+  "lst_share_of_stake_pct": 9.27,
+  "unstake_overlap_pct": 1.5,
+  "leakage_m": 50.2,
+  "implication": "Staking ~44.5% of supply dominates float; unstake\u2192Intents ~1.5% of NEAR sold \u2014 soft-sink stories do not explain Intents exits or substitute for $50M leakage capture",
+  "read": "Staked~44.5%; unstake overlap~1.5% of NEAR sold; leakage $50.2M still the prize. Exploratory."
+}

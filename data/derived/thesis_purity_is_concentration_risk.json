@@ -1,0 +1,7 @@
+{
+  "asof": "2026-11-12",
+  "intents_share_of_near_fees_pct": 87.0,
+  "l1_yoy_tx_x": 0.184,
+  "implication": "Intents ~87% of NEAR fees on cooling L1 \u2014 thesis purity is high and so is single-venue risk; investment object is Intents distribution economics",
+  "read": "Purity: Intents~87.0% fees / L1 YoY~0.184\u00d7 \u2014 concentration risk co-moves. Exploratory."
+}

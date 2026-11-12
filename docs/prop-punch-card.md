@@ -596,3 +596,14 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | SK concentration = tax leverage | SK~38.2% vol; HHI 0.087→0.2 merged. Concentration = SK-tax leverage. Exploratory. | swapkit_concentration_is_sk_leverage |
 | Fee≠L1 holds @224 | @224: intents~182× vs L1~0.23× (gap~808×). OoM holds. Exploratory. | fee_neq_l1_holds_at_224 |
 | Channel attach uneven | No-BB/default ~18.7% vol; LiFi ~10.0%@2.8bp vs Trust ~2.4%@20.0bp. Channel attach uneven. Exploratory. | channel_attach_uneven_conversion_map |
+| QoC: capture ≠ vol beta | QoC: attach 23.6→43.0% / τ 2.89→4.98bp with vol mom -12.3%. Exploratory. | quality_on_cool_capture_not_beta |
+| Rating fragile to Intents cool | Run $24.2M vs R90ann $19.63M (×1.23); mult~199.0×. Fragile. Exploratory. | rating_fragile_to_intents_cool |
+| Capture alone never finishes 50× | 60% capture ~$44.7M = 0.46× of 50× need; THOR 3.07× then 4.41×. Exploratory. | capture_alone_never_finishes_50x |
+| Purity = concentration risk | Purity: Intents~87.0% fees / L1 YoY~0.184× — concentration risk co-moves. Exploratory. | thesis_purity_is_concentration_risk |
+| Hold flip ⊥ delivery clock | Flip needs H1b>~50% streams + attest; ~55h delivery clock is orthogonal. Exploratory. | hold_flip_orthogonal_to_delivery |
+| BB wallet vs implied gap | BB wallet 2.187M vs implied 3.19M (~68.5%; missing~1.003M NEAR). Exploratory. | bb_wallet_implied_gap_trust_surface |
+| Revwallet frontend/BB mix dial | Revwallets frontend~30.7% / BB~69.3%; Llama reconcile~100.9%. Exploratory. | revwallet_frontend_bb_mix_dial |
+| Price-heavy print: disclose both | USD fees +619.0% vs NEAR-unit +71.4% (×8.7). Disclose both. Exploratory. | price_heavy_print_disclose_both |
+| Staking float; unstake≠Intents | Staked~44.5%; unstake overlap~1.5% of NEAR sold; leakage $50.2M still the prize. Exploratory. | staking_float_unstake_not_intents |
+| Peerset recovery ≪ SK-tax | Peerset gross recovery ~$2.8M ≈0.27× SK-tax. Share≠prize. Exploratory. | peerset_recovery_dwarfed_by_sk_tax |
+| Cross-ledger OK; same-ledger mutex | Cross-ledger OK (capture+trust ~$26.4M illus.); same-ledger mutex. Exploratory. | cross_ledger_stack_same_ledger_mutex |

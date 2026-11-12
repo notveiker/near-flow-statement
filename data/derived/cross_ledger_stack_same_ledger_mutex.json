@@ -1,0 +1,61 @@
+{
+  "asof": "2026-11-12",
+  "can_stack": [
+    {
+      "a": "sk_tax_25",
+      "b": "attest_escrow",
+      "why": "capture $ vs trust/underwriting \u2014 different ledgers"
+    },
+    {
+      "a": "sk_tax_25",
+      "b": "adr_defense",
+      "why": "partner tax vs solver residual defense"
+    },
+    {
+      "a": "attest_escrow",
+      "b": "conversion_2x",
+      "why": "disclosure vs policy conversion"
+    },
+    {
+      "a": "cif_1bp",
+      "b": "sk_tax_25",
+      "why": "confidential rate card vs SK listed tax \u2014 mostly distinct surfaces"
+    }
+  ],
+  "do_not_stack": [
+    {
+      "a": "sk_tax_25",
+      "b": "no_bb_half_redirect",
+      "why": "both claim partner fee pool"
+    },
+    {
+      "a": "sk_tax_25",
+      "b": "gross_5pp_to_near",
+      "why": "gross share path overlaps tax renegotiation"
+    },
+    {
+      "a": "mix_nearcom_10pp",
+      "b": "wallet_implied_7_7",
+      "why": "stated mix overstates fee-touch"
+    },
+    {
+      "a": "attest_escrow",
+      "b": "underwriting_band",
+      "why": "same disclosure event; $ vs confidence"
+    },
+    {
+      "a": "adr_defense",
+      "b": "solver_residual",
+      "why": "defense is subset of residual pool"
+    },
+    {
+      "a": "cif_1bp",
+      "b": "attest_escrow",
+      "why": "same confidential surface"
+    }
+  ],
+  "conservative_capture_only_rr_m": 18.0,
+  "illustrative_capture_plus_trust_rr_m": 26.4,
+  "implication": "SK-tax + attest can stack (different ledgers); SK-tax + mix + conversion cannot \u2014 pitch cross-ledger stack, forbid same-ledger naive sum",
+  "read": "Cross-ledger OK (capture+trust ~$26.4M illus.); same-ledger mutex. Exploratory."
+}

@@ -1,0 +1,8 @@
+{
+  "asof": "2026-11-12",
+  "wallet_vs_implied_pct": 68.5,
+  "missing_near_m": 1.003,
+  "buyback_wallet_near_m": 2.187,
+  "implication": "Public BB wallet holds ~68.5% of implied buybacks (~1.0M NEAR missing) \u2014 another opacity/routing surface inside the trust ledger",
+  "read": "BB wallet 2.187M vs implied 3.19M (~68.5%; missing~1.003M NEAR). Exploratory."
+}

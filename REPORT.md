@@ -141,10 +141,11 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~633 commits / 224 clusters / ~55h.** `_15` contest-year sealing. Overall still **not supported**.
-- Locked pitch refreshed (8 lines). Channel attach uneven — LiFi high-vol/low-BB vs Trust.
-- Dist tax > τ; double opacity; fee≠L1 OoM holds @224.
-- **Human-only:** public repo + X dry-run. Hold until H1b.
+- **~634 commits / 224 clusters / ~55h.** Contest-year `_15` sealing. Overall still **not supported**.
+- QoC: attach↑ on cool vol — capture ≠ beta. Rating fragile (run $24.2M vs R90ann $19.63M).
+- Capture@60% still ~0.46× of 50×; purity~87% = concentration risk. Submit≺HSP-029 (**pending-then-lagged**).
+- Price-heavy print: disclose USD vs NEAR-unit. Cross-ledger stack OK; same-ledger mutex.
+- **Human-only:** public + X. Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context

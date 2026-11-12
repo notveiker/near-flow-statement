@@ -439,3 +439,10 @@ Chain Signatures sits under Intents execution (execute ≫ respond ≫ sign) —
 - Double opacity inv~69.8% + capture~71.2%; attest gap~$8.4M.
 - CS infra≠fee; HSP-007 vs fee-offset; SK HHI leverage; Intents deposits~6× stablecoin L1.
 <!-- /AUTO:SWEEP17 -->
+
+<!-- AUTO:SWEEP18 -->
+- QoC attach↑ on cool vol; rating fragile to Intents cool (run vs R90 ~1.23×).
+- Capture alone never finishes 50× (60% ≈0.46×); THOR 3.07× then 4.41×.
+- Purity~87% = concentration risk; Hold flip ⊥ delivery; Submit≺HSP-029 pending-lagged.
+- Price-heavy print disclose both; peerset recovery ≪ SK-tax; cross-ledger stack OK.
+<!-- /AUTO:SWEEP18 -->

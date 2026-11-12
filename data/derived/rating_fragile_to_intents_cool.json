@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "run_rate_m": 24.2,
+  "r90_annualised_m": 19.63,
+  "acceleration_x": 1.23,
+  "implied_multiple_on_run_rate": 199.0,
+  "implication": "Run-rate ~$24.2M vs R90 ann ~$19.6M (~1.23\u00d7) \u2014 Hold\u2192Buy path is fragile to Intents cool; do not anchor rating on peak run-rate alone",
+  "read": "Run $24.2M vs R90ann $19.63M (\u00d71.23); mult~199.0\u00d7. Fragile. Exploratory."
+}

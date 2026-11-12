@@ -1,23 +1,23 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 58.3,
+  "hours_to_submit": 54.9,
+  "hours_to_hsp029": 78.9,
   "hours_submit_to_hsp029_timelock": 24.0,
-  "hours_to_hsp029": 82.3,
-  "pitch_rule": "pending_not_live",
+  "pitch_rule": "pending_then_lagged",
   "order": [
     {
-      "t": "now\u219214 Nov",
-      "do": "public_repo + X dry-run + submit; F1\u2013F4 resolve on day"
+      "t": "now\u219214 Nov (~55h)",
+      "do": "public_repo + X dry-run + submit; F1\u2013F4 on day"
     },
     {
       "t": "14\u219216 Nov",
-      "do": "issuance cut stays scenario in materials; do not claim live"
+      "do": "HSP-029 still pending \u2014 do not treat live"
     },
     {
-      "t": "\u226516 Nov",
-      "do": "HSP-029 timelock ends; ramp still starts one quarter later"
+      "t": "post-16 Nov",
+      "do": "timelock end then lagged ramp \u2014 coverage scenario only"
     }
   ],
-  "coverage_if_mistakenly_treated_live_pct": 24.7,
-  "read": "Submit precedes HSP-029 timelock by ~24h. Issuance path is arithmetic scenario at submit \u2014 label pending-not-live. Delivery catalysts (public repo, X) bind before mint dial. Exploratory ops."
+  "implication": "Submit precedes HSP-029 timelock; pitch pending-then-lagged \u2014 never 'live cap cut' before 16 Nov",
+  "read": "Submit in ~55h; HSP-029 ~79h \u2014 pending-then-lagged. Exploratory."
 }

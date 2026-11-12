@@ -1,0 +1,11 @@
+{
+  "asof": "2026-11-12",
+  "attach_b1": 23.6,
+  "attach_b3": 43.0,
+  "captured_bp_b1": 2.89,
+  "captured_bp_b3": 4.98,
+  "vol_mom_pct": -12.3,
+  "fees_mom_pct": -31.64,
+  "implication": "Attach 23.6\u219243% and captured bp 2.89\u21924.98 while volume cools \u2014 quality improving on a cooling tape; elasticity proof that capture dials \u2260 volume beta",
+  "read": "QoC: attach 23.6\u219243.0% / \u03c4 2.89\u21924.98bp with vol mom -12.3%. Exploratory."
+}

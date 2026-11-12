@@ -1,0 +1,10 @@
+{
+  "asof": "2026-11-12",
+  "at_60_rr_m": 44.7,
+  "at_60_vs_50x": 0.46,
+  "hsp029_remaining_gap_x": 3.17,
+  "thor_step1": 3.07,
+  "thor_step2": 4.41,
+  "implication": "Even 60% capture (~$44.7M) is only ~0.46\u00d7 the 50\u00d7 path \u2014 leakage close (~3\u00d7) then volume (~4\u00d7); capture alone never finishes the bridge",
+  "read": "60% capture ~$44.7M = 0.46\u00d7 of 50\u00d7 need; THOR 3.07\u00d7 then 4.41\u00d7. Exploratory."
+}
