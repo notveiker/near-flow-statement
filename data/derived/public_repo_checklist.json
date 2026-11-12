@@ -1,17 +1,18 @@
 {
   "asof": "2026-11-12",
   "is_private": true,
-  "hours_to_submit": 58.6,
-  "clusters": 205,
-  "commits": 568,
+  "hours_to_submit": 58.2,
+  "clusters": 207,
+  "commits": 578,
   "readme_judge_path": "READY",
   "x_dry_run_script": "READY",
   "x_dry_run_recorded": false,
   "binding_blocker": true,
+  "urgency_band": "GREEN",
   "actions": [
     "gh repo edit notveiker/near-flow-statement --visibility public",
-    "record X demo from docs/x-demo-talking-points.md (~90s)",
-    "submit packet on 14 Nov; F1-F4 resolve same day"
+    "record X demo (~90s)",
+    "submit 14 Nov"
   ],
-  "read": "Repo still private=true at ~59h / 205 clusters / 568 commits. README+X script READY \u2014 flip visibility binds. Exploratory."
+  "read": "Repo private=true \u00b7 urgency GREEN \u00b7 ~58h / 207cl / 578 commits. Flip now. Exploratory."
 }

@@ -56,5 +56,5 @@ History/`_10` seals are **not** blockers.
 <!-- /AUTO:RUNBOOK -->
 
 <!-- AUTO:PRESSURE -->
-**Pressure (~59h / 203 clusters / 562 commits):** Prop packet READY. Binding open: **flip repo public** + **record X dry-run**. History denser `_12` not a blocker. HSP-029 stays pending-then-lagged at submit.
+**Pressure (GREEN · ~58h / 207 clusters / 578 commits):** Prop packet READY. Binding open: **flip repo public** + **record X dry-run**. Do not block on history/`_13`. HSP-029 pending-then-lagged.
 <!-- /AUTO:PRESSURE -->

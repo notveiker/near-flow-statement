@@ -643,6 +643,8 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (Jc) bits.push(`Call-order: SK-tax→mix→attest→conversion→attach. Do not sum. Hold until H1b.`);
     const Mn = D.catalysts && D.catalysts.mint_not_fee;
     if (Mn) bits.push(`Mint ledger≠fee upside: HSP-007~$${Mn.hsp007_claim_rr_m}M issuance claim; HSP-029 pending-then-lagged.`);
+    const Du = D.catalysts && D.catalysts.delivery_urgency;
+    if (Du) bits.push(`Delivery urgency <b>${Du.urgency_band}</b> (~${Du.hours_to_submit}h) — public+X bind; do not block on strata.`);
     if (Ds) bits.push(`Diminishing strata: marginal seals low EV vs ~${Ds.hours_to_submit}h public+X clock.`);
     const SrL = D.catalysts && D.catalysts.solver_rent_ledger;
     const Ro = D.catalysts && D.catalysts.relayer_ops;
