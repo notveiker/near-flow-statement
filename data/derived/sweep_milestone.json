@@ -1,14 +1,14 @@
 {
-  "commits_since_structural": 523,
-  "clusters_preliminary": 192,
-  "hours_to_submit": 61.1,
+  "commits_since_structural": 526,
+  "clusters_preliminary": 193,
+  "hours_to_submit": 61.0,
   "stratum": "_11_dense",
-  "last_ingested": "2025Q4_11",
-  "next": "2026Q1_11",
+  "last_ingested": "2026Q1_11",
+  "next": "2026Q2_11",
   "judge_ready": true,
   "must_ship": [
     "public_repo_STILL_PRIVATE",
     "X_demo_dry_run"
   ],
-  "note": "~523 commits; 192 clusters; _11 through 2025 done; contest-year next; repo private; ~61.1h."
+  "note": "~526 commits; 193 clusters; contest-year _11 filling; repo private; ~61.0h."
 }

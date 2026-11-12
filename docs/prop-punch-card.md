@@ -443,3 +443,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Sweep ~520 identity | Prop ready; private repo binds; Hold until H1b | sweep_520_identity |
 | X demo dry-run script | ~90s timed open→dashboard→THOR→opacity→Hold close | x_demo_dry_run_script |
 | History 192 / 2025Q4_11 | _11 through 2025 complete — still not supported | history_progress_2025q4_11 |
+| History 193 / 2026Q1_11 | Contest-year _11 filling — still not supported | history_progress_2026q1_11 |
