@@ -1,6 +1,6 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 61.8,
+  "hours_to_submit": 59.7,
   "github_is_private": true,
   "github_url": "https://github.com/notveiker/near-flow-statement",
   "status": "BLOCKER",
@@ -16,7 +16,7 @@
     },
     {
       "item": "X_demo_dry_run_record",
-      "status": "TODO"
+      "status": "TODO_SCRIPT_READY"
     },
     {
       "item": "submit_packet_link_check",
@@ -25,5 +25,5 @@
   ],
   "prop_ready": true,
   "history_ok_preliminary": true,
-  "read": "LIVE: still private with ~61.8h. README judge-path READY. Prop ready (511 commits / 188 clusters). Exploratory."
+  "read": "LIVE: still private with ~59.7h. Prop ready (547 commits / 199 clusters). Exploratory."
 }
