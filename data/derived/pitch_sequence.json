@@ -1,96 +1,34 @@
 {
- "sequence": [
-  {
-   "step": 1,
-   "action": "attach + mix + leakage",
-   "effect": "raise RR toward ~$37\u201345M"
-  },
-  {
-   "step": 2,
-   "action": "HSP-029",
-   "effect": "cut mint denom; coverage 0.21\u2192~0.3\u20130.5\u00d7"
-  },
-  {
-   "step": "2b",
-   "action": "quality_policy (burn split / attestation / CIF card)",
-   "effect": "hardens underwriting without volume"
-  },
-  {
-   "step": 3,
-   "action": "attestation disclosure",
-   "effect": "collapse 4.5\u201315.8% band; unlock underwriting"
-  },
-  {
-   "step": 4,
-   "action": "volume 2\u20134\u00d7",
-   "effect": "close 50\u00d7 / approach mint coverage"
-  }
- ],
- "do_not_lead_with": [
-  "AI agents",
-  "ETF NRR",
-  "npm downloads"
- ],
- "lead_with": [
-  "attach/AITR",
-  "no-ref concentration",
-  "leakage pool ~$50M/yr",
-  "full-capture extreme",
-  "fee\u00f7mint$",
-  "volume last mile"
- ],
- "note": "Pitch sequence for judges: quality dials first (evidenced), volume as binding closer. Exploratory synthesis.",
- "binding_story": "Leakage renegotiation is the bridge; volume is the last mile (full-capture extreme).",
- "headline_numbers": {
-  "tau_bp": 4.98,
-  "aitr_bp": 9.49,
-  "leakage_pool_m_yr": 50,
-  "fee_covers_mint_x": 0.21,
-  "full_capture_hsp029_mint_x": 1.03,
-  "escrow_climb_pp": 41,
-  "partner_bb_ratio_now": 9.9,
-  "near_side_swap_pct": 3.5,
-  "history_clusters": 137,
-  "vol_mom_delta_pct": -12.3,
-  "quality_on_cool": true,
-  "fee_density_vs_l1_x": 11.2
- },
- "honesty": [
-  "growth_usd_vs_near",
-  "vol_deceleration",
-  "quality_on_cool",
-  "r90_vs_run_rate"
- ],
  "steps": [
   {
-   "step": 0,
-   "title": "Open with leakage bridge",
-   "line": "Capture ~5 of ~15 bp; SK tax alone ~1.7\u00d7 NEAR capture \u2014 renegotiate before asking for 4\u00d7 volume. Quality rose on \u221212% MoM vol. Hold until H1b."
-  },
-  {
    "step": 1,
-   "action": "attach + mix + leakage",
-   "effect": "raise RR toward ~$37\u201345M"
+   "title": "Open",
+   "line": "Partners > capture; leakage ~$50M/yr; distribution owns the print."
   },
   {
    "step": 2,
-   "action": "HSP-029",
-   "effect": "cut mint denom; coverage 0.21\u2192~0.3\u20130.5\u00d7"
-  },
-  {
-   "step": "2b",
-   "action": "quality_policy (burn split / attestation / CIF card)",
-   "effect": "hardens underwriting without volume"
+   "title": "Two bridges",
+   "line": "SK-tax ~$10M capture + attest escrow ~$8.4M trust \u2014 before volume."
   },
   {
    "step": 3,
-   "action": "attestation disclosure",
-   "effect": "collapse 4.5\u201315.8% band; unlock underwriting"
+   "title": "Quality-on-cool",
+   "line": "Attach/\u03c4 1.72\u00d7 inside sample on \u221212% MoM vol off 1.5\u00d7 year-avg print."
   },
   {
    "step": 4,
-   "action": "volume 2\u20134\u00d7",
-   "effect": "close 50\u00d7 / approach mint coverage"
+   "title": "Path",
+   "line": "Full gross+HSP \u2248 1\u00d7 mint then ~1.3\u00d7 vol for 50\u00d7 (vs ~4\u00d7 today)."
+  },
+  {
+   "step": 5,
+   "title": "Holds",
+   "line": "Hold until H1b; HSP-029 pending; HSP-007 competing claim Gap."
+  },
+  {
+   "step": 6,
+   "title": "Close",
+   "line": "Do not lead AI/npm/ETF/peer-share. F1\u2013F4 pre-registered."
   }
  ]
 }

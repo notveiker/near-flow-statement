@@ -1,9 +1,9 @@
 {
- "asof_utc": "2026-11-12T02:00:00Z",
- "commits_since_structural": 306,
- "derived_json_approx": 218,
- "history_clusters_preliminary": 146,
- "next_seal": "2024Q3_06",
+ "asof_utc": "2026-11-12T02:12:00Z",
+ "commits_since_structural": 316,
+ "derived_json_approx": 222,
+ "history_clusters_preliminary": 147,
+ "next_seal": "2024Q4_06",
  "judge_ready": true,
- "note": "Continuing early-stratum seals into 2024Q3. Prop stack judge-ready."
+ "note": "Through 2024Q3. Approaching recent strata. Judge packet ready."
 }
