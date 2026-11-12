@@ -726,6 +726,8 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (Shl) bits.push(`SK~${Shl.swapkit_vol_share_pct}% vol; HHI ${Shl.hhi_raw}→${Shl.hhi_sk_merged} = tax leverage.`);
     if (Fnl) bits.push(`Fee≠L1 @${Fnl.clusters}: intents~${Math.round(Fnl.intents_x)}× vs L1~${Fnl.l1_yoy_tx_x}×.`);
     if (D15) bits.push(`_15 dense through ${D15.last} @${D15.clusters}; next ${D15.next}.`);
+    const Cau = D.catalysts && D.catalysts.channel_attach_uneven;
+    if (Cau) bits.push(`Channel attach uneven: default/no-BB ~${Cau.no_bb_channel_vol_share_pct}% vol; LiFi ~${Cau.lifi_vol_share_pct}%@${Cau.lifi_buyback_bp}bp.`);
     const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);

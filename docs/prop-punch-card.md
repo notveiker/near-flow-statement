@@ -595,3 +595,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Dist tax > token claim | Dist tax~10.32bp vs τ~4.98bp; partners~1.81×; escrow BB dep~58.8%. Exploratory. | distribution_tax_exceeds_token_claim |
 | SK concentration = tax leverage | SK~38.2% vol; HHI 0.087→0.2 merged. Concentration = SK-tax leverage. Exploratory. | swapkit_concentration_is_sk_leverage |
 | Fee≠L1 holds @224 | @224: intents~182× vs L1~0.23× (gap~808×). OoM holds. Exploratory. | fee_neq_l1_holds_at_224 |
+| Channel attach uneven | No-BB/default ~18.7% vol; LiFi ~10.0%@2.8bp vs Trust ~2.4%@20.0bp. Channel attach uneven. Exploratory. | channel_attach_uneven_conversion_map |

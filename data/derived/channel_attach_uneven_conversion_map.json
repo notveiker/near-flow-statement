@@ -1,0 +1,49 @@
+{
+  "asof": "2026-11-12",
+  "no_bb_channel_vol_share_pct": 18.7,
+  "no_bb_channel_fee_share_pct": 45.8,
+  "lifi_vol_share_pct": 10.0,
+  "lifi_buyback_bp": 2.8,
+  "trust_vol_share_pct": 2.4,
+  "trust_buyback_bp": 20.0,
+  "top_channels": [
+    {
+      "buyback_bp": 10.0,
+      "channel": "(none)",
+      "share_pct": 45.8,
+      "vol_share_pct": 18.7
+    },
+    {
+      "buyback_bp": 20.0,
+      "channel": "trustwallet",
+      "share_pct": 12.0,
+      "vol_share_pct": 2.4
+    },
+    {
+      "buyback_bp": 71.1,
+      "channel": "e1a72603-64b3-4be1-8265-8bae5970d396",
+      "share_pct": 7.2,
+      "vol_share_pct": 0.4
+    },
+    {
+      "buyback_bp": 2.8,
+      "channel": "lifi",
+      "share_pct": 6.9,
+      "vol_share_pct": 10.0
+    },
+    {
+      "buyback_bp": 20.0,
+      "channel": "arbie",
+      "share_pct": 6.9,
+      "vol_share_pct": 1.4
+    },
+    {
+      "buyback_bp": 4.1,
+      "channel": "rango",
+      "share_pct": 5.8,
+      "vol_share_pct": 5.8
+    }
+  ],
+  "implication": "~(none) channel is 18.7% vol but 45.8% of BB-fee share at 10bp listed \u2014 channel map shows attach is uneven; conversion/SK desks should prioritize high-vol low-BB routes (LiFi 10.0%@2.8bp)",
+  "read": "No-BB/default ~18.7% vol; LiFi ~10.0%@2.8bp vs Trust ~2.4%@20.0bp. Channel attach uneven. Exploratory."
+}

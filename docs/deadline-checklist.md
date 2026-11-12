@@ -58,3 +58,12 @@ History/`_10` seals are **not** blockers.
 <!-- AUTO:PRESSURE -->
 **Pressure (GREEN · ~56h / 216 clusters / 609 commits):** Prop READY. **Only human left:** (1) flip repo public (2) record X dry-run. Agent keeps stamping; history not a blocker.
 <!-- /AUTO:PRESSURE -->
+
+<!-- AUTO:CLOCK -->
+- Hours left: **~55**
+- Clusters: **224** (_15 dense; contest-year filling)
+- Commits since structural: **633**
+- [ ] Public repo
+- [ ] X demo dry-run
+- [ ] Submit packet
+<!-- /AUTO:CLOCK -->

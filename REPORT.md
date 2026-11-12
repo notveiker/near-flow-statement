@@ -141,11 +141,10 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~632 commits / 224 clusters / ~55h.** `_15` through 2025Q4; 2026Q1 sealing. Overall still **not supported**.
-- Fee≠L1 holds: intents~**182×** vs L1~**0.23×**. Dist tax~**10.32 bp** > τ~**4.98 bp**.
-- Double opacity: conf inventory~**69.8%** + conf capture~**71.2%**; unattested~**$8.4M**.
-- CS=infra not additive fee; HSP-007 competes with fee offset; perps/relayer are overlays not τ dials; SK concentration = tax leverage.
-- Catalyst order: **public+X → SK-tax → conversion → HSP → attach**. Hold until H1b.
+- **~633 commits / 224 clusters / ~55h.** `_15` contest-year sealing. Overall still **not supported**.
+- Locked pitch refreshed (8 lines). Channel attach uneven — LiFi high-vol/low-BB vs Trust.
+- Dist tax > τ; double opacity; fee≠L1 OoM holds @224.
+- **Human-only:** public repo + X dry-run. Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context

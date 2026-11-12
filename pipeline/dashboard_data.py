@@ -416,6 +416,7 @@ def build() -> dict:
             "sk_hhi_leverage": optional("derived/swapkit_concentration_is_sk_leverage.json"),
             "fee_neq_l1_224": optional("derived/fee_neq_l1_holds_at_224.json"),
             "dense_15_progress": optional("derived/dense_15_progress.json"),
+            "channel_attach_uneven": optional("derived/channel_attach_uneven_conversion_map.json"),
         },
         "repro": reproducibility(),
     }
