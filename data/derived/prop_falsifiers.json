@@ -39,6 +39,21 @@
    "id": "F_leakage_pool_shrinks",
    "falsifier": "Gross take falls so leakage pool shrinks without capture share rising",
    "hits": "leakage_bridge"
+  },
+  {
+   "id": "F_sk_tax",
+   "if": "SK listed partner fees fall >50% without NEAR capture rising",
+   "then": "renegotiation-bridge thesis weakens"
+  },
+  {
+   "id": "F_quality_cool",
+   "if": "attach and \u03c4 fall while vol keeps cooling",
+   "then": "quality-on-cool was a one-print artifact"
+  },
+  {
+   "id": "F_relayer",
+   "if": "relayer top1 stays >80% through an outage week",
+   "then": "ops concentration is a live left-tail"
   }
  ],
  "note": "Proprietary falsifiers for the pitch \u2014 what would kill each dial. Exploratory."

@@ -136,3 +136,9 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Controllable dial ROI | Ranked $/yr without 4× vol: SK-tax 25% ≫ ZEC 2× ≫ whale 10pp ≫ no-ref 5pp ≫ peer 70% ≫ agent 5% | dial_roi_sketch |
 | Judge one-pager stack | Densest fee/path/distribution/quality/escrow/ops numbers in one JSON for X demo | judge_one_pager_stack |
 | Prop artifact density | **131+** derived JSON artifacts from hyper sweep (exploratory inventory) | prop_artifact_count |
+
+| SK channel HHI | Fee-bearing SK subchannels concentrate; Ledger ~13.7% @ ~133 bp — renegotiation leverage in 1–2 wallets | sk_channel_hhi |
+| Escrow attestation gap | Escrow ~58.5% of BB vs attestation 4.5–15.8% → ~48 pp unattested mid-gap | escrow_attestation_gap |
+| Relayer≈ok-share | Both ~83% in census — delivery concentration matches success optics (not proven causal) | relayer_ok_coincidence |
+| 1Click coverage of Intents | Explorer 1Click ~28% of Intents $4B — whale/tax maths are on a slice | oneclick_coverage_of_intents |
+

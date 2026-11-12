@@ -1,0 +1,6 @@
+{
+ "relayer_top1_pct": 83,
+ "intents_ok_share_pct": 83,
+ "coincidence_note": "Relayer top1 share and Intents ok-share both print ~83% in census \u2014 concentration of delivery path matches success-rate ceiling optics; not proven causal. Exploratory.",
+ "note": "Ops catalyst is diversification of relayer path; fee math assumes continued ok-share. Exploratory census."
+}

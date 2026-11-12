@@ -1,0 +1,13 @@
+{
+ "sk_subchannel_count": 6,
+ "sk_vol_share_sum_pct": 35.1,
+ "herfindahl_within_sk": 0.0323,
+ "effective_n_channels": 30.93,
+ "top_channel": {
+  "channel": "swapkit/ledgerswapkit.near",
+  "partner_fee_bp": 132.6,
+  "vol_share_pct": 13.7,
+  "partner_fee_usd_m_approx": 2.01
+ },
+ "note": "SwapKit fee-bearing subchannels sum ~35% of 1Click; within-SK HHI=0.032 (eff n\u224830.9). Ledger alone ~13.7% @ 132.6 bp \u2014 renegotiation leverage concentrates in 1\u20132 wallets. Exploratory."
+}

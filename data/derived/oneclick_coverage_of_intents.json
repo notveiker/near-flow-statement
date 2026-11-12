@@ -1,0 +1,7 @@
+{
+ "oneclick_usd_m": 1104,
+ "intents_vol_30d_m": 4000,
+ "oneclick_to_intents_factor": 0.276,
+ "net_factor_prior": 0.5524,
+ "note": "1Click Explorer notional is ~28% of Intents-wide $4B (or ~55% under net-factor definition in contestability). Partner-tax and whale maths measured on 1Click understate Intents-wide if unlabeled flow has different take. Gap. Exploratory."
+}

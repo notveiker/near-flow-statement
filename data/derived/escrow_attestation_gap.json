@@ -1,0 +1,7 @@
+{
+ "escrow_share_of_bb_pct": 58.5,
+ "attestation_band_low_pct": 4.5,
+ "attestation_band_high_pct": 15.8,
+ "unattested_mid_pct": 48.4,
+ "note": "Escrow funds ~58.5% of recent buyback NEAR but attestation covers only ~4.5\u201315.8% \u2014 mid unattested gap ~48 pp. Fee print quality \u2260 escrow trust quality. Hold-until-H1b links here. Exploratory."
+}
