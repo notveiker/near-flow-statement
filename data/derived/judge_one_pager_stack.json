@@ -1,89 +1,97 @@
 {
- "title": "Judge one-pager",
- "open": "Partners > capture; Intents ~87% of NEAR protocol fees; leakage ~$50M/yr",
- "two_bridges_m": {
-  "sk_tax_25": 10.2,
-  "attest_escrow": 8.4
- },
- "three_ten_m": {
-  "sk_tax": 10.2,
-  "attest": 8.4,
-  "hsp007_10pct": 11.8
- },
- "dials_rr_m": {
-  "sk_tax_25": 10.2,
-  "mix_10pp": 9.7,
-  "attest": 8.4,
-  "conversion_2x": 5.5,
-  "gross_5pp": 3.7,
-  "lifi_20bp": 2.31,
-  "trust_direct": 1.72,
-  "whale_10pp": 0.98
- },
- "marginal_x": 3.07,
- "quality": {
-  "attach_x": 1.72,
-  "vol_mom": -12.3,
-  "vs_year_daily_x": 1.48
- },
- "path_50x": {
-  "today_fee_mint": 0.21,
-  "full_gross_hsp": 1.0,
-  "vol_after": 1.3
- },
- "multiple": 199,
- "holds": {
-  "h1b": "20-25%",
-  "attest": "4.5-15.8%",
-  "escrow_bb": "58.5%",
-  "unexplained": "68%",
-  "relayer": "83%"
- },
- "soft_sinks": {
-  "lst_dic_days": 611,
-  "buyback_dic": 24.8,
-  "nrr_dic": 178
- },
- "do_not_lead": [
-  "ai",
-  "npm",
-  "etf",
-  "peer_share",
-  "l1_actives",
-  "cs_as_fee"
- ],
- "stance": "Hold until H1b",
- "history": "164 clusters; _07 through 2026 complete; _08 starting; preliminary",
- "submit": "docs/submit-packet.md",
- "four_ten_m": {
-  "sk_tax": 10.2,
-  "attest": 8.4,
-  "hsp007_10pct": 11.8,
-  "solver_residual": 11.41
- },
- "solver_residual_rr_m": 11.41,
- "tg_attach_conservative_rr_m": 1.37,
- "hours_to_submit": 66.5,
- "sk_exit_resilience": "fee_low_dist_high",
- "ladder_rr_m": {
-  "ai": 0.33,
-  "whale": 0.98,
-  "tg": 1.37,
-  "cif_1bp": 3.31,
-  "sk_tax": 10.2
- },
- "ledger_first": true,
- "confidential_share_of_capture_pct": 71.1,
- "user_allin_vs_capture_x": 10.6,
- "call_order": [
-  "Ledger",
-  "attest",
-  "CIF",
-  "ADR defense",
-  "conversion",
-  "TG",
-  "LI.FI",
-  "dense fronts"
- ],
- "hsp007_engagement_vs_029_x": 2.1
+  "title": "Judge one-pager",
+  "open": "Partners keep more than NEAR captures. Leakage pool ~$50M/yr. Intents ~87% of NEAR fees on a cooling L1 (~0.2\u00d7 YoY tx).",
+  "two_bridges_m": {
+    "sk_tax_25": 10.2,
+    "attest_escrow": 8.4
+  },
+  "three_ten_m": {
+    "sk_tax": 10.2,
+    "attest": 8.4,
+    "hsp007_10pct": 11.8
+  },
+  "dials_rr_m": {
+    "sk_tax_25": 10.2,
+    "mix_10pp": 9.7,
+    "attest": 8.4,
+    "conversion_2x": 5.5,
+    "gross_5pp": 3.7,
+    "lifi_20bp": 2.31,
+    "trust_direct": 1.72,
+    "whale_10pp": 0.98
+  },
+  "marginal_x": 3.07,
+  "quality": {
+    "attach_x": 1.72,
+    "vol_mom": -12.3,
+    "vs_year_daily_x": 1.48
+  },
+  "path_50x": {
+    "today_fee_mint": 0.21,
+    "full_gross_hsp": 1.0,
+    "vol_after": 1.3
+  },
+  "multiple": 199,
+  "holds": {
+    "h1b": "20-25%",
+    "attest": "4.5-15.8%",
+    "escrow_bb": "58.5%",
+    "unexplained": "68%",
+    "relayer": "83%"
+  },
+  "soft_sinks": {
+    "lst_dic_days": 611,
+    "buyback_dic": 24.8,
+    "nrr_dic": 178
+  },
+  "do_not_lead": [
+    "ai",
+    "npm",
+    "etf",
+    "peer_share",
+    "l1_actives",
+    "cs_as_fee"
+  ],
+  "stance": "Hold until H1b",
+  "history": "164 clusters; _07 through 2026 complete; _08 starting; preliminary",
+  "submit": "docs/submit-packet.md",
+  "four_ten_m": {
+    "sk_tax": 10.2,
+    "attest": 8.4,
+    "hsp007_10pct": 11.8,
+    "solver_residual": 11.41
+  },
+  "solver_residual_rr_m": 11.41,
+  "tg_attach_conservative_rr_m": 1.37,
+  "hours_to_submit": 66.5,
+  "sk_exit_resilience": "fee_low_dist_high",
+  "ladder_rr_m": {
+    "ai": 0.33,
+    "whale": 0.98,
+    "tg": 1.37,
+    "cif_1bp": 3.31,
+    "sk_tax": 10.2
+  },
+  "ledger_first": true,
+  "confidential_share_of_capture_pct": 71.1,
+  "user_allin_vs_capture_x": 10.6,
+  "call_order": [
+    "Ledger",
+    "attest",
+    "CIF",
+    "ADR defense",
+    "conversion",
+    "TG",
+    "LI.FI",
+    "dense fronts"
+  ],
+  "hsp007_engagement_vs_029_x": 2.1,
+  "elasticity_capture_vs_vol_x": 3.07,
+  "thor_two_step": {
+    "leakage_x": 3.07,
+    "remaining_x": 4.41
+  },
+  "five_ledgers_note": "capture/trust/defense/mint/rent \u2014 do not sum",
+  "fee_engine_ne_l1": true,
+  "close": "Hold until H1b. HSP-029 pending-not-live. Must-ship: public repo + X dry-run."
 }

@@ -313,6 +313,8 @@ def build() -> dict:
             "five_ledgers": optional("derived/five_ledgers_board.json"),
             "public_repo_checklist": optional("derived/public_repo_checklist.json"),
             "what_flips_hold": optional("derived/what_flips_hold_card.json"),
+            "fee_mint_progress": optional("derived/fee_mint_progress_board.json"),
+            "soft_sink_vs_leakage": optional("derived/soft_sink_vs_leakage_prize.json"),
         },
         "repro": reproducibility(),
     }

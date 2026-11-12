@@ -1,14 +1,14 @@
 {
-  "commits_since_structural": 457,
-  "clusters_preliminary": 173,
-  "hours_to_submit": 64.8,
+  "commits_since_structural": 459,
+  "clusters_preliminary": 174,
+  "hours_to_submit": 64.6,
   "stratum": "_09_dense",
-  "last_ingested": "2025Q1_09",
-  "next": "2025Q2_09",
+  "last_ingested": "2025Q2_09",
+  "next": "2025Q3_09",
   "judge_ready": true,
   "must_ship": [
     "public_repo",
     "X_demo_dry_run"
   ],
-  "note": "~457 commits; 173 clusters; five ledgers + public-repo checklist + Hold-flip card; entering 2025Q2_09; ~64.8h."
+  "note": "~459 commits; 174 clusters; pitch lines + fee\u00f7mint progress + soft-sink\u2260leakage shipped; ~64.6h."
 }

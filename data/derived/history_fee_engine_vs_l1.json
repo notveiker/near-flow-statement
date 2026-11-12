@@ -1,62 +1,47 @@
 {
   "asof": "2026-11-12",
-  "clusters_used": 173,
+  "clusters_used": 174,
   "overall": "not supported",
   "ratios": {
     "U1": {
-      "hypothesis": "NEAR usage has grown (tx per day)",
       "point": 0.184,
       "lo90": 0.1387,
       "hi90": 0.2413,
-      "num": "2026Q3",
-      "den": "2025Q3",
-      "metric": "tx_per_day",
-      "supported": false
+      "supported": false,
+      "hypothesis": "NEAR usage has grown (tx per day)"
     },
     "U2": {
-      "hypothesis": "The growth is not one contract",
       "point": 0.1826,
       "lo90": 0.1346,
       "hi90": 0.2466,
-      "num": "2026Q3",
-      "den": "2025Q3",
-      "metric": "tx_per_day_ex_top",
-      "supported": false
+      "supported": false,
+      "hypothesis": "The growth is not one contract"
     },
     "U3": {
-      "hypothesis": "Intents is a real share of activity (receipts on intents.near per day)",
       "point": 113.0373,
       "lo90": 47.8156,
       "hi90": 1422.5625,
-      "num": "2026Q3",
-      "den": "2025Q1",
-      "metric": "intents_per_day",
-      "supported": true
+      "supported": true,
+      "hypothesis": "Intents is a real share of activity (receipts on intents.near per day)"
     },
     "U4": {
-      "hypothesis": "More distinct users (signers per 100 blocks)",
       "point": 0.2608,
       "lo90": 0.2208,
       "hi90": 0.3071,
-      "num": "2026Q3",
-      "den": "2025Q3",
-      "metric": "signers_per_100",
-      "supported": false
+      "supported": false,
+      "hypothesis": "More distinct users (signers per 100 blocks)"
     },
     "U5": {
-      "hypothesis": "Fee burn has grown (NEAR burnt per day)",
       "point": 0.2565,
       "lo90": 0.1676,
       "hi90": 0.3687,
-      "num": "2026Q3",
-      "den": "2025Q3",
-      "metric": "burn_near_per_day",
-      "supported": false
+      "supported": false,
+      "hypothesis": "Fee burn has grown (NEAR burnt per day)"
     }
   },
   "l1_yoy_tx_x": 0.184,
   "l1_yoy_signers_x": 0.2608,
   "l1_yoy_burn_x": 0.2565,
   "intents_vs_2025q1_x": 113.0373,
-  "read": "L1 YoY tx ~0.18\u00d7 / signers ~0.26\u00d7 / burn ~0.26\u00d7 while intents.near receipts ~113\u00d7 vs 2025Q1 \u2014 investable object is Intents fee engine on a cooling base layer. Overall usage growth not supported; do not pitch L1 rebound. Exploratory / preliminary history."
+  "read": "L1 YoY tx ~0.18\u00d7 / signers ~0.26\u00d7 / burn ~0.26\u00d7 while intents.near ~113\u00d7 vs 2025Q1 \u2014 Intents fee engine on cooling L1. Overall not supported. Preliminary."
 }

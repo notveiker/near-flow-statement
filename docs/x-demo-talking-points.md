@@ -33,7 +33,7 @@
 <!-- /AUTO:X_CONVO -->
 
 <!-- AUTO:X_FINAL -->
-**Demo close (~65h):** Partners>capture → elasticity (~3×) → THOR two-step (leakage then vol) → opacity product → no-vol coverage → fee engine ≠ L1 (Intents ~87%) → Hold until H1b. HSP-029 pending-not-live. Must-ship: public repo + X.
+**Demo close (~65h):** Partners keep more than NEAR captures. Leakage pool ~$50M/yr. Intents ~87% of NEAR fees on a cooling L1 (~0.2× YoY tx). → Two bridges before volume: Ledger-first SK-tax ~$10.2M and attest escrow ~$8.4M. Capture-pp ≈3× volume-pp. → Leakage close ~3.1× then ~4.4× volume/price to THOR-like multiple. Full-capture+HSP → ~1.3× vol for 50×. Volume last mile. → Hold until H1b. HSP-029 pending-not-live. Must-ship: public repo + X dry-run. History 174 clusters preliminary.
 <!-- /AUTO:X_FINAL -->
 
 Card: `data/derived/judge_capture_card.json` — open with partners>capture, close with Hold until H1b.

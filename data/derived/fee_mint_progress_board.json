@@ -1,0 +1,52 @@
+{
+  "asof": "2026-11-12",
+  "principle": "leakage_then_volume",
+  "fee_mint_rows": [
+    {
+      "stage": "today",
+      "fee_over_mint_x": 0.21,
+      "vol_x_for_50x_at_stage_take": 4.0
+    },
+    {
+      "stage": "hsp029_alone",
+      "fee_over_mint_x": 0.32,
+      "note": "mint\u2193"
+    },
+    {
+      "stage": "attach_mix_stack",
+      "fee_over_mint_x": 0.48
+    },
+    {
+      "stage": "full_gross_15_3bp_plus_hsp",
+      "fee_over_mint_x": 1.0,
+      "vol_x_for_50x": 1.3
+    }
+  ],
+  "coverage_steps_pct": [
+    {
+      "step": "today",
+      "coverage_pct": 15.81
+    },
+    {
+      "step": "hsp029_cap_1_6_alone",
+      "coverage_pct": 24.7
+    },
+    {
+      "step": "attach_60_current_mint",
+      "coverage_pct": 20.9
+    },
+    {
+      "step": "attach_60_plus_hsp029",
+      "coverage_pct": 32.7
+    },
+    {
+      "step": "conservative_capture_stack_18m",
+      "coverage_pct": 27.4
+    },
+    {
+      "step": "conservative_stack_plus_hsp029",
+      "coverage_pct": 42.8
+    }
+  ],
+  "read": "Fee\u00f7mint today ~0.21\u00d7 \u2192 HSP alone ~0.32\u00d7 \u2192 attach/mix stack ~0.48\u00d7 \u2192 full gross+HSP ~1.0\u00d7 then ~1.3\u00d7 vol for 50\u00d7. Coverage without volume tops ~43% at conservative stack+HSP \u2014 leakage bridge is obligatory. Exploratory."
+}

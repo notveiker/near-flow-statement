@@ -141,12 +141,11 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **Fee engine ≠ L1** (173 clusters): L1 YoY ~0.18–0.26×; intents ~100× vs 2025Q1; Intents ≈87% NEAR fees.
-- **Elasticity / THOR two-step:** capture-pp≈3.07×vol; leakage ~3.1× then ~4.4× remaining; full-capture → ~1.3× vol for 50×.
-- **Five ledgers:** capture / trust / defense / mint / rent — do not sum; mint≠token upside.
-- **What flips Hold:** H1b>~50% first; attest/CIF/SK improve the object under Hold — not L1 rebound or AI/npm.
-- **Delivery:** public_repo checklist + X dry-run bind (~65h); HSP-029 pending-not-live.
-- **History:** 173 clusters; denser `_09` through 2025Q1; overall still not supported.
+- **Locked pitch:** partners>capture / leakage ~$50M · capture-pp≈3×vol · SK-tax+attest bridges · THOR two-step (3.1× then 4.4×) · Hold until H1b · HSP-029 pending-not-live.
+- **Fee÷mint path:** 0.21→0.32→0.48→~1.0× then ~1.3× vol for 50×; no-vol coverage tops ~43% here.
+- **Soft-sink ≠ prize:** NRR ~178 DIC days but 1–2d exit — does not replace ~$50M/yr leakage renegotiation.
+- **Fee engine ≠ L1** (174 clusters): intents ~113× vs 2025Q1; L1 YoY ~0.18×.
+- **Must-ship:** public repo + X dry-run (~65h).
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context

@@ -382,3 +382,7 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Public repo checklist | Binding delivery: public + README path + X dry-run | public_repo_checklist |
 | What flips Hold | H1b>~50% first; attest/CIF/SK improve object under Hold | what_flips_hold_card |
 | History 173 / 2025Q1_09 | Denser _09 started — still not supported | history_progress_2025q1_09 |
+| Fee÷mint progress board | 0.21→0.32→0.48→1.0× then ~1.3× vol; coverage no-vol ~43% max here | fee_mint_progress_board |
+| Soft-sink ≠ leakage prize | NRR ~178 DIC days but 1–2d exit; leakage ~$50M/yr is the commercial prize | soft_sink_vs_leakage_prize |
+| Pitch locked lines refresh | Elasticity + THOR two-step + fee≠L1 + pending-not-live close | pitch_locked_lines |
+| History 174 / 2025Q2_09 | _09 dense continuing — still not supported | history_progress_2025q2_09 |

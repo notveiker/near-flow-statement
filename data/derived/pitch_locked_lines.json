@@ -1,8 +1,10 @@
 {
- "open": "Partners keep more than NEAR captures. Leakage pool ~$50M/yr. Intents ~87% of NEAR protocol fees.",
- "bridge": "Two bridges before volume: Ledger-first SK-tax ~$10.2M and attest escrow ~$8.4M.",
- "ladder": "AI $0.33 \u226a whale $1.0 \u226a TG $1.4 \u226a CIF 1bp $3.3 \u226a SK-tax $10.2 \u2014 lead the right end.",
- "quality": "Attach/\u03c4 already 1.72\u00d7 on a \u221212% MoM cool. Quality is observed.",
- "path": "Capture-alone cannot hit 50\u00d7 (>gross bp). Leakage \u2192 ~1\u00d7 mint \u2192 ~1.3\u00d7 vol.",
- "close": "Hold until H1b. ~71% of measured capture unattested. Do not lead AI/npm/ETF/peer-share/L1 actives. F1\u2013F4 on 14 Nov."
+  "open": "Partners keep more than NEAR captures. Leakage pool ~$50M/yr. Intents ~87% of NEAR fees on a cooling L1 (~0.2\u00d7 YoY tx).",
+  "bridge": "Two bridges before volume: Ledger-first SK-tax ~$10.2M and attest escrow ~$8.4M. Capture-pp \u22483\u00d7 volume-pp.",
+  "ladder": "AI $0.33 \u226a whale $1.0 \u226a TG $1.4 \u226a CIF 1bp $3.3 \u226a SK-tax $10.2 \u2014 lead the right end.",
+  "quality": "Attach/\u03c4 already 1.72\u00d7 on a \u221212% MoM cool. Quality is observed; L1 rebound is not the pitch.",
+  "path": "Leakage close ~3.1\u00d7 then ~4.4\u00d7 volume/price to THOR-like multiple. Full-capture+HSP \u2192 ~1.3\u00d7 vol for 50\u00d7. Volume last mile.",
+  "close": "Hold until H1b. HSP-029 pending-not-live. Must-ship: public repo + X dry-run.",
+  "elasticity_line": "Every capture-share point \u22483.07\u00d7 a volume point in $/yr; SK-tax \u224842.5 vol-pp.",
+  "asof": "2026-11-12"
 }
