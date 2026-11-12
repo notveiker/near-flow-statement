@@ -1,0 +1,7 @@
+{
+ "attach_path_b1_to_b3_x": 1.72,
+ "vol_cooling_pct": -12.3,
+ "quality_rising_on_cool": true,
+ "implication": "Capture quality already improved inside the sample while volume cooled \u2014 the controllable path is evidenced, not purely hypothetical",
+ "note": "Attach 23.6\u219243 and captured bp 2.89\u21924.98 (1.72\u00d7) while latest vol \u221212% MoM. Lead with evidenced quality path + leakage dials. Exploratory."
+}

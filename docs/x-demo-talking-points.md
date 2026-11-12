@@ -35,3 +35,5 @@ Pre-registered F1–F4 in `docs/f1-f4-scorecard.md`. History sample preliminary 
 Full spine: [`pitch-spine.md`](pitch-spine.md).
 
 Partners listed fees exceed NEAR capture in dollars — open with distribution ownership of the fee print.
+
+Lead with evidenced quality path (attach/τ 1.72× inside sample on −12% MoM vol) + leakage/conversion dials.

@@ -1,0 +1,6 @@
+{
+ "cross_chain_proxy_usd_m": 107.9,
+ "cross_chain_proxy_share_pct": 47.1,
+ "wnear_usd_m": 62.58,
+ "note": "Top cross-chain proxy assets (ZEC/BTC/WBTC/USDC/USDT/XLM) \u2248 $108M (~47% of inventory) vs wNEAR ~$63M \u2014 balance sheet is built for cross-chain settlement, matching NEAR-side swap minority (3.5%). Exploratory."
+}
