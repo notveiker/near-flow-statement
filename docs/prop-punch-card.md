@@ -357,3 +357,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Marginal share discipline | +1pp capture-share ≈3× +1pp volume in $/yr — prefer leakage board | marginal_share_discipline |
 | History 166 / 2025Q2_08 | _08 dense continuing — still not supported | history_progress_2025q2_08 |
 | Pitch locked lines | Open/bridge/ladder/quality/path/close strings for X demo | pitch_locked_lines |
+| History 167 / 2025Q3_08 | _08 dense continuing — still not supported | history_progress_2025q3_08 |
