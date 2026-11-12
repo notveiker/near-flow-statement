@@ -524,6 +524,11 @@ def build() -> dict:
             "commits_720": optional("derived/commits_720_milestone.json"),
             "dist_owns_margin": optional("derived/distribution_owns_margin_number.json"),
             "elast_sequence": optional("derived/elasticity_means_sequence_not_size.json"),
+            "escrow_attest_clock": optional("derived/escrow_acceleration_is_attest_clock.json"),
+            "dist_tax_scoreboard": optional("derived/distribution_tax_is_the_scoreboard.json"),
+            "sk_funnel_dom": optional("derived/sk_tax_dominates_capture_funnel.json"),
+            "sk_hhi_feature": optional("derived/sk_hhi_is_tax_leverage_feature.json"),
+            "allin_leak_ratio": optional("derived/all_in_over_capture_is_leakage_ratio.json"),
         },
         "repro": reproducibility(),
     }

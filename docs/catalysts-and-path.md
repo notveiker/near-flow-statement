@@ -491,3 +491,6 @@ Chain Signatures sits under Intents execution (execute ≫ respond ≫ sign) —
 
 <!-- AUTO:STACK 2026-11-12 -->
 - Catalyst stack T0→H1b locked. Contest-year = honesty footnote. ~52h. PUBLIC+X NOW.
+
+<!-- AUTO:ESCROWACCEL 2026-11-12 -->
+- Escrow BB 17.5→58.5% in ~4 mo (~10pp/mo): attest is clocked. Dist tax 67.5% = scoreboard. ~51h. PUBLIC+X.

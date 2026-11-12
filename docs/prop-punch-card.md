@@ -724,3 +724,8 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Distribution owns ~47.6% of all-in | tax distribution + default-rail; not L1 spam | distribution_owns_margin_number |
 | Elasticity 3.07× = sequence≠size | no-vol wall 42.8%; sequence before size | elasticity_means_sequence_not_size |
 | History 242 / 2026Q2_17 | 720c+; intents~175×; PUBLIC+X NOW | history_progress_2026q2_17 |
+| Escrow accel 17.5→58.5% (~10pp/mo) | attest is a clocked catalyst; Hold partly this curve | escrow_acceleration_is_attest_clock |
+| Distribution tax 67.5% = scoreboard | SK BB 0.0045% of partner fees; tax the rail | distribution_tax_is_the_scoreboard |
+| SK-tax dominates capture funnel | vs conversion ~1.86×; vs mix ~1.05× | sk_tax_dominates_capture_funnel |
+| SK HHI = tax leverage feature | concentration = one negotiation moves share | sk_hhi_is_tax_leverage_feature |
+| All-in/capture ~10.6× = leakage ratio | attest+SK close the multiple | all_in_over_capture_is_leakage_ratio |

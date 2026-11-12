@@ -1,0 +1,12 @@
+{
+  "asof": "2026-11-12",
+  "distribution_tax_pct_of_gross": 67.5,
+  "capture_share_pct": 32.5,
+  "sk_partner_fees_m": 3.53,
+  "sk_explicit_bb_usd": 159,
+  "sk_bb_share_pct": 0.0045,
+  "leakage_ratio_listed_vs_bb_x": 9.9,
+  "claim": "Distribution takes ~67.5% of gross; protocol capture ~32.5%. SK explicit BB is $159 on $3.53M partner fees (0.0045%) \u2014 leakage ratio ~9.9\u00d7. The scoreboard is distribution tax, not logo volume or L1 tx.",
+  "pitch_line": "67.5\u00a2 of every fee dollar is distribution. Tax that rail.",
+  "read": "Distribution tax scoreboard. Exploratory."
+}
