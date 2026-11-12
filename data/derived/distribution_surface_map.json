@@ -1,0 +1,47 @@
+{
+ "census_hours_window": true,
+ "top_surfaces": [
+  {
+   "tag": "1click-unknown",
+   "count": 132,
+   "share_pct": 33.2
+  },
+  {
+   "tag": "intents.tg",
+   "count": 81,
+   "share_pct": 20.4
+  },
+  {
+   "tag": "1click-swapkit",
+   "count": 60,
+   "share_pct": 15.1
+  },
+  {
+   "tag": "1click-lifi",
+   "count": 34,
+   "share_pct": 8.6
+  },
+  {
+   "tag": "1click-rango",
+   "count": 14,
+   "share_pct": 3.5
+  },
+  {
+   "tag": "solver-multichain-assets-rebalancing",
+   "count": 13,
+   "share_pct": 3.3
+  },
+  {
+   "tag": "1click-aurora-fees-collection",
+   "count": 11,
+   "share_pct": 2.8
+  },
+  {
+   "tag": "1click-aurora-widget-cmpzffi5j00c60bjo87zaqlvh",
+   "count": 11,
+   "share_pct": 2.8
+  }
+ ],
+ "fee_attributed": false,
+ "note": "Live referral surface map from node census (hours). Fee attribution still Explorer/1Click buyback map. Two different lenses on distribution. Exploratory."
+}
