@@ -353,6 +353,7 @@ def build() -> dict:
             "price_heavy": optional("derived/price_heavy_fee_print.json"),
             "attach_momentum": optional("derived/attach_momentum_board.json"),
             "judge_packet": optional("derived/judge_packet_completeness.json"),
+            "dense_12_complete": optional("derived/dense_12_complete.json"),
         },
         "repro": reproducibility(),
     }

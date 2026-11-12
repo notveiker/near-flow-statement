@@ -305,3 +305,10 @@ Chain Signatures sits under Intents execution (execute ≫ respond ≫ sign) —
 - ~**17.0** pp remains to 60% — roughly the same distance already traveled → ~**$7.9M**/yr RR uplift at AITR.
 - Lives under the ~**42.8%** no-vol coverage wall; still not 50× alone.
 <!-- /AUTO:ATTACH_MOM -->
+
+<!-- AUTO:D12_DONE -->
+### Dense `_12` complete (exploratory)
+
+- Contest-year denser `_12` through **2026Q4** sealed — **204 clusters**; overall still **not supported**.
+- History is **not** a submit blocker. Remaining hours (~**59**) burn on **public repo + X dry-run**.
+<!-- /AUTO:D12_DONE -->

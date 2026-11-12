@@ -1,0 +1,12 @@
+{
+  "asof": "2026-11-12",
+  "stratum": "_12_dense",
+  "through": "2026Q4_12",
+  "clusters": 204,
+  "commits": 564,
+  "hours_to_submit": 58.8,
+  "overall": "not supported",
+  "history_blocker": false,
+  "next": "denser _13 or stop strata and burn hours on public+X",
+  "read": "_12 dense through 2026Q4 COMPLETE \u2014 204 clusters; overall still not supported. History is not a submit blocker. Burn remaining ~59h on public repo + X dry-run. Exploratory."
+}

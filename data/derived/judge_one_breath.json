@@ -1,8 +1,8 @@
 {
   "asof": "2026-11-12",
-  "one_breath": "Partners keep more than NEAR captures (~$50M/yr; fidelity~97%\u2192terms). Whale desk is the SK-tax conversation (3.4% swaps=77.1% vol; tax pool~$40.9M). Capture\u22483.07\u00d7vol; coverage wall~42.8%; double opacity escrow~59%+unknown~33%. Peerset share not scarce; WC not binding. Hold until H1b. Flip public + X (~59h).",
-  "hours_to_submit": 59.0,
-  "clusters": 203,
-  "commits": 561,
+  "one_breath": "_12 dense done (204 clusters, still not supported \u2014 not a blocker). Partners keep more than NEAR captures (~$50M/yr; terms not invoices). Whale desk=SK-tax (3.4% swaps=77% vol). Capture\u22483.07\u00d7vol; coverage wall~42.8%; double opacity. Hold until H1b. HSP pending-then-lagged. **Flip repo public + record X** (~59h).",
+  "hours_to_submit": 58.8,
+  "clusters": 204,
+  "commits": 564,
   "repo_private": true
 }

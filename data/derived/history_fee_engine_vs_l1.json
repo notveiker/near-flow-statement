@@ -1,6 +1,6 @@
 {
   "asof": "2026-11-12",
-  "clusters_used": 203,
+  "clusters_used": 204,
   "overall": "not supported",
   "ratios": {
     "U1": {
@@ -43,5 +43,5 @@
   "l1_yoy_signers_x": 0.2717,
   "l1_yoy_burn_x": 0.3467,
   "intents_vs_2025q1_x": 181.1515,
-  "read": "L1 YoY ~0.20\u00d7/0.27\u00d7/0.35\u00d7; intents ~181\u00d7 vs 2025Q1. Overall not supported. Preliminary (203 clusters)."
+  "read": "L1 YoY ~0.20\u00d7/0.27\u00d7/0.35\u00d7; intents ~181\u00d7 vs 2025Q1. Overall not supported. Preliminary (204 clusters)."
 }
