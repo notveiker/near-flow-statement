@@ -66,3 +66,5 @@ Only ~9.2% of Explorer-listed appfees print as buybacks in-window; ~68% of revwa
 ## Stack identity (30d)
 
 Gross Intents fees ~$6.12M; NEAR capture ~$1.99M; listed partner fees ~$4.45M. **Partners exceed capture in dollars** — distribution owns the fee print. Conversion (9.2% appfees→BB) and renegotiation are how capture share moves.
+
+Note: Explorer partner/appfee lines and DefiLlama gross fees are not a clean partition — percentages can sum >100%. The partners>capture dollar comparison uses Explorer listings.

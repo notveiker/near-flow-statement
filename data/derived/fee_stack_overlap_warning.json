@@ -1,0 +1,8 @@
+{
+ "capture_over_gross": 0.325,
+ "partners_over_gross": 0.728,
+ "sum": 1.053,
+ "overlap_warning": "sum>1 because Explorer partner/appfee definitions are not a clean partition of DefiLlama gross fees",
+ "still_valid_read": "partners exceed capture in absolute Explorer dollars; directionally distribution-owned",
+ "note": "Do not add partner%+capture% of gross to 100% \u2014 definitions overlap. The directional claim (partners > capture in $) holds on Explorer listings. Exploratory honesty."
+}

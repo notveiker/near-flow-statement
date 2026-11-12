@@ -32,3 +32,5 @@ Telegram (`intents.tg`) is a live referral surface in census (~20% of tagged) bu
 - near.com stated vs wallet-implied gap
 - Peerset share softening (62→56→39 net)
 - L1 actives −77% YoY vs Intents fee dominance
+
+- **Fee stack partition**: Explorer partner/appfee vs DefiLlama gross are not a clean partition (sum can exceed 100%). Directional partners>capture $ still holds.
