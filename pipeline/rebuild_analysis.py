@@ -316,8 +316,41 @@ def f1() -> dict:
             "top5_signer_share": sum(v for _, v in by_signer.most_common(5)) / ext, "deposits_by_month_near": dict(month)}
 
 
+# ------------------------------------------------------------------ F3
+def f3() -> dict:
+    ds = days(SWAP_START, CUTOFF_DATE)
+    cx = {r["day"]: r for r in load("rb_f3a_daily")}
+    q4d = {r["day"]: r for r in load("rb_q4a_daily_volume")}
+    n_anch = sum(int(r["n_anchored"]) for r in cx.values())
+    n_un = sum(int(r["n_unanchored"]) for r in cx.values())
+    simple = [float(q4d[d]["usd_all"]) for d in ds]
+    anch = [float(cx[d]["usd_anchored"]) for d in ds]
+    comb = [a + b for a, b in zip(simple, anch)]
+    w = lambda arr, a, b: sum(arr[ds.index(d)] for d in days(a, b))
+    step = lambda arr: w(arr, "2026-09-01", "2026-09-07") / w(arr, "2026-08-25", "2026-08-31")
+    L = q4()["step_2026_09_01"]["weeks"]["llama"]["ratio"]
+    thr = 1 + 0.5 * (L - 1)
+    exp = {r["date"]: r["usd_in"] for r in json.loads((RAW / "explorer" / "daily.json").read_text())["days"]}
+    one = sum(exp.get(d, 0) for d in ds)
+    ll = {datetime.fromtimestamp(t, timezone.utc).date().isoformat(): v for t, v in json.loads((RAW / "llama" / "volume_near-intents.json").read_text())["totalDataChart"]}
+    llt = sum(ll.get(d, 0) for d in ds)
+    rows = load("rb_f3b_solver_fills")
+    tot = {r["solver"]: int(r["fills_simple"]) + int(r["fills_complex"]) for r in rows}
+    t = sum(tot.values())
+    top = sorted(tot.items(), key=lambda kv: -kv[1])
+    simple_top10 = q3()["fill_conc"]["top10"]
+    comb_top10 = sum(v for _, v in top[:10]) / t
+    return {"anchored_receipts": n_anch, "unanchored_receipts": n_un, "anchored_share_of_complex": n_anch / (n_anch + n_un),
+            "anchored_usd": sum(anch), "simple_usd": sum(simple), "combined_usd": sum(comb), "uplift_vs_simple": sum(anch) / sum(simple),
+            "combined_over_oneclick": sum(comb) / one, "combined_over_llama": sum(comb) / llt, "llama_over_oneclick": llt / one,
+            "step_ratio_combined": step(comb), "step_ratio_anchored_only": step(anch), "step_threshold": thr, "step_shows_on_chain": step(comb) >= thr,
+            "fills_simple": sum(int(r["fills_simple"]) for r in rows), "fills_complex": sum(int(r["fills_complex"]) for r in rows),
+            "top10_fill_share_combined": comb_top10, "top10_fill_share_simple": simple_top10, "H_F3a_robust": abs(comb_top10 - simple_top10) <= 0.05,
+            "top1_combined": {"solver": top[0][0], "share": top[0][1] / t}, "top3_combined": [{"solver": k, "share": v / t} for k, v in top[:3]]}
+
+
 def main() -> int:
-    res = {"cutoff_block": 223_088_015, "windows": {"q1_q2": [WINDOW_START, CUTOFF_DATE], "q3_q4": [SWAP_START, CUTOFF_DATE]}, "q1": q1(), "q2": q2(), "q3": q3(), "q4": q4(), "f1": f1()}
+    res = {"cutoff_block": 223_088_015, "windows": {"q1_q2": [WINDOW_START, CUTOFF_DATE], "q3_q4": [SWAP_START, CUTOFF_DATE]}, "q1": q1(), "q2": q2(), "q3": q3(), "q4": q4(), "f1": f1(), "f3": f3()}
     jobs = [json.loads(l) for l in (OUT / "jobs.jsonl").read_text().splitlines()]
     res["bytes_billed_total"] = sum(j["bytes_billed"] for j in jobs)
     dest = ROOT / "data" / "derived" / "rebuild_results.json"

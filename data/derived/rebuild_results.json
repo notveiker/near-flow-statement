@@ -1,5 +1,5 @@
 {
- "bytes_billed_total": 401107582976,
+ "bytes_billed_total": 452111368192,
  "cutoff_block": 223088015,
  "f1": {
   "H_F1_falsified": true,
@@ -35,6 +35,45 @@
   "net_external_near": 16410179.169153448,
   "recycling_ratio": 2.390988047007086,
   "top5_signer_share": 1.0
+ },
+ "f3": {
+  "H_F3a_robust": true,
+  "anchored_receipts": 1079278,
+  "anchored_share_of_complex": 0.9460711781206171,
+  "anchored_usd": 1342459209.812484,
+  "combined_over_llama": 0.300161527076891,
+  "combined_over_oneclick": 0.9210378730752756,
+  "combined_usd": 3513732049.040238,
+  "fills_complex": 3284360,
+  "fills_simple": 1222617,
+  "llama_over_oneclick": 3.0684741047420703,
+  "simple_usd": 2171272839.2277536,
+  "step_ratio_anchored_only": 0.9421931703039006,
+  "step_ratio_combined": 0.9951133286416444,
+  "step_shows_on_chain": false,
+  "step_threshold": 1.158041919720302,
+  "top10_fill_share_combined": 0.9465169225403192,
+  "top10_fill_share_simple": 0.935358333803636,
+  "top1_combined": {
+   "share": 0.43654604849325834,
+   "solver": "solver-priv-liq.near"
+  },
+  "top3_combined": [
+   {
+    "share": 0.43654604849325834,
+    "solver": "solver-priv-liq.near"
+   },
+   {
+    "share": 0.16848410808397735,
+    "solver": "blockzen-1-main.near"
+   },
+   {
+    "share": 0.09548928250576828,
+    "solver": "solver-multichain-asset.near"
+   }
+  ],
+  "unanchored_receipts": 61522,
+  "uplift_vs_simple": 0.6182821364310669
  },
  "q1": {
   "attack_test": {

@@ -227,3 +227,7 @@ Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. *
 ## 2026-11-12 23:46 UTC: follow-up F3 on the complex receipts, method fixed before it runs
 
 Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. Written after the Q1 to Q4 results because they cover only simple swaps. Question, rule and thresholds are in the F3 section of `docs/chain-rebuild-method.md`, committed with the three queries before any of them runs.
+
+## 2026-11-12 23:48 UTC: F3 result
+
+Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. Ran at 23:47 UTC, after its method commit (`b60cd42`, 23:46:54 UTC); no code correction was needed. 94.6% of complex receipts anchor on one user; priced chain volume rises to $3.51B (+62%), 0.92 of Explorer 1Click and 0.30 of DefiLlama; the 2026-09-01 step stays absent (0.995 against 1.158 needed). H-F3a: top-10 fill share is 94.7% (simple only 93.5%), within the 5-point band, but the top solver changes from `blockzen-1-main.near` (simple swaps) to `solver-priv-liq.near` (43.7% of simple plus complex fills). Tables: `docs/chain-rebuild-results.md`.
