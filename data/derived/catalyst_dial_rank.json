@@ -3,48 +3,63 @@
   {
    "dial": "sk_tax_25pct",
    "score": 95,
-   "rr_m": 10.2
+   "rr_m": 10.2,
+   "type": "capture"
+  },
+  {
+   "dial": "attest_escrow_bb",
+   "score": 93,
+   "rr_m": 8.4,
+   "type": "trust"
   },
   {
    "dial": "mix_10pp_nearcom",
    "score": 90,
-   "rr_m": 9.7
+   "rr_m": 9.7,
+   "type": "capture"
   },
   {
    "dial": "appfees_conversion",
    "score": 88,
-   "rr_m": 5.5
+   "rr_m": 5.5,
+   "type": "capture"
   },
   {
-   "dial": "lifi_to_20bp_template",
-   "score": 75,
-   "rr_m": 2.31
+   "dial": "gross_5pp_to_near",
+   "score": 80,
+   "rr_m": 3.7,
+   "type": "capture"
   },
   {
    "dial": "zec_inventory_2x",
    "score": 72,
-   "rr_m": 2.83
+   "rr_m": 2.83,
+   "type": "inventory"
   },
   {
-   "dial": "trust_path_direct",
+   "dial": "lifi_to_20bp",
+   "score": 75,
+   "rr_m": 2.31,
+   "type": "capture"
+  },
+  {
+   "dial": "trust_sk_direct",
    "score": 68,
-   "rr_m": 1.72
+   "rr_m": 1.72,
+   "type": "capture"
   },
   {
    "dial": "hsp029_pending",
    "score": 70,
-   "rr_m": "coverage"
+   "rr_m": "coverage",
+   "type": "mint"
   },
   {
-   "dial": "whale_attach_10pp",
+   "dial": "whale_10pp",
    "score": 60,
-   "rr_m": 0.98
-  },
-  {
-   "dial": "agent_5pct",
-   "score": 10,
-   "rr_m": 0.33
+   "rr_m": 0.98,
+   "type": "capture"
   }
  ],
- "note": "Dial rank for dashboard; scores exploratory. Prefer commercial/conversion over narrative."
+ "note": "Attestation is scored as a trust dial of similar $ magnitude to SK-tax. Prefer commercial/trust before volume/narrative."
 }

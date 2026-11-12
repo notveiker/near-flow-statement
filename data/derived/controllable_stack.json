@@ -18,6 +18,11 @@
    "why": "arithmetic; wallet-implied share only ~7.7%"
   },
   {
+   "name": "Attest escrow BB",
+   "rr_m": 8.4,
+   "why": "trust dial; ~0.8\u00d7 SK-tax magnitude"
+  },
+  {
    "name": "Appfees conversion double 9\u219218%",
    "rr_m": 5.5,
    "why": "policy conversion of listed fees"
