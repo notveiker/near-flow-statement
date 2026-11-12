@@ -1,0 +1,16 @@
+{
+ "asof_utc": "2026-11-12T00:18:47Z",
+ "commits_since_structural_thesis": 150,
+ "punch_rows_approx": 87,
+ "derived_json_approx": 110,
+ "history_clusters_preliminary": 137,
+ "binding_story": "Leakage renegotiation is the bridge; volume is the last mile.",
+ "rating": "Hold until H1b",
+ "judge_entrypoints": [
+  "docs/prop-what-is-proprietary.md",
+  "docs/prop-topline.md",
+  "docs/prop-punch-card.md",
+  "dashboard/index.html",
+  "REPORT.md"
+ ]
+}
