@@ -60,14 +60,22 @@
     {
       "clusters": 227,
       "intents_x": 180.3318
+    },
+    {
+      "clusters": 228,
+      "intents_x": 180.3318
+    },
+    {
+      "clusters": 229,
+      "intents_x": 192.3539
     }
   ],
-  "latest_intents_x": 180.3318,
-  "latest_clusters": 227,
+  "latest_intents_x": 192.3539,
+  "latest_clusters": 229,
   "min_intents_x": 147.1856,
-  "max_intents_x": 189.12,
+  "max_intents_x": 192.3539,
   "always_above_100": true,
   "l1_yoy_tx_x": 0.2249,
-  "implication": "Intents\u00d7 point drifts with densification (do not pin) but every observation \u226b100\u00d7 vs L1 ~0.22\u00d7 \u2014 pitch OoM + drift honesty",
-  "read": "Drift series [189, 181, 147, 147, 147, 147, 158, 170, 170, 182, 182, 182, 182, 182, 180] @ clusters [201, 204, 205, 206, 207, 209, 213, 219, 220, 221, 223, 224, 225, 226, 227] \u2014 always \u226b100\u00d7. Pitch OoM. Exploratory."
+  "implication": "Intents\u00d7 rebounds to ~192 under _16 after dipping ~147 mid-dense \u2014 still always \u226b100\u00d7; reinforces OoM not pinned multiple",
+  "read": "Drift [189, 181, 147, 147, 147, 147, 158, 170, 170, 182, 182, 182, 182, 182, 180, 180, 192] \u2014 min~147 max~192; always OoM. Exploratory."
 }

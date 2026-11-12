@@ -467,6 +467,7 @@ def build() -> dict:
             "default_rail_noref": optional("derived/default_rail_is_fee_engine_noref.json"),
             "logo_vol_no_capture": optional("derived/logo_partners_volume_without_capture.json"),
             "top10_prop": optional("derived/top10_proprietary_for_judges.json"),
+            "commits_660": optional("derived/commits_660_milestone.json"),
             "noref_core": optional("derived/noref_concentration_is_fee_core.json"),
             "f1_f4": optional("derived/f1_f4_on_submit_day.json"),
         },

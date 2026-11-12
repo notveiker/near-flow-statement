@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "commits": 660,
+  "clusters": 229,
+  "hours_to_submit": 54.0,
+  "derived_json": 522,
+  "implication": "660 commits; _15 done; _16 low EV; public+X bind",
+  "read": "~660c/229cl/~54h. Exploratory."
+}
