@@ -96,6 +96,7 @@
 | 90 | R90 vs 30d run-rate | ~$4.84M T90 vs ~$24.2M ann. 30d (~0.2×) | Multiple/growth math sits on accelerating window |
 | 91 | Vol deceleration vs capture | Vol −12% MoM; attach/τ still rose | Quality up on a cooling volume print |
 | 92 | Fee density vs gas | Rev ~11× L1 fees; gas share ~9% | Product is fee density, not L1 tx count |
+| 93 | Multiple on cooling vol | ~199× on −12% MoM vol print | Quality offsets; further vol cool expands multiple |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.
 
