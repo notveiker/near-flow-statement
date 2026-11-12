@@ -12,6 +12,10 @@
     {
       "clusters": 205,
       "intents_x": 147.1856
+    },
+    {
+      "clusters": 206,
+      "intents_x": 147.1856
     }
   ],
   "l1_yoy_tx_x": 0.205,
@@ -19,5 +23,5 @@
   "still_orders_of_magnitude_vs_l1": true,
   "floor_still_above_100x": true,
   "implication": "Do not treat ~189\u00d7 as a point estimate \u2014 band is wide; claim is orders-of-magnitude fee-engine\u2260L1, not a precise multiple",
-  "read": "Intents\u00d7 drift under dense: ~189\u2192~181\u2192~147 as 2025Q1 den fills \u2014 still \u226b100\u00d7 vs L1 ~0.20\u00d7. Pitch the order-of-magnitude gap, not a pinned multiple. Exploratory."
+  "read": "Intents\u00d7 drift under dense: ~189\u2192~147 as 2025 den fills \u2014 still \u226b100\u00d7 vs L1 ~0.20\u00d7. Pitch OoM gap not point. Exploratory."
 }

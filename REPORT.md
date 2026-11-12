@@ -141,9 +141,9 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~570 commits / 205 clusters.** `_13` dense; overall still **not supported**.
-- **Conversion quiet dial** (~9.2% appfees→BB) · **affiliate P&L contest** (~38.2%/2.0% vol/BB) · **Intents~87.0%** NEAR fees.
-- **Intents× drift** pitch OoM · whale desk=SK-tax · coverage wall~42.8%.
+- **~573 commits / 206 clusters.** `_13` dense; overall still **not supported**.
+- **Fee≠L1 OoM:** intents ~**147×** vs L1 ~**0.20×** (pitch order-of-magnitude, not point).
+- **Conversion~9%** · affiliate P&L contest · single-venue fee · whale desk · coverage wall~42.8%.
 - **LIVE (~58h):** public + X. Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 

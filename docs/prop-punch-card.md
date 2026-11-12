@@ -506,3 +506,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Conversion quiet capture dial | Only ~9.2% appfees→BB; conversion ~$5.5M ≈ 22.9 vol-pp | conversion_quiet_capture_dial |
 | Affiliate P&L contest asymmetry | SK exit ~38.2% vol / ~2.0% BB — fight is affiliate margin | affiliate_pnl_contest_asymmetry |
 | Single-venue fee power | Intents ~87.0% NEAR fees; BB HHI>0.087 vol HHI — distribution owns margin | single_venue_fee_power |
+| History 206 / 2025Q2_13 | _13 dense continuing — still not supported | history_progress_2025q2_13 |
+| Sweep ~573 identity | Conversion+affiliate+venue; public+X bind | sweep_573_identity |
