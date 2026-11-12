@@ -19,7 +19,8 @@
 13. **R90 vs run-rate** — T90 ~$4.84M vs ~$24.2M ann. 30d (accelerating window)  
 14. **Vol −12% MoM / capture up** — quality rose on a cooling print  
 15. **Fee density** — rev ~11× L1 fees on ~9% gas  
-16. **Multiple on cooling vol** — ~199× sits on −12% MoM print
+16. **Multiple on cooling vol** — ~199× sits on −12% MoM print  
+17. **Quality on cool** — attach/τ up while 1Click notional fell
 
 ## Pitch in one sentence
 

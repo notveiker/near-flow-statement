@@ -75,3 +75,5 @@ Capture ceiling: `data/derived/capture_ceiling_50x.json` — 50× needs ~19.8 bp
 Full-capture extreme: `data/derived/full_capture_extreme.json` — zero leakage + HSP-029 ≈ 1× mint coverage; 50× needs ~1.3× volume.
 
 Judge sheet of proprietary arithmetics: [`docs/prop-what-is-proprietary.md`](prop-what-is-proprietary.md).
+
+Quality on cool: `data/derived/quality_on_cool.json` — attach/τ up while 1Click notional peaked then fell.
