@@ -77,3 +77,5 @@ Full-capture extreme: `data/derived/full_capture_extreme.json` — zero leakage 
 Judge sheet of proprietary arithmetics: [`docs/prop-what-is-proprietary.md`](prop-what-is-proprietary.md).
 
 Quality on cool: `data/derived/quality_on_cool.json` — attach/τ up while 1Click notional peaked then fell.
+
+50× vs cooling: `data/derived/50x_vs_cooling.json` — path needs ~4× vol while latest print is −12% MoM.
