@@ -1,57 +1,11 @@
 {
  "asof": "2026-11-12",
  "principle": "leakage_renegotiation_then_volume",
- "dials": [
-  {
-   "dial": "sk_tax_25pct_renegotiation",
-   "rr_uplift_m": 10.2,
-   "vol_needed": "none",
-   "controllability": "commercial"
-  },
-  {
-   "dial": "peer_share_to_70pct",
-   "rr_uplift_m": 6.2,
-   "vol_needed": "1.26\u00d7",
-   "controllability": "competitive"
-  },
-  {
-   "dial": "appfees_conversion_double_9_to_18pct",
-   "rr_uplift_m": 5.5,
-   "vol_needed": "none",
-   "controllability": "policy_conversion",
-   "note": "doubling conversion \u2248 +$5.5M/yr if linear"
-  },
-  {
-   "dial": "zec_inventory_2x",
-   "rr_uplift_m": 2.83,
-   "vol_needed": "inventory",
-   "controllability": "solver_balance_sheet"
-  },
-  {
-   "dial": "trust_sk_to_direct_20bp",
-   "rr_uplift_m": 1.72,
-   "vol_needed": "none",
-   "controllability": "distribution"
-  },
-  {
-   "dial": "whale_10pp_attach",
-   "rr_uplift_m": 0.98,
-   "vol_needed": "none",
-   "controllability": "commercial"
-  },
-  {
-   "dial": "noreferrer_5pp_mix",
-   "rr_uplift_m": 0.67,
-   "vol_needed": "mix only",
-   "controllability": "distribution"
-  },
-  {
-   "dial": "agent_5pct_share",
-   "rr_uplift_m": 0.33,
-   "vol_needed": "labeled origin",
-   "controllability": "narrative_only"
-  }
- ],
+ "marginal": {
+  "capture_share_pp_rr_m": 0.74,
+  "volume_pp_rr_m": 0.24,
+  "x": 3.07
+ },
  "headline": [
   {
    "name": "SK tax 25% renegotiation",
@@ -61,7 +15,7 @@
   {
    "name": "Mix +10pp to near.com",
    "rr_m": 9.7,
-   "why": "arithmetic; wallet-implied share only ~7.7% today"
+   "why": "arithmetic; wallet-implied share only ~7.7%"
   },
   {
    "name": "Appfees conversion double 9\u219218%",
@@ -69,9 +23,9 @@
    "why": "policy conversion of listed fees"
   },
   {
-   "name": "+5pp gross from partners\u2192NEAR",
+   "name": "+5pp gross partners\u2192NEAR",
    "rr_m": 3.7,
-   "why": "identity: partners already ~73% of gross"
+   "why": "partners already ~73% of gross"
   },
   {
    "name": "ZEC inventory 2\u00d7",
@@ -81,7 +35,7 @@
   {
    "name": "LI.FI \u2192 Trust 20bp template",
    "rr_m": 2.31,
-   "why": "match high-density front pattern on 10% vol"
+   "why": "10% vol is fee-dilutive today"
   },
   {
    "name": "Trust SK\u2192direct 20bp",
@@ -97,14 +51,9 @@
  "do_not_lead": [
   "ai_agents",
   "npm_downloads",
-  "peer_share_alone"
+  "peer_share_alone",
+  "l1_active_rebound"
  ],
  "stance": "Hold until H1b",
- "note": "Capture-share shifts ~3\u00d7 more valuable per pp than volume at today\u2019s take. Leakage/conversion first. Exploratory.",
- "overlap_note": "Naive sum of controllable dials ~$28M/yr exceeds half the leakage pool but overlaps. Conservative non-overlap sketch ~$18M/yr still leaves volume as last mile for THOR/50\u00d7 paths. Exploratory.",
- "marginal": {
-  "capture_share_pp_rr_m": 0.74,
-  "volume_pp_rr_m": 0.24,
-  "x": 3.07
- }
+ "note": "Capture-share ~3\u00d7 more valuable per pp than volume. Leakage/conversion first. Overlap discipline applies. Exploratory."
 }
