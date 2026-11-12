@@ -1,7 +1,7 @@
 {
- "asof_utc": "2026-11-12T00:00:00+00:00",
+ "asof_utc": "2026-11-12T00:27:31Z",
  "deadline_utc": "2026-11-14T23:59:00Z",
- "hours_remaining_approx": 72.0,
+ "hours_remaining_approx": 71.5,
  "must_ship": [
   "public_repo",
   "X_demo_post",
@@ -9,6 +9,7 @@
   "dashboard+REPORT_primary"
  ],
  "prop_ready": [
+  "prop-what-is-proprietary.md",
   "prop-topline.md",
   "prop-punch-card.md",
   "fee-waterfall.md",
@@ -21,5 +22,10 @@
   "H1b_labels",
   "attestation_map"
  ],
- "note": "~3 days to deadline. Prop research is deep; delivery logistics (public repo + X) are the remaining ops risk. Exploratory ops note."
+ "prop_depth": {
+  "commits_approx": 167,
+  "punch_rows": 92,
+  "history_clusters": 138
+ },
+ "note": "Prop research is deep. Remaining risk is delivery logistics (public repo + X), not thesis content."
 }
