@@ -2,8 +2,9 @@
  "primary_clusters_local": 138,
  "sample2_clusters_local": 86,
  "primary_next_part": "2022Q3_06",
+ "primary_part_lines_approx": 32,
  "overall": "not_supported_preliminary",
- "commits_since_structural_approx": 158,
- "punch_rows_approx": 90,
- "note": "Continuing early-stratum seals. Prop sweep deep; judge entry at prop-what-is-proprietary.md."
+ "commits_since_structural_approx": 188,
+ "punch_rows_approx": 102,
+ "note": "Hyper sweep continuing. Prop depth high; history still sealing early strata."
 }
