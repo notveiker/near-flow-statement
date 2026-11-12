@@ -1,7 +1,6 @@
 {
- "now_utc": "2026-11-12T01:21:06.702830+00:00",
- "hours_to_submit": 70.6,
- "hours_submit_to_hsp029_timelock": 24.0,
+ "now_utc": "2026-11-12T01:28:23.790741+00:00",
+ "hours_to_submit": 70.5,
  "must_ship": [
   "public_repo",
   "X_demo",
@@ -9,6 +8,7 @@
   "falsifier_scores_F1-F4"
  ],
  "prop_ready": true,
- "history_status": "preliminary_not_supported",
- "note": "~71h to submit; HSP-029 timelock ~2d after. Pitch pending-not-live. History still preliminary \u2014 do not claim supported. Exploratory ops."
+ "history_status": "preliminary_not_supported_143",
+ "pitch_spine": "docs/pitch-spine.md",
+ "note": "Prop stack ready for judges; history still preliminary. Exploratory ops."
 }
