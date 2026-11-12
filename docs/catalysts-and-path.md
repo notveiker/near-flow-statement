@@ -71,3 +71,5 @@ See `data/derived/pitch_sequence.json`: lead with attach/AITR, capture share, no
 Leakage→volume: `data/derived/leakage_then_volume.json` — 60% capture ≈ $45M still needs ~2.2× volume for 50×.
 
 Capture ceiling: `data/derived/capture_ceiling_50x.json` — 50× needs ~19.8 bp at current volume (above 15.3 gross).
+
+Full-capture extreme: `data/derived/full_capture_extreme.json` — zero leakage + HSP-029 ≈ 1× mint coverage; 50× needs ~1.3× volume.

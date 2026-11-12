@@ -50,3 +50,5 @@ Capture-share path (leakage compression at flat 15.3 gross bp): `data/derived/ca
 SwapKit exit fee asymmetry: `data/derived/sk_exit_fee_asymmetry.json` — volume risk ≫ buyback-$ risk on that pipe.
 
 Leakage pool size: `data/derived/leakage_pool_size.json` — ~$50M/yr stays with partners/solver/gas on ~$74M gross.
+
+Full-capture extreme: `data/derived/full_capture_extreme.json` — leakage pool is the bridge to mint coverage.
