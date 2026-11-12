@@ -326,6 +326,8 @@ def build() -> dict:
             "fee_payment_fidelity": optional("derived/fee_payment_fidelity_board.json"),
             "settlement_density": optional("derived/settlement_fee_density.json"),
             "hsp007_tension": optional("derived/hsp007_vs_intents_tension.json"),
+            "delivery_countdown": optional("derived/delivery_countdown.json"),
+            "one_breath": optional("derived/judge_one_breath.json"),
         },
         "repro": reproducibility(),
     }
