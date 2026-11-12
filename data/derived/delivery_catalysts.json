@@ -1,0 +1,15 @@
+{
+ "fee_catalysts_ranked": [
+  "Ledger SK-tax",
+  "attest",
+  "CIF",
+  "ADR defense",
+  "conversion"
+ ],
+ "delivery_catalysts_must_ship": [
+  "public_repo",
+  "X_demo_dry_run"
+ ],
+ "hours_to_submit": 66.6,
+ "note": "Fee catalysts are researched; delivery catalysts (public repo + X dry-run) are the binding path to submit. Exploratory ops."
+}
