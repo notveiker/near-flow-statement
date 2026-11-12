@@ -576,6 +576,10 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
       bits.push(`No-vol coverage path → ~<b class="mono">${last.coverage_pct}%</b> at conservative stack + HSP-029 (still short of 100%; volume last mile for 50×).`);
     }
     if (Rf) bits.push(`Rating window: 30d RR ≈ <b class="mono">${Rf.run_vs_r90_acceleration_x}×</b> r90-annualised — cool falsifies beside H1b.`);
+    const Fr = D.catalysts && D.catalysts.foreign_rail;
+    const Fs = D.catalysts && D.catalysts.fee_surface_risk;
+    if (Fr) bits.push(`Foreign rail: only ~<b class="mono">${Fr.near_side_swap_share_pct}%</b> NEAR-sided; net exit ~${Fr.net_exit_vs_capture_x}× capture.`);
+    if (Fs) bits.push(`Fee≠surface: SK exit ~${Fs.sk_exit.traceable_bb_loss_pct}% BB / ~${Fs.sk_exit.vol_at_risk_pct}% vol; relayer UX≫fee.`);
     $("#fee-engine-l1").innerHTML = bits.length ? `<p class="sub">${bits.join(' ')}</p>` : `<p class="sub">Fee-engine / coverage cards appear when derived JSON is in the build.</p>`;
   }
 }

@@ -1,0 +1,22 @@
+{
+  "asof": "2026-11-12",
+  "sk_exit": {
+    "vol_at_risk_pct": 38.2,
+    "traceable_bb_loss_pct": 2.0,
+    "still_largest_peer": true,
+    "fee_fragility": "low_traceable",
+    "distribution_fragility": "high_38pct_1click"
+  },
+  "relayer_top1": {
+    "share_pct": 83,
+    "vol_to_fee_x": 2004.0,
+    "read": "UX/share risk \u226b fee P&L"
+  },
+  "growth_units": {
+    "usd_pct": 619.0,
+    "near_pct": 71.4,
+    "usd_vs_near_x": 8.7,
+    "near_still_above_req": true
+  },
+  "read": "Fee engine resilience \u2260 distribution/UX resilience: SK exit costs ~2.0% traceable BB but ~38.2% 1Click vol; relayer top1 ~83% destroys UX (~2004\u00d7 vol/fee). USD fee growth ~619.0% vs NEAR-unit ~71.4% (~8.7\u00d7) \u2014 price-heavy print; NEAR-unit still clears G_req. Exploratory."
+}

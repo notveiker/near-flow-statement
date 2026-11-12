@@ -386,3 +386,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Soft-sink ≠ leakage prize | NRR ~178 DIC days but 1–2d exit; leakage ~$50M/yr is the commercial prize | soft_sink_vs_leakage_prize |
 | Pitch locked lines refresh | Elasticity + THOR two-step + fee≠L1 + pending-not-live close | pitch_locked_lines |
 | History 174 / 2025Q2_09 | _09 dense continuing — still not supported | history_progress_2025q2_09 |
+| Foreign rail vs NEAR flow | ~3.5% NEAR-sided swaps; net exit ~4.7× capture — rails ≠ pairs | foreign_rail_vs_near_flow |
+| Fee resilience ≠ surface risk | SK exit: 2% BB / 38% vol; relayer UX≫fee; USD growth price-heavy | fee_resilience_vs_surface_risk |

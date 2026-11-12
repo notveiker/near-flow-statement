@@ -1,7 +1,7 @@
 {
-  "commits_since_structural": 459,
+  "commits_since_structural": 460,
   "clusters_preliminary": 174,
-  "hours_to_submit": 64.6,
+  "hours_to_submit": 64.4,
   "stratum": "_09_dense",
   "last_ingested": "2025Q2_09",
   "next": "2025Q3_09",
@@ -10,5 +10,5 @@
     "public_repo",
     "X_demo_dry_run"
   ],
-  "note": "~459 commits; 174 clusters; pitch lines + fee\u00f7mint progress + soft-sink\u2260leakage shipped; ~64.6h."
+  "note": "~460 commits; 174 clusters; foreign-rail + fee-resilience\u2260surface-risk shipped; Q3_09 sealing; ~64.4h."
 }

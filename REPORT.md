@@ -145,6 +145,7 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 - **Fee÷mint path:** 0.21→0.32→0.48→~1.0× then ~1.3× vol for 50×; no-vol coverage tops ~43% here.
 - **Soft-sink ≠ prize:** NRR ~178 DIC days but 1–2d exit — does not replace ~$50M/yr leakage renegotiation.
 - **Fee engine ≠ L1** (174 clusters): intents ~113× vs 2025Q1; L1 YoY ~0.18×.
+- **Foreign rail / resilience:** ~3.5% NEAR-sided; SK exit fee-light/distribution-heavy; relayer UX≫fee; USD growth price-heavy.
 - **Must-ship:** public repo + X dry-run (~65h).
 <!-- /AUTO:LATEST_SWEEP -->
 

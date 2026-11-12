@@ -315,6 +315,8 @@ def build() -> dict:
             "what_flips_hold": optional("derived/what_flips_hold_card.json"),
             "fee_mint_progress": optional("derived/fee_mint_progress_board.json"),
             "soft_sink_vs_leakage": optional("derived/soft_sink_vs_leakage_prize.json"),
+            "foreign_rail": optional("derived/foreign_rail_vs_near_flow.json"),
+            "fee_surface_risk": optional("derived/fee_resilience_vs_surface_risk.json"),
         },
         "repro": reproducibility(),
     }

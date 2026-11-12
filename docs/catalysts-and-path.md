@@ -224,3 +224,11 @@ History honesty (`history_fee_engine_vs_l1.json`, `history_counter_evidence_boar
 
 `submit_vs_hsp029_sequence.json`: submit is ~24h before the HSP-029 timelock — pitch the issuance cut as **pending-not-live**.
 <!-- /AUTO:THOR_TWO_STEP -->
+
+<!-- AUTO:RAILS_RESILIENCE -->
+## Foreign rails and resilience split (exploratory)
+
+`foreign_rail_vs_near_flow.json`: only ~**3.5%** of 1Click swaps are NEAR-sided; net NEAR exit in-window is ~**4.7×** captured revenue. Venue dominance is foreign-asset routing on NEAR rails — not a NEAR-pair demand story.
+
+`fee_resilience_vs_surface_risk.json`: SwapKit exit costs ~**2%** traceable buyback dollars but ~**38%** of 1Click volume; relayer top1 ~**83%** is UX/share risk (~2000× vol/fee), not fee P&L. USD fee growth is ~**8.7×** NEAR-unit growth — price-heavy; NEAR-unit growth still clears G_req.
+<!-- /AUTO:RAILS_RESILIENCE -->
