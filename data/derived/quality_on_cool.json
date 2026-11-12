@@ -21,7 +21,8 @@
  ],
  "intents_vol_30d_b": 4.0,
  "intents_vol_prior30d_b": 4.56,
- "note": "Attach/\u03c4 rose while 30d vol \u221212% MoM, but 30d daily notional is still ~1.5\u00d7 the year average \u2014 quality improved on a cool-off from an elevated print, not from a trough. Exploratory.",
+ "note": "Attach/\u03c4 rose while vol \u221212% MoM and DefiLlama Intents fees \u221231.6% MoM \u2014 quality improved on an absolute cool. Exploratory.",
  "vol_mom_pct": -12.3,
- "vol_30d_vs_year_daily_x": 1.48
+ "vol_30d_vs_year_daily_x": 1.48,
+ "intents_fees_mom_pct": -31.64
 }

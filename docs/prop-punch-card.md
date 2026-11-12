@@ -225,3 +225,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | LST DIC vs buyback | LST ~$195.9M ≈ **611 DIC days** (~24.7× buyback) but only 9.27% of stake | lst_dic_vs_buyback |
 | History through 2024Q4 | 148 preliminary clusters through 2024Q4_06 — entering 2025; still not supported | history_progress_2024_complete |
 | NEAR fee HHI floor | Intents ~87% ⇒ fee HHI ≥0.76 — chain fees are a single-venue story | near_fee_hhi_floor |
+| Intents fees MoM cool | DefiLlama Intents fees **−31.6% MoM** with vol −12% — quality path offsets absolute cool | intents_fees_mom_cool |
