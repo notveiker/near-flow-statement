@@ -394,3 +394,10 @@ Chain Signatures sits under Intents execution (execute ≫ respond ≫ sign) —
 - Buyback DIC ~**24.8d**; scarcity half-life ~**60.5d** if spent — **held ≠ burned**.
 - Does **not** raise the ~**42.8%** coverage wall without burn/lock policy.
 <!-- /AUTO:DIC_BUF -->
+
+<!-- AUTO:BURN_MAT -->
+### Burn materiality (exploratory)
+
+- Permanently removing **25% of mint** needs ~**122.2%** of today's fee capture (~**79.5%** at HSP 1.6%).
+- Held buybacks are **not** that. Coverage wall ~**42.8%** is capture+HSP path — burn hardens scarcity beside it.
+<!-- /AUTO:BURN_MAT -->

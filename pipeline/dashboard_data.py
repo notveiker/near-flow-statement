@@ -358,6 +358,7 @@ def build() -> dict:
             "locked_pitch": optional("derived/locked_pitch_lines.json"),
             "entering_14": optional("derived/entering_14_dense.json"),
             "dic_buffer": optional("derived/dic_buffer_not_scarcity.json"),
+            "burn_materiality": optional("derived/burn_materiality_vs_wall.json"),
             "fee_stability": optional("derived/fee_engine_stability_under_dense.json"),
             "intents_drift": optional("derived/intents_multiple_drift_under_dense.json"),
             "conversion_quiet": optional("derived/conversion_quiet_capture_dial.json"),

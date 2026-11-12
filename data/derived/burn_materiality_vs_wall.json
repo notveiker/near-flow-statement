@@ -1,0 +1,10 @@
+{
+  "asof": "2026-11-12",
+  "capture_rr_m": 24.2,
+  "mint_usd_yr_m": 118.3,
+  "to_cover_25pct_issuance_needs_pct_of_capture": 122.2,
+  "to_cover_25pct_at_hsp_needs_pct_of_capture": 79.5,
+  "coverage_wall_pct": 42.8,
+  "implication": "Burning 25% of mint needs ~122% of today's fee capture as permanent removal \u2014 held buybacks are not that. Leakage+HSP path first; burn hardens scarcity beside coverage wall",
+  "read": "To permanently remove 25% of mint needs ~122.2% of today's $24.2M capture (~79.5% at HSP 1.6%). Held buybacks \u2260 that. Coverage wall ~42.8% is separate arithmetic. Exploratory."
+}

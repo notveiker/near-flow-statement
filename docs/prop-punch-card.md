@@ -541,3 +541,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Sweep ~599 approaching 600 | 213 clusters / 428 derived; public+X bind | sweep_600_approaching |
 | **600 commits milestone** | 214 clusters; prop ready; public+X bind | commits_600_milestone |
 | History 214 / 2025Q2_14 | _14 dense continuing — still not supported | history_progress_2025q2_14 |
+| Burn materiality vs wall | 25% of mint needs ~122.2% of fee capture as permanent removal — held≠burn | burn_materiality_vs_wall |
