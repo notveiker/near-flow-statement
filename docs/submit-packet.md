@@ -40,3 +40,6 @@ AI 5% ~$0.33M ≪ whale ~$1.0M ≪ TG ~$1.4M ≪ CIF 1bp ~$3.3M ≪ SK-tax ~$10.
 
 ### Pitch locked lines
 See `data/derived/pitch_locked_lines.json` and `data/derived/judge_capture_card.json` for the speakable open→close.
+
+### Risks (compact)
+See `data/derived/risks_compact.json` — H1b/attest/relayer/HSP-007/CIF/multiple fragility. Stance: Hold until H1b.
