@@ -21,7 +21,8 @@
 15. **Fee density** — rev ~11× L1 fees on ~9% gas  
 16. **Multiple on cooling vol** — ~199× sits on −12% MoM print  
 17. **Quality on cool** — attach/τ up while 1Click notional fell  
-18. **Intents ok-share ~83%** — UX failure tail; fees on successes
+18. **Intents ok-share ~83%** — UX failure tail; fees on successes  
+19. **Census vs Explorer** — SK smaller by count than vol (whale flow)
 
 ## Pitch in one sentence
 
