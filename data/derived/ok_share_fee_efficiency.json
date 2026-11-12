@@ -1,0 +1,6 @@
+{
+ "ok_share": 0.834,
+ "rev_vs_l1_on_success_x": 11.2,
+ "implied_attempt_efficiency": 0.834,
+ "note": "Fee print is on successful Intents flow (~83% ok). Failed attempts still burn gas without capture \u2014 another reason Intents gas share looks high vs fee. Exploratory census window."
+}
