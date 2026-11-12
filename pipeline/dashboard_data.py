@@ -305,6 +305,11 @@ def build() -> dict:
             "coverage_no_vol": optional("derived/coverage_path_no_vol.json"),
             "fee_engine_vs_l1": optional("derived/history_fee_engine_vs_l1.json"),
             "history_counter": optional("derived/history_counter_evidence_board.json"),
+            "thor_two_step": optional("derived/thor_two_step_bridge.json"),
+            "rating_fragility": optional("derived/rating_window_fragility.json"),
+            "submit_hsp_seq": optional("derived/submit_vs_hsp029_sequence.json"),
+            "ledger_stack": optional("derived/ledger_stack_vs_mutex.json"),
+            "intents_purity": optional("derived/intents_purity_on_cool_l1.json"),
         },
         "repro": reproducibility(),
     }

@@ -557,14 +557,20 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
   const Fe = D.catalysts && D.catalysts.fee_engine_vs_l1;
   const Cov = D.catalysts && D.catalysts.coverage_no_vol;
   const Op = D.catalysts && D.catalysts.opacity_product;
+  const Th = D.catalysts && D.catalysts.thor_two_step;
+  const Rf = D.catalysts && D.catalysts.rating_fragility;
+  const Pu = D.catalysts && D.catalysts.intents_purity;
   if ($("#fee-engine-l1")) {
     const bits = [];
     if (Fe) bits.push(`L1 YoY tx ~<b class="mono">${Fe.l1_yoy_tx_x}×</b> / signers ~${Fe.l1_yoy_signers_x}× / burn ~${Fe.l1_yoy_burn_x}×; intents.near ~<b class="mono">${Math.round(Fe.intents_vs_2025q1_x)}×</b> vs 2025Q1. Overall: <b>${Fe.overall}</b>.`);
+    if (Pu && Pu.intents_share_of_near_fees_pct != null) bits.push(`Intents ≈ <b class="mono">${Pu.intents_share_of_near_fees_pct}%</b> of NEAR fees on that cool L1.`);
     if (Op) bits.push(`Opacity product: attest + CIF 1bp ≈ ~$${(Op.stack_trust_plus_gap_rr_m||0).toFixed(1)}M underwriting stack on ~${Op.confidential_share_of_measured_capture_pct}% unattested capture.`);
+    if (Th) bits.push(`THOR two-step: leakage close ~<b class="mono">${Th.step1_leakage_close_fee_x}×</b> then remaining ~${Th.step2_remaining_vol_or_price_x}× volume/price.`);
     if (Cov && Cov.steps) {
       const last = Cov.steps[Cov.steps.length - 1];
       bits.push(`No-vol coverage path → ~<b class="mono">${last.coverage_pct}%</b> at conservative stack + HSP-029 (still short of 100%; volume last mile for 50×).`);
     }
+    if (Rf) bits.push(`Rating window: 30d RR ≈ <b class="mono">${Rf.run_vs_r90_acceleration_x}×</b> r90-annualised — cool falsifies beside H1b.`);
     $("#fee-engine-l1").innerHTML = bits.length ? `<p class="sub">${bits.join(' ')}</p>` : `<p class="sub">Fee-engine / coverage cards appear when derived JSON is in the build.</p>`;
   }
 }

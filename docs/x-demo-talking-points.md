@@ -33,7 +33,7 @@
 <!-- /AUTO:X_CONVO -->
 
 <!-- AUTO:X_FINAL -->
-**Demo close (~65h to submit):** Partners>capture → elasticity (capture-pp≈3×vol) → four ~$10M Ledger-first → opacity product → no-vol coverage path → quality-on-cool → Hold until H1b / F1–F4. History 172 clusters preliminary; fee engine ≠ L1. Must-ship: public repo dry-run.
+**Demo close (~65h):** Partners>capture → elasticity (~3×) → THOR two-step (leakage then vol) → opacity product → no-vol coverage → fee engine ≠ L1 (Intents ~87%) → Hold until H1b. HSP-029 pending-not-live. Must-ship: public repo + X.
 <!-- /AUTO:X_FINAL -->
 
 Card: `data/derived/judge_capture_card.json` — open with partners>capture, close with Hold until H1b.

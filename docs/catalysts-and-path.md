@@ -214,3 +214,13 @@ No-volume coverage path (`coverage_path_no_vol.json`): today ~**15.8%** → HSP-
 
 History honesty (`history_fee_engine_vs_l1.json`, `history_counter_evidence_board.json`): L1 YoY activity ~0.18–0.26× while intents.near receipts ~100× vs 2025Q1 — the investable object is the Intents fee engine on a cooling base layer. Overall pre-registered usage growth remains **not supported**.
 <!-- /AUTO:ELASTICITY_OPACITY -->
+
+<!-- AUTO:THOR_TWO_STEP -->
+## THOR two-step and rating-window honesty (exploratory)
+
+`thor_two_step_bridge.json`: peer multiple parity (~217× → ~16×) needs ~13.6× fees at fixed price. **Step 1** is leakage close (~**3.1×**) via renegotiation/mix/conversion/CIF — no volume. **Step 2** is the remaining ~**4.4×** volume/price. Full-capture extreme after HSP still only needs ~**1.3×** volume for a 50× revenue path — leakage is the bridge; volume is the last mile.
+
+`rating_window_fragility.json`: frozen rating rides ~$4.84M trailing-90d (~$19.6M annualised) against ~$24.2M 30d run-rate (**~1.23×** acceleration). If Intents cool persists, the Hold→Buy path compresses with the slower window — do not treat 30d RR as locked.
+
+`submit_vs_hsp029_sequence.json`: submit is ~24h before the HSP-029 timelock — pitch the issuance cut as **pending-not-live**.
+<!-- /AUTO:THOR_TWO_STEP -->

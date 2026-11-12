@@ -1,64 +1,69 @@
 {
- "one_liner": "Intents fee engine owned by distribution; Ledger-first SK-tax + attest before volume; ~71% of measured capture unattested; Hold until H1b.",
- "lead_catalysts": [
-  "sk_tax_ledger_first",
-  "attest_escrow",
-  "cif_rate_card_gap",
-  "adr029_residual_defense",
-  "appfees_conversion",
-  "tg_label_attach",
-  "lifi_trust_template",
-  "dense_fronts_protect"
- ],
- "four_ten_m": {
-  "sk_tax": 10.2,
-  "attest": 8.4,
-  "hsp007_10pct": 11.8,
-  "solver_residual": 11.41
- },
- "ladder_rr_m": {
-  "ai": 0.33,
-  "whale": 0.98,
-  "tg": 1.37,
-  "cif_1bp": 3.31,
-  "sk_tax": 10.2
- },
- "call_order": [
-  "Ledger",
-  "attest",
-  "CIF",
-  "ADR defense",
-  "conversion",
-  "TG",
-  "LI.FI",
-  "dense fronts"
- ],
- "path_50x": "leakage_to_gross_then_1.3x_vol",
- "do_not_lead": [
-  "ai",
-  "npm",
-  "etf",
-  "peer_share",
-  "l1_actives",
-  "cs_as_fee",
-  "sovereign_yield_forum_noise"
- ],
- "stance": "Hold until H1b",
- "hsp029": "pending_not_live",
- "hsp007_engagement_vs_029_x": 2.1,
- "confidential_share_of_capture_pct": 71.1,
- "user_allin_vs_capture_x": 10.6,
- "ledger_first": true,
- "clusters_preliminary": 170,
- "falsifiers": "docs/f1-f4-scorecard.md",
- "spine": "docs/pitch-spine.md",
- "submit": "docs/submit-packet.md",
- "controllable_bridge": "sk_tax_and_attest_then_volume",
- "intents_share_near_protocol_fees_pct": 87,
- "ledger_discipline": "capture_vs_defense_vs_cif_gap",
- "hours_to_submit": 65.2,
- "dense_07_complete_through": "2026Q4",
- "pitch_locked_lines": "pitch_locked_lines.json",
- "near_term_board": "near_term_board.json",
- "judge_capture_card": "judge_capture_card.json"
+  "one_liner": "Intents fee engine on cooling L1; distribution owns margin; capture-pp\u22483\u00d7vol-pp; Ledger-first SK-tax + attest before volume; ~71% capture unattested; Hold until H1b.",
+  "lead_catalysts": [
+    "sk_tax_ledger_first",
+    "attest_escrow",
+    "cif_rate_card_gap",
+    "adr029_residual_defense",
+    "appfees_conversion",
+    "tg_label_attach",
+    "lifi_trust_template",
+    "dense_fronts_protect"
+  ],
+  "four_ten_m": {
+    "sk_tax": 10.2,
+    "attest": 8.4,
+    "hsp007_10pct": 11.8,
+    "solver_residual": 11.41
+  },
+  "ladder_rr_m": {
+    "ai": 0.33,
+    "whale": 0.98,
+    "tg": 1.37,
+    "cif_1bp": 3.31,
+    "sk_tax": 10.2
+  },
+  "call_order": [
+    "Ledger",
+    "attest",
+    "CIF",
+    "ADR defense",
+    "conversion",
+    "TG",
+    "LI.FI",
+    "dense fronts"
+  ],
+  "path_50x": "leakage_to_gross_then_1.3x_vol",
+  "do_not_lead": [
+    "ai",
+    "npm",
+    "etf",
+    "peer_share",
+    "l1_actives",
+    "cs_as_fee",
+    "sovereign_yield_forum_noise"
+  ],
+  "stance": "Hold until H1b",
+  "hsp029": "pending_not_live",
+  "hsp007_engagement_vs_029_x": 2.1,
+  "confidential_share_of_capture_pct": 71.1,
+  "user_allin_vs_capture_x": 10.6,
+  "ledger_first": true,
+  "clusters_preliminary": 170,
+  "falsifiers": "docs/f1-f4-scorecard.md",
+  "spine": "docs/pitch-spine.md",
+  "submit": "docs/submit-packet.md",
+  "controllable_bridge": "sk_tax_and_attest_then_volume",
+  "intents_share_near_protocol_fees_pct": 87,
+  "ledger_discipline": "capture_vs_defense_vs_cif_gap",
+  "hours_to_submit": 65.2,
+  "dense_07_complete_through": "2026Q4",
+  "pitch_locked_lines": "pitch_locked_lines.json",
+  "near_term_board": "near_term_board.json",
+  "judge_capture_card": "judge_capture_card.json",
+  "elasticity_capture_vs_vol_x": 3.07,
+  "thor_two_step": {
+    "leakage_x": 3.07,
+    "remaining_x": 4.41
+  }
 }

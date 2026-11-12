@@ -46,3 +46,10 @@ Telegram (`intents.tg`) is a live referral surface in census (~20% of tagged) bu
 - **Dial elasticity** capture-pp ≈3.07× vol-pp; SK-tax ≈42.5 vol-pp (`dial_elasticity_board`)
 - **Opacity product stack** attest+CIF framed as underwriting product (`opacity_product_stack`)
 - **No-vol coverage path** to ~43% with HSP+conservative stack (`coverage_path_no_vol`)
+
+### Also closed-enough this sweep
+- **THOR two-step bridge** leakage then volume (`thor_two_step_bridge`)
+- **Rating window fragility** RR vs r90 (`rating_window_fragility`)
+- **Submit≺HSP-029** pending-not-live (`submit_vs_hsp029_sequence`)
+- **Ledger stack vs mutex** (`ledger_stack_vs_mutex`)
+- **Intents purity on cool L1** (`intents_purity_on_cool_l1`)

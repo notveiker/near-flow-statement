@@ -34,3 +34,7 @@ Two bridges: SK-tax ~$10M + attest ~$8.4M before volume.
 
 
 *Ops stamp: ~66.0h; 167 clusters; ~431 commits; MUST SHIP: public_repo + X_demo_dry_run; pitch locked lines ready.*
+
+<!-- AUTO:SEQ -->
+Hours≈65: blockers = public_repo + X_demo_dry_run. HSP-029 = pending-not-live (timelock after submit). History preliminary OK.
+<!-- /AUTO:SEQ -->

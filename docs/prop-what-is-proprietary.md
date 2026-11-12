@@ -85,3 +85,12 @@ Do not lead: AI, npm, ETF, peer-share, L1 actives, CS-as-fee.
 - **Opacity product** — attest + CIF rate card underwrites ~71% unattested capture (`opacity_product_stack.json`).
 - **Coverage without volume** — path to ~43% coverage via HSP-029 + conservative capture stack; volume still last mile for 50× (`coverage_path_no_vol.json`).
 <!-- /AUTO:PROP_BATCH_ELASTIC -->
+
+<!-- AUTO:PROP_BATCH_THOR -->
+### Also fresh
+- **THOR two-step** leakage ~3.1× then ~4.4× remaining (`thor_two_step_bridge.json`).
+- **Rating-window fragility** RR ≈1.23× r90-annualised (`rating_window_fragility.json`).
+- **Submit≺HSP-029** pending-not-live sequencing (`submit_vs_hsp029_sequence.json`).
+- **Ledger stack vs mutex** what may stack across ledgers (`ledger_stack_vs_mutex.json`).
+- **Intents purity on cool L1** ~87% fees / ~0.18× L1 YoY (`intents_purity_on_cool_l1.json`).
+<!-- /AUTO:PROP_BATCH_THOR -->

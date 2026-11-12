@@ -1,7 +1,7 @@
 {
-  "commits_since_structural": 454,
+  "commits_since_structural": 455,
   "clusters_preliminary": 172,
-  "hours_to_submit": 65.0,
+  "hours_to_submit": 64.8,
   "stratum": "_09_dense",
   "last_ingested": "2026Q4_08",
   "next": "2025Q1_09",
@@ -10,12 +10,5 @@
     "public_repo",
     "X_demo_dry_run"
   ],
-  "new_props_this_batch": [
-    "history_fee_engine_vs_l1",
-    "dial_elasticity_board",
-    "opacity_product_stack",
-    "coverage_path_no_vol",
-    "history_counter_evidence_board"
-  ],
-  "note": "~454 commits; 172 clusters; entering _09; ~65.0h; fee-engine\u2260L1 + elasticity + opacity-product + no-vol coverage path shipped. Must-ship public repo + X."
+  "note": "~455 commits; 172 clusters; THOR two-step + rating fragility + submit/HSP sequence + ledger stack shipped; ~64.8h; must-ship public+X."
 }

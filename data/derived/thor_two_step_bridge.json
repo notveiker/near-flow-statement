@@ -1,0 +1,26 @@
+{
+  "asof": "2026-11-12",
+  "today_multiple_near": 217,
+  "thor_multiple": 16,
+  "fee_x_to_thor_parity": 13.56,
+  "step1_leakage_close_fee_x": 3.07,
+  "step2_remaining_vol_or_price_x": 4.41,
+  "step1_rr_m_at_full_gross": 74.5,
+  "step2_vol_x_for_50x_after_full_capture_hsp": 1.29,
+  "thor_rev_need_m": 301.2,
+  "sequence": [
+    {
+      "step": 1,
+      "name": "close_leakage",
+      "fee_x": 3.07,
+      "job": "renegotiation + mix + conversion + CIF; no volume required"
+    },
+    {
+      "step": 2,
+      "name": "volume_or_price",
+      "remaining_x": 4.41,
+      "job": "last mile after leakage; ~1.3\u00d7 vol for 50\u00d7 if full capture+HSP"
+    }
+  ],
+  "read": "THOR-parity at fixed price needs ~13.56\u00d7 fees. Step1 leakage close \u2248 3.07\u00d7; remaining \u2248 4.41\u00d7 is volume/price. Full-capture extreme: ~$74.5M RR \u2192 ~1.29\u00d7 vol for 50\u00d7 after HSP. Leakage first, volume last. Exploratory peer DefiLlama multiples."
+}

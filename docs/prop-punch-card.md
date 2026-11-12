@@ -373,3 +373,8 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History counter-evidence | Burn/signers/tx fell many quarters; intents fell 2025Q4–2026Q2 — Hold binder | history_counter_evidence_board |
 | History 172 / 2026Q4_08 | _08 through 2026 complete; entering _09 — still not supported | history_progress_2026q4_08 |
 | Q4 Ref concentration flag | 2026Q4 top-receiver Ref ~44% / ok-receipt ~0.90 — stratum caution | history_counter_evidence_board |
+| THOR two-step bridge | Leakage close ~3.1× then remaining ~4.4× to THOR parity; full-capture → ~1.3× vol for 50× | thor_two_step_bridge |
+| Rating window fragility | 30d RR ~1.23× r90-annualised — acceleration is the rating object; cool falsifies | rating_window_fragility |
+| Submit vs HSP-029 sequence | Submit ~24h before timelock — issuance pending-not-live at pitch | submit_vs_hsp029_sequence |
+| Ledger stack vs mutex | Stack capture+trust+defense; mutex inside capture; cons.capture+trust illustrative | ledger_stack_vs_mutex |
+| Intents purity on cool L1 | Intents ~87% NEAR fees while L1 YoY ~0.18× — purity + concentration | intents_purity_on_cool_l1 |

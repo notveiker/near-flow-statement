@@ -1,0 +1,23 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_submit": 64.8,
+  "hours_submit_to_hsp029_timelock": 24.0,
+  "hours_to_hsp029": 88.8,
+  "pitch_rule": "pending_not_live",
+  "order": [
+    {
+      "t": "now\u219214 Nov",
+      "do": "public_repo + X dry-run + submit; F1\u2013F4 resolve on day"
+    },
+    {
+      "t": "14\u219216 Nov",
+      "do": "issuance cut stays scenario in materials; do not claim live"
+    },
+    {
+      "t": "\u226516 Nov",
+      "do": "HSP-029 timelock ends; ramp still starts one quarter later"
+    }
+  ],
+  "coverage_if_mistakenly_treated_live_pct": 24.7,
+  "read": "Submit precedes HSP-029 timelock by ~24h. Issuance path is arithmetic scenario at submit \u2014 label pending-not-live. Delivery catalysts (public repo, X) bind before mint dial. Exploratory ops."
+}
