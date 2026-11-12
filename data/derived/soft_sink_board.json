@@ -1,0 +1,9 @@
+{
+ "lst_dic_days": 611,
+ "buyback_dic_days": 24.8,
+ "nrr_dic_days": 178,
+ "lst_vs_bb_x": 24.6,
+ "nrr_vs_bb_x": 7.2,
+ "lst_stake_share_pct": 9.27,
+ "read": "LST float ~611 DIC days (~25\u00d7 buyback DIC) but only ~9.3% of stake \u2014 soft sink is large in days, small in stake share. NRR ~178 DIC (~7\u00d7 BB) is ETF-side, immaterial to Intents fee thesis. Scoreboard stays capture/attach not soft-sink stock. Exploratory."
+}

@@ -1,0 +1,7 @@
+{
+ "hours_to_submit": 68.2,
+ "hours_to_hsp029_timelock": 92.3,
+ "hsp029_status": "pending_not_live",
+ "submit_before_hsp029": true,
+ "note": "Submit (~68h) lands before HSP-029 timelock (~92h) \u2014 pitch must treat HSP-029 as pending-not-live; coverage lift is scenario not observed. Exploratory ops."
+}

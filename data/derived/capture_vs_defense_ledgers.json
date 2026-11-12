@@ -1,0 +1,7 @@
+{
+ "capture_dials_naive_rr_m": 28.0,
+ "capture_dials_conservative_rr_m": 18.0,
+ "adr_defense_half_rr_m": 5.71,
+ "solver_residual_full_rr_m": 11.41,
+ "note": "ADR residual defense (~$5.7M half) is a separate loss-prevention ledger from capture dials (~$18\u201328M). Do not add defense into capture uplift; defending residual preserves the contestable rent pool. Exploratory."
+}

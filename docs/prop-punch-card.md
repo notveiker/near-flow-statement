@@ -245,3 +245,8 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Unlabeled surface rank | TG attach ~$1.4M > whale +10pp ~$1.0M > mystery 71bp ~$0.38M — label TG first | unlabeled_surface_rank |
 | Ledger vs Trust destination | Same SK family: Ledger ~132bp tax ≈1.01× capture; Trust ~5× BB density — prize is destination | ledger_vs_trust_fee_destination |
 | History 155 clusters | 155 preliminary through 2026Q3_06 — still not supported | history_progress_2026q3 |
+
+| Soft-sink board | LST ~611 DIC (~25× BB) but 9.3% stake; NRR ~178 DIC — soft sink ≠ fee scoreboard | soft_sink_board |
+| Capture vs defense ledgers | Capture dials ~$18–28M; ADR defense ~$5.7M is loss-prevention — separate ledgers | capture_vs_defense_ledgers |
+| Submit before HSP-029 | Submit lands ~2d before HSP-029 timelock — pending-not-live in pitch | submit_before_hsp029 |
+| Dual sampler coverage | Primary 155 / sample2 ~% — dual view; still preliminary | dual_sampler_coverage |

@@ -17,3 +17,9 @@
 - [`submit-packet.md`](submit-packet.md)
 - Dashboard Capture → Controllable dials
 - `data/derived/judge_one_pager_stack.json`
+
+<!-- AUTO:X_FOUR -->
+6b. **Four ~$10M surfaces** — SK-tax / attest / HSP-007 claim / solver residual (~$11.4M). ADR-029 can contest half the residual. Do not sum; do not call residual "capture."
+6c. **SK exit split** — lose ~38% distribution, ~2% BB: fee engine already in no-ref.
+6d. **TG unlabeled** — ~20% tagged census, fee map missing; attach dial ~$1.4M conservative.
+<!-- /AUTO:X_FOUR -->
