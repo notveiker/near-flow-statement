@@ -83,6 +83,8 @@
 | 77 | 1Click vs Llama coverage | ~80%→55% of Intents net | AITR math is 1Click-conditioned |
 | 78 | Partner/bb ratio trend | ~17.8×→~9.9× across blocks | Capture quality improved even as partner $ rose |
 | 79 | Unstaker→Intents overlap | ~1.5% of 1Click NEAR sold | Staking exit ≠ main NEAR-exit driver on Intents |
+| 80 | NEAR share of partner-fee surface | ≤~22% (tight ~20%) | Distribution owns the margin |
+| 81 | NEAR-side swap share | ~3.5% of 1Click swaps | Venue is foreign-asset routing on NEAR rails |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.
 

@@ -14,6 +14,8 @@
 | No-ref buyback-$ concentration | 18.7% vol → 45.8% buyback $ (~2.45×) |
 | Intents share of NEAR DEX 30d | ~99% |
 | Partners vs NEAR capture | ~1.8×+ (Ledger-via-SK alone ≈ NEAR) |
+| Partner/bb ratio trend | ~17.8×→~9.9× | Capture quality rising |
+| NEAR-side swap share | ~3.5% | Foreign-asset routing on NEAR rails |
 | SK exit fee asymmetry | −38% 1Click vol / only ~2% traceable buyback $ |
 
 ## What moves the numerator (quality dials)

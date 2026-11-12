@@ -1,0 +1,4 @@
+{
+ "explorer_near_side_swap_share_pct": 3.5,
+ "note": "Only ~3.5% of 1Click Explorer swaps have NEAR on one side \u2014 Intents is mostly foreign-asset routing settled on NEAR, not NEAR-pair trading. Explains net NEAR exit without contradicting venue dominance. Exploratory."
+}
