@@ -123,6 +123,7 @@ def run(stem: str, cap_gb: float = 300.0) -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     with JOBS.open("a") as f:
         f.write(json.dumps(rec, sort_keys=True) + "\n")
+    record(JOBS, "append-only log written by pipeline.rebuild")
     print(f"ok {stem}: job {job_id}, {rec['bytes_billed']/1e9:.1f} GB billed" + ("" if is_ddl else f", {rec['rows']} rows"))
 
 
