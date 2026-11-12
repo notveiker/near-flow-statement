@@ -1,4 +1,4 @@
-> One-pager: [prop-punch-card.md](prop-punch-card.md) · Topline: [prop-topline.md](prop-topline.md)
+> One-pager: [prop-punch-card.md](prop-punch-card.md) · Topline: [prop-topline.md](prop-topline.md) · What is proprietary: [prop-what-is-proprietary.md](prop-what-is-proprietary.md)
 
 # Proprietary research index
 
