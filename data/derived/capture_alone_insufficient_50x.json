@@ -1,0 +1,13 @@
+{
+  "asof": "2026-11-12",
+  "today_capture_share_pct": 32.5,
+  "at_60pct_capture": {
+    "capture_share_pct": 60,
+    "captured_bp": 9.18,
+    "run_rate_m": 44.7,
+    "vs_50x": 0.46
+  },
+  "hsp029_alone_fee_mint_x": 0.315,
+  "hsp029_remaining_gap_x": 3.17,
+  "read": "Even 60% capture share (holding 15.3 gross bp) \u2192 ~$44.7M RR \u2248 0.46\u00d7 of 50\u00d7 need. HSP-029 alone \u2192 fee\u00f7mint ~0.315\u00d7 (still ~3.17\u00d7 short of 1\u00d7). Capture dials are obligatory and insufficient alone \u2014 volume remains last mile. Exploratory."
+}

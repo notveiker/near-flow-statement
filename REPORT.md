@@ -146,6 +146,8 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 - **Soft-sink ≠ prize:** NRR ~178 DIC days but 1–2d exit — does not replace ~$50M/yr leakage renegotiation.
 - **Fee engine ≠ L1** (174 clusters): intents ~113× vs 2025Q1; L1 YoY ~0.18×.
 - **Foreign rail / resilience:** ~3.5% NEAR-sided; SK exit fee-light/distribution-heavy; relayer UX≫fee; USD growth price-heavy.
+- **Opacity accelerating:** escrow BB share 17.5→58.5% Jul→Nov — attest now.
+- **ETF immaterial:** NRR ~$0.42M ≈0.017× Intents; capital-light PCI ~0.057; 60% capture still ~0.46× of 50× need.
 - **Must-ship:** public repo + X dry-run (~65h).
 <!-- /AUTO:LATEST_SWEEP -->
 

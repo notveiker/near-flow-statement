@@ -317,6 +317,10 @@ def build() -> dict:
             "soft_sink_vs_leakage": optional("derived/soft_sink_vs_leakage_prize.json"),
             "foreign_rail": optional("derived/foreign_rail_vs_near_flow.json"),
             "fee_surface_risk": optional("derived/fee_resilience_vs_surface_risk.json"),
+            "opacity_accelerating": optional("derived/opacity_accelerating.json"),
+            "etf_immaterial": optional("derived/etf_immaterial_vs_intents.json"),
+            "capital_light": optional("derived/capital_light_fee_engine.json"),
+            "capture_insufficient": optional("derived/capture_alone_insufficient_50x.json"),
         },
         "repro": reproducibility(),
     }

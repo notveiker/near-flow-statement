@@ -232,3 +232,12 @@ History honesty (`history_fee_engine_vs_l1.json`, `history_counter_evidence_boar
 
 `fee_resilience_vs_surface_risk.json`: SwapKit exit costs ~**2%** traceable buyback dollars but ~**38%** of 1Click volume; relayer top1 ~**83%** is UX/share risk (~2000× vol/fee), not fee P&L. USD fee growth is ~**8.7×** NEAR-unit growth — price-heavy; NEAR-unit growth still clears G_req.
 <!-- /AUTO:RAILS_RESILIENCE -->
+<!-- AUTO:OPACITY_ACC -->
+## Opacity is accelerating (exploratory)
+
+Escrow share of buyback NEAR climbed ~**17.5%→58.5%** Jul→Nov (`opacity_accelerating.json`). Confidential funding is becoming the dominant rail without stream attestation — the underwriting band widens as the share rises. Attestation is time-sensitive trust inventory, not a nice-to-have.
+
+ETF/NRR implied fee ~**$0.42M/yr** is ~**0.017×** Intents RR (`etf_immaterial_vs_intents.json`) — below even the AI 5% bound on the immaterial ladder. Do not open on ETF.
+
+Inventory turns ~**17×**/30d (PCI ~0.057) — capital-light; binding constraint remains capture/leakage (`capital_light_fee_engine.json`). Even 60% capture share reaches only ~**0.46×** of a 50× revenue need (`capture_alone_insufficient_50x.json`).
+<!-- /AUTO:OPACITY_ACC -->

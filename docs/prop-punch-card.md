@@ -390,3 +390,7 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Fee resilience ≠ surface risk | SK exit: 2% BB / 38% vol; relayer UX≫fee; USD growth price-heavy | fee_resilience_vs_surface_risk |
 | History 175 / 2025Q3_09 | _09 dense mid-2025 — still not supported | history_progress_2025q3_09 |
 | Sweep ~460 identity | Distribution owns margin; elasticity+THOR+rails; must-ship public+X | sweep_460_identity |
+| Opacity accelerating | Escrow BB share 17.5→58.5% Jul→Nov — attestation urgency rises with share | opacity_accelerating |
+| ETF immaterial vs Intents | NRR ~$0.42M/yr ≈0.017× Intents RR — float/narrative not fee engine | etf_immaterial_vs_intents |
+| Capital-light fee engine | ~17×/30d turnover; PCI ~0.057 — constraint is capture not WC | capital_light_fee_engine |
+| Capture alone <50× | 60% capture → ~0.46× of 50× need; HSP alone still ~3.2× short of 1× mint | capture_alone_insufficient_50x |

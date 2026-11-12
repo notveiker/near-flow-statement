@@ -580,6 +580,10 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     const Fs = D.catalysts && D.catalysts.fee_surface_risk;
     if (Fr) bits.push(`Foreign rail: only ~<b class="mono">${Fr.near_side_swap_share_pct}%</b> NEAR-sided; net exit ~${Fr.net_exit_vs_capture_x}× capture.`);
     if (Fs) bits.push(`Fee≠surface: SK exit ~${Fs.sk_exit.traceable_bb_loss_pct}% BB / ~${Fs.sk_exit.vol_at_risk_pct}% vol; relayer UX≫fee.`);
+    const Oa = D.catalysts && D.catalysts.opacity_accelerating;
+    const Ei = D.catalysts && D.catalysts.etf_immaterial;
+    if (Oa) bits.push(`Opacity accelerating: escrow BB share ~${Oa.escrow_share_jul_pct}%→~${Oa.escrow_share_nov_pct}% Jul→Nov — attest urgency rises.`);
+    if (Ei) bits.push(`ETF/NRR ~$${Ei.nrr_implied_rr_m}M/yr ≈${Ei.nrr_vs_intents_x}× Intents — do not lead.`);
     $("#fee-engine-l1").innerHTML = bits.length ? `<p class="sub">${bits.join(' ')}</p>` : `<p class="sub">Fee-engine / coverage cards appear when derived JSON is in the build.</p>`;
   }
 }
