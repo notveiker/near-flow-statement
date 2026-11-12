@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "hsp007_claim_rr_m": 11.8,
+  "hsp029_coverage_alone_pct": 24.7,
+  "coverage_wall_with_stack_pct": 42.8,
+  "submit_before_timelock_h": 58.3,
+  "implication": "Mint dials (HSP-007 claim / HSP-029 cap) are issuance arithmetic \u2014 not Intents fee upside and not live at submit",
+  "read": "Mint ledger \u2260 fee upside: HSP-007 ~$11.8M claim competes on issuance pool; HSP-029 alone \u2192 ~24.7% coverage (pending-then-lagged). Do not sell mint as Intents bullishness. Exploratory."
+}

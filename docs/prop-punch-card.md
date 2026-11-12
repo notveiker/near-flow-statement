@@ -511,3 +511,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Default rail is fee engine | Unreferred ~45.8% of BB $ — protect/expand default path | default_rail_is_fee_engine |
 | Judge call-order now | SK-tax→mix→attest→conversion→attach; do not sum; Hold until H1b | judge_call_order_now |
 | History 207 / 2025Q3_13 | _13 dense continuing — still not supported | history_progress_2025q3_13 |
+| Mint ledger ≠ fee upside | HSP-007~$11.8M claim on issuance; HSP-029 pending-then-lagged — not Intents upside | mint_ledger_not_fee_upside |
+| Sweep ~577 identity | 12 locked claims; public+X bind @~58h | sweep_577_identity |

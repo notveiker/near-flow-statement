@@ -361,6 +361,7 @@ def build() -> dict:
             "single_venue_fee": optional("derived/single_venue_fee_power.json"),
             "default_rail": optional("derived/default_rail_is_fee_engine.json"),
             "judge_call_now": optional("derived/judge_call_order_now.json"),
+            "mint_not_fee": optional("derived/mint_ledger_not_fee_upside.json"),
             "diminishing_strata": optional("derived/diminishing_strata_vs_delivery.json"),
             "solver_rent_ledger": optional("derived/solver_rent_vs_capture_ledger.json"),
             "relayer_ops": optional("derived/relayer_ops_not_fee_dial.json"),
