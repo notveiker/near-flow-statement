@@ -26,5 +26,12 @@
   "L1 actives",
   "CS-as-fee"
  ],
- "stance": "Hold until H1b"
+ "stance": "Hold until H1b",
+ "clusters_preliminary": 168,
+ "commits": 436,
+ "hours_to_submit": 65.8,
+ "must_ship": [
+  "public_repo",
+  "X_demo_dry_run"
+ ]
 }

@@ -1,8 +1,8 @@
 {
- "asof_utc": "2026-11-12T05:35:20.893922+00:00",
- "hours_to_submit": 66.4,
- "clusters": 164,
- "commits": 416,
+ "asof_utc": "2026-11-12T06:13:28.352742+00:00",
+ "hours_to_submit": 65.8,
+ "clusters": 168,
+ "commits": 436,
  "falsifiers": [
   {
    "id": "F1",
@@ -17,8 +17,7 @@
   {
    "id": "F3",
    "status": "binding",
-   "name": "escrow_attestation_dark",
-   "metric": "~71% unattested"
+   "name": "escrow_attestation_dark"
   },
   {
    "id": "F4",
@@ -26,19 +25,9 @@
    "name": "relayer_top1_83pct"
   }
  ],
- "call_order": [
-  "Ledger",
-  "attest",
-  "CIF",
-  "ADR",
-  "conversion",
-  "TG",
-  "LI.FI",
-  "dense fronts"
- ],
  "must_ship": [
   "public_repo",
   "X_demo_dry_run"
  ],
- "note": "F3 binding. ~66.4h. 164 clusters preliminary. Must-ship public repo + X."
+ "note": "F3 binding. ~65.8h. 168 clusters preliminary. Must-ship public repo + X."
 }
