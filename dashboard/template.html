@@ -626,6 +626,10 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (Jp) bits.push(`Judge packet ~${Jp.score_excl_must_ship} excl must-ship — open public+X recorded.`);
     const D12 = D.catalysts && D.catalysts.dense_12_complete;
     if (D12) bits.push(`Dense _12 complete through ${D12.through}: ${D12.clusters} clusters; history not submit blocker — burn hours on public+X.`);
+    const Fs = D.catalysts && D.catalysts.fee_stability;
+    const Ds = D.catalysts && D.catalysts.diminishing_strata;
+    if (Fs) bits.push(`Fee≠L1 stable under dense: intents~${Math.round(Fs.intents_vs_2025q1_x_now)}× (was~189) vs L1~${Number(Fs.l1_yoy_tx_x_now).toFixed(2)}×.`);
+    if (Ds) bits.push(`Diminishing strata: marginal seals low EV vs ~${Ds.hours_to_submit}h public+X clock.`);
     const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);

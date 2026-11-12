@@ -312,3 +312,11 @@ Chain Signatures sits under Intents execution (execute ≫ respond ≫ sign) —
 - Contest-year denser `_12` through **2026Q4** sealed — **204 clusters**; overall still **not supported**.
 - History is **not** a submit blocker. Remaining hours (~**59**) burn on **public repo + X dry-run**.
 <!-- /AUTO:D12_DONE -->
+
+<!-- AUTO:DIMINISH -->
+### Diminishing strata vs delivery (exploratory)
+
+- Fee≠L1 holds under densification (intents ~**181×** vs L1 ~**0.20×**; was ~189× @201).
+- Entering `_13` — history still **not** a submit blocker.
+- Marginal seals are **low EV** vs ~**59h** for **public flip + X dry-run**.
+<!-- /AUTO:DIMINISH -->

@@ -1,0 +1,11 @@
+{
+  "asof": "2026-11-12",
+  "from_stratum": "_12_dense_complete",
+  "to_stratum": "_13_dense",
+  "clusters": 204,
+  "commits": 565,
+  "hours_to_submit": 58.8,
+  "history_blocker": false,
+  "priority": "public_repo_and_x_over_strata",
+  "read": "Entering denser _13 with 204 clusters / ~59h left. History not blocker \u2014 prefer public+X over more seals. Exploratory ops."
+}

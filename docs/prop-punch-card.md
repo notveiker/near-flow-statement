@@ -493,3 +493,6 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 204 / 2026Q4_12 | **_12 through 2026 COMPLETE** — still not supported | history_progress_2026q4_12 |
 | Dense _12 complete | 204 clusters; history not submit blocker; burn hours on public+X | dense_12_complete |
 | Sweep ~563 identity | Prop locked; _12 done; public+X bind | sweep_563_identity |
+| Fee≠L1 stable under dense | Intents ~181× (was ~189) vs L1 ~0.20× — gap holds | fee_engine_stability_under_dense |
+| Entering _13 dense | History not blocker; prefer public+X over more seals | entering_13_dense |
+| Diminishing strata vs delivery | Marginal seals low EV vs ~59h public+X clock | diminishing_strata_vs_delivery |

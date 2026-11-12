@@ -1,0 +1,12 @@
+{
+  "asof": "2026-11-12",
+  "clusters_now": 204,
+  "intents_vs_2025q1_x_now": 181.1515,
+  "intents_vs_2025q1_x_at_201": 189.1248,
+  "l1_yoy_tx_x_now": 0.205,
+  "delta_intents_x": -7.97,
+  "still_orders_of_magnitude": true,
+  "overall_unchanged": "not supported",
+  "implication": "Denser strata nudge the intents multiple (~189\u2192~181) but do not close the fee-engine\u2260L1 gap or flip overall support \u2014 further strata are diminishing returns vs delivery hours",
+  "read": "Fee\u2260L1 stable under densification: intents ~181\u00d7 (was ~189\u00d7 @201) vs L1 ~0.20\u00d7; overall still not supported. Marginal strata \u226a public+X for contest. Exploratory."
+}

@@ -1,0 +1,15 @@
+{
+  "asof": "2026-11-12",
+  "clusters": 204,
+  "hours_to_submit": 58.8,
+  "commits": 565,
+  "fee_engine_gap_orders": 2,
+  "overall_still": "not supported",
+  "marginal_strata_value": "low_for_submit",
+  "binding_hour_uses": [
+    "flip_public",
+    "record_x_demo",
+    "submit_packet_check"
+  ],
+  "read": "With 204 clusters and fee\u2260L1 stable at ~2 orders of magnitude, additional dense seals are low EV vs ~59h delivery clock. Exploratory ops prioritization."
+}

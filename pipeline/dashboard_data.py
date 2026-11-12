@@ -354,6 +354,8 @@ def build() -> dict:
             "attach_momentum": optional("derived/attach_momentum_board.json"),
             "judge_packet": optional("derived/judge_packet_completeness.json"),
             "dense_12_complete": optional("derived/dense_12_complete.json"),
+            "fee_stability": optional("derived/fee_engine_stability_under_dense.json"),
+            "diminishing_strata": optional("derived/diminishing_strata_vs_delivery.json"),
         },
         "repro": reproducibility(),
     }
