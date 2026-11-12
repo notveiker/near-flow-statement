@@ -1,7 +1,5 @@
 {
- "primary_clusters_local": 152,
- "last_ingested": "2025Q4_06",
- "overall": "not_supported_preliminary",
- "commits_since_structural_approx": 347,
- "note": "152 clusters through 2025Q4. Entering 2026 strata. Still preliminary / not supported."
+ "primary_clusters_local": 153,
+ "last_ingested": "2026Q1_06",
+ "overall": "not_supported_preliminary"
 }
