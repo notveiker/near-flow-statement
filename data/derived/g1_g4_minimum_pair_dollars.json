@@ -1,0 +1,11 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_submit": 50.8,
+  "commits": 739,
+  "G1_sk_tax_usd": 10200000,
+  "G4_escrow_bb_pct": 58.5,
+  "G4_makes_claimable": "majority of BB$ surface",
+  "claim": "Minimum Hold\u2192Buy pair: G1 (SK-tax ~$10.2M RR) + G4 (attest the 58.5% escrow BB rail). Together they convert the largest controllable dollar AND the largest unclaimable surface. Other dials confirm; this pair unlocks.",
+  "pitch_line": "Tax $10M. Attest 58%. Then re-rate is arithmetic.",
+  "read": "G1+G4 minimum pair @~51h. Exploratory."
+}

@@ -749,3 +749,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Fee engine prints while L1 cools | 0.22× L1 vs ~170× Intents; quality-on-cool | fee_engine_prints_while_l1_cools |
 | History 246 / 2025Q2_18 | intents~166×; PUBLIC+X NOW | history_progress_2025q2_18 |
 | ~740c milestone | packaging; public+X binding | commits_740_milestone |
+| G1+G4 minimum pair (dollars) | SK-tax $10.2M + attest 58.5% escrow BB | g1_g4_minimum_pair_dollars |

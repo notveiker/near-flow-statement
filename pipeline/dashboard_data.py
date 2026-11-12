@@ -541,6 +541,7 @@ def build() -> dict:
             "four_dials_mutex": optional("derived/four_dials_naive_sum_mutex_trap.json"),
             "fee_prints_l1_cool": optional("derived/fee_engine_prints_while_l1_cools.json"),
             "commits_740": optional("derived/commits_740_milestone.json"),
+            "g1_g4_pair": optional("derived/g1_g4_minimum_pair_dollars.json"),
             "risks_compact": optional("derived/risks_compact_bottom.json"),
             "no_vol_wall_elast": optional("derived/no_vol_wall_times_elasticity.json"),
             "commits_730": optional("derived/commits_730_milestone.json"),

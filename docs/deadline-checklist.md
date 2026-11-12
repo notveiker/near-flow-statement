@@ -99,3 +99,6 @@ Headline: Leakage is the bridge. Intents≈99% NEAR DEX.
 
 <!-- AUTO:D17DONE 2026-11-12 -->
 _12–_17 COMPLETE @ 244cl/730c. [ ] PUBLIC [ ] X [ ] Submit. ~51h.
+
+<!-- AUTO:27MIN 2026-11-12 -->
+~27 human minutes to unblock (public 2 + X 15 + submit 10). ~51h wall clock. 739c done.

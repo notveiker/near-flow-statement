@@ -1,21 +1,8 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 53.3,
-  "clusters": 232,
-  "commits": 677,
-  "derived_json": 537,
-  "punch_rows": 642,
-  "burn_priority": [
-    "flip_repo_public",
-    "record_x_demo_90s",
-    "submit_form"
-  ],
-  "low_ev": [
-    "_16_seals",
-    "more_compound_boards"
-  ],
-  "headline": "Leakage is the bridge",
-  "x_script_ready": true,
-  "implication": "~53h \u2014 every remaining hour on public+X; prop surplus already shipped (677c/537 derived)",
-  "read": "Burn @~53h: public+X only. 677c/232cl/537d. Exploratory."
+  "hours_to_submit": 50.8,
+  "commits": 739,
+  "clusters": 246,
+  "claim": "~51h left. Optimal human hour allocation: 90% public+X+submit, 10% dry-run polish. Agent keeps waiter+packaging; cannot substitute the 90%.",
+  "read": "Hours burn @~51h. CRITICAL."
 }
