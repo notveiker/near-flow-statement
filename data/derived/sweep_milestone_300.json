@@ -1,0 +1,20 @@
+{
+ "asof_utc": "2026-11-12T01:50:00Z",
+ "commits_since_structural": 300,
+ "derived_json_approx": 215,
+ "history_clusters_preliminary": 145,
+ "punch_rows_approx": 195,
+ "judge_artifacts": [
+  "pitch-spine",
+  "submit-packet",
+  "prop-topline",
+  "f1-f4",
+  "what-is-proprietary",
+  "controllable dials"
+ ],
+ "two_bridges": {
+  "sk_tax_m": 10.2,
+  "attest_escrow_m": 8.4
+ },
+ "note": "Hyper sweep ~300 commits. Judge packet ready. History preliminary; do not block submit."
+}
