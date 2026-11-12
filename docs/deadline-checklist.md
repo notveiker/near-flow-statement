@@ -44,3 +44,6 @@ Ops clock: `data/derived/deadline_ops.json`.
 - [ ] History seals past early-stratum stopping rule
 - [x] near.com wallet gap + HSP-007 tension + what-moves-τ board
 - [x] Dashboard controllable dials card live
+- [x] pitch-spine.md + what-is-proprietary refreshed
+- [x] F1–F4 scorecard pre-registered
+- [ ] Public repo / X demo dry-run before 14 Nov 23:59 UTC

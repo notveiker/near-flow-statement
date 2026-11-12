@@ -54,3 +54,4 @@ Intents ≈ **99%** of DefiLlama NEAR DEX 30d volume — peer competition for �
 
 `ledgerswapkit.near` alone lists ~$2.01M partner fees / 30d — approximately **1.01×** NEAR’s captured Intents revenue in the same window. Leakage renegotiation is not a diffuse partner problem; it concentrates in a Ledger-class wallet. Exploratory; listed appfees ≠ settled NEAR capture.
 
+Judge spine: [`pitch-spine.md`](pitch-spine.md). Controllable dials on dashboard Capture.
