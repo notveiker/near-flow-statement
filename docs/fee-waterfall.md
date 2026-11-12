@@ -56,3 +56,5 @@ Full-capture extreme: `data/derived/full_capture_extreme.json` — leakage pool 
 Attach vs partner race: `data/derived/attach_vs_partner_race.json`. 1Click coverage shrink: `data/derived/oneclick_coverage_shrink.json`.
 
 Census vs Explorer distribution lens: `data/derived/census_vs_explorer_lens.json` — count≠notional.
+
+Capture vs gas burn (NEAR): `data/derived/capture_vs_gas_burn_near.json`.
