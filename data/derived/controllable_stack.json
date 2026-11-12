@@ -100,6 +100,11 @@
   "peer_share_alone"
  ],
  "stance": "Hold until H1b",
- "note": "Controllable stack ranked by exploratory $/yr without 4\u00d7 volume. Leakage/conversion first. Exploratory.",
- "overlap_note": "Naive sum of controllable dials ~$28M/yr exceeds half the leakage pool but overlaps. Conservative non-overlap sketch ~$18M/yr still leaves volume as last mile for THOR/50\u00d7 paths. Exploratory."
+ "note": "Capture-share shifts ~3\u00d7 more valuable per pp than volume at today\u2019s take. Leakage/conversion first. Exploratory.",
+ "overlap_note": "Naive sum of controllable dials ~$28M/yr exceeds half the leakage pool but overlaps. Conservative non-overlap sketch ~$18M/yr still leaves volume as last mile for THOR/50\u00d7 paths. Exploratory.",
+ "marginal": {
+  "capture_share_pp_rr_m": 0.74,
+  "volume_pp_rr_m": 0.24,
+  "x": 3.07
+ }
 }
