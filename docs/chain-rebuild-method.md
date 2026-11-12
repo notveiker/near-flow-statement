@@ -34,3 +34,10 @@ Committed at the minute in the addendum heading (2026-11-12 23:30 UTC), before a
 ## Everything
 - Numbers come from scripts reading saved files; each output file's SHA-256 and each BigQuery job ID, creation time and bytes billed go in `data/raw/rebuild/jobs.jsonl`. Nulls are reported. Anything that is a reading rather than an observation is tagged INFERRED.
 - Code fixes made after this commit and before a result are disclosed in the addendum; a change after a result is disclosed with the result it changed.
+
+## F1 (follow-up to Q1, added after the Q1 to Q4 results; fixed before it runs)
+Question: Q1 found the escrow's wNEAR is mostly the inventory of a small solver family (`solver-priv-liq.near`, `solver-multichain-asset.near`, `solver-multichain-asset-escrow.near`, `solver-multichain-asset-2.near`; chosen because they are the escrow's largest counterparties in Q1 and Q3). Where does that inventory come from, and where does it go?
+- **Gross recycling ratio** = wNEAR the family sent to the escrow (Q1 ledger) / the family's net external deposits (external mint deposits minus external withdrawals, window). Reported with the family's share of escrow inflow and outflow.
+- **Hypothesis H-F1: the escrow is a solver liquidity pool, not a user deposit venue.** Supported if recycling ratio >= 5 and external deposits are under 25% of the family's gross inflow to the escrow. **Falsified** if external deposits (mint, by transaction signer) are at least 50% of that gross inflow.
+- **Depositor concentration:** top-5 share of external deposits by signer, and whether any signer is in the unstakers set or the exchange list. A named link to staking exits or exchanges is reported either way; a signer is the initiator, not proof of ownership (INFERRED).
+- Queries: `sql/rebuild/rb_f1a_family_deposits.sql`, `rb_f1b_family_withdrawals.sql`. Outputs, job IDs and hashes follow the same rules as above.
