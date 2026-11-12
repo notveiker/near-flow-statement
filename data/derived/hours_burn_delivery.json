@@ -1,0 +1,15 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_submit": 59.2,
+  "clusters": 202,
+  "commits": 557,
+  "commits_per_hour_remaining": 9.41,
+  "prop_ready_excl_must_ship": 0.96,
+  "must_ship_open": [
+    "public_repo",
+    "x_demo_dry_run"
+  ],
+  "repo_private": true,
+  "history_not_blocker": true,
+  "read": "~59h left; ~557 commits / 202 clusters. Prop packet ready \u2014 hours burn on public flip + X dry-run, not more history strata. Exploratory."
+}

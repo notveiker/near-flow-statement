@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "coverage_wall_pct": 42.8,
+  "leakage_pool_rr_m": 50.2,
+  "nrr_dic_days": 177.7,
+  "buyback_dic_days": 24.8,
+  "implication": "Soft sinks (NRR/LST) change float days, not fee\u00f7mint coverage wall \u2014 only capture stack + HSP scenario + volume move coverage",
+  "read": "Coverage wall ~42.8% is fee/mint arithmetic. NRR soft-sink ~177.7 DIC days does not raise the wall; leakage prize ~$50.2M/yr does. Exploratory."
+}

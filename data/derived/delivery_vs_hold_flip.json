@@ -1,0 +1,28 @@
+{
+  "asof": "2026-11-12",
+  "hold_binder": "H1b coverage still ~20\u201325% of streams",
+  "flip_to_revisit": [
+    {
+      "signal": "H1b > ~50% stream coverage",
+      "effect": "stance can leave Hold per rating rule"
+    },
+    {
+      "signal": "escrow attestation published",
+      "effect": "trust ledger; band collapses toward high"
+    },
+    {
+      "signal": "CIF rate card live",
+      "effect": "Gap dial becomes measurable capture"
+    },
+    {
+      "signal": "SK/Ledger renegotiation evidence",
+      "effect": "capture dial partially realized"
+    }
+  ],
+  "delivery_does_not_flip_hold": true,
+  "delivery_binding_for_contest": [
+    "public_repo",
+    "x_demo_dry_run"
+  ],
+  "read": "Public repo + X dry-run are contest delivery catalysts, not rating flips. Hold binder remains H1b / labels. Do not conflate submit readiness with Buy. Exploratory."
+}

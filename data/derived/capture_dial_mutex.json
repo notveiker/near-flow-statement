@@ -1,0 +1,33 @@
+{
+  "asof": "2026-11-12",
+  "capture_dials": [
+    {
+      "dial": "sk_tax_25",
+      "rr_m": 10.2,
+      "volume_pp_equivalent": 42.5
+    },
+    {
+      "dial": "mix_10pp_nearcom",
+      "rr_m": 9.7,
+      "volume_pp_equivalent": 40.4
+    },
+    {
+      "dial": "conversion_2x",
+      "rr_m": 5.5,
+      "volume_pp_equivalent": 22.9
+    }
+  ],
+  "naive_sum_rr_m": 25.4,
+  "naive_sum_vol_pp": 105.8,
+  "do_not_sum": true,
+  "reason": "Mix/attach/SK-tax/conversion compete for the same gross margin and the same SwapKit/near.com pipes \u2014 stacking as sum double-counts channel economics",
+  "preferred_call_order": [
+    "sk_tax_25",
+    "mix_10pp_nearcom",
+    "conversion_2x",
+    "attach"
+  ],
+  "coverage_wall_pct": 42.8,
+  "ledger_mutex_note": "Stack across ledgers (capture + trust + defense); mutex inside capture. Judges should prefer ledger-discipline board over naive dial sums.",
+  "read": "Naive sum of capture dials ~$25.4M RR / ~105.8 vol-pp \u2014 do not sum. Same pipes; call-order SK-tax\u2192mix\u2192conversion\u2192attach. Coverage wall still ~42.8%. Exploratory."
+}

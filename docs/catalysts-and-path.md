@@ -270,3 +270,11 @@ Chain Signatures sits under Intents execution (execute ≫ respond ≫ sign) —
 - **50× residual:** full-capture+HSP still ~**1.29×** vol. Order: leakage → HSP scenario → volume.
 - **Delivery:** ~**59h**; repo still **private**; X dry-run pending.
 <!-- /AUTO:COMPOUND_SWEEP -->
+
+<!-- AUTO:MUTEX_HOURS -->
+### Mutex + hours burn (exploratory)
+
+- Capture dials naive-sum ~**$25.4M** / ~**105.8 vol-pp** — **do not sum**; call-order SK-tax→mix→conversion→attach.
+- Soft sinks do not raise the ~42.8% coverage wall; leakage ~$50M does.
+- ~**59h** left: burn hours on **public flip + X dry-run**. Delivery readiness ≠ Hold→Buy (H1b).
+<!-- /AUTO:MUTEX_HOURS -->

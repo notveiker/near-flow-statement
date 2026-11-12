@@ -34,5 +34,7 @@
   ],
   "do_not_sum": true,
   "naive_sum_rr_m": 47.5,
-  "read": "Five ledgers: capture / trust / defense / mint / rent. Mint and rent are not token upside. Do not sum. Prefer Ledger-first capture + attest trust. Exploratory."
+  "read": "Five ledgers: capture / trust / defense / mint / rent. Mint and rent are not token upside. Do not sum. Prefer Ledger-first capture + attest trust. Exploratory.",
+  "capture_mutex_naive_rr_m": 25.4,
+  "reminder": "Five ledgers do not sum; capture dials inside the capture ledger also do not sum"
 }

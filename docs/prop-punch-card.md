@@ -465,3 +465,8 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Three scoreboards tension | Intents~189× / L1~0.21× / NEAR-sided~3.5% — venue≠token demand | three_scoreboards_tension |
 | Path-50× residual | After full stack still ~1.29× vol; order leakage→HSP→volume | path50x_residual_after_stack |
 | Sweep ~555 identity | New compound boards; public+X bind; Hold until H1b | sweep_555_identity |
+| History 202 / 2026Q2_12 | Contest-year _12 continuing — still not supported | history_progress_2026q2_12 |
+| Capture dial mutex | Naive sum ~$25.4M / ~105.8 vol-pp — do not sum; same pipes | capture_dial_mutex |
+| Soft-sink vs coverage wall | NRR DIC days ≠ wall; leakage ~$50.2M moves coverage | soft_sink_vs_coverage_wall |
+| Hours burn delivery | ~59h; burn on public+X not more strata | hours_burn_delivery |
+| Delivery ≠ Hold flip | Contest delivery catalysts; Hold binder still H1b | delivery_vs_hold_flip |

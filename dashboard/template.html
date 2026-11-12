@@ -596,6 +596,12 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (Three) bits.push(`Three scoreboards: intents~${Math.round(Three.intents_vs_2025q1_x)}× / L1~${Number(Three.l1_yoy_tx_x).toFixed(2)}× / NEAR-sided~${Three.near_side_swap_share_pct}% — venue≠token demand.`);
     if (Res) bits.push(`50× residual: after full stack still ~<b class="mono">${Res.after_full_capture_hsp_vol_x_for_50x}×</b> vol; order leakage→HSP→volume.`);
     if (Asym) bits.push(`Submit asymmetry: ~${Asym.hours_to_submit}h to deadline; HSP timelock ~${Asym.hours_to_hsp029_timelock}h — pending-then-lagged.`);
+    const Mx = D.catalysts && D.catalysts.capture_mutex;
+    const Hb = D.catalysts && D.catalysts.hours_burn;
+    const DvH = D.catalysts && D.catalysts.delivery_vs_hold;
+    if (Mx) bits.push(`Capture mutex: naive sum ~$${Mx.naive_sum_rr_m}M / ~${Mx.naive_sum_vol_pp} vol-pp — do not sum; Ledger-first call-order.`);
+    if (Hb) bits.push(`Hours burn: ~${Hb.hours_to_submit}h — spend on public+X, not more history strata.`);
+    if (DvH) bits.push(`Delivery ≠ Hold flip — contest delivery; Hold binder still H1b.`);
     const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);

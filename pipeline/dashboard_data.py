@@ -336,6 +336,10 @@ def build() -> dict:
             "fidelity_commercial": optional("derived/fidelity_implies_commercial_leakage.json"),
             "three_scoreboards": optional("derived/three_scoreboards_tension.json"),
             "path50x_residual": optional("derived/path50x_residual_after_stack.json"),
+            "capture_mutex": optional("derived/capture_dial_mutex.json"),
+            "soft_sink_vs_wall": optional("derived/soft_sink_vs_coverage_wall.json"),
+            "hours_burn": optional("derived/hours_burn_delivery.json"),
+            "delivery_vs_hold": optional("derived/delivery_vs_hold_flip.json"),
         },
         "repro": reproducibility(),
     }
