@@ -30,7 +30,8 @@
 11. Leakage pool ~$50M/yr + SK exit fee asymmetry
 12. Soft-sink ladder (LST≫NRR≫buyback) + burn materiality  
 
-Lead: attach/AITR, capture share, no-ref $, Intents≈NEAR DEX, fee÷mint$, volume binding.
+Lead: [`prop-what-is-proprietary.md`](prop-what-is-proprietary.md) — leakage bridge, SK fee asymmetry, growth honesty.
+Lead dials: attach/AITR, capture share, no-ref $, Intents≈NEAR DEX, fee÷mint$, volume last mile.
 AI / ETF / npm are second-order until measured as fee flow.
 
 Ops clock: `data/derived/deadline_ops.json`.
