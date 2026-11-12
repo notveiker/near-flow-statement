@@ -1,0 +1,25 @@
+{
+ "blocks": [
+  {
+   "block": 1,
+   "attach_pct": 23.6,
+   "captured_bp": 2.89,
+   "oneclick_usd_m": 1269.0
+  },
+  {
+   "block": 2,
+   "attach_pct": 39.0,
+   "captured_bp": 4.25,
+   "oneclick_usd_m": 1442.0
+  },
+  {
+   "block": 3,
+   "attach_pct": 43.0,
+   "captured_bp": 4.98,
+   "oneclick_usd_m": 1104.0
+  }
+ ],
+ "intents_vol_30d_b": 4.0,
+ "intents_vol_prior30d_b": 4.56,
+ "note": "Attach and captured bp rose across blocks while 1Click notional peaked in block 2 then fell; Intents 30d vol also cooled vs prior. Quality and volume are not moving together. Exploratory."
+}

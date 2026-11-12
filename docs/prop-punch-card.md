@@ -97,6 +97,7 @@
 | 91 | Vol deceleration vs capture | Vol −12% MoM; attach/τ still rose | Quality up on a cooling volume print |
 | 92 | Fee density vs gas | Rev ~11× L1 fees; gas share ~9% | Product is fee density, not L1 tx count |
 | 93 | Multiple on cooling vol | ~199× on −12% MoM vol print | Quality offsets; further vol cool expands multiple |
+| 94 | Quality on cool (3 blocks) | Attach/τ up; 1Click notional peaked then fell | Quality and volume decoupled |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.
 
