@@ -1,0 +1,5 @@
+{
+ "path_to_50x_needs_vol_x_at_5bp": 4.0,
+ "current_vol_cooling_mom_pct": -12.3,
+ "implication": "50\u00d7 path needs volume up while latest print is volume down \u2014 capture quality alone cannot substitute. Exploratory."
+}
