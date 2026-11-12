@@ -730,3 +730,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | SK HHI = tax leverage feature | concentration = one negotiation moves share | sk_hhi_is_tax_leverage_feature |
 | All-in/capture ~10.6× = leakage ratio | attest+SK close the multiple | all_in_over_capture_is_leakage_ratio |
 | Dist-tax × escrow accel = urgency | tax 67.5%; attest 58.5%; then volume | dist_tax_times_escrow_accel_urgency |
+| History 243 / 2026Q3_17 | intents~168×; escrow clock+dist-tax locked; PUBLIC+X | history_progress_2026q3_17 |
