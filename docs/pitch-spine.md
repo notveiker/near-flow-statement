@@ -1,6 +1,9 @@
 # Pitch spine (numbers only)
 
 *Exploratory synthesis for judges. Stance: **Hold until H1b**. HSP-029 pending-not-live (timelock 16 Nov; submit 14 Nov).*
+<!-- AUTO:FOUR_TEN -->
+**Four ~$10M surfaces (do not sum):** SK-tax ~$10.2M · attest escrow ~$8.4M · HSP-007 10% claim ~$11.8M · solver residual ~$11.4M (ADR-029 can contest ≤50%). TG attach conservative ~$1.4M. SK exit: fee resilient / distribution fragile.
+<!-- /AUTO:FOUR_TEN -->
 
 ## Open with
 
