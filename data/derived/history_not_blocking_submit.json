@@ -1,0 +1,11 @@
+{
+ "overall": "not_supported",
+ "clusters_preliminary": 167,
+ "submit_depends_on_history_green": false,
+ "submit_depends_on": [
+  "public_repo",
+  "X_demo_dry_run",
+  "prop_dashboard_report"
+ ],
+ "note": "Do not block submit on history stopping rule. Contest deliverable is prop/dashboard/REPORT + public repo + X demo. History stays preliminary. Exploratory ops."
+}

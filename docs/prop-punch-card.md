@@ -358,3 +358,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 166 / 2025Q2_08 | _08 dense continuing — still not supported | history_progress_2025q2_08 |
 | Pitch locked lines | Open/bridge/ladder/quality/path/close strings for X demo | pitch_locked_lines |
 | History 167 / 2025Q3_08 | _08 dense continuing — still not supported | history_progress_2025q3_08 |
+| History not blocking submit | Preliminary history ≠ submit blocker; public repo + X are | history_not_blocking_submit |
