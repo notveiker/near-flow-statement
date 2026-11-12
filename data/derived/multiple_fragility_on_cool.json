@@ -1,0 +1,9 @@
+{
+ "mcap_to_rev_30d_ann_x": 199.0,
+ "vol_mom_pct": -12.3,
+ "r90_vs_rr_x": 0.2,
+ "note": "Multiple ~199.0\u00d7 on 30d annualised run-rate that sits on decelerating volume and far above R90 ($4.84M vs $24.2M). If vol keeps cooling without take rising, multiple expands from the denominator. Capture quality is the offsetting force. Exploratory.",
+ "quality_rising": true,
+ "attach_path_x": 1.72,
+ "read": "Multiple is fragile to further vol cool unless capture-share/conversion dials keep printing \u2014 which is why leakage/attestation outrank volume cheerleading. Exploratory."
+}

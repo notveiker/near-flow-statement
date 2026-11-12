@@ -54,3 +54,7 @@ Leakage/conversion + attestation are the bridges; volume is the last mile. F1–
 ## Three ~$10M magnitudes
 
 SK-tax ~$10M (capture) · attest escrow ~$8.4M (trust) · HSP-007 10% emissions claim ~$11.8M (mint opex, Gap). Net the issuance story.
+
+## Multiple context
+
+~199× on 30d run-rate that is cooling MoM and far above R90 — leakage/conversion dials protect the denominator.
