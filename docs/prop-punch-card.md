@@ -431,3 +431,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | README judge path check | 30s path for judges after public flip | readme_judge_path_check |
 | Call order × elasticity | Each conversation tagged with vol-pp equivalent — Ledger first | call_order_elasticity |
 | History 186 / 2026Q2_10 | Contest-year _10 continuing — still not supported | history_progress_2026q2_10 |
+| History 187 / 2026Q3_10 | Q4_10 last of contest-year _10 — still not supported | history_progress_2026q3_10 |
