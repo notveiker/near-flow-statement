@@ -13,14 +13,16 @@
     "submit_packet": true,
     "submit_day_runbook": true,
     "x_demo_script": true,
+    "locked_pitch_lines": true,
+    "research_notes_index": true,
     "x_demo_recorded": false,
     "public_repo": false
   },
-  "score_excl_must_ship": 0.96,
+  "score_excl_must_ship": 0.97,
   "must_ship_open": [
     "public_repo",
     "x_demo_recorded"
   ],
-  "hours_to_submit": 58.9,
-  "read": "Judge packet artifacts READY except public_repo + X recording. ~59h. Exploratory."
+  "hours_to_submit": 57.1,
+  "read": "Judge packet READY except public_repo + X recording. ~57h. Exploratory."
 }

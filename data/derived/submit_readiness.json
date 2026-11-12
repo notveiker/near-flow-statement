@@ -1,23 +1,30 @@
 {
   "asof": "2026-11-12",
-  "score_excl_must_ship": 0.96,
+  "score_excl_must_ship": 0.97,
   "must_ship": {
     "public_repo": false,
     "x_demo_dry_run": false
   },
   "ready": [
     "pitch_spine",
+    "prop_topline",
     "one_breath",
     "punch_card",
+    "what_is_proprietary",
+    "catalysts",
     "dashboard",
-    "x_script",
+    "report",
+    "f1_f4",
+    "submit_packet",
     "submit_runbook",
-    "f1_f4_scorecard",
-    "report"
+    "x_script",
+    "locked_pitch",
+    "research_notes_index"
   ],
-  "hours_to_submit": 59.1,
-  "clusters": 202,
-  "commits": 559,
+  "hours_to_submit": 57.1,
+  "clusters": 213,
+  "commits": 598,
   "history_blocker": false,
-  "read": "Submit readiness ~0.96 excl must-ship. Open: public_repo + x_demo_dry_run. History denser _12 not a submit blocker. Exploratory."
+  "dense_12_13_complete": true,
+  "read": "Submit readiness ~0.97 excl must-ship. Open: public_repo + x_demo_dry_run. _12+_13 done; _14 diminishing. Exploratory."
 }
