@@ -1,0 +1,5 @@
+{
+ "intents_rev_vs_l1fees_30d_x": 11.2,
+ "intents_gas_share_pct": 9.4,
+ "read": "Intents captured revenue is ~11\u00d7 L1 fees while using ~9% of gas \u2014 fee density per compute is the product, not L1 tx count. Exploratory (census gas share + metrics fee ratio)."
+}
