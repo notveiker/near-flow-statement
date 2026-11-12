@@ -1,18 +1,19 @@
 {
- "history_clusters_preliminary": 156,
- "commits_since_structural_approx": 370,
- "derived_json_approx": 278,
- "punch_rows_approx": 260,
- "hours_to_submit_approx": 68.0,
+ "history_clusters_preliminary": 158,
+ "commits_since_structural_approx": 380,
+ "derived_json_approx": 292,
+ "punch_rows_approx": 276,
+ "hours_to_submit_approx": 67.7,
  "top_dials": [
-  "sk_tax_25pct_ledger_first",
+  "sk_tax_ledger_first",
   "attest_escrow",
-  "adr029_residual_defense",
-  "conversion_2x",
+  "adr_residual_defense",
+  "conversion",
   "cif_1bp_gap",
   "tg_attach",
-  "dense_fronts_protect"
+  "lifi_template",
+  "dense_fronts"
  ],
  "stance": "Hold until H1b",
- "note": "Inventory rollup: ~370 commits, 156 clusters, ~260 punch rows, ~278 derived JSON, ~68.0h to submit."
+ "note": "Inventory: ~380 commits, 158 clusters, ~276 punch, ~292 derived, ~67.7h."
 }
