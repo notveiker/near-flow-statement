@@ -75,3 +75,5 @@ Explorer partner/appfee vs DefiLlama gross are not a clean partition (sum can ex
 
 Do not lead: AI, npm, ETF, peer-share, L1 actives, CS-as-fee.
 <!-- /AUTO:WHAT_PROP -->
+
+*Sweep inventory: ~415 commits · 164 clusters · ~322 punch · Hold until H1b · must-ship public repo + X.*

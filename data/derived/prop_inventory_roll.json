@@ -1,0 +1,21 @@
+{
+ "commits": 415,
+ "clusters": 164,
+ "punch_rows": 322,
+ "derived_json": 309,
+ "hours_to_submit": 66.5,
+ "headline_shipped": true,
+ "top_insights": [
+  "partners_gt_capture",
+  "ledger_first_sk_tax_10.2",
+  "four_ten_m_board",
+  "conf_share_71pct",
+  "user_allin_10.6x",
+  "immaterial_ladder",
+  "call_order",
+  "quality_on_cool",
+  "leakage_then_1.3x_vol",
+  "hold_until_h1b"
+ ],
+ "note": "Inventory roll: ~415 commits, 164 clusters, ~322 punch rows, ~309 derived, ~66.5h to submit."
+}
