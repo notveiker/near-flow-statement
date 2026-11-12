@@ -847,6 +847,8 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (Bn) bits.push(`Bitwise NRR ≠ Intents capture — do not stack.`);
     const Xs = D.catalysts && D.catalysts.x_script_90;
     if (Xs) bits.push(`<b>X 90s:</b> ${Xs.beats.map(b=>b.say.split('.')[0]).join(' → ')}.`);
+    const Rd = D.catalysts && D.catalysts.rating_disclose;
+    if (Rd) bits.push(`Rating growth: disclose USD +${Rd.g_obs_usd_pct}% and NEAR-unit +${Rd.g_obs_near_pct}% (req ${Rd.g_req_pct}%).`);
     const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);

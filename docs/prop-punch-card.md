@@ -665,3 +665,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | 666-commit milestone | leakage is the bridge crystallized; public+X bind | commits_666_milestone |
 | History 231 / 2025Q3_16 | intents~192×; leakage=bridge; not supported | history_progress_2025q3_16 |
 | 90s X dry-run script | Fee≠L1 → leakage bridge → default rail/SK → 217×/H1b → honesty+public | x_demo_ninety_second_script |
+| Rating growth: disclose USD+NEAR | USD~619.0% vs NEAR~71.4% (req~33.2%) | rating_growth_disclose_usd_and_near |

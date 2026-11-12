@@ -141,8 +141,8 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~670 commits / 231 clusters / ~54h.** `_16` Q4 sealing. Overall still **not supported**.
-- **90s X script** shipped. Leakage is the bridge. Default rail = fee engine.
+- **~671 commits / 231 clusters / ~54h.** X 90s script ready. Overall still **not supported**.
+- Leakage is the bridge. Disclose USD vs NEAR-unit growth. Default rail = fee engine.
 - **URGENT:** public + X. Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 

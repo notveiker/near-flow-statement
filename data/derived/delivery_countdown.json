@@ -1,9 +1,9 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 53.6,
+  "hours_to_submit": 53.5,
   "clusters": 231,
-  "commits": 669,
-  "derived_json": 532,
+  "commits": 671,
+  "derived_json": 534,
   "repo_private": true,
   "x_dry_run_done": false,
   "binding": [
@@ -11,7 +11,7 @@
     "x_demo_dry_run"
   ],
   "prop_ready_excl_must_ship": 0.98,
+  "x_script_ready": true,
   "dense_15_complete": true,
-  "visibility_api_confirmed_private": true,
-  "read": "~54h / 231cl / 669c. PRIVATE. public+X. Exploratory."
+  "read": "~54h / 231cl / 671c. X script ready. PRIVATE. public+X. Exploratory."
 }

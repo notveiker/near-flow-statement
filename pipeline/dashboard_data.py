@@ -478,6 +478,7 @@ def build() -> dict:
             "bitwise_neq": optional("derived/bitwise_nrr_neq_intents_capture.json"),
             "commits_666": optional("derived/commits_666_milestone.json"),
             "x_script_90": optional("derived/x_demo_ninety_second_script.json"),
+            "rating_disclose": optional("derived/rating_growth_disclose_usd_and_near.json"),
             "noref_core": optional("derived/noref_concentration_is_fee_core.json"),
             "f1_f4": optional("derived/f1_f4_on_submit_day.json"),
         },
