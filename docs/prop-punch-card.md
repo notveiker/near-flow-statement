@@ -556,3 +556,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 220 / 2026Q4_14 | **_14 through 2026 COMPLETE** — still not supported | history_progress_2026q4_14 |
 | Dense _14 complete | 220 clusters; _12+_13+_14 done; human-only public+X | dense_14_complete |
 | Sweep ~619 identity | Triple dense complete; public+X bind | sweep_619_identity |
+| Entering _15 dense | Prefer public+X; _12+_13+_14 done | entering_15_dense |

@@ -1,0 +1,11 @@
+{
+  "asof": "2026-11-12",
+  "from": "_14_dense_complete",
+  "to": "_15_dense",
+  "clusters": 220,
+  "commits": 621,
+  "hours_to_submit": 55.8,
+  "history_blocker": false,
+  "priority": "public_repo_and_x_over_strata",
+  "read": "Entering denser _15 with 220 clusters / ~56h. Prefer human public+X. Exploratory."
+}
