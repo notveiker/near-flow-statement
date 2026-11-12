@@ -677,3 +677,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | HOT spam vs Intents settlement | HOT~34.5% tx vs Intents~13.2% at ~9.4% gas. Settlement weight. Exploratory. | hot_spam_vs_intents_settlement |
 | ETF NRR confirms non-lead | ETF NRR~$0.42M vs Intents~$24.2M (×0.017). Non-lead. Exploratory. | etf_nrr_confirms_non_lead |
 | npm tooling ≠ capture scale | ~$/17/download vanity; tooling≠capture. Exploratory. | npm_tooling_neq_capture_scale |
+| History 234 / 2026Q2_16 | intents~192×; Intents≈99% DEX; leakage=bridge | history_progress_2026q2_16 |
