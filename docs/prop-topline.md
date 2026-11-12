@@ -63,3 +63,9 @@ Do not sum. SK exit: fee resilient (~2% BB) / distribution fragile (~38% 1Click)
 
 Volume last. Hold until H1b.
 <!-- /AUTO:CALL_ORDER -->
+
+<!-- AUTO:DELIVERY -->
+## Delivery (next ~66h)
+
+Prop/dashboard/judge packet ready (~437 commits, 168 clusters preliminary). **Must ship:** public repo + X demo dry-run. History is not a submit blocker.
+<!-- /AUTO:DELIVERY -->
