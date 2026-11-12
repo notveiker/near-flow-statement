@@ -1,7 +1,8 @@
 {
  "primary_clusters_local": 137,
- "sample2_clusters_local": 85,
- "primary_next": "check part dir",
+ "sample2_clusters_local": 86,
+ "primary_next_part": "2022Q2_06",
+ "sample2_next_part": "2022Q3_04",
  "overall": "not_supported_preliminary",
- "note": "Ingested 2022Q1_06. History still preliminary."
+ "note": "sample2 ahead on some early strata; primary sealing 2022Q2_06."
 }
