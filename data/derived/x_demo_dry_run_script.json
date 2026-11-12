@@ -1,0 +1,37 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_submit": 61.3,
+  "status": "TODO",
+  "script": [
+    {
+      "t": "0:00",
+      "say": "Open one-breath (partners>capture / elasticity / opacity / fee\u2260L1 / Hold)"
+    },
+    {
+      "t": "0:20",
+      "show": "dashboard capture panel \u2014 four $10M + call-order\u00d7elasticity"
+    },
+    {
+      "t": "0:45",
+      "say": "THOR two-step: leakage ~3.1\u00d7 then ~4.4\u00d7 volume"
+    },
+    {
+      "t": "1:00",
+      "say": "Opacity accelerating 17\u219259% escrow BB \u2014 attest now"
+    },
+    {
+      "t": "1:15",
+      "say": "HSP-029 pending-then-lagged; F1\u2013F4 on 14 Nov; Hold until H1b"
+    },
+    {
+      "t": "1:30",
+      "close": "Must-ship: public repo + this dry-run recorded"
+    }
+  ],
+  "artifacts": [
+    "judge_one_breath.json",
+    "dashboard/index.html",
+    "docs/x-demo-talking-points.md"
+  ],
+  "read": "X dry-run script (~90s). Still TODO with ~61.3h left. Exploratory ops."
+}

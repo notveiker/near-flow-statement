@@ -41,3 +41,17 @@ Card: `data/derived/judge_capture_card.json` — open with partners>capture, clo
 <!-- AUTO:X_LOCKED -->
 **Locked lines:** Open partners>capture → bridges SK-tax+attest → ladder → quality-on-cool → leakage path → Hold until H1b. (`pitch_locked_lines.json`)
 <!-- /AUTO:X_LOCKED -->
+<!-- AUTO:X_SCRIPT -->
+## Timed dry-run (~90s)
+
+| t | Do |
+|---|---|
+| 0:00 | One-breath open |
+| 0:20 | Dashboard four $10M + call-order |
+| 0:45 | THOR two-step |
+| 1:00 | Opacity 17→59% |
+| 1:15 | HSP pending-then-lagged / Hold |
+| 1:30 | Close: public+X must-ship |
+
+(~61h left; `x_demo_dry_run_script.json`)
+<!-- /AUTO:X_SCRIPT -->
