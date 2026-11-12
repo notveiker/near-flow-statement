@@ -278,3 +278,12 @@ Chain Signatures sits under Intents execution (execute ≫ respond ≫ sign) —
 - Soft sinks do not raise the ~42.8% coverage wall; leakage ~$50M does.
 - ~**59h** left: burn hours on **public flip + X dry-run**. Delivery readiness ≠ Hold→Buy (H1b).
 <!-- /AUTO:MUTEX_HOURS -->
+
+<!-- AUTO:DOUBLE_OPACITY -->
+### Quality-on-cool + double opacity (exploratory)
+
+- **Quality-on-cool proof:** vol **-12.3%** MoM / fees **-31.64%** while attach/τ rose — capture dials work without volume growth.
+- **Double opacity:** escrow BB ~**58.5%** AND unknown surface ~**33.2%** — attest + label in parallel.
+- **Immaterial vs leakage:** SK-tax ~**$10.2M** vs ~**$50.2M** prize; ETF/AI immaterial.
+- **Settlement≠spam:** HOT tx-heavy; Intents settlement-heavy — coverage wall is capture, not L1 tx recovery.
+<!-- /AUTO:DOUBLE_OPACITY -->

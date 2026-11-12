@@ -1,0 +1,13 @@
+{
+  "asof": "2026-11-12",
+  "escrow_bb_share_pct": 58.5,
+  "bb_escrow_dollar_share_pct": 59.1,
+  "unknown_surface_pct": 33.2,
+  "tg_surface_pct": 20.4,
+  "unknown_diligence_rr_m_gap": 2.23,
+  "two_opacity_problems": [
+    "fee_rail_opacity (escrow unattested ~59%)",
+    "distribution_surface_opacity (unknown ~33%)"
+  ],
+  "read": "Double opacity: fee-rail escrow ~58.5% of BB NEAR / ~59.1% of BB $ AND distribution unknown ~33.2%. Attest + label are parallel diligence dials \u2014 not substitutes. Exploratory."
+}

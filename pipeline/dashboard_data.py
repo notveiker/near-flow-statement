@@ -340,6 +340,10 @@ def build() -> dict:
             "soft_sink_vs_wall": optional("derived/soft_sink_vs_coverage_wall.json"),
             "hours_burn": optional("derived/hours_burn_delivery.json"),
             "delivery_vs_hold": optional("derived/delivery_vs_hold_flip.json"),
+            "quality_cool_proof": optional("derived/quality_on_cool_elasticity_proof.json"),
+            "double_opacity": optional("derived/double_opacity_board.json"),
+            "immaterial_vs_leakage": optional("derived/immaterial_vs_leakage_prize.json"),
+            "settlement_vs_spam": optional("derived/settlement_density_vs_l1_spam.json"),
         },
         "repro": reproducibility(),
     }

@@ -1,8 +1,8 @@
 {
   "asof": "2026-11-12",
-  "one_breath": "Partners keep more than NEAR captures (~$50M/yr leakage; payment fidelity BB~96.7% so leakage is terms not invoices). Capture-pp\u22483.07\u00d7vol; SK-tax\u224842.5 vol-pp. Escrow BB 17\u219259% \u2014 attest urgency rises with opacity (trust ~35 vol-pp; do not sum with capture). No-vol coverage wall ~42.8%. Three scoreboards diverge: intents~189\u00d7 vs L1~0.21\u00d7 YoY vs NEAR-sided swaps~3.5%. THOR: leakage~3.07\u00d7 then~4.41\u00d7; full-capture+HSP still~1.29\u00d7 vol for 50\u00d7. Hold until H1b. HSP pending-then-lagged. Flip repo public + X dry-run (~59h).",
-  "hours_to_submit": 59.2,
-  "clusters": 201,
-  "commits": 555,
+  "one_breath": "Partners keep more than NEAR captures (~$50M/yr leakage; fidelity~97% \u2192 terms not invoices). Capture-pp\u22483.07\u00d7vol (quality rose on \u221212% vol cool). SK-tax\u2248$10.2M\u224842.5 vol-pp. Double opacity: escrow BB~59% + unknown surface~33% \u2014 attest AND label. Coverage wall~42.8% no-vol; 50\u00d7 residual~1.29\u00d7 vol after full stack. Hold until H1b. HSP pending-then-lagged. Flip repo public + X dry-run (~59h).",
+  "hours_to_submit": 59.1,
+  "clusters": 202,
+  "commits": 558,
   "repo_private": true
 }

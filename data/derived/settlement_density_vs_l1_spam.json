@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "hot_tx_share_pct": 34.5,
+  "intents_tx_share_pct": 13.2,
+  "hot_tx_per_gas_vs_intents_x": 2.61,
+  "coverage_wall_pct": 42.8,
+  "implication": "HOT spam dominates tx count; Intents dominates settlement weight \u2014 L1 tx recovery would not automatically fix fee coverage",
+  "read": "HOT ~34.5% tx vs Intents ~13.2% at matched gas \u2014 Intents is ~2.61\u00d7 heavier per gas unit inverted (HOT has more tx/gas). Fee coverage wall ~42.8% is an Intents/capture problem, not an L1 spam problem. Exploratory."
+}

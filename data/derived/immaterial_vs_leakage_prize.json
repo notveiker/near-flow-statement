@@ -1,0 +1,13 @@
+{
+  "asof": "2026-11-12",
+  "leakage_pool_rr_m": 50.2,
+  "sk_tax_25_rr_m": 10.2,
+  "cif_1bp_rr_m": 3.31,
+  "etf_nrr_rr_m": 0.42,
+  "agent_5pct_rr_m": 0.33,
+  "sk_tax_vs_leakage_x": 0.203,
+  "etf_vs_leakage_x": 0.0084,
+  "material_threshold_rr_m": 5.0,
+  "only_material_in_ladder": "sk_tax_25",
+  "read": "Vs ~$50.2M leakage: SK-tax ~$10.2M (~20% of prize); ETF/AI ~$0.42/$0.33M immaterial. Lead SK-tax/leakage \u2014 not ETF/AI. Exploratory."
+}

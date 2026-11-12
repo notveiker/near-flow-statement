@@ -141,10 +141,11 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~557 commits / 202 clusters.** Contest-year denser `_12`; overall still **not supported**.
-- **Coverage wall** ~42.8% · **capture dial mutex** naive sum ~$25.4M — do not sum.
-- **Fidelity→terms** · **opacity×elasticity** · **three scoreboards** · **50× residual** ~1.29× vol after stack.
-- **Hours burn:** ~59h — burn on **public repo + X**, not more strata. Delivery ≠ Hold flip (H1b).
+- **~558 commits / 202 clusters.** `_12` dense; overall still **not supported**.
+- **Quality-on-cool proof:** vol -12.3% MoM while attach/τ rose — elasticity is empirical.
+- **Double opacity:** escrow~58.5% + unknown~33.2% — attest AND label.
+- **SK-tax vs leakage** ~$10.2M / ~$50.2M; ETF/AI noise. Coverage wall~42.8%.
+- **LIVE blockers:** public repo + X dry-run (~59h). Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context

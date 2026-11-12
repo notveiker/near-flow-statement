@@ -108,3 +108,7 @@ Fee-engine≠L1 divergence now ~**132×** intents vs ~**0.19×** L1 tx YoY on 17
 <!-- AUTO:COMPOUND -->
 **Compound (asof 2026-11-12):** coverage wall ~42.8% · opacity×elasticity (escrow~58.5%, capture~3.07×) · fidelity→terms leakage · three scoreboards · 50× residual ~1.29× vol after stack.
 <!-- /AUTO:COMPOUND -->
+
+<!-- AUTO:QOOL_DBL -->
+**Quality-on-cool + double opacity:** vol -12.3% MoM with rising attach/τ; escrow~58.5% + unknown~33.2% — attest AND label; SK-tax is the material dial vs ~$50.2M leakage.
+<!-- /AUTO:QOOL_DBL -->

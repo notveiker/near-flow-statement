@@ -602,6 +602,14 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (Mx) bits.push(`Capture mutex: naive sum ~$${Mx.naive_sum_rr_m}M / ~${Mx.naive_sum_vol_pp} vol-pp — do not sum; Ledger-first call-order.`);
     if (Hb) bits.push(`Hours burn: ~${Hb.hours_to_submit}h — spend on public+X, not more history strata.`);
     if (DvH) bits.push(`Delivery ≠ Hold flip — contest delivery; Hold binder still H1b.`);
+    const Qc = D.catalysts && D.catalysts.quality_cool_proof;
+    const Dbl = D.catalysts && D.catalysts.double_opacity;
+    const IvL = D.catalysts && D.catalysts.immaterial_vs_leakage;
+    const SvS = D.catalysts && D.catalysts.settlement_vs_spam;
+    if (Qc) bits.push(`Quality-on-cool proof: vol ${Qc.vol_mom_pct}% MoM while attach/τ rose — capture dials work without vol cheerleading.`);
+    if (Dbl) bits.push(`Double opacity: escrow BB~${Dbl.escrow_bb_share_pct}% + unknown surface~${Dbl.unknown_surface_pct}% — attest AND label.`);
+    if (IvL) bits.push(`Immaterial vs leakage: SK-tax~$${IvL.sk_tax_25_rr_m}M vs ~$${IvL.leakage_pool_rr_m}M prize; ETF/AI noise.`);
+    if (SvS) bits.push(`Settlement≠spam: HOT tx-heavy / Intents settlement-heavy — coverage is capture not L1 count.`);
     const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);

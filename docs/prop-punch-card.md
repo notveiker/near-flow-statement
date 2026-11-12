@@ -470,3 +470,8 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Soft-sink vs coverage wall | NRR DIC days ≠ wall; leakage ~$50.2M moves coverage | soft_sink_vs_coverage_wall |
 | Hours burn delivery | ~59h; burn on public+X not more strata | hours_burn_delivery |
 | Delivery ≠ Hold flip | Contest delivery catalysts; Hold binder still H1b | delivery_vs_hold_flip |
+| Quality-on-cool = elasticity proof | Vol -12.3% MoM while attach/τ rose — capture dials work without vol | quality_on_cool_elasticity_proof |
+| Double opacity | Escrow BB~58.5% + unknown surface~33.2% — attest AND label | double_opacity_board |
+| Immaterial vs leakage | SK-tax~$10.2M vs leakage~$50.2M; ETF/AI noise | immaterial_vs_leakage_prize |
+| Settlement dens vs L1 spam | HOT tx-heavy; Intents settlement-heavy — coverage is capture not spam | settlement_density_vs_l1_spam |
+| Sweep ~558 identity | Mutex+hours+compound boards; public+X bind | sweep_558_identity |
