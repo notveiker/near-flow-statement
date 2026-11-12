@@ -364,3 +364,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 169 / 2026Q1_08 | Contest-year _08 filling — still not supported | history_progress_2026q1_08 |
 | Risks compact | H1b/attest/unexplained/relayer/HSP-007/CIF/multiple fragility — Hold binds | risks_compact |
 | History 170 / 2026Q2_08 | _08 contest-year continuing — still not supported | history_progress_2026q2_08 |
+| History 171 / 2026Q3_08 | Q4_08 last of 2026 _08 — still not supported | history_progress_2026q3_08 |
