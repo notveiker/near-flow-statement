@@ -60,3 +60,8 @@ Leakage/conversion is the bridge; volume is the last mile. F1–F4: `docs/f1-f4-
 Escrow ~58% of BB funding · ~68% of revwallet BB $ unmapped · H1b ~25% inflow · attestation ≤16%. Fee print ≠ attested scarcity loop.
 
 *Honesty: Explorer partner/appfee vs DefiLlama gross are not a clean partition — use partners>capture in Explorer dollars, not summed % of gross.*
+
+## Two bridges (before volume)
+
+1. SK-tax renegotiation ~$10M/yr raises capture.
+2. Attest escrow BB ~$8.4M/yr raises trust in the scarcity loop.

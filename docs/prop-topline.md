@@ -22,3 +22,7 @@ AI agents, npm downloads, peer-share alone (62%→56%→39% net), perps OI, CS-a
 ## Binding
 
 H1b ~20–25% · attestation 4.5–15.8% · escrow ~58% of BB · unexplained BB ~68% · relayer top1 ~83% · HSP-007 emissions claim Gap · history preliminary.
+
+## Two bridges
+
+SK-tax ~$10M (capture) + attest escrow ~$8.4M (trust) before volume.
