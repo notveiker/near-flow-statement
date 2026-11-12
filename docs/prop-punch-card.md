@@ -332,3 +332,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | capture ceiling 50x | At current Intents volume, 50× needs ~19.8 bp captured — above today’s 15.3 gross all-in. Capture-share alone cannot hit 50× without gross t | capture_ceiling_50x |
 | burn materiality | Permanently removing (burn/lock) enough NEAR to offset 25% of net mint requires ~122% of today’s fee capture as hard removal — more than 100 | burn_materiality |
 | calendar ordering |  | calendar_ordering |
+| History 161 through 2026Q1_07 | Contest-year dense strata filling — still not supported | history_progress_2026q1_07 |

@@ -1,9 +1,10 @@
 {
- "commits_since_structural": 392,
- "clusters_preliminary": 160,
- "hours_to_submit": 67.3,
+ "commits_since_structural": 398,
+ "clusters_preliminary": 161,
+ "hours_to_submit": 67.1,
  "stratum": "_07_dense",
- "last_ingested": "2025Q4_07",
+ "last_ingested": "2026Q1_07",
  "judge_ready": true,
- "note": "~392 commits; 160 clusters through 2025Q4_07 dense; entering 2026 _07; ~67.3h to submit."
+ "headline": "four_ten_m + ledger_first + call_order + conf_share_71 + ladder",
+ "note": "~398 commits; 161 clusters through 2026Q1_07 dense; ~67.1h to submit; judge packet live."
 }
