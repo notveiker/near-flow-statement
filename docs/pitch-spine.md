@@ -4,7 +4,7 @@
 
 ## Open with
 
-Capture ~**5 bp** of ~**15 bp** gross (share **32.5%**). Listed partners ~**$4.45M** > NEAR capture ~**$1.99M** on 30d — **distribution owns the fee print**. Leakage pool ~**$50M/yr**. Renegotiate before asking for 4× volume.
+Capture ~**5 bp** of ~**15 bp** gross (share **32.5%**). Listed partners ~**$4.45M** > NEAR capture ~**$1.99M** on 30d — **distribution owns the fee print**. Intents is ~87% of NEAR protocol fees. Leakage pool ~**$50M/yr**. Renegotiate before asking for 4× volume.
 
 *Honesty: Explorer partner/appfee vs DefiLlama gross are not a clean partition — use partners>capture in Explorer dollars.*
 

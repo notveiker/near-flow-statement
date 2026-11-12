@@ -1,0 +1,10 @@
+{
+ "intents_share_of_near_protocol_fees_30d_pct": 87.0,
+ "intents_fees_30d_m": 5.458,
+ "aurora_fees_30d_usd": 5.309999999999997,
+ "aurora_tvl_now": 3750650,
+ "aurora_tvl_peak": 1356501248,
+ "aurora_tvl_drawdown_pct": -99.7,
+ "aurora_referral_share_pct": 9.8,
+ "note": "Intents is ~87.0% of NEAR protocol fees (DefiLlama). Aurora TVL \u2212100% from peak with ~$5 fees/30d while still ~9.8% of census referrals \u2014 widget distribution \u2260 fee or TVL. Exploratory."
+}
