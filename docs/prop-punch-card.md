@@ -336,3 +336,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Judge ledger board | Capture / trust / defense / mint tension / contestable rent — five ledgers, no naive sum | judge_ledger_board |
 | Sweep ~400 commits | Judge packet + dense history through 2026Q1; still preliminary | sweep_milestone |
 | Dial overlap map | SK-tax overlaps no-BB redirect/gross-share; CIF overlaps attest; ADR⊂residual | dial_overlap_map |
+| Must-ship board | Prop ready; public repo + X dry-run still TODO; ~67h to submit | must_ship_board |

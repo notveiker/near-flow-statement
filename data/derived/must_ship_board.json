@@ -1,0 +1,33 @@
+{
+ "hours_to_submit": 67.1,
+ "clusters": 161,
+ "commits": 401,
+ "prop_ready": true,
+ "dashboard_ready": true,
+ "history_preliminary": true,
+ "must_ship": [
+  {
+   "item": "public_repo",
+   "status": "TODO"
+  },
+  {
+   "item": "X_demo_dry_run",
+   "status": "TODO"
+  },
+  {
+   "item": "F1-F4_on_day",
+   "status": "scheduled_14_nov"
+  }
+ ],
+ "shipped": [
+  "pitch_spine",
+  "submit_packet",
+  "prop_topline",
+  "f1_f4_scorecard",
+  "controllable_dials",
+  "four_ten_m_cards",
+  "call_order",
+  "judge_ledger_board"
+ ],
+ "note": "Prop/dashboard/REPORT ready. Must still ship public repo + X dry-run before submit (~67.1h). History 161 clusters preliminary."
+}
