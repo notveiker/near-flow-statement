@@ -125,3 +125,5 @@ History sample: preliminary **133** sealed clusters (primary) with payloads; dua
 | `l1_actives_collapse_vs_intents.json` | Actives −77% YoY vs Intents fee dominance |
 | `noref_fee_engine.json` | No-ref is the fee engine |
 | `pitch-spine.md` | Judge numbers-only spine |
+
+*Index stamp: ~395 commits · 160 clusters · ~302 punch · call-order Ledger→attest→CIF · four ~$10M board · Hold until H1b.*
