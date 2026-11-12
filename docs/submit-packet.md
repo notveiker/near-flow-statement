@@ -12,7 +12,7 @@ Partners > capture in dollars. Leakage pool ~$50M/yr. Two bridges before volume:
 
 ## Do not say
 
-Bull case. AI agents lead. npm lead. Peer-share rising. HSP-029 is live. History is supported.
+Bull case. AI agents lead. npm lead. ETF/NRR lead. Peer-share rising. HSP-029 is live. History is supported.
 
 ## Links
 
