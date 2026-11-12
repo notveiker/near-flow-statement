@@ -15,3 +15,5 @@
 | Longer census for relayer HHI stability | Ops risk may be window artifact | Multi-day census |
 
 Until the top gaps close, the honest investment object is a **range with policy and partner risk**, not a closed fee→scarcity loop. The punch card still scores: attach, mix, attestation, HSP-029, then volume.
+
+SwapKit↔escrow link unknown — exit ceilings span 2–74% (`data/derived/sk_exit_ceilings.json`).

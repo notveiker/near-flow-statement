@@ -1,0 +1,6 @@
+{
+ "traceable_pct": 2.0,
+ "ceiling_bb_escrow_pct": 43.0,
+ "ceiling_all_escrow_pct": 73.7,
+ "note": "SK exit traceable buyback loss ~2%; ceiling if all SK-correlated escrow also lost ~43\u201374%. Fee engine resilience depends on whether escrow is SK-tied. Gap. Exploratory."
+}
