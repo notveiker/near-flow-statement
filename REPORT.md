@@ -148,7 +148,7 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 - **Opacity inside the claim:** ~71% of measured wallet capture via escrow; user all-in ~10.6× token claim.
 - **HSP-007 engagement ~2.1× HSP-029** — mint-claim politics compete with mint-cut narrative.
 - **50× bind:** capture-alone needs >gross bp; leakage then ~1.3× vol.
-- **History:** 163 clusters through 2026Q3_07 dense; Q4_07 sealing; overall still not supported.
+- **History:** 164 clusters; denser `_07` through 2026Q4 complete; overall still not supported.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context
