@@ -26,7 +26,9 @@
 7. Fee÷mint$ coverage (~0.21×) + THOR-multiple bridge  
 8. Relayer HHI / ops concentration  
 9. Inventory mix (ZEC #2) + CIF sensitivity  
-10. Rent map (solver+partners ~2.7× NEAR capture)  
+10. Rent map (solver+partners ~2.7× NEAR capture)
+11. Leakage pool ~$50M/yr + SK exit fee asymmetry
+12. Soft-sink ladder (LST≫NRR≫buyback) + burn materiality  
 
 Lead: attach/AITR, capture share, no-ref $, Intents≈NEAR DEX, fee÷mint$, volume binding.
 AI / ETF / npm are second-order until measured as fee flow.
