@@ -103,6 +103,7 @@
 | 97 | Solver rebalance tags (census) | ~7% of tagged referrals | Inventory ops are first-class flow |
 | 98 | Telegram surface (census) | intents.tg ~20% of tagged referrals | Live distribution surface; fee attribution gap |
 | 99 | Aurora widgets (census) | ~9.8% of tagged referrals | Widget distribution ≠ Aurora TVL residual |
+| 100 | Punch-card century | 99+ proprietary rows | Hyper sweep scoreboard for judges |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.
 
