@@ -1,9 +1,9 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 58.1,
-  "clusters": 208,
-  "commits": 580,
-  "derived_json": 415,
+  "hours_to_submit": 57.9,
+  "clusters": 209,
+  "commits": 583,
+  "derived_json": 418,
   "repo_private": true,
   "x_dry_run_done": false,
   "binding": [
@@ -11,7 +11,5 @@
     "x_demo_dry_run"
   ],
   "prop_ready_excl_must_ship": 0.97,
-  "dense_12_complete": true,
-  "dense_13_through_2025": true,
-  "read": "~58h / 208 clusters / 580 commits. _13 through 2025 done. LIVE: public+X. Exploratory."
+  "read": "~58h / 209 clusters / 583 commits. Prop ready; LIVE: public+X. Exploratory."
 }

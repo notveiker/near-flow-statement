@@ -1,22 +1,20 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 58.2,
+  "hours_to_submit": 57.9,
   "urgency_band": "GREEN",
-  "clusters": 207,
-  "commits": 578,
-  "derived_json": 413,
+  "clusters": 209,
+  "commits": 583,
+  "derived_json": 418,
   "repo_private": true,
   "x_dry_run_done": false,
   "prop_ready_excl_must_ship": 0.97,
   "must_ship": {
     "public_repo": {
-      "ready": false,
-      "action": "gh repo edit notveiker/near-flow-statement --visibility public"
+      "ready": false
     },
     "x_demo_dry_run": {
       "ready_script": true,
-      "recorded": false,
-      "script": "docs/x-demo-talking-points.md"
+      "recorded": false
     }
   },
   "do_not_block_on": [
@@ -24,5 +22,5 @@
     "hsp029_live",
     "more_prop_boards"
   ],
-  "read": "Urgency GREEN (~58h). Prop ~0.97 excl must-ship. Open: public=true + X recorded=false. Do not block on strata. Exploratory."
+  "read": "Urgency GREEN (~58h). Prop ~0.97. Open: public + X. Exploratory."
 }

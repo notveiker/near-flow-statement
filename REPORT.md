@@ -141,9 +141,10 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~581 commits / 208 clusters.** `_13` contest-year filling; overall still **not supported**.
-- **Attest=underwriting not τ** · **CIF Gap do not lead** · SK-tax+attest parallel.
-- **12 locked claims** · urgency GREEN · **public + X** (~58h).
+- **~583 commits / 209 clusters.** Contest-year `_13` through Q1; overall still **not supported**.
+- **Two bridges:** SK-tax ~**$10.2M** capture + attest ~**$8.4M** trust — do not sum.
+- **Attest≠τ** · CIF Gap · fee≠L1 OoM ~**147×**.
+- **LIVE (~58h):** public + X. Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context

@@ -519,3 +519,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Sweep ~580 identity | Urgency GREEN; 12 locked claims; public+X bind | sweep_580_identity |
 | Attest = underwriting not τ | Band compression dial; escrow BB~58.5% — parallel to SK-tax capture | attest_is_underwriting_not_tau |
 | CIF Gap do not lead | 1bp proxy~$3.31M; rate card unpublished — lead SK-tax+attest | cif_gap_do_not_lead |
+| History 209 / 2026Q1_13 | Contest-year _13 filling — still not supported | history_progress_2026q1_13 |
+| Sweep ~582 identity | Attest≠τ · CIF Gap · public+X bind | sweep_582_identity |
