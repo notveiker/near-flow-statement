@@ -96,3 +96,6 @@ Headline: Leakage is the bridge. Intents≈99% NEAR DEX.
 - [ ] Flip repo PUBLIC (still private @ 709c / 239cl)
 - [ ] Record X 90s from beats board
 - [ ] Submit by 14 Nov 23:59 UTC (~52h)
+
+<!-- AUTO:D17DONE 2026-11-12 -->
+_12–_17 COMPLETE @ 244cl/730c. [ ] PUBLIC [ ] X [ ] Submit. ~51h.

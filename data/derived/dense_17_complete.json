@@ -1,0 +1,21 @@
+{
+  "asof": "2026-11-12",
+  "stratum": "_17",
+  "clusters": 244,
+  "commits": 730,
+  "hours_to_submit": 51.2,
+  "sealed": "2025Q1 through 2026Q4 _17",
+  "intents_x": 167.7896,
+  "l1_yoy_tx_x": 0.1883,
+  "overall": "not supported",
+  "dense_complete": [
+    "_12",
+    "_13",
+    "_14",
+    "_15",
+    "_16",
+    "_17"
+  ],
+  "claim": "_12\u2013_17 COMPLETE. Overall still not supported. Intents\u00d7 still OoM. Strata EV exhausted. Only public+X remain.",
+  "read": "_17 COMPLETE @ 244cl / 730c. CRITICAL delivery."
+}

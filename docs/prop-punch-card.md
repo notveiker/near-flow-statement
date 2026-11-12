@@ -737,3 +737,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | No-vol wall × elasticity boundary | 42.8% / 3.07×; know which side | no_vol_wall_times_elasticity |
 | Matched peer stack still leaves claim gap | ~13.6× residual = underwriting not density | matched_stack_still_leaves_claim_gap |
 | Confidential share = Trust surface size | ~71.2% + escrow 58.5%; attest makes claimable | confidential_share_is_trust_surface_size |
+| _12–_17 COMPLETE @ 244cl | overall not supported; strata EV exhausted; PUBLIC+X | dense_17_complete |
+| History 244 / 2026Q4_17 | _17 done; intents~168×; PUBLIC+X NOW | history_progress_2026q4_17 |

@@ -91,3 +91,6 @@ Evidence surplus: 710c / 239cl / 564 boards. Deficit: PUBLIC + X. ~52h.
 
 <!-- AUTO:PACKET99 2026-11-12 -->
 Judge packet 99% excl must-ship. 727c/243cl. PUBLIC+X+submit. ~51h.
+
+<!-- AUTO:D17DONE 2026-11-12 -->
+_17 done. Packet ready. Only public+X+submit. ~51h.

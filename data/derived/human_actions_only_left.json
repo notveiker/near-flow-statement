@@ -1,19 +1,19 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 51.4,
-  "commits": 723,
-  "clusters": 242,
+  "hours_to_submit": 51.2,
+  "commits": 730,
+  "clusters": 244,
   "repo_private": true,
   "x_dry_run_done": false,
   "actions": [
     {
       "rank": 1,
-      "action": "Flip GitHub repo public",
+      "action": "Flip GitHub repo public NOW",
       "blocks": "judges cannot open evidence"
     },
     {
       "rank": 2,
-      "action": "Record X 90s from x_demo_ninety_second_beats.json",
+      "action": "Record X 90s (beats v3 ready)",
       "blocks": "submission incomplete"
     },
     {
@@ -27,6 +27,6 @@
     "record X",
     "submit form"
   ],
-  "agent_has_done": "723 commits, 242 clusters, headline+F1-F4+X beats+escrow clock locked",
-  "read": "HUMAN ONLY @~51h. CRITICAL."
+  "agent_has_done": "730 commits, 244 clusters, _12\u2013_17 densified, headline+packet locked",
+  "read": "HUMAN ONLY @~51h after _17 complete. CRITICAL."
 }

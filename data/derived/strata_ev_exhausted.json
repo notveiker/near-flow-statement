@@ -1,10 +1,16 @@
 {
   "asof": "2026-11-12",
-  "clusters": 236,
-  "commits": 694,
-  "hours_to_submit": 52.7,
-  "strata_complete": 5,
-  "overall": "not_supported",
-  "implication": "Five dense strata still leave overall not supported \u2014 density cannot flip Hold; H1b + public+X are the constraints",
-  "read": "5 strata / 236cl still not supported. Density\u2260Buy. public+X. Exploratory."
+  "hours_to_submit": 51.2,
+  "clusters": 244,
+  "commits": 730,
+  "complete": [
+    "_12",
+    "_13",
+    "_14",
+    "_15",
+    "_16",
+    "_17"
+  ],
+  "claim": "Six dense strata complete. None flipped overall. Intents\u00d7 stayed OoM throughout. Further strata are honesty footnotes. Burn ALL remaining human hours on public repo + X demo.",
+  "read": "Strata EV exhausted @~51h. CRITICAL."
 }

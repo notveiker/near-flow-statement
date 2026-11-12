@@ -1,6 +1,6 @@
 {
   "asof": "2026-11-12",
-  "clusters_used": 243,
+  "clusters_used": 244,
   "overall": "not supported",
   "tests": {
     "U1": {
@@ -43,5 +43,5 @@
   "l1_yoy_signers_x": 0.2796,
   "l1_yoy_burn_x": 0.3246,
   "intents_vs_2025q1_x": 167.7896,
-  "read": "L1 YoY ~0.19\u00d7; intents ~168\u00d7. Overall not supported. Preliminary (243)."
+  "read": "L1 YoY ~0.19\u00d7; intents ~168\u00d7. Overall not supported. Preliminary (244)."
 }
