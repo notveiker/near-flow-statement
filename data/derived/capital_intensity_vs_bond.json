@@ -1,0 +1,10 @@
+{
+ "intents_inventory_m": 229.2,
+ "intents_turnover_x_30d": 17.4,
+ "intents_days_of_vol": 1.7,
+ "pci_30d": 0.0573,
+ "thor_style_2to1_bond_on_same_float_m": 458.4,
+ "total_underwriting_if_bonded_3V_m": 687.6,
+ "capital_density_vs_intents_x": 3.0,
+ "note": "Intents PCI ~0.057 ($229M / $4B). A THOR-style 2:1 bond on the same float implies ~$458M bonded + $229M LP \u2248 $687M underwriting (~3\u00d7 denser). Capital-light is the coverage advantage; token claim stays fee-waterfall not bond demand. Exploratory docs-ratio thought experiment."
+}

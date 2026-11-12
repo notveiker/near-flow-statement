@@ -112,6 +112,12 @@ Partner-tax renegotiation dominates controllable upside without new volume: Swap
 Only ~9.2% of Explorer appfees become buybacks; ~68% of revwallet buybacks are unmapped to fee-events. Trust-via-SK→direct-20bp is ~$1.7M/yr BB arithmetic. Attach already rose 23.6→43 pp inside the sample (captured bp 1.72×). Intents fees ~11.2× L1 — the fee engine is Intents.
 
 
+
+### Issuance-pool tension (HSP-007)
+
+HSP-029 cuts the mint fees must cover; HSP-007 (title-level) claims emissions for MPC/CS opex — same pool, opposite direction. CS is necessary Intents infrastructure without a holders-revenue line. Gap on HSP-007 magnitude.
+
+
 ## Risks and context
 
 - **Volume is binding.** Attach/mix/leakage dials raise run-rate toward ~$37–45M; even full-venue AITR is ~$46M — 50× still needs ~2–4× volume (`data/derived/attach_ceiling_50x.json`). Full capture of 15.3 gross bp + HSP-029 ≈ 1× mint; 50× then needs ~1.3× vol (`full_capture_extreme.json`).

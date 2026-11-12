@@ -1,0 +1,11 @@
+{
+ "hsp029_timelock": "2026-11-16",
+ "hsp029_effect": "issuance_cap_2.5_to_1.6_over_24m",
+ "hsp007_claim": "MPC node financing via protocol emissions",
+ "tension": "same_issuance_pool",
+ "coverage_today_pct": 15.81,
+ "coverage_at_hsp029_flat_fee_approx_pct": 24,
+ "hsp007_magnitude": "GAP_not_in_repo",
+ "cs_no_fee_line": true,
+ "note": "HSP-029 shrinks mint that fees must cover; HSP-007 (title-level) claims emissions for MPC/CS opex \u2014 competing claim on the same pool. CS has no holders-revenue line; reliability may be paid from mint while narrative says fees offset mint. Gap on HSP-007 NEAR/year. Exploratory."
+}

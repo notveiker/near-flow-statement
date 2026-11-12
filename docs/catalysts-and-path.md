@@ -103,3 +103,6 @@ Trust Wallet path is a concrete dial: Trust-via-SK (6.4% vol) pays ~70 bp partne
 
 Observed take windows already moved attach 23.6→43 pp and captured bp 2.89→4.98 (~1.72×) — the quality path is evidenced inside the sample.
 
+## HSP-007 vs HSP-029 (issuance pool tension)
+
+HSP-029 ramps the issuance cap 2.5%→1.6% (timelock 2026-11-16). HSP-007 (forum title-level) proposes financing MPC/CS nodes from **protocol emissions** — a competing claim on the same mint pool that fee capture is trying to offset. Chain Signatures has **no holders-revenue line** in committed metrics. Score HSP-007 as opex-on-mint until a NEAR/year figure is published. Pitch HSP-029 as pending-not-live; do not net it against an unsized HSP-007.

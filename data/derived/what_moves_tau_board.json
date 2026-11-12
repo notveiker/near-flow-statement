@@ -1,0 +1,23 @@
+{
+ "moves_tau_or_capture": [
+  "partner_tax_renegotiation",
+  "appfees_to_bb_conversion",
+  "whale_attach",
+  "mix_to_noref_or_nearcom",
+  "hsp029_mint_cut"
+ ],
+ "does_not_move_tau": [
+  "perps_oi",
+  "npm_downloads",
+  "peer_share_alone",
+  "ai_agent_narrative_unlabeled",
+  "cs_sign_count_as_fee_line"
+ ],
+ "binding_holds": [
+  "escrow_attestation_gap",
+  "buybacks_unexplained_68pct",
+  "hsp007_emissions_claim_gap",
+  "relayer_top1_83pct"
+ ],
+ "note": "Scoreboard for pitch: only conversion/leakage/attach/mix/HSP-029 move the object; perps/npm/AI/CS-as-fee do not. Holds remain attestation + unexplained BB + HSP-007 gap + relayer. Exploratory."
+}

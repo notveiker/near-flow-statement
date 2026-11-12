@@ -1,0 +1,33 @@
+{
+ "sign_per_day_path": [
+  {
+   "q": "2025Q3",
+   "v": 1411
+  },
+  {
+   "q": "2025Q4",
+   "v": 2516
+  },
+  {
+   "q": "2026Q1",
+   "v": 7974
+  },
+  {
+   "q": "2026Q2",
+   "v": 25731
+  },
+  {
+   "q": "2026Q3",
+   "v": 36633
+  },
+  {
+   "q": "2026Q4",
+   "v": 16400
+  }
+ ],
+ "peak_to_latest_x": 0.45,
+ "peak_to_latest_delta_pct": -55.2,
+ "census_respond_per_day_k": 15.7,
+ "vol_mom_delta_pct": -12.3,
+ "note": "CS sign requests peaked ~37k/day in 2026Q3 then printed ~16k in 2026Q4 (\u221255%) \u2014 settlement-request cooling alongside Intents vol \u221212% MoM. CS is necessary infrastructure, not a separate fee line. Exploratory history sample."
+}

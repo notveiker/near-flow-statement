@@ -22,5 +22,19 @@
   "npm",
   "peer_share_alone"
  ],
- "stance": "Hold until H1b"
+ "stance": "Hold until H1b",
+ "what_moves_tau": [
+  "sk_tax",
+  "conversion",
+  "whale_attach",
+  "mix",
+  "hsp029"
+ ],
+ "what_does_not": [
+  "perps",
+  "npm",
+  "ai_unlabeled",
+  "cs_as_fee"
+ ],
+ "issuance_tension": "hsp007_emissions_claim_vs_hsp029"
 }

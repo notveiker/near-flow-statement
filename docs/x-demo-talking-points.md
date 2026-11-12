@@ -23,3 +23,7 @@ Falsify if: attach stalls, no-ref mix collapses, capture share <25%, volume halv
 - Soft sinks: LST/DIC ≫ NRR ≫ buyback; burn needs ~122% of today’s capture for 25% mint offset.
 - Hold until H1b; HSP-029 pending (timelock after submit).
 
+## What moves τ (say this)
+
+Moves capture: partner-tax renegotiation, appfees→buyback conversion, whale attach, mix to no-ref/near.com, HSP-029 mint cut.
+Does **not** move τ: perps OI, npm downloads, unlabeled AI volume, CS signature counts as a fee line.

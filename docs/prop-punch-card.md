@@ -163,3 +163,8 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Collector rail conversion | Collector A ≈96.5% of explicit fees; escrow still dominates BB funding dollars | collector_rail_conversion |
 | Listed≈paid (fee-ev) | SK fees paid on-chain ~91% of listed; BB exact ~97% — leak is policy split not settlement fail | fee_ev_listed_vs_paid |
 
+| HSP-007 vs HSP-029 tension | HSP-029 cuts mint; HSP-007 claims emissions for MPC — **same pool, opposite claim**; CS has no fee line | hsp007_vs_hsp029_tension |
+| Capital intensity vs bond | PCI ~0.057; THOR-style 2:1 on same float ⇒ ~**3×** denser underwriting — capital-light ≠ bond demand | capital_intensity_vs_bond |
+| CS sign path cooling | CS signs 37k→16k/day (−55% Q3→Q4) alongside vol cool — infra load, not fee line | cs_sign_path_cooling |
+| What moves τ board | Moves: tax/conversion/attach/mix/HSP-029; not: perps/npm/AI/CS-as-fee | what_moves_tau_board |
+
