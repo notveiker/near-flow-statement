@@ -141,8 +141,8 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~667 commits / 230 clusters / ~54h.** Top-10 refreshed: **leakage is the bridge** (#2).
-- Zero leak → 50× needs ~1.29× vol. Default rail = fee engine. 217× claim design.
+- **~669 commits / 231 clusters / ~54h.** `_16` through 2025Q3. Overall still **not supported**.
+- **Leakage is the bridge** (zero leak → ~1.29× vol for 50×). Fee≠L1 OoM ~**192×**.
 - **URGENT:** public + X. Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 

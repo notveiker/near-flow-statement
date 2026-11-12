@@ -1,7 +1,7 @@
 {
   "asof": "2026-11-12",
-  "clusters": 230,
-  "last": "2025Q2_16",
+  "clusters": 231,
+  "last": "2025Q3_16",
   "prior_complete": [
     "_12",
     "_13",
@@ -9,11 +9,10 @@
     "_15"
   ],
   "entering": "_16",
-  "hours_to_submit": 53.8,
-  "commits": 665,
+  "hours_to_submit": 53.6,
+  "commits": 669,
   "intents_x": 192.3539,
-  "l1_yoy_tx_x": 0.2249,
+  "l1_yoy_tx_x": 0.208,
   "overall": "not_supported",
-  "implication": "_16 through 2025Q2; zero-leakage bridge live; public+X bind",
-  "read": "_16 @230; intents~192\u00d7; zero-leakage\u21d2~1.29\u00d7 vol for 50\u00d7. Exploratory."
+  "read": "_16 through 2025Q3 @231; intents~192\u00d7. Leakage=bridge. public+X. Exploratory."
 }

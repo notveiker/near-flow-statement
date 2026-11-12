@@ -663,3 +663,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Bitwise NRR ≠ Intents capture | Bitwise NRR~$56.0M vs Intents~$24.2M — different claims; do not stack. Exploratory. | bitwise_nrr_neq_intents_capture |
 | History 230 / 2025Q2_16 | intents~192×; zero-leakage bridge live | history_progress_2025q2_16 |
 | 666-commit milestone | leakage is the bridge crystallized; public+X bind | commits_666_milestone |
+| History 231 / 2025Q3_16 | intents~192×; leakage=bridge; not supported | history_progress_2025q3_16 |
