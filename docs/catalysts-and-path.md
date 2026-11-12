@@ -387,3 +387,10 @@ Chain Signatures sits under Intents execution (execute ≫ respond ≫ sign) —
 - Contest-year denser `_13` through **2026Q4** sealed — **212 clusters**; overall still **not supported**.
 - `_12`+`_13` done. History is **not** a submit blocker. Remaining ~**57h** burn on **public + X**.
 <!-- /AUTO:D13_DONE -->
+
+<!-- AUTO:DIC_BUF -->
+### DIC buffer ≠ scarcity (exploratory)
+
+- Buyback DIC ~**24.8d**; scarcity half-life ~**60.5d** if spent — **held ≠ burned**.
+- Does **not** raise the ~**42.8%** coverage wall without burn/lock policy.
+<!-- /AUTO:DIC_BUF -->

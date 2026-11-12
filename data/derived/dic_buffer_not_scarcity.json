@@ -1,0 +1,11 @@
+{
+  "asof": "2026-11-12",
+  "dic_days": 24.8,
+  "dic_at_hsp_1_6_days": 38.1,
+  "scarcity_half_life_days": 60.5,
+  "half_life_vs_dic_x": 2.44,
+  "buyback_status": "held_not_burned",
+  "coverage_wall_pct": 42.8,
+  "implication": "Buyback stock is a ~25d issuance buffer with ~60d scarcity half-life if spent \u2014 not permanent scarcity. Coverage wall (~42.8%) is fee/mint arithmetic; DIC does not raise it without burn/lock policy",
+  "read": "DIC ~24.8d vs scarcity half-life ~60.5d (~2.4\u00d7). Held\u2260burned. Soft buffer \u2260 coverage wall (~42.8%). Exploratory."
+}

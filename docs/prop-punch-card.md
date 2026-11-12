@@ -535,3 +535,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Sweep ~592 identity | _12+_13 done; research notes closed; public+X bind | sweep_592_identity |
 | Entering _14 dense | Prefer public+X over more seals; fee≠L1 OoM holds | entering_14_dense |
 | Locked pitch lines | 13 lines ready for judges; public+X bind | locked_pitch_lines |
+| DIC buffer ≠ scarcity | DIC~24.8d / half-life~60.5d — held≠burned; ≠ coverage wall | dic_buffer_not_scarcity |
