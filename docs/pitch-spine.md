@@ -88,3 +88,11 @@ DefiLlama Intents fees −31.6% MoM with vol −12% — absolute cool; quality p
 **Elasticity line:** Every capture-share point is worth ~3× a volume point in $/yr — open on leakage, close on volume only after the dials (`dial_elasticity_board.json`).
 **L1 line:** Base-layer YoY is ~0.2×; Intents receipts are ~100× vs early-2025 — do not sell L1 recovery (`history_fee_engine_vs_l1.json`).
 <!-- /AUTO:SPINE_ELASTIC -->
+
+<!-- AUTO:ONE_BREATH -->
+## One breath (locked)
+
+Partners keep more than NEAR captures (~$50M/yr leakage). Capture-share points are worth ~3× volume points; Ledger-first SK-tax ~$10.2M ≈42.5 vol-pp. ~71% of measured capture is unattested and escrow BB share climbed 17→59% — attest now. Intents is ~87% of NEAR fees on a cooling L1 (~0.2× YoY; intents ~132× vs early-2025). Leakage close ~3.1× then ~4.4× volume/price toward peer multiples; full-capture+HSP still needs ~1.3× vol for 50×. Hold until H1b. HSP-029 pending-then-lagged. Flip repo public + X dry-run.
+
+(`data/derived/judge_one_breath.json`)
+<!-- /AUTO:ONE_BREATH -->
