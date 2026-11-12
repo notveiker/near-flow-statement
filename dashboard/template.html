@@ -532,6 +532,13 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
   } else {
     $("#immaterial-ladder").innerHTML = `<p class="sub">Ladder appears when judge_one_pager_stack.ladder_rr_m is in the build.</p>`;
   }
+  const Cmap = D.catalysts && D.catalysts.commercial_map;
+  if (Cmap && Cmap.ranked_conversations && $("#immaterial-ladder")) {
+    const top = Cmap.ranked_conversations.slice(0, 5);
+    const maxC = Math.max(...top.map(r => +r.rr_m_at_stake || 0), 1);
+    $("#immaterial-ladder").innerHTML += `<p class="sub" style="margin-top:var(--s3)"><b>Call order</b></p>` +
+      top.map(r => `<div class="hbar"><span>${r.who}</span><span class="t"><i style="width:${Math.min(100, (+r.rr_m_at_stake||0)/maxC*100)}%"></i></span><span class="p mono">~$${(+r.rr_m_at_stake||0).toFixed(1)}M</span></div>`).join("");
+  }
 }
 
 /* ---------------- 03 supply ---------------- */

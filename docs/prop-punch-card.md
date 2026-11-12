@@ -301,3 +301,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 157 dense _07 | 157 clusters; 2025Q1_07 denser stratum sealed — still not supported | history_progress_2025q1_07 |
 | Commercial conversation map | Ledger → attest → CIF → ADR defense → conversion → TG → LI.FI → dense fronts | commercial_conversation_map |
 | Catalyst hours board | Submit/F1–F4 before HSP-029 timelock — issuance cut stays scenario | catalyst_hours_board |
+| Collector B quote-improvement | ~$1.32M/yr from fill-beats-quote 50/50 — real, ≪ SK-tax renegotiation | collector_b_quote_improvement |

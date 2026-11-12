@@ -75,3 +75,7 @@ DefiLlama Intents fees −31.6% MoM with vol −12% — absolute cool; quality p
 <!-- AUTO:LEDGER -->
 **SK-tax is a Ledger conversation:** Ledger ≈60% of SK listed fees (~1.01× NEAR capture). Dense fronts ~$1.59M/yr already on ~20bp — protect and extend.
 <!-- /AUTO:LEDGER -->
+
+<!-- AUTO:CONVO -->
+**Call order:** Ledger (SK-tax) → escrow attestation → CIF rate card → ADR residual defense → conversion → TG label → LI.FI template → protect dense fronts.
+<!-- /AUTO:CONVO -->

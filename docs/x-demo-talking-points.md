@@ -27,3 +27,7 @@
 <!-- AUTO:X_SEQ -->
 **6-step pitch (updated):** (1) Partners>capture / Intents 87% fees (2) Four ~$10M surfaces — Ledger-first SK-tax (3) Immaterial→material ladder (4) Quality-on-cool (5) Leakage then 1.3× vol (6) Hold until H1b / F1–F4.
 <!-- /AUTO:X_SEQ -->
+
+<!-- AUTO:X_CONVO -->
+7. **Call order (demo close):** Ledger → attest → CIF → ADR defense → conversion. Volume last.
+<!-- /AUTO:X_CONVO -->
