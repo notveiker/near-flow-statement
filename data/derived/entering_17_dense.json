@@ -1,6 +1,7 @@
 {
   "asof": "2026-11-12",
-  "clusters": 236,
+  "clusters": 237,
+  "last": "2025Q1_17",
   "entering": "_17",
   "complete": [
     "_12",
@@ -9,8 +10,9 @@
     "_15",
     "_16"
   ],
-  "hours_to_submit": 52.7,
-  "commits": 694,
-  "implication": "Entering _17 after five complete dense strata \u2014 do not burn hours here; public+X only",
-  "read": "Entering _17 @236 after _12\u2013_16. ~53h \u2192 public+X ONLY. Exploratory."
+  "hours_to_submit": 52.5,
+  "commits": 698,
+  "intents_x": 175.3371,
+  "overall": "not_supported",
+  "read": "_17 @237; low EV. intents~175\u00d7. public+X ONLY. Exploratory."
 }

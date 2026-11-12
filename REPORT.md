@@ -141,9 +141,9 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **HEADLINE: Leakage is the bridge.** Intents≈99% DEX. ~696c / 236cl / ~52h.
-- `_12`–`_16` done. Catalyst stack: public+X → SK-tax → logos→default → …
-- **URGENT:** public + X. Hold until H1b.
+- **HEADLINE: Leakage is the bridge.** Intents≈99% DEX. ~698c / 237cl / ~52h.
+- `_12`–`_16` done; `_17` filling (ignore). Fee≠L1 ~**175×**. Overall still **not supported**.
+- **ONLY:** public + X. Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context
