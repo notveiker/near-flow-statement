@@ -540,6 +540,7 @@ def build() -> dict:
             "sk_share_bridge": optional("derived/sk_tax_share_of_leakage_bridge.json"),
             "four_dials_mutex": optional("derived/four_dials_naive_sum_mutex_trap.json"),
             "fee_prints_l1_cool": optional("derived/fee_engine_prints_while_l1_cools.json"),
+            "commits_740": optional("derived/commits_740_milestone.json"),
             "risks_compact": optional("derived/risks_compact_bottom.json"),
             "no_vol_wall_elast": optional("derived/no_vol_wall_times_elasticity.json"),
             "commits_730": optional("derived/commits_730_milestone.json"),

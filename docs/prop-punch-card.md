@@ -747,3 +747,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | SK-tax ≈20.4% of leakage bridge | one nego closes a fifth before volume | sk_tax_share_of_leakage_bridge |
 | Four dials naive-sum mutex trap | ~$40M≠addable; sequence not sum | four_dials_naive_sum_mutex_trap |
 | Fee engine prints while L1 cools | 0.22× L1 vs ~170× Intents; quality-on-cool | fee_engine_prints_while_l1_cools |
+| History 246 / 2025Q2_18 | intents~166×; PUBLIC+X NOW | history_progress_2025q2_18 |
+| ~740c milestone | packaging; public+X binding | commits_740_milestone |

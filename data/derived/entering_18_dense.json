@@ -1,12 +1,13 @@
 {
   "asof": "2026-11-12",
   "stratum": "_18",
-  "clusters": 245,
+  "clusters": 246,
   "sealed": [
-    "2025Q1_18"
+    "2025Q1_18",
+    "2025Q2_18"
   ],
   "intents_x": 166.3196,
   "overall": "not supported",
   "ev": "near-zero",
-  "read": "_18 started @ 245cl; intents~166\u00d7. Exploratory."
+  "read": "_18 through Q2 @ 246cl; intents~166\u00d7. Exploratory."
 }
