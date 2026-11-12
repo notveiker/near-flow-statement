@@ -1,9 +1,9 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 52.5,
-  "clusters": 237,
-  "commits": 698,
-  "derived_json": 552,
+  "hours_to_submit": 52.3,
+  "clusters": 238,
+  "commits": 703,
+  "derived_json": 554,
   "repo_private": true,
   "x_dry_run_done": false,
   "binding": [
@@ -13,6 +13,6 @@
   "prop_ready_excl_must_ship": 0.99,
   "x_script_ready": true,
   "headline": "leakage_is_the_bridge",
-  "dense_12_to_16_complete": true,
-  "read": "~52h / 237cl / 698c. public+X ONLY. Exploratory."
+  "commits_700_plus": true,
+  "read": "~52h / 238cl / 703c. PUBLIC+X NOW. Exploratory."
 }

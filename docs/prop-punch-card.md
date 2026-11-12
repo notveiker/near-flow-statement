@@ -691,3 +691,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 237 / 2025Q1_17 | intents~175×; _17 low EV; public+X ONLY | history_progress_2025q1_17 |
 | ~700-commit milestone | intents×~175; prop surplus; public+X ONLY | commits_700_milestone |
 | Builder pulse ≠ fee dial | nearcore stars/push = ecosystem overlay | builder_pulse_not_fee_dial |
+| History 238 / 2025Q2_17 | intents~175×; 700c+; public+X NOW | history_progress_2025q2_17 |
