@@ -21,5 +21,7 @@
  ],
  "intents_vol_30d_b": 4.0,
  "intents_vol_prior30d_b": 4.56,
- "note": "Attach and captured bp rose across blocks while 1Click notional peaked in block 2 then fell; Intents 30d vol also cooled vs prior. Quality and volume are not moving together. Exploratory."
+ "note": "Attach/\u03c4 rose while 30d vol \u221212% MoM, but 30d daily notional is still ~1.5\u00d7 the year average \u2014 quality improved on a cool-off from an elevated print, not from a trough. Exploratory.",
+ "vol_mom_pct": -12.3,
+ "vol_30d_vs_year_daily_x": 1.48
 }

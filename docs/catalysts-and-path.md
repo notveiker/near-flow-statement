@@ -122,3 +122,7 @@ High-density fronts (Trust/Arbie/Enot/Leodex) print ~20 bp on thin volume. LI.FI
 ## Marginal share vs volume
 
 +1pp of capture-share of gross ≈ **$0.7M/yr**; +1pp of Intents volume at today’s ~5 bp ≈ **$0.2M/yr**. Capture-share renegotiation is ~3.1× more valuable per percentage point than volume growth at flat take.
+
+## Quality-on-cool context
+
+MoM vol −12% is real, but 30d daily notional is still ~1.5× the year average — quality improved on a cool-off from an elevated print.
