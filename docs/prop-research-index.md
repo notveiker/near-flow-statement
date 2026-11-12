@@ -79,3 +79,13 @@ History sample: preliminary **133** sealed clusters (primary) with payloads; dua
 - `data/derived/soft_sink_ladder.json — LST≫NRR≫buyback DIC`
 - `data/derived/burn_materiality.json — 25% mint burn needs >100% fees`
 - `data/derived/pitch_sequence.json — judge pitch order`
+- `data/derived/escrow_share_climb.json — Jul→Nov escrow % of buyback`
+- `data/derived/attach_vs_partner_race.json — attach up, partner bp up`
+- `data/derived/oneclick_coverage_shrink.json — 1Click/Llama coverage fall`
+- `data/derived/partner_bb_ratio_trend.json — partner/bb ratio improving`
+- `data/derived/growth_usd_vs_near.json — 619% USD vs 71% NEAR growth`
+- `data/derived/full_capture_extreme.json — zero leakage path`
+- `data/derived/fee_evidence_fidelity.json — BB/SK payment fidelity`
+- `data/derived/near_side_swap_share.json — 3.5% NEAR-sided swaps`
+- `data/derived/stake_dominant_float.json — 44.5% supply staked`
+- `data/derived/prop_falsifiers.json — pitch falsifiers`
