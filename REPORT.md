@@ -141,8 +141,8 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~655 commits / 228 clusters / ~54h.** `_12`–`_15` complete; `_16` sealing. Overall still **not supported**.
-- **Default rail IS the fee engine** (no-ref 18.7% vol → 45.8% BB$). Logo partners = vol without capture.
+- **~656 commits / 228 clusters / 521 derived / ~54h.** `_12`–`_15` complete; `_16` sealing.
+- **Top-10** locked for judges (see `docs/prop-what-is-proprietary.md`). Default rail = fee engine; 217× claim design; SK-tax first.
 - **Repo PRIVATE.** Human-only: public + X. Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 

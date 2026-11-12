@@ -650,3 +650,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | No-ref concentration = fee core | buyback-$ vs vol share concentrated | noref_concentration_is_fee_core |
 | Default rail IS the fee engine | Default/no-ref: 18.7% vol → 45.8% BB$ (×2.45). Logo partners = vol w/o capture. Exploratory. | default_rail_is_fee_engine_noref |
 | Logo partners = vol without capture | Logo partners = vol w/o capture; default rail = fee engine. Convert logos→BB rails. Exploratory. | logo_partners_volume_without_capture |
+| Top-10 proprietary for judges | Fee≠L1; leakage; SK-tax; default rail; 217×; wall; opacity; CL; H1b; public+X | top10_proprietary_for_judges |

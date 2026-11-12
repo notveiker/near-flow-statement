@@ -831,6 +831,8 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     const Lvn = D.catalysts && D.catalysts.logo_vol_no_capture;
     if (Drn) bits.push(`Default/no-ref ${Drn.noref_vol_share_pct}% vol → ${Drn.noref_buyback_fee_share_pct}% BB$ (×${Drn.buyback_dollar_concentration_x}) — default rail IS fee engine.`);
     if (Lvn) bits.push(`Logo partners = volume without capture; convert logos→BB rails.`);
+    const T10 = D.catalysts && D.catalysts.top10_prop;
+    if (T10) bits.push(`<b>Top-10:</b> ${T10.top10_proprietary.map(x=>x.claim).slice(0,5).join(' · ')} …`);
     const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);

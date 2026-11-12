@@ -1,0 +1,60 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_submit": 54.1,
+  "clusters": 228,
+  "commits": 656,
+  "derived_json": 521,
+  "top10_proprietary": [
+    {
+      "rank": 1,
+      "claim": "Fee engine \u2260 L1 (~180\u00d7 vs ~0.22\u00d7) \u2014 OoM, point drifts",
+      "key": "fee_neq_l1"
+    },
+    {
+      "rank": 2,
+      "claim": "Distribution owns margin; leakage ~$50M/yr commercial prize",
+      "key": "leakage_prize"
+    },
+    {
+      "rank": 3,
+      "claim": "SK-tax desk ~$10.2M > attach-to-60; call-order SK\u227bconv\u227battach",
+      "key": "sk_tax_call_order"
+    },
+    {
+      "rank": 4,
+      "claim": "Default/no-ref rail IS fee engine (18.7% vol\u219245.8% BB$)",
+      "key": "default_rail"
+    },
+    {
+      "rank": 5,
+      "claim": "mcap/rev ~217\u00d7 vs THOR~16\u00d7 \u2014 discretionary claim design",
+      "key": "claim_design_multiple"
+    },
+    {
+      "rank": 6,
+      "claim": "No-vol coverage wall ~42.8%; last mile = whale distribution",
+      "key": "coverage_wall"
+    },
+    {
+      "rank": 7,
+      "claim": "Opacity/escrow buys Trust time not \u03c4; fee print \u2260 escrow trust",
+      "key": "opacity_not_capture"
+    },
+    {
+      "rank": 8,
+      "claim": "Capital-light PCI~0.057; no bond demand; leakage binds",
+      "key": "capital_light"
+    },
+    {
+      "rank": 9,
+      "claim": "Hold until H1b (underwrite discretionary claim)",
+      "key": "hold_h1b"
+    },
+    {
+      "rank": 10,
+      "claim": "Must-ship: public repo + X (human-only); strata EV exhausted",
+      "key": "delivery"
+    }
+  ],
+  "read": "Top-10 prop @~54h/228cl/656c/521 derived. Exploratory."
+}
