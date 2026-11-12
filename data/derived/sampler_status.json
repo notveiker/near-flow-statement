@@ -2,8 +2,9 @@
  "primary_clusters_local": 142,
  "sample2_clusters_local": 90,
  "primary_next_part": "2023Q3_06",
+ "part_lines_approx": 64,
  "overall": "not_supported_preliminary",
- "commits_since_structural_approx": 230,
- "punch_rows_approx": 109,
- "note": "2023 strata sealing. Prop + X demo ready for judges."
+ "commits_since_structural_approx": 242,
+ "derived_json_approx": 172,
+ "note": "Hyper sweep live; 2023Q3_06 sealing. Prop stack: leakage/conversion first."
 }

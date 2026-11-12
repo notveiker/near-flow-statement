@@ -172,4 +172,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Controllable stack overlap | Naive dial sum ~$28M/yr; conservative non-overlap ~$18M — still leaves volume for THOR/50× | controllable_stack_overlap |
 | ADR-029 affiliate contest | Revshare raises affiliate margin without user-fee hike — contest is P&L not BB $ | adr029_affiliate_contest |
 | Mix +10pp to near.com | +$9.7M/yr run-rate arithmetic (~0.95× SK-tax 25% dial) | nearcom_share_wallet_gap |
-
+| CIF rate card gap | Leakage pool uses gross−capture identity; CIF card would split partner-proof vs protocol take | cif_rate_card_gap |

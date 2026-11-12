@@ -42,3 +42,5 @@ Ops clock: `data/derived/deadline_ops.json`.
 - [ ] Public repo mirror / X demo dry-run
 - [ ] F1–F4 score on 14 Nov
 - [ ] History seals past early-stratum stopping rule
+- [x] near.com wallet gap + HSP-007 tension + what-moves-τ board
+- [x] Dashboard controllable dials card live

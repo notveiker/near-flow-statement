@@ -1,0 +1,6 @@
+{
+ "gap": "CIF rate card not public",
+ "why_it_matters": "Cannot size partner-proof take separately from listed appfees",
+ "proxy_used": "explorer_appfees_bp 44.4 and gross 15.3 bp capture stack",
+ "note": "Confidential Infrastructure Fee remains a gap \u2014 leakage pool ~$50M uses gross\u2212capture identity, not CIF card. Closing the card would split partner-proof vs protocol take. Exploratory gap."
+}

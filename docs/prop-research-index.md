@@ -105,3 +105,19 @@ History sample: preliminary **133** sealed clusters (primary) with payloads; dua
 - `data/derived/cs_method_asymmetry.json — respond vs sign`
 - `data/derived/50x_vs_cooling.json — 50× vs MoM cool`
 - `data/derived/l1_attention_fragment.json` — top5 non-Intents gas vs Intents
+
+## Hyper-sweep batch (2026-11-12)
+
+| Artifact | One-liner |
+|---|---|
+| `sk_tax_renegotiation_headroom.json` | SK listed tax ~$41M/yr; 25% take ≈ $10M (~20% leakage) |
+| `appfees_to_buyback_conversion.json` | Only 9.2% of appfees → buybacks |
+| `trust_path_bb_vs_tax.json` | Trust SK→direct-20bp ≈ $1.7M/yr |
+| `sk_channel_hhi.json` | Ledger fees ≈ 1.01× NEAR capture |
+| `nearcom_share_wallet_gap.json` | Stated 25% vs wallet-implied 7.7% |
+| `what_moves_tau_board.json` | Moves vs non-movers scoreboard |
+| `hsp007_vs_hsp029_tension.json` | Emissions claim vs mint cut |
+| `peer_multiple_compression.json` | 217×→16× needs ~13.6× fee; leakage ~3.1× |
+| `controllable_stack.json` | Ranked dials for dashboard |
+| `judge_one_pager_stack.json` | Densest numbers for X demo |
+

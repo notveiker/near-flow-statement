@@ -26,7 +26,7 @@
 - [`docs/confidential-attestation.md`](docs/confidential-attestation.md): confidential rails raise economic take while thinning public proof — escrow-dependence and the CIF kill switch.
 - [`docs/float-sink.md`](docs/float-sink.md): buyback quality — days-of-issuance covered, scarcity half-life, held vs burned.
 - [`docs/prop-research-index.md`](docs/prop-research-index.md): index of proprietary notes and the scoreboard to read first.
-- [`docs/prop-punch-card.md`](docs/prop-punch-card.md): one-page punch card of proprietary insights and falsifiers.
+- [`docs/prop-punch-card.md` · controllable dials on dashboard Capture section / `docs/catalysts-and-path.md`](docs/prop-punch-card.md` · controllable dials on dashboard Capture section / `docs/catalysts-and-path.md): one-page punch card of proprietary insights and falsifiers.
 - [`docs/prop-topline.md`](docs/prop-topline.md): judge-facing topline — fee engine, dials, binding gaps, pitch order.
 - [`docs/prop-what-is-proprietary.md`](docs/prop-what-is-proprietary.md): ten proprietary arithmetics judges will not find on a public dashboard.
 - [`docs/prop-gaps.md`](docs/prop-gaps.md): measurement gaps that still block a closed fee→scarcity loop.
@@ -46,3 +46,7 @@
 ## License
 
 MIT
+
+## Proprietary hyper-sweep (judge path)
+
+Start at `docs/prop-topline.md` → `docs/x-demo-talking-points.md` → dashboard Capture **Controllable dials**. Densest JSON: `data/derived/judge_one_pager_stack.json`. Stance: Hold until H1b; HSP-029 pending-not-live.
