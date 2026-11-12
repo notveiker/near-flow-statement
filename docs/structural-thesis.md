@@ -49,3 +49,8 @@ The view weakens or breaks if any of the following arrive with evidence. Per-str
 ## Chain DEX identity (derived)
 
 Intents ≈ **99%** of DefiLlama NEAR DEX 30d volume — peer competition for “NEAR DEX” is mostly competition for Intents share, not a separate on-chain AMM layer (`data/derived/intents_vs_near_dex.json`).
+
+## Distribution leverage (Ledger)
+
+`ledgerswapkit.near` alone lists ~$2.01M partner fees / 30d — approximately **1.01×** NEAR’s captured Intents revenue in the same window. Leakage renegotiation is not a diffuse partner problem; it concentrates in a Ledger-class wallet. Exploratory; listed appfees ≠ settled NEAR capture.
+

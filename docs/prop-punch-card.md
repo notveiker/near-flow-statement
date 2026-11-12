@@ -141,4 +141,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Escrow attestation gap | Escrow ~58.5% of BB vs attestation 4.5–15.8% → ~48 pp unattested mid-gap | escrow_attestation_gap |
 | Relayer≈ok-share | Both ~83% in census — delivery concentration matches success optics (not proven causal) | relayer_ok_coincidence |
 | 1Click coverage of Intents | Explorer 1Click ~28% of Intents $4B — whale/tax maths are on a slice | oneclick_coverage_of_intents |
+| Ledger ≈ NEAR capture | ledgerswapkit.near listed fees **$2.01M/30d ≈ 1.01×** NEAR capture $1.99M — renegotiation is a one-wallet conversation | sk_channel_hhi |
 

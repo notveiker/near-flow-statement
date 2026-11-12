@@ -1,13 +1,15 @@
 {
  "sk_subchannel_count": 6,
  "sk_vol_share_sum_pct": 35.1,
- "herfindahl_within_sk": 0.0323,
- "effective_n_channels": 30.93,
- "top_channel": {
-  "channel": "swapkit/ledgerswapkit.near",
-  "partner_fee_bp": 132.6,
-  "vol_share_pct": 13.7,
-  "partner_fee_usd_m_approx": 2.01
- },
- "note": "SwapKit fee-bearing subchannels sum ~35% of 1Click; within-SK HHI=0.032 (eff n\u224830.9). Ledger alone ~13.7% @ 132.6 bp \u2014 renegotiation leverage concentrates in 1\u20132 wallets. Exploratory."
+ "herfindahl_within_sk_vol": 0.2625,
+ "effective_n_vol": 3.81,
+ "herfindahl_within_sk_fee_usd": 0.408,
+ "effective_n_fee_usd": 2.45,
+ "top_vol_channel": "swapkit/ledgerswapkit.near",
+ "top_vol_share_within_sk_pct": 39.0,
+ "top_fee_channel": "swapkit/ledgerswapkit.near",
+ "top_fee_share_within_sk_pct": 59.8,
+ "ledger_fee_30d_m": 2.01,
+ "ledger_fee_vs_near_capture_x": 1.01,
+ "note": "Within-SK volume HHI=0.262 (eff n\u22483.8); fee-$ HHI=0.408 (eff n\u22482.5). Ledger alone \u224839% of SK vol and \u224860% of SK listed fees \u2014 one wallet \u2248 NEAR\u2019s entire 30d capture ($2.01M vs $1.99M). Renegotiation is a Ledger conversation first. Exploratory."
 }
