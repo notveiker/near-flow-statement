@@ -607,3 +607,8 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Staking float; unstake≠Intents | Staked~44.5%; unstake overlap~1.5% of NEAR sold; leakage $50.2M still the prize. Exploratory. | staking_float_unstake_not_intents |
 | Peerset recovery ≪ SK-tax | Peerset gross recovery ~$2.8M ≈0.27× SK-tax. Share≠prize. Exploratory. | peerset_recovery_dwarfed_by_sk_tax |
 | Cross-ledger OK; same-ledger mutex | Cross-ledger OK (capture+trust ~$26.4M illus.); same-ledger mutex. Exploratory. | cross_ledger_stack_same_ledger_mutex |
+| Peer gross ≠ token-claimable | Peer gross bp ≠ token-claimable bp. Intents 15.3 gross / 4.98 claimable; Maya ~0.94 claimable; THOR ~full. Pitch claimable, not gross leader | peer_gross_bp_neq_token_claimable |
+| Ledger@SK partner tax intensity | Ledger@SK ~13.7% vol @~133bp partner; Trust@SK ~6.4%@70bp vs Trust-direct 20bp BB. Pip irrelevant. Exploratory. | ledger_sk_partner_tax_intensity |
+| Protocol pip irrelevant | Protocol pip 0.01 bp vs τ 4.98 / gross 15.3 — ignore pip; pitch distribution capture. Exploratory. | protocol_pip_economically_irrelevant |
+| Non-1Click fee composition gap | Non-1Click ~44.8% vol fee composition = Gap. 1Click dials are lower bound on commercial surface. Exploratory. | non_1click_fee_composition_gap |
+| Repo still PRIVATE (gh) | Repo PRIVATE confirmed @~55h / 225 cl / 636 c. Flip public is binding. Exploratory. | repo_still_private_confirmed |

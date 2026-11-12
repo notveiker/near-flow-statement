@@ -428,6 +428,11 @@ def build() -> dict:
             "staking_unstake": optional("derived/staking_float_unstake_not_intents.json"),
             "peerset_dwarfed": optional("derived/peerset_recovery_dwarfed_by_sk_tax.json"),
             "cross_ledger_ok": optional("derived/cross_ledger_stack_same_ledger_mutex.json"),
+            "peer_claimable_neq": optional("derived/peer_gross_bp_neq_token_claimable.json"),
+            "ledger_tax_intensity": optional("derived/ledger_sk_partner_tax_intensity.json"),
+            "pip_irrelevant": optional("derived/protocol_pip_economically_irrelevant.json"),
+            "non1click_gap": optional("derived/non_1click_fee_composition_gap.json"),
+            "repo_private_confirmed": optional("derived/repo_still_private_confirmed.json"),
         },
         "repro": reproducibility(),
     }

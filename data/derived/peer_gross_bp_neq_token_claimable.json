@@ -1,0 +1,56 @@
+{
+  "asof": "2026-11-12",
+  "peers": [
+    {
+      "venue": "NEAR Intents",
+      "vol_b": 4.0,
+      "gross_bp": 15.3,
+      "fees_m": 6.12,
+      "peer_vol_share_pct": 55.7,
+      "token_claimable_bp": 4.98,
+      "note": "measured wallets"
+    },
+    {
+      "venue": "THORChain",
+      "vol_b": 1.8,
+      "gross_bp": 12.3,
+      "fees_m": 2.22,
+      "peer_vol_share_pct": 25.1,
+      "token_claimable_bp": 12.3,
+      "note": "approx full protocol claim (structural)"
+    },
+    {
+      "venue": "Chainflip",
+      "vol_b": 0.85,
+      "gross_bp": 31.5,
+      "fees_m": 2.66,
+      "peer_vol_share_pct": 11.8,
+      "token_claimable_bp": null,
+      "note": "network fee burns FLIP; LP share opaque \u2014 Gap"
+    },
+    {
+      "venue": "Maya",
+      "vol_b": 0.53,
+      "gross_bp": 9.4,
+      "fees_m": 0.5,
+      "peer_vol_share_pct": 7.3,
+      "token_claimable_bp": 0.94,
+      "note": "10% of protocol fees to holders"
+    }
+  ],
+  "rank_by_gross_bp": [
+    "Chainflip",
+    "NEAR Intents",
+    "THORChain",
+    "Maya"
+  ],
+  "rank_by_token_claimable_bp": [
+    "THORChain",
+    "NEAR Intents",
+    "Maya"
+  ],
+  "intents_gross_rank": 2,
+  "intents_claimable_rank": 2,
+  "implication": "Gross fee bp rank (Chainflip>Intents>THOR>Maya) \u2260 token-claimable bp rank \u2014 Intents looks middle on gross but leakage means claimable \u03c4 is the scoreboard that matters",
+  "read": "Peer gross bp \u2260 token-claimable bp. Intents 15.3 gross / 4.98 claimable; Maya ~0.94 claimable; THOR ~full. Pitch claimable, not gross leadership. Exploratory."
+}

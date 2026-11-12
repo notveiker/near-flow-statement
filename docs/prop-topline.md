@@ -104,3 +104,7 @@ Prop/dashboard/judge packet ready (~437 commits, 168 clusters preliminary). **Mu
 - Purity~87% = concentration risk; Hold flip ⊥ delivery; Submit≺HSP-029 pending-lagged.
 - Price-heavy print disclose both; peerset recovery ≪ SK-tax; cross-ledger stack OK.
 <!-- /AUTO:SWEEP18 -->
+
+<!-- AUTO:PRIVATE -->
+**gh visibility:** PRIVATE confirmed. ~55h left. Flip public is binding must-ship #1.
+<!-- /AUTO:PRIVATE -->

@@ -1,0 +1,8 @@
+{
+  "asof": "2026-11-12",
+  "non_1click_share_of_defillama_vol_pct": 44.8,
+  "oneclick_observable": true,
+  "non_1click_fee_composition": "gap",
+  "implication": "Non-1Click ~44.8% of DefiLlama one-sided volume has no Explorer fee composition \u2014 another opacity surface; 1Click-based dials understate full Intents commercial map",
+  "read": "Non-1Click ~44.8% vol fee composition = Gap. 1Click dials are lower bound on commercial surface. Exploratory."
+}

@@ -141,10 +141,9 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~634 commits / 224 clusters / ~55h.** Contest-year `_15` sealing. Overall still **not supported**.
-- QoC: attach↑ on cool vol — capture ≠ beta. Rating fragile (run $24.2M vs R90ann $19.63M).
-- Capture@60% still ~0.46× of 50×; purity~87% = concentration risk. Submit≺HSP-029 (**pending-then-lagged**).
-- Price-heavy print: disclose USD vs NEAR-unit. Cross-ledger stack OK; same-ledger mutex.
+- **~636 commits / 225 clusters / ~55h.** Contest-year `_15` sealing. Overall still **not supported**.
+- Peer **gross bp ≠ token-claimable bp** — pitch claimable τ. Ledger@SK ~133bp partner tax; protocol pip irrelevant.
+- Non-1Click ~44.8% vol fee composition = Gap. **Repo still PRIVATE** (gh confirmed).
 - **Human-only:** public + X. Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 

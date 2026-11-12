@@ -752,6 +752,16 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (Pdw) bits.push(`Peerset recovery ~$${Pdw.fee_rr_if_gross_recovery_m}M ≈${Pdw.vs_sk_tax_25_x}× SK-tax.`);
     if (Clo) bits.push(`Cross-ledger stack OK; same-ledger mutex.`);
     if (Shs) bits.push(`Submit≺HSP-029: ~${Shs.hours_to_submit}h vs ~${Shs.hours_to_hsp029}h — pending-then-lagged.`);
+    const Pcn = D.catalysts && D.catalysts.peer_claimable_neq;
+    const Lti = D.catalysts && D.catalysts.ledger_tax_intensity;
+    const Pi = D.catalysts && D.catalysts.pip_irrelevant;
+    const N1g = D.catalysts && D.catalysts.non1click_gap;
+    const Rpc = D.catalysts && D.catalysts.repo_private_confirmed;
+    if (Pcn) bits.push(`Peer gross bp ≠ token-claimable bp — pitch claimable τ not gross leadership.`);
+    if (Lti) bits.push(`Ledger@SK ~${Lti.ledger_via_sk_vol_pct}% vol @~${Lti.ledger_partner_bp_avg}bp partner tax.`);
+    if (Pi) bits.push(`Protocol pip ${Pi.protocol_pip_bp}bp irrelevant vs τ ${Pi.captured_bp}bp.`);
+    if (N1g) bits.push(`Non-1Click ~${N1g.non_1click_share_of_defillama_vol_pct}% vol fee composition = Gap.`);
+    if (Rpc) bits.push(`Repo PRIVATE confirmed @~${Rpc.hours_to_submit}h — must-ship #1.`);
     const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);

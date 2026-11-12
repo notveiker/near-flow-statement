@@ -1,0 +1,11 @@
+{
+  "asof": "2026-11-12",
+  "protocol_pip_bp": 0.01,
+  "captured_bp": 4.98,
+  "gross_bp": 15.3,
+  "distribution_tax_bp": 10.32,
+  "pip_vs_captured_x": 0.002,
+  "pip_vs_gross_x": 0.00065,
+  "implication": "Protocol 1 pip (0.01 bp) is ~0.2% of captured \u03c4 and ~0.07% of gross \u2014 economically irrelevant; never pitch pip as the fee engine",
+  "read": "Protocol pip 0.01 bp vs \u03c4 4.98 / gross 15.3 \u2014 ignore pip; pitch distribution capture. Exploratory."
+}

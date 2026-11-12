@@ -1,0 +1,13 @@
+{
+  "asof": "2026-11-12",
+  "ledger_via_sk_vol_pct": 13.7,
+  "ledger_partner_bp_avg": 133,
+  "ledger_listed_bucket_bp": 141,
+  "trust_via_sk_vol_pct": 6.4,
+  "trust_via_sk_partner_bp": 70,
+  "trust_direct_bb_bp": 20,
+  "protocol_pip_bp": 0.01,
+  "sk_tax_rr_m": 10.2,
+  "implication": "Ledger-via-SK users pay ~133\u2013149 bp partner tax with ~0 BB \u2014 orders of magnitude above protocol pip; SK-tax desk is where fee power concentrates",
+  "read": "Ledger@SK ~13.7% vol @~133bp partner; Trust@SK ~6.4%@70bp vs Trust-direct 20bp BB. Pip irrelevant. Exploratory."
+}

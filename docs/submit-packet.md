@@ -45,7 +45,7 @@ See `data/derived/pitch_locked_lines.json` and `data/derived/judge_capture_card.
 See `data/derived/risks_compact.json` — H1b/attest/relayer/HSP-007/CIF/multiple fragility. Stance: Hold until H1b.
 
 <!-- AUTO:PRIVATE -->
-**LIVE 64.1h:** GitHub repo still **private** (`gh` isPrivate=true). Prop ready — flip public + X dry-run before submit.
+**gh visibility:** PRIVATE confirmed. ~55h left. Flip public is binding must-ship #1.
 <!-- /AUTO:PRIVATE -->
 
 <!-- AUTO:READY -->

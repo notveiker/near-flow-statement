@@ -1,18 +1,13 @@
 {
   "asof": "2026-11-12",
   "is_private": true,
-  "hours_to_submit": 56.7,
-  "clusters": 215,
-  "commits": 605,
-  "readme_judge_path": "READY",
-  "x_dry_run_script": "READY",
-  "x_dry_run_recorded": false,
-  "binding_blocker": true,
-  "urgency_band": "GREEN",
-  "actions": [
-    "gh repo edit notveiker/near-flow-statement --visibility public",
-    "record X demo (~90s)",
-    "submit 14 Nov"
+  "hours_to_submit": 54.8,
+  "steps": [
+    "Settings\u2192General\u2192Change visibility\u2192Public",
+    "Confirm no secrets in history",
+    "Verify dashboard GitHub Pages or raw HTML",
+    "Tweet/X with public URL"
   ],
-  "read": "Repo private=true @~57h / 215cl / 605 commits. Flip NOW. Exploratory."
+  "status": "BLOCKED_PRIVATE",
+  "read": "Still private @~55h. Human flip required. Exploratory."
 }
