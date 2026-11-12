@@ -11,3 +11,5 @@
 
 Stance if pass: Hold until H1b still binds; leakage/conversion remains the lead controllable path.
 | F_share_vs_vol | Capture share holds as vol moves | Capture share of gross falls while volume rises |
+
+*Live snapshot: ~68.2h to submit; F3 binding; four ~$10M board in play; history 155 clusters preliminary (`f1_f4_live_snapshot.json`).*

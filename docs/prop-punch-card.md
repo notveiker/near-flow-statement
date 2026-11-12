@@ -256,3 +256,6 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Peerset recovery cost | Back to 62% from gross needs ~$0.46B/30d; fee RR at τ << SK-tax path | peerset_recovery_cost |
 | Coverage gap after bridges | Full gross+HSP ≈74% coverage — still ~1.36× vol or deeper mint cut | coverage_gap_after_bridges |
 | Inventory turnover capacity | ~$229M inventory × ~4.8×/30d at 15.3bp ≈ gross capacity for fee engine | inventory_turnover_capacity |
+
+| F1–F4 live snapshot | F3 attestation binding; F2 commercial gap; F1 quality watch; F4 relayer UX | f1_f4_live_snapshot |
+| Catalyst rank (no vol) | SK-tax > attest > ADR defense > conversion > mix(arithmetic) > LI.FI/Trust/TG | catalyst_rank_no_vol |

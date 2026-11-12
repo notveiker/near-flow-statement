@@ -1,0 +1,69 @@
+{
+ "ranked": [
+  {
+   "c": "sk_tax_25",
+   "rr_m": 10.2,
+   "control": "commercial",
+   "vol": false
+  },
+  {
+   "c": "attest_escrow",
+   "rr_m": 8.4,
+   "control": "policy_trust",
+   "vol": false
+  },
+  {
+   "c": "adr029_defend_half",
+   "rr_m": 5.71,
+   "control": "policy_defense",
+   "vol": false
+  },
+  {
+   "c": "conversion_2x",
+   "rr_m": 5.5,
+   "control": "policy",
+   "vol": false
+  },
+  {
+   "c": "mix_10pp_nearcom",
+   "rr_m": 9.7,
+   "control": "distribution",
+   "vol": false,
+   "note": "wallet-implied only 7.7%"
+  },
+  {
+   "c": "tg_half_10bp",
+   "rr_m": 1.37,
+   "control": "label+attach",
+   "vol": false
+  },
+  {
+   "c": "lifi_20bp",
+   "rr_m": 2.31,
+   "control": "distribution",
+   "vol": false
+  },
+  {
+   "c": "trust_direct",
+   "rr_m": 1.72,
+   "control": "distribution",
+   "vol": false
+  },
+  {
+   "c": "hsp029",
+   "rr_m": "coverage_lift_1.5x",
+   "control": "governance",
+   "vol": false,
+   "status": "pending_not_live"
+  }
+ ],
+ "do_not_rank_as_near_term": [
+  "ai",
+  "npm",
+  "etf",
+  "peer_share",
+  "l1_actives",
+  "cs_as_fee"
+ ],
+ "note": "Near-term catalyst rank by $/yr without volume. Mix near.com arithmetic large but wallet gap binds. Exploratory."
+}

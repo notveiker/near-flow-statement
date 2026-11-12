@@ -1,0 +1,38 @@
+{
+ "asof_utc": "2026-11-12T03:45:41.279516+00:00",
+ "hours_to_submit": 68.2,
+ "falsifiers": [
+  {
+   "id": "F1",
+   "name": "quality_on_cool_reverses",
+   "status": "watch",
+   "metric": "attach 43% / \u03c4 4.98bp on cool \u2014 fail if attach falls while vol recovers without capture"
+  },
+  {
+   "id": "F2",
+   "name": "sk_tax_renegotiation_infeasible",
+   "status": "gap",
+   "metric": "commercial agreement text missing; $10.2M is arithmetic not signed"
+  },
+  {
+   "id": "F3",
+   "name": "escrow_attestation_stays_dark",
+   "status": "binding",
+   "metric": "attestation 4.5\u201315.8%; escrow 58.5% BB; Hold until H1b"
+  },
+  {
+   "id": "F4",
+   "name": "relayer_top1_breaks_ux",
+   "status": "watch",
+   "metric": "top1 83%; fee$ small on outage but share risk large"
+  }
+ ],
+ "four_ten_m": {
+  "sk_tax": 10.2,
+  "attest": 8.4,
+  "hsp007": 11.8,
+  "solver_residual": 11.41
+ },
+ "history_clusters_preliminary": 155,
+ "note": "Pre-registered falsifiers for 14 Nov. F3 binding. F2 is commercial gap not math gap. Exploratory."
+}
