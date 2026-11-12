@@ -1,9 +1,5 @@
 {
- "primary_clusters_local": 145,
- "sample2_clusters_local": 93,
- "last_ingested": "2024Q1_06",
- "primary_next_part": "2024Q2_06",
- "overall": "not_supported_preliminary",
- "commits_since_structural_approx": 295,
- "note": "Through 2024Q1_06. Prop judge-ready. Do not block submit on history."
+ "primary_clusters_local": 146,
+ "last_ingested": "2024Q2_06",
+ "overall": "not_supported_preliminary"
 }
