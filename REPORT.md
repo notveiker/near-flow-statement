@@ -141,9 +141,9 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **`_12`–`_16` COMPLETE** @236 clusters / ~693 commits / ~53h.
-- **HEADLINE: Leakage is the bridge.** Intents≈99% DEX. Fee≠L1 ~**202×**. Overall still **not supported**.
-- Strata EV exhausted. **URGENT human-only:** public + X. Hold until H1b.
+- **`_12`–`_16` COMPLETE** @236 / ~694c / ~53h. Entering `_17` (ignore for EV).
+- **HEADLINE: Leakage is the bridge.** Intents≈99% DEX. Overall still **not supported**.
+- **ONLY remaining work:** flip public + record X 90s. Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context

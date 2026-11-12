@@ -1,0 +1,10 @@
+{
+  "asof": "2026-11-12",
+  "clusters": 236,
+  "commits": 694,
+  "hours_to_submit": 52.7,
+  "strata_complete": 5,
+  "overall": "not_supported",
+  "implication": "Five dense strata still leave overall not supported \u2014 density cannot flip Hold; H1b + public+X are the constraints",
+  "read": "5 strata / 236cl still not supported. Density\u2260Buy. public+X. Exploratory."
+}

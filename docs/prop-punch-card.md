@@ -686,3 +686,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | ~690-commit milestone | intents×~202 under _16; still OoM; public+X | commits_690_milestone |
 | HSP-007 bounds do not stack w/ capture | 10–20% claim ~0.5–1× Intents RR; budget unknown | hsp007_bounds_do_not_stack_with_capture |
 | _16 COMPLETE / 236 clusters | intents~202×; _12–_16 done; strata EV exhausted | dense_16_complete |
+| Entering _17 after _12–_16 | @236; do not burn hours; public+X ONLY | entering_17_dense |
+| Strata EV exhausted | 5 dense strata still not supported; density≠Buy | strata_ev_exhausted |

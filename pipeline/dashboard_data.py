@@ -495,6 +495,8 @@ def build() -> dict:
             "commits_690": optional("derived/commits_690_milestone.json"),
             "hsp007_nostack": optional("derived/hsp007_bounds_do_not_stack_with_capture.json"),
             "dense_16_complete": optional("derived/dense_16_complete.json"),
+            "entering_17": optional("derived/entering_17_dense.json"),
+            "strata_exhausted": optional("derived/strata_ev_exhausted.json"),
             "noref_core": optional("derived/noref_concentration_is_fee_core.json"),
             "f1_f4": optional("derived/f1_f4_on_submit_day.json"),
         },

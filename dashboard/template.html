@@ -875,6 +875,10 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (H7n) bits.push(`HSP-007 10–20% claim ~0.5–1× Intents RR — do not stack with capture (budget unknown).`);
     const D16c = D.catalysts && D.catalysts.dense_16_complete;
     if (D16c) bits.push(`_12–_16 COMPLETE @${D16c.clusters} — strata EV exhausted; public+X ONLY.`);
+    const E17 = D.catalysts && D.catalysts.entering_17;
+    const Sex = D.catalysts && D.catalysts.strata_exhausted;
+    if (E17) bits.push(`Entering _17 after _12–_16 — do not burn hours; public+X ONLY.`);
+    if (Sex) bits.push(`5 dense strata still not supported — density≠Buy.`);
 const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);
