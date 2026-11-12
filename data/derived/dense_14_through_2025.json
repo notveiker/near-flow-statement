@@ -1,0 +1,11 @@
+{
+  "asof": "2026-11-12",
+  "stratum": "_14_dense",
+  "through_2025": "2025Q4_14",
+  "clusters": 216,
+  "commits": 608,
+  "hours_to_submit": 56.5,
+  "overall": "not supported",
+  "history_blocker": false,
+  "read": "_14 through 2025 COMPLETE (216 clusters). Overall still not supported. Prefer public+X over finishing contest-year _14. Exploratory."
+}
