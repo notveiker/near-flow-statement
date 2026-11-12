@@ -1,7 +1,7 @@
 {
-  "hours_to_submit": 64.1,
-  "clusters": 176,
-  "commits": 466,
+  "hours_to_submit": 63.7,
+  "clusters": 178,
+  "commits": 475,
   "prop_ready": true,
   "dashboard_ready": true,
   "history_preliminary": true,
@@ -19,16 +19,5 @@
       "status": "scheduled_14_nov"
     }
   ],
-  "shipped": [
-    "pitch_spine",
-    "submit_packet",
-    "controllable_dials",
-    "four_ten_m",
-    "elasticity",
-    "thor_two_step",
-    "opacity_accelerating",
-    "five_ledgers",
-    "foreign_rail"
-  ],
-  "note": "Repo LIVE private (gh). Prop ready. ~64.1h / 176 clusters / 466 commits."
+  "note": "LIVE private repo. Prop ready. ~63.7h / 178 clusters / 475 commits."
 }

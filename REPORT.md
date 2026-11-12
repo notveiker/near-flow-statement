@@ -141,14 +141,13 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **Locked pitch:** partners>capture / leakage ~$50M · capture-pp≈3×vol · SK-tax+attest · THOR two-step · Hold until H1b · HSP-029 pending-not-live.
-- **Opacity accelerating:** escrow BB 17.5→58.5% Jul→Nov — attest urgency rises with share.
-- **Immaterial end:** ETF/NRR ~$0.42M ≈0.017× Intents; AI 5% ~$0.33M — do not lead.
-- **Capital-light / capture insufficient:** PCI ~0.057; 60% capture ≈0.46× of 50× need.
-- **Fee engine ≠ L1** (176 clusters): intents ~113× vs 2025Q1; L1 YoY ~0.19×.
-- **LIVE delivery blocker:** GitHub repo is still **private** — flip public before submit.
-- **Peerset ≠ scarce:** share recovery fee ≪ SK-tax; lead capture not share.
-- **Must-ship:** public repo + X dry-run (~64h). History denser `_09` through 2025; overall still not supported.
+- **Locked pitch:** partners>capture · capture-pp≈3×vol · SK-tax+attest · THOR two-step (3.1× then 4.4×) · Hold until H1b.
+- **Opacity accelerating:** escrow BB 17.5→58.5% Jul→Nov; BB dollar rails ~59% escrow — attest urgency rises.
+- **HSP-029 pending-then-lagged:** timelock 16 Nov → ramp ≈Feb 2027 → 24m to 1.6% — not a near-term mint cliff.
+- **Fee engine ≠ L1** (178 clusters): intents ~100×+ vs 2025Q1; L1 YoY ~0.2×; Intents ~87% NEAR fees.
+- **Payment fidelity / density:** BB exact ~97%; Intents heavier per tx than HOT at matched gas.
+- **Immaterial:** ETF/NRR ~$0.42M; AI ~$0.33M — do not lead. Capture alone (60%) ≈0.46× of 50× need.
+- **LIVE blocker:** GitHub repo still **private**; X dry-run TODO (~64h). Prop/dashboard/judge packet ready.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context
