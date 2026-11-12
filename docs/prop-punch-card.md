@@ -404,3 +404,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Settlement fee density | HOT 3× tx share at matched gas — Intents heavier/settlement; density in weight | settlement_fee_density |
 | HSP-007 vs Intents tension | 20% emissions claim ≈ Intents RR on same mint pool — Gap magnitude | hsp007_vs_intents_tension |
 | Scope not Aurora | Aurora residual; Intents ≫ Aurora fees — scope confirmation | scope_not_aurora |
+| Judge packet integrity | docs+core derived OK; 345 JSON; repo private blocker | judge_packet_integrity |

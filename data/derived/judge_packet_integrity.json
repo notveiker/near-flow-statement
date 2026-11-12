@@ -1,0 +1,12 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_submit": 63.9,
+  "commits": 471,
+  "clusters": 177,
+  "derived_json_n": 345,
+  "judge_docs_missing": [],
+  "core_derived_ok": true,
+  "repo_private": true,
+  "ready_excl_must_ship": true,
+  "read": "Judge packet integrity: docs OK=True; core derived OK=True; 345 derived JSON; 177 clusters; 471 commits; ~63.9h; repo still private."
+}
