@@ -38,7 +38,7 @@ Fee÷mint ~**0.21×** → ~**0.32×** HSP-029 → ~**0.48×** stack. Full captur
 
 ## Binding holds
 
-- H1b ~**20–25%** coverage; attestation **4.5–15.8%**; escrow ~**58.5%** of BB.
+- H1b ~**20–25%** coverage; attestation **4.5–15.8%**; escrow ~**58.5%** of BB; unattested escrow ~**$8.4M/yr** at band high.
 - Relayer top1 **~83%**.
 - HSP-007 emissions claim vs HSP-029 mint cut (magnitude Gap).
 - History sample **preliminary / not supported** (143 clusters).

@@ -130,6 +130,7 @@ Active accounts −77% YoY while Intents fees ~11× L1 fee print; NEAR-side swap
 
 ## Risks and context
 
+- **Unattested escrow dollars.** Even at 15.8% attestation high, ~$8.4M/yr of escrow-funded BB (if sustained) sits outside the band (`escrow_unattested_dollars.json`).
 - **Distribution owns the fee print.** Listed partners ~$4.45M > NEAR capture ~$1.99M; only 9.2% of appfees become buybacks; H1b covers ~20–25% of streams (`fee_stack_identity`, `appfees_to_buyback_conversion`, `h1b_coverage_still_binding`).
 - **HSP-007 vs HSP-029.** MPC emissions claim competes with mint cut on the same issuance pool (magnitude Gap).
 - **Relayer top1 ~83%.** Ops left-tail beside fee math (`relayer_hhi_floor`).

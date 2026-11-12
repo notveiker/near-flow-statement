@@ -40,3 +40,7 @@ Measured H1b coverage ~20.0% of streams by count / ~24.6% by inflow. Stance rema
 ## Provenance stack
 
 Escrow ~58% of BB funding + ~68% unexplained revwallet BB $ + H1b ~25% inflow coverage + attestation ≤16%. Fee print ≠ attested scarcity loop.
+
+## Unattested escrow dollars
+
+At the high end of the attestation band (15.8%), ~$694k of the ~$824k escrow-funded BB window sits outside attestation (~$8.4M/yr if sustained). Provenance gap is material in dollars, not only percentages.

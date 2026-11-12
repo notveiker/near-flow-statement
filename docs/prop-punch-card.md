@@ -211,3 +211,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | 50× vs cooling+share | Needs ~4× vol at 5bp while vol −12% MoM and peerset net soft — quality/leakage are the near-term board | 50x_vs_cooling_and_share |
 | Fee stack overlap warning | Partner%+capture% of gross can sum >100% — definitions overlap; partners>capture $ still holds | fee_stack_overlap_warning |
 | Escrow unattested dollars | At 15.8% attestation high, ~**$694k**/window (~$8.4M/yr) of escrow BB outside attestation | escrow_unattested_dollars |
+| Attestation vs dial magnitude | Unattested escrow ~$8.4M/yr ≈ **0.8×** SK-tax 25% dial / ~9× whale attach — provenance is top-tier $ | attestation_vs_dial_magnitude |
