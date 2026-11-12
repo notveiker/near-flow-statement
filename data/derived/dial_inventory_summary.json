@@ -1,35 +1,22 @@
 {
  "baseline_run_rate_m": 24.2,
+ "leakage_pool_annual_m": 50.2,
+ "full_capture_rr_m": 74.5,
  "controllable_stack_m": 37.0,
- "sum_small_dials_m": 7.46,
- "dials": [
-  {
-   "file": "trust_path_uplift.json",
-   "metric": "uplift_run_rate_m",
-   "m": 1.72
-  },
-  {
-   "file": "swapkit_to_noref_uplift.json",
-   "metric": "uplift_run_rate_m",
-   "m": 1.34
-  },
-  {
-   "file": "zec_inventory_uplift.json",
-   "metric": "fee_uplift_run_rate_m",
-   "m": 2.83
-  },
-  {
-   "file": "noreferrer_mix_uplift.json",
-   "metric": "uplift_run_rate_m",
-   "m": 0.67
-  },
-  {
-   "file": "lifi_attach_uplift.json",
-   "metric": "uplift_run_rate_m_approx",
-   "m": 0.9
-  }
+ "full_capture_plus_hsp029_mint_coverage_x": 1.03,
+ "vol_x_for_50x_at_full_capture": 1.29,
+ "fee_covers_mint_today_x": 0.205,
+ "sk_exit_buyback_loss_pct": 2.0,
+ "sk_exit_vol_loss_pp": 38.2,
+ "noref_buyback_dollar_x": 2.45,
+ "intents_near_dex_share_pct": 98.8,
+ "history_clusters_preliminary": 137,
+ "binding_story": "Leakage renegotiation is the bridge; volume is the last mile.",
+ "judge_docs": [
+  "docs/prop-topline.md",
+  "docs/prop-punch-card.md",
+  "dashboard/index.html",
+  "REPORT.md"
  ],
- "issuance_coverage_today_x": 0.205,
- "thor_rev_need_m": 301.2,
- "note": "Inventory of exploratory dials. Small dials are not additive with attach/mix stack. Volume remains the binding constraint for 50\u00d7 and THOR-like multiples."
+ "note": "Rollup of hyper-sweep proprietary arithmetic. Exploratory; Hold until H1b."
 }
