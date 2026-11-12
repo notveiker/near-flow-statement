@@ -1,8 +1,8 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 53.7,
-  "clusters": 230,
-  "commits": 667,
+  "hours_to_submit": 53.1,
+  "clusters": 233,
+  "commits": 682,
   "derived_json": 532,
   "top10_proprietary": [
     {
@@ -12,47 +12,47 @@
     },
     {
       "rank": 2,
+      "claim": "Intents \u224898.8% of NEAR DEX \u2014 chain DEX surface = Intents",
+      "key": "intents_dex_surface"
+    },
+    {
+      "rank": 3,
       "claim": "Leakage is the bridge: zero leak \u2192 50\u00d7 needs only ~1.29\u00d7 vol",
       "key": "leakage_bridge"
     },
     {
-      "rank": 3,
+      "rank": 4,
       "claim": "Default/no-ref rail IS the fee engine (18.7% vol\u219245.8% BB$)",
       "key": "default_rail"
     },
     {
-      "rank": 4,
+      "rank": 5,
       "claim": "SK-tax desk ~$10.2M; logos = vol without capture",
       "key": "sk_tax_logos"
     },
     {
-      "rank": 5,
+      "rank": 6,
       "claim": "mcap/rev ~217\u00d7 vs THOR~16\u00d7 \u2014 discretionary claim design",
       "key": "claim_design_multiple"
     },
     {
-      "rank": 6,
-      "claim": "No-vol coverage wall ~42.8%; whale desk last mile",
-      "key": "coverage_wall"
-    },
-    {
       "rank": 7,
-      "claim": "Attest band ~5.7\u00d7 compression = Trust payoff (not \u03c4)",
-      "key": "attest_trust"
+      "claim": "No-vol wall ~42.8%; attest ~5.7\u00d7 Trust; capital-light",
+      "key": "wall_attest_cl"
     },
     {
       "rank": 8,
-      "claim": "Capital-light PCI~0.057; no bond demand; leakage binds",
-      "key": "capital_light"
-    },
-    {
-      "rank": 9,
       "claim": "Hold until H1b (underwrite discretionary claim)",
       "key": "hold_h1b"
     },
     {
+      "rank": 9,
+      "claim": "History not supported \u2014 honesty is the rating",
+      "key": "honesty"
+    },
+    {
       "rank": 10,
-      "claim": "URGENT must-ship: public repo + X (human-only)",
+      "claim": "URGENT must-ship: public repo + X 90s (script ready)",
       "key": "delivery"
     }
   ],

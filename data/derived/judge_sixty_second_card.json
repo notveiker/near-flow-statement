@@ -1,14 +1,14 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 53.7,
-  "clusters": 230,
-  "commits": 667,
+  "hours_to_submit": 53.1,
+  "clusters": 233,
+  "commits": 682,
   "sixty_seconds": [
-    "Intents fee\u2260L1 (~180\u00d7) \u2014 OoM.",
-    "Leakage is the bridge: close it and 50\u00d7 needs only ~1.3\u00d7 vol.",
-    "Default rail = fee engine; SK-tax desk first; logos = vol w/o capture.",
-    "mcap/rev 217\u00d7 vs THOR 16\u00d7 \u2014 discretionary claim; Hold until H1b.",
-    "Must-ship: public repo + X demo."
+    "Intents fee\u2260L1 (~180\u00d7) and \u224899% of NEAR DEX \u2014 this is the chain's DEX.",
+    "Leakage is the bridge: close ~$50M and 50\u00d7 needs only ~1.3\u00d7 vol.",
+    "Default rail = fee engine; SK-tax desk; logos = vol without capture.",
+    "217\u00d7 vs THOR 16\u00d7 \u2014 discretionary claim; Hold until H1b.",
+    "Must-ship: public repo + this X demo."
   ],
-  "read": "60s card @~54h. Exploratory."
+  "read": "60s @~53h. Exploratory."
 }
