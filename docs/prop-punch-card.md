@@ -405,3 +405,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | HSP-007 vs Intents tension | 20% emissions claim ≈ Intents RR on same mint pool — Gap magnitude | hsp007_vs_intents_tension |
 | Scope not Aurora | Aurora residual; Intents ≫ Aurora fees — scope confirmation | scope_not_aurora |
 | Judge packet integrity | docs+core derived OK; 345 JSON; repo private blocker | judge_packet_integrity |
+| History 178 / 2026Q2_09 | Contest-year _09 continuing — still not supported | history_progress_2026q2_09 |
+| Sweep ~470 identity | Prop ready; repo private; opacity+elasticity+THOR live | sweep_470_identity |

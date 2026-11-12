@@ -1,14 +1,14 @@
 {
-  "commits_since_structural": 470,
-  "clusters_preliminary": 177,
-  "hours_to_submit": 63.9,
+  "commits_since_structural": 473,
+  "clusters_preliminary": 178,
+  "hours_to_submit": 63.8,
   "stratum": "_09_dense",
-  "last_ingested": "2026Q1_09",
-  "next": "2026Q2_09",
+  "last_ingested": "2026Q2_09",
+  "next": "2026Q3_09",
   "judge_ready": true,
   "must_ship": [
     "public_repo_STILL_PRIVATE",
     "X_demo_dry_run"
   ],
-  "note": "~470 commits; 177 clusters; payment-fidelity + settlement-density + HSP-007 tension shipped; ~63.9h; repo private."
+  "note": "~473 commits; 178 clusters; judge packet integrity OK; repo private; ~63.8h; 2026Q3_09 next."
 }
