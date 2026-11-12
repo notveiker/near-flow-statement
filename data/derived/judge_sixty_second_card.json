@@ -1,7 +1,7 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 51.8,
-  "commits": 714,
+  "hours_to_submit": 51.7,
+  "commits": 715,
   "clusters": 240,
   "seconds": 60,
   "script": "NEAR's fee engine is Intents \u2014 ~99% of DEX, ~180\u00d7 vs cooling L1. Leakage is the bridge: close ~$50M and 50\u00d7 needs only ~1.29\u00d7 volume. Default rail is the fee engine (18.7%\u219245.8% BB$). Sequence dials: SK-tax, Ledger-first, rail share, attest escrow. Hold until H1b. Dashboard is the proof \u2014 repo must be public.",
