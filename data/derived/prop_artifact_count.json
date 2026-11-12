@@ -1,7 +1,8 @@
 {
- "derived_json_count": 198,
- "commits_approx": 261,
- "history_clusters": 143,
- "punch_rows_approx": 175,
- "note": "198 derived JSON artifacts. Exploratory inventory."
+ "derived_json_count": 212,
+ "commits_approx": 289,
+ "history_clusters": 144,
+ "punch_rows_approx": 190,
+ "sample2_clusters": 92,
+ "note": "212 derived JSON, ~190 punch rows, 144 history clusters preliminary."
 }
