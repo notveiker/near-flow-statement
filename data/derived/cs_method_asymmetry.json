@@ -1,0 +1,8 @@
+{
+ "intents_execute_intents": 45009,
+ "signer_respond": 6755,
+ "signer_sign": 285,
+ "respond_vs_sign_x": 23.7,
+ "execute_vs_respond_x": 6.7,
+ "note": "Census methods: execute_intents dwarfs CS respond (~6.7\u00d7); respond dwarfs sign (~24\u00d7). CS is bursty completion traffic under continuous Intents execution. Exploratory hours-window."
+}
