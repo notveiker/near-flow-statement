@@ -1,0 +1,36 @@
+{
+ "pairs_to_not_double_count": [
+  {
+   "a": "sk_tax_25",
+   "b": "no_bb_half_redirect",
+   "why": "both claim partner fee pool"
+  },
+  {
+   "a": "sk_tax_25",
+   "b": "gross_5pp_to_near",
+   "why": "gross share path overlaps tax renegotiation"
+  },
+  {
+   "a": "mix_nearcom_10pp",
+   "b": "wallet_implied_7_7",
+   "why": "stated mix overstates fee-touch"
+  },
+  {
+   "a": "attest_escrow",
+   "b": "underwriting_band",
+   "why": "same disclosure event; $ vs confidence"
+  },
+  {
+   "a": "adr_defense",
+   "b": "solver_residual",
+   "why": "defense is subset of residual pool"
+  },
+  {
+   "a": "cif_1bp",
+   "b": "attest_escrow",
+   "why": "same confidential surface"
+  }
+ ],
+ "conservative_capture_rr_m": 18.0,
+ "note": "Overlap map for judges: naive dial sums overstate. Prefer ledger-discipline board. Exploratory."
+}

@@ -335,3 +335,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 161 through 2026Q1_07 | Contest-year dense strata filling — still not supported | history_progress_2026q1_07 |
 | Judge ledger board | Capture / trust / defense / mint tension / contestable rent — five ledgers, no naive sum | judge_ledger_board |
 | Sweep ~400 commits | Judge packet + dense history through 2026Q1; still preliminary | sweep_milestone |
+| Dial overlap map | SK-tax overlaps no-BB redirect/gross-share; CIF overlaps attest; ADR⊂residual | dial_overlap_map |

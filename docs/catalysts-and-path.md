@@ -184,3 +184,9 @@ LST ~$196M ≈ ~611 DIC days (~25× buyback) but only ~9.3% of stake — size �
 
 HSP-007 forum likes ~**2.1×** HSP-029 — emissions-claim politics may compete with the mint-cut narrative. Illustrative 10% claim ~$11.8M/yr (Gap on actual draw).
 <!-- /AUTO:HSP007_ENG -->
+
+<!-- AUTO:OVERLAP -->
+### Overlap discipline
+
+Do not double-count SK-tax with no-BB redirect or gross-share pp; CIF with attestation (same confidential surface); ADR defense with full solver residual. Conservative capture board ~$18M. See `dial_overlap_map.json`.
+<!-- /AUTO:OVERLAP -->
