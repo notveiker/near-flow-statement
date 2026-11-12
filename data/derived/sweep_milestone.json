@@ -1,13 +1,13 @@
 {
- "commits_since_structural": 424,
+ "commits_since_structural": 426,
  "clusters_preliminary": 166,
  "hours_to_submit": 66.1,
  "stratum": "_08_dense",
- "last_ingested": "2025Q2_08",
  "judge_ready": true,
+ "pitch_locked_lines": true,
  "must_ship": [
   "public_repo",
   "X_demo_dry_run"
  ],
- "note": "~424 commits; 166 clusters; _08 through 2025Q2; ~66.1h; must-ship public repo + X."
+ "note": "~426 commits; 166 clusters; pitch locked lines shipped; ~66.1h; must-ship public repo + X."
 }
