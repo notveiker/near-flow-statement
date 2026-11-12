@@ -1,10 +1,10 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 63.2,
-  "hours_to_hsp029": 87.2,
+  "hours_to_submit": 62.5,
+  "hours_to_hsp029": 86.5,
   "prop_ready": true,
-  "history_clusters": 181,
-  "commits_since_structural": 486,
+  "history_clusters": 185,
+  "commits_since_structural": 500,
   "blockers": [
     {
       "item": "public_repo",
@@ -14,7 +14,7 @@
     {
       "item": "X_demo_dry_run",
       "status": "TODO",
-      "action": "rehearse docs/x-demo-talking-points.md + dashboard"
+      "action": "rehearse one-breath + dashboard"
     }
   ],
   "non_blockers": [
@@ -23,5 +23,5 @@
     "_10_seals"
   ],
   "one_breath_ref": "judge_one_breath.json",
-  "read": "~63.2h to submit. Prop/history OK. Only public repo + X bind. Exploratory ops."
+  "read": "~62.5h to submit. Prop/history OK. Only public repo + X bind. Exploratory ops."
 }

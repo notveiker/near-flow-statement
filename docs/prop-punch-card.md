@@ -427,3 +427,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Sweep ~495 identity | Submit runbook + one-breath locked; repo private | sweep_495_identity |
 | F1–F4 prescore board | F_escrow binding; quality-on-cool already evidenced; do not rescore post-hoc | f1_f4_prescore_board |
 | Sweep ~500 identity | Prop ready; one-breath+runbook locked; repo private; Hold until H1b | sweep_500_identity |
+| History 185 / 2026Q1_10 | Contest-year _10 filling — still not supported | history_progress_2026q1_10 |
