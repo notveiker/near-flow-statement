@@ -316,3 +316,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Leakage is the bridge | Full gross+HSP ≈1× mint; 50× then ~1.3× vol — leakage first | leakage_is_the_bridge |
 | Capture-share 60% still half 50× | 60% capture → ~$45M ≈0.46× of $96M need | capture_share_60_still_half_50x |
 | History 160 through 2025Q4_07 | 160 dense clusters; 2026 _07 next — still not supported | history_progress_2025q4_07 |
+| History honesty at 160 | 160 clusters ≠ supported — pitch must say preliminary | history_honesty_160 |
