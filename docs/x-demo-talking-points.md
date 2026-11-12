@@ -80,3 +80,6 @@ Card: `data/derived/judge_capture_card.json` — open with partners>capture, clo
 
 <!-- AUTO:BEATS 2026-11-12 -->
 See data/derived/x_demo_ninety_second_beats.json — 5 beats / 90s / numbers only. ~52h to deadline. Repo still PRIVATE.
+
+<!-- AUTO:BEATSv3 2026-11-12 -->
+X beats v3 locked (escrow clock + dist-tax). ~51h. Repo PRIVATE.

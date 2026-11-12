@@ -733,3 +733,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 243 / 2026Q3_17 | intents~168×; escrow clock+dist-tax locked; PUBLIC+X | history_progress_2026q3_17 |
 | _17 near-complete @ 243cl | overall not supported; EV≪public+X | dense_17_near_complete |
 | Risks compact bottom card | private/X CRITICAL; escrow HIGH; L1+history accepted | risks_compact_bottom |
+| ~730c milestone @ 727c | packaging only; public+X binding | commits_730_milestone |
+| No-vol wall × elasticity boundary | 42.8% / 3.07×; know which side | no_vol_wall_times_elasticity |

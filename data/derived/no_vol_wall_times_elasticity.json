@@ -1,0 +1,8 @@
+{
+  "asof": "2026-11-12",
+  "no_vol_wall_pct": 42.8,
+  "elasticity": 3.07,
+  "claim": "Past ~42.8% capture-mix, volume elasticity collapses; sequenced dials still print ~3.07\u00d7. The wall is where 'just add volume' fails and 'sequence dials' begins \u2014 that boundary is proprietary.",
+  "pitch_line": "Below the wall, volume works. Above it, only dial sequence works. Know which side you're on.",
+  "read": "Wall \u00d7 elasticity boundary. Exploratory."
+}

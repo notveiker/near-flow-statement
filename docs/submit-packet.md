@@ -88,3 +88,6 @@ Headline: Leakage is the bridge. Intents≈99% NEAR DEX.
 
 <!-- AUTO:SURPLUS 2026-11-12 -->
 Evidence surplus: 710c / 239cl / 564 boards. Deficit: PUBLIC + X. ~52h.
+
+<!-- AUTO:PACKET99 2026-11-12 -->
+Judge packet 99% excl must-ship. 727c/243cl. PUBLIC+X+submit. ~51h.

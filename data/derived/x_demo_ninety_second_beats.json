@@ -1,27 +1,28 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 52.0,
+  "hours_to_submit": 51.2,
   "duration_s": 90,
+  "commits": 727,
   "beats": [
     {
-      "t": "0-15",
-      "say": "NEAR fee engine \u2260 L1. Intents ~180\u00d7 vs L1 ~0.22\u00d7. Intents is ~99% of NEAR DEX."
+      "t": "0-12",
+      "say": "NEAR fee engine \u2260 L1. Intents ~170\u00d7 vs L1 ~0.22\u00d7. Intents is ~99% of NEAR DEX."
     },
     {
-      "t": "15-35",
+      "t": "12-28",
       "say": "Leakage is the bridge: ~$50M/yr off-capture. Zero leakage \u2192 ~$74.5M RR. 50\u00d7 needs only ~1.29\u00d7 volume."
     },
     {
-      "t": "35-55",
-      "say": "Default/no-ref rail: 18.7% of volume, 45.8% of BB$. Logos = volume without capture. SK-tax ~$10M first dial."
+      "t": "28-48",
+      "say": "Distribution takes 67.5\u00a2 per fee dollar. Default rail: 18.7% vol \u2192 45.8% BB$. SK-tax is the first ~$10M dial."
     },
     {
-      "t": "55-75",
-      "say": "Four ~$10M dials, sequenced: SK-tax \u2192 Ledger-first \u2192 default-rail \u2192 attest escrow. Elasticity 3.07\u00d7. No-vol wall 42.8%."
+      "t": "48-68",
+      "say": "Escrow funding of BB raced 17.5%\u219258.5% in four months. Attest is a clock. Sequence: SK-tax, Ledger, rail, attest."
     },
     {
-      "t": "75-90",
-      "say": "Hold until H1b \u2014 honesty. Claim design 217\u00d7 vs THOR 16\u00d7. Flip: attested escrow + SK live. Dashboard is the proof."
+      "t": "68-90",
+      "say": "Hold until H1b \u2014 honesty. Claim 217\u00d7 vs THOR 16\u00d7 is discretionary. Dashboard is the proof. Repo must be public."
     }
   ],
   "do_not_say": [
@@ -29,8 +30,9 @@
     "AI",
     "ETF",
     "guaranteed",
-    "more sampling"
+    "more sampling",
+    "attach equals 50x"
   ],
   "repo_must_be_public": true,
-  "read": "X 90s beat sheet @~52h. Exploratory."
+  "read": "X 90s beats v3 @~51h. Exploratory."
 }

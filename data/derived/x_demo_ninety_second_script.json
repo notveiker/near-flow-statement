@@ -1,42 +1,7 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 53.1,
-  "clusters": 234,
-  "commits": 685,
-  "duration_target_sec": 90,
-  "beats": [
-    {
-      "t": "0-15s",
-      "say": "Intents is ~99% of NEAR DEX and ~180\u00d7 the cooling L1 \u2014 fee engine, not base-layer story.",
-      "card": "fee-engine / dex"
-    },
-    {
-      "t": "15-35s",
-      "say": "Leakage is the bridge: close the ~$50M partner pool and 50\u00d7 needs only ~1.3\u00d7 volume.",
-      "card": "headline"
-    },
-    {
-      "t": "35-55s",
-      "say": "Default/no-ref rail is the fee engine \u2014 19% vol, 46% of BB dollars. Logos are volume without capture; SK-tax first.",
-      "card": "default_rail"
-    },
-    {
-      "t": "55-75s",
-      "say": "mcap/rev ~217\u00d7 vs THOR ~16\u00d7 \u2014 discretionary held-BB claim. Hold until H1b attestation.",
-      "card": "claim/hold"
-    },
-    {
-      "t": "75-90s",
-      "say": "Dashboard live; history not supported = honesty. Next: repo public. This is the X dry-run.",
-      "card": "delivery"
-    }
-  ],
-  "do_not_say": [
-    "bull case",
-    "AI lead",
-    "ETF lead",
-    "more history",
-    "opacity is bullish capture"
-  ],
-  "read": "90s X script v2 @~53h. Exploratory."
+  "hours_to_submit": 51.2,
+  "duration_s": 90,
+  "script": "NEAR's fee engine is Intents \u2014 about ninety-nine percent of DEX volume, roughly one-seventy times a cooling L1. Leakage is the bridge: close fifty million a year and fifty-X needs only about one-point-three X volume. Distribution takes sixty-seven cents of every fee dollar; the default rail turns eighteen percent of volume into forty-six percent of buyback dollars. Escrow now funds most buybacks \u2014 up from seventeen to fifty-eight percent in four months \u2014 so attestation is a clock. First dial: SwapKit tax. Then Ledger-first, rail share, attest. Hold until H1b. The dashboard is the proof \u2014 make the repo public.",
+  "read": "X 90s spoken script v3 @~51h. Exploratory."
 }

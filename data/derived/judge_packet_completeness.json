@@ -1,32 +1,27 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 52.6,
-  "clusters": 236,
-  "commits": 695,
-  "derived_json": 552,
-  "punch_rows": 660,
-  "artifacts": {
-    "dashboard": true,
-    "report": true,
-    "pitch_spine": true,
-    "prop_topline": true,
-    "punch_card": true,
-    "submit_packet": true,
-    "x_talking_points": true,
-    "x_90s_script": true,
-    "deadline_checklist": true,
-    "locked_pitch": true,
-    "headline_board": true,
+  "hours_to_submit": 51.2,
+  "commits": 727,
+  "clusters": 243,
+  "ready": {
+    "headline": true,
     "top10": true,
-    "non_leads_pack": true,
-    "dense_12_to_16_complete": true
+    "f1_f4": true,
+    "sixty_s": true,
+    "one_breath": true,
+    "x_90s": true,
+    "risks_compact": true,
+    "dashboard": true,
+    "report_sweep": true,
+    "non_leads": true,
+    "catalyst_stack": true
   },
-  "must_ship_open": [
-    "public_repo",
-    "x_demo_dry_run"
-  ],
-  "completeness_excl_must_ship": 0.99,
-  "headline": "Leakage is the bridge",
-  "implication": "Judge packet 99% excl must-ship; only public+X open",
-  "read": "Packet 99% @~53h/695c/236cl. Open: public+X. Exploratory."
+  "not_ready": {
+    "repo_public": false,
+    "x_dry_run": false,
+    "submitted": false
+  },
+  "prop_ready_excl_must_ship": 0.99,
+  "claim": "Judge packet complete except must-ship human actions (public+X+submit).",
+  "read": "Packet 99% @~51h. CRITICAL human gap."
 }

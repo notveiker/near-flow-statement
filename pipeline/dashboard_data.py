@@ -532,6 +532,8 @@ def build() -> dict:
             "dist_tax_escrow_urg": optional("derived/dist_tax_times_escrow_accel_urgency.json"),
             "dense_17_near": optional("derived/dense_17_near_complete.json"),
             "risks_compact": optional("derived/risks_compact_bottom.json"),
+            "no_vol_wall_elast": optional("derived/no_vol_wall_times_elasticity.json"),
+            "commits_730": optional("derived/commits_730_milestone.json"),
         },
         "repro": reproducibility(),
     }
