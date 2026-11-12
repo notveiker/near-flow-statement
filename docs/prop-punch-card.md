@@ -175,3 +175,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | CIF rate card gap | Leakage pool uses gross−capture identity; CIF card would split partner-proof vs protocol take | cif_rate_card_gap |
 | Deadline ops | Hours-to-submit clock + must-ship list; history still preliminary | deadline_ops |
 | F1–F4 scorecard | Pre-registered quality/SK-tax/escrow/relayer falsifiers for 14 Nov | f1_f4_scorecard |
+| Full gross coverage | 15.3 bp absorb ⇒ ~$74M RR, ~49% coverage today / ~74% post-HSP-029 — still needs vol or deeper cut | full_gross_coverage |
+| Escrow climb velocity | 17.5%→58.5% Jul→Nov; +24pp Aug→Sep then flat — attestation did not climb with share | escrow_climb_velocity |

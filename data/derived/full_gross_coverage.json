@@ -1,0 +1,11 @@
+{
+ "capture_share_today_pct": 32.5,
+ "gross_bp": 15.3,
+ "captured_bp": 4.98,
+ "capture_share_at_full_gross_pct": 100.0,
+ "fee_x_to_full_gross": 3.07,
+ "run_rate_at_full_gross_m": 74.3,
+ "coverage_at_full_gross_pct": 48.6,
+ "coverage_at_full_gross_plus_hsp029_pct": 73.7,
+ "note": "Full gross absorb (15.3 bp) lifts run-rate ~3.07\u00d7 to ~$74M and coverage ~49% today-mint / ~74% post-HSP-029 flat \u2014 still not 100% offset without volume or deeper mint cut. Matches leakage-pool identity. Exploratory."
+}

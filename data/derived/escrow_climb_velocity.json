@@ -1,0 +1,18 @@
+{
+ "escrow_share_path_pct": [
+  17.5,
+  28.6,
+  53.0,
+  57.4,
+  58.5
+ ],
+ "mom_deltas_pp": [
+  11.1,
+  24.4,
+  4.4,
+  1.1
+ ],
+ "big_step_aug_sep_pp": 24.4,
+ "flattened_oct_nov": true,
+ "note": "Escrow share of BB climbed 17.5%\u219258.5% Jul\u2192Nov with a +24pp step Aug\u2192Sep, then flattened Oct\u2013Nov. Attestation did not climb with share \u2014 gap widened as escrow became the majority rail. Exploratory."
+}
