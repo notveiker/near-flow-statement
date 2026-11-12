@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "tau_bp": 4.98,
+  "aitr_bp": 9.5,
+  "protocol_share_of_all_in_pct": 52.4,
+  "distribution_share_of_all_in_pct": 47.6,
+  "claim": "Distribution owns ~47.6% of user all-in (AITR\u2212\u03c4)/AITR. That is the margin. Protocol keeps ~52.4%. The proprietary move is taxing distribution (SK) and shifting mix to default-rail \u2014 not growing L1 spam.",
+  "read": "Distribution owns margin (numbers). Exploratory."
+}

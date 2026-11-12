@@ -721,3 +721,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Escrow BB ~58.5% = Trust urgency | attest ~5.7×; not hygiene | escrow_bb_is_trust_urgency |
 | HSP-029 = footnote only | supports Hold timing; do not lead | hsp029_pending_lagged_footnote |
 | Delivery severity CRITICAL | ~52h; private+no-X | delivery_severity_critical |
+| Distribution owns ~47.6% of all-in | tax distribution + default-rail; not L1 spam | distribution_owns_margin_number |
+| Elasticity 3.07× = sequence≠size | no-vol wall 42.8%; sequence before size | elasticity_means_sequence_not_size |

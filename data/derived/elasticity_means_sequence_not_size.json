@@ -1,0 +1,7 @@
+{
+  "asof": "2026-11-12",
+  "elasticity": 3.07,
+  "no_vol_wall_pct": 42.8,
+  "claim": "Elasticity ~3.07\u00d7 means sequenced dials move capture ~3\u00d7 harder than naive volume. The ~42.8% no-vol wall is where volume alone stops working \u2014 sequence before size.",
+  "read": "Elasticity = sequence\u2260size. Exploratory."
+}
