@@ -55,3 +55,4 @@
 ## Honesty
 
 Explorer partner/appfee vs DefiLlama gross are not a clean partition (sum can exceed 100%). Partners>capture uses Explorer dollars.
+28. **Three ~$10M magnitudes** — SK-tax, attest escrow, HSP-007 10% claim — net the mint narrative.

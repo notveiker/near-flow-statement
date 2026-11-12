@@ -20,3 +20,7 @@ Bull case. AI agents lead. npm lead. Peer-share rising. HSP-029 is live. History
 - [`prop-what-is-proprietary.md`](prop-what-is-proprietary.md)
 - [`prop-topline.md`](prop-topline.md)
 - `data/derived/judge_one_pager_stack.json`
+
+## Three ~$10M magnitudes
+
+SK-tax ~$10M (capture) · attest ~$8.4M (trust) · HSP-007 10% claim ~$11.8M (mint opex, Gap).
