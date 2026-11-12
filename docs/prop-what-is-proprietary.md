@@ -27,7 +27,7 @@
 
 ## Pitch in one sentence
 
-Distribution owns the margin; leakage renegotiation is the bridge; volume is the last mile; Hold until H1b.
+Distribution owns the margin; leakage renegotiation is the bridge; volume is the last mile; quality rose on a cooling print; Hold until H1b.
 
 Punch card now has **100+** rows.
 
