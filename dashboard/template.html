@@ -871,6 +871,8 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (Tud) bits.push(`Surfaces: unknown~${Tud.unknown_1click_share_pct}% / tg~${Tud.tg_share_pct}% — label+TG dials.`);
     if (Csb) bits.push(`CS bursty under Intents (execute/respond ×${Csb.execute_vs_respond_x}) — infra not fee.`);
     if (An5) bits.push(`1Click@100% AITR only ~${An5.oneclick_100aitr_vs_need_x}× of 50× need — attach≠50×.`);
+    const H7n = D.catalysts && D.catalysts.hsp007_nostack;
+    if (H7n) bits.push(`HSP-007 10–20% claim ~0.5–1× Intents RR — do not stack with capture (budget unknown).`);
 const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);
