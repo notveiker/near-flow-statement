@@ -39,3 +39,7 @@ Partners listed fees exceed NEAR capture in dollars — open with distribution o
 Lead with evidenced quality path (attach/τ 1.72× inside sample on −12% MoM vol) + leakage/conversion dials.
 
 +1pp capture-share ≈ $0.74M/yr vs +1pp volume ≈ $0.24M/yr (~3×). Say it once.
+
+## Two bridges
+
+SK-tax renegotiation (~$10M) raises capture; attesting escrow BB (~$8.4M) raises trust. Both before volume.

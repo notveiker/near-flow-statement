@@ -1,0 +1,6 @@
+{
+ "bridge_a_sk_tax_25_rr_m": 10.2,
+ "bridge_b_attest_escrow_rr_m": 8.4,
+ "combined_naive_rr_m": 18.6,
+ "note": "Two bridges of similar magnitude: renegotiate SK tax (~$10M) and attest escrow BB (~$8.4M). First raises capture; second raises trust in the scarcity loop. Both before volume. Exploratory."
+}
