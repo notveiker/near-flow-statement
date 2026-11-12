@@ -1,7 +1,12 @@
 {
- "now_utc": "2026-11-12T01:58:05.638678+00:00",
- "hours_to_submit": 70.0,
- "history_clusters": 145,
+ "now_utc": "2026-11-12T02:11:59.474626+00:00",
+ "hours_to_submit": 69.8,
+ "history_clusters": 147,
  "prop_ready": true,
- "note": "polling 2024Q2_06"
+ "must_ship": [
+  "public_repo",
+  "X_demo_dry_run",
+  "F1-F4_on_day"
+ ],
+ "note": "Judge packet ready. Ship public repo + X dry-run. History preliminary."
 }

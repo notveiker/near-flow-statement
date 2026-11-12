@@ -1,53 +1,31 @@
-# Deadline checklist (hackathon Investment Thesis)
+# Deadline checklist
 
-*Internal ops note. Deadline **14 Nov 2026 23:59 UTC**. Public repo + X demo post required.*
+*Submit by **2026-11-14 23:59 UTC**. Hours left (refresh): **~69.8h**.*
 
-## Deliverable readiness
+## Done
 
-| Item | Status |
-|---|---|
-| Dashboard primary (`dashboard/index.html`) | Live; Capture section has attach/mix/DIC/inventory |
-| Written report (`REPORT.md`) | Live; risks compact at bottom; Hold rating |
-| Structural + catalyst prop docs | Live; see `docs/prop-topline.md` + punch card + index |
-| Pre-reg / addendum honesty | Frozen tests untouched; exploratory labelled |
-| History sample | Preliminary **142** clusters; still sealing early rounds |
-| Forward tests F1–F4 | Resolve **2026-11-14** — score and publish |
-| Public repo / X demo | Still to do — talking points: [`x-demo-talking-points.md`](x-demo-talking-points.md) |
-| No Akash mention in deliverable | Enforced in prose |
-
-## Prop scoreboard (lead with these — punch card 100+ rows)
-
-1. Attachment % / AITR  
-2. Capture share / leakage L  
-3. Escrow attestation gap  
-4. near.com mix $ / pp  
-5. HSP-029 activation  
-6. Path-to-50× needs volume beyond attach/mix  
-7. Fee÷mint$ coverage (~0.21×) + THOR-multiple bridge  
-8. Relayer HHI / ops concentration  
-9. Inventory mix (ZEC #2) + CIF sensitivity  
-10. Rent map (solver+partners ~2.7× NEAR capture)
-11. Leakage pool ~$50M/yr + SK exit fee asymmetry
-12. Soft-sink ladder (LST≫NRR≫buyback) + burn materiality
-13. Quality-on-cool + vol deceleration honesty
-14. Fee density 11× L1 / ok-share ~83%  
-
-Lead: [`prop-what-is-proprietary.md`](prop-what-is-proprietary.md) — leakage bridge, SK fee asymmetry, growth honesty.
-Lead dials: attach/AITR, capture share, no-ref $, Intents≈NEAR DEX, fee÷mint$, volume last mile.
-AI / ETF / npm are second-order until measured as fee flow.
-
-Ops clock: `data/derived/deadline_ops.json`.
-
-- [x] Conversion dial + Trust path + Ledger≈capture props committed
-- [ ] Public repo mirror / X demo dry-run
-- [ ] F1–F4 score on 14 Nov
-- [ ] History seals past early-stratum stopping rule
-- [x] near.com wallet gap + HSP-007 tension + what-moves-τ board
-- [x] Dashboard controllable dials card live
-- [x] pitch-spine.md + what-is-proprietary refreshed
+- [x] Structural thesis + fee waterfall + catalysts docs
+- [x] Dashboard with controllable dials + conversion/Trust cards
+- [x] Prop punch card (190+ rows) + what-is-proprietary (28 claims)
+- [x] Pitch-spine + prop-topline + X demo 6-step script
 - [x] F1–F4 scorecard pre-registered
-- [ ] Public repo / X demo dry-run before 14 Nov 23:59 UTC
-- Hours to submit (as of refresh): **~70.4h** — public repo + X demo still open.
-- [ ] Do not block submit on history stopping rule — ship prop stack with preliminary label
-- [x] submit-packet.md written
-- [ ] Execute public repo + X demo
+- [x] Submit-packet.md
+- [x] Two bridges (SK-tax + attest) + three ~$10M magnitudes
+- [x] History seals through 2024Q3_06 (147 clusters, preliminary)
+
+## Open before submit
+
+- [ ] Public repo mirror / ensure PR #1 reviewable
+- [ ] X demo dry-run (camera + spine)
+- [ ] Score F1–F4 on 14 Nov (not before)
+- [ ] Do not block on history stopping rule
+
+## Calendar
+
+- Submit: 2026-11-14 23:59 UTC
+- HSP-029 timelock: 2026-11-16 (pending-not-live in pitch)
+
+## Lead dials
+
+attach/AITR, capture share, no-ref $, Intents≈NEAR DEX, fee÷mint$, volume last mile.
+Two bridges: SK-tax ~$10M + attest ~$8.4M before volume.
