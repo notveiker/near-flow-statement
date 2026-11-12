@@ -141,10 +141,10 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~533 commits / 195 clusters.** Contest-year denser `_11`; Q4_11 sealing. Overall still **not supported**.
+- **~536 commits / 196 clusters.** Denser `_11` through **2026 complete**. Overall still **not supported** (not a submit blocker).
 - **Fee≠L1:** intents ~**187×** vs 2025Q1; L1 YoY ~**0.21×**.
-- **Submit readiness ~0.95 excl must-ship.** LIVE blockers: **public repo** + **X dry-run** (~61h).
-- **Locked:** one-breath · elasticity · opacity · THOR two-step · Hold until H1b · HSP pending-then-lagged.
+- **Submit readiness ~0.95 excl must-ship.** LIVE: repo **private** + X dry-run TODO (~60h). README path + X script READY.
+- **Locked:** one-breath · elasticity ~3× · opacity accelerating · THOR two-step · Hold until H1b · HSP pending-then-lagged.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context
