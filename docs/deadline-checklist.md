@@ -15,7 +15,7 @@
 | Public repo / X demo | Still to do before deadline |
 | No Akash mention in deliverable | Enforced in prose |
 
-## Prop scoreboard (lead with these)
+## Prop scoreboard (lead with these — punch card 100+ rows)
 
 1. Attachment % / AITR  
 2. Capture share / leakage L  

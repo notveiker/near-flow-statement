@@ -23,7 +23,8 @@
 17. **Quality on cool** — attach/τ up while 1Click notional fell  
 18. **Intents ok-share ~83%** — UX failure tail; fees on successes  
 19. **Census vs Explorer** — SK smaller by count than vol (whale flow)  
-20. **HOT vs Intents gas** — same gas %, HOT 3× txs (heavier settlement)
+20. **HOT vs Intents gas** — same gas %, HOT 3× txs (heavier settlement)  
+21. **Ok-share ~83%** — failures burn gas without capture
 
 ## Pitch in one sentence
 
