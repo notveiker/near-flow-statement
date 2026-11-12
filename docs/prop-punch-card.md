@@ -288,3 +288,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | ADR-029 vs residual defense | Threat proxy ~$2.2M < half-defense $5.7M < full residual $11.4M — contest P&L | adr029_vs_residual_defense |
 | Relayer ok ceiling | Top1 share and ok-share both ~83% — diversification is ops catalyst | relayer_ok_ceiling |
 | History denser _07 | Entering 2025Q1_07 after 156 clusters through 2026Q4_06 | history_progress_2026q4 |
+| Volume over capture gap | Peerset vol share > capture share — distributing more than capturing | volume_over_capture_gap |
+| R90 multiple honesty | R90≪30d RR — 199× on RR is optimistic vs trailing; disclose | r90_multiple_honesty |

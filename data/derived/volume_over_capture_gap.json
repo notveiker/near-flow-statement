@@ -1,0 +1,10 @@
+{
+ "vol_share_peerset_pct": 55.7,
+ "capture_share_pct": 32.5,
+ "volume_without_capture_index": 1.71,
+ "peer_mult_near": 217,
+ "peer_mult_thor": 16,
+ "multiple_richness_vs_thor_x": 13.6,
+ "note": "Volume/capture index >1 means volume leadership outruns cash-flow claim share. Combined with ~14\u00d7 richer multiple vs THOR, the market prices volume more than capture. Exploratory.",
+ "read": "Peerset volume leadership without matching capture share \u2014 index >1 means distributing more than capturing. Leakage dials close the gap; peer-share cheerleading does not."
+}
