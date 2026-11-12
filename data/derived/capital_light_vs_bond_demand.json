@@ -1,0 +1,6 @@
+{
+ "pci": 0.0573,
+ "fee_per_inventory_yr": 0.106,
+ "turnover_30d_x": 17.4,
+ "note": "PCI ~0.0573: ~$10.6% fee per inventory $ at ~17.4\u00d7/30d turnover \u2014 capital-light vs bond-heavy peers; also means less captive demand for NEAR as bond collateral. Exploratory."
+}

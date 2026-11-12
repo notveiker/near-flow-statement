@@ -1,0 +1,8 @@
+{
+ "whale_vol_pct": 77.1,
+ "whale_count_pct": 3.4,
+ "swapkit_share_pct": 38.2,
+ "channel_hhi": 0.087,
+ "channel_hhi_sk_merged": 0.2,
+ "note": "Dual concentration: whales 77% vol / 3.4% count + SwapKit 38% pipe. Channel HHI 0.087 rises to 0.20 when SK subchannels merge \u2014 desk- and pipe-sensitive fee engine. Mix/attach scenarios inherit this. Exploratory."
+}

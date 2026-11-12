@@ -1,0 +1,9 @@
+{
+ "capture_alone_impossible": true,
+ "captured_bp_needed": 19.81,
+ "gross_bp": 15.3,
+ "vol_x_at_498bp": 3.98,
+ "vol_x_at_aitr_full_intents": 2.09,
+ "path": "leakage_to_gross_then_1.3x_vol",
+ "note": "50\u00d7 needs ~19.81 bp at current vol (> gross 15.3 bp) \u2014 capture-share alone impossible. At \u03c4 need ~3.98\u00d7 vol; at AITR on full Intents ~2.09\u00d7. Confirms leakage-then-volume. Exploratory."
+}

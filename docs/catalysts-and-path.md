@@ -154,3 +154,12 @@ LST ~$196M ≈ ~611 DIC days (~25× buyback) but only ~9.3% of stake — size �
 - Peerset recovery to 365d 62% from 30d gross needs ~+$0.46B/30d — expensive vs SK-tax ~$10M with zero vol. Do not lead peer-share.
 - Full gross+HSP still ~74% coverage — residual gap is volume/issuance.
 <!-- /AUTO:DENSITY_PEER -->
+
+<!-- AUTO:UNDERWRITE_CIF -->
+### Underwriting + CIF + burn honesty
+
+- **Attestation disclosure** compresses capture uncertainty ~5.7× without raising τ — institutional underwriting dial beside the ~$8.4M escrow dollar bridge.
+- **CIF rate card** Gap: 1 bp ≈ **$3.3M/yr**, 5 bp ≈ **$16.6M/yr** on confidential proxy — could rival SK-tax if published/captured.
+- **50×**: capture-alone impossible (~19.8 bp > 15.3 gross). Leakage then volume.
+- **Burn ≠ BB wallet**: hard-burn for 25% mint needs >100% of capture; held buybacks are a ~25d DIC buffer with ~60d half-life.
+<!-- /AUTO:UNDERWRITE_CIF -->

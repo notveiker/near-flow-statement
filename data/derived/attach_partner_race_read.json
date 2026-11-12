@@ -1,0 +1,15 @@
+{
+ "attach_delta_pp": 19.4,
+ "partner_bp_delta": 7.8,
+ "partner_vs_bb_x_path": [
+  17.8,
+  15.4,
+  9.9
+ ],
+ "captured_bp_path": [
+  2.89,
+  4.25,
+  4.98
+ ],
+ "read": "Attach +19.4pp lifted captured bp 2.89\u21924.98, but partner bp also +7.8 \u2014 partners extracted alongside quality. Ratio improved 17.8\u21929.9\u00d7 yet absolute partner take rose. Quality-on-cool is real; leakage pool still grew in bp. Exploratory."
+}

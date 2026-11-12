@@ -71,5 +71,10 @@
   "solver_residual_rr_m": 11.41,
   "adr029_half_residual_rr_m": 5.71,
   "note": "Solver residual is contestable rent \u2014 defend or lose; not a capture dial until policy redirects to BB"
+ },
+ "gap_dials": {
+  "cif_1bp_rr_m": 3.31,
+  "cif_5bp_rr_m": 16.55,
+  "note": "CIF unpublished \u2014 sensitivity only"
  }
 }

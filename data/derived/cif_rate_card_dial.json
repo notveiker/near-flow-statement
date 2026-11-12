@@ -1,0 +1,8 @@
+{
+ "cif_1bp_rr_m": 3.31,
+ "cif_5bp_rr_m": 16.55,
+ "vs_sk_tax_25_x_at_1bp": 0.32,
+ "vs_attest_x_at_1bp": 0.39,
+ "conf_tvl_vs_inventory_pct": 69.8,
+ "note": "CIF unpublished: 1 bp on proxy confidential notional \u2248 $3.31M/yr (~0.3\u00d7 SK-tax); 5 bp \u2248 $16.55M/yr. Confidential TVL ~69.8% of inventory \u2014 rate card is a material Gap dial. Exploratory proxy."
+}

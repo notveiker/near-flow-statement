@@ -259,3 +259,11 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 
 | F1–F4 live snapshot | F3 attestation binding; F2 commercial gap; F1 quality watch; F4 relayer UX | f1_f4_live_snapshot |
 | Catalyst rank (no vol) | SK-tax > attest > ADR defense > conversion > mix(arithmetic) > LI.FI/Trust/TG | catalyst_rank_no_vol |
+
+| Attach vs partner race | Attach +19pp but partner bp +7.8 — quality rose while absolute partner take rose | attach_partner_race_read |
+| Attestation underwriting dial | Disclosure compresses capture band ~5.7× without raising τ — institutional dial ≠ take dial | attestation_underwriting_dial |
+| 50× binding constraint | Needs ~19.8 bp > 15.3 gross — capture-alone impossible; leakage then ~1.3× vol | fifty_x_binding_constraint |
+| CIF rate card dial | 1 bp ≈ $3.3M/yr; 5 bp ≈ $16.6M — unpublished confidential take is Gap dial | cif_rate_card_dial |
+| Burn ≠ held buyback | 25% mint hard-burn needs ~122% of capture; DIC half-life ~2.4× — buffer not burn | burn_vs_held_buyback |
+| Dual concentration desk | Whales 77% vol + SK 38%; HHI 0.087→0.20 SK-merged — desk/pipe sensitive | dual_concentration_desk_risk |
+| Capital-light vs bond | PCI ~0.057 / ~10.6% fee per inventory $ — light capital, weak NEAR-bond demand | capital_light_vs_bond_demand |

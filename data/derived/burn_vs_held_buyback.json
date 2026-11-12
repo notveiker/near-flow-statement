@@ -1,0 +1,8 @@
+{
+ "share_of_capture_for_25pct_issuance_burn_pct": 122.2,
+ "at_hsp029_pct": 79.5,
+ "dic_days": 24.8,
+ "half_life_days": 60.5,
+ "half_life_over_dic_x": 2.44,
+ "note": "Hard-burn to offset 25% mint needs ~122.2% of fee capture (~79.5% post-HSP-029). Held buybacks DIC ~24.8d with ~60.5d half-life (~2.44\u00d7) \u2014 buffer, not permanent scarcity. Do not equate BB wallet with burn. Exploratory."
+}

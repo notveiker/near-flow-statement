@@ -1,0 +1,8 @@
+{
+ "band_width_today_pp": 11.3,
+ "width_compression_x": 5.7,
+ "raises_take_rate": false,
+ "raises_underwriting_confidence": true,
+ "vs_attest_dollar_bridge_rr_m": 8.4,
+ "note": "Fee-stream\u2192wallet disclosure compresses capture-share uncertainty ~5.7\u00d7 (band 11.3pp\u2192~2pp sketch) without raising \u03c4 \u2014 institutional underwriting dial distinct from the ~$8.4M unattested escrow dollar bridge. Exploratory."
+}
