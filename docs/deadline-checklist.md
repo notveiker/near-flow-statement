@@ -12,7 +12,7 @@
 | Pre-reg / addendum honesty | Frozen tests untouched; exploratory labelled |
 | History sample | Preliminary **139** clusters; still sealing early rounds |
 | Forward tests F1–F4 | Resolve **2026-11-14** — score and publish |
-| Public repo / X demo | Still to do before deadline |
+| Public repo / X demo | Still to do — talking points: [`x-demo-talking-points.md`](x-demo-talking-points.md) |
 | No Akash mention in deliverable | Enforced in prose |
 
 ## Prop scoreboard (lead with these — punch card 100+ rows)
