@@ -1,8 +1,9 @@
 {
- "commits_since_structural": 386,
- "clusters_preliminary": 159,
- "hours_to_submit": 67.5,
+ "commits_since_structural": 392,
+ "clusters_preliminary": 160,
+ "hours_to_submit": 67.3,
  "stratum": "_07_dense",
+ "last_ingested": "2025Q4_07",
  "judge_ready": true,
- "note": "~386 commits; 159 clusters; ledger-discipline + call-order shipped; ~67.5h to submit."
+ "note": "~392 commits; 160 clusters through 2025Q4_07 dense; entering 2026 _07; ~67.3h to submit."
 }
