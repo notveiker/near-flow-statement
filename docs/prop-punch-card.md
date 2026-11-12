@@ -216,3 +216,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Vol recent vs year | 30d daily ~133.3M vs year-avg ~90.1M (~1.48×) — MoM cool off elevated print | vol_recent_vs_year |
 | HSP-029 coverage lift alone | Flat-fee coverage ~15.8%→~24% (~1.5×) — helpful not sufficient; pending-not-live | hsp029_coverage_lift_alone |
 | Partner no-BB share | **94.6%** of listed partner fees have no buyback line — conversion target set | partner_no_bb_share |
+| No-BB half-redirect ceiling | Half of no-BB partner fees → NEAR ≈ **~$25.6M/yr** — conversion ceiling ≫ volume dials | no_bb_half_redirect_ceiling |
