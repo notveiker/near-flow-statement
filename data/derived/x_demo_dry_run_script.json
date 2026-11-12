@@ -1,6 +1,6 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 59.0,
+  "hours_to_submit": 57.9,
   "status": "TODO",
   "script": [
     {
@@ -33,5 +33,5 @@
     "dashboard/index.html",
     "docs/x-demo-talking-points.md"
   ],
-  "read": "X dry-run script (~90s). Still TODO with ~59h left. Exploratory ops."
+  "read": "X dry-run script (~90s). Still TODO with ~58h left. Exploratory ops."
 }
