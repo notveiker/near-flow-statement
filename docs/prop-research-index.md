@@ -94,3 +94,9 @@ History sample: preliminary **133** sealed clusters (primary) with payloads; dua
 - `data/derived/investment_object.json — range with policy/partner risk`
 - `data/derived/r90_vs_run_rate.json — T90 vs 30d run-rate`
 - `data/derived/bb_funding_rails.json — collectors vs escrow dollars`
+- `data/derived/quality_on_cool.json — attach up / notional down across blocks`
+- `data/derived/census_vs_explorer_lens.json — count vs notional distribution`
+- `data/derived/hot_vs_intents_gas.json — same gas, heavier Intents txs`
+- `data/derived/distribution_surface_map.json — census referral top surfaces`
+- `data/derived/multiple_on_cooling_vol.json — 199× on cooling print`
+- `data/derived/intents_ok_share.json — ~83% success in census`
