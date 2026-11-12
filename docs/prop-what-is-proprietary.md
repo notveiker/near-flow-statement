@@ -26,7 +26,8 @@
 20. **HOT vs Intents gas** — same gas %, HOT 3× txs (heavier settlement)  
 21. **Ok-share ~83%** — failures burn gas without capture  
 22. **50× vs cooling** — needs ~4× vol; latest print −12% MoM  
-23. **CS method asymmetry** — respond≃24×sign under Intents flow
+23. **CS method asymmetry** — respond≃24×sign under Intents flow  
+24. **NEAR gas burned** — Intents≈HOT despite fewer txs
 
 ## Pitch in one sentence
 
