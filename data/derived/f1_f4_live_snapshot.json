@@ -1,42 +1,44 @@
 {
- "asof_utc": "2026-11-12T04:19:36.177717+00:00",
- "hours_to_submit": 67.7,
- "clusters": 158,
+ "asof_utc": "2026-11-12T05:35:20.893922+00:00",
+ "hours_to_submit": 66.4,
+ "clusters": 164,
+ "commits": 416,
  "falsifiers": [
   {
    "id": "F1",
-   "name": "quality_on_cool_reverses",
    "status": "watch",
-   "metric": "attach 43% / \u03c4 4.98bp on cool"
+   "name": "quality_on_cool_reverses"
   },
   {
    "id": "F2",
-   "name": "sk_tax_renegotiation_infeasible",
    "status": "gap",
-   "metric": "Ledger-first commercial text missing; $10.2M arithmetic"
+   "name": "sk_tax_ledger_commercial_text"
   },
   {
    "id": "F3",
-   "name": "escrow_attestation_stays_dark",
    "status": "binding",
-   "metric": "~71% of measured capture unattested; Hold until H1b"
+   "name": "escrow_attestation_dark",
+   "metric": "~71% unattested"
   },
   {
    "id": "F4",
-   "name": "relayer_top1_breaks_ux",
    "status": "watch",
-   "metric": "top1 83%; fee$ small, share risk large"
+   "name": "relayer_top1_83pct"
   }
  ],
  "call_order": [
   "Ledger",
   "attest",
   "CIF",
-  "ADR defense",
+  "ADR",
   "conversion",
   "TG",
   "LI.FI",
   "dense fronts"
  ],
- "note": "F3 binding. F2 is Ledger commercial gap. Exploratory."
+ "must_ship": [
+  "public_repo",
+  "X_demo_dry_run"
+ ],
+ "note": "F3 binding. ~66.4h. 164 clusters preliminary. Must-ship public repo + X."
 }
