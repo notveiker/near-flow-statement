@@ -55,3 +55,4 @@ Densest JSON: `data/derived/judge_one_pager_stack.json`. Edge list: [`docs/prop-
 
 Stance: **Hold until H1b**. HSP-029 pending-not-live. History sample preliminary / not supported.
 
+Submit packet: [`docs/submit-packet.md`](docs/submit-packet.md).
