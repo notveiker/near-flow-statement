@@ -106,6 +106,7 @@
 | 100 | Punch-card century | 99+ proprietary rows | Hyper sweep scoreboard for judges |
 | 101 | Distribution surface map (census) | unknown > tg > swapkit > lifi | Live tags ≠ fee map; two lenses |
 | 102 | Census vs Explorer lens | SK 15% count vs 38% vol; unknown 33% vs no-ref 19% | Count≠notional; whale SK flow |
+| 103 | HOT vs Intents gas | Same ~9.4% gas; HOT ~3× tx share | Intents heavier per tx — fee density in settlement |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.
 

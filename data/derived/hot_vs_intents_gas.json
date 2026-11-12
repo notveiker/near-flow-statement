@@ -1,0 +1,7 @@
+{
+ "hot_gas_share_pct": 9.4,
+ "intents_gas_share_pct": 9.4,
+ "hot_tx_share_pct": 34.5,
+ "intents_tx_share_pct": 13.2,
+ "note": "HOT game and Intents burn nearly identical gas share (~9.4%) but HOT has ~3\u00d7 the tx share \u2014 Intents is heavier per tx (settlement). Fee density lives in the heavier txs. Exploratory census window."
+}
