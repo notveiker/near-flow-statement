@@ -282,3 +282,9 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Privacy surface dial board | ZEC 2× ~$2.8M < CIF 1bp ~$3.3M < attest ~$8.4M < CIF 5bp ~$16.6M — rate card wins | privacy_surface_dial_board |
 | Whale attach prize | 3.4% swaps → 77% vol; +10pp attach ≈ $1.0M/yr at AITR | whale_attach_prize |
 | History 156 + _07 start | 156 clusters through 2026Q4_06; denser 2025Q1_07 stratum started — still not supported | history_progress_2026q4 |
+
+| Dense fronts portfolio | Trust/Arbie/Enot/Leodex/mystery combine ~$1.59M/yr BB — protect 20bp template | dense_fronts_portfolio |
+| Ledger-first renegotiation | Ledger ~60% of SK fees ≈1.01× capture — SK-tax dial is a Ledger conversation | ledger_first_renegotiation |
+| ADR-029 vs residual defense | Threat proxy ~$2.2M < half-defense $5.7M < full residual $11.4M — contest P&L | adr029_vs_residual_defense |
+| Relayer ok ceiling | Top1 share and ok-share both ~83% — diversification is ops catalyst | relayer_ok_ceiling |
+| History denser _07 | Entering 2025Q1_07 after 156 clusters through 2026Q4_06 | history_progress_2026q4 |

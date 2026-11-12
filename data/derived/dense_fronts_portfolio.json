@@ -1,0 +1,53 @@
+{
+ "fronts": [
+  {
+   "buyback_bp": 71.1,
+   "channel": "e1a72603-64b3-4be1-8265-8bae5970d396",
+   "share_pct": 7.2,
+   "vol_share_pct": 0.4,
+   "density": 18.0,
+   "fee_rr_m": 0.38
+  },
+  {
+   "buyback_bp": 20.0,
+   "channel": "trustwallet",
+   "share_pct": 12.0,
+   "vol_share_pct": 2.4,
+   "density": 5.0,
+   "fee_rr_m": 0.64
+  },
+  {
+   "buyback_bp": 19.9,
+   "channel": "enot",
+   "share_pct": 1.5,
+   "vol_share_pct": 0.3,
+   "density": 5.0,
+   "fee_rr_m": 0.08
+  },
+  {
+   "buyback_bp": 20.0,
+   "channel": "arbie",
+   "share_pct": 6.9,
+   "vol_share_pct": 1.4,
+   "density": 4.93,
+   "fee_rr_m": 0.38
+  },
+  {
+   "buyback_bp": 19.8,
+   "channel": "leodex",
+   "share_pct": 1.9,
+   "vol_share_pct": 0.4,
+   "density": 4.75,
+   "fee_rr_m": 0.11
+  }
+ ],
+ "combined_bb_fee_rr_m": 1.59,
+ "vs_whale_10pp_x": 1.62,
+ "template_bp": 20,
+ "protect_channels": [
+  "arbie",
+  "enot",
+  "leodex"
+ ],
+ "note": "High-density fronts (Trust/Arbie/Enot/Leodex/mystery) combine ~$1.59M/yr BB-fee \u2014 ~1.6\u00d7 whale +10pp. Protect ~20bp template; extend to LI.FI/Rango dilutives. Mystery 71bp still unlabeled. Exploratory."
+}

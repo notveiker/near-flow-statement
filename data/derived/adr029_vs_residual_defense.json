@@ -1,0 +1,7 @@
+{
+ "adr029_threat_proxy_rr_m": 2.2,
+ "solver_residual_rr_m": 11.41,
+ "adr_defend_half_rr_m": 5.71,
+ "threat_vs_half_defense_x": 0.39,
+ "note": "ADR-029 proxy drain ~$2.2M/yr on SK residual slice is ~0.39\u00d7 of half-residual defense board \u2014 threat is real but smaller than full residual pool; still larger than Trust-direct. Contest P&L, not BB $. Exploratory."
+}

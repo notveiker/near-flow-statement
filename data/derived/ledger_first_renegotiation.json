@@ -1,0 +1,10 @@
+{
+ "ledger_share_of_sk_vol_pct": 39.0,
+ "ledger_share_of_sk_fee_pct": 59.8,
+ "ledger_fee_30d_m": 2.01,
+ "ledger_vs_near_capture_x": 1.01,
+ "sk_fee_hhi": 0.408,
+ "sk_eff_n_fee": 2.45,
+ "sk_tax_25_rr_m": 10.2,
+ "note": "SK fee-$ HHI 0.41 (eff n ~2.45); Ledger alone ~59.8% of SK listed fees (~$2.01M/30d \u2248 1.01\u00d7 NEAR capture). SK-tax 25% dial (~$10.2M/yr) is primarily a Ledger commercial conversation. Exploratory."
+}

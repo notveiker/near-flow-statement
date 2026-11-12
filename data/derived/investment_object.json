@@ -26,7 +26,7 @@
  "falsifiers": "docs/f1-f4-scorecard.md",
  "spine": "docs/pitch-spine.md",
  "submit": "docs/submit-packet.md",
- "clusters_preliminary": 155,
+ "clusters_preliminary": 156,
  "controllable_bridge": "sk_tax_and_attest_then_volume",
  "intents_share_near_protocol_fees_pct": 87,
  "four_ten_m": {
@@ -38,5 +38,8 @@
  "solver_residual_rr_m": 11.41,
  "tg_attach_conservative_rr_m": 1.37,
  "hours_to_submit": 68.2,
- "catalyst_rank_file": "catalyst_rank_no_vol.json"
+ "catalyst_rank_file": "catalyst_rank_no_vol.json",
+ "ledger_first": true,
+ "dense_fronts_rr_m": 1.59,
+ "sk_tax_is_ledger_conversation": true
 }
