@@ -54,6 +54,11 @@
    "id": "F_relayer",
    "if": "relayer top1 stays >80% through an outage week",
    "then": "ops concentration is a live left-tail"
+  },
+  {
+   "id": "F_share_vs_vol",
+   "if": "capture share of gross falls while volume rises",
+   "then": "distribution is losing the print even as notional grows"
   }
  ],
  "note": "Proprietary falsifiers for the pitch \u2014 what would kill each dial. Exploratory."

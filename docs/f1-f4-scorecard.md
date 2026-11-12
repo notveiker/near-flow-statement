@@ -10,3 +10,4 @@
 | F_relayer | Ops concentration is left-tail | Relayer top1 stays >80% through an outage week |
 
 Stance if pass: Hold until H1b still binds; leakage/conversion remains the lead controllable path.
+| F_share_vs_vol | Capture share holds as vol moves | Capture share of gross falls while volume rises |
