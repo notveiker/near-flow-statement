@@ -53,7 +53,6 @@ See `data/derived/risks_compact.json` — H1b/attest/relayer/HSP-007/CIF/multipl
 <!-- /AUTO:READY -->
 
 <!-- AUTO:DELIVERY -->
-**Clock:** ~55h to 14 Nov 23:59 UTC | **224 clusters** | **633 commits** | repo **still private** | X dry-run **open**
-**Human-only left:** (1) flip public (2) record X demo
-**Prop ready excl must-ship:** ~0.97 — packaging premium, not more seals
+**Clock:** ~55h | **225 clusters** | **639 commits** | **494 derived** | repo **PRIVATE** | X **open**
+**F1–F4** resolve 14 Nov. Human: public + X.
 <!-- /AUTO:DELIVERY -->

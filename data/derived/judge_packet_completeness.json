@@ -1,28 +1,25 @@
 {
   "asof": "2026-11-12",
+  "hours_to_submit": 54.7,
+  "clusters": 225,
+  "commits": 639,
   "artifacts": {
-    "pitch_spine": true,
-    "prop_topline": true,
-    "one_breath": true,
-    "punch_card": true,
-    "what_is_proprietary": true,
-    "catalysts_and_path": true,
     "dashboard": true,
     "report": true,
-    "f1_f4_scorecard": true,
+    "pitch_spine": true,
+    "prop_topline": true,
+    "punch_card": true,
     "submit_packet": true,
-    "submit_day_runbook": true,
-    "x_demo_script": true,
-    "locked_pitch_lines": true,
-    "research_notes_index": true,
-    "x_demo_recorded": false,
-    "public_repo": false
+    "x_talking_points": true,
+    "deadline_checklist": true,
+    "locked_pitch": true,
+    "controllable_dials": true
   },
-  "score_excl_must_ship": 0.97,
   "must_ship_open": [
     "public_repo",
-    "x_demo_recorded"
+    "x_demo_dry_run"
   ],
-  "hours_to_submit": 57.1,
-  "read": "Judge packet READY except public_repo + X recording. ~57h. Exploratory."
+  "completeness_excl_must_ship": 0.97,
+  "implication": "Judge packet complete excl must-ship; remaining EV is public+X not more derived",
+  "read": "Packet ~97% excl must-ship @~55h. Open: public+X. Exploratory."
 }

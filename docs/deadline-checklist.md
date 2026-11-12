@@ -61,9 +61,9 @@ History/`_10` seals are **not** blockers.
 
 <!-- AUTO:CLOCK -->
 - Hours left: **~55**
-- Clusters: **224** (_15 dense; contest-year filling)
-- Commits since structural: **633**
-- [ ] Public repo
+- Clusters: **225** (_15 contest-year)
+- Commits: **639** | derived: **494** | punch rows: **~593**
+- [ ] Public repo (gh: still PRIVATE)
 - [ ] X demo dry-run
-- [ ] Submit packet
+- [ ] Submit + F1–F4
 <!-- /AUTO:CLOCK -->

@@ -441,6 +441,8 @@ def build() -> dict:
             "hsp029_attn": optional("derived/hsp029_attention_dwarfs_hsp007.json"),
             "invest_refresh": optional("derived/investment_object_refresh.json"),
             "mix_arith": optional("derived/mix_shift_is_arithmetic_not_forecast.json"),
+            "cap_eff_binds": optional("derived/capital_efficiency_leakage_binds.json"),
+            "f1_f4": optional("derived/f1_f4_on_submit_day.json"),
         },
         "repro": reproducibility(),
     }

@@ -778,6 +778,10 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (Ha) bits.push(`HSP-029 views~${Ha.hsp029_views} ≫ HSP-007~${Ha.hsp007_views}.`);
     if (Ir) bits.push(`Investment object refreshed @~${Ir.hours_to_submit}h.`);
     if (Ma) bits.push(`Mix-shift = arithmetic sizing, not forecast.`);
+    const Ff = D.catalysts && D.catalysts.f1_f4;
+    const Ceb = D.catalysts && D.catalysts.cap_eff_binds;
+    if (Ff) bits.push(`F1–F4 resolve ${Ff.resolve_on}; human clears F1/F2.`);
+    if (Ceb) bits.push(`Capital-efficiency: leakage binds (PCI light).`);
     const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);

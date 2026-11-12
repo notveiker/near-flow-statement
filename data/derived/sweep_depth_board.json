@@ -1,9 +1,11 @@
 {
   "asof": "2026-11-12",
-  "commits": 599,
-  "clusters": 213,
-  "derived_json": 428,
-  "punch_table_rows_approx": 506,
-  "hours_to_submit": 57.0,
-  "read": "~599 commits / 213 clusters / 428 derived / ~506 punch. _12+_13 done. Public+X bind (~57h). Exploratory."
+  "commits": 639,
+  "clusters": 225,
+  "derived_json": 494,
+  "punch_table_rows_approx": 593,
+  "hours_to_submit": 54.7,
+  "repo_private": true,
+  "stratum": "_15_dense",
+  "read": "Sweep depth: 639 commits / 225 clusters / 494 derived / ~593 punch rows @~55h. Exploratory."
 }

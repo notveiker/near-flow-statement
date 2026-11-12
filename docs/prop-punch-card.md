@@ -621,3 +621,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | HSP-029 attention ≫ HSP-007 | HSP-029 views~2221 vs HSP-007~2392. Attention≠fee. Exploratory. | hsp029_attention_dwarfs_hsp007 |
 | Investment object refreshed | Object locked @~55h/225cl/638c. Exploratory. | investment_object_refresh |
 | Mix-shift = arithmetic not forecast | Mix-shift arithmetic on vol $4.0B / τ 4.98bp — scenario sizing only. Exploratory. | mix_shift_is_arithmetic_not_forecast |
+| F1–F4 on submit day | Human clears F1/F2; agent prep only | f1_f4_on_submit_day |
+| Capital-efficiency ⇒ leakage binds | PCI light; not WC constrained | capital_efficiency_leakage_binds |

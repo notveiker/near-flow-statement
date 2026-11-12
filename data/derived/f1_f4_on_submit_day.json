@@ -1,0 +1,25 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_submit": 54.7,
+  "resolve_on": "2026-11-14",
+  "items": [
+    {
+      "id": "F1",
+      "what": "public_repo_live"
+    },
+    {
+      "id": "F2",
+      "what": "x_demo_posted"
+    },
+    {
+      "id": "F3",
+      "what": "submit_form"
+    },
+    {
+      "id": "F4",
+      "what": "dashboard_link_works"
+    }
+  ],
+  "implication": "F1\u2013F4 resolve on submit day \u2014 agent cannot clear F1/F2; prep packet only",
+  "read": "F1\u2013F4 on 14 Nov; ~55h. Human clears F1/F2. Exploratory."
+}
