@@ -1,0 +1,25 @@
+{
+ "asof_utc": "2026-11-12T00:00:00+00:00",
+ "deadline_utc": "2026-11-14T23:59:00Z",
+ "hours_remaining_approx": 72.0,
+ "must_ship": [
+  "public_repo",
+  "X_demo_post",
+  "F1-F4_score_on_14_Nov",
+  "dashboard+REPORT_primary"
+ ],
+ "prop_ready": [
+  "prop-topline.md",
+  "prop-punch-card.md",
+  "fee-waterfall.md",
+  "structural-thesis.md",
+  "catalysts-and-path.md"
+ ],
+ "still_open": [
+  "public_repo_visibility",
+  "X_demo",
+  "H1b_labels",
+  "attestation_map"
+ ],
+ "note": "~3 days to deadline. Prop research is deep; delivery logistics (public repo + X) are the remaining ops risk. Exploratory ops note."
+}

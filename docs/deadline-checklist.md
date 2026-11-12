@@ -32,3 +32,5 @@
 
 Lead: attach/AITR, capture share, no-ref $, Intents≈NEAR DEX, fee÷mint$, volume binding.
 AI / ETF / npm are second-order until measured as fee flow.
+
+Ops clock: `data/derived/deadline_ops.json`.
