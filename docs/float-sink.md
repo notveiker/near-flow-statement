@@ -33,3 +33,7 @@ DIC (~25d) vs scarcity half-life (~60d): `data/derived/dic_vs_half_life.json` �
 Soft-sink ladder: `data/derived/soft_sink_ladder.json` — NRR holdings cover ~7× more mint days than the buyback wallet but unbond in 1–2 days.
 
 Burn materiality: `data/derived/burn_materiality.json` — 25% of mint as permanent removal needs ~122% of today’s fee capture.
+
+## LST DIC
+
+LST TVL ~$196M ≈ ~611 days of net mint $ (~25× buyback DIC) but only ~9.3% of stake — size ≠ stake share.
