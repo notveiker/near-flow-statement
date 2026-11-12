@@ -141,13 +141,11 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **Locked pitch:** partners>capture · capture-pp≈3×vol · SK-tax+attest · THOR two-step (3.1× then 4.4×) · Hold until H1b.
-- **Opacity accelerating:** escrow BB 17.5→58.5% Jul→Nov; BB dollar rails ~59% escrow — attest urgency rises.
-- **HSP-029 pending-then-lagged:** timelock 16 Nov → ramp ≈Feb 2027 → 24m to 1.6% — not a near-term mint cliff.
-- **Fee engine ≠ L1** (178 clusters): intents ~100×+ vs 2025Q1; L1 YoY ~0.2×; Intents ~87% NEAR fees.
-- **Payment fidelity / density:** BB exact ~97%; Intents heavier per tx than HOT at matched gas.
-- **Immaterial:** ETF/NRR ~$0.42M; AI ~$0.33M — do not lead. Capture alone (60%) ≈0.46× of 50× need.
-- **LIVE blocker:** GitHub repo still **private**; X dry-run TODO (~64h). Prop/dashboard/judge packet ready.
+- **History:** **180 clusters**; denser `_09` through **2026 complete**; overall still **not supported**.
+- **Fee≠L1:** intents ~**132×** vs 2025Q1; L1 YoY ~**0.19×** (divergence ~686×).
+- **Locked pitch:** partners>capture · capture-pp≈3×vol · SK-tax+attest · THOR two-step · opacity accelerating · Hold until H1b.
+- **HSP-029 pending-then-lagged** (timelock→~Feb27→24m). Payment fidelity high — leakage is terms.
+- **LIVE blocker:** repo still **private**; X dry-run TODO (~64h). Prop/dashboard ready (481 commits since structural).
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context
