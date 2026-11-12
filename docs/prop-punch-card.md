@@ -339,3 +339,11 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Must-ship board | Prop ready; public repo + X dry-run still TODO; ~67h to submit | must_ship_board |
 | History 162 through 2026Q2_07 | Dense contest-year strata continuing — still not supported | history_progress_2026q2_07 |
 | Judge capture card | Single JSON card: call-order + four \$10M + ladder + holds | judge_capture_card |
+| relayer risk | Derived RELAYER / SOLVER operational concentration risk from node census + fee-waterfall structural facts. HHI bounded from top1/t | relayer_risk |
+| contestability | Derived DISTRIBUTION CONTESTABILITY arithmetic on committed metrics. Scenarios are arithmetic, not forecasts. No bull case. Gaps l | contestability |
+| capital efficiency | Exploratory. Protocol capital intensity (PCI) = protocol-controlled capital / 30d volume. Intents numerator is intents.near invent | capital_efficiency |
+| chain signatures link | Derived Chain Signatures → NEAR token value-link read. CS is infrastructure for Intents cross-chain; no separate holders-revenue l | chain_signatures_link |
+| concentration overlays | Confidential TVL (~$160M Q3 Nansen) is ~70% of total Intents inventory (~$229M) — privacy balances are a large share of working ca | concentration_overlays |
+| governance catalysts | Titles/engagement only from committed governance snapshot. Full proposal bodies Gap unless fetched. | governance_catalysts |
+| path to 50x | Arithmetic paths toward ~50× on current mcap; not forecasts. Capture levers alone (~attach/mix) get to ~0.4× of the 50× revenue ne | path_to_50x |
+| r90 vs run rate | Frozen rating uses ~$4.84M trailing-90d revenue vs ~$24.2M 30d annualised run-rate — the multiple/growth math is on the accelerati | r90_vs_run_rate |
