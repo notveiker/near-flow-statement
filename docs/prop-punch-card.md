@@ -177,3 +177,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | F1–F4 scorecard | Pre-registered quality/SK-tax/escrow/relayer falsifiers for 14 Nov | f1_f4_scorecard |
 | Full gross coverage | 15.3 bp absorb ⇒ ~$74M RR, ~49% coverage today / ~74% post-HSP-029 — still needs vol or deeper cut | full_gross_coverage |
 | Escrow climb velocity | 17.5%→58.5% Jul→Nov; +24pp Aug→Sep then flat — attestation did not climb with share | escrow_climb_velocity |
+| Peerset share softening | 365d 62.1% → 30d gross 55.7% → net **38.6%** — peer leadership soft on latest/net print | peerset_share_softening |

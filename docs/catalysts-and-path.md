@@ -110,3 +110,7 @@ HSP-029 ramps the issuance cap 2.5%→1.6% (timelock 2026-11-16). HSP-007 (forum
 ## near.com mix: stated share vs wallet print
 
 Q3 Nansen near.com-class volume share (~25%) does not match the Nov frontend wallet print ($616.9k / 20 bp ⇒ ~7.7% of Intents $4B). Mix-shift to near.com still sizes at ~+$9.7M/yr per +10pp in the arithmetic model, but the 25% anchor is not the live fee-touching share — upside exists *and* the headline distribution share is overstated. Exploratory.
+
+## Peerset share softening
+
+Intents peerset share prints 62.1% (365d) → 55.7% (30d gross) → **38.6% (30d net)**. Do not pitch rising peer dominance; leakage/conversion dials dominate.
