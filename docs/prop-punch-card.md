@@ -76,6 +76,7 @@
 | 70 | HSP-029 alone (flat fees) | Fee÷mint$ 0.21→0.32; offset ~16→24% | Denominator help; still ~3.2× to 1× coverage |
 | 71 | Whale fee share (flat-take assume) | ~77% of fees from 3.4% of swaps | Whale commercial terms dominate |
 | 72 | Vol multiples by take (table) | At AITR: ~2.6× for 1× mint$; ~2.1× for 50× | Take helps; volume still required |
+| 73 | Full-capture extreme (15.3 bp) | ~1× HSP-029 mint at current vol; 50× needs ~1.3× vol | Leakage pool is the bridge; volume last mile |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.
 
