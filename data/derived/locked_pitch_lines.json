@@ -1,8 +1,8 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 57.3,
-  "clusters": 212,
-  "commits": 594,
+  "hours_to_submit": 56.6,
+  "clusters": 215,
+  "commits": 606,
   "lines": [
     "capture_pp \u2248 3.07\u00d7 vol_pp; SK-tax \u2248 42.5 vol-pp",
     "user all-in \u2248 10.6\u00d7 captured \u03c4 \u2014 distribution owns spread",
@@ -16,8 +16,10 @@
     "capital-light \u21d2 no NEAR bond demand",
     "AI/agents = substitute narrative \u2014 do not lead",
     "Hold until H1b; HSP pending-then-lagged",
-    "LIVE: flip public + record X"
+    "LIVE: flip public + record X",
+    "DIC ~25d / half-life ~60d \u2014 held\u2260burned; buffer\u2260coverage wall",
+    "burn 25% of mint needs ~122% of fee capture as permanent removal"
   ],
   "repo_private": true,
-  "read": "Locked pitch lines @~57h / 212cl / 594 commits. Repo private=true. Exploratory."
+  "read": "Locked pitch (15 lines) @~57h / 215cl / 606 commits. Exploratory."
 }
