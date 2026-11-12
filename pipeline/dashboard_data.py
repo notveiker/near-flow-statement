@@ -287,6 +287,7 @@ def build() -> dict:
             "controllable_stack": optional("derived/controllable_stack.json"),
             "dial_rank": optional("derived/catalyst_dial_rank.json"),
             "soft_sink_ladder": optional("derived/soft_sink_ladder.json"),
+            "investment_object": optional("derived/investment_object.json"),
             "inventory_mix": optional("derived/inventory_mix.json"),
         },
         "repro": reproducibility(),

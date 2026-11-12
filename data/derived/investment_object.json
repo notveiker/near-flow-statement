@@ -1,0 +1,15 @@
+{
+ "investment_object": "range_with_policy_and_partner_risk",
+ "not": "closed_fee_to_scarcity_loop",
+ "score_order": [
+  "attach",
+  "mix",
+  "attestation",
+  "HSP-029",
+  "volume"
+ ],
+ "binding": "volume_after_leakage_bridge",
+ "rating": "Hold_until_H1b",
+ "headline": "Distribution owns the margin; leakage renegotiation is the bridge; volume is the last mile.",
+ "note": "From prop-gaps + pitch_sequence. Exploratory."
+}
