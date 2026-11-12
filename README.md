@@ -49,6 +49,9 @@ MIT
 
 ## Proprietary hyper-sweep (judge path)
 
-Start at `docs/prop-topline.md` → `docs/x-demo-talking-points.md` → dashboard Capture **Controllable dials**. Densest JSON: `data/derived/judge_one_pager_stack.json`. Stance: Hold until H1b; HSP-029 pending-not-live.
+Start at [`docs/prop-topline.md`](docs/prop-topline.md) → [`docs/pitch-spine.md`](docs/pitch-spine.md) → [`docs/x-demo-talking-points.md`](docs/x-demo-talking-points.md) → dashboard Capture **Controllable dials**.
 
-Judge spine: [`docs/pitch-spine.md`](docs/pitch-spine.md).
+Densest JSON: `data/derived/judge_one_pager_stack.json`. Edge list: [`docs/prop-what-is-proprietary.md`](docs/prop-what-is-proprietary.md). Falsifiers: [`docs/f1-f4-scorecard.md`](docs/f1-f4-scorecard.md).
+
+Stance: **Hold until H1b**. HSP-029 pending-not-live. History sample preliminary / not supported.
+
