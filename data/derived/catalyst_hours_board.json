@@ -1,0 +1,13 @@
+{
+ "hours_to_submit": 67.9,
+ "hours_to_hsp029": 91.9,
+ "hours_to_f1f4": 67.9,
+ "must_ship_before_submit": [
+  "public_repo",
+  "X_demo_dry_run"
+ ],
+ "pending_not_live": [
+  "hsp029"
+ ],
+ "note": "Submit and F1\u2013F4 land before HSP-029 timelock \u2014 treat issuance cut as scenario. Exploratory ops."
+}

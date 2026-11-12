@@ -299,3 +299,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Protocol pip irrelevant | 1 pip = 0.01 bp ≪ 4.98 capture / 52.9 user all-in — claim is wallet/policy | protocol_pip_irrelevant |
 | Fee engine core density | No-ref + dense fronts ≈ $4.1M/yr (~17% of capture) on thin vol — protect/extend | fee_engine_core_density |
 | History 157 dense _07 | 157 clusters; 2025Q1_07 denser stratum sealed — still not supported | history_progress_2025q1_07 |
+| Commercial conversation map | Ledger → attest → CIF → ADR defense → conversion → TG → LI.FI → dense fronts | commercial_conversation_map |
+| Catalyst hours board | Submit/F1–F4 before HSP-029 timelock — issuance cut stays scenario | catalyst_hours_board |
