@@ -365,3 +365,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Risks compact | H1b/attest/unexplained/relayer/HSP-007/CIF/multiple fragility — Hold binds | risks_compact |
 | History 170 / 2026Q2_08 | _08 contest-year continuing — still not supported | history_progress_2026q2_08 |
 | History 171 / 2026Q3_08 | Q4_08 last of 2026 _08 — still not supported | history_progress_2026q3_08 |
+| Sweep ~451 identity | Distribution owns margin; leakage then volume; Hold until H1b; must-ship public+X | sweep_450_identity |

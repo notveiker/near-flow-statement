@@ -1,0 +1,21 @@
+{
+ "commits": 451,
+ "clusters": 171,
+ "punch_rows": 335,
+ "derived_json": 316,
+ "hours_to_submit": 65.2,
+ "thesis": "distribution_owns_margin; leakage_then_volume; Hold_until_H1b",
+ "lead": [
+  "Ledger_first_SK_tax",
+  "attest_escrow",
+  "call_order",
+  "four_ten_m",
+  "immaterial_ladder",
+  "quality_on_cool"
+ ],
+ "must_ship": [
+  "public_repo",
+  "X_demo_dry_run"
+ ],
+ "note": "Sweep identity at ~451 commits / 171 clusters. Prop ready; delivery blockers remain. Exploratory."
+}
