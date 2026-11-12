@@ -1,0 +1,22 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_submit": 52.2,
+  "clusters": 238,
+  "commits": 705,
+  "dense_complete": [
+    "_12",
+    "_13",
+    "_14",
+    "_15",
+    "_16"
+  ],
+  "dense_active": "_17",
+  "history_overall": "not supported",
+  "claim": "Each denser stratum after _12 moved Intents\u00d7 within OoM (147\u2013202) and never flipped overall. Marginal history EV \u226a public+X EV.",
+  "binding_constraints": [
+    "repo_private",
+    "x_dry_run_todo"
+  ],
+  "action": "Keep waiter alive for honesty; burn human hours ONLY on public+X.",
+  "read": "Density EV exhausted @~52h/238cl. Exploratory."
+}

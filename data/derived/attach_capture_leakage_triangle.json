@@ -1,0 +1,18 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_submit": 52.2,
+  "clusters": 238,
+  "commits": 705,
+  "attach_now_pct": 23.6,
+  "attach_path_pct": 43.0,
+  "capture_pct": 32.5,
+  "leakage_usd_yr": 50000000,
+  "claim": "Attach without capture = gift to distributors. Capture without attach = shrinking pool. Leakage is the measurable gap between the two \u2014 and the only dial that moves both.",
+  "implication": "Do not pitch attach alone (volume theater). Do not pitch capture alone (pool shrink). Pitch leakage-close as the bridge that converts attach growth into capture dollars.",
+  "math": "Zero leakage \u2192 ~$74.5M RR; 50\u00d7 needs ~1.29\u00d7 vol. Attach 43% with current capture still leaves most BB$ off-NEAR.",
+  "do_not_lead": [
+    "attach as 50x",
+    "capture as share-of-wallet without leakage"
+  ],
+  "read": "Attach\u00d7capture\u00d7leakage triangle @~52h. Exploratory."
+}

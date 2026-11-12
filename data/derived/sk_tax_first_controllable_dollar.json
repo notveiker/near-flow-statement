@@ -1,0 +1,12 @@
+{
+  "asof": "2026-11-12",
+  "claim": "SK-tax ~$10.2M/yr is the first controllable dollar \u2014 not a volume bet. Logos bring volume; SK route tax brings capture. Ledger-first before SK deepens the same dial.",
+  "order": [
+    "SK_tax_route",
+    "Ledger_first_SK",
+    "default_rail_share",
+    "then_volume"
+  ],
+  "bb_share_of_partner_fees_pct": 0.0045,
+  "read": "SK-tax first controllable dollar. Exploratory."
+}

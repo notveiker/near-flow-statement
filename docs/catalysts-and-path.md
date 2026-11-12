@@ -485,3 +485,6 @@ Chain Signatures sits under Intents execution (execute ≫ respond ≫ sign) —
 4. Logos → default BB rails
 5. Conversion / attest / HSP-029 pending-lagged / attach-to-60
 <!-- /AUTO:FINALSTACK -->
+
+<!-- AUTO:TRI 2026-11-12 -->
+- Attach×capture×leakage triangle locked; density EV exhausted after _16; SK-tax first controllable $. ~52h left. Public+X NOW.
