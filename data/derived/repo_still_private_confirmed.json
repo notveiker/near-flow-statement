@@ -1,10 +1,10 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 52.6,
-  "clusters": 236,
-  "commits": 695,
-  "repo_private": true,
-  "visibility_checked": true,
-  "implication": "Still PRIVATE after 5 dense strata and ~700 commits \u2014 flip is the binding constraint",
-  "read": "PRIVATE=true @~53h/695c. Flip NOW. Exploratory."
+  "hours_to_submit": 51.0,
+  "commits": 735,
+  "clusters": 245,
+  "is_private": true,
+  "checked_via": "gh repo view",
+  "claim": "Repo still PRIVATE at 735 commits / 245 clusters / ~51h. Every additional prop commit widens the surplus/deficit gap. Flip visibility now.",
+  "read": "Private confirmed @~51h. CRITICAL."
 }

@@ -1,19 +1,19 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 51.9,
-  "commits": 713,
-  "clusters": 240,
+  "hours_to_submit": 51.0,
+  "commits": 735,
+  "clusters": 245,
   "items": [
     "Leakage is the bridge (~$50M; zero-leak \u2192 ~$74.5M RR; 50\u00d7 needs ~1.29\u00d7 vol)",
-    "Fee\u2260L1 OoM: Intents ~175\u2013202\u00d7 vs L1 ~0.22\u00d7 (pitch OoM, not pinned multiple)",
+    "Fee\u2260L1 OoM: Intents ~166\u2013202\u00d7 vs L1 ~0.22\u00d7 (pitch OoM, never pin)",
     "Intents \u224898.8% NEAR DEX / ~87% NEAR fees \u2014 the DEX surface",
     "Default/no-ref rail: 18.7% vol \u2192 45.8% BB$ (\u00d72.45 fee engine)",
-    "\u03c4~4.98 bp vs AITR~9.5 bp \u2014 capture ~52% of user all-in; gap is the bridge",
-    "Four ~$10M dials sequenced (SK-tax \u2192 Ledger \u2192 default-rail \u2192 attest); elasticity 3.07\u00d7",
-    "No-vol wall ~42.8% \u2014 dial sequencing beats volume chasing",
-    "mcap/rev 217\u00d7 vs THOR 16\u00d7 = claim design; Hold until H1b",
-    "Logos = volume without capture; SK BB ~0.0045% of partner fees",
-    "Opacity buys time not capture; attest ~5.7\u00d7 band compression"
+    "Distribution tax 67.5% = scoreboard; SK BB ~0.0045% of partner fees",
+    "Escrow BB 17.5\u219258.5% in ~4 mo (~10pp/mo) \u2014 attest is a clocked catalyst",
+    "\u03c4~4.98 vs AITR~9.5 bp; capture ~52% of all-in; all-in/capture ~10.6\u00d7",
+    "Four ~$10M dials sequenced; elasticity 3.07\u00d7; no-vol wall 42.8%",
+    "mcap/rev 217\u00d7 vs THOR 16\u00d7 = claim design; Hold until H1b (G1+G4 gates)",
+    "Confidential ~71% of measured capture + escrow 58.5% = Trust surface size"
   ],
-  "read": "Top-10 judges @~52h/713c. Exploratory."
+  "read": "Top-10 v4 @~51h/735c. Exploratory."
 }

@@ -1,17 +1,18 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 51.7,
-  "commits": 715,
-  "clusters": 240,
+  "hours_to_submit": 51.0,
+  "commits": 735,
+  "clusters": 245,
   "seconds": 60,
-  "script": "NEAR's fee engine is Intents \u2014 ~99% of DEX, ~180\u00d7 vs cooling L1. Leakage is the bridge: close ~$50M and 50\u00d7 needs only ~1.29\u00d7 volume. Default rail is the fee engine (18.7%\u219245.8% BB$). Sequence dials: SK-tax, Ledger-first, rail share, attest escrow. Hold until H1b. Dashboard is the proof \u2014 repo must be public.",
+  "script": "NEAR's fee engine is Intents \u2014 ~99% of DEX, ~170\u00d7 vs cooling L1. Leakage is the bridge: close ~$50M and 50\u00d7 needs only ~1.29\u00d7 volume. Distribution takes 67.5\u00a2/$; default rail turns 18.7% vol into 45.8% BB$. Escrow BB raced to 58.5% \u2014 attest now. SK-tax first. Hold until H1b. Dashboard is the proof \u2014 repo must be public.",
   "numbers_to_flash": [
-    "~180\u00d7",
+    "~170\u00d7",
     "~$50M",
     "~1.29\u00d7",
+    "67.5\u00a2",
     "18.7%\u219245.8%",
-    "3.07\u00d7 elasticity",
+    "58.5% escrow",
     "Hold until H1b"
   ],
-  "read": "60s judge card @~52h. Exploratory."
+  "read": "60s card v4 @~51h. Exploratory."
 }

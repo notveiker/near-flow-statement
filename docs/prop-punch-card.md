@@ -744,3 +744,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | What is proprietary NOW | 10 locked props; density/AI/ETF not on list | what_is_proprietary_now |
 | Catalyst path one-slide | now=public+X; near=SK+attest+rail; H1b=G1+G4 | catalyst_path_one_slide |
 | History 245 / 2025Q1_18 | _18 low EV; intents~166×; PUBLIC+X NOW | history_progress_2025q1_18 |
+| SK-tax ≈20.4% of leakage bridge | one nego closes a fifth before volume | sk_tax_share_of_leakage_bridge |
