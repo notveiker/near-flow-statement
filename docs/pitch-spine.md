@@ -62,3 +62,5 @@ SK-tax ~$10M (capture) · attest escrow ~$8.4M (trust) · HSP-007 10% emissions 
 Do not lead with ETF/NRR fee (~1.7% of Intents RR).
 
 LST soft sink ~611 DIC days (~25× buyback) but only ~9.3% of stake.
+
+DefiLlama Intents fees −31.6% MoM with vol −12% — absolute cool; quality path offsets.

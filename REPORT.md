@@ -131,7 +131,7 @@ Active accounts −77% YoY while Intents fees ~11× L1 fee print; NEAR-side swap
 
 ### Quality-on-cool context
 
-Attach/τ rose on −12% MoM volume, but 30d daily notional is still ~1.5× the year average — cool-off from an elevated print.
+Attach/τ rose on −12% MoM volume, but 30d daily notional is still ~1.5× the year average — cool-off from an elevated print. DefiLlama Intents fees −31.6% MoM (absolute cool faster than vol).
 
 
 ### Three ~$10M magnitudes
