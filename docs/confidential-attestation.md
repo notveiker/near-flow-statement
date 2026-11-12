@@ -26,3 +26,5 @@ Confidential TVL (~$160M at Q3-end) and near.com’s privacy default are product
 Derived CIF sensitivity sketch: `data/derived/cif_sensitivity.json` (1 bp on TVL×~17×/30d proxy).
 
 Escrow share climb Jul→Nov (~17.5%→~58.5%): `data/derived/escrow_share_climb.json`.
+
+Buyback funding rails (\$): `data/derived/bb_funding_rails.json` — collectors ~41% / escrow ~59%.
