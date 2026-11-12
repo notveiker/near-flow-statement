@@ -34,3 +34,9 @@ Telegram (`intents.tg`) is a live referral surface in census (~20% of tagged) bu
 - L1 actives −77% YoY vs Intents fee dominance
 
 - **Fee stack partition**: Explorer partner/appfee vs DefiLlama gross are not a clean partition (sum can exceed 100%). Directional partners>capture $ still holds.
+
+### Also closed-enough this sweep
+- **Solver residual sized**: 8.5 bp ≈ $11.4M/yr; ADR-029 ≤50% contest ~$5.7M (`solver_residual_ten_m`)
+- **TG attach dial bounded**: half@10bp ≈ $1.37M/yr; fee map still Gap (`tg_attach_dial`)
+- **SK exit resilience split**: fee low / distribution high (`sk_exit_resilience_split`)
+- **Relayer fee≠UX**: ~2000× vol/fee asymmetry on top1 outage (`relayer_fee_ux_asymmetry`)

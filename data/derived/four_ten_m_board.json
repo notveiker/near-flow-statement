@@ -1,0 +1,10 @@
+{
+ "magnitudes_rr_m": {
+  "sk_tax_25": 10.2,
+  "attest_escrow": 8.4,
+  "hsp007_10pct_claim": 11.8,
+  "solver_residual_8_5bp": 11.41
+ },
+ "naive_sum_rr_m": 41.8,
+ "read": "Four ~$10M surfaces: capture raise (SK-tax), trust raise (attest), mint claim (HSP-007), contestable rent (solver residual). Net the mint narrative; do not sum naively. Exploratory."
+}

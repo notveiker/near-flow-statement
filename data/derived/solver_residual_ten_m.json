@@ -1,0 +1,10 @@
+{
+ "excess_over_listed_bp": 8.5,
+ "excess_30d_m": 0.938,
+ "excess_rr_m": 11.41,
+ "vs_sk_tax_25_x": 1.12,
+ "vs_attest_x": 1.36,
+ "vs_hsp007_10pct_x": 0.97,
+ "adr029_cap_50pct_of_excess_rr_m": 5.71,
+ "note": "Solver/gas/pip residual ~8.5 bp \u2248 $11.41M/yr \u2014 same order as the three ~$10M magnitudes (SK-tax $10.2 / attest $8.4 / HSP-007 10% $11.8). ADR-029 can contest up to ~50% of this residual (~$5.7M/yr) without raising user fees. Fourth magnitude; not NEAR capture today. Exploratory."
+}

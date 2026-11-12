@@ -138,3 +138,11 @@ SK-tax 25% ≈ $10M, attest escrow ≈ $8.4M, HSP-007 illustrative 10% emissions
 ## LST DIC
 
 LST ~$196M ≈ ~611 DIC days (~25× buyback) but only ~9.3% of stake — size ≠ stake share.
+
+<!-- AUTO:SOLVER_TG -->
+### Contestable rent + TG attach (new)
+
+- **Solver residual** ~8.5 bp ≈ **$11.4M/yr** sits beside the three ~$10M magnitudes; ADR-029 can redirect ≤50% (~$5.7M/yr) without user-fee hike — contest is P&L on residual, not BB $.
+- **Telegram** (`intents.tg`) ~20% of tagged census with **unmapped** fee attribution — conservative half@10bp ≈ **$1.37M/yr** attach upside if labeled.
+- **SK exit resilience split**: lose ~38% 1Click distribution, only ~2% traceable BB — fee engine already in no-ref; protect distribution surface separately from fee resilience.
+<!-- /AUTO:SOLVER_TG -->

@@ -230,3 +230,13 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 150 clusters | 150 preliminary clusters through 2025Q2_06 — milestone, still not supported | sweep_milestone_150_clusters |
 | History honesty at 150 | 150 clusters ≠ supported — pitch must say preliminary / not supported | history_honesty_150 |
 | History entering 2026 | 152 clusters through 2025Q4 — contest-year strata next; still preliminary | history_entering_2026 |
+
+| Solver residual ~$10M | 8.5 bp excess ≈ **$11.4M/yr** — fourth ~$10M magnitude; ADR-029 can contest ~50% (~$5.7M) | solver_residual_ten_m |
+| Four ~$10M board | SK-tax $10.2 + attest $8.4 + HSP-007 $11.8 + solver residual $11.4 — capture/trust/mint/rent | four_ten_m_board |
+| TG attach dial | intents.tg ~20% tagged, fee unmapped; half@10bp ≈ **$1.37M/yr** (ub 20bp ~$5.5M) | tg_attach_dial |
+| Relayer fee≠UX | Top1 half-outage ~$55M vol / ~$28k fee (~2000×) — ops is share risk not P&L | relayer_fee_ux_asymmetry |
+| SK exit resilience split | 38% 1Click gone / 2% BB lost / peerset still #1 at 45% — fee resilient, dist fragile | sk_exit_resilience_split |
+| Partner/BB quality lens | Partner÷BB ratio 17.8→9.9× (~1.8×) with attach 23.6→43 — second quality-on-cool lens | partner_bb_ratio_quality_lens |
+| Gasless ≠ L1 gas lift | Delegate ~43% ⇒ Intents does not mechanically lift retail NEAR gas demand | gasless_weakens_l1_gas_narrative |
+| History 154 clusters | 154 preliminary through 2026Q2_06 — contest-year filling; still not supported | history_progress_2026q2 |
+| Deadline ~68h | Judge packet ready; must-ship: public repo, X dry-run, F1–F4 on day | deadline_ops |

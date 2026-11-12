@@ -1,0 +1,9 @@
+{
+ "sk_vol_1click_pct": 38.2,
+ "traceable_bb_loss_pct": 2.0,
+ "peerset_share_if_exit_pct": 45.2,
+ "still_largest_peer": true,
+ "fee_fragility": "low_traceable",
+ "distribution_fragility": "high_38pct_1click",
+ "insight": "SK exit: ~38% 1Click vol gone, only ~2% traceable BB $ lost, peerset share still #1 at ~45%. Fee engine already lives in no-ref; distribution surface does not. Resilience split is the prop. Exploratory."
+}

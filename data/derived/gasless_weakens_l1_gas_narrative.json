@@ -1,0 +1,7 @@
+{
+ "delegate_share_pct": 43,
+ "implication": "Relayed end users do not need NEAR for gas; gas demand concentrates in operator working balances",
+ "do_not_lead": "intents_lifts_retail_near_gas_demand",
+ "scoreboard": "token_claimable_bp_capture_attach",
+ "note": "Chain delegate ~43% \u21d2 Intents adoption does not mechanically lift retail NEAR gas demand. Scoreboard stays \u03c4/capture/attach. Exploratory."
+}

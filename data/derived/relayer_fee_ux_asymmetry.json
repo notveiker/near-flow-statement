@@ -1,0 +1,7 @@
+{
+ "top1_share_pct": 83,
+ "vol_lost_1d_m": 55.3,
+ "fee_lost_1d_m": 0.0276,
+ "vol_to_fee_x": 2004.0,
+ "read": "Relayer top1 outage destroys UX/share (~$55M/d notional) while fee $ at \u03c4 is tiny (~$28k) \u2014 ops risk is narrative/share risk, not P&L. Fee engine resilience \u2260 UX resilience. Exploratory."
+}

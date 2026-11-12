@@ -1,5 +1,5 @@
 {
- "one_liner": "Intents fee engine owned by distribution; two bridges (SK-tax + attest) before volume; Hold until H1b.",
+ "one_liner": "Intents fee engine owned by distribution; two bridges (SK-tax + attest) before volume; solver residual ~$11.41M/yr is contestable rent; Hold until H1b.",
  "lead_catalysts": [
   "sk_tax_renegotiation",
   "attest_escrow",
@@ -26,7 +26,16 @@
  "falsifiers": "docs/f1-f4-scorecard.md",
  "spine": "docs/pitch-spine.md",
  "submit": "docs/submit-packet.md",
- "clusters_preliminary": 151,
+ "clusters_preliminary": 154,
  "controllable_bridge": "sk_tax_and_attest_then_volume",
- "intents_share_near_protocol_fees_pct": 87
+ "intents_share_near_protocol_fees_pct": 87,
+ "four_ten_m": {
+  "sk_tax_25": 10.2,
+  "attest_escrow": 8.4,
+  "hsp007_10pct_claim": 11.8,
+  "solver_residual_8_5bp": 11.41
+ },
+ "solver_residual_rr_m": 11.41,
+ "tg_attach_conservative_rr_m": 1.37,
+ "hours_to_submit": 68.3
 }

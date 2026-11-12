@@ -1,0 +1,8 @@
+{
+ "census_tg_share_tagged_pct": 20.4,
+ "fee_attribution": "unmapped",
+ "upper_bound_if_20bp_on_full_tg_share_rr_m": 5.48,
+ "conservative_10bp_on_half_tg_rr_m": 1.37,
+ "vs_whale_10pp_x": 1.4,
+ "note": "Telegram (intents.tg) is ~20.4% of tagged census referrals with unmapped fee attribution. If even half that surface attached at 10 bp \u2248 $1.37M/yr; full-share 20bp upper bound \u2248 $5.48M/yr. Label+attach gap \u2014 live distribution without buyback map. Exploratory; census\u22601Click vol."
+}
