@@ -15,6 +15,7 @@
 9. **Growth honesty** — 619% USD vs 71% NEAR  
 10. **NEAR-side swaps ~3.5%** — foreign-asset routing on NEAR rails  
 11. **Inventory ~17×/30d** — capital-light settlement float  
+12. **BB funding rails** — collectors ~41% / escrow ~59% of buyback dollars  
 
 ## Pitch in one sentence
 
