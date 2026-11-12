@@ -572,3 +572,15 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Deadline = packaging premium | Evidence already shipped; remaining premium public+X | deadline_compresses_evidence_premium |
 | Catalyst stack order | public+X → SK-tax → conversion → HSP → attach; volume last | near_term_catalyst_stack_order |
 | Judge minute vs punch depth | ~534 rows / ~8 min → lead with 5 locked lines | judge_minute_budget_vs_punch_depth |
+| Affiliate contest = SK desk | Affiliate contest: SK exit ~38.2% vol vs ~2.0% BB (×19.1); same desk as SK-tax $10.2M. Exploratory. | affiliate_contest_same_desk_as_sk |
+| Soft-sink/burn ≠ wall | Wall 42.8% untouched by NRR~178d / BB DIC~25d; burn-25% needs ~122.2% of capture. Exploratory. | soft_sink_burn_do_not_move_wall |
+| near.com mix mutex w/ SK-tax | near.com share gap 17.3pp; mix+10pp ~$9.7M ≈0.95× SK-tax — mutex. Exploratory. | nearcom_mix_mutex_with_sk_tax |
+| Fidelity high ⇒ leakage=terms | Fidelity BB~96.7% / SK~91.1% on n=195 → leakage $50.2M is terms. Exploratory. | fidelity_high_leakage_is_terms |
+| Settlement weight ≫ tx count | HOT~34.5% tx vs Intents~13.2% at matched gas; HOT tx/gas ~2.61× Intents. Exploratory. | settlement_weight_not_tx_count |
+| Foreign rail ≠ NEAR demand | NEAR-sided ~3.5%; exit $9.4M ≈4.72× capture $1.99M/30d. Exploratory. | foreign_rail_fee_neq_near_demand |
+| ETF/AI immaterial vs SK-tax | ETF~$0.42M / AI5%~$0.33M vs SK-tax $10.2M (~0.04×). Exploratory. | immaterial_narratives_vs_sk_tax |
+| Five ledgers: lead capture | Lead capture $10.2M; attest parallel $8.4M; naive four-sum $41.8M is forbidden. Exploratory. | five_ledgers_lead_capture_only |
+| Capital-light ⇒ leakage binds | Turnover ~17.4×/30d (~1.7d); leakage $50.2M binds, not WC. Exploratory. | capital_light_leakage_binds |
+| Peerset leadership ≠ prize | Peerset gross~55.7% net~38.6% (gap 17.1pp); prize = SK-tax $10.2M not share. Exploratory. | peerset_leadership_not_the_prize |
+| Trust nested under SK-tax | Trust-SK partner vs direct BB ×9.3; counterfactual ~$1.72M RR. Nest under SK desk. Exploratory. | trust_nested_sk_tax_conversation |
+| Mutex naive-sum trap | Mutex trap: naive $25.4M (>105.8 vol-pp). Call-order + elasticity 3.07×. Exploratory. | mutex_naive_sum_trap |

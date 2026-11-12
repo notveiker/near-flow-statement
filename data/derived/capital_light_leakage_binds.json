@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "turnover_x_30d": 17.4,
+  "days_of_vol": 1.7,
+  "pci": 0.0573,
+  "annualised_leakage_m": 50.2,
+  "implication": "Inventory turns ~17\u00d7/30d (PCI~0.06) \u2014 capital-light fee engine; binding constraint is leakage/capture share, not working capital or bonds",
+  "read": "Turnover ~17.4\u00d7/30d (~1.7d); leakage $50.2M binds, not WC. Exploratory."
+}

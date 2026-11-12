@@ -424,3 +424,11 @@ Chain Signatures sits under Intents execution (execute ≫ respond ≫ sign) —
 - Hold flip = **H1b**, not more strata (223 clusters still not supported).
 - Catalyst order: public+X → SK-tax → conversion → HSP → attach.
 <!-- /AUTO:SWEEP15 -->
+
+<!-- AUTO:SWEEP16 -->
+- Soft-sink/burn/DIC do not move coverage wall ~42.8%; burn-25% needs ~122% of capture.
+- Fidelity ~92–97% ⇒ $50.2M leakage is commercial terms.
+- Foreign rail: NEAR-sided ~3.5%; exit ~4.7× capture — fee ≠ NEAR demand.
+- ETF/AI immaterial (~0.02× SK-tax); peerset leadership ≠ prize.
+- Five ledgers lead capture; Trust nested under SK; mutex naive-sum trap.
+<!-- /AUTO:SWEEP16 -->

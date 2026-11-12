@@ -1,0 +1,15 @@
+{
+  "asof": "2026-11-12",
+  "nansen_nearcom_share_pct": 25.0,
+  "wallet_implied_share_pct": 7.7,
+  "gap_pp": 17.3,
+  "mix_10pp_rr_m": 9.7,
+  "vs_sk_tax_x": 0.95,
+  "mutex_with": [
+    "sk_tax",
+    "conversion",
+    "attach"
+  ],
+  "implication": "near.com Nansen~25% vs wallet-implied~7.7% (gap~17pp) \u2014 mix +10pp \u2248$9.7M almost equals SK-tax, but mutex: same partner margin, do not stack",
+  "read": "near.com share gap 17.3pp; mix+10pp ~$9.7M \u22480.95\u00d7 SK-tax \u2014 mutex. Exploratory."
+}

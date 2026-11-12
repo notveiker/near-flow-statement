@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "affiliate_vol_to_bb_asymmetry_x": 19.1,
+  "sk_exit_vol_pct": 38.2,
+  "sk_exit_traceable_bb_pct": 2.0,
+  "sk_tax_rr_m": 10.2,
+  "implication": "ADR-029 affiliate share contests the same partner margin SK-tax targets \u2014 vol/BB asymmetry ~19\u00d7 means capture fights are P&L allocation, not user-price raises",
+  "read": "Affiliate contest: SK exit ~38.2% vol vs ~2.0% BB (\u00d719.1); same desk as SK-tax $10.2M. Exploratory."
+}

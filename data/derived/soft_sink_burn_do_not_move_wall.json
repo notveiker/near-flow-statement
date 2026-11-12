@@ -1,0 +1,10 @@
+{
+  "asof": "2026-11-12",
+  "coverage_wall_pct": 42.8,
+  "nrr_dic_days": 177.7,
+  "buyback_dic_days": 24.8,
+  "burn_needs_pct_of_capture_for_25pct_mint": 122.2,
+  "dic_half_life_vs_buffer_x": 2.44,
+  "implication": "NRR/LST soft-sinks and held buybacks change float days; they do not move the ~42.8% fee\u00f7mint coverage wall \u2014 burn-to-material needs >100% of capture",
+  "read": "Wall 42.8% untouched by NRR~178d / BB DIC~25d; burn-25% needs ~122.2% of capture. Exploratory."
+}

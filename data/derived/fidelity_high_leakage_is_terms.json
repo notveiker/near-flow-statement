@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "bb_exact_rate_pct": 96.7,
+  "swapkit_paid_rate_pct": 91.1,
+  "sample_n": 195,
+  "annualised_leakage_m": 50.2,
+  "implication": "Payment fidelity ~92\u201397% means the ~$50M leakage is commercial terms (who keeps margin), not collection failure \u2014 renegotiate, don't chase unpaid invoices",
+  "read": "Fidelity BB~96.7% / SK~91.1% on n=195 \u2192 leakage $50.2M is terms. Exploratory."
+}

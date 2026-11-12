@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "trust_sk_partner_vs_direct_bb_x": 9.3,
+  "trust_sk_vol_m": 70.65,
+  "trust_direct_vol_m": 26.49,
+  "counterfactual_rr_m": 1.72,
+  "implication": "Trust-via-SK pays ~9\u00d7 partner tax vs Trust-direct BB \u2014 Trust is nested under the SK-tax conversation, not a separate narrative",
+  "read": "Trust-SK partner vs direct BB \u00d79.3; counterfactual ~$1.72M RR. Nest under SK desk. Exploratory."
+}

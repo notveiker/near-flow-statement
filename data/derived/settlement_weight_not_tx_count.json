@@ -1,0 +1,8 @@
+{
+  "asof": "2026-11-12",
+  "hot_tx_share_pct": 34.5,
+  "intents_tx_share_pct": 13.2,
+  "hot_tx_per_gas_vs_intents_x": 2.61,
+  "implication": "HOT spam tx share \u226b Intents but gas-matched \u2014 fee density is settlement weight; L1 tx counts mislead the fee engine story",
+  "read": "HOT~34.5% tx vs Intents~13.2% at matched gas; HOT tx/gas ~2.61\u00d7 Intents. Exploratory."
+}

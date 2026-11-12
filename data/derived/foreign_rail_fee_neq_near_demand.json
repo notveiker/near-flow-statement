@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "near_side_swap_share_pct": 3.5,
+  "net_exit_vs_capture_x": 4.72,
+  "net_near_sold_usd_m": 9.4,
+  "captured_rev_30d_m": 1.99,
+  "implication": "Intents is a foreign-asset rail (~3.5% NEAR-sided); net NEAR exit ~4.7\u00d7 captured revenue \u2014 do not equate fee capture with NEAR-asset demand",
+  "read": "NEAR-sided ~3.5%; exit $9.4M \u22484.72\u00d7 capture $1.99M/30d. Exploratory."
+}

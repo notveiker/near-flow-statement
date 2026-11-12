@@ -1,0 +1,25 @@
+{
+  "asof": "2026-11-12",
+  "naive_sum_rr_m": 25.4,
+  "naive_sum_vol_pp": 105.8,
+  "dials": [
+    {
+      "dial": "sk_tax_25",
+      "rr_m": 10.2,
+      "volume_pp_equivalent": 42.5
+    },
+    {
+      "dial": "mix_10pp_nearcom",
+      "rr_m": 9.7,
+      "volume_pp_equivalent": 40.4
+    },
+    {
+      "dial": "conversion_2x",
+      "rr_m": 5.5,
+      "volume_pp_equivalent": 22.9
+    }
+  ],
+  "elasticity_x": 3.07,
+  "implication": "Naive dial sum ~$25.4M / ~105.8 vol-pp is forbidden \u2014 mutex on same partner margin; pitch ranked call-order with elasticity ~3.07\u00d7",
+  "read": "Mutex trap: naive $25.4M (>105.8 vol-pp). Call-order + elasticity 3.07\u00d7. Exploratory."
+}

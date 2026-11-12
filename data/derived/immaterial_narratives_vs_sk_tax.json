@@ -1,0 +1,17 @@
+{
+  "asof": "2026-11-12",
+  "etf_nrr_rr_m": 0.42,
+  "ai_5pct_rr_m": 0.33,
+  "sk_tax_rr_m": 10.2,
+  "etf_vs_sk_x": 0.041,
+  "ranked": [
+    "etf_nrr",
+    "agent_5pct",
+    "whale_10pp",
+    "tg_half",
+    "cif_1bp",
+    "sk_tax_25"
+  ],
+  "implication": "ETF/AI sit ~0.02\u20130.03\u00d7 SK-tax \u2014 lead material dials only; narratives below CIF are noise for the pitch minute",
+  "read": "ETF~$0.42M / AI5%~$0.33M vs SK-tax $10.2M (~0.04\u00d7). Exploratory."
+}

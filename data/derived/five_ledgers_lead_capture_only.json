@@ -1,0 +1,41 @@
+{
+  "asof": "2026-11-12",
+  "ledgers": [
+    {
+      "ledger": "capture",
+      "example": "SK-tax 25%",
+      "rr_m": 10.2,
+      "job": "raise token claim from partner pool"
+    },
+    {
+      "ledger": "trust",
+      "example": "attest escrow",
+      "rr_m": 8.4,
+      "job": "underwrite existing dollars; collapse band"
+    },
+    {
+      "ledger": "defense",
+      "example": "ADR-029 half residual",
+      "rr_m": 5.71,
+      "job": "defend contestable solver rent"
+    },
+    {
+      "ledger": "mint",
+      "example": "HSP-007 10% claim",
+      "rr_m": 11.8,
+      "job": "competing claim on issuance pool (Gap)"
+    },
+    {
+      "ledger": "rent",
+      "example": "solver residual 8.5bp",
+      "rr_m": 11.41,
+      "job": "contestable distribution rent pool"
+    }
+  ],
+  "naive_four_ten_sum_rr_m": 41.8,
+  "lead_ledger": "capture",
+  "lead_rr_m": 10.2,
+  "parallel_underwriting_rr_m": 8.4,
+  "implication": "Five ledgers (capture/trust/defense/mint/rent) \u2014 lead capture (SK-tax); run attest in parallel; never sum ~$42M naive four-$10M board",
+  "read": "Lead capture $10.2M; attest parallel $8.4M; naive four-sum $41.8M is forbidden. Exploratory."
+}
