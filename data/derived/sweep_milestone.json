@@ -1,13 +1,13 @@
 {
- "commits_since_structural": 441,
- "clusters_preliminary": 169,
- "hours_to_submit": 65.6,
+ "commits_since_structural": 445,
+ "clusters_preliminary": 170,
+ "hours_to_submit": 65.4,
  "stratum": "_08_dense",
- "last_ingested": "2026Q1_08",
+ "last_ingested": "2026Q2_08",
  "judge_ready": true,
  "must_ship": [
   "public_repo",
   "X_demo_dry_run"
  ],
- "note": "~441 commits; 169 clusters; _08 into 2026; ~65.6h; must-ship public repo + X."
+ "note": "~445 commits; 170 clusters; ~65.4h; must-ship public repo + X."
 }
