@@ -1,14 +1,14 @@
 {
-  "commits_since_structural": 485,
-  "clusters_preliminary": 181,
-  "hours_to_submit": 63.3,
+  "commits_since_structural": 489,
+  "clusters_preliminary": 182,
+  "hours_to_submit": 63.1,
   "stratum": "_10_dense",
-  "last_ingested": "2025Q1_10",
-  "next": "2025Q2_10",
+  "last_ingested": "2025Q2_10",
+  "next": "2025Q3_10",
   "judge_ready": true,
   "must_ship": [
     "public_repo_STILL_PRIVATE",
     "X_demo_dry_run"
   ],
-  "note": "~485 commits; 181 clusters; _10 dense started; one-breath locked; repo private; ~63.3h."
+  "note": "~489 commits; 182 clusters; _10 mid-2025; one-breath on dashboard; repo private; ~63.1h."
 }
