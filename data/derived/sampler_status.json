@@ -1,5 +1,8 @@
 {
  "primary_clusters_local": 148,
+ "sample2_clusters_local": 96,
  "last_ingested": "2024Q4_06",
- "overall": "not_supported_preliminary"
+ "overall": "not_supported_preliminary",
+ "commits_since_structural_approx": 329,
+ "note": "Through 2024Q4_06 (148 clusters). Entering 2025 strata next. Judge packet ready."
 }
