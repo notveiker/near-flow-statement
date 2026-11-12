@@ -494,6 +494,7 @@ def build() -> dict:
             "attach_not_50x": optional("derived/attach_on_1click_cannot_finish_50x.json"),
             "commits_690": optional("derived/commits_690_milestone.json"),
             "hsp007_nostack": optional("derived/hsp007_bounds_do_not_stack_with_capture.json"),
+            "dense_16_complete": optional("derived/dense_16_complete.json"),
             "noref_core": optional("derived/noref_concentration_is_fee_core.json"),
             "f1_f4": optional("derived/f1_f4_on_submit_day.json"),
         },

@@ -146,3 +146,8 @@ Prop/dashboard/judge packet ready (~437 commits, 168 clusters preliminary). **Mu
 - Intents ≈**98.8%** of NEAR DEX volume — Intents is the chain DEX surface.
 - Intents OK~83.4% = UX risk tail. ETF NRR confirms non-lead. npm≠capture.
 <!-- /AUTO:SWEEP24 -->
+
+<!-- AUTO:D16DONE -->
+**`_12`–`_16` dense COMPLETE** @236 clusters. Intents~202× OoM; overall not supported.
+**~53h left.** Binding: public repo + X dry-run ONLY. Strata EV exhausted.
+<!-- /AUTO:D16DONE -->

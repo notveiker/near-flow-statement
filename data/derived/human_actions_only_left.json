@@ -1,10 +1,16 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 53.3,
-  "clusters": 233,
-  "commits": 680,
+  "hours_to_submit": 52.7,
+  "clusters": 236,
+  "commits": 693,
   "severity": "CRITICAL",
-  "dense_15_complete": true,
+  "dense_complete": [
+    "_12",
+    "_13",
+    "_14",
+    "_15",
+    "_16"
+  ],
   "headline": "leakage_is_the_bridge",
   "x_script_path": "docs/x-demo-talking-points.md",
   "actions_left": [
@@ -18,15 +24,14 @@
       "action": "x_demo_dry_run_90s",
       "owner": "human",
       "blocks": "submit",
-      "status": "CRITICAL_OPEN",
-      "script": "docs/x-demo-talking-points.md"
+      "status": "CRITICAL_OPEN"
     }
   ],
   "agent_cannot": [
     "public_repo",
     "x_recording"
   ],
-  "prop_ready_excl_must_ship": 0.98,
-  "implication": "Agent done on prop EV; human must flip public + record 90s X now",
-  "read": "CRITICAL @~53h: public + X 90s. Exploratory."
+  "prop_ready_excl_must_ship": 0.99,
+  "implication": "Five dense strata done; agent prop EV exhausted; human public+X only",
+  "read": "_12\u2013_16 done. CRITICAL @~53h: public + X. Exploratory."
 }

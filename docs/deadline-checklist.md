@@ -80,3 +80,8 @@ History/`_10` seals are **not** blockers.
 2. **Record X 90s** — script in docs/x-demo-talking-points.md
 3. Submit + F1–F4 on 14 Nov
 <!-- /AUTO:URGENT -->
+
+<!-- AUTO:D16DONE -->
+**`_12`–`_16` dense COMPLETE** @236 clusters. Intents~202× OoM; overall not supported.
+**~53h left.** Binding: public repo + X dry-run ONLY. Strata EV exhausted.
+<!-- /AUTO:D16DONE -->

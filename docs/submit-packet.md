@@ -74,3 +74,8 @@ See `data/derived/risks_compact.json` — H1b/attest/relayer/HSP-007/CIF/multipl
 **HEADLINE:** Leakage is the bridge — close ~$50M → 50× needs ~1.29× vol.
 **Clock:** ~53h | **232 clusters** | **676 commits** | X script ready | repo **PRIVATE**
 <!-- /AUTO:HEADLINE -->
+
+<!-- AUTO:D16DONE -->
+**`_12`–`_16` dense COMPLETE** @236 clusters. Intents~202× OoM; overall not supported.
+**~53h left.** Binding: public repo + X dry-run ONLY. Strata EV exhausted.
+<!-- /AUTO:D16DONE -->

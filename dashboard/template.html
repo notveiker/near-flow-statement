@@ -873,6 +873,8 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (An5) bits.push(`1Click@100% AITR only ~${An5.oneclick_100aitr_vs_need_x}× of 50× need — attach≠50×.`);
     const H7n = D.catalysts && D.catalysts.hsp007_nostack;
     if (H7n) bits.push(`HSP-007 10–20% claim ~0.5–1× Intents RR — do not stack with capture (budget unknown).`);
+    const D16c = D.catalysts && D.catalysts.dense_16_complete;
+    if (D16c) bits.push(`_12–_16 COMPLETE @${D16c.clusters} — strata EV exhausted; public+X ONLY.`);
 const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);

@@ -1,0 +1,20 @@
+{
+  "asof": "2026-11-12",
+  "clusters": 236,
+  "stratum": "_16",
+  "range": "through_2026Q4",
+  "intents_x": 201.695,
+  "l1_yoy_tx_x": 0.2065,
+  "overall": "not_supported",
+  "hours_to_submit": 52.7,
+  "commits": 693,
+  "prior_complete": [
+    "_12",
+    "_13",
+    "_14",
+    "_15",
+    "_16"
+  ],
+  "implication": "_12\u2013_16 COMPLETE \u2014 five dense strata; history EV exhausted; only public+X remain",
+  "read": "_16 COMPLETE @236; intents~202\u00d7; still not supported. PUBLIC+X ONLY. Exploratory."
+}

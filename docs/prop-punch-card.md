@@ -685,3 +685,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 235 / 2026Q3_16 | intents~202×; Q4 left in _16; not supported | history_progress_2026q3_16 |
 | ~690-commit milestone | intents×~202 under _16; still OoM; public+X | commits_690_milestone |
 | HSP-007 bounds do not stack w/ capture | 10–20% claim ~0.5–1× Intents RR; budget unknown | hsp007_bounds_do_not_stack_with_capture |
+| _16 COMPLETE / 236 clusters | intents~202×; _12–_16 done; strata EV exhausted | dense_16_complete |
