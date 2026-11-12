@@ -529,6 +529,7 @@ def build() -> dict:
             "sk_funnel_dom": optional("derived/sk_tax_dominates_capture_funnel.json"),
             "sk_hhi_feature": optional("derived/sk_hhi_is_tax_leverage_feature.json"),
             "allin_leak_ratio": optional("derived/all_in_over_capture_is_leakage_ratio.json"),
+            "dist_tax_escrow_urg": optional("derived/dist_tax_times_escrow_accel_urgency.json"),
         },
         "repro": reproducibility(),
     }

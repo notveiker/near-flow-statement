@@ -1,17 +1,17 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 52.3,
-  "clusters": 238,
-  "commits": 704,
+  "hours_to_submit": 51.4,
+  "clusters": 242,
+  "commits": 723,
   "lines": [
-    "Fee\u2260L1 OoM: Intents ~175\u2013202\u00d7 (drifts; always \u226b100\u00d7) vs L1 ~0.22\u00d7.",
-    "Intents \u224898.8% of NEAR DEX \u2014 the chain's DEX surface is Intents.",
+    "Fee\u2260L1 OoM: Intents ~175\u2013202\u00d7 (drifts; \u226b100\u00d7) vs L1 ~0.22\u00d7. Intents\u224899% DEX.",
     "HEADLINE: Leakage is the bridge \u2014 close ~$50M \u2192 50\u00d7 needs only ~1.29\u00d7 vol.",
-    "Default/no-ref rail IS the fee engine (18.7%\u219245.8% BB$); logos = vol w/o capture.",
-    "SK-tax ~$10.2M first; mcap/rev 217\u00d7 vs THOR 16\u00d7 = discretionary claim; Hold until H1b.",
-    "Escrow BB rail \u219258.5% \u2014 Trust urgency; attest ~5.7\u00d7 band compression.",
-    "704 commits / _12\u2013_16 densified; overall not supported \u2014 honesty.",
-    "NOW: flip repo public + record X 90s (script ready) + submit."
+    "Default/no-ref rail IS fee engine (18.7%\u219245.8% BB$, \u00d72.45); logos = vol w/o capture.",
+    "Distribution tax ~67.5% of gross is the scoreboard; SK BB ~0.0045% of partner fees.",
+    "Escrow BB 17.5\u219258.5% in ~4 mo (~10pp/mo) \u2014 attest is a clocked catalyst.",
+    "SK-tax first dial (~$10M); HHI = tax leverage; sequence before volume (elasticity 3.07\u00d7).",
+    "mcap/rev 217\u00d7 vs THOR 16\u00d7 = claim design; Hold until H1b.",
+    "723c / 242cl shipped \u2014 NOW: flip public + record X 90s + submit."
   ],
   "do_not_lead": [
     "AI",
@@ -27,7 +27,9 @@
     "builder pulse",
     "Aurora",
     "H1c",
-    "Bitwise"
+    "Bitwise",
+    "burn-as-engine",
+    "attach-as-50x"
   ],
-  "read": "Locked 8 lines @~52h/238cl/704c. Exploratory."
+  "read": "Locked 8 lines @~51h/242cl/723c. Exploratory."
 }

@@ -1,18 +1,19 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 52.0,
-  "commits": 709,
-  "clusters": 239,
+  "hours_to_submit": 51.4,
+  "commits": 723,
+  "clusters": 242,
   "repo_private": true,
+  "x_dry_run_done": false,
   "actions": [
     {
       "rank": 1,
-      "action": "Flip GitHub repo public (Settings \u2192 Danger \u2192 Change visibility)",
+      "action": "Flip GitHub repo public",
       "blocks": "judges cannot open evidence"
     },
     {
       "rank": 2,
-      "action": "Record X demo from x_demo_ninety_second_beats.json / docs/x-demo-talking-points.md",
+      "action": "Record X 90s from x_demo_ninety_second_beats.json",
       "blocks": "submission incomplete"
     },
     {
@@ -26,6 +27,6 @@
     "record X",
     "submit form"
   ],
-  "agent_has_done": "709 commits, 239 clusters, headline+F1-F4+X script locked",
-  "read": "HUMAN ONLY left @~52h. CRITICAL."
+  "agent_has_done": "723 commits, 242 clusters, headline+F1-F4+X beats+escrow clock locked",
+  "read": "HUMAN ONLY @~51h. CRITICAL."
 }
