@@ -10,6 +10,8 @@
  ],
  "binding": "volume_after_leakage_bridge",
  "rating": "Hold_until_H1b",
- "headline": "Distribution owns the margin; leakage renegotiation is the bridge; volume is the last mile.",
- "note": "From prop-gaps + pitch_sequence. Exploratory."
+ "headline": "Distribution owns the margin; leakage is the bridge; volume is the last mile; quality rose on a cooling print.",
+ "note": "From prop-gaps + pitch_sequence. Exploratory.",
+ "quality_on_cool": true,
+ "vol_cooling_mom_pct": -12.3
 }
