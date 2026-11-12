@@ -1,0 +1,7 @@
+{
+ "captured_bp_needed_for_50x_at_current_vol": 19.81,
+ "gross_bp": 15.3,
+ "capture_share_pct_needed": 129.5,
+ "impossible_at_current_gross": true,
+ "note": "At current Intents volume, 50\u00d7 needs ~19.8 bp captured \u2014 above today\u2019s 15.3 gross all-in. Capture-share alone cannot hit 50\u00d7 without gross take rising or volume rising. Exploratory."
+}
