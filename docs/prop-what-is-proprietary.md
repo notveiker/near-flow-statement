@@ -27,6 +27,8 @@
 
 Distribution owns the margin; leakage renegotiation is the bridge; volume is the last mile; Hold until H1b.
 
+Punch card now has **100+** rows.
+
 ## Artifacts
 
 - [`prop-topline.md`](prop-topline.md)  
