@@ -1,0 +1,5 @@
+{
+ "fefunds_escrow_path_usd_k": 616.9,
+ "bb_from_escrow_usd_k": 823.7,
+ "note": "Fee-funds escrow path ~$617k vs buyback from escrow unshield ~$824k \u2014 related but not identical rails. Exploratory."
+}

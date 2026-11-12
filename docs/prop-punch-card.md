@@ -92,6 +92,7 @@
 | 86 | SK exit ceilings | Traceable ~2%; escrow-tied ceiling ~43–74% | Fee resilience depends on escrow↔SK link (gap) |
 | 87 | Inventory turnover | ~17×/30d (~1.7 days of vol); PCI ~0.057 | Capital-light settlement float |
 | 88 | BB funding rails ($) | Collectors ~41% / escrow ~59% | Escrow is majority dollar rail |
+| 89 | Fefunds vs BB escrow rails | ~$617k vs ~$824k | Related but not identical escrow paths |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.
 
