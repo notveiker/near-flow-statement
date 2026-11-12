@@ -30,4 +30,5 @@
 attach/AITR, capture share, no-ref $, Intents≈NEAR DEX, fee÷mint$, volume last mile.
 Two bridges: SK-tax ~$10M + attest ~$8.4M before volume.
 
-*Ops stamp: ~68.3h to submit; 154 clusters through 2026Q2 preliminary; four ~$10M board + TG dial shipped.*
+
+*Ops stamp: ~67.5h to submit; 159 clusters (_07 dense); ~389 commits; call-order + four ~$10M + ladder live on dashboard.*

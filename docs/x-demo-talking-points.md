@@ -31,3 +31,7 @@
 <!-- AUTO:X_CONVO -->
 7. **Call order (demo close):** Ledger → attest → CIF → ADR defense → conversion. Volume last.
 <!-- /AUTO:X_CONVO -->
+
+<!-- AUTO:X_FINAL -->
+**Demo close (~68h to submit):** Partners>capture → four ~$10M (Ledger-first) → ladder (don't lead AI) → quality-on-cool → leakage then 1.3× vol → Hold until H1b / F1–F4. History 159 clusters preliminary.
+<!-- /AUTO:X_FINAL -->
