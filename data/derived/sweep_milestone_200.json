@@ -1,10 +1,10 @@
 {
- "asof_utc": "2026-11-12T00:49:47Z",
- "commits_since_structural_thesis": 215,
- "punch_rows_approx": 106,
- "history_clusters_preliminary": 140,
+ "asof_utc": "2026-11-12T01:02:20Z",
+ "commits_since_structural_thesis": 227,
+ "punch_rows_approx": 109,
+ "history_clusters_preliminary": 141,
  "binding_story": "Leakage renegotiation is the bridge; volume is the last mile.",
- "headline": "Distribution owns the margin; quality rose on a cooling print; Intents is heavy settlement.",
+ "headline": "Distribution owns the margin; quality rose on a cooling print; fee density beats L1 share.",
  "rating": "Hold until H1b",
  "judge_entrypoints": [
   "docs/prop-what-is-proprietary.md",
