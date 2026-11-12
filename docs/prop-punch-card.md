@@ -547,3 +547,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 216 / 2025Q4_14 | _14 through 2025 COMPLETE — still not supported | history_progress_2025q4_14 |
 | Dense _14 through 2025 | 216 clusters; prefer public+X | dense_14_through_2025 |
 | Human actions only left | Flip public + record X — agent cannot substitute | human_actions_only_left |
+| History 217 / 2026Q1_14 | Contest-year _14 filling — still not supported | history_progress_2026q1_14 |
+| Sweep ~610 identity | Human-only left public+X; Hold until H1b | sweep_610_identity |
