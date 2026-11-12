@@ -438,3 +438,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Public repo still private @~62h | README path READY; flip visibility is binding delivery catalyst | public_repo_checklist |
 | History 189 / 2025Q1_11 | Denser _11 started — still not supported | history_progress_2025q1_11 |
 | Sweep depth board | ~407 punch rows; 365 derived JSON; 514 commits | sweep_depth_board |
+| History 190 / 2025Q2_11 | _11 dense continuing — still not supported | history_progress_2025q2_11 |
