@@ -1,0 +1,8 @@
+{
+ "unexplained_bb_share_pct": 67.6,
+ "escrow_share_of_bb_pct": 58.5,
+ "h1b_inflow_pct": 24.6,
+ "attestation_high_pct": 15.8,
+ "provenance_stack": "majority escrow + majority unexplained + minority H1b",
+ "note": "Provenance stack: escrow ~58% of BB funding, ~68% of revwallet BB $ unmapped to fee-events, H1b inflow coverage ~25%, attestation \u226416%. Hold-until-H1b is the binding constraint on calling fees a scarcity loop. Exploratory."
+}

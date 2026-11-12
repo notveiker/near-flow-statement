@@ -36,5 +36,6 @@
   "ai_unlabeled",
   "cs_as_fee"
  ],
- "issuance_tension": "hsp007_emissions_claim_vs_hsp029"
+ "issuance_tension": "hsp007_emissions_claim_vs_hsp029",
+ "provenance_stack": "escrow_majority_unexplained_majority_h1b_minority"
 }

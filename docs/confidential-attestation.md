@@ -36,3 +36,7 @@ Beyond the 4.5–15.8% attestation band on escrow, ~**68%** of revwallet buyback
 ## H1b coverage still binding
 
 Measured H1b coverage ~20.0% of streams by count / ~24.6% by inflow. Stance remains Hold until H1b.
+
+## Provenance stack
+
+Escrow ~58% of BB funding + ~68% unexplained revwallet BB $ + H1b ~25% inflow coverage + attestation ≤16%. Fee print ≠ attested scarcity loop.
