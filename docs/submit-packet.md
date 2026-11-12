@@ -63,11 +63,11 @@ See `data/derived/risks_compact.json` — H1b/attest/relayer/HSP-007/CIF/multipl
 <!-- /AUTO:D15DONE -->
 
 <!-- AUTO:URGENT -->
-# URGENT (~54h)
-1. **Flip repo PUBLIC** (gh confirms still private)
-2. **X demo dry-run** with 60s card + dashboard
+# URGENT (~53h) — 690 commits / 235 clusters / 548 derived
+**HEADLINE:** Leakage is the bridge (close $50M → 50× needs ~1.29× vol). Intents≈99% NEAR DEX.
+1. **Flip repo PUBLIC** (still private)
+2. **Record X 90s** — script in docs/x-demo-talking-points.md
 3. Submit + F1–F4 on 14 Nov
-Prop ready ~0.98 excl must-ship. `661` commits / `229` clusters.
 <!-- /AUTO:URGENT -->
 
 <!-- AUTO:HEADLINE -->
