@@ -457,3 +457,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Sweep ~545 identity | Prop ready; public+X bind; Hold until H1b | sweep_545_identity |
 | History 200 / 2025Q4_12 | **200 clusters** milestone; _12 through 2025 — still not supported | clusters_200_milestone |
 | Sweep ~550 identity | 200 clusters; prop ready; public+X bind | sweep_550_identity |
+| History 201 / 2026Q1_12 | Contest-year _12 filling — still not supported | history_progress_2026q1_12 |
