@@ -9,6 +9,8 @@ SELECT JSON_VALUE(PARSE_JSON(e), '$.event') AS event,
        (SELECT SUM(SAFE_CAST(JSON_VALUE_ARRAY(d, '$.amounts')[SAFE_OFFSET(i)] AS BIGNUMERIC))
           FROM UNNEST(JSON_VALUE_ARRAY(d, '$.token_ids')) tid WITH OFFSET i WHERE tid = 'nep141:wrap.near') AS wnear_mt,
        SAFE_CAST(JSON_VALUE(d, '$.diff."nep141:wrap.near"') AS BIGNUMERIC) AS wnear_diff,
-       ARRAY_TO_STRING(REGEXP_EXTRACT_ALL(TO_JSON_STRING(JSON_QUERY(d, '$.diff')), r'"[^"]+":"-?[0-9]+"'), '|') AS pairs
+       ARRAY_TO_STRING(REGEXP_EXTRACT_ALL(TO_JSON_STRING(JSON_QUERY(d, '$.diff')), r'"[^"]+":"-?[0-9]+"'), '|') AS pairs,
+       -- production form: the staged element is a STRING, and its diff is read with JSON_QUERY and no second TO_JSON_STRING
+       ARRAY_TO_STRING(REGEXP_EXTRACT_ALL(JSON_QUERY(TO_JSON_STRING(d), '$.diff'), r'"[^"]+":"-?[0-9]+"'), '|') AS pairs_from_string
 FROM t, UNNEST(JSON_QUERY_ARRAY(PARSE_JSON(e), '$.data')) d
 ORDER BY event

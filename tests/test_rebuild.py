@@ -47,7 +47,16 @@ class Rules(unittest.TestCase):
         self.assertEqual(rows["mt_mint"]["wnear_mt"], "5")
         self.assertEqual(rows["token_diff"]["wnear_diff"], "-12")
         self.assertIn('"nep141:usdc":"34"', rows["token_diff"]["pairs"])
+        self.assertEqual(rows["token_diff"]["pairs"], rows["token_diff"]["pairs_from_string"])  # production (STRING) form
 
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class Results(unittest.TestCase):
+    def test_escrow_ledger_reconciles_and_cutoff_respected(self):
+        r = json.load(open(rb.ROOT / "data" / "derived" / "rebuild_results.json"))
+        self.assertTrue(r["q1"]["ledger_complete_within_1pct"])
+        self.assertEqual(r["cutoff_block"], rb.CUTOFF_BLOCK)
+        self.assertEqual(r["q2"]["chain_vs_deliveries_csv"]["days_with_diff_gt_1near"], 0)

@@ -6,7 +6,7 @@
 CREATE OR REPLACE TABLE `inlaid-backbone-501715-q6.nfs_rebuild.swaps` AS
 WITH base AS (
   SELECT day, h, rid, JSON_VALUE(d, '$.account_id') AS acct, JSON_VALUE(d, '$.referral') AS referral,
-         TO_JSON_STRING(JSON_QUERY(d, '$.diff')) AS diffstr
+         JSON_QUERY(d, '$.diff') AS diffstr
   FROM `inlaid-backbone-501715-q6.nfs_rebuild.intents_events`
   WHERE event = 'token_diff' AND day BETWEEN '2026-08-07' AND '2026-11-04' AND h <= 223088015
 ),

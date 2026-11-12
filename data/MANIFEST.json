@@ -408,11 +408,122 @@
    "sha256": "d43f06b4d597137e03bfbbe0db0baeafa3f00cdee1d48cc2f4bf39d70e8cf657",
    "source": "built by pipeline.rebuild build_aux from tokens_1click_20261112.json and data/raw/coingecko"
   },
+  "raw/rebuild/jobs.jsonl": {
+   "bytes": 10474,
+   "fetched_at": "2026-11-12T23:39:51Z",
+   "sha256": "d3a123625c9c6879f5f42decfadcb8816630e054261e4eed688fe2bb28ca2761",
+   "source": "append-only log written by pipeline.rebuild"
+  },
+  "raw/rebuild/q1_escrow_balances.json": {
+   "bytes": 376,
+   "fetched_at": "2026-11-12T23:39:51Z",
+   "sha256": "e4e0d835c4755c7bb5eaa17042674dc0629b4fb88b3d0986120af4d045e2caf8",
+   "source": "archival RPC mt_balance_of via pipeline.rebuild_rpc"
+  },
+  "raw/rebuild/rb_q1a_escrow_ledger.json": {
+   "bytes": 23579147,
+   "fetched_at": "2026-11-12T23:32:49Z",
+   "rows": 72199,
+   "sha256": "1b82ab9a47dd42485aca18a13b1a4cb2b2e1c7444c0c1173f87c9fb4d4c5e58f",
+   "source": "bigquery job rb_rb_q1a_escrow_ledger_20261112T233235Z: sql/rebuild/rb_q1a_escrow_ledger.sql"
+  },
+  "raw/rebuild/rb_q1b_escrow_deposit_senders.json": {
+   "bytes": 3,
+   "fetched_at": "2026-11-12T23:32:53Z",
+   "rows": 0,
+   "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+   "source": "bigquery job rb_rb_q1b_escrow_deposit_senders_20261112T233250Z: sql/rebuild/rb_q1b_escrow_deposit_senders.sql"
+  },
+  "raw/rebuild/rb_q2_native_withdraw.json": {
+   "bytes": 448833,
+   "fetched_at": "2026-11-12T23:32:57Z",
+   "rows": 2486,
+   "sha256": "6db8e1dbaa53588e521238fbec0c8661c60d91fa66a439de9b0a55dfc7bb0d7e",
+   "source": "bigquery job rb_rb_q2_native_withdraw_20261112T233254Z: sql/rebuild/rb_q2_native_withdraw.sql"
+  },
+  "raw/rebuild/rb_q3a_solver_shares.json": {
+   "bytes": 10107,
+   "fetched_at": "2026-11-12T23:36:28Z",
+   "rows": 61,
+   "sha256": "0b60fc758ecc564e5d96aa697225e8a86d976a11c09b62042b8f026f3c94a873",
+   "source": "bigquery job rb_rb_q3a_solver_shares_20261112T233626Z: sql/rebuild/rb_q3a_solver_shares.sql"
+  },
+  "raw/rebuild/rb_q3b_solver_alt_rule.json": {
+   "bytes": 8558,
+   "fetched_at": "2026-11-12T23:36:32Z",
+   "rows": 84,
+   "sha256": "fcb4fbb350efd1fda3ec67b7f86faf1f552c6839ce3d4660688c8ff7ef7f662d",
+   "source": "bigquery job rb_rb_q3b_solver_alt_rule_20261112T233630Z: sql/rebuild/rb_q3b_solver_alt_rule.sql"
+  },
+  "raw/rebuild/rb_q3c_solver_daily_top30.json": {
+   "bytes": 257163,
+   "fetched_at": "2026-11-12T23:36:36Z",
+   "rows": 2226,
+   "sha256": "d6408e8b1cbd2253050ea72c8cb3d29a02d31d393737ad360783cb7fc806e829",
+   "source": "bigquery job rb_rb_q3c_solver_daily_top30_20261112T233634Z: sql/rebuild/rb_q3c_solver_daily_top30.sql"
+  },
+  "raw/rebuild/rb_q3d_solver_funding.json": {
+   "bytes": 211774,
+   "fetched_at": "2026-11-12T23:36:44Z",
+   "rows": 1000,
+   "sha256": "1dc96aabb39242e82fe31f8815a8c81892c144a341dd9bfc21b72cc8ec2930c9",
+   "source": "bigquery job rb_rb_q3d_solver_funding_20261112T233638Z: sql/rebuild/rb_q3d_solver_funding.sql"
+  },
+  "raw/rebuild/rb_q4a_daily_volume.json": {
+   "bytes": 18143,
+   "fetched_at": "2026-11-12T23:36:48Z",
+   "rows": 90,
+   "sha256": "1edb2a72cf4247e4f7e3e717fe4cfd8e232ada3dff23a956a309092931b07650",
+   "source": "bigquery job rb_rb_q4a_daily_volume_20261112T233645Z: sql/rebuild/rb_q4a_daily_volume.sql"
+  },
+  "raw/rebuild/rb_q4b_referral.json": {
+   "bytes": 209971,
+   "fetched_at": "2026-11-12T23:36:52Z",
+   "rows": 2069,
+   "sha256": "897e6282897481654114b13ca9ce974b0c4f9816acc4a6bcdd01f46911c181da",
+   "source": "bigquery job rb_rb_q4b_referral_20261112T233649Z: sql/rebuild/rb_q4b_referral.sql"
+  },
   "raw/rebuild/selftest_synthetic.json": {
-   "bytes": 211,
-   "fetched_at": "2026-11-12T23:30:36Z",
-   "sha256": "05b6f4f08c398b52aa623e913dd4a51080bae15cc3b03107b955d2aa8a32e5b2",
-   "source": "synthetic self-test output"
+   "bytes": 310,
+   "fetched_at": "2026-11-12T23:39:59Z",
+   "sha256": "09d7816afd4d9a4d8672ffe46b20ecf586fd581f9be7bf25b7945d836c9add17",
+   "source": "synthetic self-test output (re-run after the production-form check was added)"
+  },
+  "raw/rebuild/superseded/rb_q3a_solver_shares_run1.json": {
+   "bytes": 9346,
+   "fetched_at": "2026-11-12T23:36:52Z",
+   "sha256": "82a0c12950ec21ff4ac489c669687e4933aefd7c38a701722e6341570d6d73e4",
+   "source": "first-run output superseded after the pricing fix (all swaps unpriced)"
+  },
+  "raw/rebuild/superseded/rb_q3b_solver_alt_rule_run1.json": {
+   "bytes": 7471,
+   "fetched_at": "2026-11-12T23:36:52Z",
+   "sha256": "82d3a522759cef857558b197ab88fbe0f729df487b84f99f13de99583e99524c",
+   "source": "first-run output superseded after the pricing fix (all swaps unpriced)"
+  },
+  "raw/rebuild/superseded/rb_q3c_solver_daily_top30_run1.json": {
+   "bytes": 223964,
+   "fetched_at": "2026-11-12T23:36:52Z",
+   "sha256": "7c4d6c056fcfbe92d9e88c58d794260ea40050f2281d7117716b0d48f7c7ff7a",
+   "source": "first-run output superseded after the pricing fix (all swaps unpriced)"
+  },
+  "raw/rebuild/superseded/rb_q3d_solver_funding_run1.json.gz": {
+   "bytes": 42716980,
+   "fetched_at": "2026-11-12T23:40:58Z",
+   "sha256": "07911329c8da76eda2807019ae3c9e1a3528838fae54e9c3bf7d1a3af6441af8",
+   "source": "first-run output (truncated at the 1,000,000-row cap), gzipped"
+  },
+  "raw/rebuild/superseded/rb_q4a_daily_volume_run1.json": {
+   "bytes": 13551,
+   "fetched_at": "2026-11-12T23:36:52Z",
+   "sha256": "802a2880b55e8cfd5d450714893e9155bbe7eb9309e875928f06611ca390cf45",
+   "source": "first-run output superseded after the pricing fix (all swaps unpriced)"
+  },
+  "raw/rebuild/superseded/rb_q4b_referral_run1.json": {
+   "bytes": 140249,
+   "fetched_at": "2026-11-12T23:36:52Z",
+   "sha256": "7a0f768336ad90b8f992bd6bb5405f357ed92d7e52e1076d9cde3b5c382e4434",
+   "source": "first-run output superseded after the pricing fix (all swaps unpriced)"
   },
   "raw/rebuild/tokens_1click_20261112.json": {
    "bytes": 58681,

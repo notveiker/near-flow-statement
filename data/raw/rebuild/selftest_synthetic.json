@@ -1,1 +1,1 @@
-[{"event":"mt_mint","owner":"E","pairs":"","wnear_diff":null,"wnear_mt":"5"},{"event":"token_diff","owner":null,"pairs":"\"nep141:usdc\":\"34\"|\"nep141:wrap.near\":\"-12\"","wnear_diff":"-12","wnear_mt":null}]
+[{"event":"mt_mint","owner":"E","pairs":"","pairs_from_string":null,"wnear_diff":null,"wnear_mt":"5"},{"event":"token_diff","owner":null,"pairs":"\"nep141:usdc\":\"34\"|\"nep141:wrap.near\":\"-12\"","pairs_from_string":"\"nep141:usdc\":\"34\"|\"nep141:wrap.near\":\"-12\"","wnear_diff":"-12","wnear_mt":null}]

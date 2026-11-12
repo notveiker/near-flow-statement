@@ -1,0 +1,2180 @@
+{
+ "bytes_billed_total": 383208390656,
+ "cutoff_block": 223088015,
+ "q1": {
+  "attack_test": {
+   "S_accounts": [
+    "solver-priv-liq.near",
+    "6247d9c671ca6a80cf2c75e26edb8cd75ebf00fcd3c56c39107d6ca20c9cfb29",
+    "prod.sadgeaystar.near",
+    "7a58371401366db841101605a141e2911ad626f38672f36488d6bd0c044a59e5",
+    "cf9c3e62e65a078bd7fafb61da18c264720a37cc9b95d9d12ef01f2c4ea839a0",
+    "funnyestate3970.near",
+    "ceopikachu.near",
+    "d0b3a1f97d986501b08dcd254907e851266b84d594eaaedf520ce5f99327d3b3",
+    "defusesupport.near",
+    "0xdf1da9e05d1fe21a0bb34cfec5d9779930cddd48"
+   ],
+   "S_deposits_near": 40388845.43495287,
+   "S_share_of_releases": 44.33513007401796,
+   "corr_criterion_met": false,
+   "release_to_revenue_wallets_near": 910989.6681823933,
+   "size_criterion_met": true,
+   "weekly_corr_by_lag": {
+    "0": 0.6360221521102141,
+    "1": 0.5668199153894786,
+    "2": 0.561927304892659
+   },
+   "weeks": 17
+  },
+  "balances_near": {
+   "end": 12568570.122470744,
+   "end_block": 223088015,
+   "start": 5731341.855433236,
+   "start_block": 205869621
+  },
+  "coverage_C_inflow_over_outflow": 1.091586823934408,
+  "in_by_class": {
+   "other": {
+    "near": 41066377.14075215,
+    "share": 0.5039425458933221
+   },
+   "single_use": {
+    "near": 40423819.460837215,
+    "share": 0.49605745410668123
+   }
+  },
+  "in_conc": {
+   "hhi": 0.2329729249572507,
+   "n": 20749,
+   "top1": 0.4810789114038081,
+   "top10": 0.559787256797716,
+   "top5": 0.5298595040084715
+  },
+  "in_top10": [
+   {
+    "account": "solver-priv-liq.near",
+    "class": "other",
+    "events": 244749,
+    "near": 39203215.071174785
+   },
+   {
+    "account": "7bb1641173c4cf0d2c72dee877f698ee728bff761c15e2e8e5b414ecf3503f2f",
+    "class": "single_use",
+    "events": 1,
+    "near": 1730851.324698196
+   },
+   {
+    "account": "d3c88e69251f8a258437eebc2b6e3dfe6c02beea02804a944beb7ecc3ec89e12",
+    "class": "single_use",
+    "events": 1,
+    "near": 1000000.0
+   },
+   {
+    "account": "6247d9c671ca6a80cf2c75e26edb8cd75ebf00fcd3c56c39107d6ca20c9cfb29",
+    "class": "other",
+    "events": 789,
+    "near": 709123.8316978468
+   },
+   {
+    "account": "cc49207defae1e1bf1b4b29ee6e49a923ab96999286f124541c8b6023c139f32",
+    "class": "single_use",
+    "events": 1,
+    "near": 535164.9253
+   },
+   {
+    "account": "1f41b640b79e3849a70e450098752164f25e42a5fc2321fff2b6024183f350b9",
+    "class": "single_use",
+    "events": 1,
+    "near": 509720.0
+   },
+   {
+    "account": "9d13bcb8326f0dd1536598816dae2df8c309dca856d9e1473d4e6c52f0b60ca0",
+    "class": "single_use",
+    "events": 1,
+    "near": 500000.9334137357
+   },
+   {
+    "account": "2c569516ec8eed440c2522c885c092cec496309072cd22ade5a7dcae731ace70",
+    "class": "single_use",
+    "events": 1,
+    "near": 500000.0
+   },
+   {
+    "account": "4677124b0495cba1689ccd785cecdfc9ea6807fca515a7ed874e6f5790f6fe18",
+    "class": "single_use",
+    "events": 1,
+    "near": 464571.9062900473
+   },
+   {
+    "account": "ad802e8df4e73093d3b0f7420fa7d51ff61b738fe05b3571c303e5a4a9379a7a",
+    "class": "single_use",
+    "events": 1,
+    "near": 464525.6189355061
+   }
+  ],
+  "ledger": {
+   "counterparties_in": 20749,
+   "counterparties_out": 28495,
+   "events_in": 226172,
+   "events_out": 70146,
+   "inflow_near": 81490196.6015891,
+   "net": 6837228.267037511,
+   "outflow_near": 74652968.33455159
+  },
+  "ledger_complete_within_1pct": true,
+  "mass_balance_residual_near": -2.7939677238464355e-09,
+  "mass_balance_residual_pct_of_larger_flow": 3.4285936718330995e-15,
+  "mint_deposits_to_escrow_rows": 0,
+  "other_event_types_naming_escrow": {
+   "transfer": 22107
+  },
+  "out_by_class": {
+   "other": {
+    "near": 25982534.100491848,
+    "share": 0.3480442195419893
+   },
+   "single_use": {
+    "near": 48670434.2340606,
+    "share": 0.6519557804580223
+   }
+  },
+  "out_conc": {
+   "hhi": 0.11764155602781871,
+   "n": 28495,
+   "top1": 0.3403435574883122,
+   "top10": 0.4265228016070954,
+   "top5": 0.3921790098625107
+  },
+  "out_top10": [
+   {
+    "account": "solver-priv-liq.near",
+    "class": "other",
+    "events": 244749,
+    "near": 25407656.82004361
+   },
+   {
+    "account": "bf20691cf87e59d5fe736ea930c14d9a060dc6e6d0ceaded8e2ec3db4eddc5f9",
+    "class": "single_use",
+    "events": 1,
+    "near": 1730851.324698196
+   },
+   {
+    "account": "5df0f1e80fc3e391597c9d7a3bb97d37ce45a65dfbf715e2e13df8816eec1202",
+    "class": "single_use",
+    "events": 1,
+    "near": 784038.6900000001
+   },
+   {
+    "account": "f5b3bf8e3c491064bcd5dd2f961ba060ea00b018878534eda1099e0b223e2ad9",
+    "class": "single_use",
+    "events": 1,
+    "near": 715346.3700000001
+   },
+   {
+    "account": "5f385fee94bcdf7c4e64c49fa88cd13d5273f060a7edbc435b11a0a46374bdac",
+    "class": "single_use",
+    "events": 1,
+    "near": 639434.0
+   },
+   {
+    "account": "5f46a664091749e28e2c2bbc2872030abe5d2eb1a95e5d5defe15941f8284e2a",
+    "class": "single_use",
+    "events": 1,
+    "near": 629097.0
+   },
+   {
+    "account": "6247d9c671ca6a80cf2c75e26edb8cd75ebf00fcd3c56c39107d6ca20c9cfb29",
+    "class": "other",
+    "events": 789,
+    "near": 526845.6401295388
+   },
+   {
+    "account": "7bcbf68727029dc9d20b9710d6ed02988efd666bc7cd8d5d9eec9b70e2248ee8",
+    "class": "single_use",
+    "events": 1,
+    "near": 500000.9334137357
+   },
+   {
+    "account": "e38bb5b8c7ef67c8167a3a318176a98ef08410e16d89c604641f6adb0267f40a",
+    "class": "single_use",
+    "events": 1,
+    "near": 464383.5291043584
+   },
+   {
+    "account": "ef218f1961833688cbd3f2f70390e439768a964d0a63df937e9a89cb4c98531c",
+    "class": "single_use",
+    "events": 1,
+    "near": 443538.89494928566
+   }
+  ],
+  "solver_priv_liq": {
+   "in_near": 39203215.071174785,
+   "net_near": 13795558.251131177,
+   "out_near": 25407656.82004361,
+   "share_of_inflow": 0.4810789114038081,
+   "share_of_outflow": 0.3403435574883122
+  }
+ },
+ "q2": {
+  "abrupt": true,
+  "chain_vs_deliveries_csv": {
+   "chain_total_near": 1669164.7714230826,
+   "csv_total_near": 1669164.7714230826,
+   "days_with_diff_gt_1near": 0,
+   "max_abs_daily_diff_near": 1.0913936421275139e-11
+  },
+  "change_index": 53,
+  "claim_new_revenue_falsified": false,
+  "combined_post14": 12684.776958238781,
+  "combined_pre14": 8752.735697881399,
+  "delta_fee_account": -2157.635353140582,
+  "delta_single_use": 6089.676613497963,
+  "explorer_usd_in_post14_days": 626495795.49,
+  "explorer_usd_in_pre14_days": 700480616.54,
+  "fee_account_mean_post14_near_per_day": 350.75725125732555,
+  "fee_account_mean_pre14_near_per_day": 2508.3926043979077,
+  "fefundsadmin_only_post_hoc": {
+   "2026-07": {
+    "fee_account": 45841.78032029896,
+    "single_use": 20580.355827009607
+   },
+   "2026-08": {
+    "fee_account": 58150.54801634252,
+    "single_use": 69110.56447268194
+   },
+   "2026-09": {
+    "fee_account": 5152.117775688166,
+    "single_use": 154678.81488240306
+   },
+   "2026-10": {
+    "fee_account": 952.5392170032892,
+    "single_use": 153273.9909309306
+   },
+   "2026-11": {
+    "fee_account": 0,
+    "single_use": 9729.174128711573
+   }
+  },
+  "monthly_near": {
+   "2026-07": {
+    "collectors": 124224.52380438973,
+    "fee_account": 45841.78032029896,
+    "single_use": 46928.75504523175
+   },
+   "2026-08": {
+    "collectors": 197280.04459693644,
+    "fee_account": 58150.54801634252,
+    "single_use": 149504.72655130408
+   },
+   "2026-09": {
+    "collectors": 186506.25504800363,
+    "fee_account": 5152.117775688166,
+    "single_use": 365221.28077004227
+   },
+   "2026-10": {
+    "collectors": 126774.37567039308,
+    "fee_account": 952.5392170032892,
+    "single_use": 323756.59544810205
+   },
+   "2026-11": {
+    "collectors": 12104.671174432415,
+    "fee_account": 0,
+    "single_use": 26766.557984914234
+   }
+  },
+  "null_reported": false,
+  "permutation_p": 9.999000099990002e-05,
+  "rerouted_fraction": 0.3543103337142918,
+  "series": {
+   "days": [
+    "2026-07-07",
+    "2026-07-08",
+    "2026-07-09",
+    "2026-07-10",
+    "2026-07-11",
+    "2026-07-12",
+    "2026-07-13",
+    "2026-07-14",
+    "2026-07-15",
+    "2026-07-16",
+    "2026-07-17",
+    "2026-07-18",
+    "2026-07-19",
+    "2026-07-20",
+    "2026-07-21",
+    "2026-07-22",
+    "2026-07-23",
+    "2026-07-24",
+    "2026-07-25",
+    "2026-07-26",
+    "2026-07-27",
+    "2026-07-28",
+    "2026-07-29",
+    "2026-07-30",
+    "2026-07-31",
+    "2026-08-01",
+    "2026-08-02",
+    "2026-08-03",
+    "2026-08-04",
+    "2026-08-05",
+    "2026-08-06",
+    "2026-08-07",
+    "2026-08-08",
+    "2026-08-09",
+    "2026-08-10",
+    "2026-08-11",
+    "2026-08-12",
+    "2026-08-13",
+    "2026-08-14",
+    "2026-08-15",
+    "2026-08-16",
+    "2026-08-17",
+    "2026-08-18",
+    "2026-08-19",
+    "2026-08-20",
+    "2026-08-21",
+    "2026-08-22",
+    "2026-08-23",
+    "2026-08-24",
+    "2026-08-25",
+    "2026-08-26",
+    "2026-08-27",
+    "2026-08-28",
+    "2026-08-29",
+    "2026-08-30",
+    "2026-08-31",
+    "2026-09-01",
+    "2026-09-02",
+    "2026-09-03",
+    "2026-09-04",
+    "2026-09-05",
+    "2026-09-06",
+    "2026-09-07",
+    "2026-09-08",
+    "2026-09-09",
+    "2026-09-10",
+    "2026-09-11",
+    "2026-09-12",
+    "2026-09-13",
+    "2026-09-14",
+    "2026-09-15",
+    "2026-09-16",
+    "2026-09-17",
+    "2026-09-18",
+    "2026-09-19",
+    "2026-09-20",
+    "2026-09-21",
+    "2026-09-22",
+    "2026-09-23",
+    "2026-09-24",
+    "2026-09-25",
+    "2026-09-26",
+    "2026-09-27",
+    "2026-09-28",
+    "2026-09-29",
+    "2026-09-30",
+    "2026-10-01",
+    "2026-10-02",
+    "2026-10-03",
+    "2026-10-04",
+    "2026-10-05",
+    "2026-10-06",
+    "2026-10-07",
+    "2026-10-08",
+    "2026-10-09",
+    "2026-10-10",
+    "2026-10-11",
+    "2026-10-12",
+    "2026-10-13",
+    "2026-10-14",
+    "2026-10-15",
+    "2026-10-16",
+    "2026-10-17",
+    "2026-10-18",
+    "2026-10-19",
+    "2026-10-20",
+    "2026-10-21",
+    "2026-10-22",
+    "2026-10-23",
+    "2026-10-24",
+    "2026-10-25",
+    "2026-10-26",
+    "2026-10-27",
+    "2026-10-28",
+    "2026-10-29",
+    "2026-10-30",
+    "2026-10-31",
+    "2026-11-01",
+    "2026-11-02",
+    "2026-11-03",
+    "2026-11-04"
+   ],
+   "fee_account": [
+    2255.38396807967,
+    4530.6532905126205,
+    1721.8364475261224,
+    1154.9502980500436,
+    534.7838164277806,
+    1106.9823152275,
+    1352.7023426796172,
+    2111.33851178964,
+    1622.503990404081,
+    3413.2731179790753,
+    1996.292247776154,
+    1839.0249463721968,
+    1161.1193983481312,
+    2053.6923382917935,
+    2229.5437748502945,
+    1775.0280803386343,
+    1186.8849948325774,
+    952.434556807827,
+    1349.807374672229,
+    1739.8297401225227,
+    1315.456495650356,
+    1922.6874946135842,
+    1504.8798442906998,
+    2795.6292614451013,
+    2215.0616732107105,
+    1256.4590349608297,
+    590.142237399073,
+    744.2251234947983,
+    1216.5599798144285,
+    1734.5343289352645,
+    782.9181494807057,
+    3320.9208362102404,
+    1327.5411919757155,
+    1259.0234202464633,
+    1598.5636887937058,
+    2591.9997335790945,
+    2618.200559580194,
+    672.8578318653629,
+    2173.0959195834844,
+    613.691020864822,
+    621.2662604733295,
+    3141.2130936223602,
+    2090.323326427161,
+    2358.3486554342326,
+    2648.756749733984,
+    4716.614088638587,
+    2258.515074835016,
+    2534.1647956262386,
+    3272.0415300078666,
+    2678.960049357075,
+    3717.2332816069948,
+    1727.5064158594496,
+    2738.8621190835916,
+    0,
+    0,
+    1146.0095188524504,
+    1109.4078305851203,
+    0,
+    1040.2542679921214,
+    750.7469016482524,
+    0,
+    436.81280308554807,
+    0,
+    427.3701954390646,
+    0,
+    0,
+    0,
+    0,
+    426.5821218332747,
+    0,
+    0,
+    439.8614448961682,
+    0,
+    289.11406386488954,
+    0,
+    0,
+    231.96814634372663,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    214.17250335162504,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    251.13932504837126,
+    0,
+    218.58602266451422,
+    0,
+    0,
+    268.64136593877873,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "single_use": [
+    651.6560792170923,
+    539.8137332773117,
+    537.0782379817504,
+    1076.2120705523582,
+    1051.464980577093,
+    569.080995321079,
+    526.9046676822937,
+    1060.307775746001,
+    1531.8153256249416,
+    495.25992070256757,
+    1158.4436350816104,
+    3205.382420886034,
+    1189.5769514136823,
+    0,
+    3207.197229762081,
+    17727.85169597303,
+    1565.0778559841592,
+    1172.7467001048162,
+    0,
+    1107.7089180453413,
+    2288.263878256175,
+    1200.3934379054217,
+    1259.7190011328914,
+    1250.7484218678237,
+    2556.0511121361997,
+    2947.788632699092,
+    0,
+    1221.0384611349714,
+    1180.3431381051823,
+    2502.5061959422083,
+    1178.0354253619798,
+    3358.8755730696494,
+    3145.5941883733603,
+    6294.3803374276795,
+    1253.763715602612,
+    2257.8767195482114,
+    2761.7660080509318,
+    1235.7639391530379,
+    2248.8260736603197,
+    1335.6863697090557,
+    0,
+    5646.665536448291,
+    2712.4328307042024,
+    21933.661979130502,
+    9621.04400509907,
+    16319.823965701145,
+    2865.9672712855595,
+    5422.0023854998935,
+    4995.562420641992,
+    3900.881740835161,
+    6208.78617229645,
+    2873.253226876014,
+    3585.0354045415493,
+    12370.877423449023,
+    12527.755909965645,
+    5598.731500991297,
+    5968.393048120092,
+    8484.628380545702,
+    20084.148145288353,
+    41666.43851873982,
+    8470.707989794486,
+    18573.494053353803,
+    5963.724978967377,
+    5963.063392932763,
+    9549.18385255296,
+    9352.17726059101,
+    8102.951442448026,
+    4742.163776127282,
+    6335.522679785604,
+    9313.392004861013,
+    6350.673929019277,
+    7523.345003689401,
+    19682.943435100664,
+    17896.346856032687,
+    11353.99641448052,
+    8746.549698402872,
+    22526.925603625783,
+    21492.809434154344,
+    17199.66197032027,
+    12630.514947115182,
+    14428.522043743505,
+    5992.720871832193,
+    6087.318998166314,
+    8689.697919400223,
+    9374.430531951877,
+    12674.833588898846,
+    10483.406486144413,
+    8312.836032100713,
+    3489.272002893514,
+    26697.138809546366,
+    3525.75216914197,
+    10443.414577298581,
+    9138.509628183738,
+    23096.879488238035,
+    14174.1301186853,
+    9072.028237470015,
+    8153.118980737911,
+    9424.004545734284,
+    8946.00702004162,
+    13999.150302215952,
+    28622.63521246898,
+    6577.815794890341,
+    4494.297817500849,
+    6754.614514016114,
+    7253.388048471843,
+    10235.389253075817,
+    8794.480063456398,
+    8800.750418809508,
+    4323.8000371100325,
+    7433.102605369859,
+    7162.468151459668,
+    10229.071401117639,
+    10442.003128429773,
+    7230.417673697563,
+    17872.35528839628,
+    12150.285809480907,
+    6424.071831918055,
+    3863.271023563613,
+    4034.487444165252,
+    8614.612805169372,
+    10254.186712015997
+   ]
+  },
+  "single_use_change_day": "2026-08-19",
+  "single_use_mean_post14": 12334.019706981455,
+  "single_use_mean_pre14": 6244.343093483491,
+  "sse_reduction_share": 0.6566292054937631,
+  "switch_day_fee_account": "2026-08-29"
+ },
+ "q3": {
+  "alt_rule_fill_conc": {
+   "hhi": 0.2104906172491056,
+   "n": 84,
+   "top1": 0.37353776895154495,
+   "top10": 0.9347703043796182,
+   "top5": 0.8028901913762108
+  },
+  "alt_rule_top1": "blockzen-1-main.near",
+  "classified_fills": 1222617,
+  "complex_receipts": 1140800,
+  "complex_share_of_legs": 0.6724027037509152,
+  "complex_share_of_receipts": 0.4826809440034255,
+  "fill_conc": {
+   "hhi": 0.2045059364835698,
+   "n": 61,
+   "top1": 0.37353807447467197,
+   "top10": 0.935358333803636,
+   "top5": 0.8028908480742538
+  },
+  "funding_top20": {
+   "0x4f77780141b0770a33d270ee255beb25c9568c7b": {
+    "any_in_exchange_list": false,
+    "any_in_unstakers_set": false,
+    "solver_in_unstakers_set": false,
+    "top_counterparties": [
+     {
+      "cp": "solver-priv-liq.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 2848
+     },
+     {
+      "cp": "blockzen-1-main.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 1739
+     },
+     {
+      "cp": "kipseli.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 996
+     },
+     {
+      "cp": "0x8c60fa34790d4661ae4b5302f2a654539352e81b",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 664
+     },
+     {
+      "cp": "solver-multichain-asset.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 519
+     }
+    ],
+    "total_inbound_events": 20353
+   },
+   "0x8c60fa34790d4661ae4b5302f2a654539352e81b": {
+    "any_in_exchange_list": false,
+    "any_in_unstakers_set": false,
+    "solver_in_unstakers_set": false,
+    "top_counterparties": [
+     {
+      "cp": "solver-priv-liq.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 28938
+     },
+     {
+      "cp": "blockzen-1-main.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 11280
+     },
+     {
+      "cp": "crux-solver.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 7952
+     },
+     {
+      "cp": "solver-multichain-asset.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 5477
+     },
+     {
+      "cp": "kipseli.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 4838
+     }
+    ],
+    "total_inbound_events": 181436
+   },
+   "0x94845333028b1204fbe14e1278fd4adde46b22ce.near": {
+    "any_in_exchange_list": false,
+    "any_in_unstakers_set": false,
+    "solver_in_unstakers_set": false,
+    "top_counterparties": [
+     {
+      "cp": "blockzen-1-main.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 8967
+     },
+     {
+      "cp": "solver-priv-liq.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 6370
+     },
+     {
+      "cp": "kipseli.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 2799
+     },
+     {
+      "cp": "crux-solver.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 2102
+     },
+     {
+      "cp": "0x8c60fa34790d4661ae4b5302f2a654539352e81b",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 1374
+     }
+    ],
+    "total_inbound_events": 46163
+   },
+   "111-testing-funds.near": {
+    "any_in_exchange_list": false,
+    "any_in_unstakers_set": false,
+    "solver_in_unstakers_set": false,
+    "top_counterparties": [
+     {
+      "cp": "0c0290c7e9632926107b34a74cfd603f5efae7e29a9354a67e66d36b371d0f91",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 382
+     },
+     {
+      "cp": "c5c25da276bdacb31a3fa9dacc519cc1b46f0004c622773b837d9d608a005f68",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 237
+     },
+     {
+      "cp": "3ff473193b162717a06d205898dee4177b362c15cacb648ad86455f1f7d1907e",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 68
+     },
+     {
+      "cp": "e0d4daadb640ac2c0afc9d5137a45e3b9e37b83c4770744a94eaf620627f6db1",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 61
+     },
+     {
+      "cp": "7066024d3f20f94de601c003163367873cca78507eeca4df66d9be645f197f05",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 53
+     }
+    ],
+    "total_inbound_events": 66614
+   },
+   "27695d3e216982e4b32db97ca046ae31b1feb354710e65f0f420859bdbcd8e2c": {
+    "any_in_exchange_list": false,
+    "any_in_unstakers_set": false,
+    "solver_in_unstakers_set": false,
+    "top_counterparties": [
+     {
+      "cp": "kipseli.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 2121
+     },
+     {
+      "cp": "solver-priv-liq.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 649
+     },
+     {
+      "cp": "blockzen-1-main.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 637
+     },
+     {
+      "cp": "crux-solver.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 627
+     },
+     {
+      "cp": "0x8c60fa34790d4661ae4b5302f2a654539352e81b",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 461
+     }
+    ],
+    "total_inbound_events": 21437
+   },
+   "6247d9c671ca6a80cf2c75e26edb8cd75ebf00fcd3c56c39107d6ca20c9cfb29": {
+    "any_in_exchange_list": false,
+    "any_in_unstakers_set": false,
+    "solver_in_unstakers_set": false,
+    "top_counterparties": [
+     {
+      "cp": "solver-priv-liq.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 30231
+     },
+     {
+      "cp": "kipseli.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 21696
+     },
+     {
+      "cp": "51e8f94d77b5e90dc9852ca6113771e11e8382ce69473a75e313e41665de7cbe",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 18633
+     },
+     {
+      "cp": "crux-solver.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 9048
+     },
+     {
+      "cp": "0x8c60fa34790d4661ae4b5302f2a654539352e81b",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 5841
+     }
+    ],
+    "total_inbound_events": 166993
+   },
+   "6af11753e21c3499f0c579d703879d0259c8a09155f4bc9c6d651a8fa09830ff": {
+    "any_in_exchange_list": false,
+    "any_in_unstakers_set": false,
+    "solver_in_unstakers_set": false,
+    "top_counterparties": [
+     {
+      "cp": "kipseli.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 12950
+     },
+     {
+      "cp": "solver-priv-liq.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 5584
+     },
+     {
+      "cp": "blockzen-1-main.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 1246
+     },
+     {
+      "cp": "0x8c60fa34790d4661ae4b5302f2a654539352e81b",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 1045
+     },
+     {
+      "cp": "solver-multichain-asset.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 673
+     }
+    ],
+    "total_inbound_events": 36181
+   },
+   "bestswap.near": {
+    "any_in_exchange_list": false,
+    "any_in_unstakers_set": false,
+    "solver_in_unstakers_set": false,
+    "top_counterparties": [
+     {
+      "cp": "2da316c13fcafc3a6c957ca6a9143622119a1a747bae0975c41a579d21a4cb6e",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 369
+     },
+     {
+      "cp": "7066024d3f20f94de601c003163367873cca78507eeca4df66d9be645f197f05",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 267
+     },
+     {
+      "cp": "solver-multichain-asset.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 16
+     },
+     {
+      "cp": "d81217f1de31dd619c720a086c5e96dca1f32b9359a9075dd4eb84475c2a068c",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 13
+     },
+     {
+      "cp": "5dd13e24d73d5def9f0820df100a1cfba25e6b23525cd45b63e3113baa2ac23f",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 9
+     }
+    ],
+    "total_inbound_events": 3870
+   },
+   "blockzen-1-main.near": {
+    "any_in_exchange_list": false,
+    "any_in_unstakers_set": false,
+    "solver_in_unstakers_set": false,
+    "top_counterparties": [
+     {
+      "cp": "solver-priv-liq.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 59691
+     },
+     {
+      "cp": "5880ad2b362620fadf759cbceb1cd5737ce8c6ed7fb8e9942881e6731f9247dd",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 13187
+     },
+     {
+      "cp": "crux-solver.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 11074
+     },
+     {
+      "cp": "2f09a4dc4b29cfdfe5d7a14afb04f0aa6c68e0b54f3bb606b168919b68085059",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 10731
+     },
+     {
+      "cp": "0x8c60fa34790d4661ae4b5302f2a654539352e81b",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 9833
+     }
+    ],
+    "total_inbound_events": 825034
+   },
+   "blockzen-2-main.near": {
+    "any_in_exchange_list": false,
+    "any_in_unstakers_set": false,
+    "solver_in_unstakers_set": false,
+    "top_counterparties": [
+     {
+      "cp": "solver-priv-liq.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 1373
+     },
+     {
+      "cp": "a1b95f90762327e20c202b983deb9484a714d5760c185c1cebc7f696d74f95a8",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 894
+     },
+     {
+      "cp": "crux-solver.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 709
+     },
+     {
+      "cp": "7066024d3f20f94de601c003163367873cca78507eeca4df66d9be645f197f05",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 555
+     },
+     {
+      "cp": "brlabs-solver.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 540
+     }
+    ],
+    "total_inbound_events": 28910
+   },
+   "blockzen-near-intent.near": {
+    "any_in_exchange_list": false,
+    "any_in_unstakers_set": false,
+    "solver_in_unstakers_set": false,
+    "top_counterparties": [
+     {
+      "cp": "solver-priv-liq.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 9697
+     },
+     {
+      "cp": "blockzen-1-main.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 6753
+     },
+     {
+      "cp": "solver-multichain-asset.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 6693
+     },
+     {
+      "cp": "solver-multichain-asset-escrow.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 2469
+     },
+     {
+      "cp": "brlabs-solver.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 2234
+     }
+    ],
+    "total_inbound_events": 84035
+   },
+   "brlabs-solver.near": {
+    "any_in_exchange_list": false,
+    "any_in_unstakers_set": false,
+    "solver_in_unstakers_set": false,
+    "top_counterparties": [
+     {
+      "cp": "kipseli.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 61623
+     },
+     {
+      "cp": "solver-priv-liq.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 27802
+     },
+     {
+      "cp": "solver-multichain-asset.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 12015
+     },
+     {
+      "cp": "blockzen-1-main.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 10865
+     },
+     {
+      "cp": "solver-multichain-asset-escrow.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 5606
+     }
+    ],
+    "total_inbound_events": 242039
+   },
+   "crux-solver.near": {
+    "any_in_exchange_list": false,
+    "any_in_unstakers_set": false,
+    "solver_in_unstakers_set": false,
+    "top_counterparties": [
+     {
+      "cp": "kipseli.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 76286
+     },
+     {
+      "cp": "blockzen-1-main.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 10619
+     },
+     {
+      "cp": "solver-priv-liq.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 10124
+     },
+     {
+      "cp": "0x8c60fa34790d4661ae4b5302f2a654539352e81b",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 7159
+     },
+     {
+      "cp": "solver-multichain-asset.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 6483
+     }
+    ],
+    "total_inbound_events": 524902
+   },
+   "kipseli.near": {
+    "any_in_exchange_list": false,
+    "any_in_unstakers_set": false,
+    "solver_in_unstakers_set": false,
+    "top_counterparties": [
+     {
+      "cp": "crux-solver.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 74790
+     },
+     {
+      "cp": "brlabs-solver.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 57017
+     },
+     {
+      "cp": "6247d9c671ca6a80cf2c75e26edb8cd75ebf00fcd3c56c39107d6ca20c9cfb29",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 18206
+     },
+     {
+      "cp": "6af11753e21c3499f0c579d703879d0259c8a09155f4bc9c6d651a8fa09830ff",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 13181
+     },
+     {
+      "cp": "2f09a4dc4b29cfdfe5d7a14afb04f0aa6c68e0b54f3bb606b168919b68085059",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 7792
+     }
+    ],
+    "total_inbound_events": 372133
+   },
+   "solver-multichain-asset-2.near": {
+    "any_in_exchange_list": false,
+    "any_in_unstakers_set": false,
+    "solver_in_unstakers_set": false,
+    "top_counterparties": [
+     {
+      "cp": "51e8f94d77b5e90dc9852ca6113771e11e8382ce69473a75e313e41665de7cbe",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 5721
+     },
+     {
+      "cp": "solver-priv-liq.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 811
+     },
+     {
+      "cp": "solver-multichain-asset.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 419
+     },
+     {
+      "cp": "7066024d3f20f94de601c003163367873cca78507eeca4df66d9be645f197f05",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 319
+     },
+     {
+      "cp": "5880ad2b362620fadf759cbceb1cd5737ce8c6ed7fb8e9942881e6731f9247dd",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 303
+     }
+    ],
+    "total_inbound_events": 13679
+   },
+   "solver-multichain-asset-escrow.near": {
+    "any_in_exchange_list": false,
+    "any_in_unstakers_set": false,
+    "solver_in_unstakers_set": false,
+    "top_counterparties": [
+     {
+      "cp": "51e8f94d77b5e90dc9852ca6113771e11e8382ce69473a75e313e41665de7cbe",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 45025
+     },
+     {
+      "cp": "solver-multichain-asset.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 36532
+     },
+     {
+      "cp": "solver-priv-liq.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 30791
+     },
+     {
+      "cp": "blockzen-1-main.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 22181
+     },
+     {
+      "cp": "crux-solver.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 22093
+     }
+    ],
+    "total_inbound_events": 337024
+   },
+   "solver-multichain-asset.near": {
+    "any_in_exchange_list": false,
+    "any_in_unstakers_set": false,
+    "solver_in_unstakers_set": false,
+    "top_counterparties": [
+     {
+      "cp": "51e8f94d77b5e90dc9852ca6113771e11e8382ce69473a75e313e41665de7cbe",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 189899
+     },
+     {
+      "cp": "solver-priv-liq.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 116157
+     },
+     {
+      "cp": "crux-solver.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 34552
+     },
+     {
+      "cp": "blockzen-1-main.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 34119
+     },
+     {
+      "cp": "solver-multichain-asset-escrow.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 27463
+     }
+    ],
+    "total_inbound_events": 848220
+   },
+   "solver-priv-liq.near": {
+    "any_in_exchange_list": false,
+    "any_in_unstakers_set": false,
+    "solver_in_unstakers_set": false,
+    "top_counterparties": [
+     {
+      "cp": "51e8f94d77b5e90dc9852ca6113771e11e8382ce69473a75e313e41665de7cbe",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 412551
+     },
+     {
+      "cp": "solver-multichain-asset.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 337943
+     },
+     {
+      "cp": "solver-multichain-asset-escrow.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 179044
+     },
+     {
+      "cp": "blockzen-1-main.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 153867
+     },
+     {
+      "cp": "brlabs-solver.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 62892
+     }
+    ],
+    "total_inbound_events": 2062064
+   },
+   "solver-ref.near": {
+    "any_in_exchange_list": false,
+    "any_in_unstakers_set": false,
+    "solver_in_unstakers_set": false,
+    "top_counterparties": [
+     {
+      "cp": "intents.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_mint",
+      "n": 39678
+     },
+     {
+      "cp": "7066024d3f20f94de601c003163367873cca78507eeca4df66d9be645f197f05",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 14817
+     },
+     {
+      "cp": "solver-multichain-asset.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 3733
+     },
+     {
+      "cp": "143f2bb439575c286f4f585163f0e5fb4e464f8ce57ec06ae80741407d3cfb31",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 2958
+     },
+     {
+      "cp": "solver-priv-liq.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 1721
+     }
+    ],
+    "total_inbound_events": 77196
+   },
+   "solverregister.near": {
+    "any_in_exchange_list": false,
+    "any_in_unstakers_set": false,
+    "solver_in_unstakers_set": false,
+    "top_counterparties": [
+     {
+      "cp": "111-testing-funds.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 631
+     },
+     {
+      "cp": "5880ad2b362620fadf759cbceb1cd5737ce8c6ed7fb8e9942881e6731f9247dd",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 129
+     },
+     {
+      "cp": "solver-priv-liq.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 125
+     },
+     {
+      "cp": "solverwithlp.near",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 103
+     },
+     {
+      "cp": "7066024d3f20f94de601c003163367873cca78507eeca4df66d9be645f197f05",
+      "in_exchange_list": false,
+      "in_unstakers_set": false,
+      "kind": "mt_transfer",
+      "n": 77
+     }
+    ],
+    "total_inbound_events": 3708
+   }
+  },
+  "priced_share_of_classified": 0.9448739875202128,
+  "simple_swaps": 1222666,
+  "solvers_classified": 61,
+  "top15": [
+   {
+    "days": 90,
+    "distinct_counterparties": 388651,
+    "fill_share": 0.37353807447467197,
+    "fills": 456694,
+    "solver": "blockzen-1-main.near",
+    "usd": 375317222.66381204,
+    "usd_share": 0.17285585687824423
+   },
+   {
+    "days": 90,
+    "distinct_counterparties": 81363,
+    "fill_share": 0.1750809942933887,
+    "fills": 214057,
+    "solver": "kipseli.near",
+    "usd": 165557230.3351238,
+    "usd_share": 0.07624893072812874
+   },
+   {
+    "days": 90,
+    "distinct_counterparties": 129183,
+    "fill_share": 0.15850016808207312,
+    "fills": 193785,
+    "solver": "crux-solver.near",
+    "usd": 455860109.1532,
+    "usd_share": 0.20995063649095902
+   },
+   {
+    "days": 90,
+    "distinct_counterparties": 51113,
+    "fill_share": 0.05242770221582065,
+    "fills": 64099,
+    "solver": "solver-multichain-asset.near",
+    "usd": 104431232.532932,
+    "usd_share": 0.04809678078775696
+   },
+   {
+    "days": 90,
+    "distinct_counterparties": 46502,
+    "fill_share": 0.04334390900829941,
+    "fills": 52993,
+    "solver": "111-testing-funds.near",
+    "usd": 783.2918898876205,
+    "usd_share": 3.607524052622136e-07
+   },
+   {
+    "days": 90,
+    "distinct_counterparties": 44953,
+    "fill_share": 0.04073638760135022,
+    "fills": 49805,
+    "solver": "solver-priv-liq.near",
+    "usd": 222467987.9451234,
+    "usd_share": 0.1024597123769056
+   },
+   {
+    "days": 90,
+    "distinct_counterparties": 23274,
+    "fill_share": 0.0320811832323614,
+    "fills": 39223,
+    "solver": "brlabs-solver.near",
+    "usd": 19308694.033491515,
+    "usd_share": 0.008892799612738981
+   },
+   {
+    "days": 90,
+    "distinct_counterparties": 35344,
+    "fill_share": 0.03113076294538682,
+    "fills": 38061,
+    "solver": "0x8c60fa34790d4661ae4b5302f2a654539352e81b",
+    "usd": 420772396.2282869,
+    "usd_share": 0.1937906621618127
+   },
+   {
+    "days": 88,
+    "distinct_counterparties": 5746,
+    "fill_share": 0.01568438848797293,
+    "fills": 19176,
+    "solver": "solver-ref.near",
+    "usd": 128711.76369168767,
+    "usd_share": 5.927940648533941e-05
+   },
+   {
+    "days": 78,
+    "distinct_counterparties": 13873,
+    "fill_share": 0.012834763462310765,
+    "fills": 15692,
+    "solver": "blockzen-near-intent.near",
+    "usd": 1078973.8411154076,
+    "usd_share": 0.0004969314931286186
+   },
+   {
+    "days": 58,
+    "distinct_counterparties": 10653,
+    "fill_share": 0.012440527164271395,
+    "fills": 15210,
+    "solver": "0x94845333028b1204fbe14e1278fd4adde46b22ce.near",
+    "usd": 8108303.4040576015,
+    "usd_share": 0.003734354961889416
+   },
+   {
+    "days": 57,
+    "distinct_counterparties": 13995,
+    "fill_share": 0.011910516539521371,
+    "fills": 14562,
+    "solver": "blockzen-2-main.near",
+    "usd": 88465637.03576452,
+    "usd_share": 0.04074367647070208
+   },
+   {
+    "days": 90,
+    "distinct_counterparties": 3673,
+    "fill_share": 0.009682508913257382,
+    "fills": 11838,
+    "solver": "solver-multichain-asset-escrow.near",
+    "usd": 44376989.40621239,
+    "usd_share": 0.020438237486262917
+   },
+   {
+    "days": 90,
+    "distinct_counterparties": 7223,
+    "fill_share": 0.006730644183746832,
+    "fills": 8229,
+    "solver": "6247d9c671ca6a80cf2c75e26edb8cd75ebf00fcd3c56c39107d6ca20c9cfb29",
+    "usd": 104865443.6327622,
+    "usd_share": 0.04829676077054188
+   },
+   {
+    "days": 61,
+    "distinct_counterparties": 4837,
+    "fill_share": 0.005069453475618284,
+    "fills": 6198,
+    "solver": "0x4f77780141b0770a33d270ee255beb25c9568c7b",
+    "usd": 1592092.643461587,
+    "usd_share": 0.0007332531562550021
+   }
+  ],
+  "top1_same_under_both_rules": true,
+  "unclassified_share_of_simple": 4.0076357729734724e-05,
+  "usd_conc": {
+   "hhi": 0.13644665628140729,
+   "n": 61,
+   "top1": 0.20995063649095902,
+   "top10": 0.9519027988845631,
+   "top5": 0.7553057986360504
+  }
+ },
+ "q4": {
+  "chain_over_llama": 0.18548157970702334,
+  "chain_over_oneclick": 0.5691454242376534,
+  "chain_priced_usd_total": 2171272839.2277536,
+  "llama_total": 11706137303,
+  "oneclick_over_llama": 0.3258948799517596,
+  "oneclick_usd_in_total": 3814970211.06,
+  "priced_share_of_simple_swaps": 0.9448524781093119,
+  "referral_split": {
+   "none_share": 0.041153963818009426,
+   "other_referral_share": 0.027676370310707018,
+   "tagged_1click_share_of_chain": 0.9311696658712836,
+   "tagged_1click_usd": 2021823404.2191014,
+   "top": [
+    {
+     "referral": "1click-swapkit",
+     "share": 0.3948382642505336,
+     "usd": 857301599.0550145
+    },
+    {
+     "referral": "1click-unknown",
+     "share": 0.18847873590408004,
+     "usd": 409238760.04051
+    },
+    {
+     "referral": "1click-rango",
+     "share": 0.1068569214568698,
+     "usd": 232015531.24279487
+    },
+    {
+     "referral": "1click-lifi",
+     "share": 0.08074271890338723,
+     "usd": 175314472.52032608
+    },
+    {
+     "referral": "(none)",
+     "share": 0.041153963818009426,
+     "usd": 89356483.8646056
+    },
+    {
+     "referral": "1click-new.intents-referral.near",
+     "share": 0.030381474671935076,
+     "usd": 65966470.770858586
+    },
+    {
+     "referral": "1click-zodl",
+     "share": 0.030266560733041226,
+     "usd": 65716961.256489694
+    },
+    {
+     "referral": "(other)",
+     "share": 0.027676370310707007,
+     "usd": 60092951.144047536
+    },
+    {
+     "referral": "1click-stableflow",
+     "share": 0.02150551095234164,
+     "usd": 46694331.82453441
+    },
+    {
+     "referral": "1click-cow",
+     "share": 0.010251942067496005,
+     "usd": 22259763.36049051
+    },
+    {
+     "referral": "1click-near-intents.intents-referral.near",
+     "share": 0.008314107187471154,
+     "usd": 18052195.118584376
+    },
+    {
+     "referral": "1click-vizor",
+     "share": 0.0070220363042696925,
+     "usd": 15246756.703532023
+    }
+   ]
+  },
+  "remainder_chain_minus_oneclick_usd": -1643697371.8322463,
+  "series": {
+   "chain": [
+    15514126.547109634,
+    11821933.071959008,
+    7806216.504378363,
+    16973122.16489107,
+    18028784.27315236,
+    14501499.778254017,
+    17120502.390265368,
+    19280981.16307741,
+    7318068.7496211585,
+    12955560.132631632,
+    21564706.532291453,
+    23719363.563279264,
+    33704653.569980234,
+    31146543.34224891,
+    33754952.708177045,
+    25083672.107004818,
+    22691279.900335442,
+    32097387.704193257,
+    33935371.59880118,
+    29933754.511745527,
+    31199531.128793858,
+    25991339.86753152,
+    12538057.389369415,
+    12833930.4493761,
+    30333864.948386036,
+    26589163.678678554,
+    33963597.47974846,
+    33622227.269345716,
+    24784231.955943737,
+    17618823.65339693,
+    20403839.381473593,
+    25354624.14534831,
+    23261517.757465184,
+    29320666.886265654,
+    40587380.26781886,
+    39997240.208290935,
+    28018718.13865079,
+    17164305.81342603,
+    29003566.597167805,
+    29586707.783813156,
+    27757495.817009836,
+    45963361.3985535,
+    43513491.08831318,
+    22737342.854534414,
+    16719709.908398114,
+    49686365.402529955,
+    41872043.73090122,
+    40306871.96123412,
+    34977931.267765455,
+    30813044.191016734,
+    15306999.676441507,
+    22215096.02813808,
+    34713578.30409923,
+    39084884.31299653,
+    35986811.33545266,
+    18966872.389505964,
+    24973882.769101802,
+    16472268.00267203,
+    14293451.228902085,
+    23250101.44452142,
+    25692165.425051466,
+    23412590.83373475,
+    37531648.18918283,
+    48585636.551427595,
+    18774878.476368055,
+    17809157.45865052,
+    22752089.05175312,
+    26915555.42718817,
+    21224508.02991009,
+    22185411.772332832,
+    17227369.088998355,
+    15644212.033174518,
+    16799182.184396528,
+    20808519.212997895,
+    22579965.07190118,
+    28575514.539814293,
+    22798983.66058135,
+    21948144.342314042,
+    16710296.156584883,
+    16046480.888073381,
+    24652777.281488456,
+    25501860.076655652,
+    23028389.16339785,
+    11652056.326741556,
+    23770588.160624497,
+    6424777.151666795,
+    8645591.765607165,
+    14097173.917763293,
+    7576062.814101354,
+    1163835.9494956676
+   ],
+   "days": [
+    "2026-08-07",
+    "2026-08-08",
+    "2026-08-09",
+    "2026-08-10",
+    "2026-08-11",
+    "2026-08-12",
+    "2026-08-13",
+    "2026-08-14",
+    "2026-08-15",
+    "2026-08-16",
+    "2026-08-17",
+    "2026-08-18",
+    "2026-08-19",
+    "2026-08-20",
+    "2026-08-21",
+    "2026-08-22",
+    "2026-08-23",
+    "2026-08-24",
+    "2026-08-25",
+    "2026-08-26",
+    "2026-08-27",
+    "2026-08-28",
+    "2026-08-29",
+    "2026-08-30",
+    "2026-08-31",
+    "2026-09-01",
+    "2026-09-02",
+    "2026-09-03",
+    "2026-09-04",
+    "2026-09-05",
+    "2026-09-06",
+    "2026-09-07",
+    "2026-09-08",
+    "2026-09-09",
+    "2026-09-10",
+    "2026-09-11",
+    "2026-09-12",
+    "2026-09-13",
+    "2026-09-14",
+    "2026-09-15",
+    "2026-09-16",
+    "2026-09-17",
+    "2026-09-18",
+    "2026-09-19",
+    "2026-09-20",
+    "2026-09-21",
+    "2026-09-22",
+    "2026-09-23",
+    "2026-09-24",
+    "2026-09-25",
+    "2026-09-26",
+    "2026-09-27",
+    "2026-09-28",
+    "2026-09-29",
+    "2026-09-30",
+    "2026-10-01",
+    "2026-10-02",
+    "2026-10-03",
+    "2026-10-04",
+    "2026-10-05",
+    "2026-10-06",
+    "2026-10-07",
+    "2026-10-08",
+    "2026-10-09",
+    "2026-10-10",
+    "2026-10-11",
+    "2026-10-12",
+    "2026-10-13",
+    "2026-10-14",
+    "2026-10-15",
+    "2026-10-16",
+    "2026-10-17",
+    "2026-10-18",
+    "2026-10-19",
+    "2026-10-20",
+    "2026-10-21",
+    "2026-10-22",
+    "2026-10-23",
+    "2026-10-24",
+    "2026-10-25",
+    "2026-10-26",
+    "2026-10-27",
+    "2026-10-28",
+    "2026-10-29",
+    "2026-10-30",
+    "2026-10-31",
+    "2026-11-01",
+    "2026-11-02",
+    "2026-11-03",
+    "2026-11-04"
+   ],
+   "llama": [
+    72662913,
+    58133070,
+    40456223,
+    75768932,
+    78242806,
+    73701129,
+    69758339,
+    77921510,
+    31744839,
+    50139274,
+    90147865,
+    80870447,
+    134181536,
+    136215921,
+    165407797,
+    142407166,
+    111313731,
+    145642189,
+    145152506,
+    126010720,
+    133221354,
+    110622273,
+    56604956,
+    68306432,
+    123658848,
+    131320550,
+    143225567,
+    169508996,
+    209382036,
+    101244339,
+    141010447,
+    109239532,
+    104742194,
+    198864845,
+    150771716,
+    147252230,
+    111677869,
+    87330458,
+    121309892,
+    131467577,
+    134119473,
+    303419794,
+    227845909,
+    126492193,
+    118561598,
+    270827432,
+    223237663,
+    215033741,
+    175821655,
+    180522864,
+    93548366,
+    120587818,
+    167864177,
+    213684038,
+    173179408,
+    125036685,
+    124137317,
+    76633486,
+    64354236,
+    117176998,
+    126234797,
+    119708258,
+    256069392,
+    255697796,
+    153185460,
+    122774330,
+    139501825,
+    133642221,
+    145432171,
+    99643158,
+    88174962,
+    130727860,
+    138807317,
+    97672919,
+    121452063,
+    151452049,
+    132262403,
+    95545767,
+    85994134,
+    89290005,
+    134322214,
+    141264151,
+    112385956,
+    141723823,
+    191904557,
+    73433291,
+    81928562,
+    155286804,
+    137911779,
+    143981404
+   ],
+   "oneclick": [
+    32348498.19,
+    25150351.77,
+    16947841.62,
+    33013586.03,
+    35091653.7,
+    31432073.0,
+    30143456.63,
+    33606555.73,
+    14966074.15,
+    22626113.09,
+    38144008.41,
+    38315172.01,
+    59278181.46,
+    59252961.42,
+    73022842.98,
+    55704731.28,
+    50137061.2,
+    65443475.55,
+    63733426.77,
+    56905631.69,
+    55531220.45,
+    47419716.08,
+    22255667.76,
+    28691898.07,
+    54669105.91,
+    43648548.41,
+    50321204.29,
+    56589487.73,
+    42472549.23,
+    32276904.23,
+    39054041.48,
+    41376594.33,
+    35056873.1,
+    64879248.61,
+    56004897.83,
+    59198774.51,
+    40360920.39,
+    27150825.99,
+    40778271.13,
+    43888152.59,
+    47159976.01,
+    95192792.3,
+    78289876.57,
+    38604167.45,
+    31324779.83,
+    78150342.66,
+    62746159.55,
+    60867343.34,
+    51229469.0,
+    48790118.39,
+    27083517.16,
+    41056857.11,
+    57362879.35,
+    69450826.43,
+    53401300.41,
+    32611755.04,
+    38177226.68,
+    23788227.84,
+    19818475.61,
+    39029159.57,
+    35739915.93,
+    34353083.92,
+    52727053.09,
+    68450887.58,
+    39776946.5,
+    34562376.24,
+    38912186.82,
+    39477674.98,
+    31397245.8,
+    30002556.69,
+    21245935.88,
+    41827416.76,
+    41060558.81,
+    26124477.95,
+    35644353.84,
+    37513624.37,
+    30171286.46,
+    30871191.34,
+    22985901.95,
+    23091363.68,
+    41526893.84,
+    38112333.62,
+    32619243.06,
+    33835575.56,
+    57942698.93,
+    21945062.6,
+    26473027.55,
+    46402469.01,
+    40824696.93,
+    48328322.27
+   ]
+  },
+  "step_2026_09_01": {
+   "chain_over_llama_08_07_to_08_31": 0.22593121637158034,
+   "chain_over_llama_09_08_to_11_04": 0.17428667711076387,
+   "chain_over_llama_after_week": 0.1814417336420567,
+   "chain_over_llama_before_week": 0.23149705830684456,
+   "verdict": "absent",
+   "weeks": {
+    "chain": {
+     "after": 182336507.5639353,
+     "before": 176765849.89400363,
+     "ratio": 1.0315143319440496
+    },
+    "llama": {
+     "after": 1004931467,
+     "before": 763577089,
+     "ratio": 1.3160838394406043
+    },
+    "oneclick": {
+     "after": 305739329.7,
+     "before": 329206666.73,
+     "ratio": 0.9287154866482493
+    }
+   }
+  }
+ },
+ "windows": {
+  "q1_q2": [
+   "2026-07-07",
+   "2026-11-04"
+  ],
+  "q3_q4": [
+   "2026-08-07",
+   "2026-11-04"
+  ]
+ }
+}

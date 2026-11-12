@@ -92,6 +92,15 @@ def _check_heights(rows: list[dict]) -> None:
                 raise RuntimeError(f"result row past the cutoff date: {k}={r[k]}")
 
 
+def job_record(stem: str, job_id: str, sql: str) -> dict:
+    info = json.loads(_bq(["show", "-j", "--location=us-east1", "--format=json", job_id]))
+    st = info.get("statistics", {})
+    return {"stem": stem, "job_id": job_id, "location": "us-east1", "project": PROJECT, "sql_sha256": sha256_text(sql),
+            "created_utc": datetime.fromtimestamp(int(st["creationTime"]) / 1000, timezone.utc).isoformat(),
+            "ended_utc": datetime.fromtimestamp(int(st["endTime"]) / 1000, timezone.utc).isoformat(),
+            "bytes_processed": int(st.get("totalBytesProcessed", 0)), "bytes_billed": int(st.get("query", {}).get("totalBytesBilled", 0))}
+
+
 def run(stem: str, cap_gb: float = 300.0) -> None:
     path = SQL / f"{stem}.sql"
     sql = path.read_text()
@@ -101,14 +110,9 @@ def run(stem: str, cap_gb: float = 300.0) -> None:
         raise RuntimeError(f"{stem}: dry run {est/1e9:.1f} GB exceeds cap {cap/1e9:.0f} GB")
     now = datetime.now(timezone.utc)
     job_id = f"rb_{stem}_{now.strftime('%Y%m%dT%H%M%SZ')}"
-    is_ddl = sql.lstrip().upper().startswith("CREATE")
+    is_ddl = re.sub(r"(?m)^--.*$", "", sql).lstrip().upper().startswith("CREATE")
     out = _bq(["query", "--use_legacy_sql=false", f"--job_id={job_id}", f"--maximum_bytes_billed={cap}", "--format=json", "--max_rows=1000000", "\n" + sql])
-    info = json.loads(_bq(["show", "-j", "--location=us-east1", "--format=json", job_id]))
-    st = info.get("statistics", {})
-    rec = {"stem": stem, "job_id": job_id, "location": "us-east1", "project": PROJECT, "sql_sha256": sha256_text(sql),
-           "created_utc": datetime.fromtimestamp(int(st["creationTime"]) / 1000, timezone.utc).isoformat(),
-           "ended_utc": datetime.fromtimestamp(int(st["endTime"]) / 1000, timezone.utc).isoformat(),
-           "bytes_processed": int(st.get("totalBytesProcessed", 0)), "bytes_billed": int(st.get("query", {}).get("totalBytesBilled", 0))}
+    rec = job_record(stem, job_id, sql)
     if not is_ddl:
         rows = json.loads(out or "[]")
         _check_heights(rows)
@@ -184,6 +188,11 @@ def main(argv: list[str]) -> int:
         load_aux()
     elif cmd == "dry":
         print(f"{dry((SQL / (argv[1] + '.sql')).read_text())/1e9:.2f} GB")
+    elif cmd == "record":  # log a job that finished but was not logged (DDL runs)
+        sql = (SQL / (argv[1] + ".sql")).read_text()
+        OUT.mkdir(parents=True, exist_ok=True)
+        with JOBS.open("a") as f:
+            f.write(json.dumps(job_record(argv[1], argv[2], sql), sort_keys=True) + "\n")
     elif cmd == "run":
         run(argv[1], float(argv[2]) if len(argv) > 2 else 300.0)
     else:
