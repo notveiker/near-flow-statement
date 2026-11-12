@@ -711,3 +711,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 240 / 2025Q4_17 | _17 2025 complete; intents~175×; public+X NOW | history_progress_2025q4_17 |
 | Contest-year densify = honesty footnote | not a catalyst; binding evidence already locked | contest_year_is_honesty_footnote |
 | Soft-sink ≠ no-vol wall | burn/DIC≠fee engine; wall is capture-mix | soft_sink_is_not_the_wall |
+| Five ledgers discipline | only protocol+SK controllable; don't inflate | five_ledgers_discipline |
+| Capital-light PCI edge | dials raise capture without inventory BS | capital_light_pci_edge |

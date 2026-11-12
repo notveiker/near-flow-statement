@@ -116,3 +116,6 @@ Coverage wall ~42.8% · whale desk=SK-tax · conversion~9% appfees→BB · solve
 **Leakage is the bridge.** Close ~$50M partner leakage → 50× needs only ~**1.29×** volume (vs ~4× today).
 Default rail = fee engine. SK-tax first. Hold until H1b. **Public + X now** (~54h).
 <!-- /AUTO:HEADLINE -->
+
+<!-- AUTO:60S 2026-11-12 -->
+60s card + non-leads + five-ledgers locked. ~52h. PUBLIC+X.

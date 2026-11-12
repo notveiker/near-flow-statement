@@ -1,0 +1,12 @@
+{
+  "asof": "2026-11-12",
+  "ledgers": [
+    "protocol_fees",
+    "solver_pnl",
+    "relayer_risk",
+    "partner_SK_tax",
+    "user_AITR"
+  ],
+  "claim": "Five ledgers, one pitch: only protocol_fees + SK_tax are controllable capture; solver/relayer are risk; AITR is the user bill. Confusing them inflates the fee engine.",
+  "read": "Five ledgers discipline. Exploratory."
+}
