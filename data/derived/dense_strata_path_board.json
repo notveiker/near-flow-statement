@@ -1,41 +1,41 @@
 {
   "asof": "2026-11-12",
-  "clusters_total": 182,
+  "clusters_total": 197,
   "recent_quarter_clusters": [
     {
       "quarter": "2025Q1",
-      "clusters": 10
+      "clusters": 12
     },
     {
       "quarter": "2025Q2",
-      "clusters": 10
+      "clusters": 11
     },
     {
       "quarter": "2025Q3",
-      "clusters": 9
+      "clusters": 11
     },
     {
       "quarter": "2025Q4",
-      "clusters": 9
+      "clusters": 11
     },
     {
       "quarter": "2026Q1",
-      "clusters": 9
+      "clusters": 11
     },
     {
       "quarter": "2026Q2",
-      "clusters": 9
+      "clusters": 11
     },
     {
       "quarter": "2026Q3",
-      "clusters": 9
+      "clusters": 11
     },
     {
       "quarter": "2026Q4",
-      "clusters": 9
+      "clusters": 11
     }
   ],
-  "path": "_06\u2192_07\u2192_08\u2192_09\u2192_10",
+  "path": "_06\u2192_07\u2192_08\u2192_09\u2192_10\u2192_11\u2192_12",
   "overall_still": "not_supported",
-  "read": "Dense strata path _06\u2192_10 now at 182 clusters; recent quarters show ~8 clusters each under dense sampling. Narrower intervals do not flip overall (still not supported) \u2014 honesty preserved while fee\u2260L1 strengthens. History still not a submit blocker. Exploratory."
+  "read": "Dense strata path now through _12 at 197 clusters. Overall still not supported \u2014 honesty preserved. History still not a submit blocker (~60.1h). Exploratory."
 }

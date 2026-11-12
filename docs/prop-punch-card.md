@@ -451,3 +451,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Sweep ~535 identity | Prop ready; public+X bind; Hold until H1b | sweep_535_identity |
 | Entering _12 dense | _11 through 2026 done; history not submit blocker; repo private | entering_12_dense |
 | History 197 / 2025Q1_12 | Denser _12 started — still not supported | history_progress_2025q1_12 |
+| Dense strata through _12 | 197 clusters; overall still not supported; not submit blocker | dense_strata_path_board |
