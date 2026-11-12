@@ -111,6 +111,7 @@
 | 105 | 50× path vs cooling vol | Needs ~4× vol; latest print −12% MoM | Quality cannot substitute for volume path |
 | 106 | CS method asymmetry | respond≃24×sign; execute≃6.7×respond | CS is bursty completion under Intents flow |
 | 107 | Gas burn NEAR units (census) | Intents ~34 NEAR ≈ HOT ~36 | Heavier settlement confirmed in NEAR burned |
+| 108 | Capture vs gas burn (NEAR units) | Capture ≫ gas opex if census sustained | Directional only — hours window |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.
 
