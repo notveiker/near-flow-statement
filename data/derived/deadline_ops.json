@@ -1,13 +1,13 @@
 {
- "now_utc": "2026-11-12T03:41:52.400286+00:00",
- "hours_to_submit": 68.3,
- "history_clusters": 154,
- "last_stratum": "2026Q2_06",
+ "now_utc": "2026-11-12T03:49:18.395956+00:00",
+ "hours_to_submit": 68.2,
+ "history_clusters": 155,
+ "last_stratum": "2026Q3_06 (Q4 sealing)",
  "prop_ready": true,
  "must_ship": [
   "public_repo",
   "X_demo_dry_run",
   "F1-F4_on_day"
  ],
- "note": "Judge packet ready. History 154 clusters through 2026Q2 preliminary. ~68.3h to submit."
+ "note": "Judge packet ready. 155 clusters; Q4 sealing. ~68.2h to submit."
 }

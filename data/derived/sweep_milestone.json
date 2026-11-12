@@ -1,8 +1,20 @@
 {
- "commits_since_structural_approx": 357,
- "clusters": 155,
- "four_ten_m_shipped": true,
- "judge_packet": true,
+ "commits_since_structural": 363,
+ "clusters_preliminary": 155,
  "hours_to_submit": 68.2,
- "note": "~357 commits; 155 clusters; four ~$10M board + ADR defense + TG dial shipped; ~68.2h to submit."
+ "latest_props": [
+  "four_ten_m_board",
+  "solver_residual_ten_m",
+  "tg_attach_dial",
+  "cif_rate_card_dial",
+  "attestation_underwriting_dial",
+  "immaterial_to_material_ladder",
+  "exit_flow_scarcity_gap",
+  "fifty_x_binding_constraint",
+  "sk_exit_resilience_split",
+  "peerset_recovery_cost"
+ ],
+ "judge_ready": true,
+ "history_overall": "not_supported_preliminary",
+ "note": "~363 commits; 155 clusters; judge packet + four ~$10M + CIF/attest underwriting; ~68.2h to submit."
 }

@@ -67,3 +67,7 @@ Do not lead with ETF/NRR fee (~1.7% of Intents RR).
 LST soft sink ~611 DIC days (~25× buyback) but only ~9.3% of stake.
 
 DefiLlama Intents fees −31.6% MoM with vol −12% — absolute cool; quality path offsets.
+
+<!-- AUTO:LADDER -->
+**Immaterial→material ($/yr):** AI 5% ~$0.33 · whale +10pp ~$1.0 · TG half@10bp ~$1.4 · CIF 1bp ~$3.3 · SK-tax 25% ~$10.2. Lead the right end.
+<!-- /AUTO:LADDER -->

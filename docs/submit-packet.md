@@ -29,3 +29,6 @@ History: 150 preliminary clusters through 2025Q2 — say preliminary / not suppo
 
 ### Four ~$10M board
 SK-tax ~$10.2M · attest ~$8.4M · HSP-007 10% ~$11.8M · solver residual ~$11.4M. Contestable rent is not capture. TG surface attach gap ~$1.4M conservative.
+
+### Immaterial→material ladder
+AI 5% ~$0.33M ≪ whale ~$1.0M ≪ TG ~$1.4M ≪ CIF 1bp ~$3.3M ≪ SK-tax ~$10.2M. Do not lead AI/npm/ETF/peer-share/L1 actives.

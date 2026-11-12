@@ -278,3 +278,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Mix to no-ref paths | SK→noref / +5pp noref land in fee engine (noref already ~46% BB $) | mix_to_noref_paths |
 | Confidential inventory majority | Conf TVL ~70% of inventory — CIF+attest are same surface | confidential_inventory_majority |
 | Immaterial→material ladder | AI $0.33 < whale $1.0 < TG $1.4 < CIF 1bp $3.3 < SK-tax $10.2 | immaterial_to_material_ladder |
+| Sweep ~363 commits | Judge packet + four ~$10M + CIF/attest + ladder; 155 clusters preliminary | sweep_milestone |
