@@ -178,3 +178,9 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Full gross coverage | 15.3 bp absorb ⇒ ~$74M RR, ~49% coverage today / ~74% post-HSP-029 — still needs vol or deeper cut | full_gross_coverage |
 | Escrow climb velocity | 17.5%→58.5% Jul→Nov; +24pp Aug→Sep then flat — attestation did not climb with share | escrow_climb_velocity |
 | Peerset share softening | 365d 62.1% → 30d gross 55.7% → net **38.6%** — peer leadership soft on latest/net print | peerset_share_softening |
+
+| Channel BB density | No-ref ~2.45×, Trust ~5×, LI.FI **0.69×** on 10% vol — aggregators fee-dilutive | channel_bb_density |
+| H1b coverage binding | H1b covers ~20% streams / ~25% inflow — Hold-until-H1b is measured | h1b_coverage_still_binding |
+| BB wallet vs implied | Wallet 2.19M vs implied 3.19M NEAR (**68.5%**) — soft-sink < fee-implied stock | bb_wallet_vs_implied |
+| LI.FI attach uplift | 2.8→10 bp on 10% 1Click vol ≈ **~$1.0M/yr** | lifi_attach_uplift |
+

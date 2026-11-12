@@ -1,0 +1,75 @@
+{
+ "top_density": [
+  {
+   "buyback_bp": 71.1,
+   "channel": "e1a72603-64b3-4be1-8265-8bae5970d396",
+   "share_pct": 7.2,
+   "vol_share_pct": 0.4,
+   "bb_per_vol_density": 18.0
+  },
+  {
+   "buyback_bp": 20.0,
+   "channel": "trustwallet",
+   "share_pct": 12.0,
+   "vol_share_pct": 2.4,
+   "bb_per_vol_density": 5.0
+  },
+  {
+   "buyback_bp": 19.9,
+   "channel": "enot",
+   "share_pct": 1.5,
+   "vol_share_pct": 0.3,
+   "bb_per_vol_density": 5.0
+  },
+  {
+   "buyback_bp": 20.0,
+   "channel": "arbie",
+   "share_pct": 6.9,
+   "vol_share_pct": 1.4,
+   "bb_per_vol_density": 4.93
+  },
+  {
+   "buyback_bp": 19.8,
+   "channel": "leodex",
+   "share_pct": 1.9,
+   "vol_share_pct": 0.4,
+   "bb_per_vol_density": 4.75
+  },
+  {
+   "buyback_bp": 10.0,
+   "channel": "(none)",
+   "share_pct": 45.8,
+   "vol_share_pct": 18.7,
+   "bb_per_vol_density": 2.45
+  }
+ ],
+ "lifi": {
+  "buyback_bp": 2.8,
+  "channel": "lifi",
+  "share_pct": 6.9,
+  "vol_share_pct": 10.0,
+  "bb_per_vol_density": 0.69
+ },
+ "rango": {
+  "buyback_bp": 4.1,
+  "channel": "rango",
+  "share_pct": 5.8,
+  "vol_share_pct": 5.8,
+  "bb_per_vol_density": 1.0
+ },
+ "none": {
+  "buyback_bp": 10.0,
+  "channel": "(none)",
+  "share_pct": 45.8,
+  "vol_share_pct": 18.7,
+  "bb_per_vol_density": 2.45
+ },
+ "trustwallet": {
+  "buyback_bp": 20.0,
+  "channel": "trustwallet",
+  "share_pct": 12.0,
+  "vol_share_pct": 2.4,
+  "bb_per_vol_density": 5.0
+ },
+ "note": "BB-fee $ density (fee-share\u00f7vol-share): no-ref ~2.45\u00d7, Trust ~5.0\u00d7, mystery UUID ~18\u00d7 at 71bp on 0.4% vol; LI.FI ~0.69\u00d7 at 2.8bp on 10% vol \u2014 aggregator volume is fee-dilutive vs no-ref/Trust. Exploratory."
+}

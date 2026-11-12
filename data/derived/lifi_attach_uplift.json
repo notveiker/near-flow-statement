@@ -1,10 +1,8 @@
 {
  "lifi_vol_share_pct": 10.0,
- "current_buyback_bp": 2.8,
- "aitr_bp": 9.49,
- "current_buyback_usd_m_approx": 0.031,
- "at_aitr_buyback_usd_m_approx": 0.105,
- "uplift_usd_m_approx": 0.074,
- "uplift_run_rate_m_approx": 0.9,
- "note": "Arithmetic only: lifting LI.FI attach rate from 2.8 bp to AITR 9.5 bp on 10% of 1Click notional. Not a forecast; Commercial Agreement Gap."
+ "lifi_bb_bp": 2.8,
+ "target_bp": 10.0,
+ "uplift_30d_m": 0.079,
+ "uplift_rr_m": 0.97,
+ "note": "LI.FI is ~10% of 1Click vol at only 2.8 bp BB (density 0.69\u00d7). Lifting to 10 bp default \u2248 $1.0M/yr \u2014 aggregator commercial dial beside Trust/Ledger. Exploratory."
 }

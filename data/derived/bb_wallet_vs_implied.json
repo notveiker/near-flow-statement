@@ -1,0 +1,7 @@
+{
+ "buyback_wallet_near_m": 2.187,
+ "buyback_implied_near_m": 3.19,
+ "wallet_vs_implied_pct": 68.5,
+ "missing_near_m": 1.003,
+ "note": "Buyback wallet holds 2.187M NEAR vs 3.19M implied (~68.5%) \u2014 ~1.00M NEAR of implied buybacks are not sitting in the public wallet (spent, other rails, or unmapped). Soft-sink is smaller than fee-implied accumulation. Exploratory."
+}

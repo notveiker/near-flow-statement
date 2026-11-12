@@ -59,14 +59,14 @@
    "why": "no new volume; ~20% of leakage pool"
   },
   {
-   "name": "Appfees conversion double 9\u219218%",
-   "rr_m": 5.5,
-   "why": "policy conversion of listed fees"
-  },
-  {
    "name": "Mix +10pp to near.com",
    "rr_m": 9.7,
    "why": "arithmetic; wallet-implied share only ~7.7% today"
+  },
+  {
+   "name": "Appfees conversion double 9\u219218%",
+   "rr_m": 5.5,
+   "why": "policy conversion of listed fees"
   },
   {
    "name": "ZEC inventory 2\u00d7",
@@ -82,6 +82,11 @@
    "name": "Whale +10pp attach",
    "rr_m": 0.98,
    "why": "margin quality on 77% of 1Click vol"
+  },
+  {
+   "name": "LI.FI 2.8\u219210 bp",
+   "rr_m": 0.97,
+   "why": "10% of 1Click vol is fee-dilutive today"
   }
  ],
  "do_not_lead": [

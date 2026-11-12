@@ -1,0 +1,12 @@
+{
+ "h1b_coverage_count_pct": 20.0,
+ "h1b_coverage_inflow_pct": 24.6,
+ "h1b_coverage_tier1_count_pct": 10.0,
+ "h1b_coverage_tier1_inflow_pct": 20.2,
+ "attestation_band_pct": [
+  4.5,
+  15.8
+ ],
+ "stance": "Hold until H1b",
+ "note": "H1b coverage still only ~20.0% of streams by count / ~24.6% by inflow (tier1 ~10.0%/20.2%). Hold-until-H1b is a measured coverage gap, not a slogan. Exploratory."
+}

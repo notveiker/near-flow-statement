@@ -32,3 +32,7 @@ Buyback funding rails ($): `data/derived/bb_funding_rails.json` — collectors ~
 ## Unexplained buyback funding
 
 Beyond the 4.5–15.8% attestation band on escrow, ~**68%** of revwallet buyback dollars ($0.94M / $1.39M) lack a mapped fee-event in the evidence sample. Hold until H1b remains binding on funding provenance, not only escrow share.
+
+## H1b coverage still binding
+
+Measured H1b coverage ~20.0% of streams by count / ~24.6% by inflow. Stance remains Hold until H1b.
