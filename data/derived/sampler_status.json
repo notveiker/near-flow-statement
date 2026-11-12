@@ -1,8 +1,8 @@
 {
  "primary_clusters_local": 147,
  "sample2_clusters_local": 95,
- "last_ingested": "2024Q3_06",
+ "primary_next_part": "2024Q4_06",
  "overall": "not_supported_preliminary",
- "commits_since_structural_approx": 315,
- "note": "147 clusters through 2024Q3_06. Judge packet ready. Do not block submit."
+ "commits_since_structural_approx": 324,
+ "note": "2024Q4_06 sealing. Judge packet ready with 87% fee dominance + two bridges."
 }
