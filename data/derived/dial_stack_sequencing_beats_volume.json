@@ -1,0 +1,37 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_submit": 52.1,
+  "clusters": 239,
+  "commits": 708,
+  "stack_order": [
+    {
+      "dial": "SK_tax_route",
+      "usd_yr": 10200000,
+      "mutex_with": [
+        "deep_SK_without_Ledger_first"
+      ]
+    },
+    {
+      "dial": "Ledger_first_SK",
+      "usd_yr": 10000000,
+      "mutex_with": [
+        "logo_volume_without_route"
+      ]
+    },
+    {
+      "dial": "default_noref_rail_share",
+      "usd_yr": 10000000,
+      "note": "18.7% vol \u2192 45.8% BB$"
+    },
+    {
+      "dial": "escrow_BB_attest",
+      "usd_yr": null,
+      "note": "Trust urgency; ~5.7\u00d7 band compression"
+    }
+  ],
+  "elasticity": 3.07,
+  "no_vol_wall_pct": 42.8,
+  "claim": "Four ~$10M dials are NOT independent \u2014 call-order + mutex matter. SK-tax before Ledger-deepening; default-rail before logo volume. Elasticity ~3.07\u00d7 means dial sequencing beats volume chasing past the ~42.8% no-vol wall.",
+  "pitch_line": "Don't add volume to a leaking pipe. Sequence the dials.",
+  "read": "Dial stack+mutex @~52h. Exploratory."
+}

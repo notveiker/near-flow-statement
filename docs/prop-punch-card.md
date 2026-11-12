@@ -696,3 +696,7 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Density EV ≪ delivery EV | _12–_16 never flipped overall; public+X binding | density_ev_vs_delivery_ev |
 | SK-tax = first controllable $ | ~$10.2M before volume; logos≠capture | sk_tax_first_controllable_dollar |
 | History 239 / 2025Q3_17 | intents~175×; triangle+SK-tax shipped; public+X NOW | history_progress_2025q3_17 |
+| Dial stack sequencing > volume | four ~$10M mutex; elasticity 3.07×; no-vol wall 42.8% | dial_stack_sequencing_beats_volume |
+| Hold=H1b honesty not bearish | path exists; claim design + escrow gate Buy | hold_is_h1b_honesty_not_bearish |
+| Default-rail asymmetry = fee proof | 18.7% vol → 45.8% BB$ (×2.45) | default_rail_asymmetry_is_fee_proof |
+| Judge F1–F4 day-of card | leakage bridge / OoM / dials / Hold | judge_f1_f4_day_of |

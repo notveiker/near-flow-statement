@@ -151,3 +151,6 @@ Prop/dashboard/judge packet ready (~437 commits, 168 clusters preliminary). **Mu
 **`_12`–`_16` dense COMPLETE** @236 clusters. Intents~202× OoM; overall not supported.
 **~53h left.** Binding: public repo + X dry-run ONLY. Strata EV exhausted.
 <!-- /AUTO:D16DONE -->
+
+<!-- AUTO:DIALSTACK 2026-11-12 -->
+- Dial sequencing beats volume (mutex+elasticity). Hold=H1b honesty. Default-rail ×2.45 asymmetry = fee proof. ~52h; public+X NOW.

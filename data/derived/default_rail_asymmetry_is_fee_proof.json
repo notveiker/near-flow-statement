@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "default_noref_vol_pct": 18.7,
+  "default_noref_bb_pct": 45.8,
+  "bb_over_vol_multiple": 2.45,
+  "claim": "Default/no-ref rail is 2.45\u00d7 over-indexed in BB$ vs volume \u2014 that asymmetry IS the fee engine. Logo partners invert it: volume without capture. Pitch the asymmetry, not the logos.",
+  "implication": "Every point of share moved from logo/foreign to default/no-ref is a capture multiple, not a volume multiple.",
+  "read": "Rail asymmetry = fee-engine proof. Exploratory."
+}

@@ -1,0 +1,11 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_submit": 52.1,
+  "clusters": 239,
+  "commits": 708,
+  "f1_headline": "Leakage is the bridge",
+  "f2_numbers": "Intents ~180\u00d7 vs L1 ~0.22\u00d7; \u224899% DEX; leakage ~$50M; zero-leak \u2192 ~$74.5M RR; 50\u00d7 needs ~1.29\u00d7 vol",
+  "f3_dials": "SK-tax \u2192 Ledger-first \u2192 default-rail \u2192 attest escrow; elasticity 3.07\u00d7; no-vol wall 42.8%",
+  "f4_honesty": "Hold until H1b; overall history not supported; repo must be public + X demo",
+  "read": "F1\u2013F4 day-of @~52h/708c. Exploratory."
+}
