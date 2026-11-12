@@ -837,6 +837,14 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     const Ap = D.catalysts && D.catalysts.attest_payoff;
     if (H29m) bits.push(`HSP-029 alone = mint↓ not capture dial.`);
     if (Ap) bits.push(`Attest band compression = Trust payoff (parallel to SK-tax).`);
+    const Zlv = D.catalysts && D.catalysts.zero_leak_vol;
+    const An = D.catalysts && D.catalysts.aurora_not;
+    const Ht = D.catalysts && D.catalysts.h1c_thin;
+    const Bn = D.catalysts && D.catalysts.bitwise_neq;
+    if (Zlv) bits.push(`Zero leakage → $${Zlv.full_capture_rr_m}M RR; 50× needs only ~${Zlv.vol_x_for_50x}× vol — leakage is the bridge.`);
+    if (An) bits.push(`Aurora residual ~${An.aurora_tvl_vs_peak_pct}% of peak — not the thesis.`);
+    if (Ht) bits.push(`H1c buying ~$${Ht.h1c_buying_m}M thin vs fee print — not a catalyst.`);
+    if (Bn) bits.push(`Bitwise NRR ≠ Intents capture — do not stack.`);
     const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);

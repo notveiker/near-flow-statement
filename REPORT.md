@@ -141,8 +141,8 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~662 commits / 229 clusters / ~54h.** `_16` sealing. Overall still **not supported**.
-- HSP-029 alone = mint not capture; full capture still needs volume; attest = Trust payoff.
+- **~664 commits / 230 clusters / ~54h.** `_16` sealing. Overall still **not supported**.
+- **Zero leakage → volume last mile** (~1.29× for 50×). Attest band ~5.7× compression = Trust. Aurora/H1c/Bitwise non-leads.
 - **URGENT:** public + X. Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 

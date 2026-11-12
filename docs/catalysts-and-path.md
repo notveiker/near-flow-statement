@@ -469,3 +469,8 @@ Chain Signatures sits under Intents execution (execute ≫ respond ≫ sign) —
 - Default/no-ref path: **18.7% vol → 45.8% BB$** (×2.45) — default rail IS the fee engine.
 - Logo partners = volume without capture; strategy = convert logos onto BB rails + SK-tax.
 <!-- /AUTO:SWEEP22 -->
+
+<!-- AUTO:SWEEP23 -->
+- Zero leakage after HSP-029 → ~$74.5M RR; mint~1×; 50× needs only ~1.29× vol — **leakage is the bridge**.
+- Attest band compression ~5.7× = Trust payoff (not τ). Aurora/H1c/Bitwise are non-leads.
+<!-- /AUTO:SWEEP23 -->

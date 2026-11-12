@@ -1,0 +1,8 @@
+{
+  "asof": "2026-11-12",
+  "bitwise_nrr_m": 56.0,
+  "intents_rr_m": 24.2,
+  "intents_vs_bitwise_x": 0.43,
+  "implication": "Bitwise-style NRR (~$56M) is a different claim than Intents BB capture \u2014 do not stack for token thesis; institutional wrapper \u2260 fee engine",
+  "read": "Bitwise NRR~$56.0M vs Intents~$24.2M \u2014 different claims; do not stack. Exploratory."
+}

@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "full_capture_rr_m": 74.5,
+  "vol_x_for_1x_hsp029_mint": 1.03,
+  "vol_x_for_50x": 1.29,
+  "today_rr_m": 24.2,
+  "implication": "Zero leakage after HSP-029 \u2192 ~$74.5M RR covers mint ~1\u00d7 at current vol; 50\u00d7 needs only ~1.29\u00d7 volume \u2014 leakage close is the bridge; volume is the last mile after",
+  "read": "Full capture ~$74.5M \u2192 mint~1.03\u00d7; 50\u00d7 needs ~1.29\u00d7 vol. Leakage is the bridge. Exploratory."
+}

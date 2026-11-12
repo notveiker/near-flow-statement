@@ -657,3 +657,7 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Full capture still needs volume | Full-capture extreme: {'at_full_gross_capture_15_3bp': {'rr_m': 74.5, 'vol_x_for_1x_hsp029_mint': 1.03, 'vol_x_for_50x': 1.29}, 'read': 'If  | full_capture_still_needs_volume |
 | HSP-029 alone = mint not capture | HSP-029 alone: {'issuance_offset_today_pct': 15.81, 'issuance_offset_at_16_cap_flat_fees_pct': 24.3, 'fee_covers_mint_today_x': 0.205, 'fee_ | hsp029_alone_is_mint_not_capture |
 | Attest band = Trust payoff | Attest band: {'band_today_pct': [4.5, 15.8], 'band_width_pp': 11.3, 'mid_pct': 10.15, 'post_disclosure_band_pct_sketch': [9.2, 11.2], 'width | attest_band_is_trust_payoff |
+| Zero leakage → volume last mile | Full capture ~$74.5M → mint~1.03×; 50× needs ~1.29× vol. Leakage is the bridge. Exploratory. | zero_leakage_makes_volume_last_mile |
+| Aurora not the thesis | Aurora TVL~0.276% of peak; Intents≫Aurora fees. Not the thesis. Exploratory. | aurora_not_the_thesis |
+| H1c buying thin ≠ catalyst | H1c buying $1.48M ≈0.74× 30d capture. Thin. Exploratory. | h1c_buying_thin_not_catalyst |
+| Bitwise NRR ≠ Intents capture | Bitwise NRR~$56.0M vs Intents~$24.2M — different claims; do not stack. Exploratory. | bitwise_nrr_neq_intents_capture |

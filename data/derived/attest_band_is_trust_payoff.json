@@ -1,19 +1,15 @@
 {
   "asof": "2026-11-12",
-  "band": {
-    "band_today_pct": [
-      4.5,
-      15.8
-    ],
-    "band_width_pp": 11.3,
-    "mid_pct": 10.15,
-    "post_disclosure_band_pct_sketch": [
-      9.2,
-      11.2
-    ],
-    "width_compression_x": 5.7,
-    "note": "Publishing fee-stream\u2192wallet map would not raise take-rate; it collapses the capture-share uncertainty band that blocks institutional underwriting. Exploratory sketch assumes \u00b11pp residual."
-  },
-  "implication": "Attestation band compression is the Trust ledger payoff \u2014 parallel to SK-tax, not a substitute",
-  "read": "Attest band: {'band_today_pct': [4.5, 15.8], 'band_width_pp': 11.3, 'mid_pct': 10.15, 'post_disclosure_band_pct_sketch': [9.2, 11.2], 'width_compression_. Exploratory."
+  "band_today_pct": [
+    4.5,
+    15.8
+  ],
+  "band_width_pp": 11.3,
+  "post_disclosure_band_pct_sketch": [
+    9.2,
+    11.2
+  ],
+  "width_compression_x": 5.7,
+  "implication": "Publishing fee-stream\u2192wallet map collapses capture-share uncertainty band ~5.7\u00d7 \u2014 Trust payoff, does not raise \u03c4",
+  "read": "Attest band [4.5, 15.8] \u2192 sketch [9.2, 11.2] (\u00d75.7 compression). Trust not \u03c4. Exploratory."
 }
