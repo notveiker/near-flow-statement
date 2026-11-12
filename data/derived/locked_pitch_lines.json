@@ -1,17 +1,17 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 53.9,
-  "clusters": 229,
-  "commits": 661,
+  "hours_to_submit": 53.8,
+  "clusters": 230,
+  "commits": 665,
   "lines": [
     "Fee\u2260L1 OoM: Intents ~180\u2013192\u00d7 (drifts; always \u226b100\u00d7) vs L1 ~0.22\u00d7.",
     "Default/no-ref rail IS the fee engine (18.7% vol \u2192 45.8% BB$).",
-    "Leakage ~$50M; SK-tax ~$10.2M first; logos = vol without capture.",
-    "mcap/rev ~217\u00d7 vs THOR~16\u00d7 \u2014 discretionary held-BB claim; Hold until H1b.",
-    "No-vol wall ~42.8%; whale desk last mile; capital-light PCI~0.057.",
-    "Call order: public+X \u2192 SK-tax \u2192 logos\u2192default BB \u2192 conversion \u2192 HSP \u2192 attest \u2192 attach.",
-    "History densified _12\u2013_15 complete; overall still not supported \u2014 honesty.",
-    "Must-ship NOW: flip repo public + X dry-run (human-only)."
+    "Leakage ~$50M is the bridge: zero leakage \u2192 50\u00d7 needs only ~1.29\u00d7 vol.",
+    "SK-tax ~$10.2M first; logos = vol without capture; convert to default BB.",
+    "mcap/rev ~217\u00d7 vs THOR~16\u00d7 \u2014 discretionary claim; Hold until H1b.",
+    "No-vol wall ~42.8%; capital-light; attest band ~5.7\u00d7 Trust payoff.",
+    "History _12\u2013_15 done; overall not supported \u2014 honesty.",
+    "URGENT must-ship: public repo + X dry-run (human-only)."
   ],
   "do_not_lead": [
     "AI",
@@ -25,5 +25,5 @@
     "pip",
     "volume-alone"
   ],
-  "read": "Locked 8 lines @~54h/229cl/661c. Exploratory."
+  "read": "Locked 8 lines @~54h/230cl/665c. Exploratory."
 }

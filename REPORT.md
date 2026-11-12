@@ -141,9 +141,9 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~664 commits / 230 clusters / ~54h.** `_16` sealing. Overall still **not supported**.
-- **Zero leakage → volume last mile** (~1.29× for 50×). Attest band ~5.7× compression = Trust. Aurora/H1c/Bitwise non-leads.
-- **URGENT:** public + X. Hold until H1b.
+- **~665 commits / 230 clusters / ~54h.** `_16` through 2025Q2. Overall still **not supported**.
+- **Leakage is the bridge:** zero leakage → ~$74.5M RR; 50× needs only ~**1.29×** vol.
+- Default rail = fee engine; 217× claim design; SK-tax first. **URGENT:** public + X.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context
