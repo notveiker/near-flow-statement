@@ -1,49 +1,19 @@
-# X demo talking points (60–90s)
+# X demo talking points
 
-*Exploratory. Hold until H1b. Numbers not forecasts.*
+*~2–3 min. Numbers only. Stance: Hold until H1b.*
 
-1. **Intents ≈ NEAR DEX** (~99% of DefiLlama NEAR DEX 30d) — the venue *is* the chain’s DEX surface.  
-2. **Distribution owns the margin** — partners ~1.8×+ NEAR capture; Ledger-via-SK alone ≈ NEAR’s whole print.  
-3. **Fee engine is no-referrer** — 19% vol → 46% buyback $ (~2.45×). SK exit hits vol not buyback $.  
-4. **Leakage pool ~$50M/yr** — commercial prize; full capture + HSP-029 ≈ 1× mint; 50× then needs ~1.3× vol.  
-5. **Quality rose on a cooling print** — attach/τ up; vol −12% MoM. 50× still needs volume.  
-6. **Fee density > L1 share** — Intents ~9% gas, ~11× L1 fees; denser settlement.  
-7. **Hold until H1b** — growth clears the rule; labels are the only frozen gap.
+## Script
 
-Artifacts: dashboard + `docs/prop-what-is-proprietary.md`.
+1. **Open:** Partners listed fees > NEAR capture in dollars. Leakage pool ~$50M/yr. Distribution owns the fee print.
+2. **Two bridges:** SK-tax renegotiation ~$10M/yr raises capture; attest escrow BB ~$8.4M/yr raises trust. Both before volume.
+3. **Quality-on-cool:** Attach/τ already 1.72× inside the sample while vol −12% MoM — off a print still ~1.5× year-avg daily.
+4. **Path:** Fee÷mint 0.21→1.0× at full gross+HSP, then ~1.3× vol for 50× (vs ~4× at today’s ~5 bp). Marginal: capture-share pp worth ~3× volume pp.
+5. **Holds:** H1b ~20–25%, attestation ≤16%, escrow ~58% of BB, unexplained BB ~68%, relayer top1 ~83%, HSP-007 competing claim (Gap). HSP-029 pending-not-live.
+6. **Close:** Do not lead AI/npm/ETF/peer-share. F1–F4 pre-registered. History preliminary.
 
-Falsify if: attach stalls, no-ref mix collapses, capture share <25%, volume halves without take rising (`prop_falsifiers.json`).
+## Densest refs
 
-## 30-second catalyst stack (numbers only)
-
-- Capture ~5 bp of ~15 bp gross; leakage pool ~$50M/yr — **renegotiation before volume**.
-- SK listed partner tax alone ~1.7× NEAR capture; 25% take ≈ ~$10M/yr, no new volume.
-- Attach/τ up while vol −12% MoM — **quality rose on a cooling print**.
-- Fee÷mint ~0.21× today → ~0.32× HSP-029 → ~0.48× attach/mix stack; full-capture extreme + HSP ≈ 1× mint then ~1.3× vol for 50×.
-- Soft sinks: LST/DIC ≫ NRR ≫ buyback; burn needs ~122% of today’s capture for 25% mint offset.
-- Hold until H1b; HSP-029 pending (timelock after submit).
-
-## What moves τ (say this)
-
-Moves capture: partner-tax renegotiation, appfees→buyback conversion, whale attach, mix to no-ref/near.com, HSP-029 mint cut.
-Does **not** move τ: perps OI, npm downloads, unlabeled AI volume, CS signature counts as a fee line.
-
-## Close
-
-Pre-registered F1–F4 in `docs/f1-f4-scorecard.md`. History sample preliminary — not a supported claim.
-
-Full spine: [`pitch-spine.md`](pitch-spine.md).
-
-Partners listed fees exceed NEAR capture in dollars — open with distribution ownership of the fee print.
-
-Lead with evidenced quality path (attach/τ 1.72× inside sample on −12% MoM vol) + leakage/conversion dials.
-
-+1pp capture-share ≈ $0.74M/yr vs +1pp volume ≈ $0.24M/yr (~3×). Say it once.
-
-## Two bridges
-
-SK-tax renegotiation (~$10M) raises capture; attesting escrow BB (~$8.4M) raises trust. Both before volume.
-
-Multiple ~199× sits on cooling vol and R90≪RR — say leakage/conversion protect the denominator.
-
-Do not lead with ETF/NRR fee (~1.7% of Intents RR).
+- [`pitch-spine.md`](pitch-spine.md)
+- [`submit-packet.md`](submit-packet.md)
+- Dashboard Capture → Controllable dials
+- `data/derived/judge_one_pager_stack.json`
