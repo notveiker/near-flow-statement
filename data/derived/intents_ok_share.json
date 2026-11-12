@@ -1,0 +1,6 @@
+{
+ "intents_ok_share_pct": 83.4,
+ "intents_tx_share_pct": 13.2,
+ "intents_gas_share_pct": 9.4,
+ "note": "Intents success rate ~83% of txs in census vs near-perfect for HOT game \u2014 solver/user failures are material. Fee print is on successful flow; UX risk sits in the failure tail. Exploratory window."
+}

@@ -1,0 +1,27 @@
+{
+ "census_referral_top": [
+  [
+   "1click-unknown",
+   132
+  ],
+  [
+   "intents.tg",
+   81
+  ],
+  [
+   "1click-swapkit",
+   60
+  ],
+  [
+   "1click-lifi",
+   34
+  ],
+  [
+   "1click-rango",
+   14
+  ]
+ ],
+ "unknown_share_pct": 33.2,
+ "total_labeled_refs": 397,
+ "note": "Short census window: 1click-unknown is the top referral tag (~33.2% of tagged referrals) \u2014 consistent with no-referrer dominating buyback dollars. Exploratory hours-window."
+}
