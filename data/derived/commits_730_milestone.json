@@ -1,8 +1,17 @@
 {
   "asof": "2026-11-12",
-  "commits": 727,
-  "clusters": 243,
-  "hours_to_submit": 51.2,
-  "claim": "727 commits. Further prop commits are packaging. Binding constraint unchanged: public+X.",
-  "read": "~730c @~51h. Exploratory."
+  "commits": 731,
+  "clusters": 244,
+  "derived_json": 597,
+  "hours_to_submit": 51.1,
+  "dense_complete": [
+    "_12",
+    "_13",
+    "_14",
+    "_15",
+    "_16",
+    "_17"
+  ],
+  "claim": "731 commits / 244 clusters / 597 derived boards. Research complete. Delivery incomplete (private+no-X).",
+  "read": "730c+ @~51h. CRITICAL delivery."
 }

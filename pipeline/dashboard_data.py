@@ -533,6 +533,8 @@ def build() -> dict:
             "dense_17_near": optional("derived/dense_17_near_complete.json"),
             "dense_17_complete": optional("derived/dense_17_complete.json"),
             "entering_18": optional("derived/entering_18_dense.json"),
+            "pitch_spine_nums": optional("derived/pitch_spine_numbers_locked.json"),
+            "h1b_gates": optional("derived/h1b_flip_gate_checklist.json"),
             "risks_compact": optional("derived/risks_compact_bottom.json"),
             "no_vol_wall_elast": optional("derived/no_vol_wall_times_elasticity.json"),
             "commits_730": optional("derived/commits_730_milestone.json"),

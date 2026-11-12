@@ -119,3 +119,6 @@ Default rail = fee engine. SK-tax first. Hold until H1b. **Public + X now** (~54
 
 <!-- AUTO:60S 2026-11-12 -->
 60s card + non-leads + five-ledgers locked. ~52h. PUBLIC+X.
+
+<!-- AUTO:NUMS 2026-11-12 -->
+See pitch_spine_numbers_locked.json + h1b_flip_gate_checklist.json. _12–_17 done. ~51h. PUBLIC+X.

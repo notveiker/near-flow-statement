@@ -1,0 +1,33 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_submit": 51.1,
+  "gates": [
+    {
+      "id": "G1",
+      "gate": "SK-tax route live (~$10M RR)",
+      "status": "not_live"
+    },
+    {
+      "id": "G2",
+      "gate": "Ledger-first SK deepening",
+      "status": "not_live"
+    },
+    {
+      "id": "G3",
+      "gate": "Default/no-ref BB share rising (from 45.8%)",
+      "status": "monitor"
+    },
+    {
+      "id": "G4",
+      "gate": "Escrow attested (from 58.5% unattested BB)",
+      "status": "not_live"
+    },
+    {
+      "id": "G5",
+      "gate": "Capture/AITR rising from ~52%",
+      "status": "monitor"
+    }
+  ],
+  "claim": "Hold\u2192Buy is a gate checklist, not a vibe. G1+G4 are the minimum pair; G2/G3/G5 confirm. Density seals are not gates.",
+  "read": "H1b flip gates. Exploratory."
+}

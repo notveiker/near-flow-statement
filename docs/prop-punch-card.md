@@ -739,3 +739,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Confidential share = Trust surface size | ~71.2% + escrow 58.5%; attest makes claimable | confidential_share_is_trust_surface_size |
 | _12–_17 COMPLETE @ 244cl | overall not supported; strata EV exhausted; PUBLIC+X | dense_17_complete |
 | History 244 / 2026Q4_17 | _17 done; intents~168×; PUBLIC+X NOW | history_progress_2026q4_17 |
+| Pitch spine numbers locked | τ/AITR/leak/rail/escrow/SK/el/wall/OoM/mcap | pitch_spine_numbers_locked |
+| H1b flip = gate checklist | G1 SK-tax + G4 attest minimum; density≠gate | h1b_flip_gate_checklist |
