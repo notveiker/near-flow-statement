@@ -73,3 +73,5 @@ Leakage→volume: `data/derived/leakage_then_volume.json` — 60% capture ≈ $4
 Capture ceiling: `data/derived/capture_ceiling_50x.json` — 50× needs ~19.8 bp at current volume (above 15.3 gross).
 
 Full-capture extreme: `data/derived/full_capture_extreme.json` — zero leakage + HSP-029 ≈ 1× mint coverage; 50× needs ~1.3× volume.
+
+Judge sheet of proprietary arithmetics: [`docs/prop-what-is-proprietary.md`](prop-what-is-proprietary.md).
