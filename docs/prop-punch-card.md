@@ -743,3 +743,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | H1b flip = gate checklist | G1 SK-tax + G4 attest minimum; density≠gate | h1b_flip_gate_checklist |
 | What is proprietary NOW | 10 locked props; density/AI/ETF not on list | what_is_proprietary_now |
 | Catalyst path one-slide | now=public+X; near=SK+attest+rail; H1b=G1+G4 | catalyst_path_one_slide |
+| History 245 / 2025Q1_18 | _18 low EV; intents~166×; PUBLIC+X NOW | history_progress_2025q1_18 |

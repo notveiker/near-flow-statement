@@ -1,8 +1,12 @@
 {
   "asof": "2026-11-12",
   "stratum": "_18",
-  "clusters": 244,
-  "ev": "near-zero vs public+X",
-  "claim": "Entering _18 only because waiter is alive. Do not treat as catalyst.",
-  "read": "Entering _18 low EV @ 244cl. Exploratory."
+  "clusters": 245,
+  "sealed": [
+    "2025Q1_18"
+  ],
+  "intents_x": 166.3196,
+  "overall": "not supported",
+  "ev": "near-zero",
+  "read": "_18 started @ 245cl; intents~166\u00d7. Exploratory."
 }
