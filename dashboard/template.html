@@ -812,6 +812,8 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     const Iod = D.catalysts && D.catalysts.intents_oom_drift;
     if (C650) bits.push(`~${C650.commits} commits milestone; delivery still binds.`);
     if (Iod) bits.push(`Intents× drifts ${JSON.stringify(Iod.series.map(s=>Math.round(s.intents_x)))} — always ≫100×; pitch OoM.`);
+    const Js = D.catalysts && D.catalysts.judge_sixty;
+    if (Js) bits.push(`<b>60s:</b> ${Js.sixty_seconds.join(' ')}`);
     const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);

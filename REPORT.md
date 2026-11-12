@@ -141,10 +141,9 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~650 commits / 227 clusters / ~54h.** `_15` final quarter (Q4) sealing. Overall still **not supported**.
-- Intents× drift [189, 181, 147, 147, 147, 147, 158, 170, 170, 182, 182, 182, 182, 182, 180] — always ≫100×; pitch OoM not pinned multiple.
-- mcap/rev 217× vs THOR 16×; claim design; Hold until H1b.
-- **Repo PRIVATE.** Human-only: public + X.
+- **~651 commits / 227 clusters / ~54h.** `_15` Q4 sealing. Overall still **not supported**.
+- **60s card:** Fee≠L1; leakage/SK-tax; 217× claim design; wall/whale; public+X.
+- Intents× drift always ≫100×. **Repo PRIVATE.** Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context

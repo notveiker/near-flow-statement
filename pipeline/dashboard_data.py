@@ -457,6 +457,7 @@ def build() -> dict:
             "entering_15_final": optional("derived/entering_15_final_quarter.json"),
             "commits_650": optional("derived/commits_650_milestone.json"),
             "intents_oom_drift": optional("derived/intents_x_drift_always_oom.json"),
+            "judge_sixty": optional("derived/judge_sixty_second_card.json"),
             "f1_f4": optional("derived/f1_f4_on_submit_day.json"),
         },
         "repro": reproducibility(),

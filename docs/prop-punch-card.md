@@ -640,3 +640,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Entering _15 final quarter | Q4 left; strata EV ≪ public+X | entering_15_final_quarter |
 | 650-commit milestone | 650c/227cl — public+X still bind | commits_650_milestone |
 | Intents× drift always OoM | Drift series [189, 181, 147, 147, 147, 147, 158, 170, 170, 182, 182, 182, 182, 182, 180] @ clusters [201, 204, 205, 206, 207, 209, 213, 219, | intents_x_drift_always_oom |
+| Judge 60-second card | Fee≠L1; leakage/SK-tax; 217× claim design; wall/whale; public+X | judge_sixty_second_card |
