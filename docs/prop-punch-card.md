@@ -70,5 +70,6 @@
 | 64 | SK exit fee asymmetry | −38% 1Click vol but only ~2% traceable buyback $ | Fee engine already in no-ref; contest is affiliate P&L |
 | 65 | NEAR share of SK partner fees | ~0.0045% | Distribution owns the SK pipe margin |
 | 66 | Leakage pool size | ~$50M/yr non-NEAR claims on ~$74M gross | Commercial prize if capture share rises |
+| 67 | Leakage→60% then volume | ~$45M RR; still ~2.2× vol for 50× | Renegotiation necessary not sufficient |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.

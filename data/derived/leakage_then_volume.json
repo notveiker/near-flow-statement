@@ -1,0 +1,9 @@
+{
+ "at_50pct_capture_rr_m": 37.2,
+ "at_60pct_capture_rr_m": 44.7,
+ "covers_today_mint_at_50_x": 0.314,
+ "covers_hsp029_mint_at_60_x": 0.581,
+ "vs_50x_at_60": 0.46,
+ "vol_x_still_needed_for_50x_at_60cap": 2.16,
+ "note": "Even winning half the leakage pool (60% capture) leaves ~2.2\u00d7 volume gap to 50\u00d7 and ~0.58\u00d7 mint coverage at HSP-029 target. Leakage renegotiation is necessary but not sufficient. Exploratory."
+}
