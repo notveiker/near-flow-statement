@@ -8,9 +8,9 @@
 |---|---|
 | Dashboard primary (`dashboard/index.html`) | Live; Capture section has attach/mix/DIC/inventory |
 | Written report (`REPORT.md`) | Live; risks compact at bottom; Hold rating |
-| Structural + catalyst prop docs | Live; see `docs/prop-research-index.md` + punch card |
+| Structural + catalyst prop docs | Live; see `docs/prop-topline.md` + punch card + index |
 | Pre-reg / addendum honesty | Frozen tests untouched; exploratory labelled |
-| History sample | Preliminary **136** clusters; still sealing early rounds |
+| History sample | Preliminary **136** clusters (2022Q1_06 sealing); still sealing early rounds |
 | Forward tests F1–F4 | Resolve **2026-11-14** — score and publish |
 | Public repo / X demo | Still to do before deadline |
 | No Akash mention in deliverable | Enforced in prose |

@@ -2,7 +2,10 @@
  "primary_clusters_local": 136,
  "sample2_clusters_local": 85,
  "primary_next_part": "2022Q1_06",
+ "primary_part_lines_approx": 94,
  "sample2_next_part": "2022Q2_04",
  "overall": "not_supported_preliminary",
- "note": "Dual NEARDATA samplers still sealing early strata (max-round-early 6). History remains preliminary until stopping rule. Exploratory status."
+ "commits_since_structural_thesis_approx": 122,
+ "punch_rows_approx": 73,
+ "note": "Hyper sweep ongoing. History preliminary. Judge artifacts: prop-topline + punch card + dashboard."
 }
