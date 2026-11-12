@@ -50,3 +50,7 @@
 6. Hold until H1b labels  
 
 Do **not** lead with AI agents, ETF NRR, or npm downloads.
+
+## Falsifiers
+
+Attach stall · no-ref mix down · capture share <25% · escrow >70% without map · H1b fail · volume halves — `data/derived/prop_falsifiers.json`.

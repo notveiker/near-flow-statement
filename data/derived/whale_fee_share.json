@@ -1,0 +1,6 @@
+{
+ "whale_vol_share_pct": 77.1,
+ "whale_swap_count_pct": 3.4,
+ "implied_fee_share_if_flat_take_pct": 77.1,
+ "note": "If take is roughly flat across size, ~77% of fee dollars come from 3.4% of swaps. Commercial terms on whales dominate retail attach narrative. Exploratory (assumes flat take)."
+}
