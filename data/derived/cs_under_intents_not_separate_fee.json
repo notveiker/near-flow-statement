@@ -1,0 +1,6 @@
+{
+  "asof": "2026-11-12",
+  "execute_vs_respond_x": 6.7,
+  "respond_vs_sign_x": 23.7,
+  "read": "execute_intents ~6.7\u00d7 CS respond; respond ~23.7\u00d7 sign \u2014 Chain Signatures is bursty completion under continuous Intents execution, not a separate holders-revenue line. Exploratory census."
+}

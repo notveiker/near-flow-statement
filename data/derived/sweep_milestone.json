@@ -1,5 +1,5 @@
 {
-  "commits_since_structural": 473,
+  "commits_since_structural": 474,
   "clusters_preliminary": 178,
   "hours_to_submit": 63.8,
   "stratum": "_09_dense",
@@ -10,5 +10,5 @@
     "public_repo_STILL_PRIVATE",
     "X_demo_dry_run"
   ],
-  "note": "~473 commits; 178 clusters; judge packet integrity OK; repo private; ~63.8h; 2026Q3_09 next."
+  "note": "~474 commits; 178 clusters; HSP lag + CS-under-Intents + BB dollar rails; ~63.8h."
 }

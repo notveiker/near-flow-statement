@@ -407,3 +407,6 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Judge packet integrity | docs+core derived OK; 345 JSON; repo private blocker | judge_packet_integrity |
 | History 178 / 2026Q2_09 | Contest-year _09 continuing — still not supported | history_progress_2026q2_09 |
 | Sweep ~470 identity | Prop ready; repo private; opacity+elasticity+THOR live | sweep_470_identity |
+| HSP-029 activation lag | Timelock 16 Nov; ramp ≈2027-02 then 24m — pending-then-lagged | hsp029_activation_lag |
+| CS under Intents | execute ≫ respond ≫ sign — CS not separate fee line | cs_under_intents_not_separate_fee |
+| BB dollar rails | Escrow ~59% of BB funding $ — unattested majority rail | bb_dollar_rails_board |

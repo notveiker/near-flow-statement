@@ -251,3 +251,11 @@ Inventory turns ~**17×**/30d (PCI ~0.057) — capital-light; binding constraint
 
 `hsp007_vs_intents_tension.json`: an illustrative **20%** emissions claim is about **1×** Intents fee RR on the same issuance pool HSP-029 tries to shrink — treat as mint opex Gap until proposal bodies land.
 <!-- /AUTO:FIDELITY_DENSITY -->
+
+<!-- AUTO:HSP_LAG -->
+## HSP-029 is pending-then-lagged (exploratory)
+
+Timelock ends **2026-11-16**; float-sink path puts ramp activation around **2027-02-14**, then **24 months** to the 1.6% cap (`hsp029_activation_lag.json`). Submit materials must not imply a near-term mint cliff — the denominator dial is real but slow.
+
+Chain Signatures sits under Intents execution (execute ≫ respond ≫ sign) — not a separate holders-revenue line (`cs_under_intents_not_separate_fee.json`).
+<!-- /AUTO:HSP_LAG -->

@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "timelock_end": "2026-11-16",
+  "activation_approx": "2027-02-14",
+  "ramp_months": 24,
+  "submit_before_timelock": true,
+  "coverage_at_target_flat_fees_pct": 24.7,
+  "read": "HSP-029 timelock 2026-11-16; ramp activation \u2248 2027-02-14 then 24m to 1.6% cap. Submit is before timelock; full mint dial is quarters away. Pending-not-live is understatement \u2014 pending-then-lagged. Exploratory."
+}
