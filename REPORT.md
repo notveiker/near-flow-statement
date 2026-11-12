@@ -141,9 +141,9 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **601 commits / 214 clusters.** **600-commit milestone.** `_12`+`_13` complete; `_14` sealing.
-- Locked: user all-in~10.6× · two bridges · whale desk · coverage wall~42.8% · fee≠L1 OoM · DIC≠scarcity · AI substitute · Hold until H1b.
-- **LIVE (~57h):** public + X. History not a blocker.
+- **~605 commits / 215 clusters.** `_14` through Q3; overall still **not supported**.
+- Burn materiality: 25% of mint needs ~122% of fee capture removed. DIC≠scarcity. Fee≠L1 OoM ~**158×**.
+- **LIVE (~57h):** public + X. Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context

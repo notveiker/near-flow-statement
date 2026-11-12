@@ -1,19 +1,18 @@
 {
   "asof": "2026-11-12",
   "is_private": true,
-  "hours_to_submit": 57.3,
-  "clusters": 212,
-  "commits": 594,
+  "hours_to_submit": 56.7,
+  "clusters": 215,
+  "commits": 605,
   "readme_judge_path": "READY",
   "x_dry_run_script": "READY",
   "x_dry_run_recorded": false,
   "binding_blocker": true,
   "urgency_band": "GREEN",
-  "dense_12_13_complete": true,
   "actions": [
     "gh repo edit notveiker/near-flow-statement --visibility public",
     "record X demo (~90s)",
     "submit 14 Nov"
   ],
-  "read": "Repo private=true @~57h / 212cl / 594 commits. _12+_13 done. Flip NOW. Exploratory."
+  "read": "Repo private=true @~57h / 215cl / 605 commits. Flip NOW. Exploratory."
 }
