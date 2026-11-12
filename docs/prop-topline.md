@@ -108,3 +108,9 @@ Prop/dashboard/judge packet ready (~437 commits, 168 clusters preliminary). **Mu
 <!-- AUTO:PRIVATE -->
 **gh visibility:** PRIVATE confirmed. ~55h left. Flip public is binding must-ship #1.
 <!-- /AUTO:PRIVATE -->
+
+<!-- AUTO:SWEEP19 -->
+- Fee print ≠ escrow trust; two bridges (SK+attest) before volume.
+- Dial rank commercial≻volume; partner-path micro ≪ SK-tax.
+- Collector rail anomaly; HSP-029 attention ≫ HSP-007; mix-shift = arithmetic.
+<!-- /AUTO:SWEEP19 -->

@@ -446,3 +446,9 @@ Chain Signatures sits under Intents execution (execute ≫ respond ≫ sign) —
 - Purity~87% = concentration risk; Hold flip ⊥ delivery; Submit≺HSP-029 pending-lagged.
 - Price-heavy print disclose both; peerset recovery ≪ SK-tax; cross-ledger stack OK.
 <!-- /AUTO:SWEEP18 -->
+
+<!-- AUTO:SWEEP19 -->
+- Fee print ≠ escrow trust; two bridges (SK+attest) before volume.
+- Dial rank commercial≻volume; partner-path micro ≪ SK-tax.
+- Collector rail anomaly; HSP-029 attention ≫ HSP-007; mix-shift = arithmetic.
+<!-- /AUTO:SWEEP19 -->

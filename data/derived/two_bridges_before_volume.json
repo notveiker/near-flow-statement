@@ -1,0 +1,10 @@
+{
+  "asof": "2026-11-12",
+  "sk_tax_rr_m": 10.2,
+  "attest_rr_m": 8.4,
+  "naive_sum_rr_m": 18.6,
+  "do_not_sum": true,
+  "hours_to_submit": 54.7,
+  "implication": "Two ~$10M bridges (SK-tax capture + attest trust) before volume \u2014 different ledgers, similar magnitude; parallel not sequential with delivery clock",
+  "read": "Two bridges: SK $10.2M + attest $8.4M before volume. Exploratory."
+}

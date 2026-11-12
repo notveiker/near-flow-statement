@@ -613,3 +613,11 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Non-1Click fee composition gap | Non-1Click ~44.8% vol fee composition = Gap. 1Click dials are lower bound on commercial surface. Exploratory. | non_1click_fee_composition_gap |
 | Repo still PRIVATE (gh) | Repo PRIVATE confirmed @~55h / 225 cl / 636 c. Flip public is binding. Exploratory. | repo_still_private_confirmed |
 | History 225 / 2026Q1_15 | intents~182× OoM holds; overall not supported | history_progress_2026q1_15 |
+| Partner-path micro ≪ SK-tax | Partner-path micro-uplifts ~$3.29M ≪ SK-tax $10.2M. Exploratory. | partner_path_micro_vs_sk_tax |
+| Collector rail ≠ clean 1:1 | Collector A→BB ~105.8% (>100%); vs explicit fees ~96.5%. Anomaly. Exploratory. | collector_rail_not_clean_1to1 |
+| Fee print ≠ escrow trust | Escrow BB share~58.5% vs attest band 4.5–15.8% (gap~48.4pp). Exploratory. | fee_print_neq_escrow_trust |
+| Two bridges before volume | Two bridges: SK $10.2M + attest $8.4M before volume. Exploratory. | two_bridges_before_volume |
+| Dial rank: commercial≻volume | Dial rank top4: ['sk_tax_25pct', 'attest_escrow_bb', 'mix_10pp_nearcom', 'appfees_conversion']. Volume below. Exploratory. | dial_rank_commercial_before_volume |
+| HSP-029 attention ≫ HSP-007 | HSP-029 views~2221 vs HSP-007~2392. Attention≠fee. Exploratory. | hsp029_attention_dwarfs_hsp007 |
+| Investment object refreshed | Object locked @~55h/225cl/638c. Exploratory. | investment_object_refresh |
+| Mix-shift = arithmetic not forecast | Mix-shift arithmetic on vol $4.0B / τ 4.98bp — scenario sizing only. Exploratory. | mix_shift_is_arithmetic_not_forecast |

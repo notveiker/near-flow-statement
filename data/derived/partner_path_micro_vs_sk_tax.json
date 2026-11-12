@@ -1,0 +1,22 @@
+{
+  "asof": "2026-11-12",
+  "partner_path_sum_rr_m": 3.29,
+  "items": [
+    {
+      "id": "trust_path_uplift",
+      "uplift_run_rate_m": 1.72
+    },
+    {
+      "id": "noreferrer_mix_uplift",
+      "uplift_run_rate_m": 0.67
+    },
+    {
+      "id": "lifi_attach_uplift",
+      "uplift_run_rate_m": 0.9
+    }
+  ],
+  "sk_tax_rr_m": 10.2,
+  "vs_sk_tax_x": 0.32,
+  "implication": "Trust\u2192direct + no-referrer + LiFi attach sketches sum ~$3.29M (~0.32\u00d7 SK-tax) \u2014 useful inventory, not the lead desk",
+  "read": "Partner-path micro-uplifts ~$3.29M \u226a SK-tax $10.2M. Exploratory."
+}

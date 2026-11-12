@@ -1,0 +1,24 @@
+{
+  "asof": "2026-11-12",
+  "baselines": {
+    "intents_vol_30d_b": 4.0,
+    "oneclick_usd_m": 1104.0,
+    "captured_bp": 4.98,
+    "gross_bp": 15.3,
+    "capture_share_pct": 32.5,
+    "rev_30d_m": 1.99,
+    "run_rate_m": 24.2,
+    "issuance_offset_pct": 15.81,
+    "net_issuance_usd_30d_m": 12.71,
+    "aitr_bp": 9.49,
+    "attach_pct": 43.0,
+    "bb_explicit_bp": 4.08,
+    "nearcom_policy_bp": 20.0,
+    "swapkit_explicit_bb_bp": 0.0,
+    "whale_share_of_1click_vol_pct": 77.1,
+    "whale_share_of_count_pct": 3.4
+  },
+  "note": "Derived MIX-SHIFT arithmetic on committed metrics; scenarios are arithmetic not forecasts. Differential assumes volume moved from SwapKit-class (0 explicit buyback bp) to near.com-class (20 bp, 100% f",
+  "implication": "Mix-shift near.com 20bp scenarios are arithmetic on committed metrics \u2014 not forecasts; use as dial sizing next to SK-tax mutex, not as growth story",
+  "read": "Mix-shift arithmetic on vol $4.0B / \u03c4 4.98bp \u2014 scenario sizing only. Exploratory."
+}

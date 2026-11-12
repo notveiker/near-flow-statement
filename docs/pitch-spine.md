@@ -104,3 +104,9 @@ Coverage wall ~42.8% · whale desk=SK-tax · conversion~9% appfees→BB · solve
 <!-- AUTO:SPINE -->
 **Spine (55h / 224 cl / 633 c):** Fee≠L1 → leakage~$50M → SK-tax call-order → wall 42.8% → Hold/H1b → public+X.
 <!-- /AUTO:SPINE -->
+
+<!-- AUTO:SWEEP19 -->
+- Fee print ≠ escrow trust; two bridges (SK+attest) before volume.
+- Dial rank commercial≻volume; partner-path micro ≪ SK-tax.
+- Collector rail anomaly; HSP-029 attention ≫ HSP-007; mix-shift = arithmetic.
+<!-- /AUTO:SWEEP19 -->

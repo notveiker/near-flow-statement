@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "escrow_share_of_bb_pct": 58.5,
+  "attestation_band_low_pct": 4.5,
+  "attestation_band_high_pct": 15.8,
+  "unattested_mid_pct": 48.4,
+  "implication": "Escrow ~58.5% of BB NEAR but attestation only ~4.5\u201315.8% \u2014 ~48pp mid gap; fee print quality \u2260 escrow trust quality (Hold/H1b link)",
+  "read": "Escrow BB share~58.5% vs attest band 4.5\u201315.8% (gap~48.4pp). Exploratory."
+}

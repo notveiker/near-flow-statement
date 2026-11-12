@@ -1,0 +1,18 @@
+{
+  "asof": "2026-11-12",
+  "one_liner": "Intents fee engine on cooling L1; distribution owns margin; capture-pp\u22483\u00d7vol; Ledger-first SK-tax + attest before volume; opacity accelerating; Hold until H1b; repo still private.",
+  "hours_to_submit": 54.7,
+  "clusters": 225,
+  "commits": 638,
+  "refreshed_one_liner": "Intents fee engine (~225 cl) on cooling L1; distribution owns ~90% of user all-in; leakage~$50M dial option; Ledger-first SK-tax+attest before volume; Hold until H1b; repo still private @~55h.",
+  "lead_catalysts": [
+    "sk_tax_ledger_first",
+    "attest_escrow",
+    "cif_rate_card_gap",
+    "adr029_residual_defense",
+    "appfees_conversion",
+    "tg_label_attach"
+  ],
+  "implication": "Investment object unchanged under densification \u2014 packaging/delivery is the remaining EV",
+  "read": "Object locked @~55h/225cl/638c. Exploratory."
+}

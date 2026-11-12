@@ -1,0 +1,38 @@
+{
+  "asof": "2026-11-12",
+  "top4": [
+    {
+      "dial": "sk_tax_25pct",
+      "score": 95,
+      "rr_m": 10.2,
+      "type": "capture"
+    },
+    {
+      "dial": "attest_escrow_bb",
+      "score": 93,
+      "rr_m": 8.4,
+      "type": "trust"
+    },
+    {
+      "dial": "mix_10pp_nearcom",
+      "score": 90,
+      "rr_m": 9.7,
+      "type": "capture"
+    },
+    {
+      "dial": "appfees_conversion",
+      "score": 88,
+      "rr_m": 5.5,
+      "type": "capture"
+    }
+  ],
+  "top4_capture_or_trust": [
+    "sk_tax_25pct",
+    "attest_escrow_bb",
+    "mix_10pp_nearcom",
+    "appfees_conversion"
+  ],
+  "volume_dials_below": [],
+  "implication": "Top-4 dials are SK-tax / attest / mix / conversion \u2014 all commercial or trust; volume dials rank below. Confirms leakage-then-volume call order",
+  "read": "Dial rank top4: ['sk_tax_25pct', 'attest_escrow_bb', 'mix_10pp_nearcom', 'appfees_conversion']. Volume below. Exploratory."
+}

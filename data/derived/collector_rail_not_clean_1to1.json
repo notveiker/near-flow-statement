@@ -1,0 +1,7 @@
+{
+  "asof": "2026-11-12",
+  "a_to_bb_pct": 105.8,
+  "collector_a_vs_explicit_fees_pct": 96.5,
+  "implication": "Collector A\u2192BB prints ~106% \u2014 timing/window or dual-count; rail conversion is not a clean 1:1 dial; prefer commercial terms over rail arithmetic",
+  "read": "Collector A\u2192BB ~105.8% (>100%); vs explicit fees ~96.5%. Anomaly. Exploratory."
+}
