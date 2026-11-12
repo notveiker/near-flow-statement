@@ -1,6 +1,10 @@
 {
  "primary_clusters_local": 144,
+ "sample2_clusters_local": 92,
  "last_ingested": "2023Q4_06",
+ "primary_next_part": "unknown_check_remote",
  "overall": "not_supported_preliminary",
- "note": "ingested 2023Q4_06"
+ "commits_since_structural_approx": 277,
+ "derived_json_approx": 207,
+ "note": "144 primary clusters after 2023Q4_06. History still preliminary/not supported. Prop stack ready."
 }
