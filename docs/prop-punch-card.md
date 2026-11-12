@@ -78,6 +78,9 @@
 | 72 | Vol multiples by take (table) | At AITR: ~2.6× for 1× mint$; ~2.1× for 50× | Take helps; volume still required |
 | 73 | Full-capture extreme (15.3 bp) | ~1× HSP-029 mint at current vol; 50× needs ~1.3× vol | Leakage pool is the bridge; volume last mile |
 | 74 | Revshare threat (10% SK migrate) | ~$0.5M/yr fee at τ | Volume/UX risk > fee $ — matches SK asymmetry |
+| 75 | Escrow share climb Jul→Nov | ~17.5%→~58.5% of buyback NEAR | Confidential rail dominates without attestation |
+| 76 | Attach vs partner race | Attach +19pp; partner bp +7.8 | Capture up; partner extraction rose with it |
+| 77 | 1Click vs Llama coverage | ~80%→55% of Intents net | AITR math is 1Click-conditioned |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.
 

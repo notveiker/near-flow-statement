@@ -1,0 +1,31 @@
+{
+ "blocks": [
+  {
+   "block": 1,
+   "attach_pct": 23.6,
+   "bb_explicit_bp": 1.83,
+   "partner_bp": 32.5,
+   "captured_bp": 2.89,
+   "partner_vs_bb_explicit_x": 17.8
+  },
+  {
+   "block": 2,
+   "attach_pct": 39.0,
+   "bb_explicit_bp": 2.84,
+   "partner_bp": 43.7,
+   "captured_bp": 4.25,
+   "partner_vs_bb_explicit_x": 15.4
+  },
+  {
+   "block": 3,
+   "attach_pct": 43.0,
+   "bb_explicit_bp": 4.08,
+   "partner_bp": 40.3,
+   "captured_bp": 4.98,
+   "partner_vs_bb_explicit_x": 9.9
+  }
+ ],
+ "partner_bp_delta_b1_to_b3": 7.8,
+ "attach_delta_pp": 19.4,
+ "note": "Across three 30d blocks attach +19.4pp and explicit bb +2.25bp, but partner bp also rose +7.8bp. Capture improved; partner extraction rose with it. Exploratory."
+}
