@@ -1,8 +1,8 @@
 {
   "asof": "2026-11-12",
-  "one_breath": "Partners keep ~$50M/yr (terms not invoices; conversion~9% appfees\u2192BB). Two bridges: SK-tax~$10.2M capture + attest~$8.4M trust (do not sum). Whale desk=SK-tax; default rail~46% BB $; coverage wall~42.8%; fee\u2260L1 OoM (~147\u00d7). Attest\u2260\u03c4. Hold until H1b. Flip public + X (~58h).",
-  "hours_to_submit": 57.9,
-  "clusters": 209,
-  "commits": 584,
+  "one_breath": "Users pay ~10.6\u00d7 what the token captures; partners keep ~$50M/yr (terms). Two bridges: SK-tax~$10.2M + attest~$8.4M (do not sum). Whale desk=SK-tax; coverage wall~42.8%; fee\u2260L1 OoM. AI = substitute narrative. Hold until H1b. Flip public + X (~58h).",
+  "hours_to_submit": 57.5,
+  "clusters": 211,
+  "commits": 590,
   "repo_private": true
 }

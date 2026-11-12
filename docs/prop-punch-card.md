@@ -527,3 +527,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | User all-in vs capture | ~10.6× — distribution owns the spread; τ≠user price | user_all_in_vs_capture |
 | Research notes follow-up index | 20 notes on disk; twins wired; public+X still bind | research_notes_followup_index |
 | AI agents = substitute narrative | Stack real; fees still Intents; >750k stake small — do not lead | ai_agents_substitute_narrative |
+| History 211 / 2026Q3_13 | Contest-year _13 continuing — still not supported | history_progress_2026q3_13 |
+| Sweep ~589 identity | Notes follow-up done; public+X bind | sweep_589_identity |
