@@ -141,9 +141,9 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~597 commits / 213 clusters.** `_12`+`_13` complete; `_14` started. Overall still **not supported**.
-- **Fee≠L1 OoM** intents ~**158×** · DIC≠scarcity · locked pitch lines · user all-in~10.6×.
-- **LIVE (~57h):** public + X. Hold until H1b.
+- **601 commits / 214 clusters.** **600-commit milestone.** `_12`+`_13` complete; `_14` sealing.
+- Locked: user all-in~10.6× · two bridges · whale desk · coverage wall~42.8% · fee≠L1 OoM · DIC≠scarcity · AI substitute · Hold until H1b.
+- **LIVE (~57h):** public + X. History not a blocker.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context

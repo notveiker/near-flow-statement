@@ -1,0 +1,15 @@
+{
+  "asof": "2026-11-12",
+  "commits": 601,
+  "clusters": 214,
+  "derived_json": 429,
+  "hours_to_submit": 56.9,
+  "dense_12_13_complete": true,
+  "research_notes_followup": true,
+  "repo_private": true,
+  "binding": [
+    "public_repo",
+    "x_demo_dry_run"
+  ],
+  "read": "**600 commits** milestone / 214 clusters. Prop packet ready. Public+X bind (~57h). Exploratory."
+}
