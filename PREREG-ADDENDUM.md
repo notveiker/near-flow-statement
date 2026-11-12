@@ -203,3 +203,7 @@ Post-freeze. Changes no hypothesis, threshold, probability or the rating rule.
 
 1. **History sample.** Preliminary recompute on **120** clusters (primary payloads plus sample2-only fill). Sampled Intents receipts/day in 2025Q3 revise up vs the one-cluster draw. `history_results.json` remains `preliminary: true`.
 2. **`docs/float-sink.md`** / `data/derived/float_sink.json`: buyback wallet covers ~25 days of issuance (DIC); scarcity half-life ~60 days if recirculated at capture rate; permanent removal of 100% of today's capture covers only ~20% of annual mint.
+
+## 2026-11-12 23:30 UTC: chain rebuild of NEAR Intents, method fixed before any result
+
+Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. The question, the rule for each number and what would falsify it are in `docs/chain-rebuild-method.md`, committed together with the queries (`sql/rebuild/`), the guarded runner (`pipeline/rebuild.py`, `pipeline/rebuild_rpc.py`) and its tests. No query had returned chain data when this was committed: only dry runs, a synthetic-input self-test and local file builds. Data cutoff block 223,088,015 is enforced in code; the buyback wallet's balance is never read. BigQuery job IDs, creation times and bytes billed will be appended in `data/raw/rebuild/jobs.jsonl`, so their order can be checked against this commit.

@@ -396,6 +396,30 @@
    "sha256": "7004973e5ef877cb25a1f9e255fb8733dc70c48f8f9fcf92df0baad321adc7fd",
    "source": "derived from data/raw/rpc/validators_epochs.json"
   },
+  "raw/rebuild/aux_prices.ndjson": {
+   "bytes": 89119,
+   "fetched_at": "2026-11-12T22:52:06Z",
+   "sha256": "ef7f3fd65b4ccfb5c21d3938686f155d10bc58473b434fb7467668326bdabb09",
+   "source": "built by pipeline.rebuild build_aux from tokens_1click_20261112.json and data/raw/coingecko"
+  },
+  "raw/rebuild/aux_tokens.ndjson": {
+   "bytes": 33725,
+   "fetched_at": "2026-11-12T22:52:06Z",
+   "sha256": "d43f06b4d597137e03bfbbe0db0baeafa3f00cdee1d48cc2f4bf39d70e8cf657",
+   "source": "built by pipeline.rebuild build_aux from tokens_1click_20261112.json and data/raw/coingecko"
+  },
+  "raw/rebuild/selftest_synthetic.json": {
+   "bytes": 211,
+   "fetched_at": "2026-11-12T23:30:36Z",
+   "sha256": "05b6f4f08c398b52aa623e913dd4a51080bae15cc3b03107b955d2aa8a32e5b2",
+   "source": "synthetic self-test output"
+  },
+  "raw/rebuild/tokens_1click_20261112.json": {
+   "bytes": 58681,
+   "fetched_at": "2026-11-12T23:30:36Z",
+   "sha256": "5cc3c1644bcf4ffebfa165e30bdd47badff861c49f7c9247dc46428ae7bb30f4",
+   "source": "https://1click.chaindefuser.com/v0/tokens (keyless; metadata, fetched 2026-11-12)"
+  },
   "raw/rpc/buyback_balance_endpoints.json": {
    "bytes": 721,
    "fetched_at": "2026-11-06T23:23:25Z",
