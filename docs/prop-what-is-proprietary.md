@@ -60,3 +60,18 @@ Explorer partner/appfee vs DefiLlama gross are not a clean partition (sum can ex
 30. **Intents ~87% of NEAR protocol fees**; Aurora TVL −99.7% with residual widget referrals.
 31. **Rhea Dex+Lend ~13%** vs Intents 87% — AMM/lending residual is not the fee story.
 32. **DefiLlama Intents fees −31.6% MoM** with vol −12% — absolute cool; quality path offsets.
+
+<!-- AUTO:WHAT_PROP -->
+## What is proprietary right now (sweep)
+
+1. **Distribution owns the print** — partners listed > NEAR capture; SK-tax ~$10.2M is a **Ledger-first** conversation (~60% of SK fees).
+2. **Four ~$10M surfaces** — SK-tax / attest escrow / HSP-007 claim / solver residual — capture, trust, mint, rent.
+3. **Immaterial→material ladder** — AI $0.33 ≪ whale $1.0 ≪ TG $1.4 ≪ CIF 1bp $3.3 ≪ SK-tax $10.2.
+4. **Opacity inside the claim** — ~71% of measured wallet capture arrives via escrow unshields; user all-in ~10.6× token claim.
+5. **50× bind** — capture-alone needs >gross bp; leakage then ~1.3× vol.
+6. **Quality-on-cool** — attach/τ 1.72× on −12% MoM vol; partner/BB 17.8→9.9×.
+7. **SK exit split** — fee resilient (~2% BB) / distribution fragile (~38% 1Click).
+8. **Hold until H1b** — attestation 4.5–15.8%; unexplained BB ~68%.
+
+Do not lead: AI, npm, ETF, peer-share, L1 actives, CS-as-fee.
+<!-- /AUTO:WHAT_PROP -->
