@@ -1,5 +1,5 @@
 {
-  "hours_to_submit": 60.9,
+  "hours_to_submit": 59.5,
   "score": {
     "prop_docs": 1.0,
     "dashboard": 1.0,
@@ -8,7 +8,7 @@
     "one_breath": 1.0,
     "x_script": 1.0,
     "readme_judge_path": 1.0,
-    "history_preliminary": 0.65,
+    "history_preliminary": 0.7,
     "public_repo": 0.0,
     "x_demo_dry_run": 0.0
   },
@@ -16,8 +16,8 @@
     "public_repo",
     "X_demo_dry_run"
   ],
-  "clusters": 193,
-  "commits": 527,
-  "overall_excl_must_ship": 0.95,
-  "note": "Everything except public+X is ready. ~60.9h / 193 clusters / 527 commits. Exploratory."
+  "clusters": 200,
+  "commits": 551,
+  "overall_excl_must_ship": 0.96,
+  "note": "200 clusters. Everything except public+X ready. ~59.5h / 551 commits. Exploratory."
 }
