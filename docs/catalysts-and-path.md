@@ -170,3 +170,11 @@ LST ~$196M ≈ ~611 DIC days (~25× buyback) but only ~9.3% of stake — size �
 - Confidential TVL ~70% of inventory. Dials on that surface: ZEC 2× ~$2.8M · CIF 1bp ~$3.3M · attest ~$8.4M · CIF 5bp ~$16.6M.
 - Rate card + attestation dominate inventory doubling. Gap: CIF unpublished.
 <!-- /AUTO:PRIVACY -->
+
+<!-- AUTO:LEDGER_DENSE -->
+### Ledger-first + dense fronts
+
+- Within-SK fee HHI ~0.41; **Ledger ~60%** of SK listed fees ≈ NEAR capture — SK-tax 25% (~$10.2M) is primarily a Ledger commercial conversation.
+- Dense fronts portfolio ~**$1.59M/yr** at ~20bp template — protect Arbie/Enot/Leodex/Trust; extend to LI.FI.
+- ADR-029 threat proxy ~$2.2M/yr sits inside solver residual (~$11.4M) — defend residual, contest is P&L.
+<!-- /AUTO:LEDGER_DENSE -->

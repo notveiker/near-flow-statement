@@ -71,3 +71,7 @@ DefiLlama Intents fees −31.6% MoM with vol −12% — absolute cool; quality p
 <!-- AUTO:LADDER -->
 **Immaterial→material ($/yr):** AI 5% ~$0.33 · whale +10pp ~$1.0 · TG half@10bp ~$1.4 · CIF 1bp ~$3.3 · SK-tax 25% ~$10.2. Lead the right end.
 <!-- /AUTO:LADDER -->
+
+<!-- AUTO:LEDGER -->
+**SK-tax is a Ledger conversation:** Ledger ≈60% of SK listed fees (~1.01× NEAR capture). Dense fronts ~$1.59M/yr already on ~20bp — protect and extend.
+<!-- /AUTO:LEDGER -->
