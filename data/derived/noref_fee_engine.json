@@ -1,0 +1,9 @@
+{
+ "noref_vol_share_pct": 18.7,
+ "noref_bb_fee_share_pct": 45.8,
+ "noref_density": 2.45,
+ "noref_fee_30d_m": 0.206,
+ "noref_fee_rr_m": 2.5,
+ "plus_5pp_from_zero_bb_rr_m": 0.67,
+ "note": "No-ref is ~18.7% of 1Click vol but ~45.8% of BB-fee $ (~$2.5M/yr at 10bp). +5pp from zero-BB pipes \u2248 $0.7M/yr. The unlabeled surface is already the fee engine. Exploratory."
+}

@@ -196,3 +196,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Fee stack identity | Partners listed ~$4.45M > NEAR capture ~$1.99M on 30d — distribution owns the print | fee_stack_identity |
 | 50× path composition | Leakage→15.3bp + HSP ≈ 1× mint then ~1.3× vol (vs ~4× today) | path_50x_composition |
 | Partners vs capture of gross | Partners ~73% of gross vs capture 32.5% (~2.2×); +5pp gross→NEAR ≈ **$3.7M/yr** | partner_vs_capture_gross_share |
+| No-ref fee engine | 18.7% vol → 45.8% BB-fee $ (~**$2.5M/yr**); +5pp from 0-BB ≈ $0.67M/yr | noref_fee_engine |
+| Protect dense fronts | Arbie/Enot/Leodex already ~20bp template — extend to LI.FI, don't dilute | protect_dense_fronts |

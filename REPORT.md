@@ -142,3 +142,5 @@ Active accounts −77% YoY while Intents fees ~11× L1 fee print; NEAR-side swap
 - **Pending.** HSP-029 clears its timelock after this is written, and the forward tests F1 to F4 are scored after 2026-11-14. The rating moves to Avoid if observed growth falls below about 17% a year with H1b failing.
 
 *Not investment advice.*
+
+Judge one-pager: [`docs/pitch-spine.md`](docs/pitch-spine.md).

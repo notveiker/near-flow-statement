@@ -120,4 +120,8 @@ History sample: preliminary **133** sealed clusters (primary) with payloads; dua
 | `peer_multiple_compression.json` | 217×→16× needs ~13.6× fee; leakage ~3.1× |
 | `controllable_stack.json` | Ranked dials for dashboard |
 | `judge_one_pager_stack.json` | Densest numbers for X demo |
-
+| `partner_vs_capture_gross_share.json` | +5pp gross→NEAR ≈ $3.7M/yr |
+| `trust_template_expansion.json` | LI.FI→20bp ≈ $2.3M/yr |
+| `l1_actives_collapse_vs_intents.json` | Actives −77% YoY vs Intents fee dominance |
+| `noref_fee_engine.json` | No-ref is the fee engine |
+| `pitch-spine.md` | Judge numbers-only spine |
