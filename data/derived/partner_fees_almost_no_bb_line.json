@@ -1,0 +1,7 @@
+{
+  "asof": "2026-11-12",
+  "partner_fees_no_bb_line_pct": 94.6,
+  "appfees_to_bb_pct": 9.2,
+  "implication": "~94.6% of listed partner fees carry no buyback line; conversion ~9.2% \u2014 conversion dial attacks a concentrated absence of BB lines",
+  "read": "~94.6% partner fees have no BB line; conversion~9.2%. Exploratory."
+}

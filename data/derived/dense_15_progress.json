@@ -1,11 +1,12 @@
 {
   "asof": "2026-11-12",
-  "clusters": 227,
-  "last": "2026Q3_15",
-  "next": "2026Q4_15",
+  "clusters": 228,
+  "last": "2026Q4_15",
+  "next": "stratum_complete_or_16",
   "intents_x": 180.3318,
   "l1_yoy_tx_x": 0.2249,
   "overall": "not_supported",
-  "hours_to_submit": 54.4,
-  "read": "_15 dense through 2026Q3 @227; intents~180\u00d7. Exploratory."
+  "hours_to_submit": 54.2,
+  "complete": true,
+  "read": "_15 COMPLETE through 2026Q4 @228. Exploratory."
 }

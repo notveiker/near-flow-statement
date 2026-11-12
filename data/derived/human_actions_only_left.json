@@ -1,8 +1,9 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 54.6,
-  "clusters": 226,
-  "commits": 643,
+  "hours_to_submit": 54.2,
+  "clusters": 228,
+  "commits": 653,
+  "dense_15_complete": true,
   "actions_left": [
     {
       "action": "flip_repo_public",
@@ -21,7 +22,7 @@
     "public_repo",
     "x_recording"
   ],
-  "prop_ready_excl_must_ship": 0.97,
-  "implication": "Only two human actions bind submit",
-  "read": "~55h. Human-only: public + X. Exploratory."
+  "prop_ready_excl_must_ship": 0.98,
+  "implication": "_15 done; only public+X left as binding human actions",
+  "read": "_15 complete. ~54h. Human-only: public + X. Exploratory."
 }

@@ -56,3 +56,8 @@ See `data/derived/risks_compact.json` — H1b/attest/relayer/HSP-007/CIF/multipl
 **Clock:** ~55h | **225 clusters** | **639 commits** | **494 derived** | repo **PRIVATE** | X **open**
 **F1–F4** resolve 14 Nov. Human: public + X.
 <!-- /AUTO:DELIVERY -->
+
+<!-- AUTO:D15DONE -->
+**_15 dense COMPLETE** @228 clusters. Intents~180× OoM holds; overall not supported.
+**~54h left.** Binding: public repo + X dry-run. Strata EV exhausted.
+<!-- /AUTO:D15DONE -->

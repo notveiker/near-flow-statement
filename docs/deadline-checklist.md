@@ -67,3 +67,8 @@ History/`_10` seals are **not** blockers.
 - [ ] X demo dry-run
 - [ ] Submit + F1–F4
 <!-- /AUTO:CLOCK -->
+
+<!-- AUTO:D15DONE -->
+**_15 dense COMPLETE** @228 clusters. Intents~180× OoM holds; overall not supported.
+**~54h left.** Binding: public repo + X dry-run. Strata EV exhausted.
+<!-- /AUTO:D15DONE -->

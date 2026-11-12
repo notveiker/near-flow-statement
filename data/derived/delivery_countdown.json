@@ -1,16 +1,17 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 54.4,
-  "clusters": 227,
-  "commits": 649,
-  "derived_json": 508,
+  "hours_to_submit": 54.2,
+  "clusters": 228,
+  "commits": 653,
+  "derived_json": 515,
   "repo_private": true,
   "x_dry_run_done": false,
   "binding": [
     "public_repo",
     "x_demo_dry_run"
   ],
-  "prop_ready_excl_must_ship": 0.97,
+  "prop_ready_excl_must_ship": 0.98,
+  "dense_15_complete": true,
   "visibility_api_confirmed_private": true,
-  "read": "~54h / 227 clusters / 649 commits. PRIVATE. public+X. Exploratory."
+  "read": "~54h / 228cl / 653c. _15 DONE. PRIVATE. public+X. Exploratory."
 }

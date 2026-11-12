@@ -641,3 +641,6 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | 650-commit milestone | 650c/227cl — public+X still bind | commits_650_milestone |
 | Intents× drift always OoM | Drift series [189, 181, 147, 147, 147, 147, 158, 170, 170, 182, 182, 182, 182, 182, 180] @ clusters [201, 204, 205, 206, 207, 209, 213, 219, | intents_x_drift_always_oom |
 | Judge 60-second card | Fee≠L1; leakage/SK-tax; 217× claim design; wall/whale; public+X | judge_sixty_second_card |
+| History 228 / _15 COMPLETE | intents~180×; not supported; strata EV exhausted | dense_15_complete |
+| SK BB ~0.0045% of partner fees | SK BB ~0.0045% of partner fees; L~9.9×; dist tax 67.5% of gross. Exploratory. | sk_bb_share_of_partner_fees_extreme |
+| ~94.6% partner fees no BB line | ~94.6% partner fees have no BB line; conversion~9.2%. Exploratory. | partner_fees_almost_no_bb_line |

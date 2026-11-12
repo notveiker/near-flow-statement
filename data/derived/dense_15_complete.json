@@ -1,0 +1,19 @@
+{
+  "asof": "2026-11-12",
+  "clusters": 228,
+  "stratum": "_15",
+  "range": "through_2026Q4",
+  "intents_x": 180.3318,
+  "l1_yoy_tx_x": 0.2249,
+  "overall": "not_supported",
+  "hours_to_submit": 54.2,
+  "commits": 653,
+  "prior_complete": [
+    "_12",
+    "_13",
+    "_14",
+    "_15"
+  ],
+  "implication": "_12+_13+_14+_15 complete \u2014 history densification exhausted for practical EV; burn remaining hours on public+X + packaging",
+  "read": "_15 COMPLETE @228; intents~180\u00d7; still not supported. Public+X. Exploratory."
+}

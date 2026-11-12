@@ -126,3 +126,8 @@ Prop/dashboard/judge packet ready (~437 commits, 168 clusters preliminary). **Mu
 - Part of the premium is **discretionary held-BB claim design** vs mechanical peer claims.
 - H1b underwrites that discretion; volume alone does not close the multiple gap.
 <!-- /AUTO:SWEEP21 -->
+
+<!-- AUTO:D15DONE -->
+**_15 dense COMPLETE** @228 clusters. Intents~180× OoM holds; overall not supported.
+**~54h left.** Binding: public repo + X dry-run. Strata EV exhausted.
+<!-- /AUTO:D15DONE -->

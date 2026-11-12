@@ -814,6 +814,13 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (Iod) bits.push(`Intents× drifts ${JSON.stringify(Iod.series.map(s=>Math.round(s.intents_x)))} — always ≫100×; pitch OoM.`);
     const Js = D.catalysts && D.catalysts.judge_sixty;
     if (Js) bits.push(`<b>60s:</b> ${Js.sixty_seconds.join(' ')}`);
+    
+    const D15c = D.catalysts && D.catalysts.dense_15_complete;
+    const Sbe = D.catalysts && D.catalysts.sk_bb_extreme;
+    const Pnb = D.catalysts && D.catalysts.partner_no_bb;
+    if (D15c) bits.push(`_15 COMPLETE @${D15c.clusters} — strata EV exhausted; public+X bind.`);
+    if (Sbe) bits.push(`SK BB ~${Sbe.sk_near_share_of_partner_fees_pct}% of partner fees (L~${Sbe.leakage_ratio_listed_vs_bb_x}×).`);
+    if (Pnb) bits.push(`~${Pnb.partner_fees_no_bb_line_pct}% partner fees have no BB line.`);
     const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);

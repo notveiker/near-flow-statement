@@ -1,0 +1,11 @@
+{
+  "asof": "2026-11-12",
+  "sk_partner_fees_m": 3.53,
+  "sk_explicit_buyback_usd": 159,
+  "sk_near_share_of_partner_fees_pct": 0.0045,
+  "leakage_ratio_listed_vs_bb_x": 9.9,
+  "distribution_tax_pct_of_gross": 67.5,
+  "capture_share_pct": 32.5,
+  "implication": "SwapKit explicit BB is ~0.0045% of SK partner fees ($159 vs $3.53M) \u2014 leakage ratio ~9.9\u00d7; distribution tax is the scoreboard",
+  "read": "SK BB ~0.0045% of partner fees; L~9.9\u00d7; dist tax 67.5% of gross. Exploratory."
+}
