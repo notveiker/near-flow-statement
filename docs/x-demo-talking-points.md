@@ -37,3 +37,7 @@
 <!-- /AUTO:X_FINAL -->
 
 Card: `data/derived/judge_capture_card.json` — open with partners>capture, close with Hold until H1b.
+
+<!-- AUTO:X_LOCKED -->
+**Locked lines:** Open partners>capture → bridges SK-tax+attest → ladder → quality-on-cool → leakage path → Hold until H1b. (`pitch_locked_lines.json`)
+<!-- /AUTO:X_LOCKED -->
