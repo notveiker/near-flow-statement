@@ -1,0 +1,12 @@
+{
+  "asof": "2026-11-12",
+  "gross_30d_pct": 55.7,
+  "net_30d_pct": 38.6,
+  "gross_vs_net_gap_pp": 17.1,
+  "softening_365_to_30_pp": -6.4,
+  "vol_add_gross_recovery_b": 0.46,
+  "fee_rr_if_gross_recovery_m": 2.8,
+  "vs_sk_tax_25_x": 0.27,
+  "share_at_4x_vol_pct": 83.4,
+  "read": "Peerset gross 30d ~55.7% vs net ~38.6% (gap 17.1 pp); softened \u22126.4 pp vs 365d. Recovering gross share adds only ~$2.8M RR at \u03c4 \u2248 0.27\u00d7 SK-tax. Share leadership is not the scarce resource \u2014 capture is. Exploratory."
+}

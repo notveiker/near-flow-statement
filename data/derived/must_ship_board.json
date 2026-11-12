@@ -1,14 +1,14 @@
 {
-  "hours_to_submit": 64.8,
-  "clusters": 173,
-  "commits": 457,
+  "hours_to_submit": 64.1,
+  "clusters": 176,
+  "commits": 466,
   "prop_ready": true,
   "dashboard_ready": true,
   "history_preliminary": true,
   "must_ship": [
     {
       "item": "public_repo",
-      "status": "TODO"
+      "status": "BLOCKER_PRIVATE"
     },
     {
       "item": "X_demo_dry_run",
@@ -22,18 +22,13 @@
   "shipped": [
     "pitch_spine",
     "submit_packet",
-    "prop_topline",
-    "f1_f4",
     "controllable_dials",
     "four_ten_m",
-    "call_order",
-    "pitch_locked_lines",
-    "near_term_board",
-    "risks_compact",
-    "dial_elasticity",
-    "opacity_product",
-    "coverage_path_no_vol",
-    "fee_engine_vs_l1"
+    "elasticity",
+    "thor_two_step",
+    "opacity_accelerating",
+    "five_ledgers",
+    "foreign_rail"
   ],
-  "note": "Prop ready; blockers public_repo + X; ~64.8h; 173 clusters / 457 commits; five-ledgers + flip-Hold card shipped."
+  "note": "Repo LIVE private (gh). Prop ready. ~64.1h / 176 clusters / 466 commits."
 }

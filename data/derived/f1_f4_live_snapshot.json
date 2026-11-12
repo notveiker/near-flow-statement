@@ -1,33 +1,14 @@
 {
- "asof_utc": "2026-11-12T06:13:28.352742+00:00",
- "hours_to_submit": 65.8,
- "clusters": 168,
- "commits": 436,
- "falsifiers": [
-  {
-   "id": "F1",
-   "status": "watch",
-   "name": "quality_on_cool_reverses"
-  },
-  {
-   "id": "F2",
-   "status": "gap",
-   "name": "sk_tax_ledger_commercial_text"
-  },
-  {
-   "id": "F3",
-   "status": "binding",
-   "name": "escrow_attestation_dark"
-  },
-  {
-   "id": "F4",
-   "status": "watch",
-   "name": "relayer_top1_83pct"
-  }
- ],
- "must_ship": [
-  "public_repo",
-  "X_demo_dry_run"
- ],
- "note": "F3 binding. ~65.8h. 168 clusters preliminary. Must-ship public repo + X."
+  "asof": "2026-11-12",
+  "hours_to_submit": 64.1,
+  "score_day": "2026-11-14",
+  "tests": [
+    "F_quality_cool",
+    "F_sk_tax",
+    "F_escrow",
+    "F_relayer",
+    "F_share_vs_vol"
+  ],
+  "binding_now": "F_escrow (H1b/attestation) + delivery (public repo)",
+  "note": "~64.1h to submit; do not rescore post-hoc; public repo still private."
 }

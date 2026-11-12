@@ -321,6 +321,8 @@ def build() -> dict:
             "etf_immaterial": optional("derived/etf_immaterial_vs_intents.json"),
             "capital_light": optional("derived/capital_light_fee_engine.json"),
             "capture_insufficient": optional("derived/capture_alone_insufficient_50x.json"),
+            "peerset_not_scarce": optional("derived/peerset_leadership_not_scarce.json"),
+            "surface_opacity": optional("derived/distribution_surface_opacity.json"),
         },
         "repro": reproducibility(),
     }

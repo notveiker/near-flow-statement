@@ -146,6 +146,8 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 - **Immaterial end:** ETF/NRR ~$0.42M ≈0.017× Intents; AI 5% ~$0.33M — do not lead.
 - **Capital-light / capture insufficient:** PCI ~0.057; 60% capture ≈0.46× of 50× need.
 - **Fee engine ≠ L1** (176 clusters): intents ~113× vs 2025Q1; L1 YoY ~0.19×.
+- **LIVE delivery blocker:** GitHub repo is still **private** — flip public before submit.
+- **Peerset ≠ scarce:** share recovery fee ≪ SK-tax; lead capture not share.
 - **Must-ship:** public repo + X dry-run (~64h). History denser `_09` through 2025; overall still not supported.
 <!-- /AUTO:LATEST_SWEEP -->
 

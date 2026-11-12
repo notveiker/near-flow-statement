@@ -1,0 +1,38 @@
+{
+  "asof": "2026-11-12",
+  "unknown_share_pct": 33.2,
+  "tg_share_pct": 20.4,
+  "top_surfaces": [
+    {
+      "tag": "1click-unknown",
+      "count": 132,
+      "share_pct": 33.2
+    },
+    {
+      "tag": "intents.tg",
+      "count": 81,
+      "share_pct": 20.4
+    },
+    {
+      "tag": "1click-swapkit",
+      "count": 60,
+      "share_pct": 15.1
+    },
+    {
+      "tag": "1click-lifi",
+      "count": 34,
+      "share_pct": 8.6
+    },
+    {
+      "tag": "1click-rango",
+      "count": 14,
+      "share_pct": 3.5
+    },
+    {
+      "tag": "solver-multichain-assets-rebalancing",
+      "count": 13,
+      "share_pct": 3.3
+    }
+  ],
+  "read": "Census surface: unknown ~33.2% / TG ~20.4% / SwapKit ~15% \u2014 distribution attribution itself is opaque beside fee opacity. Labeling unknown + TG fee map are diligence catalysts. Exploratory."
+}
