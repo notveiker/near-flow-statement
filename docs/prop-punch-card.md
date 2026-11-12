@@ -458,3 +458,10 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 200 / 2025Q4_12 | **200 clusters** milestone; _12 through 2025 — still not supported | clusters_200_milestone |
 | Sweep ~550 identity | 200 clusters; prop ready; public+X bind | sweep_550_identity |
 | History 201 / 2026Q1_12 | Contest-year _12 filling — still not supported | history_progress_2026q1_12 |
+| Coverage wall no-vol | Ceiling ~42.8% with capture+HSP; wall→100% still needs volume | coverage_wall_no_vol |
+| Opacity × elasticity | Escrow BB ~58.5% × capture~3.07×; attest~35.0 vol-pp trust | opacity_x_elasticity_compound |
+| Submit window asymmetry | ~59h to submit; HSP ~83h — forced pending-then-lagged | submit_window_asymmetry |
+| Fidelity → commercial leakage | BB~96.7% / SK~91.1% fidelity; ~$50.2M/yr is terms not AR | fidelity_implies_commercial_leakage |
+| Three scoreboards tension | Intents~189× / L1~0.21× / NEAR-sided~3.5% — venue≠token demand | three_scoreboards_tension |
+| Path-50× residual | After full stack still ~1.29× vol; order leakage→HSP→volume | path50x_residual_after_stack |
+| Sweep ~555 identity | New compound boards; public+X bind; Hold until H1b | sweep_555_identity |

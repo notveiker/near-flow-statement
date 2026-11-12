@@ -104,3 +104,7 @@ Fee-engine≠L1 divergence now ~**132×** intents vs ~**0.19×** L1 tx YoY on 17
 ### Sweep depth (~61h)
 ~**528** commits since structural · **193** clusters · ~**408** punch rows · **366** derived JSON. Prop packet ready; **public repo + X** still bind.
 <!-- /AUTO:SWEEP_DEPTH -->
+
+<!-- AUTO:COMPOUND -->
+**Compound (asof 2026-11-12):** coverage wall ~42.8% · opacity×elasticity (escrow~58.5%, capture~3.07×) · fidelity→terms leakage · three scoreboards · 50× residual ~1.29× vol after stack.
+<!-- /AUTO:COMPOUND -->

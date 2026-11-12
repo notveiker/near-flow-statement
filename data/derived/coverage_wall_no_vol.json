@@ -1,0 +1,10 @@
+{
+  "asof": "2026-11-12",
+  "no_vol_ceiling_pct": 42.8,
+  "today_pct": 15.81,
+  "gap_to_ceiling_pp": 27.0,
+  "gap_ceiling_to_100_pp": 57.2,
+  "breakeven_x_today": 6.4,
+  "implication": "capture+HSP stack closes ~15.8\u2192~42.8 without vol; remaining ~57 pp is volume/price \u2014 leakage first, then last-mile volume",
+  "read": "No-vol coverage wall sits at ~42.8% (conservative capture stack + HSP). Closing today\u2192wall is the controllable prize; wall\u2192100% still needs volume/price. Exploratory."
+}

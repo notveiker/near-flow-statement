@@ -96,3 +96,7 @@ Partners keep more than NEAR captures (~$50M/yr leakage). Capture-share points a
 
 (`data/derived/judge_one_breath.json`)
 <!-- /AUTO:ONE_BREATH -->
+
+<!-- AUTO:COMPOUND -->
+Coverage wall ~42.8% no-vol · opacity×elasticity · fidelity=terms · three scoreboards · residual ~1.29× vol · ~59h · public+X bind.
+<!-- /AUTO:COMPOUND -->

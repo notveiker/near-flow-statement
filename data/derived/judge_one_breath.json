@@ -1,8 +1,8 @@
 {
   "asof": "2026-11-12",
-  "one_breath": "Partners keep more than NEAR captures (~$50M/yr leakage). Capture-share points are worth ~3\u00d7 volume points; Ledger-first SK-tax ~$10.2M \u224842.5 vol-pp. ~71% of measured capture is unattested and escrow BB share climbed 17\u219259% \u2014 attest now. Intents is ~87% of NEAR fees on a cooling L1 (~0.2\u00d7 YoY; intents ~189\u00d7 vs early-2025). Leakage close ~3.1\u00d7 then ~4.4\u00d7 volume/price toward peer multiples; full-capture+HSP still needs ~1.3\u00d7 vol for 50\u00d7. Hold until H1b. HSP-029 pending-then-lagged. Flip repo public + X dry-run.",
-  "hours_to_submit": 59.5,
-  "clusters": 200,
-  "commits": 550,
+  "one_breath": "Partners keep more than NEAR captures (~$50M/yr leakage; payment fidelity BB~96.7% so leakage is terms not invoices). Capture-pp\u22483.07\u00d7vol; SK-tax\u224842.5 vol-pp. Escrow BB 17\u219259% \u2014 attest urgency rises with opacity (trust ~35 vol-pp; do not sum with capture). No-vol coverage wall ~42.8%. Three scoreboards diverge: intents~189\u00d7 vs L1~0.21\u00d7 YoY vs NEAR-sided swaps~3.5%. THOR: leakage~3.07\u00d7 then~4.41\u00d7; full-capture+HSP still~1.29\u00d7 vol for 50\u00d7. Hold until H1b. HSP pending-then-lagged. Flip repo public + X dry-run (~59h).",
+  "hours_to_submit": 59.2,
+  "clusters": 201,
+  "commits": 555,
   "repo_private": true
 }

@@ -330,6 +330,12 @@ def build() -> dict:
             "one_breath": optional("derived/judge_one_breath.json"),
             "call_order_elasticity": optional("derived/call_order_elasticity.json"),
             "sweep_depth": optional("derived/sweep_depth_board.json"),
+            "coverage_wall": optional("derived/coverage_wall_no_vol.json"),
+            "opacity_x_elasticity": optional("derived/opacity_x_elasticity_compound.json"),
+            "submit_asymmetry": optional("derived/submit_window_asymmetry.json"),
+            "fidelity_commercial": optional("derived/fidelity_implies_commercial_leakage.json"),
+            "three_scoreboards": optional("derived/three_scoreboards_tension.json"),
+            "path50x_residual": optional("derived/path50x_residual_after_stack.json"),
         },
         "repro": reproducibility(),
     }

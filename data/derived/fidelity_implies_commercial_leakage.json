@@ -1,0 +1,16 @@
+{
+  "asof": "2026-11-12",
+  "bb_exact_rate_pct": 96.7,
+  "swapkit_paid_rate_pct": 91.1,
+  "sample_n": 195,
+  "leakage_pool_rr_m": 50.2,
+  "implication": "High listed\u2192paid fidelity means the ~$50M/yr leakage prize is commercial terms / attach / SK-tax \u2014 not collections ops",
+  "preferred_dials": [
+    "sk_tax_25",
+    "mix_10pp_nearcom",
+    "conversion_2x",
+    "attach"
+  ],
+  "not_the_bottleneck": "invoice_collection",
+  "read": "Payment fidelity BB~96.7% / SK~91.1% (n=195) against ~$50.2M/yr leakage. Leakage is terms, not unpaid invoices \u2014 renegotiate distribution, don't chase AR. Exploratory."
+}

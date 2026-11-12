@@ -1,0 +1,15 @@
+{
+  "asof": "2026-11-12",
+  "today_multiple_near": 217,
+  "step1_leakage_close_fee_x": 3.07,
+  "step2_remaining_vol_or_price_x": 4.41,
+  "after_full_capture_hsp_vol_x_for_50x": 1.29,
+  "capture_60_alone_vs_50x": 0.46,
+  "no_vol_coverage_wall_pct": 42.8,
+  "ordering": [
+    "close_leakage",
+    "hsp029_scenario",
+    "last_mile_volume"
+  ],
+  "read": "THOR bridge: leakage close ~3.07\u00d7 then ~4.41\u00d7 remaining; full-capture+HSP still needs ~1.29\u00d7 vol for 50\u00d7. 60% capture alone \u2248 0.46\u00d7 of need. Ordering locked: leakage \u2192 mint scenario \u2192 volume. Exploratory."
+}

@@ -1,0 +1,17 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_submit": 59.2,
+  "hours_submit_to_hsp029_timelock": 24.0,
+  "hours_to_hsp029_timelock": 83.3,
+  "submit_precedes_timelock": true,
+  "pitch_rule": "pending_then_lagged",
+  "forced_rating_without_live_mint": true,
+  "coverage_if_treated_live_pct": 24.7,
+  "coverage_wall_with_hsp_scenario_pct": 42.8,
+  "binding_delivery": [
+    "public_repo",
+    "x_demo_dry_run"
+  ],
+  "repo_private": true,
+  "read": "~59h to submit; HSP timelock ~83h (~24h after deadline). Contest forces rating without live mint dial \u2014 treat HSP as scenario only. Binding: flip public + X dry-run. Exploratory."
+}

@@ -1,0 +1,14 @@
+{
+  "asof": "2026-11-12",
+  "near_side_swap_share_pct": 3.5,
+  "net_exit_vs_capture_x": 4.72,
+  "intents_vs_2025q1_x": 189.1248,
+  "l1_yoy_tx_x": 0.2117,
+  "turnover_x_30d": 17.4,
+  "three_scoreboards": [
+    "fee_engine_growth (intents receipts)",
+    "l1_base_layer_activity (cooling)",
+    "near_asset_pair_demand (only ~3.5% of 1Click)"
+  ],
+  "read": "Three scoreboards diverge: intents fee engine ~189\u00d7 vs early-2025, L1 YoY ~0.21\u00d7, NEAR-sided swaps ~3.5%. Venue fee strength \u2260 NEAR-pair demand. Exploratory."
+}

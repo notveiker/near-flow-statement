@@ -1,28 +1,15 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 59.5,
-  "hours_to_hsp029": 83.5,
-  "prop_ready": true,
-  "history_clusters": 200,
-  "commits_since_structural": 550,
-  "blockers": [
-    {
-      "item": "public_repo",
-      "status": "BLOCKER_PRIVATE",
-      "action": "owner: gh repo edit --visibility public"
-    },
-    {
-      "item": "X_demo_dry_run",
-      "status": "TODO",
-      "action": "run x_demo_dry_run_script.json (~90s)"
-    }
+  "hours_to_submit": 59.2,
+  "clusters": 201,
+  "commits": 555,
+  "derived_json": 381,
+  "repo_private": true,
+  "x_dry_run_done": false,
+  "binding": [
+    "public_repo",
+    "x_demo_dry_run"
   ],
-  "non_blockers": [
-    "history_preliminary",
-    "_12_seals",
-    "clusters_200"
-  ],
-  "readme_judge_path": "READY",
-  "x_script": "READY",
-  "read": "~59.5h. 200 clusters. Prop OK. Public+X bind. Exploratory."
+  "prop_ready_excl_must_ship": 0.96,
+  "read": "~59h / 201 clusters / 555 commits. Prop packet ready; LIVE blockers: public repo + X dry-run. Exploratory."
 }

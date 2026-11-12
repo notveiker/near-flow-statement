@@ -1,0 +1,14 @@
+{
+  "asof": "2026-11-12",
+  "escrow_bb_share_pct": 58.5,
+  "escrow_delta_pp_jul_nov": 41.0,
+  "confidential_share_of_capture_pct": 71.2,
+  "attest_rr_m": 8.4,
+  "attest_vol_pp_equivalent": 35.0,
+  "sk_tax_rr_m": 10.2,
+  "sk_tax_vol_pp_equivalent": 42.5,
+  "capture_vs_volume_x": 3.07,
+  "compound_read": "Opacity share climbed +41pp while capture dials stay ~3\u00d7 more elastic than volume. Attest is a trust dial (~35 vol-pp equivalent) whose urgency rises with escrow share \u2014 delay compounds underwriting band as the opaque rail becomes majority funding.",
+  "mutex": "Do not add attest RR to capture RR; trust \u2260 capture. Prefer Ledger-first SK-tax + attest in parallel tracks.",
+  "read": "Escrow BB ~58.5% (+41.0pp Jul\u2192Nov) \u00d7 capture-elasticity ~3.07\u00d7. Attest urgency scales with opacity; SK-tax still the fattest capture dial (~42.5 vol-pp). Exploratory."
+}

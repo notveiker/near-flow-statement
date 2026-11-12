@@ -259,3 +259,14 @@ Timelock ends **2026-11-16**; float-sink path puts ramp activation around **2027
 
 Chain Signatures sits under Intents execution (execute ≫ respond ≫ sign) — not a separate holders-revenue line (`cs_under_intents_not_separate_fee.json`).
 <!-- /AUTO:HSP_LAG -->
+
+<!-- AUTO:COMPOUND_SWEEP -->
+### Compound sweep (exploratory)
+
+- **Coverage wall:** no-vol stack tops ~**42.8%** — remaining gap is volume/price.
+- **Opacity × elasticity:** escrow BB ~**58.5%** (+41.0 pp); attest urgency scales; capture dials still ~**3.07×** vs volume.
+- **Fidelity:** BB~**96.7%** listed→paid — leakage is **commercial terms**, not collections.
+- **Three scoreboards:** intents ~**189×** vs L1 ~**0.21×** vs NEAR-sided ~**3.5%**.
+- **50× residual:** full-capture+HSP still ~**1.29×** vol. Order: leakage → HSP scenario → volume.
+- **Delivery:** ~**59h**; repo still **private**; X dry-run pending.
+<!-- /AUTO:COMPOUND_SWEEP -->
