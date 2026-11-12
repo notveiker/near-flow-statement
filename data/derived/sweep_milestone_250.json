@@ -1,28 +1,17 @@
 {
- "asof_utc": "2026-11-12T01:28:00Z",
- "commits_since_structural": 261,
- "derived_json_approx": 198,
- "history_clusters_preliminary": 143,
- "next_seal": "2023Q4_06",
- "hours_to_submit_approx": 69,
- "headline_props": [
-  "partners_gt_capture",
-  "sk_tax_10m",
-  "ledger_eq_capture",
-  "conversion_9pct",
-  "quality_on_cool",
-  "nearcom_wallet_gap",
-  "trust_template_lifi",
-  "l1_actives_m77",
-  "noref_fee_engine",
-  "h1b_binding",
-  "peerset_softening"
- ],
+ "asof_utc": "2026-11-12T01:37:00Z",
+ "commits_since_structural": 278,
+ "derived_json_approx": 207,
+ "history_clusters_preliminary": 144,
+ "next_seal": "2024Q1_06",
+ "hours_to_submit_approx": 67,
  "judge_path": [
   "docs/pitch-spine.md",
+  "docs/prop-topline.md",
   "docs/x-demo-talking-points.md",
   "docs/f1-f4-scorecard.md",
-  "dashboard Capture controllable dials"
+  "dashboard controllable dials"
  ],
- "note": "Hyper sweep ~261 commits / 198 derived JSON. Pitch artifacts ready. History preliminary."
+ "headline": "leakage_then_volume_partners_gt_capture_hold_h1b",
+ "note": "Prop stack judge-ready. History still preliminary through 2023Q4_06."
 }
