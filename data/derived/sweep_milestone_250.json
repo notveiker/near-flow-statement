@@ -1,17 +1,10 @@
 {
- "asof_utc": "2026-11-12T01:37:00Z",
- "commits_since_structural": 278,
- "derived_json_approx": 207,
- "history_clusters_preliminary": 144,
- "next_seal": "2024Q1_06",
- "hours_to_submit_approx": 67,
- "judge_path": [
-  "docs/pitch-spine.md",
-  "docs/prop-topline.md",
-  "docs/x-demo-talking-points.md",
-  "docs/f1-f4-scorecard.md",
-  "dashboard controllable dials"
- ],
- "headline": "leakage_then_volume_partners_gt_capture_hold_h1b",
- "note": "Prop stack judge-ready. History still preliminary through 2023Q4_06."
+ "asof_utc": "2026-11-12T01:49:00Z",
+ "commits_since_structural": 295,
+ "derived_json_approx": 214,
+ "history_clusters_preliminary": 145,
+ "next_seal": "2024Q2_06",
+ "judge_ready": true,
+ "headline": "two_bridges_sk_tax_and_attest_before_volume",
+ "note": "Judge path ready. History preliminary through 2024Q1."
 }

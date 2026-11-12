@@ -37,7 +37,7 @@ Marginal: +1pp capture-share ≈ **$0.74M/yr** vs +1pp volume ≈ **$0.24M/yr** 
 
 ## Path math
 
-Fee÷mint 0.21→0.32→0.48→**1.0×** (full gross+HSP) then ~**1.3× vol** for 50× (vs ~4× today).
+Fee÷mint 0.21→0.32→0.48→**1.0×** (full gross+HSP) then ~**1.3× vol** for 50× (vs ~4× today). HSP-029 alone only lifts coverage ~15.8%→~24% at flat fee — helpful not sufficient.
 
 ## Binding holds
 
