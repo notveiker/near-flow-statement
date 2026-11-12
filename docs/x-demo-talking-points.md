@@ -37,3 +37,5 @@ Full spine: [`pitch-spine.md`](pitch-spine.md).
 Partners listed fees exceed NEAR capture in dollars — open with distribution ownership of the fee print.
 
 Lead with evidenced quality path (attach/τ 1.72× inside sample on −12% MoM vol) + leakage/conversion dials.
+
++1pp capture-share ≈ $0.74M/yr vs +1pp volume ≈ $0.24M/yr (~3×). Say it once.

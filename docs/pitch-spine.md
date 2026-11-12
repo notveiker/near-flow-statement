@@ -54,3 +54,7 @@ Leakage/conversion is the bridge; volume is the last mile. F1–F4: `docs/f1-f4-
 ## Marginal math
 
 +1pp capture-share of gross ≈ **$0.7M/yr** vs +1pp volume at today’s take ≈ **$0.2M/yr** (~3.1×). Share shifts beat volume at the margin.
+
+## Provenance stack (why Hold until H1b)
+
+Escrow ~58% of BB funding · ~68% of revwallet BB $ unmapped · H1b ~25% inflow · attestation ≤16%. Fee print ≠ attested scarcity loop.
