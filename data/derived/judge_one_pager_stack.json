@@ -53,12 +53,12 @@
   "cs_as_fee"
  ],
  "stance": "Hold until H1b",
- "history": "156 clusters through 2026Q4; _07 denser running; preliminary",
+ "history": "159 clusters through 2025Q3_07 dense preliminary",
  "submit": "docs/submit-packet.md",
  "four_ten_m": {
   "sk_tax": 10.2,
   "attest": 8.4,
-  "hsp007": 11.8,
+  "hsp007_10pct": 11.8,
   "solver_residual": 11.41
  },
  "solver_residual_rr_m": 11.41,
@@ -74,5 +74,16 @@
  },
  "ledger_first": true,
  "confidential_share_of_capture_pct": 71.1,
- "user_allin_vs_capture_x": 10.6
+ "user_allin_vs_capture_x": 10.6,
+ "call_order": [
+  "Ledger",
+  "attest",
+  "CIF",
+  "ADR defense",
+  "conversion",
+  "TG",
+  "LI.FI",
+  "dense fronts"
+ ],
+ "hsp007_engagement_vs_029_x": 2.1
 }

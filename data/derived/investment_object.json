@@ -1,46 +1,59 @@
 {
  "one_liner": "Intents fee engine owned by distribution; Ledger-first SK-tax + attest before volume; ~71% of measured capture unattested; Hold until H1b.",
  "lead_catalysts": [
-  "sk_tax_renegotiation",
+  "sk_tax_ledger_first",
   "attest_escrow",
+  "cif_rate_card_gap",
+  "adr029_residual_defense",
   "appfees_conversion",
-  "trust_template",
-  "mix_nearcom_wallet_real"
+  "tg_label_attach",
+  "lifi_trust_template",
+  "dense_fronts_protect"
  ],
- "path_50x": "full_gross_plus_hsp_then_1.3x_vol",
- "three_ten_m_magnitudes": [
-  "sk_tax_10.2",
-  "attest_8.4",
-  "hsp007_11.8_claim_gap"
+ "four_ten_m": {
+  "sk_tax": 10.2,
+  "attest": 8.4,
+  "hsp007_10pct": 11.8,
+  "solver_residual": 11.41
+ },
+ "ladder_rr_m": {
+  "ai": 0.33,
+  "whale": 0.98,
+  "tg": 1.37,
+  "cif_1bp": 3.31,
+  "sk_tax": 10.2
+ },
+ "call_order": [
+  "Ledger",
+  "attest",
+  "CIF",
+  "ADR defense",
+  "conversion",
+  "TG",
+  "LI.FI",
+  "dense fronts"
  ],
+ "path_50x": "leakage_to_gross_then_1.3x_vol",
  "do_not_lead": [
   "ai",
   "npm",
   "etf",
   "peer_share",
   "l1_actives",
-  "cs_as_fee"
+  "cs_as_fee",
+  "sovereign_yield_forum_noise"
  ],
  "stance": "Hold until H1b",
  "hsp029": "pending_not_live",
+ "hsp007_engagement_vs_029_x": 2.1,
+ "confidential_share_of_capture_pct": 71.1,
+ "user_allin_vs_capture_x": 10.6,
+ "ledger_first": true,
+ "clusters_preliminary": 159,
  "falsifiers": "docs/f1-f4-scorecard.md",
  "spine": "docs/pitch-spine.md",
  "submit": "docs/submit-packet.md",
- "clusters_preliminary": 157,
  "controllable_bridge": "sk_tax_and_attest_then_volume",
  "intents_share_near_protocol_fees_pct": 87,
- "four_ten_m": {
-  "sk_tax_25": 10.2,
-  "attest_escrow": 8.4,
-  "hsp007_10pct_claim": 11.8,
-  "solver_residual_8_5bp": 11.41
- },
- "solver_residual_rr_m": 11.41,
- "tg_attach_conservative_rr_m": 1.37,
- "hours_to_submit": 67.9,
- "catalyst_rank_file": "catalyst_rank_no_vol.json",
- "ledger_first": true,
- "dense_fronts_rr_m": 1.59,
- "sk_tax_is_ledger_conversation": true,
- "commercial_conversation_map": "commercial_conversation_map.json"
+ "ledger_discipline": "capture_vs_defense_vs_cif_gap"
 }
