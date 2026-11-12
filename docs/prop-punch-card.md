@@ -100,6 +100,7 @@
 | 94 | Quality on cool (3 blocks) | Attach/τ up; 1Click notional peaked then fell | Quality and volume decoupled |
 | 95 | Census unknown referral | 1click-unknown top tag (~34% of tagged) | Matches no-ref fee-engine locus |
 | 96 | Intents ok-share | ~83% txs succeed in census | Failure tail is UX risk; fees on successes |
+| 97 | Solver rebalance tags (census) | ~7% of tagged referrals | Inventory ops are first-class flow |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.
 

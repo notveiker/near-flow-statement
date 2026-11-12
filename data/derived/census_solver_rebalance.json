@@ -1,0 +1,9 @@
+{
+ "solver_rebalance_tags": {
+  "solver-multichain-assets-rebalancing": 13,
+  "solver-private-liquidity-cex-v2-prod-rebalancing": 9,
+  "solver-multichain-assets-binance-escrow-rebalancing": 6
+ },
+ "solver_share_of_tagged_pct": 7.1,
+ "note": "Census referral tags include solver rebalancing (~7% of tagged). Inventory ops are visible as first-class flow, not just user swaps. Exploratory hours-window."
+}
