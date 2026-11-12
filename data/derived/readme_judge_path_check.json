@@ -1,0 +1,15 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_submit": 62.4,
+  "commits": 501,
+  "clusters": 185,
+  "readme_checks": {
+    "has_dashboard_link": true,
+    "has_pitch_spine": true,
+    "has_report": true,
+    "has_submit_packet": true
+  },
+  "blurb_needed": false,
+  "suggested_readme_block": "## Judge path (30s)\n\n- Dashboard: [`dashboard/index.html`](dashboard/index.html)\n- Pitch spine: [`docs/pitch-spine.md`](docs/pitch-spine.md)\n- Report: [`REPORT.md`](REPORT.md)\n- Submit packet: [`docs/submit-packet.md`](docs/submit-packet.md)\n- One breath: `data/derived/judge_one_breath.json`\n",
+  "read": "README judge-path checks={'has_dashboard_link': True, 'has_pitch_spine': True, 'has_report': True, 'has_submit_packet': True}. Blurb needed=False. Repo still private. ~62.4h. Exploratory ops."
+}
