@@ -1,8 +1,8 @@
 {
- "primary_clusters_local": 142,
+ "primary_clusters_local": 143,
  "sample2_clusters_local": 91,
- "primary_next_part": "2023Q3_06",
+ "last_ingested": "2023Q3_06",
  "overall": "not_supported_preliminary",
- "commits_since_structural_approx": 248,
- "note": "Ingested available early-stratum seals (142 primary). 2023Q3_06 still sealing. Prop hyper-sweep continuing."
+ "commits_since_structural_approx": 252,
+ "note": "Ingested 2023Q3_06. 143 primary clusters preliminary. Hyper sweep continuing."
 }
