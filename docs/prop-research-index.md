@@ -100,3 +100,7 @@ History sample: preliminary **133** sealed clusters (primary) with payloads; dua
 - `data/derived/distribution_surface_map.json — census referral top surfaces`
 - `data/derived/multiple_on_cooling_vol.json — 199× on cooling print`
 - `data/derived/intents_ok_share.json — ~83% success in census`
+- `data/derived/gas_burn_near_units.json — Intents≈HOT NEAR burned`
+- `data/derived/capture_vs_gas_burn_near.json — capture≫gas opex NEAR`
+- `data/derived/cs_method_asymmetry.json — respond vs sign`
+- `data/derived/50x_vs_cooling.json — 50× vs MoM cool`
