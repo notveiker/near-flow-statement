@@ -163,3 +163,10 @@ LST ~$196M ≈ ~611 DIC days (~25× buyback) but only ~9.3% of stake — size �
 - **50×**: capture-alone impossible (~19.8 bp > 15.3 gross). Leakage then volume.
 - **Burn ≠ BB wallet**: hard-burn for 25% mint needs >100% of capture; held buybacks are a ~25d DIC buffer with ~60d half-life.
 <!-- /AUTO:UNDERWRITE_CIF -->
+
+<!-- AUTO:PRIVACY -->
+### Privacy / confidential surface
+
+- Confidential TVL ~70% of inventory. Dials on that surface: ZEC 2× ~$2.8M · CIF 1bp ~$3.3M · attest ~$8.4M · CIF 5bp ~$16.6M.
+- Rate card + attestation dominate inventory doubling. Gap: CIF unpublished.
+<!-- /AUTO:PRIVACY -->

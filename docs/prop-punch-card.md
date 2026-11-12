@@ -279,3 +279,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Confidential inventory majority | Conf TVL ~70% of inventory — CIF+attest are same surface | confidential_inventory_majority |
 | Immaterial→material ladder | AI $0.33 < whale $1.0 < TG $1.4 < CIF 1bp $3.3 < SK-tax $10.2 | immaterial_to_material_ladder |
 | Sweep ~363 commits | Judge packet + four ~$10M + CIF/attest + ladder; 155 clusters preliminary | sweep_milestone |
+| Privacy surface dial board | ZEC 2× ~$2.8M < CIF 1bp ~$3.3M < attest ~$8.4M < CIF 5bp ~$16.6M — rate card wins | privacy_surface_dial_board |
+| Whale attach prize | 3.4% swaps → 77% vol; +10pp attach ≈ $1.0M/yr at AITR | whale_attach_prize |
