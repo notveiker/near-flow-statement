@@ -1,0 +1,9 @@
+{
+ "g_obs_usd_pct": 619.0,
+ "g_obs_near_pct": 71.4,
+ "usd_vs_near_growth_x": 8.7,
+ "g_req_pct": 33.2,
+ "near_growth_still_above_req": true,
+ "note": "Observed fee growth is ~619%/yr in USD but only ~71%/yr in NEAR terms \u2014 most of the USD print is price. NEAR-unit growth still clears the 33% rating hurdle. Exploratory; rating rule uses the frozen USD series.",
+ "read": "USD fee growth ~8.7\u00d7 NEAR-unit growth \u2014 most of the USD print is price. NEAR-unit still clears rating hurdle. Do not lead USD CAGR alone."
+}

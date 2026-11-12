@@ -290,3 +290,6 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History denser _07 | Entering 2025Q1_07 after 156 clusters through 2026Q4_06 | history_progress_2026q4 |
 | Volume over capture gap | Peerset vol share > capture share — distributing more than capturing | volume_over_capture_gap |
 | R90 multiple honesty | R90≪30d RR — 199× on RR is optimistic vs trailing; disclose | r90_multiple_honesty |
+| Growth price vs fee | USD CAGR ~8.7× NEAR-unit — most USD print is price; NEAR-unit still clears hurdle | growth_price_vs_fee_honesty |
+| Pitch sequence v2 | Six-step: open → four \$10M → ladder → quality → path → holds | pitch_sequence |
+| Sweep ~370 | 156 clusters; ~260 punch; ~278 derived; ~68.0h to submit | dial_inventory_summary |

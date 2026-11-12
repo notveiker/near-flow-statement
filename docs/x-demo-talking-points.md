@@ -23,3 +23,7 @@
 6c. **SK exit split** — lose ~38% distribution, ~2% BB: fee engine already in no-ref.
 6d. **TG unlabeled** — ~20% tagged census, fee map missing; attach dial ~$1.4M conservative.
 <!-- /AUTO:X_FOUR -->
+
+<!-- AUTO:X_SEQ -->
+**6-step pitch (updated):** (1) Partners>capture / Intents 87% fees (2) Four ~$10M surfaces — Ledger-first SK-tax (3) Immaterial→material ladder (4) Quality-on-cool (5) Leakage then 1.3× vol (6) Hold until H1b / F1–F4.
+<!-- /AUTO:X_SEQ -->

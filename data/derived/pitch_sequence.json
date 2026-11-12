@@ -3,32 +3,34 @@
   {
    "step": 1,
    "title": "Open",
-   "line": "Partners > capture; leakage ~$50M/yr; distribution owns the print."
+   "line": "Partners > capture; leakage ~$50M/yr; Intents ~87% of NEAR fees."
   },
   {
    "step": 2,
-   "title": "Two bridges",
-   "line": "SK-tax ~$10M capture + attest escrow ~$8.4M trust \u2014 before volume."
+   "title": "Four ~$10M",
+   "line": "SK-tax ~$10.2M (Ledger-first) \u00b7 attest ~$8.4M \u00b7 HSP-007 ~$11.8M \u00b7 solver residual ~$11.4M."
   },
   {
    "step": 3,
-   "title": "Quality-on-cool",
-   "line": "Attach/\u03c4 1.72\u00d7 inside sample on \u221212% MoM vol off 1.5\u00d7 year-avg print."
+   "title": "Ladder",
+   "line": "AI $0.33 \u226a whale $1.0 \u226a TG $1.4 \u226a CIF 1bp $3.3 \u226a SK-tax $10.2 \u2014 lead the right end."
   },
   {
    "step": 4,
-   "title": "Path",
-   "line": "Full gross+HSP \u2248 1\u00d7 mint then ~1.3\u00d7 vol for 50\u00d7 (vs ~4\u00d7 today)."
+   "title": "Quality-on-cool",
+   "line": "Attach/\u03c4 1.72\u00d7 on \u221212% MoM vol; partner/BB ratio 17.8\u21929.9\u00d7."
   },
   {
    "step": 5,
-   "title": "Holds",
-   "line": "Hold until H1b; HSP-029 pending; HSP-007 competing claim Gap."
+   "title": "Path",
+   "line": "Capture-alone cannot hit 50\u00d7 (>gross bp); leakage\u21921\u00d7 mint then ~1.3\u00d7 vol."
   },
   {
    "step": 6,
-   "title": "Close",
-   "line": "Do not lead AI/npm/ETF/peer-share. F1\u2013F4 pre-registered."
+   "title": "Holds",
+   "line": "Hold until H1b; HSP-029 pending-not-live; F1\u2013F4 on 14 Nov."
   }
- ]
+ ],
+ "hours_to_submit": 68.0,
+ "clusters_preliminary": 156
 }

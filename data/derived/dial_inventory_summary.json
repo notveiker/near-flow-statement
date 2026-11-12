@@ -1,16 +1,18 @@
 {
- "history_clusters_preliminary": 143,
- "commits_since_structural_approx": 273,
- "derived_json_approx": 206,
- "punch_rows_approx": 185,
- "hours_to_submit_approx": 68,
+ "history_clusters_preliminary": 156,
+ "commits_since_structural_approx": 370,
+ "derived_json_approx": 278,
+ "punch_rows_approx": 260,
+ "hours_to_submit_approx": 68.0,
  "top_dials": [
-  "sk_tax_25pct",
-  "mix_nearcom",
-  "conversion",
-  "gross_share_5pp",
-  "trust_template_lifi"
+  "sk_tax_25pct_ledger_first",
+  "attest_escrow",
+  "adr029_residual_defense",
+  "conversion_2x",
+  "cif_1bp_gap",
+  "tg_attach",
+  "dense_fronts_protect"
  ],
  "stance": "Hold until H1b",
- "note": "Inventory rollup for deadline ops."
+ "note": "Inventory rollup: ~370 commits, 156 clusters, ~260 punch rows, ~278 derived JSON, ~68.0h to submit."
 }
