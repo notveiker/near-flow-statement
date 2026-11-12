@@ -1,0 +1,22 @@
+{
+ "top3": [
+  {
+   "name": "NEAR Intents",
+   "share_pct": 87.0,
+   "total30d": 5458382
+  },
+  {
+   "name": "Rhea Dex",
+   "share_pct": 8.5,
+   "total30d": 533661
+  },
+  {
+   "name": "Rhea Lend",
+   "share_pct": 4.3,
+   "total30d": 270238
+  }
+ ],
+ "intents_share_pct": 87.0,
+ "hhi_floor": 0.757,
+ "note": "Intents alone ~87% of NEAR protocol fees \u21d2 fee HHI floor \u22650.76 \u2014 chain fee power is a single-venue story. Exploratory DefiLlama."
+}
