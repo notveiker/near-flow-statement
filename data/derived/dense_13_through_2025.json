@@ -1,0 +1,12 @@
+{
+  "asof": "2026-11-12",
+  "stratum": "_13_dense",
+  "through_2025": "2025Q4_13",
+  "clusters": 208,
+  "commits": 580,
+  "hours_to_submit": 58.1,
+  "overall": "not supported",
+  "history_blocker": false,
+  "next": "2026Q1_13..2026Q4_13 then diminishing returns vs public+X",
+  "read": "_13 through 2025 COMPLETE (208 clusters). Overall still not supported \u2014 not a submit blocker. Prefer public+X over finishing contest-year _13. Exploratory."
+}

@@ -514,3 +514,6 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Mint ledger ≠ fee upside | HSP-007~$11.8M claim on issuance; HSP-029 pending-then-lagged — not Intents upside | mint_ledger_not_fee_upside |
 | Sweep ~577 identity | 12 locked claims; public+X bind @~58h | sweep_577_identity |
 | Delivery urgency GREEN @58h | Prop ready; public+X bind; do not block on strata | delivery_urgency_board |
+| History 208 / 2025Q4_13 | _13 through 2025 COMPLETE — still not supported | history_progress_2025q4_13 |
+| Dense _13 through 2025 | 208 clusters; prefer public+X over finishing contest-year | dense_13_through_2025 |
+| Sweep ~580 identity | Urgency GREEN; 12 locked claims; public+X bind | sweep_580_identity |

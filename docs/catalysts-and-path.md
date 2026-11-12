@@ -351,3 +351,10 @@ Chain Signatures sits under Intents execution (execute ≫ respond ≫ sign) —
 - HSP-007 ~**$11.8M**/yr claim competes on the **issuance pool** — opex on mint, not Intents fee growth.
 - HSP-029 alone → ~**24.7%** coverage; with stack wall ~**42.8%** — still pending-then-lagged at submit (~**58h** before deadline).
 <!-- /AUTO:MINT_NOT -->
+
+<!-- AUTO:D13_2025 -->
+### Dense `_13` through 2025 (exploratory)
+
+- **208 clusters**; overall still **not supported**.
+- Prefer burning ~**58h** on **public repo + X dry-run** over finishing contest-year `_13` seals.
+<!-- /AUTO:D13_2025 -->

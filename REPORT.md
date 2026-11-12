@@ -141,9 +141,10 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~576 commits / 207 clusters.** `_13` through Q3; overall still **not supported**.
-- **12 locked claims** in prop-what (elasticity · wall · whale desk · double opacity · fidelity · fee≠L1 OoM · default rail · conversion · solver rent · embeds · quality-on-cool · Hold/H1b).
-- **LIVE (~58h):** public + X. History not a blocker.
+- **~580 commits / 208 clusters.** `_13` through **2025 COMPLETE**. Overall still **not supported** — not a submit blocker.
+- **Fee≠L1 OoM:** intents ~**147×** vs L1 ~**0.21×**.
+- **12 locked claims** live. Prefer **public + X** over finishing contest-year `_13`.
+- **LIVE (~58h):** repo still **private**. Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context
