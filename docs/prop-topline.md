@@ -10,6 +10,7 @@
 | AITR on attached 1Click | ~9.5 bp |
 | Attachment | 23.6% → 43% across blocks |
 | Capture share / leakage | ~32.5% / ~10× |
+| Leakage pool (annualised) | ~$50M/yr of ~$74M gross |
 | No-ref buyback-$ concentration | 18.7% vol → 45.8% buyback $ (~2.45×) |
 | Intents share of NEAR DEX 30d | ~99% |
 | Partners vs NEAR capture | ~1.8×+ (Ledger-via-SK alone ≈ NEAR) |

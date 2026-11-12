@@ -48,3 +48,5 @@ No-referrer dollar concentration: `data/derived/noref_dollar_concentration.json`
 Capture-share path (leakage compression at flat 15.3 gross bp): `data/derived/capture_share_path.json` — 60% capture ≈ ~$45M RR (~0.46× of 50× need).
 
 SwapKit exit fee asymmetry: `data/derived/sk_exit_fee_asymmetry.json` — volume risk ≫ buyback-$ risk on that pipe.
+
+Leakage pool size: `data/derived/leakage_pool_size.json` — ~$50M/yr stays with partners/solver/gas on ~$74M gross.

@@ -1,0 +1,9 @@
+{
+ "gross_fees_30d_m": 6.12,
+ "captured_30d_m": 1.99,
+ "partner_plus_solver_residual_30d_m": 4.13,
+ "capture_share_pct": 32.5,
+ "annualised_gross_m": 74.5,
+ "annualised_leakage_m": 50.2,
+ "note": "Gross fees on the sample ~$6.12M/30d vs $1.99M captured \u2014 ~$4.13M/30d (~$50M/yr) stays with partners/solver/gas. That leakage pool is the commercial prize if renegotiated. Exploratory."
+}
