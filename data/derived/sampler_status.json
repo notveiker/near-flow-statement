@@ -1,5 +1,7 @@
 {
  "primary_clusters_local": 156,
  "last_ingested": "2026Q4_06",
- "overall": "not_supported_preliminary"
+ "next_part": "2025Q1_07",
+ "overall": "not_supported_preliminary",
+ "note": "156 clusters completed _06 through 2026Q4. Entering denser _07 stratum at 2025Q1. Still preliminary."
 }
