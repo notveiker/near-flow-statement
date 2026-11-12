@@ -89,3 +89,8 @@ History sample: preliminary **133** sealed clusters (primary) with payloads; dua
 - `data/derived/near_side_swap_share.json — 3.5% NEAR-sided swaps`
 - `data/derived/stake_dominant_float.json — 44.5% supply staked`
 - `data/derived/prop_falsifiers.json — pitch falsifiers`
+- `data/derived/vol_deceleration.json — vol −12% MoM vs rising capture`
+- `data/derived/fee_density_vs_gas.json — rev 11× L1 on 9% gas`
+- `data/derived/investment_object.json — range with policy/partner risk`
+- `data/derived/r90_vs_run_rate.json — T90 vs 30d run-rate`
+- `data/derived/bb_funding_rails.json — collectors vs escrow dollars`
