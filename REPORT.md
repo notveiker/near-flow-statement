@@ -141,9 +141,9 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **700 commits.** HEADLINE: Leakage is the bridge. Intents≈99% DEX. 237 clusters / ~52h.
-- `_12`–`_16` done. Packet ready. Repo still **PRIVATE**.
-- **Flip public. Record X. Submit.** Hold until H1b.
+- **701 commits.** HEADLINE: Leakage is the bridge. Intents≈99% DEX. 237cl / ~52h.
+- Prop surplus complete. Repo still **PRIVATE**.
+- **Flip public. Record X 90s. Submit.** Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context

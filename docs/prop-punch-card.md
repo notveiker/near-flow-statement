@@ -690,3 +690,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Strata EV exhausted | 5 dense strata still not supported; density≠Buy | strata_ev_exhausted |
 | History 237 / 2025Q1_17 | intents~175×; _17 low EV; public+X ONLY | history_progress_2025q1_17 |
 | ~700-commit milestone | intents×~175; prop surplus; public+X ONLY | commits_700_milestone |
+| Builder pulse ≠ fee dial | nearcore stars/push = ecosystem overlay | builder_pulse_not_fee_dial |
