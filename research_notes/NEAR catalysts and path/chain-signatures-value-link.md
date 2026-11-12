@@ -116,3 +116,5 @@ Until then: CS growth ≠ second cash-flow; CS outage risk = first-order for Int
 10. Falsifiers: paid signature API, NEAR-denominated signature fees, stake-to-sign fee claim, or signature-tied burn in public adapters.
 11. **Gap:** off-chain MPC operator commercial terms and per-chain OmniBridge vs PoA residual risk are not attested here.
 12. Until falsifiers fire, proprietary scoreboard ignores CS as cash-flow and keeps **attach / capture / attestation / mix**.
+
+Census method asymmetry: `data/derived/cs_method_asymmetry.json`.

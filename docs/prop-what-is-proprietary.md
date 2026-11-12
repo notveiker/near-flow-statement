@@ -25,7 +25,8 @@
 19. **Census vs Explorer** — SK smaller by count than vol (whale flow)  
 20. **HOT vs Intents gas** — same gas %, HOT 3× txs (heavier settlement)  
 21. **Ok-share ~83%** — failures burn gas without capture  
-22. **50× vs cooling** — needs ~4× vol; latest print −12% MoM
+22. **50× vs cooling** — needs ~4× vol; latest print −12% MoM  
+23. **CS method asymmetry** — respond≃24×sign under Intents flow
 
 ## Pitch in one sentence
 
