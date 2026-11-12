@@ -1,0 +1,18 @@
+{
+ "asof_utc": "2026-11-12T03:09:00Z",
+ "commits_since_structural": 349,
+ "derived_json_approx": 232,
+ "history_clusters_preliminary": 152,
+ "next_seal": "2026Q1_06",
+ "hours_to_submit": 68.8,
+ "judge_ready": true,
+ "headline_stack": [
+  "partners_gt_capture",
+  "intents_87pct_near_fees",
+  "two_bridges_sk_tax_attest",
+  "quality_on_cool",
+  "leakage_then_volume",
+  "hold_until_h1b"
+ ],
+ "note": "~350 commits. Judge packet ready. History through 2025 entering 2026. Do not block submit."
+}
