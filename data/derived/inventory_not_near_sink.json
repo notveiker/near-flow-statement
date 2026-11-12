@@ -1,0 +1,10 @@
+{
+ "inventory_total_m": 229.2,
+ "wnear_share_pct": 27.3,
+ "zec_share_pct": 12.0,
+ "top_stables_usd_m": 45.97,
+ "top_stables_share_pct": 20.1,
+ "top_btc_usd_m": 28.81,
+ "non_near_majority": true,
+ "note": "Inventory is not a NEAR accumulation claim: wNEAR ~27.3%, ZEC ~12%, top stables ~$46M. Fee thesis is take on turnover of mostly non-NEAR float. Exploratory."
+}

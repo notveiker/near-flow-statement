@@ -130,6 +130,9 @@ Active accounts −77% YoY while Intents fees ~11× L1 fee print; NEAR-side swap
 
 ## Risks and context
 
+- **Distribution owns the fee print.** Listed partners ~$4.45M > NEAR capture ~$1.99M; only 9.2% of appfees become buybacks; H1b covers ~20–25% of streams (`fee_stack_identity`, `appfees_to_buyback_conversion`, `h1b_coverage_still_binding`).
+- **HSP-007 vs HSP-029.** MPC emissions claim competes with mint cut on the same issuance pool (magnitude Gap).
+- **Relayer top1 ~83%.** Ops left-tail beside fee math (`relayer_hhi_floor`).
 - **Volume is binding.** Attach/mix/leakage dials raise run-rate toward ~$37–45M; even full-venue AITR is ~$46M — 50× still needs ~2–4× volume (`data/derived/attach_ceiling_50x.json`). Full capture of 15.3 gross bp + HSP-029 ≈ 1× mint; 50× then needs ~1.3× vol (`full_capture_extreme.json`).
 - **USD fee growth is price-heavy.** ~619%/yr USD vs ~71%/yr NEAR (`growth_usd_vs_near.json`).
 - **Base-layer activity is far below its 2024 peak.** Nearblocks counts about 739K transactions a day in 2026Q3 against 7.7M in 2024Q2, and 79K active accounts a day against 1.86M. Stablecoins on NEAR are $131M, against $651M at the 2024Q3 peak. Chain TVL is $169M, against $274M in 2022Q3.
