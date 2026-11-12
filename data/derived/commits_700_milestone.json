@@ -1,10 +1,12 @@
 {
   "asof": "2026-11-12",
-  "commits": 699,
+  "commits": 700,
   "clusters": 237,
-  "hours_to_submit": 52.5,
+  "hours_to_submit": 52.4,
+  "derived_json": 553,
   "headline": "leakage_is_the_bridge",
-  "intents_x": 175.3371,
+  "intents_dex_pct": 98.8,
+  "zero_leak_vol_x_for_50x": 1.29,
   "dense_complete": [
     "_12",
     "_13",
@@ -12,6 +14,10 @@
     "_15",
     "_16"
   ],
-  "implication": "~700 commits; prop surplus complete; public+X is the only EV left",
-  "read": "~699c/237cl/~52h. PUBLIC+X ONLY. Exploratory."
+  "binding": [
+    "public_repo",
+    "x_demo_dry_run"
+  ],
+  "implication": "700 commits of proprietary research shipped; the only EV left is flipping the repo public and recording the X demo",
+  "read": "700c / 237cl / 553d / ~52h. PUBLIC+X NOW. Exploratory."
 }

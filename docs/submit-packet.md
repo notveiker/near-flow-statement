@@ -79,3 +79,9 @@ See `data/derived/risks_compact.json` — H1b/attest/relayer/HSP-007/CIF/multipl
 **`_12`–`_16` dense COMPLETE** @236 clusters. Intents~202× OoM; overall not supported.
 **~53h left.** Binding: public repo + X dry-run ONLY. Strata EV exhausted.
 <!-- /AUTO:D16DONE -->
+
+<!-- AUTO:700 -->
+# 700 commits shipped — ~52h left
+Prop is done. **Flip public. Record X 90s.** Submit.
+Headline: Leakage is the bridge. Intents≈99% NEAR DEX.
+<!-- /AUTO:700 -->
