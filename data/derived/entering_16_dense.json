@@ -1,18 +1,18 @@
 {
   "asof": "2026-11-12",
-  "clusters": 231,
-  "last": "2025Q3_16",
+  "clusters": 232,
+  "last": "2025Q4_16",
+  "next": "2026Q1_16",
   "prior_complete": [
     "_12",
     "_13",
     "_14",
     "_15"
   ],
-  "entering": "_16",
-  "hours_to_submit": 53.6,
-  "commits": 669,
+  "hours_to_submit": 53.5,
+  "commits": 674,
   "intents_x": 192.3539,
   "l1_yoy_tx_x": 0.208,
   "overall": "not_supported",
-  "read": "_16 through 2025Q3 @231; intents~192\u00d7. Leakage=bridge. public+X. Exploratory."
+  "read": "_16 through 2025Q4 @232; contest-year next. intents~192\u00d7. Exploratory."
 }

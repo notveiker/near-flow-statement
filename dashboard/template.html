@@ -849,6 +849,8 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (Xs) bits.push(`<b>X 90s:</b> ${Xs.beats.map(b=>b.say.split('.')[0]).join(' → ')}.`);
     const Rd = D.catalysts && D.catalysts.rating_disclose;
     if (Rd) bits.push(`Rating growth: disclose USD +${Rd.g_obs_usd_pct}% and NEAR-unit +${Rd.g_obs_near_pct}% (req ${Rd.g_req_pct}%).`);
+    const Smh = D.catalysts && D.catalysts.sk_merged_hhi;
+    if (Smh) bits.push(`SK-merged HHI ${Smh.channel_hhi}→${Smh.channel_hhi_swapkit_merged} (>${Smh.doj_moderate_threshold}) = tax leverage.`);
     const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);

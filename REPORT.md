@@ -141,8 +141,8 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~672 commits / 231 clusters / ~54h.** `_16` Q4 sealing. Overall still **not supported**.
-- Leakage is the bridge. SK-merged HHI ~0.20 = tax leverage. X 90s script ready.
+- **~674 commits / 232 clusters / ~54h.** `_16` through 2025Q4; contest-year next. Overall still **not supported**.
+- **Leakage is the bridge.** Fee≠L1 ~**192×**. X 90s script ready.
 - **URGENT:** public + X. Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 
