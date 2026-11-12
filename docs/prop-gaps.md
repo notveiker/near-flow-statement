@@ -25,3 +25,10 @@ Telegram (`intents.tg`) is a live referral surface in census (~20% of tagged) bu
 - **Conversion measured**: appfees→buybacks at 9.2%; unexplained BB share ~68% (`appfees_to_buyback_conversion`, `buybacks_unexplained_share`).
 - **Trust path sized**: SK→direct-20bp ~$1.7M/yr (`trust_path_bb_vs_tax`).
 - **Attach path evidenced** inside sample 23.6→43 / 2.89→4.98 bp (`attach_path_evidenced`).
+
+### Also closed-enough this sweep
+- Channel BB density map + LI.FI/Rango dials
+- H1b coverage quantified (~20–25%)
+- near.com stated vs wallet-implied gap
+- Peerset share softening (62→56→39 net)
+- L1 actives −77% YoY vs Intents fee dominance

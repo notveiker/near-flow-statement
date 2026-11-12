@@ -191,3 +191,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Actives ≠ fee | L1 active accounts are attention; Intents fee density is local — do not lead with actives | actives_not_fee |
 | L1 actives collapse vs Intents | Actives **−77% YoY** while Intents fees ~11× L1 — thesis is Intents capture not L1 rebound | l1_actives_collapse_vs_intents |
 | NEAR-side minority | Only **3.5%** Explorer swaps are NEAR-side — product is cross-chain settlement | near_side_minority |
+| High-density fronts | Trust/Arbie/Enot/Leodex ~20bp thin-vol + mystery 71bp — attach template vs aggregator dilutives | high_density_fronts |

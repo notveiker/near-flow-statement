@@ -1,0 +1,45 @@
+{
+ "high_density_fronts": [
+  {
+   "buyback_bp": 71.1,
+   "channel": "e1a72603-64b3-4be1-8265-8bae5970d396",
+   "share_pct": 7.2,
+   "vol_share_pct": 0.4,
+   "density": 18.0,
+   "fee_rr_m": 0.38
+  },
+  {
+   "buyback_bp": 20.0,
+   "channel": "trustwallet",
+   "share_pct": 12.0,
+   "vol_share_pct": 2.4,
+   "density": 5.0,
+   "fee_rr_m": 0.64
+  },
+  {
+   "buyback_bp": 19.9,
+   "channel": "enot",
+   "share_pct": 1.5,
+   "vol_share_pct": 0.3,
+   "density": 5.0,
+   "fee_rr_m": 0.08
+  },
+  {
+   "buyback_bp": 20.0,
+   "channel": "arbie",
+   "share_pct": 6.9,
+   "vol_share_pct": 1.4,
+   "density": 4.93,
+   "fee_rr_m": 0.38
+  },
+  {
+   "buyback_bp": 19.8,
+   "channel": "leodex",
+   "share_pct": 1.9,
+   "vol_share_pct": 0.4,
+   "density": 4.75,
+   "fee_rr_m": 0.11
+  }
+ ],
+ "note": "Fronts with BB-fee density \u22651.5\u00d7 (ex no-ref): Trust/Arbie/Enot/Leodex-class ~20bp on thin vol, plus mystery 71bp. High-density fronts are the attach template; aggregators are the dilutive set. Exploratory."
+}
