@@ -410,3 +410,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | HSP-029 activation lag | Timelock 16 Nov; ramp ≈2027-02 then 24m — pending-then-lagged | hsp029_activation_lag |
 | CS under Intents | execute ≫ respond ≫ sign — CS not separate fee line | cs_under_intents_not_separate_fee |
 | BB dollar rails | Escrow ~59% of BB funding $ — unattested majority rail | bb_dollar_rails_board |
+| History 179 / 2026Q3_09 | Q4_09 last of contest-year _09 — still not supported | history_progress_2026q3_09 |

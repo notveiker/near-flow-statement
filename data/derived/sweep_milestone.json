@@ -1,14 +1,14 @@
 {
-  "commits_since_structural": 474,
-  "clusters_preliminary": 178,
-  "hours_to_submit": 63.8,
+  "commits_since_structural": 477,
+  "clusters_preliminary": 179,
+  "hours_to_submit": 63.7,
   "stratum": "_09_dense",
-  "last_ingested": "2026Q2_09",
-  "next": "2026Q3_09",
+  "last_ingested": "2026Q3_09",
+  "next": "2026Q4_09",
   "judge_ready": true,
   "must_ship": [
     "public_repo_STILL_PRIVATE",
     "X_demo_dry_run"
   ],
-  "note": "~474 commits; 178 clusters; HSP lag + CS-under-Intents + BB dollar rails; ~63.8h."
+  "note": "~477 commits; 179 clusters; Q4_09 last of contest-year _09; repo private; ~63.7h."
 }
