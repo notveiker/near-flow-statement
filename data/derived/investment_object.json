@@ -57,5 +57,8 @@
  "intents_share_near_protocol_fees_pct": 87,
  "ledger_discipline": "capture_vs_defense_vs_cif_gap",
  "hours_to_submit": 66.5,
- "dense_07_complete_through": "2026Q4"
+ "dense_07_complete_through": "2026Q4",
+ "pitch_locked_lines": "pitch_locked_lines.json",
+ "near_term_board": "near_term_board.json",
+ "judge_capture_card": "judge_capture_card.json"
 }
