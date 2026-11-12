@@ -11,7 +11,7 @@
 - [x] F1–F4 scorecard pre-registered
 - [x] Submit-packet.md
 - [x] Two bridges (SK-tax + attest) + three ~$10M magnitudes
-- [x] History seals through 2024Q3_06 (147 clusters, preliminary)
+- [x] History seals through 2024Q4_06 (148 clusters, preliminary)
 
 ## Open before submit
 

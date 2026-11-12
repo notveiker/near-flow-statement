@@ -1,0 +1,8 @@
+{
+ "clusters": 148,
+ "last_seal": "2024Q4_06",
+ "next": "2025Q1_06",
+ "overall": "not_supported_preliminary",
+ "progress_note": "Early-stratum seals now through end of 2024; entering 2025. Still preliminary / not supported until stopping rule.",
+ "do_not_block_submit": true
+}
