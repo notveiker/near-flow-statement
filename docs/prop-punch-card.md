@@ -550,3 +550,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 217 / 2026Q1_14 | Contest-year _14 filling — still not supported | history_progress_2026q1_14 |
 | Sweep ~610 identity | Human-only left public+X; Hold until H1b | sweep_610_identity |
 | SK-tax vs attach-to-60 | SK-tax~$10.2M ≈ 1.3× attach 43→60 uplift — lead desk tax | sk_tax_vs_attach_path |
+| History 218 / 2026Q2_14 | Contest-year _14 continuing — still not supported | history_progress_2026q2_14 |
+| Sweep ~613 identity | SK-tax≻attach-to-60; human-only public+X | sweep_613_identity |
