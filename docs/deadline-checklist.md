@@ -42,3 +42,15 @@ Hours≈65: blockers = public_repo + X_demo_dry_run. HSP-029 = pending-not-live 
 <!-- AUTO:PRIVATE -->
 **LIVE ~63h:** Repo still **private**. History denser (_09 complete, _10 started) — not a submit blocker. Flip public + X dry-run.
 <!-- /AUTO:PRIVATE -->
+<!-- AUTO:RUNBOOK -->
+## Submit-day runbook (~63h)
+
+1. **Flip repo public** (LIVE private)
+2. README → dashboard + pitch-spine + REPORT
+3. X dry-run (`judge_one_breath.json`)
+4. Submit-packet link check
+5. 14 Nov: F1–F4 score
+6. HSP-029 = pending-then-lagged
+
+History/`_10` seals are **not** blockers.
+<!-- /AUTO:RUNBOOK -->

@@ -422,3 +422,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 182 / 2025Q2_10 | _10 dense continuing — still not supported | history_progress_2025q2_10 |
 | Dense strata path | _06→_10 at 182 clusters; overall still not supported; not submit blocker | dense_strata_path_board |
 | History 183 / 2025Q3_10 | _10 dense mid-2025 — still not supported | history_progress_2025q3_10 |
+| Submit-day runbook | Public→README→X→submit; history/strata non-blockers; HSP pending-then-lagged | submit_day_runbook |

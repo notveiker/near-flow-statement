@@ -1,0 +1,44 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_submit": 62.8,
+  "ordered_steps": [
+    {
+      "step": 1,
+      "do": "Flip GitHub repo to public (currently private)",
+      "blocker": true
+    },
+    {
+      "step": 2,
+      "do": "README \u2192 dashboard/index.html + docs/pitch-spine.md + REPORT.md",
+      "blocker": true
+    },
+    {
+      "step": 3,
+      "do": "X demo dry-run using judge_one_breath + x-demo-talking-points",
+      "blocker": true
+    },
+    {
+      "step": 4,
+      "do": "Submit packet link check (docs/submit-packet.md)",
+      "blocker": false
+    },
+    {
+      "step": 5,
+      "do": "On 14 Nov: score F1\u2013F4 via pipeline/score_forward.py; publish misses",
+      "blocker": false
+    },
+    {
+      "step": 6,
+      "do": "Keep HSP-029 labeled pending-then-lagged (timelock 16 Nov; ramp ~Feb 2027)",
+      "blocker": false
+    }
+  ],
+  "do_not_block_on": [
+    "history denser strata",
+    "_10 seals",
+    "overall not supported"
+  ],
+  "clusters": 183,
+  "commits": 494,
+  "read": "Submit-day runbook with ~62.8h left. Steps 1\u20133 bind. History/strata do not. Exploratory ops."
+}
