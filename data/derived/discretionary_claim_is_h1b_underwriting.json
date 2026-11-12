@@ -1,0 +1,13 @@
+{
+  "asof": "2026-11-12",
+  "claim_design": "discretionary_wallet_buyback_held_not_burned",
+  "token_claimable_bp": 4.98,
+  "capture_share_pct": 32.5,
+  "peers_mechanical": {
+    "thorchain": "bond_pendulum_system_income_after_lp_node_split",
+    "chainflip": "network_fee_flip_buy_burn",
+    "maya": "hard_10pct_protocol_fees_to_holders"
+  },
+  "implication": "NEAR Intents claim is discretionary held-BB \u2014 no mechanical burn/pendulum/10% rule \u2014 so Hold until H1b is underwriting the discretionary claim, not waiting for volume",
+  "read": "Claim=discretionary held-BB vs THOR pendulum / CF burn / Maya 10%. H1b underwrites discretion. Exploratory."
+}

@@ -632,3 +632,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | THOR-matched stack ~3× PCI | THOR-matched stack PCI~0.172 ≈3.0× Intents; bond~$458.4M illus. Exploratory. | thor_matched_stack_3x_pci |
 | Capital-light wins & loses | Capital-light wins: long-tail/embed/privacy. Loses: TEE/solver/relayer/no floor. Risk footer not lead. Exploratory. | capital_light_wins_and_loses |
 | No bond demand from capital-light | capital_light_creates_near_bond_demand=false; claim=discretionary BB held. Peers: THOR pendulum / CF burn / Maya 10%. Exploratory. | no_bond_demand_from_capital_light |
+| Claim design drives multiple gap | mcap/rev multiples: {"near_intents_style": 217, "thorchain": 16, "chainflip": 5, "maya": 23}. Claim design drives part of the gap. Explorato | claim_design_drives_multiple_gap |
+| Discretionary claim = H1b underwriting | Claim=discretionary held-BB vs THOR pendulum / CF burn / Maya 10%. H1b underwrites discretion. Exploratory. | discretionary_claim_is_h1b_underwriting |

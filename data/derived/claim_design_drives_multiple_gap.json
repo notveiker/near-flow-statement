@@ -1,0 +1,17 @@
+{
+  "asof": "2026-11-12",
+  "multiples": {
+    "near_intents_style": 217,
+    "thorchain": 16,
+    "chainflip": 5,
+    "maya": 23
+  },
+  "near_claim_design": "discretionary_wallet_buyback_held_not_burned",
+  "peer_claim_designs": {
+    "thorchain": "bond_pendulum_system_income_after_lp_node_split",
+    "chainflip": "network_fee_flip_buy_burn",
+    "maya": "hard_10pct_protocol_fees_to_holders"
+  },
+  "implication": "mcap/rev multiples on claimable revenue expose Intents' discretionary BB vs peers' mechanical claims \u2014 multiple gap is partly claim-design, not only growth",
+  "read": "mcap/rev multiples: {\"near_intents_style\": 217, \"thorchain\": 16, \"chainflip\": 5, \"maya\": 23}. Claim design drives part of the gap. Exploratory."
+}

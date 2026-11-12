@@ -798,6 +798,10 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (T3) bits.push(`THOR-matched stack PCI~${T3.thor_matched_pci_30d} ≈${T3.vs_intents_x}× Intents (bond~$${T3.implied_bond_usd_m}M illus.).`);
     if (Cwl) bits.push(`Capital-light wins long-tail/embed/privacy; loses TEE/solver/relayer/no floor.`);
     if (Nbd && Nbd.capital_light_creates_near_bond_demand === false) bits.push(`Explicit: capital-light does not create NEAR bond demand.`);
+    const Cdg = D.catalysts && D.catalysts.claim_design_gap;
+    const Dch = D.catalysts && D.catalysts.disc_claim_h1b;
+    if (Cdg) bits.push(`Claim design (discretionary BB) drives part of mcap/rev multiple gap vs mechanical peers.`);
+    if (Dch) bits.push(`Discretionary held-BB claim → H1b is underwriting discretion, not waiting for volume.`);
     const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);

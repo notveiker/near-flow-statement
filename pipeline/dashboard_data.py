@@ -450,6 +450,8 @@ def build() -> dict:
             "thor_3x_pci": optional("derived/thor_matched_stack_3x_pci.json"),
             "cap_wins_loses": optional("derived/capital_light_wins_and_loses.json"),
             "no_bond_from_cl": optional("derived/no_bond_demand_from_capital_light.json"),
+            "claim_design_gap": optional("derived/claim_design_drives_multiple_gap.json"),
+            "disc_claim_h1b": optional("derived/discretionary_claim_is_h1b_underwriting.json"),
             "f1_f4": optional("derived/f1_f4_on_submit_day.json"),
         },
         "repro": reproducibility(),

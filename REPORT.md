@@ -141,10 +141,10 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~644 commits / 226 clusters / ~55h.** `_15` Q3 sealing. Overall still **not supported**.
-- THOR-matched stack ~**3× PCI** (~$458.4M bond illus.); capital-light **does not** create NEAR bond demand.
-- Wins: long-tail/embed/privacy. Loses (footer): TEE/solver/relayer/no floor.
-- **Repo PRIVATE.** Human-only: public + X. Hold until H1b.
+- **~645 commits / 226 clusters / 506 derived / ~54h.** `_15` Q3 sealing. Overall still **not supported**.
+- Discretionary held-BB claim → **H1b underwrites discretion**; claim design drives multiple gap vs mechanical peers.
+- THOR-matched ~3× PCI; no bond demand; capital-light wins/loses.
+- **Repo PRIVATE.** Human-only: public + X.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context
