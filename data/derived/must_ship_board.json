@@ -1,7 +1,7 @@
 {
-  "hours_to_submit": 61.1,
-  "clusters": 192,
-  "commits": 524,
+  "hours_to_submit": 59.5,
+  "clusters": 200,
+  "commits": 550,
   "prop_ready": true,
   "dashboard_ready": true,
   "history_preliminary": true,
@@ -19,5 +19,5 @@
       "status": "scheduled_14_nov"
     }
   ],
-  "note": "LIVE private. X script ready. ~61.1h / 192 clusters / 524 commits."
+  "note": "LIVE private. 200 clusters. X script READY. ~59.5h / 550 commits."
 }
