@@ -723,3 +723,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Delivery severity CRITICAL | ~52h; private+no-X | delivery_severity_critical |
 | Distribution owns ~47.6% of all-in | tax distribution + default-rail; not L1 spam | distribution_owns_margin_number |
 | Elasticity 3.07× = sequence≠size | no-vol wall 42.8%; sequence before size | elasticity_means_sequence_not_size |
+| History 242 / 2026Q2_17 | 720c+; intents~175×; PUBLIC+X NOW | history_progress_2026q2_17 |
