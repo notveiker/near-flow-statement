@@ -449,3 +449,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Sweep ~530 identity | Prop ready 0.95 excl must-ship; public+X bind | sweep_530_identity |
 | History 196 / 2026Q4_11 | _11 through 2026 COMPLETE — still not supported | history_progress_2026q4_11 |
 | Sweep ~535 identity | Prop ready; public+X bind; Hold until H1b | sweep_535_identity |
+| Entering _12 dense | _11 through 2026 done; history not submit blocker; repo private | entering_12_dense |
