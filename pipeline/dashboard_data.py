@@ -492,6 +492,7 @@ def build() -> dict:
             "tg_unknown_dials": optional("derived/distribution_surface_tg_unknown_dials.json"),
             "cs_bursty": optional("derived/cs_bursty_under_intents_execution.json"),
             "attach_not_50x": optional("derived/attach_on_1click_cannot_finish_50x.json"),
+            "commits_690": optional("derived/commits_690_milestone.json"),
             "noref_core": optional("derived/noref_concentration_is_fee_core.json"),
             "f1_f4": optional("derived/f1_f4_on_submit_day.json"),
         },

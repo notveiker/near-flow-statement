@@ -68,14 +68,38 @@
     {
       "clusters": 229,
       "intents_x": 192.3539
+    },
+    {
+      "clusters": 230,
+      "intents_x": 192.3539
+    },
+    {
+      "clusters": 231,
+      "intents_x": 192.3539
+    },
+    {
+      "clusters": 232,
+      "intents_x": 192.3539
+    },
+    {
+      "clusters": 233,
+      "intents_x": 192.3539
+    },
+    {
+      "clusters": 234,
+      "intents_x": 192.3539
+    },
+    {
+      "clusters": 235,
+      "intents_x": 201.695
     }
   ],
-  "latest_intents_x": 192.3539,
-  "latest_clusters": 229,
+  "latest_intents_x": 201.695,
+  "latest_clusters": 235,
   "min_intents_x": 147.1856,
-  "max_intents_x": 192.3539,
+  "max_intents_x": 201.695,
   "always_above_100": true,
-  "l1_yoy_tx_x": 0.2249,
-  "implication": "Intents\u00d7 rebounds to ~192 under _16 after dipping ~147 mid-dense \u2014 still always \u226b100\u00d7; reinforces OoM not pinned multiple",
-  "read": "Drift [189, 181, 147, 147, 147, 147, 158, 170, 170, 182, 182, 182, 182, 182, 180, 180, 192] \u2014 min~147 max~192; always OoM. Exploratory."
+  "l1_yoy_tx_x": 0.2065,
+  "implication": "Intents\u00d7 now ~202 under _16 (range 147\u2013202) \u2014 still always \u226b100\u00d7; pitch OoM + drift honesty",
+  "read": "Drift [189, 181, 147, 147, 147, 147, 158, 170, 170, 182, 182, 182, 182, 182, 180, 180, 192, 192, 192, 192, 192, 192, 202] \u2014 always OoM. Pitch OoM not pinned. Exploratory."
 }
