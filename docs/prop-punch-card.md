@@ -308,3 +308,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | ETF vs ladder | ETF NRR ~$0.42M ≈ AI bound, ~0.04× SK-tax — float not fee | etf_vs_ladder |
 | HSP-007 engagement vs 029 | HSP-007 likes ~2.1× HSP-029 — political attention on mint claim risk | hsp007_engagement_vs_029 |
 | Dual escrow rails | Fee-funds ~$617k vs BB unshield ~$824k — related confidential rails, not identical | dual_escrow_rails |
+| Sovereign yield noise | HSP-XXX treasury-venture buyback title ~1 like — narrative noise, not catalyst | sovereign_yield_noise |
+| History 158 dense | 158 clusters through 2025Q2_07; Q3_07 sealing — still not supported | history_progress_2025q2_07 |

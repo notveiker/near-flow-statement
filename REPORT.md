@@ -141,13 +141,14 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **Four ~$10M surfaces:** SK-tax 25% ~$10.2M · attest escrow ~$8.4M · HSP-007 10% claim ~$11.8M · solver residual ~$11.4M (ADR-029 can contest ≤50%). Do not sum.
+- **Four ~$10M surfaces:** SK-tax 25% ~$10.2M · attest escrow ~$8.4M · HSP-007 10% claim ~$11.8M · solver residual ~$11.4M (ADR-029 ≤50%). Do not sum.
 - **SK-tax is a Ledger conversation:** Ledger ≈60% of SwapKit listed fees (~1.01× NEAR capture).
-- **Immaterial→material ladder ($/yr):** AI 5% ~$0.33 · whale +10pp ~$1.0 · TG half@10bp ~$1.4 · CIF 1bp ~$3.3 · SK-tax ~$10.2.
-- **Attestation underwriting dial:** disclosure compresses capture uncertainty ~5.7× without raising τ — distinct from the ~$8.4M unattested escrow dollar bridge.
-- **50× bind:** capture-alone needs ~19.8 bp > 15.3 gross — impossible; leakage then ~1.3× vol.
-- **SK exit split:** ~38% 1Click vol / ~2% traceable BB — fee resilient, distribution fragile.
-- **History:** 156+ clusters through 2026Q4 preliminary (`_07` denser stratum running); overall still not supported.
+- **Call order:** Ledger → escrow attestation → CIF rate card → ADR defense → conversion → TG → LI.FI → dense fronts.
+- **Immaterial→material ladder ($/yr):** AI ~$0.33 · whale ~$1.0 · TG ~$1.4 · CIF 1bp ~$3.3 · SK-tax ~$10.2.
+- **Opacity inside the claim:** ~71% of measured wallet capture via escrow; user all-in ~10.6× token claim.
+- **HSP-007 engagement ~2.1× HSP-029** — mint-claim politics compete with mint-cut narrative.
+- **50× bind:** capture-alone needs >gross bp; leakage then ~1.3× vol.
+- **History:** 158+ clusters; denser `_07` stratum running; overall still not supported.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context
