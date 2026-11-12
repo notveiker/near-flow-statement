@@ -1,0 +1,25 @@
+{
+  "asof": "2026-11-12",
+  "today_mcap_rev_x": 217,
+  "thor_mcap_rev_x": 16,
+  "gap_x": 13.6,
+  "paths_to_compress": [
+    {
+      "path": "raise_claimable_rr_via_sk_tax",
+      "rr_uplift_m": 10.2,
+      "new_rr_m": 34.4,
+      "implied_mult_if_mcap_fixed": 153.0
+    },
+    {
+      "path": "attest_underwriting_band",
+      "effect": "reduces discount on discretionary claim; not mechanical mult math"
+    },
+    {
+      "path": "volume_alone_to_thor_parity",
+      "vol_x_needed_approx": 13.6,
+      "note": "absurd without capture; do not pitch"
+    }
+  ],
+  "implication": "Compressing 217\u2192THOR-like multiples is claim-quality + capture first; volume-alone to close ~13.6\u00d7 is the wrong dial",
+  "read": "SK-tax +$10.2M \u2192 RR~$34.4M \u2192 mult~153\u00d7 if mcap fixed (still \u226b16). Attest reduces discretion discount. Volume-alone \u2260 path. Exploratory."
+}

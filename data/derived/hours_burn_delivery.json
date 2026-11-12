@@ -1,15 +1,18 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 59.2,
-  "clusters": 202,
-  "commits": 557,
-  "commits_per_hour_remaining": 9.41,
-  "prop_ready_excl_must_ship": 0.96,
-  "must_ship_open": [
+  "hours_to_submit": 54.4,
+  "clusters": 226,
+  "commits": 647,
+  "derived_json": 508,
+  "burn_priority": [
     "public_repo",
-    "x_demo_dry_run"
+    "x_demo_dry_run",
+    "packet_polish"
   ],
-  "repo_private": true,
-  "history_not_blocker": true,
-  "read": "~59h left; ~557 commits / 202 clusters. Prop packet ready \u2014 hours burn on public flip + X dry-run, not more history strata. Exploratory."
+  "low_ev": [
+    "more_strata",
+    "more_compound_boards_without_packaging"
+  ],
+  "implication": "~54h \u2014 burn on public+X; prop already dense (647c)",
+  "read": "Hours burn @~54h: public+X \u226b seals. Exploratory."
 }
