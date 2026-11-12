@@ -1,8 +1,6 @@
 {
- "primary_clusters_local": 163,
- "last_ingested": "2026Q3_07",
- "sealing": "2026Q4_07",
+ "primary_clusters_local": 164,
+ "last_ingested": "2026Q4_07",
  "overall": "not_supported_preliminary",
- "stratum": "_07_dense",
- "note": "163 clusters; 2026Q4_07 sealing (provider SSH intermittent). Still preliminary. ~411 commits. ~66.6h to submit."
+ "stratum": "_07_dense"
 }
