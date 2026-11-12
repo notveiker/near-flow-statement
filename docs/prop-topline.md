@@ -131,3 +131,8 @@ Prop/dashboard/judge packet ready (~437 commits, 168 clusters preliminary). **Mu
 **_15 dense COMPLETE** @228 clusters. Intents~180× OoM holds; overall not supported.
 **~54h left.** Binding: public repo + X dry-run. Strata EV exhausted.
 <!-- /AUTO:D15DONE -->
+
+<!-- AUTO:SWEEP22 -->
+- Default/no-ref path: **18.7% vol → 45.8% BB$** (×2.45) — default rail IS the fee engine.
+- Logo partners = volume without capture; strategy = convert logos onto BB rails + SK-tax.
+<!-- /AUTO:SWEEP22 -->

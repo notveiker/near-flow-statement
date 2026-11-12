@@ -648,3 +648,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Blended α overstates SK paths | Blended α~21% overstates SK paths (explicit NEAR≈0). Path-condition capture. Exploratory. | blended_alpha_overstates_sk_paths |
 | Fee-engine core < SK-tax dial | Fee-engine core (no-ref+dense)~$4.1M < SK-tax $10.2M. Controllable > organic core. Exploratory. | fee_engine_core_lt_sk_tax_dial |
 | No-ref concentration = fee core | buyback-$ vs vol share concentrated | noref_concentration_is_fee_core |
+| Default rail IS the fee engine | Default/no-ref: 18.7% vol → 45.8% BB$ (×2.45). Logo partners = vol w/o capture. Exploratory. | default_rail_is_fee_engine_noref |
+| Logo partners = vol without capture | Logo partners = vol w/o capture; default rail = fee engine. Convert logos→BB rails. Exploratory. | logo_partners_volume_without_capture |

@@ -1,0 +1,8 @@
+{
+  "asof": "2026-11-12",
+  "noref_vol_share_pct": 18.7,
+  "noref_buyback_fee_share_pct": 45.8,
+  "buyback_dollar_concentration_x": 2.45,
+  "implication": "No-referrer default path is 18.7% of vol but 45.8% of explicit BB $ (~2.45\u00d7) \u2014 the default rail IS the fee engine; logo partners are volume without capture",
+  "read": "Default/no-ref: 18.7% vol \u2192 45.8% BB$ (\u00d72.45). Logo partners = vol w/o capture. Exploratory."
+}

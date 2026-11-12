@@ -151,3 +151,8 @@ Fee-engine≠L1 divergence now ~**132×** intents vs ~**0.19×** L1 tx YoY on 17
 - Part of the premium is **discretionary held-BB claim design** vs mechanical peer claims.
 - H1b underwrites that discretion; volume alone does not close the multiple gap.
 <!-- /AUTO:SWEEP21 -->
+
+<!-- AUTO:SWEEP22 -->
+- Default/no-ref path: **18.7% vol → 45.8% BB$** (×2.45) — default rail IS the fee engine.
+- Logo partners = volume without capture; strategy = convert logos onto BB rails + SK-tax.
+<!-- /AUTO:SWEEP22 -->

@@ -464,6 +464,8 @@ def build() -> dict:
             "entering_16": optional("derived/entering_16_dense.json"),
             "blended_alpha_sk": optional("derived/blended_alpha_overstates_sk_paths.json"),
             "core_lt_sk": optional("derived/fee_engine_core_lt_sk_tax_dial.json"),
+            "default_rail_noref": optional("derived/default_rail_is_fee_engine_noref.json"),
+            "logo_vol_no_capture": optional("derived/logo_partners_volume_without_capture.json"),
             "noref_core": optional("derived/noref_concentration_is_fee_core.json"),
             "f1_f4": optional("derived/f1_f4_on_submit_day.json"),
         },

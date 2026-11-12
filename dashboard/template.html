@@ -827,6 +827,10 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (E16) bits.push(`Entering _16 after _12–_15 complete — strata EV≪public+X.`);
     if (Bas) bits.push(`Blended α~${Bas.all_in_token_claim_alpha_pct}% overstates SK paths (explicit NEAR≈0).`);
     if (Cls) bits.push(`Fee-engine core ~$${Cls.fee_engine_core_noref_dense_fronts_rr_m}M < SK-tax $${Cls.sk_tax_rr_m}M.`);
+    const Drn = D.catalysts && D.catalysts.default_rail_noref;
+    const Lvn = D.catalysts && D.catalysts.logo_vol_no_capture;
+    if (Drn) bits.push(`Default/no-ref ${Drn.noref_vol_share_pct}% vol → ${Drn.noref_buyback_fee_share_pct}% BB$ (×${Drn.buyback_dollar_concentration_x}) — default rail IS fee engine.`);
+    if (Lvn) bits.push(`Logo partners = volume without capture; convert logos→BB rails.`);
     const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);

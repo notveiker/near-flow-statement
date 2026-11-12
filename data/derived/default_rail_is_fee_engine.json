@@ -5,5 +5,8 @@
   "bb_fee_hhi": 0.244,
   "vol_channel_hhi": 0.087,
   "implication": "Unreferred ~46% of BB $ on ~19% vol-class path \u2014 the default/no-ref rail is the fee engine; SK-tax and conversion are about moving partner volume onto that economics, not inventing new fee tech",
-  "read": "No-ref/default path \u224845.8% of BB $ (top3~65.0%). Fee dollars concentrate harder than volume \u2014 protect and expand the default rail; renegotiate partner pipes toward it. Exploratory."
+  "read": "Default/no-ref: 18.7% vol \u2192 45.8% BB$ (\u00d72.45). Logo partners = vol w/o capture. Exploratory.",
+  "noref_concentration_x": 2.45,
+  "noref_vol_pct": 18.7,
+  "noref_bb_share_pct": 45.8
 }
