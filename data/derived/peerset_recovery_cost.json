@@ -1,0 +1,10 @@
+{
+ "target_365d_pct": 62.1,
+ "gross_30d_pct": 55.7,
+ "net_30d_pct": 38.6,
+ "vol_add_for_gross_recovery_30d_b": 0.46,
+ "vol_add_for_net_recovery_30d_b": 1.69,
+ "fee_rr_at_tau_if_gross_recovery_m": 2.8,
+ "vs_sk_tax_25_x": 0.27,
+ "note": "Recovering 365d peerset share (62.1%) from 30d gross 55.7% needs ~+6.4 pp (~$0.46B/30d); from net 38.6% needs ~+23.5 pp (~$1.69B). Fee RR at \u03c4 on gross recovery \u2248 $2.8M \u2014 compare to SK-tax ~$10M with zero vol. Peer-share recovery is the expensive path. Exploratory."
+}

@@ -1,0 +1,12 @@
+{
+ "intents_rev_vs_l1fees_x": 11.2,
+ "intents_gas_share_pct": 9.4,
+ "density_vs_gas_x": 119.1,
+ "product_read": "fee_density_per_compute",
+ "do_not_lead": [
+  "l1_tx_count",
+  "active_accounts",
+  "gas_share_alone"
+ ],
+ "note": "Intents rev ~11.2\u00d7 L1 fees on ~9.4% gas \u21d2 ~119.1\u00d7 fee density vs gas share \u2014 the product is density, not chain activity. Aligns with gasless/delegate ~43%. Exploratory."
+}

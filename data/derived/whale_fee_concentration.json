@@ -1,0 +1,8 @@
+{
+ "whale_vol_share_pct": 77.1,
+ "whale_swap_count_pct": 3.4,
+ "fee_dollar_concentration_x": 22.7,
+ "whale_10pp_attach_rr_m": 0.98,
+ "vs_tg_attach_x": 0.72,
+ "insight": "If take is roughly flat, ~77% of fee $ come from ~3.4% of swaps (~23\u00d7 concentration). Whale terms dominate retail attach narrative; but whale +10pp (~$1.0M) still < TG label dial (~$1.4M) and << SK-tax. Exploratory."
+}

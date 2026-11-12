@@ -6,7 +6,10 @@
   "mix_to_noref_or_nearcom",
   "hsp029_mint_cut",
   "lifi_rango_attach",
-  "mystery_high_bp_label"
+  "mystery_high_bp_label",
+  "tg_label_and_attach",
+  "adr029_residual_defense",
+  "solver_residual_redirect"
  ],
  "does_not_move_tau": [
   "perps_oi",
@@ -24,7 +27,8 @@
   "escrow_attestation_gap",
   "buybacks_unexplained_68pct",
   "hsp007_emissions_claim_gap",
-  "relayer_top1_83pct"
+  "relayer_top1_83pct",
+  "solver_residual_contestable"
  ],
  "note": "Scoreboard for pitch: only conversion/leakage/attach/mix/HSP-029 move the object; perps/npm/AI/CS-as-fee do not. Holds remain attestation + unexplained BB + HSP-007 gap + relayer. Exploratory.",
  "protects_multiple": [

@@ -146,3 +146,11 @@ LST ~$196M ≈ ~611 DIC days (~25× buyback) but only ~9.3% of stake — size �
 - **Telegram** (`intents.tg`) ~20% of tagged census with **unmapped** fee attribution — conservative half@10bp ≈ **$1.37M/yr** attach upside if labeled.
 - **SK exit resilience split**: lose ~38% 1Click distribution, only ~2% traceable BB — fee engine already in no-ref; protect distribution surface separately from fee resilience.
 <!-- /AUTO:SOLVER_TG -->
+
+<!-- AUTO:DENSITY_PEER -->
+### Fee density + peerset recovery honesty
+
+- Intents ~**11×** L1 fees on ~**9%** gas — product is fee density, not activity.
+- Peerset recovery to 365d 62% from 30d gross needs ~+$0.46B/30d — expensive vs SK-tax ~$10M with zero vol. Do not lead peer-share.
+- Full gross+HSP still ~74% coverage — residual gap is volume/issuance.
+<!-- /AUTO:DENSITY_PEER -->

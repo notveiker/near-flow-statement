@@ -250,3 +250,9 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Capture vs defense ledgers | Capture dials ~$18–28M; ADR defense ~$5.7M is loss-prevention — separate ledgers | capture_vs_defense_ledgers |
 | Submit before HSP-029 | Submit lands ~2d before HSP-029 timelock — pending-not-live in pitch | submit_before_hsp029 |
 | Dual sampler coverage | Primary 155 / sample2 ~% — dual view; still preliminary | dual_sampler_coverage |
+
+| Whale fee concentration | ~77% fee $ from ~3.4% swaps (~23×) — whale terms >> retail attach story | whale_fee_concentration |
+| Fee density product | Intents ~11× L1 fees on ~9% gas ⇒ ~119× density vs gas share | fee_density_product |
+| Peerset recovery cost | Back to 62% from gross needs ~$0.46B/30d; fee RR at τ << SK-tax path | peerset_recovery_cost |
+| Coverage gap after bridges | Full gross+HSP ≈74% coverage — still ~1.36× vol or deeper mint cut | coverage_gap_after_bridges |
+| Inventory turnover capacity | ~$229M inventory × ~4.8×/30d at 15.3bp ≈ gross capacity for fee engine | inventory_turnover_capacity |
