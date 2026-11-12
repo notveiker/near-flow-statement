@@ -1,8 +1,10 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 54.7,
-  "clusters": 225,
-  "commits": 639,
+  "hours_to_submit": 52.6,
+  "clusters": 236,
+  "commits": 695,
+  "derived_json": 552,
+  "punch_rows": 660,
   "artifacts": {
     "dashboard": true,
     "report": true,
@@ -11,15 +13,20 @@
     "punch_card": true,
     "submit_packet": true,
     "x_talking_points": true,
+    "x_90s_script": true,
     "deadline_checklist": true,
     "locked_pitch": true,
-    "controllable_dials": true
+    "headline_board": true,
+    "top10": true,
+    "non_leads_pack": true,
+    "dense_12_to_16_complete": true
   },
   "must_ship_open": [
     "public_repo",
     "x_demo_dry_run"
   ],
-  "completeness_excl_must_ship": 0.97,
-  "implication": "Judge packet complete excl must-ship; remaining EV is public+X not more derived",
-  "read": "Packet ~97% excl must-ship @~55h. Open: public+X. Exploratory."
+  "completeness_excl_must_ship": 0.99,
+  "headline": "Leakage is the bridge",
+  "implication": "Judge packet 99% excl must-ship; only public+X open",
+  "read": "Packet 99% @~53h/695c/236cl. Open: public+X. Exploratory."
 }

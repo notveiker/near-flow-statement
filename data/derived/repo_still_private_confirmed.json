@@ -1,10 +1,10 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 53.9,
-  "clusters": 229,
-  "commits": 661,
+  "hours_to_submit": 52.6,
+  "clusters": 236,
+  "commits": 695,
   "repo_private": true,
   "visibility_checked": true,
-  "implication": "Still PRIVATE with ~54h left \u2014 packaging premium already paid; visibility is the binding constraint",
-  "read": "PRIVATE @~54h/661c. Flip now. Exploratory."
+  "implication": "Still PRIVATE after 5 dense strata and ~700 commits \u2014 flip is the binding constraint",
+  "read": "PRIVATE=true @~53h/695c. Flip NOW. Exploratory."
 }

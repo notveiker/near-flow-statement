@@ -1,18 +1,19 @@
 {
   "asof": "2026-11-12",
-  "commits": 677,
-  "clusters": 232,
-  "derived_json": 537,
-  "punch_table_rows_approx": 642,
-  "hours_to_submit": 53.3,
+  "commits": 695,
+  "clusters": 236,
+  "derived_json": 552,
+  "punch_table_rows_approx": 660,
+  "hours_to_submit": 52.6,
   "dense_complete": [
     "_12",
     "_13",
     "_14",
-    "_15"
+    "_15",
+    "_16"
   ],
-  "stratum_filling": "_16",
+  "stratum_filling": "_17",
   "headline": "leakage_is_the_bridge",
   "repo_private": true,
-  "read": "Sweep: 677c/232cl/537d/~642 punch; headline locked. Exploratory."
+  "read": "Sweep: 695c/236cl/552d/~660 punch; _12\u2013_16 done. Exploratory."
 }
