@@ -344,6 +344,8 @@ def build() -> dict:
             "double_opacity": optional("derived/double_opacity_board.json"),
             "immaterial_vs_leakage": optional("derived/immaterial_vs_leakage_prize.json"),
             "settlement_vs_spam": optional("derived/settlement_density_vs_l1_spam.json"),
+            "capture_funnel": optional("derived/capture_funnel_rank.json"),
+            "h1b_vs_delivery": optional("derived/h1b_vs_delivery_separation.json"),
         },
         "repro": reproducibility(),
     }

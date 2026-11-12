@@ -475,3 +475,8 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Immaterial vs leakage | SK-tax~$10.2M vs leakage~$50.2M; ETF/AI noise | immaterial_vs_leakage_prize |
 | Settlement dens vs L1 spam | HOT tx-heavy; Intents settlement-heavy — coverage is capture not spam | settlement_density_vs_l1_spam |
 | Sweep ~558 identity | Mutex+hours+compound boards; public+X bind | sweep_558_identity |
+| Public repo still private @59h | README+X script READY; flip visibility binds | public_repo_checklist |
+| Capture funnel rank | SK-tax ~42.5 vol-pp ≫ conversion ~22.9 — terms > ops | capture_funnel_rank |
+| H1b ≠ delivery | Hold binder labels/H1b; public+X are contest delivery only | h1b_vs_delivery_separation |
+| History 203 / 2026Q3_12 | Contest-year _12 continuing — still not supported | history_progress_2026q3_12 |
+| Sweep ~560 identity | Funnel rank+H1b≠delivery; public+X bind | sweep_560_identity |

@@ -141,11 +141,10 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~558 commits / 202 clusters.** `_12` dense; overall still **not supported**.
-- **Quality-on-cool proof:** vol -12.3% MoM while attach/τ rose — elasticity is empirical.
-- **Double opacity:** escrow~58.5% + unknown~33.2% — attest AND label.
-- **SK-tax vs leakage** ~$10.2M / ~$50.2M; ETF/AI noise. Coverage wall~42.8%.
-- **LIVE blockers:** public repo + X dry-run (~59h). Hold until H1b.
+- **~560 commits / 203 clusters.** Contest-year `_12` through Q3; overall still **not supported**.
+- **Fee≠L1 @ 203:** intents ~**181×** vs L1 ~**0.20×**.
+- **Funnel rank:** SK-tax ≫ conversion — terms beat ops. **H1b ≠ delivery.**
+- **Double opacity + quality-on-cool + coverage wall~42.8%.** LIVE: public + X (~59h).
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context

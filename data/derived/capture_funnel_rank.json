@@ -1,0 +1,24 @@
+{
+  "asof": "2026-11-12",
+  "rows_ranked_by_vol_pp": [
+    {
+      "dial": "sk_tax_25",
+      "rr_m": 10.2,
+      "volume_pp_equivalent": 42.5
+    },
+    {
+      "dial": "mix_10pp_nearcom",
+      "rr_m": 9.7,
+      "volume_pp_equivalent": 40.4
+    },
+    {
+      "dial": "conversion_2x",
+      "rr_m": 5.5,
+      "volume_pp_equivalent": 22.9
+    }
+  ],
+  "sk_tax_over_conversion_x": 1.86,
+  "sk_tax_over_mix_x": 1.05,
+  "implication": "SK-tax dominates conversion on vol-pp \u2014 prefer renegotiating Ledger/SK terms before conversion-ops theater",
+  "read": "Capture funnel rank by vol-pp: SK-tax 42.5 > mix 40.4 > conversion 22.9. SK-tax is ~1.9\u00d7 conversion \u2014 commercial terms beat funnel ops. Exploratory."
+}

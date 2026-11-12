@@ -71,5 +71,5 @@ Prop/dashboard/judge packet ready (~437 commits, 168 clusters preliminary). **Mu
 <!-- /AUTO:DELIVERY -->
 
 <!-- AUTO:TOPLINE_NOW -->
-**Now (~59h / 202 clusters / 557 commits):** Capture-pp≈3.07×vol · SK-tax≈42.5 vol-pp · coverage wall~42.8% · mutex do-not-sum · fidelity→terms · escrow BB~59% · Hold until H1b · repo still private.
+**Now (~59h / 203 clusters / 560 commits):** SK-tax≅42.5 vol-pp ≫ conversion · coverage wall~42.8% · double opacity · quality-on-cool proof · Hold until H1b · repo still private.
 <!-- /AUTO:TOPLINE_NOW -->

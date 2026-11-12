@@ -1,29 +1,17 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 59.7,
-  "github_is_private": true,
-  "github_url": "https://github.com/notveiker/near-flow-statement",
-  "status": "BLOCKER",
-  "checklist": [
-    {
-      "item": "set_repo_public",
-      "status": "TODO",
-      "why": "gh isPrivate=true"
-    },
-    {
-      "item": "README_judge_path",
-      "status": "READY"
-    },
-    {
-      "item": "X_demo_dry_run_record",
-      "status": "TODO_SCRIPT_READY"
-    },
-    {
-      "item": "submit_packet_link_check",
-      "status": "TODO"
-    }
+  "is_private": true,
+  "hours_to_submit": 59.1,
+  "clusters": 202,
+  "commits": 559,
+  "readme_judge_path": "READY",
+  "x_dry_run_script": "READY",
+  "x_dry_run_recorded": false,
+  "binding_blocker": true,
+  "actions": [
+    "gh repo edit notveiker/near-flow-statement --visibility public",
+    "record X demo from docs/x-demo-talking-points.md (~90s)",
+    "submit packet on 14 Nov; F1-F4 resolve same day"
   ],
-  "prop_ready": true,
-  "history_ok_preliminary": true,
-  "read": "LIVE: still private with ~59.7h. Prop ready (547 commits / 199 clusters). Exploratory."
+  "read": "Repo still private=true at ~59h / 202 clusters / 559 commits. README judge path + X script READY \u2014 flip visibility is the binding delivery catalyst. Exploratory."
 }

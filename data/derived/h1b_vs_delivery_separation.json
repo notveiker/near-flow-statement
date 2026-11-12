@@ -1,0 +1,31 @@
+{
+  "asof": "2026-11-12",
+  "hold_binder": "H1b coverage still ~20\u201325% of streams",
+  "flip_to_revisit": [
+    {
+      "signal": "H1b > ~50% stream coverage",
+      "effect": "stance can leave Hold per rating rule"
+    },
+    {
+      "signal": "escrow attestation published",
+      "effect": "trust ledger; band collapses toward high"
+    },
+    {
+      "signal": "CIF rate card live",
+      "effect": "Gap dial becomes measurable capture"
+    },
+    {
+      "signal": "SK/Ledger renegotiation evidence",
+      "effect": "capture dial partially realized"
+    }
+  ],
+  "does_not_flip_alone": [
+    "npm downloads",
+    "AI agent narrative",
+    "ETF AUM slides",
+    "L1 tx rebound hopes"
+  ],
+  "label_coverage_pct_approx": 20,
+  "delivery_does_not_satisfy_h1b": true,
+  "read": "Hold binder is H1b/labels (~20% coverage). Public repo + X do not satisfy H1b. Contest win \u2260 rating flip. Exploratory."
+}
