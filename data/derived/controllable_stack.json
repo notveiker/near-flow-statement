@@ -69,6 +69,11 @@
    "why": "policy conversion of listed fees"
   },
   {
+   "name": "+5pp gross from partners\u2192NEAR",
+   "rr_m": 3.7,
+   "why": "identity: partners already ~73% of gross"
+  },
+  {
    "name": "ZEC inventory 2\u00d7",
    "rr_m": 2.83,
    "why": "balance-sheet, same turnover"
@@ -87,11 +92,6 @@
    "name": "Whale +10pp attach",
    "rr_m": 0.98,
    "why": "margin quality on 77% of 1Click vol"
-  },
-  {
-   "name": "LI.FI 2.8\u219210 bp",
-   "rr_m": 0.97,
-   "why": "10% of 1Click vol is fee-dilutive today"
   }
  ],
  "do_not_lead": [

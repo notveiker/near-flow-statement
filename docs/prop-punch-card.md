@@ -195,3 +195,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Trust-template expansion | LI.FI 2.8→20bp ≈ **$2.31M/yr**; all sub-10bp→10bp ≈ $1.43M/yr | trust_template_expansion |
 | Fee stack identity | Partners listed ~$4.45M > NEAR capture ~$1.99M on 30d — distribution owns the print | fee_stack_identity |
 | 50× path composition | Leakage→15.3bp + HSP ≈ 1× mint then ~1.3× vol (vs ~4× today) | path_50x_composition |
+| Partners vs capture of gross | Partners ~73% of gross vs capture 32.5% (~2.2×); +5pp gross→NEAR ≈ **$3.7M/yr** | partner_vs_capture_gross_share |

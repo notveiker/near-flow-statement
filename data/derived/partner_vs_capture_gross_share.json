@@ -1,0 +1,8 @@
+{
+ "capture_share_of_gross": 0.325,
+ "partner_share_of_gross_approx": 0.728,
+ "ratio_partners_to_capture": 2.24,
+ "implication": "Every 1pp of capture-share gained from partners is ~3\u00d7 more valuable in $ than 1pp of volume at flat take",
+ "note": "Partners \u2248 2.2\u00d7 capture as share of gross. Renegotiating 5pp of gross from partners to NEAR \u2248 +$0.306M/30d \u2248 $3.7M/yr without volume. Exploratory identity arithmetic.",
+ "five_pp_gross_to_near_rr_m": 3.7
+}
