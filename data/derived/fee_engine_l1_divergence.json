@@ -1,0 +1,8 @@
+{
+  "asof": "2026-11-12",
+  "clusters_used": 179,
+  "intents_vs_2025q1_x": 132.0521,
+  "l1_yoy_tx_x": 0.1925,
+  "divergence_x": 686.0,
+  "read": "With 179 clusters, intents.near ~132\u00d7 vs 2025Q1 while L1 tx YoY ~0.19\u00d7 \u2014 divergence ~686\u00d7. Dense strata strengthen fee-engine\u2260L1; overall still not supported. Preliminary."
+}

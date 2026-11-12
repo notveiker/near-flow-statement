@@ -411,3 +411,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | CS under Intents | execute ≫ respond ≫ sign — CS not separate fee line | cs_under_intents_not_separate_fee |
 | BB dollar rails | Escrow ~59% of BB funding $ — unattested majority rail | bb_dollar_rails_board |
 | History 179 / 2026Q3_09 | Q4_09 last of contest-year _09 — still not supported | history_progress_2026q3_09 |
+| Fee-engine/L1 divergence | intents ~132× vs L1 YoY ~0.19× (~686× spread) | fee_engine_l1_divergence |

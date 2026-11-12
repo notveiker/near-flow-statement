@@ -94,3 +94,8 @@ Do not lead: AI, npm, ETF, peer-share, L1 actives, CS-as-fee.
 - **Ledger stack vs mutex** what may stack across ledgers (`ledger_stack_vs_mutex.json`).
 - **Intents purity on cool L1** ~87% fees / ~0.18× L1 YoY (`intents_purity_on_cool_l1.json`).
 <!-- /AUTO:PROP_BATCH_THOR -->
+
+<!-- AUTO:DIVERGENCE -->
+### Dense-history update
+Fee-engine≠L1 divergence now ~**132×** intents vs ~**0.19×** L1 tx YoY on 179 clusters (`fee_engine_l1_divergence.json`). Overall still **not supported**.
+<!-- /AUTO:DIVERGENCE -->
