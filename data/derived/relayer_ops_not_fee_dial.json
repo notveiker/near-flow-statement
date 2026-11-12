@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "top1_share_pct": 83,
+  "vol_to_fee_x": 2004.0,
+  "vol_lost_1d_m": 55.3,
+  "fee_lost_1d_m": 0.0276,
+  "classification": "ops_ux_catalyst_not_fee_dial",
+  "read": "Relayer top1 ~83%; 1d outage sketch vol/fee ~2004.0\u00d7 \u2014 UX/share risk dwarfs fee $. Diversify relayers for resilience, not for \u03c4. Exploratory."
+}

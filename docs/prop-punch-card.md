@@ -496,3 +496,6 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Fee≠L1 stable under dense | Intents ~181× (was ~189) vs L1 ~0.20× — gap holds | fee_engine_stability_under_dense |
 | Entering _13 dense | History not blocker; prefer public+X over more seals | entering_13_dense |
 | Diminishing strata vs delivery | Marginal seals low EV vs ~59h public+X clock | diminishing_strata_vs_delivery |
+| Solver rent ≠ capture ledger | Residual ~$11.41M ≈ SK-tax league but contestable rent | solver_rent_vs_capture_ledger |
+| Relayer ops ≠ fee dial | Top1~83%; vol/fee~2004.0× — UX risk ≫ fee $ | relayer_ops_not_fee_dial |
+| Multi-venue embed contest | ~54.0% of 1Click can fill away — capture must survive exit | multi_venue_embed_contestability |

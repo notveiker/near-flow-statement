@@ -320,3 +320,11 @@ Chain Signatures sits under Intents execution (execute ≫ respond ≫ sign) —
 - Entering `_13` — history still **not** a submit blocker.
 - Marginal seals are **low EV** vs ~**59h** for **public flip + X dry-run**.
 <!-- /AUTO:DIMINISH -->
+
+<!-- AUTO:RENT_RELAY -->
+### Solver rent + relayer ops + embed contest (exploratory)
+
+- **Solver residual** ~**$11.41M**/yr is SK-tax-league **contestable rent** — separate ledger from capture.
+- **Relayer top1** ~**83%**; outage vol/fee ~**2004.0×** — ops/UX catalyst, not a τ dial.
+- **Multi-venue embeds** ~**54.0%** of 1Click can fill away — SK-tax/attach must clear exit threat.
+<!-- /AUTO:RENT_RELAY -->

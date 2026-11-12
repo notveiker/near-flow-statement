@@ -356,6 +356,9 @@ def build() -> dict:
             "dense_12_complete": optional("derived/dense_12_complete.json"),
             "fee_stability": optional("derived/fee_engine_stability_under_dense.json"),
             "diminishing_strata": optional("derived/diminishing_strata_vs_delivery.json"),
+            "solver_rent_ledger": optional("derived/solver_rent_vs_capture_ledger.json"),
+            "relayer_ops": optional("derived/relayer_ops_not_fee_dial.json"),
+            "multi_venue_embed": optional("derived/multi_venue_embed_contestability.json"),
         },
         "repro": reproducibility(),
     }

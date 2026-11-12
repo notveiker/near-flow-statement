@@ -1,0 +1,12 @@
+{
+  "asof": "2026-11-12",
+  "solver_residual_rr_m": 11.41,
+  "sk_tax_25_rr_m": 10.2,
+  "vs_sk_tax_x": 1.12,
+  "solver_excess_vs_near_capture_x": 0.47,
+  "solver_plus_partner_vs_near_x": 2.71,
+  "ledger": "contestable_rent",
+  "do_not_sum_with_capture": true,
+  "implication": "Solver residual is a ~$10M rent surface in the same league as SK-tax but it is contestable rent \u2014 not protocol capture unless ADR/fee policy claims it",
+  "read": "Solver residual ~$11.41M RR \u2248 1.12\u00d7 SK-tax league; solver+partner claims ~2.71\u00d7 NEAR capture on sample. Contestable rent \u2260 capture \u2014 separate ledger. Exploratory."
+}

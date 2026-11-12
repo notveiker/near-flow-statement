@@ -630,6 +630,12 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     const Ds = D.catalysts && D.catalysts.diminishing_strata;
     if (Fs) bits.push(`Fee≠L1 stable under dense: intents~${Math.round(Fs.intents_vs_2025q1_x_now)}× (was~189) vs L1~${Number(Fs.l1_yoy_tx_x_now).toFixed(2)}×.`);
     if (Ds) bits.push(`Diminishing strata: marginal seals low EV vs ~${Ds.hours_to_submit}h public+X clock.`);
+    const SrL = D.catalysts && D.catalysts.solver_rent_ledger;
+    const Ro = D.catalysts && D.catalysts.relayer_ops;
+    const Mv = D.catalysts && D.catalysts.multi_venue_embed;
+    if (SrL) bits.push(`Solver rent≠capture: residual~$${SrL.solver_residual_rr_m}M ≈ SK-tax league but contestable rent (do not sum).`);
+    if (Ro) bits.push(`Relayer ops≠fee: top1~${Ro.top1_share_pct}%; vol/fee~${Ro.vol_to_fee_x}× — UX≫fee$.`);
+    if (Mv) bits.push(`Multi-venue embeds~${Mv.multi_venue_embed_1click_pct}% of 1Click can fill away — capture must survive exit.`);
     const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);
