@@ -437,3 +437,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Sweep ~510 identity | Prop ready; one-breath+runbook; Hold until H1b | sweep_510_identity |
 | Public repo still private @~62h | README path READY; flip visibility is binding delivery catalyst | public_repo_checklist |
 | History 189 / 2025Q1_11 | Denser _11 started — still not supported | history_progress_2025q1_11 |
+| Sweep depth board | ~407 punch rows; 365 derived JSON; 514 commits | sweep_depth_board |

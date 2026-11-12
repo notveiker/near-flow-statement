@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "hours": 61.6,
+  "commits": 514,
+  "clusters": 189,
+  "punch_table_rows_approx": 407,
+  "derived_json_n": 365,
+  "read": "Sweep depth: ~407 punch rows; 365 derived JSON; 514 commits; 189 clusters; ~61.6h."
+}
