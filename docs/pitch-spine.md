@@ -79,3 +79,7 @@ DefiLlama Intents fees −31.6% MoM with vol −12% — absolute cool; quality p
 <!-- AUTO:CONVO -->
 **Call order:** Ledger (SK-tax) → escrow attestation → CIF rate card → ADR residual defense → conversion → TG label → LI.FI template → protect dense fronts.
 <!-- /AUTO:CONVO -->
+
+<!-- AUTO:LEDGERS -->
+**Ledgers (do not sum):** capture raise (SK-tax/conversion/…) · trust raise (attest) · defense (ADR) · mint tension (HSP-007) · contestable rent (solver residual).
+<!-- /AUTO:LEDGERS -->

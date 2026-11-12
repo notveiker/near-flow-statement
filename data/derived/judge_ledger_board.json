@@ -1,0 +1,26 @@
+{
+ "capture_raise": {
+  "sk_tax_25": 10.2,
+  "conversion_2x": 5.5,
+  "gross_5pp": 3.7,
+  "lifi_20bp": 2.31,
+  "tg_half": 1.37,
+  "trust_direct": 1.72
+ },
+ "trust_raise": {
+  "attest_escrow": 8.4,
+  "underwriting_band_compression_x": 5.7
+ },
+ "defense": {
+  "adr029_half_residual": 5.71
+ },
+ "mint_tension": {
+  "hsp007_10pct_claim": 11.8,
+  "hsp007_vs_029_likes_x": 2.1,
+  "hsp029": "pending_not_live"
+ },
+ "contestable_rent_not_capture": {
+  "solver_residual": 11.41
+ },
+ "note": "Separate ledgers: capture raise / trust raise / defense / mint tension / contestable rent. Do not sum. Exploratory judge board."
+}
