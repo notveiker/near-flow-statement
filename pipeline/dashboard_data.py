@@ -355,6 +355,7 @@ def build() -> dict:
             "judge_packet": optional("derived/judge_packet_completeness.json"),
             "dense_12_complete": optional("derived/dense_12_complete.json"),
             "fee_stability": optional("derived/fee_engine_stability_under_dense.json"),
+            "intents_drift": optional("derived/intents_multiple_drift_under_dense.json"),
             "diminishing_strata": optional("derived/diminishing_strata_vs_delivery.json"),
             "solver_rent_ledger": optional("derived/solver_rent_vs_capture_ledger.json"),
             "relayer_ops": optional("derived/relayer_ops_not_fee_dial.json"),

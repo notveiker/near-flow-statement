@@ -502,3 +502,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 205 / 2025Q1_13 | Denser _13 started — still not supported | history_progress_2025q1_13 |
 | Sweep ~567 identity | Solver/relayer/embed boards; public+X bind | sweep_567_identity |
 | Private repo @59h / 205cl | Flip visibility is binding delivery catalyst | public_repo_checklist |
+| Intents× drift under dense | ~189→~147 as 2025Q1 den fills — still ≫100× vs L1; pitch OoM not point | intents_multiple_drift_under_dense |

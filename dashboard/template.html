@@ -629,6 +629,8 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     const Fs = D.catalysts && D.catalysts.fee_stability;
     const Ds = D.catalysts && D.catalysts.diminishing_strata;
     if (Fs) bits.push(`Fee≠L1 stable under dense: intents~${Math.round(Fs.intents_vs_2025q1_x_now)}× (was~189) vs L1~${Number(Fs.l1_yoy_tx_x_now).toFixed(2)}×.`);
+    const Id = D.catalysts && D.catalysts.intents_drift;
+    if (Id) bits.push(`Intents× drift ~189→~${Math.round(Id.series[Id.series.length-1].intents_x)} as 2025Q1 den fills — pitch OoM gap not point estimate.`);
     if (Ds) bits.push(`Diminishing strata: marginal seals low EV vs ~${Ds.hours_to_submit}h public+X clock.`);
     const SrL = D.catalysts && D.catalysts.solver_rent_ledger;
     const Ro = D.catalysts && D.catalysts.relayer_ops;
