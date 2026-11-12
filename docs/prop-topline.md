@@ -114,3 +114,9 @@ Prop/dashboard/judge packet ready (~437 commits, 168 clusters preliminary). **Mu
 - Dial rank commercial≻volume; partner-path micro ≪ SK-tax.
 - Collector rail anomaly; HSP-029 attention ≫ HSP-007; mix-shift = arithmetic.
 <!-- /AUTO:SWEEP19 -->
+
+<!-- AUTO:SWEEP20 -->
+- THOR-matched bond stack would be ~3× Intents PCI (~$458M bond illus.) — capital-light feature.
+- Capital-light wins (long-tail/embed/privacy) with loses as risk footer (TEE/solver/relayer/no floor).
+- Explicit: capital_light_creates_near_bond_demand=false; claim=discretionary BB held-not-burned.
+<!-- /AUTO:SWEEP20 -->

@@ -792,6 +792,12 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     const Clf = D.catalysts && D.catalysts.cap_light_falsifier;
     if (Iro) bits.push(`Inventory risk off token BS — fee capture is the value link.`);
     if (Clf) bits.push(`Capital-light falsifier = on-balance inventory / bonds (watch, not pitch).`);
+    const T3 = D.catalysts && D.catalysts.thor_3x_pci;
+    const Cwl = D.catalysts && D.catalysts.cap_wins_loses;
+    const Nbd = D.catalysts && (D.catalysts.no_bond_from_cl || D.catalysts.no_bond_demand);
+    if (T3) bits.push(`THOR-matched stack PCI~${T3.thor_matched_pci_30d} ≈${T3.vs_intents_x}× Intents (bond~$${T3.implied_bond_usd_m}M illus.).`);
+    if (Cwl) bits.push(`Capital-light wins long-tail/embed/privacy; loses TEE/solver/relayer/no floor.`);
+    if (Nbd && Nbd.capital_light_creates_near_bond_demand === false) bits.push(`Explicit: capital-light does not create NEAR bond demand.`);
     const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);

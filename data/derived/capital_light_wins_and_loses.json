@@ -1,0 +1,16 @@
+{
+  "asof": "2026-11-12",
+  "wins": [
+    "long_tail_asset_chain_onboarding_without_2_to_1_bond_scale",
+    "wallet_embed_coverage_over_vault_pair_depth",
+    "privacy_asset_settlement_stock_without_bonded_vault_gate"
+  ],
+  "loses": [
+    "poa_bridge_verifier_agent_tee_trust_incident",
+    "solver_inventory_refusal_or_cex_fill_dryup",
+    "relayer_submit_concentration_liveness",
+    "no_mechanical_token_underwriting_floor_in_stress"
+  ],
+  "implication": "Capital-light wins on long-tail onboarding/wallet embed/privacy settlement; loses on TEE/bridge trust incidents, solver refusal, relayer concentration, no mechanical underwriting floor \u2014 pitch wins with loses as risk footer",
+  "read": "Capital-light wins: long-tail/embed/privacy. Loses: TEE/solver/relayer/no floor. Risk footer not lead. Exploratory."
+}

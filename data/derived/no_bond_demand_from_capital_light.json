@@ -1,0 +1,13 @@
+{
+  "asof": "2026-11-12",
+  "capital_light_creates_near_bond_demand": false,
+  "token_claimable_bp": 4.98,
+  "claim_design": "discretionary_wallet_buyback_held_not_burned",
+  "peer_claim_designs": {
+    "thorchain": "bond_pendulum_system_income_after_lp_node_split",
+    "chainflip": "network_fee_flip_buy_burn",
+    "maya": "hard_10pct_protocol_fees_to_holders"
+  },
+  "implication": "Explicit: capital-light does NOT create NEAR bond demand; claim design is discretionary wallet BB held-not-burned vs peers' mechanical splits \u2014 underwriting gap is the Hold/H1b reason",
+  "read": "capital_light_creates_near_bond_demand=false; claim=discretionary BB held. Peers: THOR pendulum / CF burn / Maya 10%. Exploratory."
+}

@@ -629,3 +629,6 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Capital-light vs bonded peers | PCI~0.057 vs vault-bond docs — no bond-demand catalyst | capital_light_vs_bonded_peers |
 | Inventory risk ≠ token BS | Risk bearer: {'intents': {'liquidity': 'solvers_as_principal', 'security': 'bridges_mpc_tee_no_continuous_token_bond', 'ops_failure': 'liven | inventory_risk_not_on_token_bs |
 | Capital-light falsifier = on-balance inventory | Capital-light conditionality + token value link = fees/capture, not inventory. PCI~0.057. Exploratory. | capital_light_falsifier_is_onbalance_inventory |
+| THOR-matched stack ~3× PCI | THOR-matched stack PCI~0.172 ≈3.0× Intents; bond~$458.4M illus. Exploratory. | thor_matched_stack_3x_pci |
+| Capital-light wins & loses | Capital-light wins: long-tail/embed/privacy. Loses: TEE/solver/relayer/no floor. Risk footer not lead. Exploratory. | capital_light_wins_and_loses |
+| No bond demand from capital-light | capital_light_creates_near_bond_demand=false; claim=discretionary BB held. Peers: THOR pendulum / CF burn / Maya 10%. Exploratory. | no_bond_demand_from_capital_light |

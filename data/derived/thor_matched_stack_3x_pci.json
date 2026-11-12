@@ -1,0 +1,11 @@
+{
+  "asof": "2026-11-12",
+  "intents_pci_30d": 0.0573,
+  "thor_matched_pci_30d": 0.1719,
+  "vs_intents_x": 3.0,
+  "implied_bond_usd_m": 458.4,
+  "implied_total_underwriting_usd_m": 687.6,
+  "label": "illustrative docs-ratio thought experiment \u2014 not observed THOR Midgard state",
+  "implication": "THOR-matched 2:1 bond on Intents inventory would imply PCI~0.172 (~3.0\u00d7 Intents) and ~$458.4M bond \u2014 capital-light avoids that; still no bond-demand catalyst for NEAR",
+  "read": "THOR-matched stack PCI~0.172 \u22483.0\u00d7 Intents; bond~$458.4M illus. Exploratory."
+}
