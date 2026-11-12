@@ -1,0 +1,55 @@
+{
+  "asof": "2026-11-12",
+  "call_order_with_elasticity": [
+    {
+      "who": "Ledger (via SwapKit)",
+      "why": "~60% of SK listed fees \u22481.01\u00d7 NEAR capture; SK-tax dial lives here",
+      "rr_m_at_stake": 10.2,
+      "volume_pp_equivalent": 42.5
+    },
+    {
+      "who": "Confidential / escrow attestation",
+      "why": "~71% of measured capture unattested; underwriting band + $8.4M trust",
+      "rr_m_at_stake": 8.4,
+      "volume_pp_equivalent": 35.0
+    },
+    {
+      "who": "CIF rate card publish",
+      "why": "1bp~$3.3M / 5bp~$16.6M Gap on ~70% conf inventory",
+      "rr_m_at_stake": 3.31,
+      "volume_pp_equivalent": 13.8
+    },
+    {
+      "who": "ADR-029 / solver residual defense",
+      "why": "Contestable rent ~$11.4M; threat proxy ~$2.2M",
+      "rr_m_at_stake": 5.71,
+      "volume_pp_equivalent": 23.8
+    },
+    {
+      "who": "Appfees conversion policy",
+      "why": "9.2%\u219218% \u2248 $5.5M",
+      "rr_m_at_stake": 5.5,
+      "volume_pp_equivalent": 22.9
+    },
+    {
+      "who": "Telegram intents.tg label+attach",
+      "why": "~20% tagged unmapped; half@10bp~$1.4M",
+      "rr_m_at_stake": 1.37,
+      "volume_pp_equivalent": 5.7
+    },
+    {
+      "who": "LI.FI / Rango Trust-template",
+      "why": "Fee-dilutive aggregators; 20bp template ~$2.3M",
+      "rr_m_at_stake": 2.31,
+      "volume_pp_equivalent": 9.6
+    },
+    {
+      "who": "Protect dense fronts",
+      "why": "Trust/Arbie/Enot/Leodex already ~20bp",
+      "rr_m_at_stake": 1.59,
+      "volume_pp_equivalent": 6.6
+    }
+  ],
+  "capture_vs_volume_x": 3.07,
+  "read": "Call order with vol-pp equivalents (marginal $0.24M per vol-pp). Ledger SK-tax still first (~42.5 vol-pp). Exploratory."
+}

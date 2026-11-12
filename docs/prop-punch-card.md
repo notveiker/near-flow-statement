@@ -429,3 +429,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Sweep ~500 identity | Prop ready; one-breath+runbook locked; repo private; Hold until H1b | sweep_500_identity |
 | History 185 / 2026Q1_10 | Contest-year _10 filling — still not supported | history_progress_2026q1_10 |
 | README judge path check | 30s path for judges after public flip | readme_judge_path_check |
+| Call order × elasticity | Each conversation tagged with vol-pp equivalent — Ledger first | call_order_elasticity |
