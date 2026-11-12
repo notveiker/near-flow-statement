@@ -1,12 +1,12 @@
 {
- "now_utc": "2026-11-12T05:35:20.893922+00:00",
- "hours_to_submit": 66.4,
- "history_clusters": 164,
+ "now_utc": "2026-11-12T06:36:10.254008+00:00",
+ "hours_to_submit": 65.4,
+ "history_clusters": 170,
  "prop_ready": true,
  "must_ship": [
   "public_repo",
   "X_demo_dry_run",
   "F1-F4_on_day"
  ],
- "note": "Judge packet ready. 164 clusters; _08 sealing. ~66.4h. Must-ship public repo + X."
+ "note": "Judge packet ready. 170 clusters; ~65.4h. Must-ship public repo + X."
 }

@@ -31,8 +31,8 @@
    "line": "Hold until H1b; HSP-029 pending-not-live; F1\u2013F4 on 14 Nov."
   }
  ],
- "hours_to_submit": 67.2,
- "clusters_preliminary": 160,
- "commits": 396,
+ "hours_to_submit": 65.4,
+ "clusters_preliminary": 170,
+ "commits": 446,
  "near_term_board": "near_term_board.json"
 }
