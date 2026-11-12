@@ -1,0 +1,33 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_score_day": 62.6,
+  "do_not_rescore_posthoc": true,
+  "expected_stance_if_pass": "Hold until H1b still binds",
+  "tests": [
+    {
+      "id": "F_quality_cool",
+      "watch": "attach/\u03c4 vs cooling vol \u2014 already evidenced 1.72\u00d7 on cool in sample"
+    },
+    {
+      "id": "F_sk_tax",
+      "watch": "partner-tax bridge intact unless SK fees collapse without capture rise"
+    },
+    {
+      "id": "F_escrow",
+      "watch": "BINDING \u2014 attestation <20% while escrow BB >50% keeps Hold"
+    },
+    {
+      "id": "F_relayer",
+      "watch": "top1 >80% through outage week = ops left-tail"
+    },
+    {
+      "id": "F_share_vs_vol",
+      "watch": "capture share holds as vol moves"
+    }
+  ],
+  "delivery_parallel": [
+    "public_repo",
+    "X_demo_dry_run"
+  ],
+  "read": "F1\u2013F4 score on 14 Nov; F_escrow binding beside delivery. Do not rescore post-hoc. ~62.6h. Exploratory."
+}

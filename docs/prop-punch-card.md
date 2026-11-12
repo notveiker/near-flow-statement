@@ -425,3 +425,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Submit-day runbook | Public→README→X→submit; history/strata non-blockers; HSP pending-then-lagged | submit_day_runbook |
 | History 184 / 2025Q4_10 | _10 through 2025 complete — still not supported | history_progress_2025q4_10 |
 | Sweep ~495 identity | Submit runbook + one-breath locked; repo private | sweep_495_identity |
+| F1–F4 prescore board | F_escrow binding; quality-on-cool already evidenced; do not rescore post-hoc | f1_f4_prescore_board |
