@@ -198,3 +198,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Partners vs capture of gross | Partners ~73% of gross vs capture 32.5% (~2.2×); +5pp gross→NEAR ≈ **$3.7M/yr** | partner_vs_capture_gross_share |
 | No-ref fee engine | 18.7% vol → 45.8% BB-fee $ (~**$2.5M/yr**); +5pp from 0-BB ≈ $0.67M/yr | noref_fee_engine |
 | Protect dense fronts | Arbie/Enot/Leodex already ~20bp template — extend to LI.FI, don't dilute | protect_dense_fronts |
+| ADR-029 threat proxy | 50% of 8.5bp residual on SK vol ≈ **~$2.2M/yr** upper-bound — affiliate contest on residual | adr029_threat_proxy |

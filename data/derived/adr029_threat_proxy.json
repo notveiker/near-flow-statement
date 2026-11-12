@@ -1,0 +1,8 @@
+{
+ "sk_vol_m": 421.7,
+ "proxy_liquidity_bp": 8.5,
+ "adr029_cap_pct": 50,
+ "threat_30d_m_proxy": 0.179,
+ "threat_rr_m_proxy": 2.2,
+ "note": "ADR-029-style 50% affiliate share of an 8.5bp liquidity residual on SK 38% vol \u2248 $2.2M/yr proxy drain from the excess layer \u2014 contest is affiliate P&L on residual, not the 2% traceable BB. Gap: true liquidity fee schedule. Exploratory upper-bound proxy."
+}
