@@ -1,60 +1,19 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 53.1,
-  "clusters": 233,
-  "commits": 682,
-  "derived_json": 532,
-  "top10_proprietary": [
-    {
-      "rank": 1,
-      "claim": "Fee engine \u2260 L1 (~180\u2013192\u00d7 vs ~0.22\u00d7) \u2014 OoM, point drifts",
-      "key": "fee_neq_l1"
-    },
-    {
-      "rank": 2,
-      "claim": "Intents \u224898.8% of NEAR DEX \u2014 chain DEX surface = Intents",
-      "key": "intents_dex_surface"
-    },
-    {
-      "rank": 3,
-      "claim": "Leakage is the bridge: zero leak \u2192 50\u00d7 needs only ~1.29\u00d7 vol",
-      "key": "leakage_bridge"
-    },
-    {
-      "rank": 4,
-      "claim": "Default/no-ref rail IS the fee engine (18.7% vol\u219245.8% BB$)",
-      "key": "default_rail"
-    },
-    {
-      "rank": 5,
-      "claim": "SK-tax desk ~$10.2M; logos = vol without capture",
-      "key": "sk_tax_logos"
-    },
-    {
-      "rank": 6,
-      "claim": "mcap/rev ~217\u00d7 vs THOR~16\u00d7 \u2014 discretionary claim design",
-      "key": "claim_design_multiple"
-    },
-    {
-      "rank": 7,
-      "claim": "No-vol wall ~42.8%; attest ~5.7\u00d7 Trust; capital-light",
-      "key": "wall_attest_cl"
-    },
-    {
-      "rank": 8,
-      "claim": "Hold until H1b (underwrite discretionary claim)",
-      "key": "hold_h1b"
-    },
-    {
-      "rank": 9,
-      "claim": "History not supported \u2014 honesty is the rating",
-      "key": "honesty"
-    },
-    {
-      "rank": 10,
-      "claim": "URGENT must-ship: public repo + X 90s (script ready)",
-      "key": "delivery"
-    }
+  "hours_to_submit": 51.9,
+  "commits": 713,
+  "clusters": 240,
+  "items": [
+    "Leakage is the bridge (~$50M; zero-leak \u2192 ~$74.5M RR; 50\u00d7 needs ~1.29\u00d7 vol)",
+    "Fee\u2260L1 OoM: Intents ~175\u2013202\u00d7 vs L1 ~0.22\u00d7 (pitch OoM, not pinned multiple)",
+    "Intents \u224898.8% NEAR DEX / ~87% NEAR fees \u2014 the DEX surface",
+    "Default/no-ref rail: 18.7% vol \u2192 45.8% BB$ (\u00d72.45 fee engine)",
+    "\u03c4~4.98 bp vs AITR~9.5 bp \u2014 capture ~52% of user all-in; gap is the bridge",
+    "Four ~$10M dials sequenced (SK-tax \u2192 Ledger \u2192 default-rail \u2192 attest); elasticity 3.07\u00d7",
+    "No-vol wall ~42.8% \u2014 dial sequencing beats volume chasing",
+    "mcap/rev 217\u00d7 vs THOR 16\u00d7 = claim design; Hold until H1b",
+    "Logos = volume without capture; SK BB ~0.0045% of partner fees",
+    "Opacity buys time not capture; attest ~5.7\u00d7 band compression"
   ],
-  "read": "Top-10 refreshed \u2014 leakage bridge @#2. Exploratory."
+  "read": "Top-10 judges @~52h/713c. Exploratory."
 }

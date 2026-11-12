@@ -1,0 +1,10 @@
+{
+  "asof": "2026-11-12",
+  "claim": "Soft sinks (burn, DIC, coverage) are not the no-vol wall. The wall (~42.8%) is a capture-mix constraint. Soft sinks can move accounting without moving the wall \u2014 don't pitch burn as the fee engine.",
+  "do_not_lead": [
+    "burn",
+    "DIC",
+    "coverage as primary"
+  ],
+  "read": "Soft-sink\u2260wall. Exploratory."
+}

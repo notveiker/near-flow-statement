@@ -488,3 +488,6 @@ Chain Signatures sits under Intents execution (execute ≫ respond ≫ sign) —
 
 <!-- AUTO:TRI 2026-11-12 -->
 - Attach×capture×leakage triangle locked; density EV exhausted after _16; SK-tax first controllable $. ~52h left. Public+X NOW.
+
+<!-- AUTO:STACK 2026-11-12 -->
+- Catalyst stack T0→H1b locked. Contest-year = honesty footnote. ~52h. PUBLIC+X NOW.

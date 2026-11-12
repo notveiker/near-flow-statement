@@ -1,67 +1,44 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 52.5,
-  "clusters": 236,
-  "commits": 696,
-  "dense_12_to_16_complete": true,
-  "stack_order": [
+  "hours_to_submit": 51.9,
+  "stack": [
     {
-      "rank": 1,
-      "item": "public_repo",
+      "t": "T0",
+      "item": "Repo public + X demo",
       "owner": "human",
-      "status": "CRITICAL_OPEN"
+      "blocks_submit": true
     },
     {
-      "rank": 2,
-      "item": "x_demo_90s",
-      "owner": "human",
-      "status": "CRITICAL_OPEN",
-      "script": "docs/x-demo-talking-points.md"
+      "t": "T1",
+      "item": "SK-tax route live (~$10.2M)",
+      "owner": "protocol/partners",
+      "usd": 10200000
     },
     {
-      "rank": 3,
-      "item": "sk_tax_whale_desk",
-      "owner": "commercial",
-      "rr_m": 10.2
+      "t": "T2",
+      "item": "Ledger-first SK deepening",
+      "owner": "partners",
+      "usd": 10000000
     },
     {
-      "rank": 4,
-      "item": "logos_to_default_bb_rails",
-      "owner": "commercial"
+      "t": "T3",
+      "item": "Default/no-ref rail share \u2191",
+      "owner": "distribution",
+      "note": "\u00d72.45 BB asymmetry"
     },
     {
-      "rank": 5,
-      "item": "conversion_appfee_to_bb",
-      "owner": "commercial",
-      "rr_m": 5.5
+      "t": "T4",
+      "item": "Attest escrow \u2192 Trust",
+      "owner": "protocol",
+      "note": "~5.7\u00d7 band compression"
     },
     {
-      "rank": 6,
-      "item": "attest_escrow",
-      "owner": "trust",
-      "rr_m": 8.4
-    },
-    {
-      "rank": 7,
-      "item": "hsp029_pending_then_lagged",
-      "owner": "governance"
-    },
-    {
-      "rank": 8,
-      "item": "attach_finish_to_60",
-      "owner": "product",
-      "rr_m": 7.9
+      "t": "H1b",
+      "item": "Hold\u2192path-to-Buy arithmetic",
+      "owner": "market",
+      "gate": "T1\u2013T4 partially live"
     }
   ],
-  "headline": "leakage_is_the_bridge",
-  "do_not_lead_with": [
-    "cif",
-    "ai",
-    "etf",
-    "more_strata",
-    "opacity_as_capture",
-    "bond_demand",
-    "volume_alone"
-  ],
-  "read": "Stack post-_16 @~52h. public+X CRITICAL. Exploratory."
+  "claim": "Catalyst order is gated. Skipping to volume or multiple-compression before T1\u2013T4 is narrative without arithmetic.",
+  "read": "Near-term catalyst stack @~52h. Exploratory."
 }
