@@ -112,6 +112,7 @@
 | 106 | CS method asymmetry | respond≃24×sign; execute≃6.7×respond | CS is bursty completion under Intents flow |
 | 107 | Gas burn NEAR units (census) | Intents ~34 NEAR ≈ HOT ~36 | Heavier settlement confirmed in NEAR burned |
 | 108 | Capture vs gas burn (NEAR units) | Capture ≫ gas opex if census sustained | Directional only — hours window |
+| 109 | L1 attention fragment | Top5 non-Intents ~35% gas vs Intents ~9% | Fee density wins on minority of compute |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.
 

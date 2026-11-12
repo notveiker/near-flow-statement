@@ -1,0 +1,27 @@
+{
+ "intents_gas_share": 9.4,
+ "top5_non_intents": [
+  {
+   "account": "game.hot.tg",
+   "gas_share_pct": 9.4
+  },
+  {
+   "account": "claim.sweat",
+   "gas_share_pct": 7.5
+  },
+  {
+   "account": "v2.jars.sweat",
+   "gas_share_pct": 6.9
+  },
+  {
+   "account": "dclv2.ref-labs.near",
+   "gas_share_pct": 6.9
+  },
+  {
+   "account": "token.sweat",
+   "gas_share_pct": 4.8
+  }
+ ],
+ "top5_non_intents_gas_share_pct": 35.5,
+ "note": "Top non-Intents gas burners (HOT/SWEAT/Ref) take ~35% of gas vs Intents ~9% \u2014 L1 attention is fragmented. Intents fee density wins on a minority of compute. Exploratory census."
+}
