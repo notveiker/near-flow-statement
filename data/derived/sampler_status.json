@@ -1,6 +1,5 @@
 {
- "primary_clusters_local": 155,
- "last_ingested": "2026Q3_06",
- "overall": "not_supported_preliminary",
- "note": "155 clusters through 2026Q3. Contest-year strata filling. Still preliminary."
+ "primary_clusters_local": 156,
+ "last_ingested": "2026Q4_06",
+ "overall": "not_supported_preliminary"
 }
