@@ -1,0 +1,11 @@
+{
+ "collector_a_inflow_usd_k": 435.0,
+ "collector_b_inflow_usd_k": 104.2,
+ "bb_from_collector_a_usd_k": 460.4,
+ "bb_from_collector_b_usd_k": 108.6,
+ "bb_from_escrow_usd_k": 823.7,
+ "collector_a_vs_explicit_fees_pct": 96.5,
+ "a_to_bb_conversion_pct": 105.8,
+ "b_to_bb_conversion_pct": 104.2,
+ "note": "Collector A tracks explicit fees (~96.5%) but conversion into buybacks differs by rail; escrow unshields dominate recent BB funding. Exploratory."
+}

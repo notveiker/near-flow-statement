@@ -159,3 +159,7 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Coverage gap to full offset | ~16% USD coverage ⇒ ~6.4× fee for full issuance offset pre-HSP-029 | coverage_gap_to_full_offset |
 | Aurora widget ≠ TVL | Aurora-tagged widgets ~9.8% referrals despite residual TVL — distribution ≠ chain TVL | aurora_widget_distribution |
 
+| BB-fee vs vol HHI | Buyback-fee HHI 0.244 / top3 65% vs vol HHI 0.087 — fee dollars ≫ volume concentration | bb_vs_vol_hhi |
+| Collector rail conversion | Collector A ≈96.5% of explicit fees; escrow still dominates BB funding dollars | collector_rail_conversion |
+| Listed≈paid (fee-ev) | SK fees paid on-chain ~91% of listed; BB exact ~97% — leak is policy split not settlement fail | fee_ev_listed_vs_paid |
+

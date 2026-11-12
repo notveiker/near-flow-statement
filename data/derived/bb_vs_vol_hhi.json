@@ -1,0 +1,8 @@
+{
+ "buyback_fee_hhi": 0.244,
+ "buyback_fee_top3_share_pct": 65.0,
+ "buyback_fee_unreferred_share_pct": 45.8,
+ "volume_channel_hhi": 0.087,
+ "volume_channel_hhi_swapkit_merged": 0.2,
+ "note": "Buyback-fee HHI 0.244 with top3 65.0% and unreferred 45.8% \u2014 fee dollars more concentrated than volume (vol HHI 0.087, 0.2 SK-merged). Distribution owns margin. Exploratory."
+}
