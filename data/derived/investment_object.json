@@ -26,7 +26,7 @@
  "falsifiers": "docs/f1-f4-scorecard.md",
  "spine": "docs/pitch-spine.md",
  "submit": "docs/submit-packet.md",
- "clusters_preliminary": 148,
+ "clusters_preliminary": 151,
  "controllable_bridge": "sk_tax_and_attest_then_volume",
  "intents_share_near_protocol_fees_pct": 87
 }
