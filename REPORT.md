@@ -2,7 +2,7 @@
 
 *Investment Thesis track. Window for value capture: the 30 days to 2026-11-04. Window for supply: the 90 days 2026-08-07 to 2026-11-04. The interactive version is [`dashboard/index.html`](dashboard/index.html); this is the same story in prose. Every figure with an `n:` marker is recomputed from committed data by `make reproduce` and checked by `make check`. Figures marked (derived) show their arithmetic. The longer methods note is [`THESIS.md`](THESIS.md), and the pre-registration is [`PREREG.md`](PREREG.md).*
 
-**Rating from the frozen rule: Hold, with Buy one input away.** The rule was fixed on 2026-11-05 before any flow query. Observed growth in captured revenue, 619.0 <!--n:rating_g_obs_pct-->% a year, is far above the 33.2 <!--n:rating_g_req_pct-->% the rule requires. The rule returns Buy if H1b passes, and H1b is inconclusive for a single reason: only 20.0 <!--n:h1b_coverage_count_pct-->% of the top-100 NEAR receivers carry a citable exchange label, and the rule needs 50%.
+**Rating from the frozen rule: Hold, with Buy one input away.** The rule was fixed on 2026-11-05 before any flow query. Observed growth in captured revenue, 619.0 <!--n:rating_g_obs_pct-->% a year in USD (about **71%** in NEAR terms — `data/derived/growth_usd_vs_near.json`), is far above the 33.2 <!--n:rating_g_req_pct-->% the rule requires. The rule returns Buy if H1b passes, and H1b is inconclusive for a single reason: only 20.0 <!--n:h1b_coverage_count_pct-->% of the top-100 NEAR receivers carry a citable exchange label, and the rule needs 50%.
 
 ## 1. NEAR Intents is the largest venue in its peer set
 
