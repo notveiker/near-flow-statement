@@ -522,3 +522,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 209 / 2026Q1_13 | Contest-year _13 filling — still not supported | history_progress_2026q1_13 |
 | Sweep ~582 identity | Attest≠τ · CIF Gap · public+X bind | sweep_582_identity |
 | Peerset gross−net gap | Gross~55.7% vs net~38.6% (−17.1pp) — leadership overstated | peerset_gross_net_gap |
+| History 210 / 2026Q2_13 | Contest-year _13 continuing — still not supported | history_progress_2026q2_13 |
+| Sweep ~586 identity | Peerset gap+two bridges; public+X bind | sweep_586_identity |

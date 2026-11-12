@@ -71,5 +71,5 @@ Prop/dashboard/judge packet ready (~437 commits, 168 clusters preliminary). **Mu
 <!-- /AUTO:DELIVERY -->
 
 <!-- AUTO:TOPLINE_NOW -->
-**Now (~58h / 208 clusters / 580 commits):** `_13` through 2025 · fee≠L1 OoM · whale desk · default rail · coverage wall~42.8% · **flip public + X**.
+**Now (~58h / 210 clusters / 587 commits):** 210 milestone · two bridges · fee≠L1 OoM · whale desk · **flip public + X**.
 <!-- /AUTO:TOPLINE_NOW -->

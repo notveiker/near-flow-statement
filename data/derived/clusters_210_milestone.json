@@ -1,0 +1,10 @@
+{
+  "asof": "2026-11-12",
+  "clusters": 210,
+  "commits": 587,
+  "hours_to_submit": 57.7,
+  "stratum": "_13_dense",
+  "overall": "not supported",
+  "history_blocker": false,
+  "read": "210 clusters on denser _13. Overall still not supported \u2014 not a submit blocker. Public+X bind (~58h). Exploratory."
+}

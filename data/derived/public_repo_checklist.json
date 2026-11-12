@@ -1,9 +1,9 @@
 {
   "asof": "2026-11-12",
   "is_private": true,
-  "hours_to_submit": 58.2,
-  "clusters": 207,
-  "commits": 578,
+  "hours_to_submit": 57.7,
+  "clusters": 210,
+  "commits": 587,
   "readme_judge_path": "READY",
   "x_dry_run_script": "READY",
   "x_dry_run_recorded": false,
@@ -14,5 +14,5 @@
     "record X demo (~90s)",
     "submit 14 Nov"
   ],
-  "read": "Repo private=true \u00b7 urgency GREEN \u00b7 ~58h / 207cl / 578 commits. Flip now. Exploratory."
+  "read": "Repo private=true @~58h / 210cl / 587 commits. Flip now. Exploratory."
 }
