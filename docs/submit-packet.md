@@ -61,3 +61,11 @@ See `data/derived/risks_compact.json` — H1b/attest/relayer/HSP-007/CIF/multipl
 **_15 dense COMPLETE** @228 clusters. Intents~180× OoM holds; overall not supported.
 **~54h left.** Binding: public repo + X dry-run. Strata EV exhausted.
 <!-- /AUTO:D15DONE -->
+
+<!-- AUTO:URGENT -->
+# URGENT (~54h)
+1. **Flip repo PUBLIC** (gh confirms still private)
+2. **X demo dry-run** with 60s card + dashboard
+3. Submit + F1–F4 on 14 Nov
+Prop ready ~0.98 excl must-ship. `661` commits / `229` clusters.
+<!-- /AUTO:URGENT -->

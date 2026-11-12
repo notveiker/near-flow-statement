@@ -1,21 +1,21 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 54.2,
-  "clusters": 228,
-  "commits": 653,
+  "hours_to_submit": 53.9,
+  "clusters": 229,
+  "commits": 661,
   "dense_15_complete": true,
   "actions_left": [
     {
       "action": "flip_repo_public",
       "owner": "human",
       "blocks": "submit",
-      "status": "open"
+      "status": "OPEN_URGENT"
     },
     {
       "action": "x_demo_dry_run",
       "owner": "human",
       "blocks": "submit",
-      "status": "open"
+      "status": "OPEN_URGENT"
     }
   ],
   "agent_cannot": [
@@ -23,6 +23,6 @@
     "x_recording"
   ],
   "prop_ready_excl_must_ship": 0.98,
-  "implication": "_15 done; only public+X left as binding human actions",
-  "read": "_15 complete. ~54h. Human-only: public + X. Exploratory."
+  "implication": "URGENT: only public+X left; agent prop is packaging surplus",
+  "read": "URGENT human-only @~54h: public + X. Exploratory."
 }

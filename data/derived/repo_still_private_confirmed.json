@@ -1,12 +1,10 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 54.8,
-  "clusters": 225,
-  "commits": 636,
+  "hours_to_submit": 53.9,
+  "clusters": 229,
+  "commits": 661,
   "repo_private": true,
-  "repo_url": "https://github.com/notveiker/near-flow-statement",
-  "x_dry_run_done": false,
   "visibility_checked": true,
-  "implication": "gh confirms repo still PRIVATE \u2014 must-ship #1 unchanged; every prop commit increases packaging premium while visibility blocks submit",
-  "read": "Repo PRIVATE confirmed @~55h / 225 cl / 636 c. Flip public is binding. Exploratory."
+  "implication": "Still PRIVATE with ~54h left \u2014 packaging premium already paid; visibility is the binding constraint",
+  "read": "PRIVATE @~54h/661c. Flip now. Exploratory."
 }
