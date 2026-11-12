@@ -1,14 +1,14 @@
 {
-  "commits_since_structural": 455,
-  "clusters_preliminary": 172,
+  "commits_since_structural": 457,
+  "clusters_preliminary": 173,
   "hours_to_submit": 64.8,
   "stratum": "_09_dense",
-  "last_ingested": "2026Q4_08",
-  "next": "2025Q1_09",
+  "last_ingested": "2025Q1_09",
+  "next": "2025Q2_09",
   "judge_ready": true,
   "must_ship": [
     "public_repo",
     "X_demo_dry_run"
   ],
-  "note": "~455 commits; 172 clusters; THOR two-step + rating fragility + submit/HSP sequence + ledger stack shipped; ~64.8h; must-ship public+X."
+  "note": "~457 commits; 173 clusters; five ledgers + public-repo checklist + Hold-flip card; entering 2025Q2_09; ~64.8h."
 }

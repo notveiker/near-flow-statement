@@ -1,0 +1,30 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_submit": 64.8,
+  "status": "TODO",
+  "checklist": [
+    {
+      "item": "ensure_github_repo_public",
+      "why": "judges must open without auth"
+    },
+    {
+      "item": "pin_research_rpc_collector_or_main",
+      "why": "dashboard + REPORT reachable"
+    },
+    {
+      "item": "README_points_to_dashboard_and_pitch_spine",
+      "why": "30s path for judges"
+    },
+    {
+      "item": "X_demo_dry_run_record",
+      "why": "talking points + screen path rehearsed"
+    },
+    {
+      "item": "submit_packet_link_check",
+      "why": "docs/submit-packet.md hrefs live"
+    }
+  ],
+  "prop_ready": true,
+  "history_ok_preliminary": true,
+  "read": "Binding delivery catalysts with ~64.8h left. Prop/history are not blockers. Exploratory ops."
+}

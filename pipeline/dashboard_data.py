@@ -310,6 +310,9 @@ def build() -> dict:
             "submit_hsp_seq": optional("derived/submit_vs_hsp029_sequence.json"),
             "ledger_stack": optional("derived/ledger_stack_vs_mutex.json"),
             "intents_purity": optional("derived/intents_purity_on_cool_l1.json"),
+            "five_ledgers": optional("derived/five_ledgers_board.json"),
+            "public_repo_checklist": optional("derived/public_repo_checklist.json"),
+            "what_flips_hold": optional("derived/what_flips_hold_card.json"),
         },
         "repro": reproducibility(),
     }

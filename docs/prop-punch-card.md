@@ -378,3 +378,7 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Submit vs HSP-029 sequence | Submit ~24h before timelock — issuance pending-not-live at pitch | submit_vs_hsp029_sequence |
 | Ledger stack vs mutex | Stack capture+trust+defense; mutex inside capture; cons.capture+trust illustrative | ledger_stack_vs_mutex |
 | Intents purity on cool L1 | Intents ~87% NEAR fees while L1 YoY ~0.18× — purity + concentration | intents_purity_on_cool_l1 |
+| Five ledgers board | Capture/trust/defense/mint/rent — do not sum; mint≠upside | five_ledgers_board |
+| Public repo checklist | Binding delivery: public + README path + X dry-run | public_repo_checklist |
+| What flips Hold | H1b>~50% first; attest/CIF/SK improve object under Hold | what_flips_hold_card |
+| History 173 / 2025Q1_09 | Denser _09 started — still not supported | history_progress_2025q1_09 |

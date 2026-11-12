@@ -141,13 +141,12 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **Fee engine ≠ L1:** YoY tx/signers/burn ~0.18–0.26×; intents.near ~100× vs 2025Q1; Intents ≈ **87%** of NEAR fees on a cooling L1.
-- **Dial elasticity:** capture-share pp ≈ **3.07×** volume pp; SK-tax ≈ **~42.5 vol-pp**.
-- **THOR two-step:** leakage close ~**3.1×** then remaining ~**4.4×** volume/price; full-capture extreme → ~**1.3×** vol for 50× after HSP.
-- **Opacity product + no-vol coverage:** attest+CIF underwriting; path to ~43% coverage without 4× vol (still short of full offset).
-- **Rating fragility:** 30d RR ≈ **1.23×** r90-annualised — acceleration is the object; cool is the falsifier beside H1b.
-- **Submit sequencing:** public repo + X before 14 Nov; HSP-029 **pending-not-live** (timelock 16 Nov).
-- **History:** 172 clusters; entering `_09`; overall still not supported.
+- **Fee engine ≠ L1** (173 clusters): L1 YoY ~0.18–0.26×; intents ~100× vs 2025Q1; Intents ≈87% NEAR fees.
+- **Elasticity / THOR two-step:** capture-pp≈3.07×vol; leakage ~3.1× then ~4.4× remaining; full-capture → ~1.3× vol for 50×.
+- **Five ledgers:** capture / trust / defense / mint / rent — do not sum; mint≠token upside.
+- **What flips Hold:** H1b>~50% first; attest/CIF/SK improve the object under Hold — not L1 rebound or AI/npm.
+- **Delivery:** public_repo checklist + X dry-run bind (~65h); HSP-029 pending-not-live.
+- **History:** 173 clusters; denser `_09` through 2025Q1; overall still not supported.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context

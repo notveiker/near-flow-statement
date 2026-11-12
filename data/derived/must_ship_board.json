@@ -1,7 +1,7 @@
 {
-  "hours_to_submit": 65.0,
-  "clusters": 172,
-  "commits": 454,
+  "hours_to_submit": 64.8,
+  "clusters": 173,
+  "commits": 457,
   "prop_ready": true,
   "dashboard_ready": true,
   "history_preliminary": true,
@@ -35,5 +35,5 @@
     "coverage_path_no_vol",
     "fee_engine_vs_l1"
   ],
-  "note": "Prop ready; blockers still public_repo + X dry-run; ~65.0h; 172 clusters / 454 commits."
+  "note": "Prop ready; blockers public_repo + X; ~64.8h; 173 clusters / 457 commits; five-ledgers + flip-Hold card shipped."
 }

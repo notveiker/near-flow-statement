@@ -192,7 +192,7 @@ footer code{font-size:12px;color:var(--soft)}
     <div class="card reveal"><h3>Conversion + Trust path</h3><p class="sub">Appfees→buybacks conversion and Trust Wallet SK→direct arithmetic.</p><div id="conv-trust"></div><div class="foot">Hold until H1b — unexplained buybacks and escrow attestation remain binding.</div></div>
   </div>
   <div class="grid2" style="margin-top:var(--s4)">
-    <div class="card reveal"><h3>Four ~$10M surfaces</h3><p class="sub">Capture raise · trust raise · mint claim · contestable rent. Do not sum. Exploratory.</p><div id="four-ten"></div><div class="foot">From <span class="mono">four_ten_m_board.json</span> / <span class="mono">judge_one_pager_stack.json</span>.</div></div>
+    <div class="card reveal"><h3>Four ~$10M surfaces</h3><p class="sub">Capture raise · trust raise · mint claim · contestable rent. Do not sum. Exploratory.</p><div id="four-ten"></div><div class="foot">From <span class="mono">four_ten_m_board.json</span> / <span class="mono">five_ledgers_board.json</span>. Mint and rent are not token upside.</div></div>
     <div class="card reveal"><h3>Immaterial → material ladder</h3><p class="sub">Lead the right end. AI/npm/ETF stay off the open.</p><div id="immaterial-ladder"></div><div class="foot">From <span class="mono">immaterial_to_material_ladder.json</span>. CIF 1bp is a Gap dial (unpublished rate card).</div></div>
   </div>
   <div class="grid2" style="margin-top:var(--s4)">
@@ -524,6 +524,11 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     const maxF = Math.max(...fourRows.map(([,v]) => +v || 0), 1);
     $("#four-ten").innerHTML = fourRows.map(([k,v]) => `<div class="hbar"><span>${k}</span><span class="t"><i style="width:${Math.min(100,(+v||0)/maxF*100)}%"></i></span><span class="p mono">~$${(+v||0).toFixed(1)}M</span></div>`).join("") +
       `<p class="sub" style="margin-top:var(--s3)">Ledger-first SK-tax · attest escrow · HSP-007 claim Gap · solver residual (ADR-029 ≤50%). Confidential share of capture ~${(Jop && Jop.confidential_share_of_capture_pct) || 71}%.</p>`;
+    const Five = D.catalysts && D.catalysts.five_ledgers;
+    if (Five && Five.ledgers) {
+      $("#four-ten").innerHTML += `<p class="sub" style="margin-top:var(--s3)"><b>Five ledgers</b> (do not sum)</p>` +
+        Five.ledgers.map(L => `<div class="hbar"><span>${L.ledger}: ${L.example}</span><span class="t"><i style="width:${Math.min(100,(+L.rr_m||0)/12*100)}%"></i></span><span class="p mono">~$${(+L.rr_m||0).toFixed(1)}M</span></div>`).join("");
+    }
   } else {
     $("#four-ten").innerHTML = `<p class="sub">Four ~$10M board appears when judge_one_pager_stack is in the build.</p>`;
   }

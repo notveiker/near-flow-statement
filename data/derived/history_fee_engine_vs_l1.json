@@ -1,6 +1,6 @@
 {
   "asof": "2026-11-12",
-  "clusters_used": 172,
+  "clusters_used": 173,
   "overall": "not supported",
   "ratios": {
     "U1": {
@@ -25,9 +25,9 @@
     },
     "U3": {
       "hypothesis": "Intents is a real share of activity (receipts on intents.near per day)",
-      "point": 100.4776,
-      "lo90": 42.6847,
-      "hi90": 1243.6132,
+      "point": 113.0373,
+      "lo90": 47.8156,
+      "hi90": 1422.5625,
       "num": "2026Q3",
       "den": "2025Q1",
       "metric": "intents_per_day",
@@ -57,6 +57,6 @@
   "l1_yoy_tx_x": 0.184,
   "l1_yoy_signers_x": 0.2608,
   "l1_yoy_burn_x": 0.2565,
-  "intents_vs_2025q1_x": 100.4776,
-  "read": "L1 YoY tx ~0.18\u00d7 / signers ~0.26\u00d7 / burn ~0.26\u00d7 while intents.near receipts ~100\u00d7 vs 2025Q1 \u2014 investable object is Intents fee engine on a cooling base layer. Overall usage growth not supported; do not pitch L1 rebound. Exploratory / preliminary history."
+  "intents_vs_2025q1_x": 113.0373,
+  "read": "L1 YoY tx ~0.18\u00d7 / signers ~0.26\u00d7 / burn ~0.26\u00d7 while intents.near receipts ~113\u00d7 vs 2025Q1 \u2014 investable object is Intents fee engine on a cooling base layer. Overall usage growth not supported; do not pitch L1 rebound. Exploratory / preliminary history."
 }

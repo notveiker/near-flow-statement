@@ -1,0 +1,38 @@
+{
+  "asof": "2026-11-12",
+  "ledgers": [
+    {
+      "ledger": "capture",
+      "example": "SK-tax 25%",
+      "rr_m": 10.2,
+      "job": "raise token claim from partner pool"
+    },
+    {
+      "ledger": "trust",
+      "example": "attest escrow",
+      "rr_m": 8.4,
+      "job": "underwrite existing dollars; collapse band"
+    },
+    {
+      "ledger": "defense",
+      "example": "ADR-029 half residual",
+      "rr_m": 5.71,
+      "job": "defend contestable solver rent"
+    },
+    {
+      "ledger": "mint",
+      "example": "HSP-007 10% claim",
+      "rr_m": 11.8,
+      "job": "competing claim on issuance pool (Gap)"
+    },
+    {
+      "ledger": "rent",
+      "example": "solver residual 8.5bp",
+      "rr_m": 11.41,
+      "job": "contestable distribution rent pool"
+    }
+  ],
+  "do_not_sum": true,
+  "naive_sum_rr_m": 47.5,
+  "read": "Five ledgers: capture / trust / defense / mint / rent. Mint and rent are not token upside. Do not sum. Prefer Ledger-first capture + attest trust. Exploratory."
+}
