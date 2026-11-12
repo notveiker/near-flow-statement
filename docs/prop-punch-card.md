@@ -480,3 +480,8 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | H1b ≠ delivery | Hold binder labels/H1b; public+X are contest delivery only | h1b_vs_delivery_separation |
 | History 203 / 2026Q3_12 | Contest-year _12 continuing — still not supported | history_progress_2026q3_12 |
 | Sweep ~560 identity | Funnel rank+H1b≠delivery; public+X bind | sweep_560_identity |
+| Whale desk = SK-tax convo | 3.4% swaps = 77.1% vol; SK tax pool ~$40.9M | whale_desk_sk_tax |
+| Peerset recovery ≪ SK-tax | Recovery ~$2.8M ≈ 0.27× SK-tax — share not scarce | peerset_vs_sk_tax_scarce |
+| Capital-light × leakage | PCI~0.0573; WC not binding — terms bind ~$50.2M prize | capital_light_vs_leakage_constraint |
+| Trust nested under SK | Trust SK→direct ~$1.72M ≈ 17% of SK-tax | trust_nested_under_sk |
+| Price-heavy fee print | USD~619% vs NEAR-unit~71% (~8.7×) — check NEAR-unit vs G_req | price_heavy_fee_print |

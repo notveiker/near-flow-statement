@@ -1,6 +1,6 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 62.8,
+  "hours_to_submit": 59.0,
   "ordered_steps": [
     {
       "step": 1,
@@ -38,7 +38,7 @@
     "_10 seals",
     "overall not supported"
   ],
-  "clusters": 183,
-  "commits": 494,
-  "read": "Submit-day runbook with ~62.8h left. Steps 1\u20133 bind. History/strata do not. Exploratory ops."
+  "clusters": 203,
+  "commits": 561,
+  "read": "Submit-day runbook with ~59h left. Steps 1\u20133 bind (public, X, submit). History/strata do not. Exploratory ops."
 }

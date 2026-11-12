@@ -1,0 +1,11 @@
+{
+  "asof": "2026-11-12",
+  "whale_vol_share_pct": 77.1,
+  "whale_swap_count_pct": 3.4,
+  "whale_attach_10pp_rr_m": 0.98,
+  "sk_tax_25_rr_m": 10.2,
+  "sk_listed_partner_fees_rr_m": 40.9,
+  "implication": "SK-tax renegotiation and whale attach are the same commercial desk problem \u2014 3.4% of swaps = 77% vol; partner tax pool ~$41M/yr",
+  "call": "One conversation: Ledger/SK whale terms \u2192 explicit BB line; not retail attach campaign",
+  "read": "Whale desk: 3.4% of swaps = 77.1% vol. SK partner tax pool ~$40.9M/yr; 25% tax~$10.2M vs whale+10pp attach~$0.98M. Lead the desk conversation, not retail UX. Exploratory."
+}

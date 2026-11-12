@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "trust_sk_to_direct_rr_m": 1.72,
+  "sk_tax_25_rr_m": 10.2,
+  "trust_vs_sk_tax_x": 0.169,
+  "sk_path_partner_vs_direct_bb_x": 9.3,
+  "place_in_call_order": "after_sk_tax_within_wallet_pipes",
+  "read": "Trust SK\u2192direct ~$1.72M/yr \u2248 17% of SK-tax dial \u2014 nest under Ledger/SK conversation, don't lead with it. Partner-via-SK is ~9.3\u00d7 direct BB on that pipe. Exploratory."
+}

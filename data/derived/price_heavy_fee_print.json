@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "usd_fee_growth_pct": 619.0,
+  "near_unit_growth_pct": 71.4,
+  "usd_vs_near_x": 8.7,
+  "near_still_above_req": true,
+  "implication": "USD fee print is ~8.7\u00d7 NEAR-unit growth \u2014 price-heavy narrative; still clears G_req in NEAR terms",
+  "read": "USD fee growth ~619% vs NEAR-unit ~71.4% (~8.7\u00d7) \u2014 do not celebrate USD print alone; NEAR-unit still clears G_req. Exploratory."
+}

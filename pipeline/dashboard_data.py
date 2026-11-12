@@ -346,6 +346,11 @@ def build() -> dict:
             "settlement_vs_spam": optional("derived/settlement_density_vs_l1_spam.json"),
             "capture_funnel": optional("derived/capture_funnel_rank.json"),
             "h1b_vs_delivery": optional("derived/h1b_vs_delivery_separation.json"),
+            "whale_desk": optional("derived/whale_desk_sk_tax.json"),
+            "peerset_vs_sk": optional("derived/peerset_vs_sk_tax_scarce.json"),
+            "capital_vs_leakage": optional("derived/capital_light_vs_leakage_constraint.json"),
+            "trust_nested": optional("derived/trust_nested_under_sk.json"),
+            "price_heavy": optional("derived/price_heavy_fee_print.json"),
         },
         "repro": reproducibility(),
     }

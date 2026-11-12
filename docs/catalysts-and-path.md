@@ -287,3 +287,13 @@ Chain Signatures sits under Intents execution (execute ≫ respond ≫ sign) —
 - **Immaterial vs leakage:** SK-tax ~**$10.2M** vs ~**$50.2M** prize; ETF/AI immaterial.
 - **Settlement≠spam:** HOT tx-heavy; Intents settlement-heavy — coverage wall is capture, not L1 tx recovery.
 <!-- /AUTO:DOUBLE_OPACITY -->
+
+<!-- AUTO:WHALE_DESK -->
+### Whale desk + scarce capture (exploratory)
+
+- **Whale desk = SK-tax:** 3.4% of swaps = 77.1% vol; SK partner tax pool ~**$40.9M**/yr.
+- **Peerset recovery** ≪ SK-tax — share leadership is not the scarce resource.
+- **Capital-light:** WC not binding; leakage terms are.
+- **Trust SK→direct** nests under the Ledger/SK conversation (~17% of SK-tax dial).
+- **Price-heavy:** USD fee ~619% vs NEAR-unit ~71% (~8.7×) — check NEAR-unit.
+<!-- /AUTO:WHALE_DESK -->

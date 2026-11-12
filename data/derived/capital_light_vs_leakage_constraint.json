@@ -1,0 +1,10 @@
+{
+  "asof": "2026-11-12",
+  "turnover_x_30d": 17.4,
+  "days_of_vol": 1.7,
+  "pci": 0.0573,
+  "leakage_pool_rr_m": 50.2,
+  "binding_constraint": "capture_share_leakage",
+  "not_binding": "working_capital_inventory",
+  "read": "Capital-light (PCI~0.0573, ~1.7d inventory) means the ~$50.2M leakage prize is not blocked by WC \u2014 it's blocked by commercial terms. Exploratory."
+}

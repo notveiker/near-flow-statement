@@ -610,6 +610,16 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (Dbl) bits.push(`Double opacity: escrow BB~${Dbl.escrow_bb_share_pct}% + unknown surface~${Dbl.unknown_surface_pct}% — attest AND label.`);
     if (IvL) bits.push(`Immaterial vs leakage: SK-tax~$${IvL.sk_tax_25_rr_m}M vs ~$${IvL.leakage_pool_rr_m}M prize; ETF/AI noise.`);
     if (SvS) bits.push(`Settlement≠spam: HOT tx-heavy / Intents settlement-heavy — coverage is capture not L1 count.`);
+    const Wd = D.catalysts && D.catalysts.whale_desk;
+    const PvS = D.catalysts && D.catalysts.peerset_vs_sk;
+    const ClL = D.catalysts && D.catalysts.capital_vs_leakage;
+    const Tn = D.catalysts && D.catalysts.trust_nested;
+    const PrH = D.catalysts && D.catalysts.price_heavy;
+    if (Wd) bits.push(`Whale desk=SK-tax: ${Wd.whale_swap_count_pct}% swaps=${Wd.whale_vol_share_pct}% vol; partner tax pool ~$${Wd.sk_listed_partner_fees_rr_m}M.`);
+    if (PvS) bits.push(`Peerset recovery ~$${PvS.peerset_recovery_rr_m}M ≈ ${PvS.recovery_vs_sk_tax_x}× SK-tax — share not scarce.`);
+    if (ClL) bits.push(`Capital-light (PCI~${ClL.pci}): WC not binding — leakage terms bind.`);
+    if (Tn) bits.push(`Trust SK→direct ~$${Tn.trust_sk_to_direct_rr_m}M nests under SK-tax (~${(100*Tn.trust_vs_sk_tax_x).toFixed(0)}%).`);
+    if (PrH) bits.push(`Price-heavy print: USD~${PrH.usd_fee_growth_pct}% vs NEAR-unit~${PrH.near_unit_growth_pct}% (~${PrH.usd_vs_near_x}×).`);
     const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);
