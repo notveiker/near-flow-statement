@@ -1,0 +1,23 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_submit": 57.3,
+  "clusters": 212,
+  "commits": 594,
+  "lines": [
+    "capture_pp \u2248 3.07\u00d7 vol_pp; SK-tax \u2248 42.5 vol-pp",
+    "user all-in \u2248 10.6\u00d7 captured \u03c4 \u2014 distribution owns spread",
+    "coverage wall ~42.8% without volume",
+    "two bridges: SK-tax ~$10.2M capture + attest ~$8.4M trust (do not sum)",
+    "whale desk = SK-tax (3.4% swaps = 77% vol)",
+    "default/no-ref rail \u2248 46% of BB $",
+    "fee\u2260L1 OoM (intents \u226b100\u00d7 vs L1 ~0.2\u00d7 YoY)",
+    "double opacity: escrow BB ~59% + unknown surface ~33%",
+    "fidelity \u2192 commercial leakage (terms not AR)",
+    "capital-light \u21d2 no NEAR bond demand",
+    "AI/agents = substitute narrative \u2014 do not lead",
+    "Hold until H1b; HSP pending-then-lagged",
+    "LIVE: flip public + record X"
+  ],
+  "repo_private": true,
+  "read": "Locked pitch lines @~57h / 212cl / 594 commits. Repo private=true. Exploratory."
+}

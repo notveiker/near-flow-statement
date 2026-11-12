@@ -1,0 +1,13 @@
+{
+  "asof": "2026-11-12",
+  "from": "_13_dense_complete",
+  "to": "_14_dense",
+  "clusters": 212,
+  "commits": 594,
+  "hours_to_submit": 57.3,
+  "history_blocker": false,
+  "priority": "public_repo_and_x_over_strata",
+  "intents_x": 146.9294,
+  "l1_yoy_tx_x": 0.2245,
+  "read": "Entering denser _14 with 212 clusters / ~57h left. Fee\u2260L1 OoM holds (~147\u00d7). Prefer public+X over more seals. Exploratory ops."
+}

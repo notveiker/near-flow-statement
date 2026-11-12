@@ -39,7 +39,7 @@
 Card: `data/derived/judge_capture_card.json` — open with partners>capture, close with Hold until H1b.
 
 <!-- AUTO:X_LOCKED -->
-**Locked (~58h / 209cl / 584 commits):** two bridges SK-tax+attest · capture≈3.07×vol · whale desk · coverage wall~42.8% · fee≠L1 OoM · default rail · attest≠τ · Hold until H1b · flip public.
+**Locked (~57h / 212cl / 594 commits):** user all-in~10.6× · two bridges · capture≈3.07×vol · whale desk · coverage wall~42.8% · fee≠L1 OoM · no bond demand · AI substitute · Hold until H1b · **flip public**.
 <!-- /AUTO:X_LOCKED -->
 <!-- AUTO:X_SCRIPT -->
 ## Timed dry-run (~90s)
