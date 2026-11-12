@@ -1,0 +1,14 @@
+{
+  "asof": "2026-11-12",
+  "claim": "Mutex: logo-volume success and capture-share success cannot both be primary. Optimizing logos dilutes default-rail BB$. Pick capture KPI (\u03c4/AITR, default-rail BB$, SK-tax $) as primary; treat logo volume as a funnel input only.",
+  "primary_kpis": [
+    "capture_over_aitr",
+    "default_noref_bb_share",
+    "sk_tax_usd"
+  ],
+  "funnel_only": [
+    "logo_partner_volume",
+    "attach_pct"
+  ],
+  "read": "Logo vs capture mutex. Exploratory."
+}

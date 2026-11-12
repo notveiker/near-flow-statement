@@ -1,0 +1,8 @@
+{
+  "asof": "2026-11-12",
+  "escrow_bb_rail_pct": 58.5,
+  "attest_band_compression_x": 5.7,
+  "claim": "Escrow BB rail at ~58.5% means more than half of BB$ touches unattested escrow. That is Trust urgency, not a side risk. Attestation (~5.7\u00d7 band compression) is a near-term catalyst because it converts the largest BB surface into claimable capture.",
+  "pitch_line": "Half the fee engine sits in unattested escrow \u2014 attest is not hygiene, it is capture certainty.",
+  "read": "Escrow BB = Trust urgency. Exploratory."
+}

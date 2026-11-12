@@ -716,3 +716,8 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 241 / 2026Q1_17 | contest-year _17 live; intents~175×; public+X NOW | history_progress_2026q1_17 |
 | ~720c milestone; private still CRITICAL | insight saturated; public+X sole path | commits_720_milestone_private_still_critical |
 | Foreign/logo rail = anti-capture | dilutes BB$; watch default-rail share | foreign_rail_is_anti_capture |
+| Attach ≠ 50× path | attach 23.6→43 is theater without leakage-close | attach_is_not_the_50x_path |
+| Logo-volume vs capture mutex | primary=capture KPIs; logos=funnel only | logo_volume_capture_mutex |
+| Escrow BB ~58.5% = Trust urgency | attest ~5.7×; not hygiene | escrow_bb_is_trust_urgency |
+| HSP-029 = footnote only | supports Hold timing; do not lead | hsp029_pending_lagged_footnote |
+| Delivery severity CRITICAL | ~52h; private+no-X | delivery_severity_critical |
