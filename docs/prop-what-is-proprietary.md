@@ -99,3 +99,8 @@ Do not lead: AI, npm, ETF, peer-share, L1 actives, CS-as-fee.
 ### Dense-history update
 Fee-engine≠L1 divergence now ~**132×** intents vs ~**0.19×** L1 tx YoY on 179 clusters (`fee_engine_l1_divergence.json`). Overall still **not supported**.
 <!-- /AUTO:DIVERGENCE -->
+
+<!-- AUTO:SWEEP_DEPTH -->
+### Sweep depth (~61h)
+~**528** commits since structural · **193** clusters · ~**408** punch rows · **366** derived JSON. Prop packet ready; **public repo + X** still bind.
+<!-- /AUTO:SWEEP_DEPTH -->
