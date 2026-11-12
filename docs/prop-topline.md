@@ -154,3 +154,6 @@ Prop/dashboard/judge packet ready (~437 commits, 168 clusters preliminary). **Mu
 
 <!-- AUTO:DIALSTACK 2026-11-12 -->
 - Dial sequencing beats volume (mutex+elasticity). Hold=H1b honesty. Default-rail ×2.45 asymmetry = fee proof. ~52h; public+X NOW.
+
+<!-- AUTO:CAT1 2026-11-12 -->
+Catalyst one-slide: public+X → SK+attest+rail → H1b. ~51h.

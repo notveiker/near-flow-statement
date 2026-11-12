@@ -1,0 +1,26 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_submit": 51.0,
+  "commits": 732,
+  "clusters": 244,
+  "proprietary": [
+    "Leakage-as-bridge arithmetic (zero-leak \u2192 ~$74.5M; 50\u00d7 needs ~1.29\u00d7 vol)",
+    "Default/no-ref \u00d72.45 BB asymmetry as fee-engine proof",
+    "Distribution tax 67.5% scoreboard + SK BB 0.0045% of partner fees",
+    "Escrow BB acceleration 17.5\u219258.5% as attest clock",
+    "Dial stack sequencing + mutex + elasticity 3.07\u00d7 vs no-vol wall 42.8%",
+    "\u03c4/AITR capture KPI (~52%) and all-in/capture ~10.6\u00d7 leakage ratio",
+    "Intents = NEAR DEX surface (~98.8%) on cooling L1 (OoM, not pinned \u00d7)",
+    "H1b gate checklist (SK-tax + attest minimum) vs density\u2260gate",
+    "Five-ledgers discipline; capital-light PCI edge vs bonded peers",
+    "Claim-design gap 217\u00d7 vs THOR 16\u00d7 as discretionary underwriting"
+  ],
+  "not_proprietary": [
+    "L1 tx counts",
+    "logo partner volume as success",
+    "AI/ETF/CIF narratives",
+    "more strata",
+    "burn-as-engine"
+  ],
+  "read": "What is proprietary @~51h/732c. Exploratory."
+}

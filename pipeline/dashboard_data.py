@@ -535,6 +535,8 @@ def build() -> dict:
             "entering_18": optional("derived/entering_18_dense.json"),
             "pitch_spine_nums": optional("derived/pitch_spine_numbers_locked.json"),
             "h1b_gates": optional("derived/h1b_flip_gate_checklist.json"),
+            "what_is_prop_now": optional("derived/what_is_proprietary_now.json"),
+            "catalyst_one_slide": optional("derived/catalyst_path_one_slide.json"),
             "risks_compact": optional("derived/risks_compact_bottom.json"),
             "no_vol_wall_elast": optional("derived/no_vol_wall_times_elasticity.json"),
             "commits_730": optional("derived/commits_730_milestone.json"),

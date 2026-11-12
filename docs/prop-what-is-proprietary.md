@@ -176,3 +176,6 @@ Fee-engine≠L1 divergence now ~**132×** intents vs ~**0.19×** L1 tx YoY on 17
 - Intents ≈**98.8%** of NEAR DEX volume — Intents is the chain DEX surface.
 - Intents OK~83.4% = UX risk tail. ETF NRR confirms non-lead. npm≠capture.
 <!-- /AUTO:SWEEP24 -->
+
+<!-- AUTO:NOW 2026-11-12 -->
+See what_is_proprietary_now.json — 10 locked. _12–_17 done. ~51h. PUBLIC+X.
