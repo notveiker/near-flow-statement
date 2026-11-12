@@ -418,3 +418,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Entering _10 dense | _09 through 2026 done; history not submit blocker; repo private | entering_10_dense |
 | Judge one breath | Single-paragraph pitch lock for X/open — leakage→elasticity→opacity→fee≠L1→Hold | judge_one_breath |
 | History 181 / 2025Q1_10 | Denser _10 started — still not supported | history_progress_2025q1_10 |
+| Delivery countdown | ~63h; blockers=public+X; history/strata non-blockers | delivery_countdown |

@@ -1,0 +1,27 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_submit": 63.2,
+  "hours_to_hsp029": 87.2,
+  "prop_ready": true,
+  "history_clusters": 181,
+  "commits_since_structural": 486,
+  "blockers": [
+    {
+      "item": "public_repo",
+      "status": "BLOCKER_PRIVATE",
+      "action": "gh repo edit --visibility public (needs owner)"
+    },
+    {
+      "item": "X_demo_dry_run",
+      "status": "TODO",
+      "action": "rehearse docs/x-demo-talking-points.md + dashboard"
+    }
+  ],
+  "non_blockers": [
+    "history_preliminary",
+    "more_dense_strata",
+    "_10_seals"
+  ],
+  "one_breath_ref": "judge_one_breath.json",
+  "read": "~63.2h to submit. Prop/history OK. Only public repo + X bind. Exploratory ops."
+}
