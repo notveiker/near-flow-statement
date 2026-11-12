@@ -1,0 +1,7 @@
+{
+ "clusters": 150,
+ "last_seal": "2025Q2_06",
+ "commits_approx": 340,
+ "overall": "not_supported_preliminary",
+ "note": "Hit 150 preliminary history clusters. Stopping rule not yet met. Do not claim supported."
+}

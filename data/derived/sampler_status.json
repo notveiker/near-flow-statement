@@ -1,5 +1,8 @@
 {
  "primary_clusters_local": 150,
+ "sample2_clusters_local": 97,
  "last_ingested": "2025Q2_06",
- "overall": "not_supported_preliminary"
+ "overall": "not_supported_preliminary",
+ "commits_since_structural_approx": 340,
+ "note": "Milestone: 150 preliminary clusters through 2025Q2. Still not supported. Judge packet ready."
 }
