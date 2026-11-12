@@ -31,6 +31,7 @@
 | Gap | Number |
 |---|---|
 | Fee ÷ net mint $ | ~0.21× today (~0.48× at HSP-029+stack) |
+| Capture ceiling for 50× | Needs ~19.8 bp (>15.3 gross) at current vol |
 | Rev for 50× at current mcap | ~$96M (~4× today) |
 | Rev for THOR-like 16× | ~$301M (~12× today) |
 | Vol× from $37M stack for 50× | ~2.6× |
