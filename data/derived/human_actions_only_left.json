@@ -1,0 +1,30 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_submit": 56.5,
+  "clusters": 216,
+  "commits": 609,
+  "only_human_actions_left": [
+    {
+      "action": "gh repo edit notveiker/near-flow-statement --visibility public",
+      "why": "judges need public clone",
+      "blocks_submit": true
+    },
+    {
+      "action": "Record X demo from docs/x-demo-talking-points.md (~90s)",
+      "why": "contest requires X dry-run evidence",
+      "blocks_submit": true
+    }
+  ],
+  "agent_cannot": [
+    "flip_github_visibility_without_owner",
+    "post_to_X_as_user"
+  ],
+  "agent_keeps_doing": [
+    "prop_boards",
+    "history_ingest",
+    "dashboard_stamps",
+    "docs_pressure"
+  ],
+  "prop_ready_excl_must_ship": 0.97,
+  "read": "Only two human actions left before submit (~56h): flip public + record X. Agent continues prop/history stamps. Exploratory ops."
+}

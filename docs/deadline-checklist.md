@@ -56,5 +56,5 @@ History/`_10` seals are **not** blockers.
 <!-- /AUTO:RUNBOOK -->
 
 <!-- AUTO:PRESSURE -->
-**Pressure (GREEN · ~58h / 207 clusters / 578 commits):** Prop packet READY. Binding open: **flip repo public** + **record X dry-run**. Do not block on history/`_13`. HSP-029 pending-then-lagged.
+**Pressure (GREEN · ~56h / 216 clusters / 609 commits):** Prop READY. **Only human left:** (1) flip repo public (2) record X dry-run. Agent keeps stamping; history not a blocker.
 <!-- /AUTO:PRESSURE -->

@@ -546,3 +546,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Sweep ~604 identity | Burn materiality; 600+ commits; public+X bind | sweep_604_identity |
 | History 216 / 2025Q4_14 | _14 through 2025 COMPLETE — still not supported | history_progress_2025q4_14 |
 | Dense _14 through 2025 | 216 clusters; prefer public+X | dense_14_through_2025 |
+| Human actions only left | Flip public + record X — agent cannot substitute | human_actions_only_left |
