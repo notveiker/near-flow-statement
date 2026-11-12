@@ -15,7 +15,8 @@
   "ai_agent_narrative_unlabeled",
   "cs_sign_count_as_fee_line",
   "active_accounts",
-  "peerset_share_softening"
+  "peerset_share_softening",
+  "l1_active_rebound"
  ],
  "binding_holds": [
   "escrow_attestation_gap",

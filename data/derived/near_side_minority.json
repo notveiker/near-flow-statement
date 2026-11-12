@@ -1,0 +1,5 @@
+{
+ "near_side_swap_share_pct": 3.5,
+ "cross_chain_implied_pct": 96.5,
+ "note": "Only 3.5% of Explorer swaps are NEAR-side \u2014 Intents is a cross-chain settlement product, not a NEAR DEX wrap. Fee thesis rides CS/bridges/relayers; L1 gas share ~9% understates economic role. Exploratory."
+}

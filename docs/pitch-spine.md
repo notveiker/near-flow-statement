@@ -47,3 +47,7 @@ AI agents, npm downloads, peer-share alone, perps OI, CS signature counts as a f
 ## Close
 
 Leakage/conversion is the bridge; volume is the last mile. Pre-registered F1–F4 in `docs/f1-f4-scorecard.md`. Dashboard Capture shows controllable dials.
+
+## L1 vs Intents
+
+L1 active accounts **−77% YoY** while Intents fees print ~11× L1 fees and ~99% of NEAR DEX. Only 3.5% of Explorer swaps are NEAR-side. Do not pitch an L1 activity rebound.

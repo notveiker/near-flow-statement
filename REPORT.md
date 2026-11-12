@@ -123,6 +123,11 @@ HSP-029 cuts the mint fees must cover; HSP-007 (title-level) claims emissions fo
 
 No-ref and Trust dominate buyback-fee dollars per unit volume; LI.FI is ~10% of 1Click vol at only 2.8 bp (density 0.69×). H1b still covers only ~20–25% of streams/inflows.
 
+
+### L1 attention vs Intents fee
+
+Active accounts −77% YoY while Intents fees ~11× L1 fee print; NEAR-side swaps only 3.5%. The investment object is Intents capture, not L1 activity.
+
 ## Risks and context
 
 - **Volume is binding.** Attach/mix/leakage dials raise run-rate toward ~$37–45M; even full-venue AITR is ~$46M — 50× still needs ~2–4× volume (`data/derived/attach_ceiling_50x.json`). Full capture of 15.3 gross bp + HSP-029 ≈ 1× mint; 50× then needs ~1.3× vol (`full_capture_extreme.json`).

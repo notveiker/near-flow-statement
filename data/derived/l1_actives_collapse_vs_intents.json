@@ -1,0 +1,8 @@
+{
+ "active_accounts_30d_k": 61.6,
+ "active_accounts_30d_yoy_pct": -77.1,
+ "intents_rev_vs_l1fees_30d_x": 11.2,
+ "explorer_near_side_swap_share_pct": 3.5,
+ "intents_share_near_dex_note": "~99% of NEAR DEX 30d is Intents (prior punch)",
+ "read": "L1 actives \u221277% YoY while Intents fees ~11\u00d7 L1 fee print and ~99% of NEAR DEX \u2014 base-layer attention collapse coexists with Intents fee dominance. Thesis is Intents capture, not L1 activity rebound. Exploratory."
+}

@@ -189,3 +189,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Revwallets ≈ Llama | Revwallets reconcile **~100.9%** to Llama protocol rev — fee print is wallet-real | revwallet_llama_reconcile |
 | Zodl settlement 100% | Zodl 9/9 listed fees paid on-chain — leak is policy split not rails | zodl_settlement_perfect |
 | Actives ≠ fee | L1 active accounts are attention; Intents fee density is local — do not lead with actives | actives_not_fee |
+| L1 actives collapse vs Intents | Actives **−77% YoY** while Intents fees ~11× L1 — thesis is Intents capture not L1 rebound | l1_actives_collapse_vs_intents |
+| NEAR-side minority | Only **3.5%** Explorer swaps are NEAR-side — product is cross-chain settlement | near_side_minority |
