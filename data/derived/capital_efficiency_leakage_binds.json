@@ -1,56 +1,10 @@
 {
   "asof": "2026-11-12",
-  "capital_efficiency_keys": [
-    "asof_utc",
-    "note",
-    "sources",
-    "intents",
-    "peer_volumes_30d_b",
-    "vault_bond_docs",
-    "conceptual_thor_matched_stack",
-    "inventory_risk_bearer",
-    "token_value_link",
-    "when_capital_light",
-    "gaps"
-  ],
-  "pci_found": null,
-  "turnover_found": null,
-  "snapshot": {
-    "note": "see capital_efficiency.json"
-  },
-  "implication": "Capital-efficiency twin confirms Intents is inventory-light vs bonded peers \u2014 binding constraint remains leakage/capture, not PCI",
-  "read": "Capital-efficiency: Intents PCI low / capital-light vs bonded peer stack \u2014 leakage binds. Exploratory.",
-  "intents_block_keys": [
-    "inventory_usd_m",
-    "vol_30d_b",
-    "vol_30d_usd_m",
-    "turnover_x_per_30d",
-    "days_of_volume_in_inventory",
-    "implied_daily_vol_usd_m",
-    "pci_30d",
-    "pci_usd_capital_per_usd_volume",
-    "pci_note",
-    "month_start_stock_usd_m",
-    "census_flow_usd_m_per_day"
-  ],
-  "intents_block": {
-    "inventory_usd_m": 229.2,
-    "vol_30d_b": 4.0,
-    "vol_30d_usd_m": 4000.0,
-    "turnover_x_per_30d": 17.4,
-    "days_of_volume_in_inventory": 1.7,
-    "implied_daily_vol_usd_m": 133.3,
-    "pci_30d": 0.0573,
-    "pci_usd_capital_per_usd_volume": 0.0573,
-    "pci_note": "inventory / 30d volume; settlement float not farm TVL; most inventory non-NEAR",
-    "month_start_stock_usd_m": {
-      "2025-01": 0.5,
-      "2026-11": 179.8
-    },
-    "census_flow_usd_m_per_day": {
-      "deposits": 79.7,
-      "withdrawals": 74.8,
-      "note": "Hours-long census window; venue-speed turns"
-    }
-  }
+  "pci_30d": 0.0573,
+  "turnover_x_per_30d": 17.4,
+  "days_of_volume_in_inventory": 1.7,
+  "inventory_usd_m": 229.2,
+  "annualised_leakage_m": 50.2,
+  "implication": "Intents PCI~0.057 / ~1.7d inventory \u2014 capital-light fee engine; binding constraint is ~$50M leakage capture, not working capital or bonds",
+  "read": "PCI~0.0573; turnover~17.4\u00d7/30d (~1.7d). Leakage binds. Exploratory."
 }

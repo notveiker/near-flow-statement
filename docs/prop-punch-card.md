@@ -623,3 +623,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Mix-shift = arithmetic not forecast | Mix-shift arithmetic on vol $4.0B / τ 4.98bp — scenario sizing only. Exploratory. | mix_shift_is_arithmetic_not_forecast |
 | F1–F4 on submit day | Human clears F1/F2; agent prep only | f1_f4_on_submit_day |
 | Capital-efficiency ⇒ leakage binds | PCI light; not WC constrained | capital_efficiency_leakage_binds |
+| PCI capital-light ⇒ leakage binds | PCI~0.0573; turnover~17.4×/30d (~1.7d). Leakage binds. Exploratory. | pci_capital_light_leakage_binds |
+| 640+ commits milestone | 640c/225cl — delivery still binds | commits_640_milestone |

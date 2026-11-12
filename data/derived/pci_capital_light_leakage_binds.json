@@ -1,0 +1,12 @@
+{
+  "asof": "2026-11-12",
+  "inventory_usd_m": 229.2,
+  "vol_30d_b": 4.0,
+  "turnover_x_per_30d": 17.4,
+  "days_of_volume_in_inventory": 1.7,
+  "pci_30d": 0.0573,
+  "leakage_m": 50.2,
+  "sk_tax_rr_m": 10.2,
+  "implication": "PCI~0.057 with ~1.7d inventory \u2014 capital-light; $50M leakage \u226b working-capital story; do not pitch bond/capital raises as fee catalysts",
+  "read": "PCI~0.0573; turnover~17.4\u00d7/30d (~1.7d). Leakage binds. Exploratory."
+}

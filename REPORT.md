@@ -141,9 +141,9 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~639 commits / 225 clusters / 494 derived / ~55h.** Judge packet ~97% excl must-ship.
-- Fee≠L1 OoM holds; leakage dial option; commercial≻volume; fee print ≠ escrow trust.
-- **Repo PRIVATE.** Human-only: public + X. Hold until H1b. F1–F4 on 14 Nov.
+- **~640 commits / 225 clusters / ~55h.** PCI~0.057 / ~1.7d inventory — capital-light; leakage binds.
+- Fee≠L1 OoM; commercial≻volume; fee print ≠ escrow trust; repo **PRIVATE**.
+- **Human-only:** public + X. Hold until H1b. F1–F4 on 14 Nov.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context
