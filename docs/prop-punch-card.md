@@ -347,3 +347,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | governance catalysts | Titles/engagement only from committed governance snapshot. Full proposal bodies Gap unless fetched. | governance_catalysts |
 | path to 50x | Arithmetic paths toward ~50× on current mcap; not forecasts. Capture levers alone (~attach/mix) get to ~0.4× of the 50× revenue ne | path_to_50x |
 | r90 vs run rate | Frozen rating uses ~$4.84M trailing-90d revenue vs ~$24.2M 30d annualised run-rate — the multiple/growth math is on the accelerati | r90_vs_run_rate |
+| History 163 through 2026Q3_07 | Contest-year dense nearly complete — still not supported | history_progress_2026q3_07 |

@@ -1,13 +1,14 @@
 {
- "commits_since_structural": 404,
- "clusters_preliminary": 162,
- "hours_to_submit": 66.9,
+ "commits_since_structural": 409,
+ "clusters_preliminary": 163,
+ "hours_to_submit": 66.7,
  "stratum": "_07_dense",
- "last_ingested": "2026Q2_07",
+ "last_ingested": "2026Q3_07",
+ "next": "2026Q4_07",
  "judge_ready": true,
  "must_ship": [
   "public_repo",
   "X_demo_dry_run"
  ],
- "note": "~404 commits; 162 clusters through 2026Q2_07; ~66.9h; must-ship public repo + X."
+ "note": "~409 commits; 163 clusters through 2026Q3_07; Q4_07 sealing; ~66.7h to submit."
 }
