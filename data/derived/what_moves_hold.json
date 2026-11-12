@@ -1,0 +1,22 @@
+{
+ "current_stance": "Hold until H1b",
+ "moves_to_buy_per_frozen_rule": [
+  "H1b_labels_past_50pct_top100"
+ ],
+ "moves_capture_quality_without_stance_change": [
+  "sk_tax_ledger_renegotiation",
+  "escrow_stream_attestation",
+  "cif_rate_card_publish",
+  "appfees_conversion_lift",
+  "adr029_residual_defense"
+ ],
+ "does_not_move_stance": [
+  "peer_share",
+  "volume_alone",
+  "AI_narrative",
+  "npm",
+  "ETF_AUM",
+  "L1_actives"
+ ],
+ "note": "Frozen rule: Hold\u2192Buy needs H1b. Capture dials improve the object under Hold. Exploratory."
+}
