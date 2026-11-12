@@ -105,6 +105,7 @@
 | 99 | Aurora widgets (census) | ~9.8% of tagged referrals | Widget distribution ≠ Aurora TVL residual |
 | 100 | Punch-card century | 99+ proprietary rows | Hyper sweep scoreboard for judges |
 | 101 | Distribution surface map (census) | unknown > tg > swapkit > lifi | Live tags ≠ fee map; two lenses |
+| 102 | Census vs Explorer lens | SK 15% count vs 38% vol; unknown 33% vs no-ref 19% | Count≠notional; whale SK flow |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.
 

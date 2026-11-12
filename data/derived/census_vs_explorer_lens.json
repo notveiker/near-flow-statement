@@ -1,0 +1,7 @@
+{
+ "census_swapkit_tagged_share_pct": 15.1,
+ "explorer_swapkit_vol_share_pct": 38.2,
+ "census_unknown_share_pct": 33.2,
+ "explorer_noref_vol_share_pct": 18.7,
+ "note": "Census referral counts \u2260 Explorer vol shares (hours vs 30d; count vs notional). SK looks smaller by count than by volume \u2014 whale SK flow. Unknown/no-ref looks larger by count. Two lenses, not a contradiction. Exploratory."
+}
