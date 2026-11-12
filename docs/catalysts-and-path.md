@@ -297,3 +297,11 @@ Chain Signatures sits under Intents execution (execute ≫ respond ≫ sign) —
 - **Trust SK→direct** nests under the Ledger/SK conversation (~17% of SK-tax dial).
 - **Price-heavy:** USD fee ~619% vs NEAR-unit ~71% (~8.7×) — check NEAR-unit.
 <!-- /AUTO:WHALE_DESK -->
+
+<!-- AUTO:ATTACH_MOM -->
+### Attach momentum (exploratory)
+
+- Attach **23.6%→43.0%** (+**19.4** pp across three 30d blocks) **on a volume cool**.
+- ~**17.0** pp remains to 60% — roughly the same distance already traveled → ~**$7.9M**/yr RR uplift at AITR.
+- Lives under the ~**42.8%** no-vol coverage wall; still not 50× alone.
+<!-- /AUTO:ATTACH_MOM -->

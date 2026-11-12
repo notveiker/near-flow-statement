@@ -485,3 +485,8 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Capital-light × leakage | PCI~0.0573; WC not binding — terms bind ~$50.2M prize | capital_light_vs_leakage_constraint |
 | Trust nested under SK | Trust SK→direct ~$1.72M ≈ 17% of SK-tax | trust_nested_under_sk |
 | Price-heavy fee print | USD~619% vs NEAR-unit~71% (~8.7×) — check NEAR-unit vs G_req | price_heavy_fee_print |
+| Sweep ~562 identity | ~562 commits / 203 clusters / 396 derived; public+X bind | sweep_562_identity |
+| Judge packet completeness | 0.96 excl must-ship; open public+X recorded | judge_packet_completeness |
+| Attach momentum | 23.6%→43.0% (+19.4pp); ~17.0pp to 60% = similar distance again | attach_momentum_board |
+| Sweep ~562 identity | ~562 commits / 203 clusters; public+X bind | sweep_562_identity |
+| Judge packet completeness | 0.96 excl must-ship; open public+X recorded | judge_packet_completeness |

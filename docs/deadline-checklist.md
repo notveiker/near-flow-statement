@@ -54,3 +54,7 @@ Hours≈65: blockers = public_repo + X_demo_dry_run. HSP-029 = pending-not-live 
 
 History/`_10` seals are **not** blockers.
 <!-- /AUTO:RUNBOOK -->
+
+<!-- AUTO:PRESSURE -->
+**Pressure (~59h / 203 clusters / 562 commits):** Prop packet READY. Binding open: **flip repo public** + **record X dry-run**. History denser `_12` not a blocker. HSP-029 stays pending-then-lagged at submit.
+<!-- /AUTO:PRESSURE -->

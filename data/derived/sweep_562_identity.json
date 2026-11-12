@@ -1,0 +1,27 @@
+{
+  "asof": "2026-11-12",
+  "commits": 562,
+  "clusters": 203,
+  "derived_json": 396,
+  "punch_rows_approx": 453,
+  "hours_to_submit": 58.9,
+  "repo_private": true,
+  "x_dry_run_done": false,
+  "prop_ready_excl_must_ship": 0.96,
+  "locked_lines": [
+    "capture_pp_3.07x_vol",
+    "sk_tax_42.5_vol_pp",
+    "coverage_wall_42.8",
+    "double_opacity",
+    "whale_desk_sk_tax",
+    "fidelity_terms_not_ar",
+    "thor_two_step",
+    "hold_until_h1b",
+    "hsp_pending_then_lagged"
+  ],
+  "binding": [
+    "public_repo",
+    "x_demo_dry_run"
+  ],
+  "read": "Sweep ~562 commits / 203 clusters / 396 derived / ~453 punch. Prop locked; public+X bind (~59h). Exploratory."
+}

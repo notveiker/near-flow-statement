@@ -1,16 +1,9 @@
 {
   "asof": "2026-11-12",
-  "commits": 555,
-  "clusters": 201,
-  "derived_json": 381,
-  "hours_to_submit": 59.2,
-  "new_boards": [
-    "coverage_wall_no_vol",
-    "opacity_x_elasticity_compound",
-    "submit_window_asymmetry",
-    "fidelity_implies_commercial_leakage",
-    "three_scoreboards_tension",
-    "path50x_residual_after_stack"
-  ],
-  "read": "Sweep depth ~555 commits / 201 clusters / 381 derived. Six new compound boards this pass. Exploratory."
+  "commits": 562,
+  "clusters": 203,
+  "derived_json": 396,
+  "punch_table_rows_approx": 453,
+  "hours_to_submit": 58.9,
+  "read": "Sweep ~562 commits / 203 clusters / 396 derived / ~453 punch. Prop locked; public+X bind (~59h). Exploratory."
 }

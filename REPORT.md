@@ -141,10 +141,10 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~561 commits / 203 clusters.** `_12` toward Q4; overall still **not supported**.
-- **Whale desk=SK-tax:** 3.4% swaps=77.1% vol; tax pool~$40.9M.
-- **Peerset≪SK-tax** · **capital-light×leakage** · **Trust nests under SK** · **price-heavy ~8.7×**.
-- **LIVE:** public repo + X dry-run (~59h). Hold until H1b.
+- **~562 commits / 203 clusters / ~399 derived.** `_12` sealing Q4; overall still **not supported**.
+- **Attach momentum:** 23.6%→43.0% (+19.4pp) on a cool; ~17.0pp to 60%.
+- **Whale desk=SK-tax** · double opacity · coverage wall~42.8% · quality-on-cool proof.
+- **Judge packet ~0.96** excl must-ship. LIVE: **public + X** (~59h). Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context

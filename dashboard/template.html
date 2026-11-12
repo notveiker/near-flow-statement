@@ -620,6 +620,10 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (ClL) bits.push(`Capital-light (PCI~${ClL.pci}): WC not binding — leakage terms bind.`);
     if (Tn) bits.push(`Trust SK→direct ~$${Tn.trust_sk_to_direct_rr_m}M nests under SK-tax (~${(100*Tn.trust_vs_sk_tax_x).toFixed(0)}%).`);
     if (PrH) bits.push(`Price-heavy print: USD~${PrH.usd_fee_growth_pct}% vs NEAR-unit~${PrH.near_unit_growth_pct}% (~${PrH.usd_vs_near_x}×).`);
+    const Am = D.catalysts && D.catalysts.attach_momentum;
+    const Jp = D.catalysts && D.catalysts.judge_packet;
+    if (Am) bits.push(`Attach momentum: ${Am.b1_attach_pct}%→${Am.b3_attach_pct}% (+${Am.delta_pp_three_blocks}pp) on a cool; ~${Am.pp_remaining_to_60}pp to 60% (~$${Am.rr_uplift_43_to_60_m}M RR).`);
+    if (Jp) bits.push(`Judge packet ~${Jp.score_excl_must_ship} excl must-ship — open public+X recorded.`);
     const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);

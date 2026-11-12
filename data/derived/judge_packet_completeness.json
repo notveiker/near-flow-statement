@@ -1,0 +1,26 @@
+{
+  "asof": "2026-11-12",
+  "artifacts": {
+    "pitch_spine": true,
+    "prop_topline": true,
+    "one_breath": true,
+    "punch_card": true,
+    "what_is_proprietary": true,
+    "catalysts_and_path": true,
+    "dashboard": true,
+    "report": true,
+    "f1_f4_scorecard": true,
+    "submit_packet": true,
+    "submit_day_runbook": true,
+    "x_demo_script": true,
+    "x_demo_recorded": false,
+    "public_repo": false
+  },
+  "score_excl_must_ship": 0.96,
+  "must_ship_open": [
+    "public_repo",
+    "x_demo_recorded"
+  ],
+  "hours_to_submit": 58.9,
+  "read": "Judge packet artifacts READY except public_repo + X recording. ~59h. Exploratory."
+}

@@ -1,0 +1,16 @@
+{
+  "asof": "2026-11-12",
+  "b1_attach_pct": 23.6,
+  "b3_attach_pct": 43.0,
+  "delta_pp_three_blocks": 19.4,
+  "pp_remaining_to_60": 17.0,
+  "distance_ratio_done_vs_to60": 1.14,
+  "aitr_bp": 9.49,
+  "rr_at_43_m": 24.2,
+  "rr_at_60_m": 32.1,
+  "rr_uplift_43_to_60_m": 7.9,
+  "coverage_wall_pct": 42.8,
+  "quality_on_cool_vol_mom_pct": -12.3,
+  "implication": "Already traveled ~19.4pp attach in three blocks; ~17pp more to 60% is a similar distance \u2014 and it happened on a cool. Attach path is live momentum, not a fantasy ladder.",
+  "read": "Attach momentum: 23.6%\u219243.0% (+19.4pp / 3 blocks) on a vol cool; ~17.0pp remains to 60% (~$7.9M RR uplift). Same distance again \u2014 measurable NEAR-side path under the ~42.8% coverage wall. Exploratory."
+}

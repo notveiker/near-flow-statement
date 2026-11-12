@@ -351,6 +351,8 @@ def build() -> dict:
             "capital_vs_leakage": optional("derived/capital_light_vs_leakage_constraint.json"),
             "trust_nested": optional("derived/trust_nested_under_sk.json"),
             "price_heavy": optional("derived/price_heavy_fee_print.json"),
+            "attach_momentum": optional("derived/attach_momentum_board.json"),
+            "judge_packet": optional("derived/judge_packet_completeness.json"),
         },
         "repro": reproducibility(),
     }
