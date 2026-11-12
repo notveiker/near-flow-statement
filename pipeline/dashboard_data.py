@@ -366,6 +366,7 @@ def build() -> dict:
             "attest_not_tau": optional("derived/attest_is_underwriting_not_tau.json"),
             "cif_gap": optional("derived/cif_gap_do_not_lead.json"),
             "two_bridges_now": optional("derived/two_bridges_now.json"),
+            "peerset_gap": optional("derived/peerset_gross_net_gap.json"),
             "diminishing_strata": optional("derived/diminishing_strata_vs_delivery.json"),
             "solver_rent_ledger": optional("derived/solver_rent_vs_capture_ledger.json"),
             "relayer_ops": optional("derived/relayer_ops_not_fee_dial.json"),

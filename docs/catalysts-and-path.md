@@ -366,3 +366,10 @@ Chain Signatures sits under Intents execution (execute ≫ respond ≫ sign) —
 - Parallel to SK-tax capture (~**$10.2M**) vs attest trust (~**$8.4M**).
 - CIF 1bp proxy ~**$3.31M** — rate card **Gap**; do not lead.
 <!-- /AUTO:ATTEST_CIF -->
+
+<!-- AUTO:PEER_GAP -->
+### Peerset gross−net gap (exploratory)
+
+- Gross ~**55.7%** vs net ~**38.6%** (gap **17.1** pp) — leadership narrative overstates exclusivity.
+- Softened **-6.4** pp vs 365d. Capture dials remain the prize.
+<!-- /AUTO:PEER_GAP -->

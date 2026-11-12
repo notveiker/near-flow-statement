@@ -649,6 +649,8 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     const Cg = D.catalysts && D.catalysts.cif_gap;
     if (AnT) bits.push(`Attest=underwriting not τ: band compression; escrow BB~${AnT.escrow_bb_share_pct}% — parallel to SK-tax.`);
     if (Cg) bits.push(`CIF Gap: 1bp proxy~$${Cg.cif_1bp_rr_m}M — do not lead; lead SK-tax+attest.`);
+    const Pg = D.catalysts && D.catalysts.peerset_gap;
+    if (Pg) bits.push(`Peerset gross~${Pg.gross_30d_pct}% vs net~${Pg.net_30d_pct}% (gap ${Pg.gross_vs_net_gap_pp}pp) — leadership overstates exclusivity.`);
     if (Ds) bits.push(`Diminishing strata: marginal seals low EV vs ~${Ds.hours_to_submit}h public+X clock.`);
     const SrL = D.catalysts && D.catalysts.solver_rent_ledger;
     const Ro = D.catalysts && D.catalysts.relayer_ops;
