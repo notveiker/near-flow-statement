@@ -1,0 +1,6 @@
+{
+ "rating_r90_usd_m": 4.84,
+ "run_rate_30d_annualised_m": 24.2,
+ "r90_vs_run_rate_x": 0.2,
+ "note": "Frozen rating uses ~$4.84M trailing-90d revenue vs ~$24.2M 30d annualised run-rate \u2014 the multiple/growth math is on the accelerating window. Exploratory."
+}
