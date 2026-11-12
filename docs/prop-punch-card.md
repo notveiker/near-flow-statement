@@ -445,3 +445,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 192 / 2025Q4_11 | _11 through 2025 complete — still not supported | history_progress_2025q4_11 |
 | History 193 / 2026Q1_11 | Contest-year _11 filling — still not supported | history_progress_2026q1_11 |
 | History 194 / 2026Q2_11 | Contest-year _11 continuing — still not supported | history_progress_2026q2_11 |
+| History 195 / 2026Q3_11 | Q4_11 last of contest-year _11 — still not supported | history_progress_2026q3_11 |
+| Sweep ~530 identity | Prop ready 0.95 excl must-ship; public+X bind | sweep_530_identity |

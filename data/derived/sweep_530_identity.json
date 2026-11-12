@@ -1,0 +1,12 @@
+{
+  "asof": "2026-11-12",
+  "commits": 533,
+  "clusters": 195,
+  "hours": 60.6,
+  "headline": "Distribution owns margin; capture-pp\u22483\u00d7vol; opacity accelerating; fee\u2260L1; Hold until H1b; repo still private",
+  "must_ship": [
+    "public_repo",
+    "X_demo_dry_run"
+  ],
+  "submit_readiness_excl_must_ship": 0.95
+}
