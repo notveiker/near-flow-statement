@@ -1,11 +1,11 @@
 {
-  "hours_to_submit": 65.0,
+  "hours_to_submit": 64.2,
   "score": {
     "prop_docs": 1.0,
     "dashboard": 1.0,
     "derived_coverage": 1.0,
     "punch_depth": 1.0,
-    "history_preliminary": 0.55,
+    "history_preliminary": 0.6,
     "public_repo": 0.0,
     "x_demo_dry_run": 0.0
   },
@@ -13,8 +13,8 @@
     "public_repo",
     "X_demo_dry_run"
   ],
-  "clusters": 172,
-  "commits": 454,
-  "overall_excl_must_ship": 0.91,
-  "note": "Readiness: prop/dashboard/punch strong; history denser (172); blockers public_repo + X. ~65.0h. Exploratory ops score."
+  "clusters": 176,
+  "commits": 465,
+  "overall_excl_must_ship": 0.92,
+  "note": "Prop/dashboard/punch strong; history denser (176); blockers public_repo+X. ~64.2h. Exploratory."
 }

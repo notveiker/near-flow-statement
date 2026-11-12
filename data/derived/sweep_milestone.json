@@ -1,14 +1,14 @@
 {
-  "commits_since_structural": 463,
-  "clusters_preliminary": 175,
-  "hours_to_submit": 64.3,
+  "commits_since_structural": 465,
+  "clusters_preliminary": 176,
+  "hours_to_submit": 64.2,
   "stratum": "_09_dense",
-  "last_ingested": "2025Q3_09",
-  "next": "2025Q4_09",
+  "last_ingested": "2025Q4_09",
+  "next": "2026Q1_09",
   "judge_ready": true,
   "must_ship": [
     "public_repo",
     "X_demo_dry_run"
   ],
-  "note": "~463 commits; 175 clusters; opacity-accelerating + ETF-immaterial + capital-light + capture-insufficient shipped; ~64.3h."
+  "note": "~465 commits; 176 clusters; _09 through 2025 done; contest-year 2026Q1_09 sealing; ~64.2h; must-ship public+X."
 }
