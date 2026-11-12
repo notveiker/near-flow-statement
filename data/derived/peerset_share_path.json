@@ -1,0 +1,6 @@
+{
+ "share_today_pct": 55.7,
+ "share_at_2x_intents_peers_flat_pct": 71.6,
+ "share_at_4x_intents_peers_flat_pct": 83.4,
+ "note": "Peerset share arithmetic if Intents volume scales and peers stay flat. 4\u00d7 Intents (the 50\u00d7 volume path at flat take) \u2192 ~84% peerset share. Share leadership is not the scarce resource \u2014 capture is. Exploratory."
+}

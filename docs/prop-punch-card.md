@@ -72,5 +72,6 @@
 | 66 | Leakage pool size | ~$50M/yr non-NEAR claims on ~$74M gross | Commercial prize if capture share rises |
 | 67 | Leakage→60% then volume | ~$45M RR; still ~2.2× vol for 50× | Renegotiation necessary not sufficient |
 | 68 | Capture ceiling vs 50× | Needs ~19.8 bp captured (>15.3 gross) at current vol | Capture-share alone cannot hit 50× |
+| 69 | Peerset share at 4× Intents vol | ~84% if peers flat | Share leadership ≠ scarce resource; capture is |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.
