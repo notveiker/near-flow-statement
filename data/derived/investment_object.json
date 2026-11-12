@@ -1,52 +1,31 @@
 {
- "investment_object": "range_with_policy_and_partner_risk",
- "not": "closed_fee_to_scarcity_loop",
- "score_order": [
-  "attach",
-  "mix",
-  "attestation",
-  "HSP-029",
-  "volume"
- ],
- "binding": "volume_after_leakage_bridge",
- "rating": "Hold_until_H1b",
- "headline": "Distribution owns the margin; leakage is the bridge; volume is the last mile; quality rose on a cooling print.",
- "note": "From prop-gaps + pitch_sequence. Exploratory.",
- "quality_on_cool": true,
- "vol_cooling_mom_pct": -12.3,
- "controllable_bridge": "sk_tax_25pct_then_volume",
- "sk_tax_25pct_rr_m": 10.2,
- "whale_10pp_rr_m": 0.98,
- "do_not_lead": [
-  "ai_agents",
-  "npm",
-  "peer_share_alone"
- ],
- "stance": "Hold until H1b",
- "what_moves_tau": [
-  "sk_tax",
-  "conversion",
-  "whale_attach",
-  "mix",
-  "hsp029"
- ],
- "what_does_not": [
-  "perps",
-  "npm",
-  "ai_unlabeled",
-  "cs_as_fee"
- ],
- "issuance_tension": "hsp007_emissions_claim_vs_hsp029",
- "provenance_stack": "escrow_majority_unexplained_majority_h1b_minority",
- "one_liner": "Intents fee engine owned by distribution; leakage/conversion dials beat volume at the margin; Hold until H1b closes provenance.",
+ "one_liner": "Intents fee engine owned by distribution; two bridges (SK-tax + attest) before volume; Hold until H1b.",
  "lead_catalysts": [
   "sk_tax_renegotiation",
+  "attest_escrow",
   "appfees_conversion",
   "trust_template",
   "mix_nearcom_wallet_real"
  ],
  "path_50x": "full_gross_plus_hsp_then_1.3x_vol",
+ "three_ten_m_magnitudes": [
+  "sk_tax_10.2",
+  "attest_8.4",
+  "hsp007_11.8_claim_gap"
+ ],
+ "do_not_lead": [
+  "ai",
+  "npm",
+  "etf",
+  "peer_share",
+  "l1_actives",
+  "cs_as_fee"
+ ],
+ "stance": "Hold until H1b",
+ "hsp029": "pending_not_live",
  "falsifiers": "docs/f1-f4-scorecard.md",
  "spine": "docs/pitch-spine.md",
- "clusters_preliminary": 144
+ "submit": "docs/submit-packet.md",
+ "clusters_preliminary": 146,
+ "controllable_bridge": "sk_tax_and_attest_then_volume"
 }
