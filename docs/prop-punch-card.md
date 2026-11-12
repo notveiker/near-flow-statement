@@ -536,3 +536,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Entering _14 dense | Prefer public+X over more seals; fee≠L1 OoM holds | entering_14_dense |
 | Locked pitch lines | 13 lines ready for judges; public+X bind | locked_pitch_lines |
 | DIC buffer ≠ scarcity | DIC~24.8d / half-life~60.5d — held≠burned; ≠ coverage wall | dic_buffer_not_scarcity |
+| History 213 / 2025Q1_14 | Denser _14 started — still not supported | history_progress_2025q1_14 |
+| Sweep ~596 identity | DIC≠scarcity; locked pitch; public+X bind | sweep_596_identity |
