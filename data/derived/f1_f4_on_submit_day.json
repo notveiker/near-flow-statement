@@ -1,25 +1,11 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 54.7,
-  "resolve_on": "2026-11-14",
-  "items": [
-    {
-      "id": "F1",
-      "what": "public_repo_live"
-    },
-    {
-      "id": "F2",
-      "what": "x_demo_posted"
-    },
-    {
-      "id": "F3",
-      "what": "submit_form"
-    },
-    {
-      "id": "F4",
-      "what": "dashboard_link_works"
-    }
-  ],
-  "implication": "F1\u2013F4 resolve on submit day \u2014 agent cannot clear F1/F2; prep packet only",
-  "read": "F1\u2013F4 on 14 Nov; ~55h. Human clears F1/F2. Exploratory."
+  "hours_to_submit": 51.3,
+  "commits": 726,
+  "clusters": 243,
+  "F1": "Leakage is the bridge (~$50M; zero-leak \u2192 ~$74.5M; 50\u00d7 needs ~1.29\u00d7 vol)",
+  "F2": "Fee\u2260L1: Intents ~168\u00d7 (OoM; series [175, 175, 175, 175, 168]) vs L1 ~0.22\u00d7; Intents\u224899% DEX",
+  "F3": "Dials: SK-tax \u2192 Ledger \u2192 default-rail (\u00d72.45) \u2192 attest escrow (17.5\u219258.5% BB); dist tax 67.5% scoreboard",
+  "F4": "Hold until H1b; history overall not supported; MUST: public repo + X demo",
+  "read": "F1\u2013F4 submit-day @~51h. Exploratory."
 }

@@ -1,113 +1,45 @@
 {
   "asof": "2026-11-12",
-  "series": [
-    {
-      "clusters": 201,
-      "intents_x": 189.12
-    },
-    {
-      "clusters": 204,
-      "intents_x": 181.15
-    },
-    {
-      "clusters": 205,
-      "intents_x": 147.1856
-    },
-    {
-      "clusters": 206,
-      "intents_x": 147.1856
-    },
-    {
-      "clusters": 207,
-      "intents_x": 147.1856
-    },
-    {
-      "clusters": 209,
-      "intents_x": 147.1856
-    },
-    {
-      "clusters": 213,
-      "intents_x": 158.2317
-    },
-    {
-      "clusters": 219,
-      "intents_x": 170.0345
-    },
-    {
-      "clusters": 220,
-      "intents_x": 170.0345
-    },
-    {
-      "clusters": 221,
-      "intents_x": 182.1798
-    },
-    {
-      "clusters": 223,
-      "intents_x": 182.1798
-    },
-    {
-      "clusters": 224,
-      "intents_x": 182.1798
-    },
-    {
-      "clusters": 225,
-      "intents_x": 182.1798
-    },
-    {
-      "clusters": 226,
-      "intents_x": 182.1798
-    },
-    {
-      "clusters": 227,
-      "intents_x": 180.3318
-    },
-    {
-      "clusters": 228,
-      "intents_x": 180.3318
-    },
-    {
-      "clusters": 229,
-      "intents_x": 192.3539
-    },
-    {
-      "clusters": 230,
-      "intents_x": 192.3539
-    },
-    {
-      "clusters": 231,
-      "intents_x": 192.3539
-    },
-    {
-      "clusters": 232,
-      "intents_x": 192.3539
-    },
-    {
-      "clusters": 233,
-      "intents_x": 192.3539
-    },
-    {
-      "clusters": 234,
-      "intents_x": 192.3539
-    },
-    {
-      "clusters": 235,
-      "intents_x": 201.695
-    },
-    {
-      "clusters": 236,
-      "intents_x": 201.695
-    },
-    {
-      "clusters": 237,
-      "intents_x": 175.3371
-    }
+  "hours_to_submit": 51.3,
+  "clusters": 243,
+  "commits": 726,
+  "series_rounded": [
+    189,
+    181,
+    147,
+    147,
+    147,
+    147,
+    158,
+    170,
+    170,
+    182,
+    182,
+    182,
+    182,
+    182,
+    180,
+    180,
+    192,
+    192,
+    192,
+    192,
+    192,
+    192,
+    202,
+    202,
+    175,
+    175,
+    175,
+    175,
+    175,
+    175,
+    168
   ],
-  "latest_intents_x": 175.3371,
-  "latest_clusters": 237,
-  "min_intents_x": 147.1856,
-  "max_intents_x": 201.695,
-  "always_above_100": true,
-  "l1_yoy_tx_x": 0.2065,
-  "implication": "Intents\u00d7 drifted to ~175 under _17 (range 147\u2013202) \u2014 still always \u226b100\u00d7; never pin the multiple",
-  "read": "Drift [189, 181, 147, 147, 147, 147, 158, 170, 170, 182, 182, 182, 182, 182, 180, 180, 192, 192, 192, 192, 192, 192, 202, 202, 175] \u2014 always OoM. Exploratory."
+  "latest_x": 167.7896,
+  "min_x": 147.1856,
+  "max_x": 201.695,
+  "floor_above_100x": true,
+  "claim": "Intents\u00d7 series [189, 181, 147, 147, 147, 147, 158, 170, 170, 182, 182, 182, 182, 182, 180, 180, 192, 192, 192, 192, 192, 192, 202, 202, 175, 175, 175, 175, 175, 175, 168] under densification \u2014 min still \u226b100\u00d7. Pitch order-of-magnitude, never a pinned multiple. Latest ~168\u00d7 at 243 clusters.",
+  "read": "Intents\u00d7 always OoM @~51h. Exploratory."
 }

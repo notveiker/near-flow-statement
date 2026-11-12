@@ -530,6 +530,8 @@ def build() -> dict:
             "sk_hhi_feature": optional("derived/sk_hhi_is_tax_leverage_feature.json"),
             "allin_leak_ratio": optional("derived/all_in_over_capture_is_leakage_ratio.json"),
             "dist_tax_escrow_urg": optional("derived/dist_tax_times_escrow_accel_urgency.json"),
+            "dense_17_near": optional("derived/dense_17_near_complete.json"),
+            "risks_compact": optional("derived/risks_compact_bottom.json"),
         },
         "repro": reproducibility(),
     }

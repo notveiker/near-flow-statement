@@ -1,0 +1,17 @@
+{
+  "asof": "2026-11-12",
+  "clusters": 243,
+  "commits": 726,
+  "hours_to_submit": 51.3,
+  "sealed": [
+    "2025Q1-Q4_17",
+    "2026Q1-Q3_17"
+  ],
+  "pending": [
+    "2026Q4_17"
+  ],
+  "intents_x_latest": 167.7896,
+  "overall": "not supported",
+  "claim": "_17 densification nearly complete; overall still not supported; Intents\u00d7 still OoM. Marginal EV of 2026Q4_17 \u226a public+X.",
+  "read": "_17 near-complete @ 243cl. Exploratory."
+}

@@ -1,0 +1,36 @@
+{
+  "asof": "2026-11-12",
+  "risks": [
+    {
+      "r": "Repo still private / X not recorded",
+      "sev": "CRITICAL",
+      "mit": "human flip+record now"
+    },
+    {
+      "r": "Unattested escrow now ~58.5% of BB",
+      "sev": "HIGH",
+      "mit": "attest \u2192 Trust; Hold until H1b"
+    },
+    {
+      "r": "History overall not supported",
+      "sev": "ACCEPTED",
+      "mit": "disclose; pitch OoM not proof"
+    },
+    {
+      "r": "Base-layer L1 cooling (~0.22\u00d7)",
+      "sev": "ACCEPTED",
+      "mit": "fee engine \u2260 L1; Intents surface"
+    },
+    {
+      "r": "SK concentration = single-nego risk",
+      "sev": "MEDIUM",
+      "mit": "same fact as tax leverage; disclose"
+    },
+    {
+      "r": "Claim design 217\u00d7 vs THOR 16\u00d7 discretionary",
+      "sev": "MEDIUM",
+      "mit": "Hold until H1b underwriting"
+    }
+  ],
+  "read": "Risks compact \u2014 bottom of pitch. Exploratory."
+}
