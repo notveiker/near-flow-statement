@@ -1,0 +1,7 @@
+{
+ "escrow_pts_of_issuance": 11.25,
+ "all_wallet_pts_of_issuance": 15.81,
+ "confidential_share_of_measured_capture_pct": 71.2,
+ "capture_share_of_gross_pct": 32.5,
+ "note": "Of measured wallet capture (~15.81 pts of issuance), escrow unshields are ~11.25 pts \u2248 **71.1%** \u2014 majority of the token claim arrives unattested. Different denominator from capture-share-of-gross (32.5%). Opacity is inside the claim, not only beside it. Exploratory."
+}

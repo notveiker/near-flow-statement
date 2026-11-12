@@ -53,16 +53,26 @@
   "cs_as_fee"
  ],
  "stance": "Hold until H1b",
- "history": "154 clusters through 2026Q2 preliminary",
+ "history": "156 clusters through 2026Q4; _07 denser running; preliminary",
  "submit": "docs/submit-packet.md",
  "four_ten_m": {
-  "sk_tax_25": 10.2,
-  "attest_escrow": 8.4,
-  "hsp007_10pct_claim": 11.8,
-  "solver_residual_8_5bp": 11.41
+  "sk_tax": 10.2,
+  "attest": 8.4,
+  "hsp007": 11.8,
+  "solver_residual": 11.41
  },
  "solver_residual_rr_m": 11.41,
  "tg_attach_conservative_rr_m": 1.37,
  "hours_to_submit": 68.3,
- "sk_exit_resilience": "fee_low_dist_high"
+ "sk_exit_resilience": "fee_low_dist_high",
+ "ladder_rr_m": {
+  "ai": 0.33,
+  "whale": 0.98,
+  "tg": 1.37,
+  "cif_1bp": 3.31,
+  "sk_tax": 10.2
+ },
+ "ledger_first": true,
+ "confidential_share_of_capture_pct": 71.1,
+ "user_allin_vs_capture_x": 10.6
 }

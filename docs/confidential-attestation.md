@@ -44,3 +44,7 @@ Escrow ~58% of BB funding + ~68% unexplained revwallet BB $ + H1b ~25% inflow co
 ## Unattested escrow dollars
 
 At the high end of the attestation band (15.8%), ~$694k of the ~$824k escrow-funded BB window sits outside attestation (~$8.4M/yr if sustained). Provenance gap is material in dollars, not only percentages.
+
+<!-- AUTO:CONF_SHARE -->
+**Confidential share of capture:** escrow ≈11.25 / 15.81 all-wallet pts ≈ **71%** of measured claim arrives unattested. CIF 1bp ≈ $3.3M/yr Gap. Attestation disclosure compresses underwriting band ~5.7× without raising τ.
+<!-- /AUTO:CONF_SHARE -->

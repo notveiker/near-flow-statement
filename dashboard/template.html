@@ -188,8 +188,12 @@ footer code{font-size:12px;color:var(--soft)}
     <div class="card reveal"><h3>What has to happen next</h3><p class="sub">Dated where known; open items are policy or mix paths. Exploratory — feeds no pre-registered test.</p><div id="cat-cal"></div><div class="foot"><a href="https://github.com/notveiker/near-flow-statement/blob/main/docs/catalysts-and-path.md">docs/catalysts-and-path.md</a></div></div>
   </div>
   <div class="grid2" style="margin-top:var(--s4)">
-    <div class="card reveal"><h3>Controllable dials (no 4× volume required)</h3><p class="sub">Leakage renegotiation and conversion before volume. Ranked by exploratory $/yr uplift. Not a forecast.</p><div id="ctrl-dials"></div><div class="foot">From <span class="mono">controllable_stack.json</span> / <span class="mono">dial_roi_sketch.json</span>. Do not lead with AI/npm/peer-share alone.</div></div>
+    <div class="card reveal"><h3>Controllable dials (no 4× volume required)</h3><p class="sub">Leakage renegotiation and conversion before volume. Ranked by exploratory $/yr uplift. Not a forecast.</p><div id="ctrl-dials"></div><div class="foot">From <span class="mono">controllable_stack.json</span> / <span class="mono">dial_roi_sketch.json</span>. Do not lead with AI/npm/peer-share alone. SK-tax is a Ledger conversation.</div></div>
     <div class="card reveal"><h3>Conversion + Trust path</h3><p class="sub">Appfees→buybacks conversion and Trust Wallet SK→direct arithmetic.</p><div id="conv-trust"></div><div class="foot">Hold until H1b — unexplained buybacks and escrow attestation remain binding.</div></div>
+  </div>
+  <div class="grid2" style="margin-top:var(--s4)">
+    <div class="card reveal"><h3>Four ~$10M surfaces</h3><p class="sub">Capture raise · trust raise · mint claim · contestable rent. Do not sum. Exploratory.</p><div id="four-ten"></div><div class="foot">From <span class="mono">four_ten_m_board.json</span> / <span class="mono">judge_one_pager_stack.json</span>.</div></div>
+    <div class="card reveal"><h3>Immaterial → material ladder</h3><p class="sub">Lead the right end. AI/npm/ETF stay off the open.</p><div id="immaterial-ladder"></div><div class="foot">From <span class="mono">immaterial_to_material_ladder.json</span>. CIF 1bp is a Gap dial (unpublished rate card).</div></div>
   </div>
 </div></section>
 
@@ -509,6 +513,25 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
   $("#conv-trust").innerHTML = bits.length
     ? `<p class="sub">${bits.join(' ')}</p>`
     : `<p class="sub">Conversion / Trust path appear when derived JSON is in the build.</p>`;
+  const Jop = D.catalysts && D.catalysts.judge_one_pager;
+  const four = (Jop && Jop.four_ten_m) || {};
+  const fourRows = Object.entries(four);
+  if (fourRows.length) {
+    const maxF = Math.max(...fourRows.map(([,v]) => +v || 0), 1);
+    $("#four-ten").innerHTML = fourRows.map(([k,v]) => `<div class="hbar"><span>${k}</span><span class="t"><i style="width:${Math.min(100,(+v||0)/maxF*100)}%"></i></span><span class="p mono">~$${(+v||0).toFixed(1)}M</span></div>`).join("") +
+      `<p class="sub" style="margin-top:var(--s3)">Ledger-first SK-tax · attest escrow · HSP-007 claim Gap · solver residual (ADR-029 ≤50%). Confidential share of capture ~${(Jop && Jop.confidential_share_of_capture_pct) || 71}%.</p>`;
+  } else {
+    $("#four-ten").innerHTML = `<p class="sub">Four ~$10M board appears when judge_one_pager_stack is in the build.</p>`;
+  }
+  const ladder = (Jop && Jop.ladder_rr_m) || {};
+  const ladderRows = Object.entries(ladder);
+  if (ladderRows.length) {
+    const maxL = Math.max(...ladderRows.map(([,v]) => +v || 0), 1);
+    $("#immaterial-ladder").innerHTML = ladderRows.map(([k,v]) => `<div class="hbar"><span>${k}</span><span class="t"><i style="width:${Math.min(100,(+v||0)/maxL*100)}%"></i></span><span class="p mono">~$${(+v||0).toFixed(2)}M</span></div>`).join("") +
+      `<p class="sub" style="margin-top:var(--s3)">User all-in ≈ ${(Jop && Jop.user_allin_vs_capture_x) || 10.6}× token claim. Do not lead AI.</p>`;
+  } else {
+    $("#immaterial-ladder").innerHTML = `<p class="sub">Ladder appears when judge_one_pager_stack.ladder_rr_m is in the build.</p>`;
+  }
 }
 
 /* ---------------- 03 supply ---------------- */

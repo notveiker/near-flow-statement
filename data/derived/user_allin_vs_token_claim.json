@@ -1,0 +1,10 @@
+{
+ "explorer_appfees_bp": 44.4,
+ "excess_bp": 8.5,
+ "user_all_in_approx_bp": 52.9,
+ "gross_defillama_bp": 15.3,
+ "captured_bp": 4.98,
+ "user_all_in_vs_capture_x": 10.6,
+ "llama_vs_capture_x": 3.1,
+ "note": "User all-in on 1Click \u2248 listed appfees 44.4 + excess 8.5 \u2248 **52.9 bp** vs token claim **4.98 bp** (~10.6\u00d7). DefiLlama 15.3 bp understates user cost and overstates token claim relative to distribution take. Investment waterfall is user\u2192distribution\u2192NEAR wallets. Exploratory."
+}

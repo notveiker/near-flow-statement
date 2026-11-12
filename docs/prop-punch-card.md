@@ -293,3 +293,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Growth price vs fee | USD CAGR ~8.7× NEAR-unit — most USD print is price; NEAR-unit still clears hurdle | growth_price_vs_fee_honesty |
 | Pitch sequence v2 | Six-step: open → four \$10M → ladder → quality → path → holds | pitch_sequence |
 | Sweep ~370 | 156 clusters; ~260 punch; ~278 derived; ~68.0h to submit | dial_inventory_summary |
+| Confidential share of capture | ~71% of measured wallet capture arrives via escrow unshields — opacity inside the claim | confidential_share_of_capture |
+| User all-in vs token claim | ~52.9 bp user all-in vs 4.98 bp capture (~10.6×) — Llama understates user / overstates claim | user_allin_vs_token_claim |
