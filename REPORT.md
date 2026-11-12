@@ -141,8 +141,8 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **HEADLINE: Leakage is the bridge.** ~676 commits / 232 clusters / ~53h.
-- Non-leads pack locked (AI/ETF/Aurora/strata/opacity/…). Overall still **not supported**.
+- **HEADLINE: Leakage is the bridge.** ~677c / 232cl / 537d / ~53h CRITICAL.
+- X 90s script ready. Overall still **not supported**.
 - **URGENT:** public + X. Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 

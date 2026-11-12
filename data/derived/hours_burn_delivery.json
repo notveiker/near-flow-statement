@@ -1,18 +1,21 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 54.4,
-  "clusters": 226,
-  "commits": 647,
-  "derived_json": 508,
+  "hours_to_submit": 53.3,
+  "clusters": 232,
+  "commits": 677,
+  "derived_json": 537,
+  "punch_rows": 642,
   "burn_priority": [
-    "public_repo",
-    "x_demo_dry_run",
-    "packet_polish"
+    "flip_repo_public",
+    "record_x_demo_90s",
+    "submit_form"
   ],
   "low_ev": [
-    "more_strata",
-    "more_compound_boards_without_packaging"
+    "_16_seals",
+    "more_compound_boards"
   ],
-  "implication": "~54h \u2014 burn on public+X; prop already dense (647c)",
-  "read": "Hours burn @~54h: public+X \u226b seals. Exploratory."
+  "headline": "Leakage is the bridge",
+  "x_script_ready": true,
+  "implication": "~53h \u2014 every remaining hour on public+X; prop surplus already shipped (677c/537 derived)",
+  "read": "Burn @~53h: public+X only. 677c/232cl/537d. Exploratory."
 }

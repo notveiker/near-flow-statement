@@ -60,11 +60,11 @@ History/`_10` seals are **not** blockers.
 <!-- /AUTO:PRESSURE -->
 
 <!-- AUTO:CLOCK -->
-- Hours left: **~55**
-- Clusters: **225** (_15 contest-year)
-- Commits: **639** | derived: **494** | punch rows: **~593**
-- [ ] Public repo (gh: still PRIVATE)
-- [ ] X demo dry-run
+- Hours left: **~53** — CRITICAL
+- Clusters: **232** | Commits: **677** | Derived: **537** | Punch: **~642**
+- Headline: **Leakage is the bridge**
+- [ ] Public repo (still PRIVATE)
+- [ ] X demo (90s script ready in docs/x-demo-talking-points.md)
 - [ ] Submit + F1–F4
 <!-- /AUTO:CLOCK -->
 
