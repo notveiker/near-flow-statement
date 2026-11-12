@@ -118,3 +118,7 @@ Intents peerset share prints 62.1% (365d) → 55.7% (30d gross) → **38.6% (30d
 ## Trust-template expansion
 
 High-density fronts (Trust/Arbie/Enot/Leodex) print ~20 bp on thin volume. LI.FI is 10% of 1Click at 2.8 bp — lifting to the Trust template is ~**$2.31M/yr** arithmetic. Commercial path: make dilutive aggregators look like high-density fronts.
+
+## Marginal share vs volume
+
++1pp of capture-share of gross ≈ **$0.7M/yr**; +1pp of Intents volume at today’s ~5 bp ≈ **$0.2M/yr**. Capture-share renegotiation is ~3.1× more valuable per percentage point than volume growth at flat take.
