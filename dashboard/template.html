@@ -845,6 +845,8 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (An) bits.push(`Aurora residual ~${An.aurora_tvl_vs_peak_pct}% of peak — not the thesis.`);
     if (Ht) bits.push(`H1c buying ~$${Ht.h1c_buying_m}M thin vs fee print — not a catalyst.`);
     if (Bn) bits.push(`Bitwise NRR ≠ Intents capture — do not stack.`);
+    const Xs = D.catalysts && D.catalysts.x_script_90;
+    if (Xs) bits.push(`<b>X 90s:</b> ${Xs.beats.map(b=>b.say.split('.')[0]).join(' → ')}.`);
     const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);

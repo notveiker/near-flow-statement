@@ -63,3 +63,17 @@ Card: `data/derived/judge_capture_card.json` — open with partners>capture, clo
 4. Wall ~42.8%; whale desk last mile; capital-light.
 5. Honesty: history not supported; repo+X must-ship.
 <!-- /AUTO:XLINES -->
+
+<!-- AUTO:XSCRIPT -->
+## 90-second X dry-run script (~54h left)
+
+| Beat | Say | Point camera |
+|------|-----|--------------|
+| 0–15s | Fee≠L1 (~180× vs cooling base) | fee-engine card |
+| 15–35s | Leakage is the bridge (~$50M); 50× needs ~1.3× vol after | path/coverage |
+| 35–55s | Default rail = fee engine; logos = vol w/o capture; SK-tax first | capture dials |
+| 55–75s | 217× vs THOR 16× — discretionary claim; Hold until H1b | trust/hold |
+| 75–90s | Live dashboard; history not supported = honesty; repo→public next | delivery |
+
+**Do not say:** bull case, AI lead, ETF lead, opacity-as-capture, need more strata.
+<!-- /AUTO:XSCRIPT -->
