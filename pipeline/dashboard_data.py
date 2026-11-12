@@ -534,6 +534,8 @@ def build() -> dict:
             "risks_compact": optional("derived/risks_compact_bottom.json"),
             "no_vol_wall_elast": optional("derived/no_vol_wall_times_elasticity.json"),
             "commits_730": optional("derived/commits_730_milestone.json"),
+            "matched_stack_gap": optional("derived/matched_stack_still_leaves_claim_gap.json"),
+            "confidential_trust": optional("derived/confidential_share_is_trust_surface_size.json"),
         },
         "repro": reproducibility(),
     }

@@ -1,0 +1,10 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_submit": 51.2,
+  "commits": 728,
+  "near_mcap_rev_x": 217,
+  "thor_mcap_rev_x": 16,
+  "gap_x": 13.6,
+  "claim": "Even matching THOR's fee stack on PCI/capital-light leaves a ~13.6\u00d7 mcap/rev gap. That residual is claim design + Trust (escrow attest) + leakage-close \u2014 not more density. Pitch the residual as underwriting, not as 'inevitably compresses'.",
+  "read": "Matched stack leaves claim gap @~51h. Exploratory."
+}

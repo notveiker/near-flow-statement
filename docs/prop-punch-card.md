@@ -735,3 +735,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Risks compact bottom card | private/X CRITICAL; escrow HIGH; L1+history accepted | risks_compact_bottom |
 | ~730c milestone @ 727c | packaging only; public+X binding | commits_730_milestone |
 | No-vol wall × elasticity boundary | 42.8% / 3.07×; know which side | no_vol_wall_times_elasticity |
+| Matched peer stack still leaves claim gap | ~13.6× residual = underwriting not density | matched_stack_still_leaves_claim_gap |
+| Confidential share = Trust surface size | ~71.2% + escrow 58.5%; attest makes claimable | confidential_share_is_trust_surface_size |
