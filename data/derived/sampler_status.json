@@ -1,9 +1,9 @@
 {
- "primary_clusters_local": 140,
- "sample2_clusters_local": 88,
- "primary_next_part": "2023Q1_06",
+ "primary_clusters_local": 141,
+ "sample2_clusters_local": 89,
+ "primary_next_part": "2023Q2_06",
  "overall": "not_supported_preliminary",
- "commits_since_structural_approx": 215,
- "punch_rows_approx": 106,
- "note": "140 preliminary clusters \u2014 early 2021\u20132022 strata largely sealed; into 2023."
+ "commits_since_structural_approx": 223,
+ "punch_rows_approx": 108,
+ "note": "Into 2023 strata. Prop sweep deep; X demo talking points ready."
 }
