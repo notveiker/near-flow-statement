@@ -853,7 +853,9 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (Smh) bits.push(`SK-merged HHI ${Smh.channel_hhi}→${Smh.channel_hhi_swapkit_merged} (>${Smh.doj_moderate_threshold}) = tax leverage.`);
     const Hl = D.catalysts && D.catalysts.headline_leakage;
     if (Hl) bits.push(`<b>HEADLINE:</b> ${Hl.one_liner}`);
-    const Ob = D.catalysts && D.catalysts.one_breath;
+        const Nlp = D.catalysts && D.catalysts.non_leads_pack;
+    if (Nlp) bits.push(`Non-leads: ${Nlp.do_not_lead.slice(0,4).map(x=>x.item).join(', ')}…`);
+const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);
     if (Dc) bits.push(`Delivery: ~${Dc.hours_to_submit}h — blockers public repo + X.`);

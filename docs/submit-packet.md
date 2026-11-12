@@ -69,3 +69,8 @@ See `data/derived/risks_compact.json` — H1b/attest/relayer/HSP-007/CIF/multipl
 3. Submit + F1–F4 on 14 Nov
 Prop ready ~0.98 excl must-ship. `661` commits / `229` clusters.
 <!-- /AUTO:URGENT -->
+
+<!-- AUTO:HEADLINE -->
+**HEADLINE:** Leakage is the bridge — close ~$50M → 50× needs ~1.29× vol.
+**Clock:** ~53h | **232 clusters** | **676 commits** | X script ready | repo **PRIVATE**
+<!-- /AUTO:HEADLINE -->

@@ -1,0 +1,64 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_submit": 53.4,
+  "do_not_lead": [
+    {
+      "item": "AI/agents",
+      "why": "substitute narrative; fees still Intents"
+    },
+    {
+      "item": "ETF/NRR",
+      "why": "~$0.42M \u226a SK-tax; immaterial"
+    },
+    {
+      "item": "Aurora",
+      "why": "TVL ~0.28% of peak; not the thesis"
+    },
+    {
+      "item": "H1c buying",
+      "why": "thin vs one 30d capture print"
+    },
+    {
+      "item": "Bitwise NRR",
+      "why": "different claim; do not stack"
+    },
+    {
+      "item": "more strata",
+      "why": "_12\u2013_15 done; EV\u226apublic+X"
+    },
+    {
+      "item": "opacity-as-capture",
+      "why": "buys Trust time not \u03c4"
+    },
+    {
+      "item": "CS-as-fee",
+      "why": "infra enabling Intents; not additive"
+    },
+    {
+      "item": "bond demand",
+      "why": "capital_light_creates_near_bond_demand=false"
+    },
+    {
+      "item": "volume-alone to close 217\u219216",
+      "why": "claim/capture first"
+    },
+    {
+      "item": "protocol pip",
+      "why": "0.01 bp noise"
+    },
+    {
+      "item": "CIF gap",
+      "why": "do not lead; SK-tax+attest first"
+    }
+  ],
+  "lead_with": [
+    "leakage_is_the_bridge",
+    "fee_neq_l1_oom",
+    "default_rail_fee_engine",
+    "sk_tax_desk",
+    "claim_design_217x",
+    "hold_h1b",
+    "public_x"
+  ],
+  "read": "Non-leads pack @~53h. Exploratory."
+}
