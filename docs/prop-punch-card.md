@@ -432,3 +432,6 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Call order × elasticity | Each conversation tagged with vol-pp equivalent — Ledger first | call_order_elasticity |
 | History 186 / 2026Q2_10 | Contest-year _10 continuing — still not supported | history_progress_2026q2_10 |
 | History 187 / 2026Q3_10 | Q4_10 last of contest-year _10 — still not supported | history_progress_2026q3_10 |
+| History 188 / 2026Q4_10 | _10 through 2026 COMPLETE — still not supported | history_progress_2026q4_10 |
+| Entering _11 dense | History not submit blocker; repo private | entering_11_dense |
+| Sweep ~510 identity | Prop ready; one-breath+runbook; Hold until H1b | sweep_510_identity |

@@ -1,0 +1,15 @@
+{
+  "asof": "2026-11-12",
+  "clusters": 188,
+  "commits": 510,
+  "hours_to_submit": 61.9,
+  "completed": "_10_through_2026",
+  "next": "2025Q1_11",
+  "history_still_not_supported": true,
+  "history_not_submit_blocker": true,
+  "must_ship": [
+    "public_repo_STILL_PRIVATE",
+    "X_demo_dry_run"
+  ],
+  "read": "_10 through 2026 done (188 clusters). Entering denser _11. History \u2260 submit blocker. Repo still private (~61.9h). Exploratory."
+}
