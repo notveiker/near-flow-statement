@@ -147,3 +147,5 @@ Active accounts −77% YoY while Intents fees ~11× L1 fee print; NEAR-side swap
 *Not investment advice.*
 
 Judge one-pager: [`docs/pitch-spine.md`](docs/pitch-spine.md).
+
+Proprietary edge list: [`docs/prop-what-is-proprietary.md`](docs/prop-what-is-proprietary.md).

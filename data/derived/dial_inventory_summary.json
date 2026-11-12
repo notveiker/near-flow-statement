@@ -1,31 +1,16 @@
 {
- "baseline_run_rate_m": 24.2,
- "leakage_pool_annual_m": 50.2,
- "full_capture_rr_m": 74.5,
- "controllable_stack_m": 37.0,
- "full_capture_plus_hsp029_mint_coverage_x": 1.03,
- "vol_x_for_50x_at_full_capture": 1.29,
- "fee_covers_mint_today_x": 0.205,
- "sk_exit_buyback_loss_pct": 2.0,
- "sk_exit_vol_loss_pp": 38.2,
- "noref_buyback_dollar_x": 2.45,
- "intents_near_dex_share_pct": 98.8,
- "history_clusters_preliminary": 142,
- "binding_story": "Leakage renegotiation is the bridge; volume is the last mile.",
- "judge_docs": [
-  "docs/prop-topline.md",
-  "docs/prop-punch-card.md",
-  "dashboard/index.html",
-  "REPORT.md"
+ "history_clusters_preliminary": 143,
+ "commits_since_structural_approx": 273,
+ "derived_json_approx": 206,
+ "punch_rows_approx": 185,
+ "hours_to_submit_approx": 68,
+ "top_dials": [
+  "sk_tax_25pct",
+  "mix_nearcom",
+  "conversion",
+  "gross_share_5pp",
+  "trust_template_lifi"
  ],
- "note": "Rollup of hyper-sweep proprietary arithmetic. Exploratory; Hold until H1b.",
- "g_obs_usd_pct": 619.0,
- "g_obs_near_pct": 71.4,
- "partner_bb_ratio_now": 9.9,
- "escrow_share_buyback_pct": 58.5,
- "punch_rows_approx": 109,
- "commits_since_structural_approx": 231,
- "vol_mom_delta_pct": -12.3,
- "fee_density_vs_l1_x": 11.2,
- "headline": "Distribution owns the margin; leakage is the bridge; volume is the last mile; quality rose on a cooling print."
+ "stance": "Hold until H1b",
+ "note": "Inventory rollup for deadline ops."
 }

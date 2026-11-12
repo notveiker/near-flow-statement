@@ -207,3 +207,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Collector A conversion anomaly | A→BB prints **>100%** while tracking ~96.5% explicit fees — window/rail mismatch | collector_a_conversion_anomaly |
 | Provenance stack | Escrow ~58% + unexplained BB ~68% + H1b ~25% + attestation ≤16% — Hold until H1b binds | provenance_stack |
 | Peerset gross vs net gap | 55.7% gross vs **38.6% net** (Δ 17.1 pp) — ~31% of gross peerset print nets away | peerset_gross_vs_net_gap |
+| Fee÷mint path table | 0.21→0.32→0.48→1.0× then ~1.3× vol for 50× — leakage then volume | fee_mint_path_table |
