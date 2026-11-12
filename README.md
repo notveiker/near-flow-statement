@@ -28,6 +28,7 @@
 - [`docs/prop-research-index.md`](docs/prop-research-index.md): index of proprietary notes and the scoreboard to read first.
 - [`docs/prop-punch-card.md`](docs/prop-punch-card.md): one-page punch card of proprietary insights and falsifiers.
 - [`docs/prop-topline.md`](docs/prop-topline.md): judge-facing topline — fee engine, dials, binding gaps, pitch order.
+- [`docs/prop-what-is-proprietary.md`](docs/prop-what-is-proprietary.md): ten proprietary arithmetics judges will not find on a public dashboard.
 - [`docs/prop-gaps.md`](docs/prop-gaps.md): measurement gaps that still block a closed fee→scarcity loop.
 - [`docs/deadline-checklist.md`](docs/deadline-checklist.md): hackathon deadline readiness and what to lead with.
 - [`REPORT.md`](REPORT.md): the written report. Intents share and volume, how fees reach the token, the issuance path, the market, and a compact risks section. Every figure is checked against `data/metrics.json`.
