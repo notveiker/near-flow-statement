@@ -1,9 +1,5 @@
 {
- "primary_clusters_local": 144,
- "sample2_clusters_local": 92,
- "primary_next_part": "2024Q1_06",
- "part_lines_approx": 35,
- "overall": "not_supported_preliminary",
- "commits_since_structural_approx": 289,
- "note": "2024Q1_06 sealing. Prop judge path ready. Do not block submit on history."
+ "primary_clusters_local": 145,
+ "last_ingested": "2024Q1_06",
+ "overall": "not_supported_preliminary"
 }
