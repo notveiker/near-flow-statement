@@ -71,5 +71,5 @@ Prop/dashboard/judge packet ready (~437 commits, 168 clusters preliminary). **Mu
 <!-- /AUTO:DELIVERY -->
 
 <!-- AUTO:TOPLINE_NOW -->
-**Now (~59h / 204 clusters / 564 commits):** `_12` complete · capture≈3.07×vol · SK-tax≈42.5 vol-pp · coverage wall~42.8% · whale desk · Hold until H1b · **flip public + X**.
+**Now (~59h / 205 clusters / 568 commits):** `_12` done · `_13` on · fee≠L1 stable · whale desk · solver rent≠capture · **flip public + X**.
 <!-- /AUTO:TOPLINE_NOW -->

@@ -141,10 +141,10 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~566 commits / 204 clusters.** `_12` done; `_13` sealing. Overall still **not supported**.
-- **Solver rent≠capture** (~$11.41M) · **relayer ops≠fee** · **embeds~54.0%** exit-capable.
-- **Fee≠L1 stable** · whale desk=SK-tax · coverage wall~42.8% · diminishing strata vs delivery.
-- **LIVE (~59h):** public repo + X dry-run. Hold until H1b.
+- **~568 commits / 205 clusters.** `_12` complete; `_13` started. Overall still **not supported**.
+- **Fee≠L1:** intents ~**147×** vs L1 ~**0.20×** (stable under dense).
+- **Solver rent≠capture** · relayer ops≠fee · embeds~54% · whale desk=SK-tax · coverage wall~42.8%.
+- **LIVE (~59h):** repo still **private** + X dry-run TODO. Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context

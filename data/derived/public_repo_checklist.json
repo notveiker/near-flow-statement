@@ -1,9 +1,9 @@
 {
   "asof": "2026-11-12",
   "is_private": true,
-  "hours_to_submit": 59.1,
-  "clusters": 202,
-  "commits": 559,
+  "hours_to_submit": 58.6,
+  "clusters": 205,
+  "commits": 568,
   "readme_judge_path": "READY",
   "x_dry_run_script": "READY",
   "x_dry_run_recorded": false,
@@ -13,5 +13,5 @@
     "record X demo from docs/x-demo-talking-points.md (~90s)",
     "submit packet on 14 Nov; F1-F4 resolve same day"
   ],
-  "read": "Repo still private=true at ~59h / 202 clusters / 559 commits. README judge path + X script READY \u2014 flip visibility is the binding delivery catalyst. Exploratory."
+  "read": "Repo still private=true at ~59h / 205 clusters / 568 commits. README+X script READY \u2014 flip visibility binds. Exploratory."
 }

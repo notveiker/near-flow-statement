@@ -499,3 +499,6 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Solver rent ≠ capture ledger | Residual ~$11.41M ≈ SK-tax league but contestable rent | solver_rent_vs_capture_ledger |
 | Relayer ops ≠ fee dial | Top1~83%; vol/fee~2004.0× — UX risk ≫ fee $ | relayer_ops_not_fee_dial |
 | Multi-venue embed contest | ~54.0% of 1Click can fill away — capture must survive exit | multi_venue_embed_contestability |
+| History 205 / 2025Q1_13 | Denser _13 started — still not supported | history_progress_2025q1_13 |
+| Sweep ~567 identity | Solver/relayer/embed boards; public+X bind | sweep_567_identity |
+| Private repo @59h / 205cl | Flip visibility is binding delivery catalyst | public_repo_checklist |
