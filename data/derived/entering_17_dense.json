@@ -1,17 +1,14 @@
 {
   "asof": "2026-11-12",
   "stratum": "_17",
-  "clusters": 240,
-  "sealed_2025": [
-    "Q1",
-    "Q2",
-    "Q3",
-    "Q4"
+  "clusters": 241,
+  "sealed": [
+    "2025Q1-Q4_17",
+    "2026Q1_17"
   ],
-  "next": "contest-year 2026Q*_17",
   "intents_x": 175.3371,
   "l1_yoy_tx_x": 0.1925,
   "overall": "not supported",
-  "ev": "low \u2014 packaging + public+X dominate",
-  "read": "_17 2025 complete @ 240cl; intents~175\u00d7. Entering 2026. Exploratory."
+  "ev": "low",
+  "read": "_17 through 2026Q1 @ 241cl; intents~175\u00d7. Exploratory."
 }

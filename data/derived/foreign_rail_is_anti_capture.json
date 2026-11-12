@@ -1,0 +1,7 @@
+{
+  "asof": "2026-11-12",
+  "claim": "Foreign / logo rails are anti-capture: they inflate volume metrics while diluting BB$ share. Every point moved off foreign onto default/no-ref is a capture multiple (\u00d72.45 asymmetry). Measuring success by logo volume inverts the fee engine.",
+  "metric_to_watch": "default_noref_bb_share_pct",
+  "metric_to_ignore_as_success": "logo_partner_volume",
+  "read": "Foreign rail = anti-capture. Exploratory."
+}

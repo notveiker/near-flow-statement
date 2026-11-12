@@ -1,0 +1,26 @@
+{
+  "asof": "2026-11-12",
+  "commits": 717,
+  "clusters": 241,
+  "hours_to_submit": 51.7,
+  "claim": "At ~717 commits the research surface is saturated. The sole critical path risk is still PRIVATE repo + missing X \u2014 not missing insight.",
+  "risk_rank": [
+    {
+      "risk": "repo_private",
+      "severity": "critical"
+    },
+    {
+      "risk": "x_dry_run_missing",
+      "severity": "critical"
+    },
+    {
+      "risk": "unattested_escrow",
+      "severity": "medium"
+    },
+    {
+      "risk": "history_overall_not_supported",
+      "severity": "accepted"
+    }
+  ],
+  "read": "720c milestone; private still critical @~52h. CRITICAL."
+}

@@ -713,3 +713,6 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Soft-sink ≠ no-vol wall | burn/DIC≠fee engine; wall is capture-mix | soft_sink_is_not_the_wall |
 | Five ledgers discipline | only protocol+SK controllable; don't inflate | five_ledgers_discipline |
 | Capital-light PCI edge | dials raise capture without inventory BS | capital_light_pci_edge |
+| History 241 / 2026Q1_17 | contest-year _17 live; intents~175×; public+X NOW | history_progress_2026q1_17 |
+| ~720c milestone; private still CRITICAL | insight saturated; public+X sole path | commits_720_milestone_private_still_critical |
+| Foreign/logo rail = anti-capture | dilutes BB$; watch default-rail share | foreign_rail_is_anti_capture |
