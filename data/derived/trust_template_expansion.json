@@ -1,0 +1,6 @@
+{
+ "lifi_to_10bp_rr_m": 0.97,
+ "lifi_to_20bp_trust_template_rr_m": 2.31,
+ "all_sub10bp_channels_to_10bp_rr_m": 1.43,
+ "note": "LI.FI to Trust-template 20bp \u2248 $2.3M/yr (vs $1.0M at 10bp). Lifting all sub-10bp BB channels to 10bp \u2248 $1.4M/yr. Template expansion is a concrete commercial path beside SK-tax. Exploratory."
+}

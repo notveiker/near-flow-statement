@@ -114,3 +114,7 @@ Q3 Nansen near.com-class volume share (~25%) does not match the Nov frontend wal
 ## Peerset share softening
 
 Intents peerset share prints 62.1% (365d) → 55.7% (30d gross) → **38.6% (30d net)**. Do not pitch rising peer dominance; leakage/conversion dials dominate.
+
+## Trust-template expansion
+
+High-density fronts (Trust/Arbie/Enot/Leodex) print ~20 bp on thin volume. LI.FI is 10% of 1Click at 2.8 bp — lifting to the Trust template is ~**$2.31M/yr** arithmetic. Commercial path: make dilutive aggregators look like high-density fronts.

@@ -6,9 +6,19 @@
    "rr_m": 10.2
   },
   {
+   "dial": "mix_10pp_nearcom",
+   "score": 90,
+   "rr_m": 9.7
+  },
+  {
    "dial": "appfees_conversion",
    "score": 88,
    "rr_m": 5.5
+  },
+  {
+   "dial": "lifi_to_20bp_template",
+   "score": 75,
+   "rr_m": 2.31
   },
   {
    "dial": "zec_inventory_2x",
@@ -21,37 +31,19 @@
    "rr_m": 1.72
   },
   {
+   "dial": "hsp029_pending",
+   "score": 70,
+   "rr_m": "coverage"
+  },
+  {
    "dial": "whale_attach_10pp",
    "score": 60,
    "rr_m": 0.98
   },
   {
-   "dial": "noref_mix_5pp",
-   "score": 55,
-   "rr_m": 0.67
-  },
-  {
-   "dial": "hsp029_pending",
-   "score": 70,
-   "rr_m": "coverage not fee",
-   "note": "mint\u2193 not fee\u2191"
-  },
-  {
-   "dial": "peer_share_70",
-   "score": 35,
-   "rr_m": 6.3,
-   "note": "needs 1.26\u00d7 vol"
-  },
-  {
    "dial": "agent_5pct",
    "score": 10,
    "rr_m": 0.33
-  },
-  {
-   "dial": "npm",
-   "score": 5,
-   "rr_m": 0,
-   "note": "decoupled from vol"
   }
  ],
  "note": "Dial rank for dashboard; scores exploratory. Prefer commercial/conversion over narrative."

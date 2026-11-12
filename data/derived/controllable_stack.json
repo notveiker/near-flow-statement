@@ -74,6 +74,11 @@
    "why": "balance-sheet, same turnover"
   },
   {
+   "name": "LI.FI \u2192 Trust 20bp template",
+   "rr_m": 2.31,
+   "why": "match high-density front pattern on 10% vol"
+  },
+  {
    "name": "Trust SK\u2192direct 20bp",
    "rr_m": 1.72,
    "why": "one distribution conversation"

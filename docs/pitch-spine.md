@@ -15,6 +15,7 @@ Capture ~**5 bp** of ~**15 bp** gross (share **32.5%**). Leakage pool ~**$50M/yr
 | Appfees→BB conversion double | ~$5.5M |
 | ZEC inventory 2× | ~$2.8M |
 | Trust SK→direct 20bp | ~$1.7M |
+| LI.FI → Trust 20bp template | ~$2.3M |
 | LI.FI+Rango → 10bp | ~$1.4M |
 | Whale +10pp attach | ~$1.0M |
 
