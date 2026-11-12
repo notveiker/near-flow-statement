@@ -1,8 +1,8 @@
 {
   "asof": "2026-11-12",
-  "clusters_used": 183,
-  "intents_vs_2025q1_x": 146.7245,
-  "l1_yoy_tx_x": 0.1993,
-  "divergence_x": 736.2,
-  "read": "With 183 clusters, intents ~147\u00d7 vs 2025Q1 while L1 tx YoY ~0.20\u00d7 (divergence ~736\u00d7). Dense _10 strengthens fee\u2260L1; overall still not supported. Preliminary."
+  "clusters_used": 187,
+  "intents_vs_2025q1_x": 158.5363,
+  "l1_yoy_tx_x": 0.204,
+  "divergence_x": 777.1,
+  "read": "With 187 clusters, intents ~159\u00d7 vs 2025Q1; L1 YoY ~0.20\u00d7 (divergence ~777\u00d7). Overall still not supported. Preliminary."
 }
