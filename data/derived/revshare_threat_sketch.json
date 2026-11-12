@@ -1,0 +1,8 @@
+{
+ "scenario": "10pct_SK_quotes_migrate_via_revshare",
+ "sk_vol_30d_m": 844.0,
+ "vol_lost_30d_m": 84.4,
+ "fee_lost_30d_m_at_498bp": 0.042,
+ "fee_lost_run_rate_m": 0.51,
+ "note": "ADR-029-style revshare threat: 10% of SwapKit pipe migrating quotes costs ~$0.5M/yr at \u03c4 \u2014 small fee $ but compounds with share/UX. Matches SK exit asymmetry (volume risk > buyback $). Exploratory."
+}
