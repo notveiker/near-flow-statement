@@ -37,6 +37,7 @@
 | Vol× from $37M stack for 50× | ~2.6× |
 | Burn 25% of mint | needs ~122% of today’s fee capture as hard removal |
 | Escrow attestation band | 4.5–15.8% |
+| HSP-029 alone (flat fees) | Fee÷mint$ 0.21→0.32; still ~3.2× to 1× |
 | Calendar | Submit **14 Nov**; HSP-029 timelock **16 Nov** (pending-not-live) |
 
 ## Pitch order
