@@ -18,5 +18,11 @@
   "dashboard/index.html",
   "REPORT.md"
  ],
- "note": "Rollup of hyper-sweep proprietary arithmetic. Exploratory; Hold until H1b."
+ "note": "Rollup of hyper-sweep proprietary arithmetic. Exploratory; Hold until H1b.",
+ "g_obs_usd_pct": 619.0,
+ "g_obs_near_pct": 71.4,
+ "partner_bb_ratio_now": 9.9,
+ "escrow_share_buyback_pct": 58.5,
+ "punch_rows_approx": 86,
+ "commits_since_structural_approx": 141
 }
