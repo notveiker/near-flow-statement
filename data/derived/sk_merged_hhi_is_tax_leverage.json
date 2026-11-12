@@ -1,0 +1,10 @@
+{
+  "asof": "2026-11-12",
+  "channel_hhi": 0.087,
+  "channel_hhi_swapkit_merged": 0.2,
+  "doj_moderate_threshold": 0.15,
+  "merged_above_moderate": true,
+  "top1_swapkit_pct": 38.2,
+  "implication": "Unmerged HHI~0.087 looks unconcentrated; merging SK subchannels \u2192 ~0.20 (above DOJ moderate 0.15) \u2014 SK-tax leverage is real concentration once routes are consolidated",
+  "read": "HHI 0.087\u21920.2 SK-merged (>0.15 moderate). SK-tax leverage. Exploratory."
+}
