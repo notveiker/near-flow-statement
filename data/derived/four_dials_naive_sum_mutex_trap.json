@@ -1,0 +1,17 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_submit": 50.9,
+  "commits": 736,
+  "dials_usd": {
+    "SK_tax": 10200000,
+    "Ledger_first": 10000000,
+    "default_rail": 10000000,
+    "other_capture": 10000000
+  },
+  "naive_sum_usd": 40200000,
+  "leakage_usd": 50000000,
+  "naive_share_of_leakage_pct": 80.4,
+  "claim": "Naive sum of four ~$10M dials \u224880% of leakage \u2014 but mutex/overlap means you cannot add them. Call-order + mutex is the proprietary discipline; the pitch is sequenced capture, not $40M fantasy stack.",
+  "pitch_line": "Four dials, one sequence \u2014 never a sum.",
+  "read": "Naive-sum mutex trap @~51h. Exploratory."
+}

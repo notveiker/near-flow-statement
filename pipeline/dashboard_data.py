@@ -538,6 +538,8 @@ def build() -> dict:
             "what_is_prop_now": optional("derived/what_is_proprietary_now.json"),
             "catalyst_one_slide": optional("derived/catalyst_path_one_slide.json"),
             "sk_share_bridge": optional("derived/sk_tax_share_of_leakage_bridge.json"),
+            "four_dials_mutex": optional("derived/four_dials_naive_sum_mutex_trap.json"),
+            "fee_prints_l1_cool": optional("derived/fee_engine_prints_while_l1_cools.json"),
             "risks_compact": optional("derived/risks_compact_bottom.json"),
             "no_vol_wall_elast": optional("derived/no_vol_wall_times_elasticity.json"),
             "commits_730": optional("derived/commits_730_milestone.json"),

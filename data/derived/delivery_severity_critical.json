@@ -1,11 +1,11 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 51.7,
-  "commits": 718,
-  "clusters": 241,
+  "hours_to_submit": 50.9,
+  "commits": 736,
+  "clusters": 245,
   "repo_private": true,
   "x_dry_run_done": false,
   "severity": "CRITICAL",
-  "message": "~52h to 14 Nov 23:59 UTC. Repo PRIVATE. X dry-run NOT done. 718 commits cannot substitute.",
-  "read": "Severity CRITICAL @~52h. CRITICAL."
+  "message": "~51h to deadline. 736c/245cl/_12\u2013_17 done. Repo PRIVATE. X not recorded.",
+  "read": "Severity CRITICAL @~51h. CRITICAL."
 }
