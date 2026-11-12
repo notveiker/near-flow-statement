@@ -355,3 +355,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 165 / 2025Q1_08 | Denser _08 stratum started — still not supported | history_progress_2025q1_08 |
 | Near-term board | SK-tax/attest/CIF/ADR/conversion before volume cheerleading | near_term_board |
 | Marginal share discipline | +1pp capture-share ≈3× +1pp volume in $/yr — prefer leakage board | marginal_share_discipline |
+| History 166 / 2025Q2_08 | _08 dense continuing — still not supported | history_progress_2025q2_08 |
