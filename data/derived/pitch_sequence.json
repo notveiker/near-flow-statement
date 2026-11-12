@@ -50,6 +50,15 @@
   "escrow_climb_pp": 41,
   "partner_bb_ratio_now": 9.9,
   "near_side_swap_pct": 3.5,
-  "history_clusters": 137
- }
+  "history_clusters": 137,
+  "vol_mom_delta_pct": -12.3,
+  "quality_on_cool": true,
+  "fee_density_vs_l1_x": 11.2
+ },
+ "honesty": [
+  "growth_usd_vs_near",
+  "vol_deceleration",
+  "quality_on_cool",
+  "r90_vs_run_rate"
+ ]
 }
