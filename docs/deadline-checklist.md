@@ -1,6 +1,6 @@
 # Deadline checklist
 
-*Submit by **2026-11-14 23:59 UTC**. Hours left (refresh): **~69.8h**.*
+*Submit by **2026-11-14 23:59 UTC**. Hours left (refresh): **~69.2h**.*
 
 ## Done
 
@@ -11,7 +11,7 @@
 - [x] F1–F4 scorecard pre-registered
 - [x] Submit-packet.md
 - [x] Two bridges (SK-tax + attest) + three ~$10M magnitudes
-- [x] History seals through 2024Q4_06 (148 clusters, preliminary)
+- [x] History seals through 2024Q4_06 (148 clusters, preliminary — 150 clusters through 2025Q2)
 
 ## Open before submit
 
