@@ -104,3 +104,4 @@ History sample: preliminary **133** sealed clusters (primary) with payloads; dua
 - `data/derived/capture_vs_gas_burn_near.json — capture≫gas opex NEAR`
 - `data/derived/cs_method_asymmetry.json — respond vs sign`
 - `data/derived/50x_vs_cooling.json — 50× vs MoM cool`
+- `data/derived/l1_attention_fragment.json` — top5 non-Intents gas vs Intents
