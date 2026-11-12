@@ -524,3 +524,6 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Peerset gross−net gap | Gross~55.7% vs net~38.6% (−17.1pp) — leadership overstated | peerset_gross_net_gap |
 | History 210 / 2026Q2_13 | Contest-year _13 continuing — still not supported | history_progress_2026q2_13 |
 | Sweep ~586 identity | Peerset gap+two bridges; public+X bind | sweep_586_identity |
+| User all-in vs capture | ~10.6× — distribution owns the spread; τ≠user price | user_all_in_vs_capture |
+| Research notes follow-up index | 20 notes on disk; twins wired; public+X still bind | research_notes_followup_index |
+| AI agents = substitute narrative | Stack real; fees still Intents; >750k stake small — do not lead | ai_agents_substitute_narrative |

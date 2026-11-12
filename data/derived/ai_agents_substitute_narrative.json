@@ -1,0 +1,11 @@
+{
+  "asof": "2026-11-12",
+  "stack_exists": true,
+  "measured_fee_engine": "Intents",
+  "ai_stake_near": ">750k",
+  "labeled_agent_volume": "not_measured",
+  "verdict": "substitute_narrative_for_Intents_growth",
+  "vs_leakage_prize": "immaterial",
+  "source_note": "research_notes/NEAR catalysts and path/ai-agents-evidence.md",
+  "read": "AI/agent stack largely shipped as product; measured token value still Intents fees. >750k NEAR soft-staked for inference is small; Bitwise/x402 framing is mostly substitute narrative. Do not lead. Exploratory."
+}

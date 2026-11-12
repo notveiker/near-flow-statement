@@ -1,0 +1,43 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_submit": 57.6,
+  "clusters": 210,
+  "commits": 588,
+  "notes_count": 20,
+  "notes": [
+    "ai-agents-evidence.md",
+    "builder-npm-pulse.md",
+    "buyback-channel-map.md",
+    "buyback-quality-float.md",
+    "capital-efficiency.md",
+    "chain-signatures-value-link.md",
+    "concentration-overlays.md",
+    "confidential-trust-attestation.md",
+    "distribution-contestability.md",
+    "fee-per-download.md",
+    "fee-waterfall-capture.md",
+    "governance-catalysts.md",
+    "hsp007-mpc-financing.md",
+    "intents-vs-l1-flow.md",
+    "inventory-mix.md",
+    "mix-shift-arithmetic.md",
+    "near-exit-vs-capture.md",
+    "perps-positioning.md",
+    "prop-scores.md",
+    "relayer-concentration.md"
+  ],
+  "wired_twins": {
+    "ai-agents-evidence.md": "immaterial_vs_leakage_prize.json",
+    "fee-waterfall-capture.md": "fidelity_implies_commercial_leakage.json",
+    "confidential-trust-attestation.md": "opacity_accelerating.json",
+    "mix-shift-arithmetic.md": "mix_shift_math.json",
+    "distribution-contestability.md": "contestability.json",
+    "buyback-quality-float.md": "float_sink.json",
+    "relayer-concentration.md": "relayer_ops_not_fee_dial.json",
+    "chain-signatures-value-link.md": "cs_under_intents_not_separate_fee.json",
+    "hsp007-mpc-financing.md": "mint_ledger_not_fee_upside.json",
+    "capital-efficiency.md": "capital_light_vs_leakage_constraint.json"
+  },
+  "verdict": "All hyper-sweep research notes present; twins live in derived/dashboard. No orphan follow-up \u2014 burn hours on public+X.",
+  "read": "20 research notes on disk; core twins wired. Follow-up complete \u2014 delivery binders remain public repo + X dry-run (~58h). Exploratory."
+}

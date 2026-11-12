@@ -651,6 +651,8 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (Cg) bits.push(`CIF Gap: 1bp proxy~$${Cg.cif_1bp_rr_m}M — do not lead; lead SK-tax+attest.`);
     const Pg = D.catalysts && D.catalysts.peerset_gap;
     if (Pg) bits.push(`Peerset gross~${Pg.gross_30d_pct}% vs net~${Pg.net_30d_pct}% (gap ${Pg.gross_vs_net_gap_pp}pp) — leadership overstates exclusivity.`);
+    const AiS = D.catalysts && D.catalysts.ai_substitute;
+    if (AiS) bits.push(`AI/agents: stack real, fees still Intents — substitute narrative; do not lead.`);
     if (Ds) bits.push(`Diminishing strata: marginal seals low EV vs ~${Ds.hours_to_submit}h public+X clock.`);
     const SrL = D.catalysts && D.catalysts.solver_rent_ledger;
     const Ro = D.catalysts && D.catalysts.relayer_ops;

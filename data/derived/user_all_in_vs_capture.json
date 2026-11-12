@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "user_all_in_vs_capture_x": 10.6,
+  "confidential_share_of_measured_capture_pct": 71.2,
+  "stack_trust_plus_gap_rr_m": 11.71,
+  "tau_bp": 4.98,
+  "implication": "Users pay ~10\u00d7 what the token captures on the measured path \u2014 distribution owns the spread; protocol \u03c4 is not the user price",
+  "read": "User all-in \u2248 10.6\u00d7 captured \u03c4 on the opacity product stack; confidential share of measured capture ~71.2%. Distribution owns the spread. Exploratory."
+}

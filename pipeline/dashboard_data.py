@@ -367,6 +367,8 @@ def build() -> dict:
             "cif_gap": optional("derived/cif_gap_do_not_lead.json"),
             "two_bridges_now": optional("derived/two_bridges_now.json"),
             "peerset_gap": optional("derived/peerset_gross_net_gap.json"),
+            "research_notes_index": optional("derived/research_notes_followup_index.json"),
+            "ai_substitute": optional("derived/ai_agents_substitute_narrative.json"),
             "diminishing_strata": optional("derived/diminishing_strata_vs_delivery.json"),
             "solver_rent_ledger": optional("derived/solver_rent_vs_capture_ledger.json"),
             "relayer_ops": optional("derived/relayer_ops_not_fee_dial.json"),
