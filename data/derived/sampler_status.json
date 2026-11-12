@@ -1,5 +1,8 @@
 {
  "primary_clusters_local": 147,
+ "sample2_clusters_local": 95,
  "last_ingested": "2024Q3_06",
- "overall": "not_supported_preliminary"
+ "overall": "not_supported_preliminary",
+ "commits_since_structural_approx": 315,
+ "note": "147 clusters through 2024Q3_06. Judge packet ready. Do not block submit."
 }
