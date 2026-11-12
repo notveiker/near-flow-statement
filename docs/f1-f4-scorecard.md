@@ -13,3 +13,7 @@ Stance if pass: Hold until H1b still binds; leakage/conversion remains the lead 
 | F_share_vs_vol | Capture share holds as vol moves | Capture share of gross falls while volume rises |
 
 *Live snapshot: ~62.6h to submit; F_escrow binding; repo still private; 184 clusters / 497 commits.*
+
+<!-- AUTO:HOURS -->
+F1–F4 resolve **14 Nov** (~58h). Do not wait on history strata. Repo still private.
+<!-- /AUTO:HOURS -->

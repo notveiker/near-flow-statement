@@ -47,3 +47,7 @@ See `data/derived/risks_compact.json` — H1b/attest/relayer/HSP-007/CIF/multipl
 <!-- AUTO:PRIVATE -->
 **LIVE 64.1h:** GitHub repo still **private** (`gh` isPrivate=true). Prop ready — flip public + X dry-run before submit.
 <!-- /AUTO:PRIVATE -->
+
+<!-- AUTO:READY -->
+**Packet (~58h / 206 clusters / 572 commits):** score ~0.97 excl must-ship. Open: **public repo** + **X recorded**. History denser `_13` not a blocker.
+<!-- /AUTO:READY -->

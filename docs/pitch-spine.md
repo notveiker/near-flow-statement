@@ -98,5 +98,5 @@ Partners keep more than NEAR captures (~$50M/yr leakage). Capture-share points a
 <!-- /AUTO:ONE_BREATH -->
 
 <!-- AUTO:COMPOUND -->
-Coverage wall ~42.8% no-vol · opacity×elasticity · fidelity=terms · three scoreboards · residual ~1.29× vol · ~59h · public+X bind.
+Coverage wall ~42.8% · whale desk=SK-tax · conversion~9% appfees→BB · solver rent≠capture · embeds~54% · fee≠L1 OoM ~147× · ~58h · public+X bind.
 <!-- /AUTO:COMPOUND -->
