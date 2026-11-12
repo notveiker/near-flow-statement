@@ -110,3 +110,9 @@ Coverage wall ~42.8% · whale desk=SK-tax · conversion~9% appfees→BB · solve
 - Dial rank commercial≻volume; partner-path micro ≪ SK-tax.
 - Collector rail anomaly; HSP-029 attention ≫ HSP-007; mix-shift = arithmetic.
 <!-- /AUTO:SWEEP19 -->
+
+<!-- AUTO:HEADLINE -->
+# Headline
+**Leakage is the bridge.** Close ~$50M partner leakage → 50× needs only ~**1.29×** volume (vs ~4× today).
+Default rail = fee engine. SK-tax first. Hold until H1b. **Public + X now** (~54h).
+<!-- /AUTO:HEADLINE -->

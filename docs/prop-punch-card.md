@@ -668,3 +668,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Rating growth: disclose USD+NEAR | USD~619.0% vs NEAR~71.4% (req~33.2%) | rating_growth_disclose_usd_and_near |
 | SK-merged HHI = tax leverage | HHI 0.087→0.2 (>0.15 moderate) | sk_merged_hhi_is_tax_leverage |
 | History 232 / 2025Q4_16 | intents~192×; _16 through 2025; not supported | history_progress_2025q4_16 |
+| HEADLINE: Leakage is the bridge | Close $50M → 50× needs ~1.29× vol | headline_leakage_is_the_bridge |

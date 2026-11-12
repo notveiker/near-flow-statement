@@ -480,6 +480,7 @@ def build() -> dict:
             "x_script_90": optional("derived/x_demo_ninety_second_script.json"),
             "rating_disclose": optional("derived/rating_growth_disclose_usd_and_near.json"),
             "sk_merged_hhi": optional("derived/sk_merged_hhi_is_tax_leverage.json"),
+            "headline_leakage": optional("derived/headline_leakage_is_the_bridge.json"),
             "noref_core": optional("derived/noref_concentration_is_fee_core.json"),
             "f1_f4": optional("derived/f1_f4_on_submit_day.json"),
         },

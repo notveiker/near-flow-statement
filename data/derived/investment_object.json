@@ -1,5 +1,5 @@
 {
-  "one_liner": "Intents fee engine (~225 cl) on cooling L1; distribution owns ~90% of user all-in; leakage~$50M dial option; Ledger-first SK-tax+attest before volume; Hold until H1b; repo still private @~55h.",
+  "one_liner": "Close ~$50M leakage and the 50\u00d7 path collapses from ~4\u00d7 volume to ~1.3\u00d7 \u2014 leakage is the bridge; volume is the last mile. Hold until H1b; repo still private.",
   "lead_catalysts": [
     "sk_tax_ledger_first",
     "attest_escrow",
@@ -56,7 +56,7 @@
   "controllable_bridge": "sk_tax_and_attest_then_volume",
   "intents_share_near_protocol_fees_pct": 87,
   "ledger_discipline": "capture_vs_defense_vs_cif_gap",
-  "hours_to_submit": 54.7,
+  "hours_to_submit": 53.5,
   "dense_07_complete_through": "2026Q4",
   "pitch_locked_lines": "pitch_locked_lines.json",
   "near_term_board": "near_term_board.json",
@@ -68,8 +68,9 @@
   },
   "one_breath": "Partners keep more than NEAR captures (~$50M/yr leakage). Capture-share points are worth ~3\u00d7 volume points; Ledger-first SK-tax ~$10.2M \u224842.5 vol-pp. ~71% of measured capture is unattested and escrow BB share climbed 17\u219259% \u2014 attest now. Intents is ~87% of NEAR fees on a cooling L1 (~0.2\u00d7 YoY; intents ~159\u00d7 vs early-2025). Leakage close ~3.1\u00d7 then ~4.4\u00d7 volume/price toward peer multiples; full-capture+HSP still needs ~1.3\u00d7 vol for 50\u00d7. Hold until H1b. HSP-029 pending-then-lagged. Flip repo public + X dry-run.",
   "repo_private": true,
-  "clusters": 225,
+  "clusters": 232,
   "commits": 514,
   "stratum": "_11_dense",
-  "asof": "2026-11-12"
+  "asof": "2026-11-12",
+  "headline": "leakage_is_the_bridge"
 }

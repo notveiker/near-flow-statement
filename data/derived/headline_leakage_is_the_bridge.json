@@ -1,0 +1,26 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_submit": 53.5,
+  "clusters": 232,
+  "commits": 675,
+  "headline": "Leakage is the bridge",
+  "arithmetic": {
+    "today_rr_m": 24.2,
+    "full_capture_rr_m": 74.5,
+    "leakage_m": 50.2,
+    "vol_x_for_50x_after_zero_leak": 1.29,
+    "vol_x_for_50x_today_approx": 4.0
+  },
+  "one_liner": "Close ~$50M leakage and the 50\u00d7 path collapses from ~4\u00d7 volume to ~1.3\u00d7 \u2014 leakage is the bridge; volume is the last mile.",
+  "supporting": [
+    "Default/no-ref rail IS the fee engine (18.7% vol \u2192 45.8% BB$)",
+    "SK-tax ~$10.2M first controllable dial; logos = vol without capture",
+    "Fee\u2260L1 OoM (~180\u2013192\u00d7); mcap/rev 217\u00d7 vs THOR 16\u00d7 is claim-design",
+    "Hold until H1b; attest band ~5.7\u00d7 Trust payoff"
+  ],
+  "must_ship": [
+    "public_repo",
+    "x_demo_dry_run"
+  ],
+  "read": "Headline board @~54h/232cl/675c. Exploratory."
+}

@@ -141,9 +141,10 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~674 commits / 232 clusters / ~54h.** `_16` through 2025Q4; contest-year next. Overall still **not supported**.
-- **Leakage is the bridge.** Fee≠L1 ~**192×**. X 90s script ready.
-- **URGENT:** public + X. Hold until H1b.
+- **HEADLINE: Leakage is the bridge.** Close ~$50M → 50× needs only ~**1.29×** volume.
+- **~675 commits / 232 clusters / 535 derived / ~54h.** Overall still **not supported**.
+- Default rail = fee engine; SK-tax first; 217× claim design; Hold until H1b.
+- **URGENT:** public repo + X (90s script ready).
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context
