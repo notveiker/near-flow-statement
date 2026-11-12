@@ -67,5 +67,7 @@
 | 61 | Soft-sink gross sum | ~2.3yr mint days (non-additive) | Mostly liquid exits — not permanent scarcity |
 | 62 | Burn materiality (25% of mint) | Needs ~122% of today’s fee capture as hard removal | Held buybacks ≠ permanent scarcity |
 | 63 | Quality policy catalysts | Auto-burn split / attestation map / CIF card | Harden underwriting without volume |
+| 64 | SK exit fee asymmetry | −38% 1Click vol but only ~2% traceable buyback $ | Fee engine already in no-ref; contest is affiliate P&L |
+| 65 | NEAR share of SK partner fees | ~0.0045% | Distribution owns the SK pipe margin |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.

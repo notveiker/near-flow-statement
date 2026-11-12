@@ -46,3 +46,5 @@ Realized cost runs about **8.5 bp** above listed appFees on the Explorer sample.
 No-referrer dollar concentration: `data/derived/noref_dollar_concentration.json` (~2.45× buyback-$ vs vol share).
 
 Capture-share path (leakage compression at flat 15.3 gross bp): `data/derived/capture_share_path.json` — 60% capture ≈ ~$45M RR (~0.46× of 50× need).
+
+SwapKit exit fee asymmetry: `data/derived/sk_exit_fee_asymmetry.json` — volume risk ≫ buyback-$ risk on that pipe.

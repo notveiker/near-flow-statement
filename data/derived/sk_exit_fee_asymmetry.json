@@ -1,0 +1,9 @@
+{
+ "sk_vol_share_1click_pct": 38.2,
+ "traceable_rev_loss_pct_if_exit": 2.0,
+ "traceable_rev_loss_usd_k": 39.9,
+ "vol_loss_1click_pp": 38.2,
+ "near_share_of_sk_partner_fees_pct": 0.0045,
+ "revshare_threat": "ADR-029 pays affiliates a share of liquidity fees from reserve (cap 50%) so affiliate margin rises without raising user fee",
+ "insight": "SwapKit exit destroys distribution/volume (~38% 1Click) but only ~2% of traceable buyback revenue \u2014 fee engine is already elsewhere (no-ref). Contest is affiliate P&L via ADR-029-style revshare, not buyback $. Exploratory."
+}
