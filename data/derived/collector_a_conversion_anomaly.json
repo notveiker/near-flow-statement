@@ -1,0 +1,7 @@
+{
+ "collector_a_inflow_usd_k": 435.0,
+ "bb_from_collector_a_usd_k": 460.4,
+ "a_to_bb_pct": 105.8,
+ "collector_a_vs_explicit_fees_pct": 96.5,
+ "note": "Collector A \u2192 BB conversion prints ~106% (>100%) while tracking ~96.5% of explicit fees \u2014 timing/window mismatch or dual-counting across rails. Do not treat rail conversion as clean 1:1. Exploratory anomaly."
+}

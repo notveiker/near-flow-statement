@@ -204,3 +204,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Inventory cross-chain bias | ZEC/BTC/stables/XLM proxy ~**40%+** of inventory vs wNEAR 27% — BS matches cross-chain product | inventory_cross_chain_bias |
 | Quality path evidenced | Attach/τ already 1.72× inside sample on cooling vol — path is observed not only hypothetical | quality_path_evidenced |
 | Marginal share vs volume | +1pp capture-share ≈ **$0.7M/yr** vs +1pp vol ≈ $0.2M/yr (~3.1×) | marginal_share_vs_volume |
+| Collector A conversion anomaly | A→BB prints **>100%** while tracking ~96.5% explicit fees — window/rail mismatch | collector_a_conversion_anomaly |
