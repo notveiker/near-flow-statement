@@ -17,3 +17,5 @@
 Until the top gaps close, the honest investment object is a **range with policy and partner risk**, not a closed fee→scarcity loop (`data/derived/investment_object.json`). The punch card still scores: attach, mix, attestation, HSP-029, then volume.
 
 SwapKit↔escrow link unknown — exit ceilings span 2–74% (`data/derived/sk_exit_ceilings.json`).
+
+Telegram (`intents.tg`) is a live referral surface in census (~20% of tagged) but fee attribution to buyback is not mapped (`census_tg_surface.json`).
