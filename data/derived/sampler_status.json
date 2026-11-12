@@ -1,7 +1,6 @@
 {
- "primary_clusters_local": 159,
- "last_ingested": "2025Q3_07",
+ "primary_clusters_local": 160,
+ "last_ingested": "2025Q4_07",
  "overall": "not_supported_preliminary",
- "stratum": "_07_dense",
- "note": "159 clusters through 2025Q3_07 dense. Still preliminary. ~386 commits. ~67.5h to submit."
+ "stratum": "_07_dense"
 }
