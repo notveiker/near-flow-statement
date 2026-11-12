@@ -229,3 +229,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Rhea vs Intents fees | Rhea Dex+Lend ~12.8% vs Intents **87%** (~10× Rhea Dex) — AMM residual not the fee story | rhea_vs_intents_fees |
 | History 150 clusters | 150 preliminary clusters through 2025Q2_06 — milestone, still not supported | sweep_milestone_150_clusters |
 | History honesty at 150 | 150 clusters ≠ supported — pitch must say preliminary / not supported | history_honesty_150 |
+| History entering 2026 | 152 clusters through 2025Q4 — contest-year strata next; still preliminary | history_entering_2026 |
