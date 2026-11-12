@@ -1,0 +1,33 @@
+{
+ "rows": [
+  {
+   "take_bp": 4.98,
+   "rr_at_current_vol_m": 24.2,
+   "vol_x_for_1x_today_mint": 4.88,
+   "vol_x_for_1x_hsp029_mint": 3.17,
+   "vol_x_for_50x": 3.98
+  },
+  {
+   "take_bp": 7.65,
+   "rr_at_current_vol_m": 37.2,
+   "vol_x_for_1x_today_mint": 3.18,
+   "vol_x_for_1x_hsp029_mint": 2.07,
+   "vol_x_for_50x": 2.59
+  },
+  {
+   "take_bp": 9.49,
+   "rr_at_current_vol_m": 46.2,
+   "vol_x_for_1x_today_mint": 2.56,
+   "vol_x_for_1x_hsp029_mint": 1.67,
+   "vol_x_for_50x": 2.09
+  },
+  {
+   "take_bp": 15.3,
+   "rr_at_current_vol_m": 74.5,
+   "vol_x_for_1x_today_mint": 1.59,
+   "vol_x_for_1x_hsp029_mint": 1.03,
+   "vol_x_for_50x": 1.29
+  }
+ ],
+ "note": "Volume multiples needed at various takes for mint coverage and 50\u00d7. At AITR 9.49 bp, still ~2.6\u00d7 vol for 1\u00d7 today-mint coverage and ~2.1\u00d7 for 50\u00d7. Exploratory."
+}
