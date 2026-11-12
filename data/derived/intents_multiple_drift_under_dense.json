@@ -80,6 +80,10 @@
     {
       "clusters": 232,
       "intents_x": 192.3539
+    },
+    {
+      "clusters": 233,
+      "intents_x": 192.3539
     }
   ],
   "l1_yoy_tx_x": 0.208,
@@ -87,5 +91,5 @@
   "still_orders_of_magnitude_vs_l1": true,
   "floor_still_above_100x": true,
   "implication": "Do not treat ~189\u00d7 as a point estimate \u2014 band is wide; claim is orders-of-magnitude fee-engine\u2260L1, not a precise multiple",
-  "read": "Intents\u00d7 [189, 181, 147, 147, 147, 147, 158, 170, 170, 182, 182, 182, 182, 182, 180, 180, 192, 192, 192, 192] \u2014 \u226b100\u00d7 vs L1 ~0.21\u00d7. Pitch OoM. Exploratory."
+  "read": "Intents\u00d7 [189, 181, 147, 147, 147, 147, 158, 170, 170, 182, 182, 182, 182, 182, 180, 180, 192, 192, 192, 192, 192] \u2014 \u226b100\u00d7 vs L1 ~0.21\u00d7. Pitch OoM. Exploratory."
 }
