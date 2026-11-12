@@ -32,4 +32,5 @@ Two bridges: SK-tax ~$10M + attest ~$8.4M before volume.
 
 
 
-*Ops stamp: ~67.1h; 161 clusters; ~401 commits; MUST SHIP: public_repo + X_demo_dry_run.*
+
+*Ops stamp: ~66.0h; 167 clusters; ~431 commits; MUST SHIP: public_repo + X_demo_dry_run; pitch locked lines ready.*
