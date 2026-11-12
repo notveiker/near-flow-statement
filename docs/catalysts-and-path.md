@@ -328,3 +328,11 @@ Chain Signatures sits under Intents execution (execute ≫ respond ≫ sign) —
 - **Relayer top1** ~**83%**; outage vol/fee ~**2004.0×** — ops/UX catalyst, not a τ dial.
 - **Multi-venue embeds** ~**54.0%** of 1Click can fill away — SK-tax/attach must clear exit threat.
 <!-- /AUTO:RENT_RELAY -->
+
+<!-- AUTO:CONV_AFF -->
+### Conversion + affiliate contest + single-venue fee (exploratory)
+
+- **Conversion:** only ~**9.2%** of appfees become buybacks — quiet capture dial (~**$5.5M** / ~**22.9** vol-pp).
+- **Affiliate P&L contest:** SK exit ~**38.2%** vol / ~**2.0%** BB — fight is affiliate margin, not user fee.
+- **Single-venue fee power:** Intents ~**87.0%** of NEAR fees; BB dollars more concentrated than volume.
+<!-- /AUTO:CONV_AFF -->

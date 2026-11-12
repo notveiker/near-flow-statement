@@ -503,3 +503,6 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Sweep ~567 identity | Solver/relayer/embed boards; public+X bind | sweep_567_identity |
 | Private repo @59h / 205cl | Flip visibility is binding delivery catalyst | public_repo_checklist |
 | Intents× drift under dense | ~189→~147 as 2025Q1 den fills — still ≫100× vs L1; pitch OoM not point | intents_multiple_drift_under_dense |
+| Conversion quiet capture dial | Only ~9.2% appfees→BB; conversion ~$5.5M ≈ 22.9 vol-pp | conversion_quiet_capture_dial |
+| Affiliate P&L contest asymmetry | SK exit ~38.2% vol / ~2.0% BB — fight is affiliate margin | affiliate_pnl_contest_asymmetry |
+| Single-venue fee power | Intents ~87.0% NEAR fees; BB HHI>0.087 vol HHI — distribution owns margin | single_venue_fee_power |

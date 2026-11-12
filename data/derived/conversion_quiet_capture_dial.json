@@ -1,0 +1,14 @@
+{
+  "asof": "2026-11-12",
+  "appfees_to_buybacks_pct": 9.2,
+  "partner_fees_no_bb_usd_m_30d": 4.213,
+  "appfees_vs_near_capture_x": 2.46,
+  "conversion_dial_rr_m": 5.5,
+  "conversion_vol_pp": 22.9,
+  "implication": "Only ~9% of listed appfees become buybacks \u2014 conversion (appfee\u2192BB) is a capture dial distinct from attach%; SK-tax and conversion both attack the same partner margin",
+  "mutex_with": [
+    "sk_tax_25",
+    "mix_10pp_nearcom"
+  ],
+  "read": "Conversion: only ~9.2% of Explorer appfees become buybacks; partners keep ~$4.213M/30d with no BB. Conversion dial ~$5.5M \u2248 22.9 vol-pp \u2014 quiet capture surface beside attach. Exploratory."
+}

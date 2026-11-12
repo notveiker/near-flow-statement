@@ -631,6 +631,12 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (Fs) bits.push(`Fee≠L1 stable under dense: intents~${Math.round(Fs.intents_vs_2025q1_x_now)}× (was~189) vs L1~${Number(Fs.l1_yoy_tx_x_now).toFixed(2)}×.`);
     const Id = D.catalysts && D.catalysts.intents_drift;
     if (Id) bits.push(`Intents× drift ~189→~${Math.round(Id.series[Id.series.length-1].intents_x)} as 2025Q1 den fills — pitch OoM gap not point estimate.`);
+    const Cq = D.catalysts && D.catalysts.conversion_quiet;
+    const Ac = D.catalysts && D.catalysts.affiliate_contest;
+    const Sv = D.catalysts && D.catalysts.single_venue_fee;
+    if (Cq) bits.push(`Conversion quiet dial: only ~${Cq.appfees_to_buybacks_pct}% appfees→BB; ~$${Cq.conversion_dial_rr_m}M ≈ ${Cq.conversion_vol_pp} vol-pp.`);
+    if (Ac) bits.push(`Affiliate P&L contest: SK exit ~${Ac.sk_exit_vol_pct}% vol / ~${Ac.sk_exit_traceable_bb_pct}% BB (~${Ac.vol_to_bb_asymmetry_x}×).`);
+    if (Sv) bits.push(`Single-venue fee power: Intents~${Sv.intents_share_of_near_fees_pct}% NEAR fees; BB more concentrated than vol.`);
     if (Ds) bits.push(`Diminishing strata: marginal seals low EV vs ~${Ds.hours_to_submit}h public+X clock.`);
     const SrL = D.catalysts && D.catalysts.solver_rent_ledger;
     const Ro = D.catalysts && D.catalysts.relayer_ops;

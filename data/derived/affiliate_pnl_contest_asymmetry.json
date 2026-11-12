@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "mechanism": "ADR-029 affiliate share of liquidity fees from reserve (cap 50%)",
+  "sk_exit_vol_pct": 38.2,
+  "sk_exit_traceable_bb_pct": 2.0,
+  "vol_to_bb_asymmetry_x": 19.1,
+  "implication": "Affiliate revshare contests NEAR capture share without raising user fees \u2014 the fight is affiliate P&L; SK exit proves vol risk \u226b BB risk",
+  "read": "ADR-029-style affiliate contest: SK exit would drop ~38.2% 1Click vol but only ~2.0% traceable BB (~19\u00d7 asymmetry). Contest is affiliate margin, not user fee. Exploratory."
+}

@@ -1,0 +1,10 @@
+{
+  "asof": "2026-11-12",
+  "intents_share_of_near_fees_pct": 87.0,
+  "fee_hhi_floor": 0.757,
+  "bb_fee_hhi": 0.244,
+  "vol_channel_hhi": 0.087,
+  "bb_unreferred_share_pct": 45.8,
+  "implication": "Chain fee power is a single-venue (Intents) story; inside Intents, BB dollars are more concentrated than volume \u2014 distribution owns margin",
+  "read": "Intents ~87.0% of NEAR fees (HHI floor \u22650.757). Inside venue: BB-fee HHI 0.244 vs vol HHI 0.087; unreferred ~45.8% of BB $. Single-venue fee power + distribution-owned margin. Exploratory."
+}
