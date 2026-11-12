@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "vol_x_needed_at_498bp": 3.98,
+  "vol_x_needed_at_aitr": 2.09,
+  "rr_at_aitr_on_full_intents_m": 46.2,
+  "oneclick_100aitr_vs_need_x": 0.13,
+  "implication": "50\u00d7 is Intents-wide: even 100% AITR on 1Click alone is only ~0.13\u00d7 of need \u2014 attach-on-1Click cannot finish 50\u00d7; leakage+volume on full Intents required",
+  "read": "1Click@100% AITR ~0.13\u00d7 of 50\u00d7 need. Attach\u226050\u00d7 alone. Exploratory."
+}

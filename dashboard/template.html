@@ -863,6 +863,14 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (Iou) bits.push(`Intents OK~${Iou.intents_ok_share_pct}% — failure tail = UX risk not fee dial.`);
     if (Hvs) bits.push(`HOT~${Hvs.hot_tx_share_pct}% tx vs Intents~${Hvs.intents_tx_share_pct}% at matched gas — settlement weight.`);
     if (Enl) bits.push(`ETF NRR~$${Enl.etf_nrr_m}M ≈${Enl.nrr_vs_intents_x}× Intents — non-lead.`);
+    const Edb = D.catalysts && D.catalysts.escrow_dom_bb;
+    const Tud = D.catalysts && D.catalysts.tg_unknown_dials;
+    const Csb = D.catalysts && D.catalysts.cs_bursty;
+    const An5 = D.catalysts && D.catalysts.attach_not_50x;
+    if (Edb) bits.push(`Escrow BB rail ${Edb.escrow_jul_pct}→${Edb.escrow_nov_pct}% — Trust urgency.`);
+    if (Tud) bits.push(`Surfaces: unknown~${Tud.unknown_1click_share_pct}% / tg~${Tud.tg_share_pct}% — label+TG dials.`);
+    if (Csb) bits.push(`CS bursty under Intents (execute/respond ×${Csb.execute_vs_respond_x}) — infra not fee.`);
+    if (An5) bits.push(`1Click@100% AITR only ~${An5.oneclick_100aitr_vs_need_x}× of 50× need — attach≠50×.`);
 const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);

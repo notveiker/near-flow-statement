@@ -1,0 +1,30 @@
+{
+  "asof": "2026-11-12",
+  "escrow_jul_pct": 17.5,
+  "escrow_nov_pct": 58.5,
+  "delta_pp": 41.0,
+  "series": [
+    {
+      "month": "2026-07",
+      "pct": 17.5
+    },
+    {
+      "month": "2026-08",
+      "pct": 28.6
+    },
+    {
+      "month": "2026-09",
+      "pct": 53.0
+    },
+    {
+      "month": "2026-10",
+      "pct": 57.4
+    },
+    {
+      "month": "2026-11",
+      "pct": 58.5
+    }
+  ],
+  "implication": "Escrow funding of BB climbed 17.5\u219258.5% \u2014 confidential path is becoming the dominant buyback rail; reinforces opacity/Trust urgency not capture bullishness",
+  "read": "Escrow BB share 17.5\u219258.5% (+41.0pp). Trust urgency. Exploratory."
+}

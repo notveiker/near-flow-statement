@@ -1,0 +1,34 @@
+{
+  "asof": "2026-11-12",
+  "top_surfaces": [
+    {
+      "tag": "1click-unknown",
+      "count": 132,
+      "share_pct": 33.2
+    },
+    {
+      "tag": "intents.tg",
+      "count": 81,
+      "share_pct": 20.4
+    },
+    {
+      "tag": "1click-swapkit",
+      "count": 60,
+      "share_pct": 15.1
+    },
+    {
+      "tag": "1click-lifi",
+      "count": 34,
+      "share_pct": 8.6
+    },
+    {
+      "tag": "1click-rango",
+      "count": 14,
+      "share_pct": 3.5
+    }
+  ],
+  "tg_share_pct": 20.4,
+  "unknown_1click_share_pct": 33.2,
+  "implication": "Distribution surface: ~33% 1click-unknown + ~20% intents.tg \u2014 labeled attach opportunity and TG channel are material; unknown is a conversion/labeling dial",
+  "read": "Surfaces: unknown~33.2% / tg~20.4% / SK~15%. Label+TG dials. Exploratory."
+}
