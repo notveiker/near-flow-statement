@@ -90,6 +90,7 @@
 | 84 | USD vs NEAR fee growth | ~619%/yr USD vs ~71%/yr NEAR | Price inflates USD print; NEAR-unit still > req |
 | 85 | H1c identified buying | ~$1.48M (<1× 30d capture) | Buy-side demand thin vs fee narrative |
 | 86 | SK exit ceilings | Traceable ~2%; escrow-tied ceiling ~43–74% | Fee resilience depends on escrow↔SK link (gap) |
+| 87 | Inventory turnover | ~17×/30d (~1.7 days of vol); PCI ~0.057 | Capital-light settlement float |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.
 
