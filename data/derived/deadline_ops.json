@@ -1,14 +1,15 @@
 {
- "now_utc": "2026-11-12T01:28:23.790741+00:00",
- "hours_to_submit": 70.5,
+ "now_utc": "2026-11-12T01:37:45.470470+00:00",
+ "hours_to_submit": 70.4,
  "must_ship": [
   "public_repo",
   "X_demo",
   "dashboard+REPORT",
-  "falsifier_scores_F1-F4"
+  "F1-F4"
  ],
  "prop_ready": true,
- "history_status": "preliminary_not_supported_143",
+ "history_clusters": 144,
+ "history_status": "preliminary_not_supported",
  "pitch_spine": "docs/pitch-spine.md",
- "note": "Prop stack ready for judges; history still preliminary. Exploratory ops."
+ "note": "Prop judge-ready; ship public repo + X demo next. Exploratory ops."
 }
