@@ -141,9 +141,9 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~636 commits / 225 clusters / ~55h.** Contest-year `_15` sealing. Overall still **not supported**.
-- Peer **gross bp ≠ token-claimable bp** — pitch claimable τ. Ledger@SK ~133bp partner tax; protocol pip irrelevant.
-- Non-1Click ~44.8% vol fee composition = Gap. **Repo still PRIVATE** (gh confirmed).
+- **~637 commits / 225 clusters / ~55h.** `_15` through 2026Q1; Q2 sealing. Overall still **not supported**.
+- Fee≠L1 OoM holds: intents~**182×** vs L1~**0.23×**.
+- Peer claimable≠gross; Ledger@SK ~133bp; pip irrelevant; repo **PRIVATE**.
 - **Human-only:** public + X. Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 

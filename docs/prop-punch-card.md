@@ -612,3 +612,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Protocol pip irrelevant | Protocol pip 0.01 bp vs τ 4.98 / gross 15.3 — ignore pip; pitch distribution capture. Exploratory. | protocol_pip_economically_irrelevant |
 | Non-1Click fee composition gap | Non-1Click ~44.8% vol fee composition = Gap. 1Click dials are lower bound on commercial surface. Exploratory. | non_1click_fee_composition_gap |
 | Repo still PRIVATE (gh) | Repo PRIVATE confirmed @~55h / 225 cl / 636 c. Flip public is binding. Exploratory. | repo_still_private_confirmed |
+| History 225 / 2026Q1_15 | intents~182× OoM holds; overall not supported | history_progress_2026q1_15 |
