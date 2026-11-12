@@ -708,3 +708,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Opacity is a clock not P&L | attest unlocks Trust; opacity≠capture | opacity_is_clock_not_pnl |
 | Evidence surplus / delivery deficit | 710c/564 boards vs private+no-X | evidence_surplus_delivery_deficit |
 | Intents = NEAR DEX surface | ~98.8% DEX / ~87% fees | intents_is_near_dex_surface |
+| History 240 / 2025Q4_17 | _17 2025 complete; intents~175×; public+X NOW | history_progress_2025q4_17 |

@@ -141,8 +141,8 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **707 commits / 239 clusters / ~52h.** HEADLINE: Leakage is the bridge. Intents≈99% DEX.
-- Fee≠L1 ~**175×**. `_17` through Q3. Attach×capture×leakage triangle locked. Overall **not supported**.
+- **712 commits / 240 clusters / ~52h.** HEADLINE: Leakage is the bridge. Intents≈99% DEX.
+- Fee≠L1 ~**175×**. `_17` 2025 complete → entering contest-year 2026. Overall **not supported**.
 - **Flip public. Record X. Submit.** Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 
