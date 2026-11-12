@@ -1,28 +1,29 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 54.6,
-  "clusters": 226,
-  "commits": 643,
+  "hours_to_submit": 54.4,
+  "clusters": 227,
+  "commits": 650,
   "lines": [
-    "Fee engine \u2260 L1: Intents ~180\u00d7 vs cooling base (~0.23\u00d7 YoY) \u2014 pitch OoM.",
-    "Users pay ~10.6\u00d7 capture; protocol ~9% of user all-in; distribution owns margin.",
-    "Leakage ~$50M/yr dial option; SK-tax+conversion+attach \u2248$24M without volume.",
-    "No-vol wall ~42.8%; last-mile volume = whale desk (~77% vol) = distribution terms.",
-    "Opacity/escrow buys Trust time not \u03c4; fee print \u2260 escrow trust; Hold until H1b.",
-    "Call order: SK-tax \u227b conversion \u227b attach; cross-ledger attest OK; same-ledger mutex.",
-    "Capital-light (PCI~0.057) \u2014 leakage binds, not bonds; peer claimable\u2260gross.",
-    "Must-ship: public repo + X dry-run (human-only). HSP-029 pending-then-lagged."
+    "Fee\u2260L1 OoM: Intents ~180\u00d7 (drifts under densification; always \u226b100\u00d7) vs L1 ~0.22\u00d7.",
+    "Users pay ~10.6\u00d7 capture; protocol ~9% of user all-in.",
+    "Leakage ~$50M dial option; SK+conv+attach \u2248$24M without volume.",
+    "mcap/rev ~217\u00d7 vs THOR~16\u00d7 \u2014 discretionary held-BB claim design is part of the premium.",
+    "No-vol wall ~42.8%; last mile = whale desk; capital-light PCI~0.057.",
+    "Call order: SK-tax \u227b conversion \u227b attach; attest parallel; same-ledger mutex.",
+    "Hold until H1b (underwrite discretionary claim). Density \u2260 support.",
+    "Must-ship: public repo + X (human-only). HSP-029 pending-then-lagged."
   ],
   "do_not_lead": [
-    "AI/agents",
-    "ETF/NRR",
-    "CIF gap",
+    "AI",
+    "ETF",
+    "CIF",
     "more strata",
     "opacity-as-capture",
     "CS-as-fee",
     "perps",
     "bond-demand",
-    "pip"
+    "pip",
+    "volume-alone-to-close-multiple"
   ],
-  "read": "Locked 8 lines @~55h/226cl/643c. Exploratory."
+  "read": "Locked 8 lines @~54h/227cl/650c. Exploratory."
 }

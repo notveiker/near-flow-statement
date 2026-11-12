@@ -455,6 +455,8 @@ def build() -> dict:
             "peer_mcap_rev": optional("derived/peer_mcap_rev_multiple_claim_gap.json"),
             "mult_compress": optional("derived/multiple_compression_claim_first.json"),
             "entering_15_final": optional("derived/entering_15_final_quarter.json"),
+            "commits_650": optional("derived/commits_650_milestone.json"),
+            "intents_oom_drift": optional("derived/intents_x_drift_always_oom.json"),
             "f1_f4": optional("derived/f1_f4_on_submit_day.json"),
         },
         "repro": reproducibility(),

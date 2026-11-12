@@ -1,0 +1,26 @@
+{
+  "asof": "2026-11-12",
+  "commits": 650,
+  "clusters": 227,
+  "hours_to_submit": 54.4,
+  "derived_json": 509,
+  "intents_x_series": [
+    189,
+    181,
+    147,
+    147,
+    147,
+    147,
+    158,
+    170,
+    170,
+    182,
+    182,
+    182,
+    182,
+    182,
+    180
+  ],
+  "implication": "650 commits; intents\u00d7 drifts under densification but floor \u226b100\u00d7; delivery blockers unchanged",
+  "read": "~650c/227cl/~54h; intents\u00d7 [189, 181, 147, 147, 147, 147, 158, 170, 170, 182, 182, 182, 182, 182, 180]. PUBLIC+X. Exploratory."
+}

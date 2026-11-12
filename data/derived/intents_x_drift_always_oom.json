@@ -1,0 +1,73 @@
+{
+  "asof": "2026-11-12",
+  "series": [
+    {
+      "clusters": 201,
+      "intents_x": 189.12
+    },
+    {
+      "clusters": 204,
+      "intents_x": 181.15
+    },
+    {
+      "clusters": 205,
+      "intents_x": 147.1856
+    },
+    {
+      "clusters": 206,
+      "intents_x": 147.1856
+    },
+    {
+      "clusters": 207,
+      "intents_x": 147.1856
+    },
+    {
+      "clusters": 209,
+      "intents_x": 147.1856
+    },
+    {
+      "clusters": 213,
+      "intents_x": 158.2317
+    },
+    {
+      "clusters": 219,
+      "intents_x": 170.0345
+    },
+    {
+      "clusters": 220,
+      "intents_x": 170.0345
+    },
+    {
+      "clusters": 221,
+      "intents_x": 182.1798
+    },
+    {
+      "clusters": 223,
+      "intents_x": 182.1798
+    },
+    {
+      "clusters": 224,
+      "intents_x": 182.1798
+    },
+    {
+      "clusters": 225,
+      "intents_x": 182.1798
+    },
+    {
+      "clusters": 226,
+      "intents_x": 182.1798
+    },
+    {
+      "clusters": 227,
+      "intents_x": 180.3318
+    }
+  ],
+  "latest_intents_x": 180.3318,
+  "latest_clusters": 227,
+  "min_intents_x": 147.1856,
+  "max_intents_x": 189.12,
+  "always_above_100": true,
+  "l1_yoy_tx_x": 0.2249,
+  "implication": "Intents\u00d7 point drifts with densification (do not pin) but every observation \u226b100\u00d7 vs L1 ~0.22\u00d7 \u2014 pitch OoM + drift honesty",
+  "read": "Drift series [189, 181, 147, 147, 147, 147, 158, 170, 170, 182, 182, 182, 182, 182, 180] @ clusters [201, 204, 205, 206, 207, 209, 213, 219, 220, 221, 223, 224, 225, 226, 227] \u2014 always \u226b100\u00d7. Pitch OoM. Exploratory."
+}
