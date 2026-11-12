@@ -1,0 +1,8 @@
+{
+ "census_intents_burn_near_10h": 34.25,
+ "annualised_burn_near_if_sustained": 29129.0,
+ "annualised_capture_near_approx": 6606500,
+ "capture_vs_gas_burn_x": 226.8,
+ "note": "If census gas burn sustained (it will not be), Intents would burn ~29k NEAR/yr of gas vs ~6.6M NEAR/yr fee capture \u2014 capture \u226b gas opex in NEAR units. Hours window; exploratory directional only.",
+ "read": "Fee capture in NEAR units dwarfs Intents gas burn \u2014 gas opex is not the scarcity story; wallet capture is."
+}

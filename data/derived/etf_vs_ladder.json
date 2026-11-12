@@ -1,0 +1,17 @@
+{
+ "etf_nrr_rr_m": 0.42,
+ "vs_ai_x": 1.27,
+ "vs_sk_tax_x": 0.041,
+ "note": "ETF NRR ~$0.42M/yr \u2248 AI 5% bound, ~0.04\u00d7 SK-tax \u2014 float story not fee story. Do not lead. Exploratory.",
+ "raw": {
+  "etf_aum_peak_m": 91.38,
+  "etf_aum_now_m": 55.86,
+  "aum_drawdown_pct": -38.9,
+  "cumulative_net_inflow_m": 80.5,
+  "fee_pct": 0.75,
+  "implied_nrr_m": 0.42,
+  "intents_fee_rr_m": 24.2,
+  "nrr_vs_intents_rr_x": 0.017,
+  "note": "Bitwise NRR AUM \u221239% from late-Oct print while cumulative inflow still ~$80M (price/AUM mark). Implied 0.75% NRR on current AUM \u2248 $0.42M/yr \u2014 tiny vs Intents ~$24M RR. ETF is float/narrative, not the fee engine. Exploratory."
+ }
+}

@@ -302,3 +302,7 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Commercial conversation map | Ledger → attest → CIF → ADR defense → conversion → TG → LI.FI → dense fronts | commercial_conversation_map |
 | Catalyst hours board | Submit/F1–F4 before HSP-029 timelock — issuance cut stays scenario | catalyst_hours_board |
 | Collector B quote-improvement | ~$1.32M/yr from fill-beats-quote 50/50 — real, ≪ SK-tax renegotiation | collector_b_quote_improvement |
+| Capture ≫ gas opex | Intents fee capture in NEAR ≫ gas burn — opex not the scarcity story | capture_vs_gas_opex |
+| H1c buy-side thin | Identified buying ~$1.48M < one 30d capture — demand thin vs fee narrative | h1c_buy_side_thin |
+| Intents heavier per tx | HOT≈gas share but 3× txs — Intents settlement density per tx | intents_heavier_per_tx |
+| ETF vs ladder | ETF NRR ~$0.42M ≈ AI bound, ~0.04× SK-tax — float not fee | etf_vs_ladder |
