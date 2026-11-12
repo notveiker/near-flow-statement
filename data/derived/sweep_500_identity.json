@@ -1,0 +1,21 @@
+{
+  "asof": "2026-11-12",
+  "commits_since_structural": 498,
+  "clusters_preliminary": 184,
+  "hours_to_submit": 62.5,
+  "headline": "Distribution owns margin; capture-pp\u22483\u00d7vol; opacity accelerating; fee\u2260L1 (~147\u00d7 vs ~0.2\u00d7); Hold until H1b",
+  "must_ship": [
+    "public_repo_STILL_PRIVATE",
+    "X_demo_dry_run"
+  ],
+  "locked": [
+    "judge_one_breath",
+    "submit_day_runbook",
+    "pitch_locked_lines",
+    "four_ten_m",
+    "dial_elasticity",
+    "thor_two_step"
+  ],
+  "history": "_10 contest-year filling; overall not supported; not submit blocker",
+  "note": "~498 commits; 184 clusters; ~62.5h; prop packet ready; flip repo public."
+}
