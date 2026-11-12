@@ -695,3 +695,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Attach×capture×leakage triangle | attach w/o capture=gift; leakage bridges both | attach_capture_leakage_triangle |
 | Density EV ≪ delivery EV | _12–_16 never flipped overall; public+X binding | density_ev_vs_delivery_ev |
 | SK-tax = first controllable $ | ~$10.2M before volume; logos≠capture | sk_tax_first_controllable_dollar |
+| History 239 / 2025Q3_17 | intents~175×; triangle+SK-tax shipped; public+X NOW | history_progress_2025q3_17 |

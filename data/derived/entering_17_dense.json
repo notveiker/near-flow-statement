@@ -1,18 +1,15 @@
 {
   "asof": "2026-11-12",
-  "clusters": 237,
-  "last": "2025Q1_17",
-  "entering": "_17",
-  "complete": [
-    "_12",
-    "_13",
-    "_14",
-    "_15",
-    "_16"
+  "stratum": "_17",
+  "clusters": 239,
+  "sealed": [
+    "2025Q1_17",
+    "2025Q2_17",
+    "2025Q3_17"
   ],
-  "hours_to_submit": 52.5,
-  "commits": 698,
   "intents_x": 175.3371,
-  "overall": "not_supported",
-  "read": "_17 @237; low EV. intents~175\u00d7. public+X ONLY. Exploratory."
+  "l1_yoy_tx_x": 0.1925,
+  "overall": "not supported",
+  "ev": "low \u2014 packaging + public+X dominate",
+  "read": "_17 through Q3 @ 239cl; intents~175\u00d7. Exploratory."
 }
