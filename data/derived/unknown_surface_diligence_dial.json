@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "unknown_share_pct": 33.2,
+  "tg_share_pct": 20.4,
+  "tg_half_10bp_rr_m": 1.37,
+  "unknown_half_10bp_rr_m_scaled": 2.23,
+  "note": "Scaled from TG dial by census share \u2014 NOT measured fee map. Upper-bound diligence prize for labeling unknown referrals. Exploratory Gap.",
+  "read": "Unknown ~33.2% of census tags; scaled half@10bp diligence upper bound ~$2.23M/yr if TG-like attach \u2014 labeling is the catalyst, not assumed fees. Exploratory Gap."
+}

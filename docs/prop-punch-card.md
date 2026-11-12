@@ -398,3 +398,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Peerset leadership ≠ scarce | Gross→net gap 17pp; share recovery ≪ SK-tax $; capture is scarce | peerset_leadership_not_scarce |
 | Distribution surface opacity | Unknown ~33% / TG ~20% of census tags — attribution Gap beside fee opacity | distribution_surface_opacity |
 | Public repo LIVE private | gh isPrivate=true — binding delivery blocker with ~64h left | public_repo_checklist |
+| Unknown surface diligence dial | Scaled half@10bp ~$2.23M Gap — labeling catalyst, not assumed fees | unknown_surface_diligence_dial |
