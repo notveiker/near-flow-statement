@@ -560,3 +560,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 221 / 2025Q1_15 | Denser _15 started — still not supported | history_progress_2025q1_15 |
 | History 222 / 2025Q2_15 | _15 dense continuing — still not supported | history_progress_2025q2_15 |
 | Sweep ~625 identity | Triple-dense done; human-only public+X | sweep_625_identity |
+| History 223 / 2025Q3_15 | _15 dense continuing — still not supported | history_progress_2025q3_15 |
+| Waiter restarted @40 | DONE_BATCH then durable restart; public+X bind | waiter_restart_40 |

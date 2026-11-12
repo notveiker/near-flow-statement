@@ -1,8 +1,8 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 55.4,
-  "clusters": 222,
-  "commits": 626,
+  "hours_to_submit": 55.2,
+  "clusters": 223,
+  "commits": 628,
   "derived_json": 436,
   "repo_private": true,
   "x_dry_run_done": false,
@@ -11,5 +11,5 @@
     "x_demo_dry_run"
   ],
   "prop_ready_excl_must_ship": 0.97,
-  "read": "~55h / 222 clusters / 626 commits. Human-only: public+X. Exploratory."
+  "read": "~55h / 223 clusters / 628 commits. Human-only: public+X. Exploratory."
 }
