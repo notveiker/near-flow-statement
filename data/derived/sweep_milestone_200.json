@@ -1,8 +1,8 @@
 {
- "asof_utc": "2026-11-12T00:39:01Z",
- "commits_since_structural_thesis": 200,
- "punch_rows_approx": 104,
- "history_clusters_preliminary": 139,
+ "asof_utc": "2026-11-12T00:49:47Z",
+ "commits_since_structural_thesis": 215,
+ "punch_rows_approx": 106,
+ "history_clusters_preliminary": 140,
  "binding_story": "Leakage renegotiation is the bridge; volume is the last mile.",
  "headline": "Distribution owns the margin; quality rose on a cooling print; Intents is heavy settlement.",
  "rating": "Hold until H1b",
@@ -10,6 +10,7 @@
   "docs/prop-what-is-proprietary.md",
   "docs/prop-topline.md",
   "docs/prop-punch-card.md",
+  "docs/x-demo-talking-points.md",
   "dashboard/index.html",
   "REPORT.md"
  ]

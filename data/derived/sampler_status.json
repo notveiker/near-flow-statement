@@ -1,10 +1,9 @@
 {
- "primary_clusters_local": 139,
- "sample2_clusters_local": 87,
- "primary_next_part": "2022Q4_06",
- "primary_part_lines_approx": 27,
+ "primary_clusters_local": 140,
+ "sample2_clusters_local": 88,
+ "primary_next_part": "2023Q1_06",
  "overall": "not_supported_preliminary",
- "commits_since_structural_approx": 212,
+ "commits_since_structural_approx": 215,
  "punch_rows_approx": 106,
- "note": "Hyper sweep past 200 commits. 2022Q4_06 sealing."
+ "note": "140 preliminary clusters \u2014 early 2021\u20132022 strata largely sealed; into 2023."
 }
