@@ -1,0 +1,7 @@
+{
+ "staked_share_pct": 44.5,
+ "staked_near_m": 583.9,
+ "lst_share_of_stake_pct": 9.27,
+ "buyback_DIC_days": 24.8,
+ "note": "44.5% of supply is staked; LST is ~9.3% of stake. Staking is the dominant float sink by far \u2014 Intents fees are a small overlay on a staking-heavy float structure. Exploratory."
+}
