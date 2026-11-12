@@ -1,0 +1,30 @@
+{
+ "title": "NEAR Intents \u2014 proprietary capture card",
+ "open": "Partners > capture; Intents ~87% NEAR fees; leakage ~$50M/yr",
+ "call_order": [
+  "Ledger SK-tax ~$10.2M",
+  "Attest ~$8.4M",
+  "CIF 1bp Gap ~$3.3M",
+  "ADR defense ~$5.7M",
+  "Conversion ~$5.5M"
+ ],
+ "four_ten_m": [
+  10.2,
+  8.4,
+  11.8,
+  11.41
+ ],
+ "ladder": "AI0.33 < whale1.0 < TG1.4 < CIF3.3 < SKtax10.2",
+ "quality": "attach/\u03c4 1.72\u00d7 on \u221212% MoM vol",
+ "path": "leakage\u21921\u00d7 mint then ~1.3\u00d7 vol for 50\u00d7",
+ "holds": "H1b; ~71% capture unattested; HSP-029 pending; HSP-007 engagement 2.1\u00d7",
+ "do_not_lead": [
+  "AI",
+  "npm",
+  "ETF",
+  "peer-share",
+  "L1 actives",
+  "CS-as-fee"
+ ],
+ "stance": "Hold until H1b"
+}

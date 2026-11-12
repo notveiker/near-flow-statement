@@ -338,3 +338,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Dial overlap map | SK-tax overlaps no-BB redirect/gross-share; CIF overlaps attest; ADR⊂residual | dial_overlap_map |
 | Must-ship board | Prop ready; public repo + X dry-run still TODO; ~67h to submit | must_ship_board |
 | History 162 through 2026Q2_07 | Dense contest-year strata continuing — still not supported | history_progress_2026q2_07 |
+| Judge capture card | Single JSON card: call-order + four \$10M + ladder + holds | judge_capture_card |

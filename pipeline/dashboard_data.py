@@ -297,6 +297,7 @@ def build() -> dict:
             "investment_object": optional("derived/investment_object.json"),
             "commercial_map": optional("derived/commercial_conversation_map.json"),
             "four_ten_m_board": optional("derived/four_ten_m_board.json"),
+            "judge_capture_card": optional("derived/judge_capture_card.json"),
             "immaterial_ladder": optional("derived/immaterial_to_material_ladder.json"),
             "inventory_mix": optional("derived/inventory_mix.json"),
         },
