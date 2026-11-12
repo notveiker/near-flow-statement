@@ -1,0 +1,12 @@
+{
+ "capture_share_pp_rr_m": 0.74,
+ "volume_pp_rr_m": 0.24,
+ "x": 3.07,
+ "implication": "One pp of capture-share \u2248 3\u00d7 one pp of volume in $/yr \u2014 scoreboard prefers leakage/conversion over volume cheerleading.",
+ "aligns_with": [
+  "near_term_board",
+  "path_50x_composition",
+  "peerset_recovery_cost"
+ ],
+ "note": "Marginal capture-share still ~3\u00d7 volume per pp. Proprietary pitch discipline. Exploratory."
+}
