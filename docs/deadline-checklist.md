@@ -40,5 +40,5 @@ Hours≈65: blockers = public_repo + X_demo_dry_run. HSP-029 = pending-not-live 
 <!-- /AUTO:SEQ -->
 
 <!-- AUTO:PRIVATE -->
-**LIVE 64.1h:** GitHub repo still **private** (`gh` isPrivate=true). Prop ready — flip public + X dry-run before submit.
+**LIVE ~63h:** Repo still **private**. History denser (_09 complete, _10 started) — not a submit blocker. Flip public + X dry-run.
 <!-- /AUTO:PRIVATE -->
