@@ -222,3 +222,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | ETF immaterial vs Intents | NRR fee ~$0.42M/yr ≈ **1.7%** of Intents RR; AUM −39% — do not lead with ETF | etf_immaterial_vs_intents |
 | Unstake ≠ Intents driver | Unstakers→Intents ~**1.5%** of 1Click NEAR sold | unstake_not_intents_driver |
 | Intents dominates NEAR fees | Intents ~**87.0%** of NEAR protocol fees; Aurora TVL −99.7% but still ~9.8% referrals | intents_dominates_near_fees |
+| LST DIC vs buyback | LST ~$195.9M ≈ **611 DIC days** (~24.7× buyback) but only 9.27% of stake | lst_dic_vs_buyback |
