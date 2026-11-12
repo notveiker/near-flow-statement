@@ -33,7 +33,7 @@
 <!-- /AUTO:X_CONVO -->
 
 <!-- AUTO:X_FINAL -->
-**One breath (~63h):** Partners keep more than NEAR captures (~$50M/yr leakage). Capture-share points are worth ~3× volume points; Ledger-first SK-tax ~$10.2M ≈42.5 vol-pp. ~71% of measured capture is unattested and escrow BB share climbed 17→59% — attest now. Intents is ~87% of NEAR fees on a cooling L1 (~0.2× YoY; intents ~132× vs early-2025). Leakage close ~3.1× then ~4.4× volume/price toward peer multiples; full-capture+HSP still needs ~1.3× vol for 50×. Hold until H1b. HSP-029 pending-then-lagged. Flip repo public + X dry-run.
+**One breath (~61h / 194 clusters / 531 commits):** Partners keep more than NEAR captures (~$50M/yr leakage). Capture-share points are worth ~3× volume points; Ledger-first SK-tax ~$10.2M ≈42.5 vol-pp. ~71% of measured capture is unattested and escrow BB share climbed 17→59% — attest now. Intents is ~87% of NEAR fees on a cooling L1 (~0.2× YoY; intents ~174× vs early-2025). Leakage close ~3.1× then ~4.4× volume/price toward peer multiples; full-capture+HSP still needs ~1.3× vol for 50×. Hold until H1b. HSP-029 pending-then-lagged. Flip repo public + X dry-run.
 <!-- /AUTO:X_FINAL -->
 
 Card: `data/derived/judge_capture_card.json` — open with partners>capture, close with Hold until H1b.
