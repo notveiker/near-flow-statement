@@ -1,0 +1,22 @@
+{
+  "asof": "2026-11-12",
+  "commits_since_structural": 462,
+  "clusters_preliminary": 175,
+  "hours_to_submit": 64.4,
+  "headline": "Distribution owns margin; capture-pp\u22483\u00d7vol; leakage then volume; fee engine \u2260 L1; Hold until H1b",
+  "must_ship": [
+    "public_repo",
+    "X_demo_dry_run"
+  ],
+  "prop_boards_core": [
+    "four_ten_m",
+    "dial_elasticity",
+    "thor_two_step",
+    "opacity_product",
+    "coverage_path_no_vol",
+    "five_ledgers",
+    "foreign_rail",
+    "fee_surface_risk"
+  ],
+  "note": "~462 commits; 175 clusters; denser _09 mid-2025; judge packet live; delivery blockers remain public repo + X."
+}

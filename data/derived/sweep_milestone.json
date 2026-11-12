@@ -1,14 +1,14 @@
 {
-  "commits_since_structural": 460,
-  "clusters_preliminary": 174,
+  "commits_since_structural": 462,
+  "clusters_preliminary": 175,
   "hours_to_submit": 64.4,
   "stratum": "_09_dense",
-  "last_ingested": "2025Q2_09",
-  "next": "2025Q3_09",
+  "last_ingested": "2025Q3_09",
+  "next": "2025Q4_09",
   "judge_ready": true,
   "must_ship": [
     "public_repo",
     "X_demo_dry_run"
   ],
-  "note": "~460 commits; 174 clusters; foreign-rail + fee-resilience\u2260surface-risk shipped; Q3_09 sealing; ~64.4h."
+  "note": "~462 commits; 175 clusters; denser _09 mid-2025; judge packet live; delivery blockers remain public repo + X."
 }

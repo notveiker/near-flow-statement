@@ -127,3 +127,7 @@ History sample: preliminary **133** sealed clusters (primary) with payloads; dua
 | `pitch-spine.md` | Judge numbers-only spine |
 
 *Index stamp: ~395 commits · 160 clusters · ~302 punch · call-order Ledger→attest→CIF · four ~$10M board · Hold until H1b.*
+
+<!-- AUTO:IDX -->
+Updated ~64.4h to submit · ~462 commits since structural · foreign-rail + elasticity + THOR two-step + five ledgers live.
+<!-- /AUTO:IDX -->

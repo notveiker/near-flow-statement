@@ -388,3 +388,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 174 / 2025Q2_09 | _09 dense continuing — still not supported | history_progress_2025q2_09 |
 | Foreign rail vs NEAR flow | ~3.5% NEAR-sided swaps; net exit ~4.7× capture — rails ≠ pairs | foreign_rail_vs_near_flow |
 | Fee resilience ≠ surface risk | SK exit: 2% BB / 38% vol; relayer UX≫fee; USD growth price-heavy | fee_resilience_vs_surface_risk |
+| History 175 / 2025Q3_09 | _09 dense mid-2025 — still not supported | history_progress_2025q3_09 |
+| Sweep ~460 identity | Distribution owns margin; elasticity+THOR+rails; must-ship public+X | sweep_460_identity |
