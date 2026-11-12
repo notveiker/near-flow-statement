@@ -214,3 +214,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Attestation vs dial magnitude | Unattested escrow ~$8.4M/yr ≈ **0.8×** SK-tax 25% dial / ~9× whale attach — provenance is top-tier $ | attestation_vs_dial_magnitude |
 | Two bridges | SK-tax ~$10M + attest escrow ~$8.4M — capture raise + trust raise before volume | two_bridges_tax_and_attest |
 | Vol recent vs year | 30d daily ~133.3M vs year-avg ~90.1M (~1.48×) — MoM cool off elevated print | vol_recent_vs_year |
+| HSP-029 coverage lift alone | Flat-fee coverage ~15.8%→~24% (~1.5×) — helpful not sufficient; pending-not-live | hsp029_coverage_lift_alone |

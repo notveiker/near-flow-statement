@@ -1,0 +1,8 @@
+{
+ "coverage_today_pct": 15.81,
+ "coverage_hsp029_flat_fee_pct": 24.0,
+ "lift_pp": 8.2,
+ "lift_x": 1.52,
+ "still_needs_fee_or_vol_for_100": true,
+ "note": "HSP-029 alone lifts all-wallet coverage ~15.8%\u2192~24% at flat fee (~1.5\u00d7) \u2014 helpful but not sufficient; leakage/conversion still required for material offset. Pending-not-live. Exploratory."
+}

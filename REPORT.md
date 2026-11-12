@@ -128,6 +128,11 @@ No-ref and Trust dominate buyback-fee dollars per unit volume; LI.FI is ~10% of 
 
 Active accounts −77% YoY while Intents fees ~11× L1 fee print; NEAR-side swaps only 3.5%. The investment object is Intents capture, not L1 activity.
 
+
+### Quality-on-cool context
+
+Attach/τ rose on −12% MoM volume, but 30d daily notional is still ~1.5× the year average — cool-off from an elevated print.
+
 ## Risks and context
 
 - **Unattested escrow dollars.** Even at 15.8% attestation high, ~$8.4M/yr of escrow-funded BB (if sustained) sits outside the band (`escrow_unattested_dollars.json`).
