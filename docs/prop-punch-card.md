@@ -517,3 +517,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 208 / 2025Q4_13 | _13 through 2025 COMPLETE — still not supported | history_progress_2025q4_13 |
 | Dense _13 through 2025 | 208 clusters; prefer public+X over finishing contest-year | dense_13_through_2025 |
 | Sweep ~580 identity | Urgency GREEN; 12 locked claims; public+X bind | sweep_580_identity |
+| Attest = underwriting not τ | Band compression dial; escrow BB~58.5% — parallel to SK-tax capture | attest_is_underwriting_not_tau |
+| CIF Gap do not lead | 1bp proxy~$3.31M; rate card unpublished — lead SK-tax+attest | cif_gap_do_not_lead |

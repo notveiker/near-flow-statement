@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "cif_1bp_rr_m": 3.31,
+  "cif_5bp_rr_m": 16.55,
+  "vs_sk_tax_x_at_1bp": 0.32,
+  "status": "Gap_proxy",
+  "lead": false,
+  "read": "CIF 1bp proxy ~$3.31M \u2248 0.32\u00d7 SK-tax \u2014 rate card unpublished (Gap). Do not lead CIF; lead SK-tax + attest. Exploratory."
+}

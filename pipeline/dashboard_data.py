@@ -363,6 +363,8 @@ def build() -> dict:
             "judge_call_now": optional("derived/judge_call_order_now.json"),
             "mint_not_fee": optional("derived/mint_ledger_not_fee_upside.json"),
             "delivery_urgency": optional("derived/delivery_urgency_board.json"),
+            "attest_not_tau": optional("derived/attest_is_underwriting_not_tau.json"),
+            "cif_gap": optional("derived/cif_gap_do_not_lead.json"),
             "diminishing_strata": optional("derived/diminishing_strata_vs_delivery.json"),
             "solver_rent_ledger": optional("derived/solver_rent_vs_capture_ledger.json"),
             "relayer_ops": optional("derived/relayer_ops_not_fee_dial.json"),

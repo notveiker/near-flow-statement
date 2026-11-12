@@ -1,0 +1,17 @@
+{
+  "asof": "2026-11-12",
+  "band_today_pct": [
+    4.5,
+    15.8
+  ],
+  "band_width_pp": 11.3,
+  "width_compression_x": 5.7,
+  "raises_take_rate": false,
+  "raises_underwriting_confidence": true,
+  "escrow_bb_share_pct": 58.5,
+  "attest_bridge_rr_m": 8.4,
+  "sk_tax_bridge_rr_m": 10.2,
+  "cif_1bp_rr_m": 3.31,
+  "implication": "Attestation is an underwriting-confidence dial (band compression), not a take-rate raise \u2014 pair with SK-tax capture dial; CIF rate card is Gap/proxy",
+  "read": "Attest compresses underwriting band (width~11.3pp \u2192 sketch /5.7\u00d7) without raising \u03c4. Escrow BB~58.5% makes delay costly. SK-tax~$10.2M capture vs attest~$8.4M trust \u2014 parallel ledgers. Exploratory."
+}

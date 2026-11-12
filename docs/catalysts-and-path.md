@@ -358,3 +358,11 @@ Chain Signatures sits under Intents execution (execute ≫ respond ≫ sign) —
 - **208 clusters**; overall still **not supported**.
 - Prefer burning ~**58h** on **public repo + X dry-run** over finishing contest-year `_13` seals.
 <!-- /AUTO:D13_2025 -->
+
+<!-- AUTO:ATTEST_CIF -->
+### Attest ≠ τ · CIF Gap (exploratory)
+
+- Attestation **compresses underwriting band** — does **not** raise take-rate. Escrow BB ~**58.5%** makes delay costly.
+- Parallel to SK-tax capture (~**$10.2M**) vs attest trust (~**$8.4M**).
+- CIF 1bp proxy ~**$3.31M** — rate card **Gap**; do not lead.
+<!-- /AUTO:ATTEST_CIF -->

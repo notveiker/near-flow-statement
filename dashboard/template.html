@@ -645,6 +645,10 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (Mn) bits.push(`Mint ledger≠fee upside: HSP-007~$${Mn.hsp007_claim_rr_m}M issuance claim; HSP-029 pending-then-lagged.`);
     const Du = D.catalysts && D.catalysts.delivery_urgency;
     if (Du) bits.push(`Delivery urgency <b>${Du.urgency_band}</b> (~${Du.hours_to_submit}h) — public+X bind; do not block on strata.`);
+    const AnT = D.catalysts && D.catalysts.attest_not_tau;
+    const Cg = D.catalysts && D.catalysts.cif_gap;
+    if (AnT) bits.push(`Attest=underwriting not τ: band compression; escrow BB~${AnT.escrow_bb_share_pct}% — parallel to SK-tax.`);
+    if (Cg) bits.push(`CIF Gap: 1bp proxy~$${Cg.cif_1bp_rr_m}M — do not lead; lead SK-tax+attest.`);
     if (Ds) bits.push(`Diminishing strata: marginal seals low EV vs ~${Ds.hours_to_submit}h public+X clock.`);
     const SrL = D.catalysts && D.catalysts.solver_rent_ledger;
     const Ro = D.catalysts && D.catalysts.relayer_ops;
