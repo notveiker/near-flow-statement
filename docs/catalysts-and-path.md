@@ -196,3 +196,9 @@ Do not double-count SK-tax with no-BB redirect or gross-share pp; CIF with attes
 
 Ledger SK-tax ~$10.2M · attest ~$8.4M · ADR defense ~$5.7M · conversion ~$5.5M · CIF Gap ~$3.3M. Quality already 1.72× on cool. 50× still needs ~1.3× vol after full gross+HSP.
 <!-- /AUTO:NEAR_TERM -->
+
+<!-- AUTO:HOLD -->
+### What moves Hold
+
+Frozen rule: **H1b labels past 50%** flips Hold→Buy. Capture dials (Ledger SK-tax, attest, CIF, conversion, ADR defense) improve the object under Hold. Peer-share/volume/AI/npm/ETF do not flip stance.
+<!-- /AUTO:HOLD -->
