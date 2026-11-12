@@ -62,3 +62,5 @@ Attach stall · no-ref mix down · capture share <25% · escrow >70% without map
 Also: fee-evidence fidelity ~97% BB exact; stake 44.5% of supply; punch card rows through ~83.
 
 Growth honesty: ~619%/yr USD vs ~71%/yr NEAR (`growth_usd_vs_near.json`).
+
+Investment object: `data/derived/investment_object.json`.
