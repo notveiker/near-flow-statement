@@ -37,3 +37,8 @@ Lead dials: attach/AITR, capture share, no-ref $, Intents≈NEAR DEX, fee÷mint$
 AI / ETF / npm are second-order until measured as fee flow.
 
 Ops clock: `data/derived/deadline_ops.json`.
+
+- [x] Conversion dial + Trust path + Ledger≈capture props committed
+- [ ] Public repo mirror / X demo dry-run
+- [ ] F1–F4 score on 14 Nov
+- [ ] History seals past early-stratum stopping rule

@@ -1,0 +1,5 @@
+{
+ "aurora_referral_share_pct": 9.8,
+ "insight": "widget_distribution_ne_chain_tvl",
+ "note": "Aurora-tagged 1Click widgets appear in census referrals (~9.8%) despite Aurora TVL residual \u2014 widget distribution \u2260 chain TVL. Exploratory hours-window. If Aurora widgets monetize at Intents take, residual-TVL chains can still be fee-relevant distribution. Gap: fee attribution. Exploratory."
+}

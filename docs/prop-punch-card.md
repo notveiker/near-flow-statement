@@ -152,3 +152,10 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | TG surface attach gap | intents.tg ~**20%** of tagged referrals — live surface, fee map unmapped | tg_surface_attach_gap |
 | Breakeven multiple lens | Breakeven ~**6.4×** on 30d; ladder offsets ~16% issuance — need fee↑ or mint↓ | breakeven_multiple_lens |
 
+| Peer multiple compression | NEAR ~217× vs THOR ~16× needs ~13.6× fee at fixed price; leakage close ~3.1× leaves ~4.4× to volume | peer_multiple_compression |
+| Unknown aligns no-ref engine | Census unknown ~33% tags ↔ Explorer unreferred BB-fee ~46% — fee engine is unlabeled surface | unknown_aligns_noref_engine |
+| Relayer HHI floor | Top1 83% ⇒ HHI ≥0.69, eff n ≤1.5 despite 25 accounts — long tail ≠ diversification | relayer_hhi_floor |
+| Solver volume haircut | Solver rebalance ~7% of tagged referrals — haircut non-user flow in fee quality | solver_rebalance_volume_haircut |
+| Coverage gap to full offset | ~16% USD coverage ⇒ ~6.4× fee for full issuance offset pre-HSP-029 | coverage_gap_to_full_offset |
+| Aurora widget ≠ TVL | Aurora-tagged widgets ~9.8% referrals despite residual TVL — distribution ≠ chain TVL | aurora_widget_distribution |
+

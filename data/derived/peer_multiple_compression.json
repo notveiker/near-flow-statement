@@ -1,0 +1,12 @@
+{
+ "multiple_near": 217,
+ "multiple_thor": 16,
+ "multiple_chainflip": 5,
+ "fee_x_to_thor_multiple_price_fixed": 13.56,
+ "fee_rr_needed_for_thor_mult_m": 328.2,
+ "vol_x_at_5bp_for_thor_mult": 13.56,
+ "fee_x_to_chainflip_mult": 43.4,
+ "leakage_close_fee_x": 3.07,
+ "leakage_then_remaining_to_thor_x": 4.41,
+ "note": "NEAR Intents multiple ~217\u00d7 vs THOR ~16\u00d7 needs ~13.6\u00d7 fee at fixed price for multiple parity. Full leakage close is only ~3.1\u00d7 \u2014 remaining ~4.4\u00d7 is volume/price. Matches THOR-bridge ~$301M path. Exploratory peer DefiLlama multiples."
+}

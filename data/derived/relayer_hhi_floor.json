@@ -1,0 +1,7 @@
+{
+ "relayer_accounts": 25,
+ "relayer_top1_pct": 83,
+ "hhi_floor": 0.689,
+ "effective_n_ceiling": 1.45,
+ "note": "Relayer top1 83% implies HHI \u2265 0.69 (eff n \u2264 1.5) even with 25 accounts listed \u2014 long-tail accounts do not diversify delivery risk. Exploratory census."
+}

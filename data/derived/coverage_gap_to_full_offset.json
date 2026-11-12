@@ -1,0 +1,8 @@
+{
+ "coverage_rev_usd_30d_pct": 15.7,
+ "breakeven_x": 6.4,
+ "ladder_pct": 15.81,
+ "implied_gap_to_100_coverage_x": 6.37,
+ "hsp029_helps": true,
+ "note": "USD coverage ~15.7% of issuance \u2192 need ~6.4\u00d7 fee for full offset at today\u2019s mint (before HSP-029). Breakeven multiple lens ~6.4\u00d7 is the market\u2019s shorthand. Exploratory."
+}

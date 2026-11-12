@@ -1,0 +1,6 @@
+{
+ "census_unknown_share_pct": 33.2,
+ "buyback_fee_unreferred_share_pct": 45.8,
+ "no_ref_buyback_concentration_x": 2.45,
+ "note": "Census unknown referrals ~33.2% of tags; Explorer unreferred buyback-fee share ~45.8%. Count-heavy unknown aligns with dollar-heavy no-ref \u2014 the fee engine is already the unlabeled surface. Exploratory cross-lens."
+}

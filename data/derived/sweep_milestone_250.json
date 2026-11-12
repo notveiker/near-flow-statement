@@ -1,0 +1,17 @@
+{
+ "asof_utc": "2026-11-12T01:20:00Z",
+ "commits_since_structural": 237,
+ "derived_json_approx": 161,
+ "punch_rows_approx": 130,
+ "history_clusters_preliminary": 142,
+ "headline_props": [
+  "leakage_bridge_sk_tax",
+  "ledger_equals_near_capture",
+  "appfees_conversion_9pct",
+  "quality_on_cool",
+  "trust_path_1_7m",
+  "unexplained_bb_68pct",
+  "attach_path_evidenced_1_72x"
+ ],
+ "note": "Hyper sweep continuing; history seals early-stratum still preliminary."
+}

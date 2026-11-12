@@ -1,0 +1,9 @@
+{
+ "solver_share_of_tagged_pct": 7.1,
+ "tags": {
+  "solver-multichain-assets-rebalancing": 13,
+  "solver-private-liquidity-cex-v2-prod-rebalancing": 9,
+  "solver-multichain-assets-binance-escrow-rebalancing": 6
+ },
+ "note": "Solver rebalance tags (~7% of referrals) are inventory ops riding the same 1Click rails \u2014 volume prints can include non-user flow. Fee quality should haircut solver-tagged share until labeled. Exploratory."
+}
