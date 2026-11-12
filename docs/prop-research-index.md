@@ -70,3 +70,12 @@ History sample: preliminary **133** sealed clusters (primary) with payloads; dua
 - `data/derived/hsp007_claim_bounds.json — illustrative emissions claims`
 - `data/derived/lst_vs_issuance.json — LST vs annual mint $`
 - `data/derived/oi_vs_fee_decouple.json — perps OI vs fee print`
+- `data/derived/leakage_pool_size.json — ~$50M/yr non-NEAR claims`
+- `data/derived/leakage_then_volume.json — 60% capture still needs vol`
+- `data/derived/capture_ceiling_50x.json — 50× needs >gross bp at current vol`
+- `data/derived/sk_exit_fee_asymmetry.json — vol risk ≫ buyback risk on SK`
+- `data/derived/hsp029_alone.json — denominator help only`
+- `data/derived/peerset_share_path.json — share at 2×/4× Intents vol`
+- `data/derived/soft_sink_ladder.json — LST≫NRR≫buyback DIC`
+- `data/derived/burn_materiality.json — 25% mint burn needs >100% fees`
+- `data/derived/pitch_sequence.json — judge pitch order`
