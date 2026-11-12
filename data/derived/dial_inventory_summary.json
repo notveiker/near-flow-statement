@@ -10,7 +10,7 @@
  "sk_exit_vol_loss_pp": 38.2,
  "noref_buyback_dollar_x": 2.45,
  "intents_near_dex_share_pct": 98.8,
- "history_clusters_preliminary": 139,
+ "history_clusters_preliminary": 142,
  "binding_story": "Leakage renegotiation is the bridge; volume is the last mile.",
  "judge_docs": [
   "docs/prop-topline.md",
@@ -23,8 +23,8 @@
  "g_obs_near_pct": 71.4,
  "partner_bb_ratio_now": 9.9,
  "escrow_share_buyback_pct": 58.5,
- "punch_rows_approx": 106,
- "commits_since_structural_approx": 213,
+ "punch_rows_approx": 109,
+ "commits_since_structural_approx": 231,
  "vol_mom_delta_pct": -12.3,
  "fee_density_vs_l1_x": 11.2,
  "headline": "Distribution owns the margin; leakage is the bridge; volume is the last mile; quality rose on a cooling print."
