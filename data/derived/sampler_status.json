@@ -1,7 +1,6 @@
 {
- "primary_clusters_local": 189,
- "last_ingested": "2025Q1_11",
+ "primary_clusters_local": 190,
+ "last_ingested": "2025Q2_11",
  "overall": "not_supported_preliminary",
- "stratum": "_11_dense",
- "next": "2025Q2_11"
+ "stratum": "_10_dense"
 }
