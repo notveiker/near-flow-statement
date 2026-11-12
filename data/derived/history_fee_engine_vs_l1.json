@@ -1,6 +1,6 @@
 {
   "asof": "2026-11-12",
-  "clusters_used": 180,
+  "clusters_used": 181,
   "overall": "not supported",
   "ratios": {
     "U1": {
@@ -18,9 +18,9 @@
       "hypothesis": "The growth is not one contract"
     },
     "U3": {
-      "point": 132.0521,
-      "lo90": 55.8437,
-      "hi90": 1616.0701,
+      "point": 146.7245,
+      "lo90": 60.0121,
+      "hi90": 1722.1175,
       "supported": true,
       "hypothesis": "Intents is a real share of activity (receipts on intents.near per day)"
     },
@@ -42,6 +42,6 @@
   "l1_yoy_tx_x": 0.1925,
   "l1_yoy_signers_x": 0.2799,
   "l1_yoy_burn_x": 0.2744,
-  "intents_vs_2025q1_x": 132.0521,
-  "read": "L1 YoY ~0.19\u00d7/0.28\u00d7/0.27\u00d7; intents ~132\u00d7 vs 2025Q1. Overall not supported. Preliminary (180 clusters)."
+  "intents_vs_2025q1_x": 146.7245,
+  "read": "L1 YoY ~0.19\u00d7/0.28\u00d7/0.27\u00d7; intents ~147\u00d7 vs 2025Q1. Overall not supported. Preliminary (181 clusters)."
 }

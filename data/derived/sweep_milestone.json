@@ -1,14 +1,14 @@
 {
-  "commits_since_structural": 482,
-  "clusters_preliminary": 180,
-  "hours_to_submit": 63.4,
+  "commits_since_structural": 485,
+  "clusters_preliminary": 181,
+  "hours_to_submit": 63.3,
   "stratum": "_10_dense",
-  "last_ingested": "2026Q4_09",
-  "next": "2025Q1_10",
+  "last_ingested": "2025Q1_10",
+  "next": "2025Q2_10",
   "judge_ready": true,
   "must_ship": [
     "public_repo_STILL_PRIVATE",
     "X_demo_dry_run"
   ],
-  "note": "_09 through 2026 done (180 clusters). Entering denser _10. History preliminary \u2260 submit blocker. Repo still private with ~63.4h left. Exploratory ops."
+  "note": "~485 commits; 181 clusters; _10 dense started; one-breath locked; repo private; ~63.3h."
 }
