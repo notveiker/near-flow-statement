@@ -1,0 +1,10 @@
+{
+ "channel": "e1a72603-64b3-4be1-8265-8bae5970d396",
+ "buyback_bp": 71.1,
+ "vol_share_pct": 0.4,
+ "bb_fee_share_pct": 7.2,
+ "density": 18.0,
+ "fee_30d_m_approx": 0.031,
+ "fee_rr_m_approx": 0.38,
+ "note": "Unlabeled UUID channel takes 71.1 bp on only 0.4% vol yet 7.2% of BB-fee $ (density ~18\u00d7) \u2014 ~$0.4M/yr. Label gap: who is this front? High-take unlabeled flow is already in the print. Exploratory."
+}

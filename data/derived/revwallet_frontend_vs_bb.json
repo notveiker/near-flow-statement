@@ -1,0 +1,9 @@
+{
+ "revwallets_usd_k": 2009.7,
+ "revwallets_frontend_usd_k": 616.9,
+ "revwallets_frontend_share_pct": 30.7,
+ "revwallets_buybacks_usd_k": 1392.8,
+ "buybacks_share_of_revwallets_pct": 69.3,
+ "revwallets_vs_llama_rev_pct": 100.9,
+ "note": "Revwallets reconcile ~100.9% to Llama rev; frontend path is 30.7% of revwallet USD; buybacks are 69% of revwallet USD \u2014 fee engine dollars split frontend vs buyback rails. Exploratory."
+}

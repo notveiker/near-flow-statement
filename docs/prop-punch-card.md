@@ -183,4 +183,6 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | H1b coverage binding | H1b covers ~20% streams / ~25% inflow — Hold-until-H1b is measured | h1b_coverage_still_binding |
 | BB wallet vs implied | Wallet 2.19M vs implied 3.19M NEAR (**68.5%**) — soft-sink < fee-implied stock | bb_wallet_vs_implied |
 | LI.FI attach uplift | 2.8→10 bp on 10% 1Click vol ≈ **~$1.0M/yr** | lifi_attach_uplift |
-
+| Mystery 71bp channel | UUID front 0.4% vol → 7.2% BB-fee $ at 71bp (density ~18×) — unlabeled high-take already in print | mystery_high_bp_channel |
+| Aggregator attach pack | LI.FI+Rango to 10bp ≈ **~$1.4M/yr** combined | aggregator_attach_pack |
+| Revwallet frontend vs BB | Frontend ~31% of revwallet USD; buybacks ~69% — dual rails inside "capture" | revwallet_frontend_vs_bb |
