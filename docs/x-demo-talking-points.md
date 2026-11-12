@@ -45,3 +45,5 @@ Lead with evidenced quality path (attach/τ 1.72× inside sample on −12% MoM v
 SK-tax renegotiation (~$10M) raises capture; attesting escrow BB (~$8.4M) raises trust. Both before volume.
 
 Multiple ~199× sits on cooling vol and R90≪RR — say leakage/conversion protect the denominator.
+
+Do not lead with ETF/NRR fee (~1.7% of Intents RR).
