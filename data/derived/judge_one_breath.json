@@ -1,8 +1,8 @@
 {
   "asof": "2026-11-12",
-  "one_breath": "_12 done, _13 underway (205 clusters, not supported \u2014 not a blocker). Partners keep ~$50M/yr leakage (terms not invoices). Whale desk=SK-tax. Capture\u22483.07\u00d7vol; coverage wall~42.8%; solver rent\u2260capture; embeds~54% exit-capable. Hold until H1b. **Flip public + record X** (~59h).",
-  "hours_to_submit": 58.6,
-  "clusters": 205,
-  "commits": 568,
+  "one_breath": "Partners keep ~$50M/yr (terms not invoices; conversion only ~9% appfees\u2192BB). Whale desk=SK-tax first; default/no-ref rail is ~46% of BB $. Capture\u22483.07\u00d7vol; coverage wall~42.8%; fee\u2260L1 OoM; solver rent\u2260capture. Hold until H1b. Flip public + X (~58h).",
+  "hours_to_submit": 58.4,
+  "clusters": 206,
+  "commits": 574,
   "repo_private": true
 }

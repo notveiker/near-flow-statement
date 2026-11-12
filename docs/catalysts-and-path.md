@@ -336,3 +336,11 @@ Chain Signatures sits under Intents execution (execute ≫ respond ≫ sign) —
 - **Affiliate P&L contest:** SK exit ~**38.2%** vol / ~**2.0%** BB — fight is affiliate margin, not user fee.
 - **Single-venue fee power:** Intents ~**87.0%** of NEAR fees; BB dollars more concentrated than volume.
 <!-- /AUTO:CONV_AFF -->
+
+<!-- AUTO:DEFAULT_RAIL -->
+### Default rail + judge call-order (exploratory)
+
+- Unreferred/default path ≈**45.8%** of BB $ — that rail **is** the fee engine.
+- Call-order: **SK-tax → mix → attest(parallel) → conversion → attach**. Do not sum. Hold until H1b.
+- Delivery: **public + X** (~58h).
+<!-- /AUTO:DEFAULT_RAIL -->

@@ -1,0 +1,50 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_submit": 58.4,
+  "order": [
+    {
+      "step": 1,
+      "do": "Ledger/SK whale-desk SK-tax",
+      "vol_pp": 42.5,
+      "rr_m": 10.2
+    },
+    {
+      "step": 2,
+      "do": "near.com mix +10pp",
+      "vol_pp": 40.4,
+      "rr_m": 9.7
+    },
+    {
+      "step": 3,
+      "do": "Attest escrow (trust, parallel)",
+      "vol_pp": 35.0,
+      "rr_m": 8.4,
+      "ledger": "trust"
+    },
+    {
+      "step": 4,
+      "do": "Conversion appfees\u2192BB",
+      "vol_pp": 22.9,
+      "rr_m": 5.5
+    },
+    {
+      "step": 5,
+      "do": "Attach momentum toward 60%",
+      "note": "already +19.4pp on a cool"
+    }
+  ],
+  "do_not_sum": true,
+  "do_not_lead": [
+    "ETF",
+    "AI agents",
+    "npm",
+    "peerset share",
+    "L1 tx recovery"
+  ],
+  "hold": "until H1b",
+  "delivery": [
+    "public_repo",
+    "x_demo_dry_run"
+  ],
+  "read": "Judge call-order (~58h): SK-tax \u2192 mix \u2192 attest(parallel) \u2192 conversion \u2192 attach. Do not sum. Do not lead ETF/AI. Hold until H1b. Flip public+X. Exploratory."
+}

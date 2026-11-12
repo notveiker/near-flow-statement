@@ -637,6 +637,10 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (Cq) bits.push(`Conversion quiet dial: only ~${Cq.appfees_to_buybacks_pct}% appfees→BB; ~$${Cq.conversion_dial_rr_m}M ≈ ${Cq.conversion_vol_pp} vol-pp.`);
     if (Ac) bits.push(`Affiliate P&L contest: SK exit ~${Ac.sk_exit_vol_pct}% vol / ~${Ac.sk_exit_traceable_bb_pct}% BB (~${Ac.vol_to_bb_asymmetry_x}×).`);
     if (Sv) bits.push(`Single-venue fee power: Intents~${Sv.intents_share_of_near_fees_pct}% NEAR fees; BB more concentrated than vol.`);
+    const Dr = D.catalysts && D.catalysts.default_rail;
+    const Jc = D.catalysts && D.catalysts.judge_call_now;
+    if (Dr) bits.push(`Default rail≈fee engine: unreferred~${Dr.bb_unreferred_share_pct}% of BB $ — protect/expand that path.`);
+    if (Jc) bits.push(`Call-order: SK-tax→mix→attest→conversion→attach. Do not sum. Hold until H1b.`);
     if (Ds) bits.push(`Diminishing strata: marginal seals low EV vs ~${Ds.hours_to_submit}h public+X clock.`);
     const SrL = D.catalysts && D.catalysts.solver_rent_ledger;
     const Ro = D.catalysts && D.catalysts.relayer_ops;

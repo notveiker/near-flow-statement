@@ -359,6 +359,8 @@ def build() -> dict:
             "conversion_quiet": optional("derived/conversion_quiet_capture_dial.json"),
             "affiliate_contest": optional("derived/affiliate_pnl_contest_asymmetry.json"),
             "single_venue_fee": optional("derived/single_venue_fee_power.json"),
+            "default_rail": optional("derived/default_rail_is_fee_engine.json"),
+            "judge_call_now": optional("derived/judge_call_order_now.json"),
             "diminishing_strata": optional("derived/diminishing_strata_vs_delivery.json"),
             "solver_rent_ledger": optional("derived/solver_rent_vs_capture_ledger.json"),
             "relayer_ops": optional("derived/relayer_ops_not_fee_dial.json"),

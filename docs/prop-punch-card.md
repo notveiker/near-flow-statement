@@ -508,3 +508,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Single-venue fee power | Intents ~87.0% NEAR fees; BB HHI>0.087 vol HHI — distribution owns margin | single_venue_fee_power |
 | History 206 / 2025Q2_13 | _13 dense continuing — still not supported | history_progress_2025q2_13 |
 | Sweep ~573 identity | Conversion+affiliate+venue; public+X bind | sweep_573_identity |
+| Default rail is fee engine | Unreferred ~45.8% of BB $ — protect/expand default path | default_rail_is_fee_engine |
+| Judge call-order now | SK-tax→mix→attest→conversion→attach; do not sum; Hold until H1b | judge_call_order_now |
