@@ -1,10 +1,9 @@
 {
- "primary_clusters_local": 138,
- "sample2_clusters_local": 86,
- "primary_next_part": "2022Q3_06",
- "primary_part_lines_approx": 32,
+ "primary_clusters_local": 139,
+ "sample2_clusters_local": 87,
+ "primary_next_part": "2022Q4_06",
  "overall": "not_supported_preliminary",
- "commits_since_structural_approx": 188,
- "punch_rows_approx": 102,
- "note": "Hyper sweep continuing. Prop depth high; history still sealing early strata."
+ "commits_since_structural_approx": 194,
+ "punch_rows_approx": 103,
+ "note": "Early strata through 2022Q3 sealed. Continuing."
 }
