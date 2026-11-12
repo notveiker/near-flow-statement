@@ -360,6 +360,7 @@ def build() -> dict:
             "dic_buffer": optional("derived/dic_buffer_not_scarcity.json"),
             "burn_materiality": optional("derived/burn_materiality_vs_wall.json"),
             "human_actions": optional("derived/human_actions_only_left.json"),
+            "sk_vs_attach": optional("derived/sk_tax_vs_attach_path.json"),
             "fee_stability": optional("derived/fee_engine_stability_under_dense.json"),
             "intents_drift": optional("derived/intents_multiple_drift_under_dense.json"),
             "conversion_quiet": optional("derived/conversion_quiet_capture_dial.json"),

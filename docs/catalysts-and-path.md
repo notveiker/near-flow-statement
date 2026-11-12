@@ -401,3 +401,10 @@ Chain Signatures sits under Intents execution (execute ≫ respond ≫ sign) —
 - Permanently removing **25% of mint** needs ~**122.2%** of today's fee capture (~**79.5%** at HSP 1.6%).
 - Held buybacks are **not** that. Coverage wall ~**42.8%** is capture+HSP path — burn hardens scarcity beside it.
 <!-- /AUTO:BURN_MAT -->
+
+<!-- AUTO:SK_VS_ATT -->
+### SK-tax vs attach-to-60 (exploratory)
+
+- Attach 43→60 uplift ~**$7.9M**/yr; SK-tax ~**$10.2M**/yr (~**1.3×**).
+- Lead whale-desk SK-tax; keep attach momentum as parallel (already +**19.4** pp).
+<!-- /AUTO:SK_VS_ATT -->
