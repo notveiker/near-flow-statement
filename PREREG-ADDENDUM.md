@@ -223,3 +223,7 @@ Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. *
 ## 2026-11-12 23:45 UTC: F2 result (unresolvable from the chosen table) and report wording
 
 Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. **F2 ran at 23:44 UTC, after its method commit (`01f3fcc`, 23:44:33 UTC) and returned 0 rows.** A coverage check on 2026-09-20 shows `ft_events` holds no `wrap.near` rows, so the null is a coverage failure of the table, not a finding about `bridge-mng.near`; H-F2 is neither supported nor falsified. A post hoc count shows `bridge-mng.near` signs 53% of all `mt_mint` deposits (1.62M of 3.04M, for 1.44M owners): it is a deposit relayer, so the F1 "external deposits" are deposits through that path, not deposits from a named holder. REPORT.md, THESIS.md and the dashboard footer now say the escrow's movements are public and reconcile, and that what is unattested is the fee origin. No number in them changed.
+
+## 2026-11-12 23:46 UTC: follow-up F3 on the complex receipts, method fixed before it runs
+
+Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. Written after the Q1 to Q4 results because they cover only simple swaps. Question, rule and thresholds are in the F3 section of `docs/chain-rebuild-method.md`, committed with the three queries before any of them runs.
