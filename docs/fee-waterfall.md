@@ -70,3 +70,7 @@ Gross Intents fees ~$6.12M; NEAR capture ~$1.99M; listed partner fees ~$4.45M. *
 Note: Explorer partner/appfee lines and DefiLlama gross fees are not a clean partition — percentages can sum >100%. The partners>capture dollar comparison uses Explorer listings.
 
 ~94.6% of listed partner fees carry no buyback line — conversion is concentrated.
+
+<!-- AUTO:USER_ALLIN -->
+**User all-in vs claim:** ~52.9 bp user cost vs 4.98 bp capture (~10.6×). Protocol pip (0.01 bp) is noise. Fee engine core: no-ref + dense fronts ~$4.1M/yr.
+<!-- /AUTO:USER_ALLIN -->

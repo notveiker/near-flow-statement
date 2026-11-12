@@ -1,0 +1,9 @@
+{
+ "protocol_fee_pips": 1,
+ "protocol_bp": 0.01,
+ "captured_bp": 4.98,
+ "user_allin_bp": 52.9,
+ "pip_vs_capture_pct": 0.2,
+ "pip_vs_user_allin_pct": 0.019,
+ "note": "On-chain protocol fee is 1 pip (0.01 bp) \u2014 ~0.2% of captured bp and negligible vs ~53 bp user all-in. Token claim is wallet/policy, not L1 fee schedule. Exploratory."
+}

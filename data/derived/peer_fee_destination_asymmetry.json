@@ -1,0 +1,12 @@
+{
+ "near_captured_bp": 4.98,
+ "near_destination": "held_buyback_wallet_not_burn",
+ "thor_gross_bp": 12.3,
+ "thor_native_path": "bond_security_plus_buyback_burn_mix",
+ "chainflip_gross_bp": 31.5,
+ "chainflip_network_fee_bp": 10,
+ "chainflip_destination": "FLIP_burn_via_pool",
+ "near_dic_days": 24.8,
+ "near_half_life_days": 60.5,
+ "note": "Peer fee destinations differ: Chainflip network fee burns FLIP; NEAR captured bp is held (DIC ~25d, half-life ~60d) not burned. Comparing gross bp without destination is apples-to-oranges \u2014 NEAR thesis is capture\u2192hold\u2192(optional) scarcity, not burn. Exploratory."
+}

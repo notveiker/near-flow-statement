@@ -295,3 +295,6 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Sweep ~370 | 156 clusters; ~260 punch; ~278 derived; ~68.0h to submit | dial_inventory_summary |
 | Confidential share of capture | ~71% of measured wallet capture arrives via escrow unshields — opacity inside the claim | confidential_share_of_capture |
 | User all-in vs token claim | ~52.9 bp user all-in vs 4.98 bp capture (~10.6×) — Llama understates user / overstates claim | user_allin_vs_token_claim |
+| Peer fee destination asymmetry | Chainflip burns; NEAR holds (DIC~25d) — gross bp compare is apples-to-oranges | peer_fee_destination_asymmetry |
+| Protocol pip irrelevant | 1 pip = 0.01 bp ≪ 4.98 capture / 52.9 user all-in — claim is wallet/policy | protocol_pip_irrelevant |
+| Fee engine core density | No-ref + dense fronts ≈ $4.1M/yr (~17% of capture) on thin vol — protect/extend | fee_engine_core_density |

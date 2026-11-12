@@ -1,0 +1,8 @@
+{
+ "noref_bb_fee_rr_m_approx": 2.5,
+ "dense_fronts_rr_m": 1.59,
+ "combined_core_rr_m": 4.09,
+ "near_capture_rr_m": 24.2,
+ "core_share_of_capture_pct": 16.9,
+ "note": "No-ref (~$2.5M/yr BB) + dense fronts (~$1.6M) \u2248 $4.1M/yr of the fee engine already on high-density rails \u2014 ~16.9% of capture RR from a thin vol slice. Protect and extend; logos without attach are volume without claim. Exploratory."
+}
