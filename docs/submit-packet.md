@@ -85,3 +85,6 @@ See `data/derived/risks_compact.json` — H1b/attest/relayer/HSP-007/CIF/multipl
 Prop is done. **Flip public. Record X 90s.** Submit.
 Headline: Leakage is the bridge. Intents≈99% NEAR DEX.
 <!-- /AUTO:700 -->
+
+<!-- AUTO:SURPLUS 2026-11-12 -->
+Evidence surplus: 710c / 239cl / 564 boards. Deficit: PUBLIC + X. ~52h.

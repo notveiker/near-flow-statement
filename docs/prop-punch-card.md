@@ -703,3 +703,8 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | τ–AITR gap = user-surplus leak | ~9.5 vs ~5.0 bp; missing ~4.5 bp is the bridge | tau_aitr_gap_is_user_surplus_leak |
 | Capture/AITR is the KPI | ~52% now; dials that raise it re-rate | capture_over_aitr_is_the_kpi |
 | X 90s beat sheet locked | 5 beats; numbers only; no bull-case words | x_demo_ninety_second_beats |
+| Volume = last mile after leakage | 50× needs ~1.29× vol at zero leak | volume_is_last_mile_after_leakage |
+| mcap/rev gap = claim design | 217× vs THOR 16× (~13.6×); Hold until H1b | mcap_rev_gap_is_claim_design |
+| Opacity is a clock not P&L | attest unlocks Trust; opacity≠capture | opacity_is_clock_not_pnl |
+| Evidence surplus / delivery deficit | 710c/564 boards vs private+no-X | evidence_surplus_delivery_deficit |
+| Intents = NEAR DEX surface | ~98.8% DEX / ~87% fees | intents_is_near_dex_surface |

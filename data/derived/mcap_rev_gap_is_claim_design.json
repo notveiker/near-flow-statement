@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "near_mcap_rev_x": 217,
+  "thor_mcap_rev_x": 16,
+  "gap_x": 13.6,
+  "claim": "NEAR trades ~217\u00d7 rev vs THOR ~16\u00d7 \u2014 a ~13.6\u00d7 claim-design gap. Closing leakage + dial sequence is what converts 'fee engine exists' into 'multiple can compress toward peer'. Not automatic; Hold until H1b.",
+  "pitch_line": "The multiple is the claim. Leakage-close is how you earn the right to ask for compression.",
+  "read": "mcap/rev claim gap. Exploratory."
+}

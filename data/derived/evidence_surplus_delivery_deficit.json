@@ -1,0 +1,14 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_submit": 51.9,
+  "clusters": 239,
+  "commits": 710,
+  "derived_json": 564,
+  "prop_ready_excl_must_ship": 0.99,
+  "delivery_deficit": [
+    "public_repo",
+    "x_dry_run"
+  ],
+  "claim": "710 commits and 564 derived boards are surplus evidence. The deficit is binary: private repo + missing X. Marginal prop commit EV now < human public/X EV by orders of magnitude \u2014 keep packing while waiter runs, but the critical path is human.",
+  "read": "Evidence surplus / delivery deficit @~52h. CRITICAL."
+}
