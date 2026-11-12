@@ -10,7 +10,7 @@
 | Written report (`REPORT.md`) | Live; risks compact at bottom; Hold rating |
 | Structural + catalyst prop docs | Live; see `docs/prop-research-index.md` + punch card |
 | Pre-reg / addendum honesty | Frozen tests untouched; exploratory labelled |
-| History sample | Preliminary **135** clusters; still sealing early rounds |
+| History sample | Preliminary **136** clusters; still sealing early rounds |
 | Forward tests F1–F4 | Resolve **2026-11-14** — score and publish |
 | Public repo / X demo | Still to do before deadline |
 | No Akash mention in deliverable | Enforced in prose |
