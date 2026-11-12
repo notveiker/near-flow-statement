@@ -1,10 +1,10 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 57.4,
+  "hours_to_submit": 56.0,
   "urgency_band": "GREEN",
-  "clusters": 211,
-  "commits": 591,
-  "derived_json": 424,
+  "clusters": 218,
+  "commits": 615,
+  "derived_json": 434,
   "repo_private": true,
   "x_dry_run_done": false,
   "prop_ready_excl_must_ship": 0.97,
@@ -23,5 +23,5 @@
     "more_prop_boards",
     "research_notes"
   ],
-  "read": "Urgency GREEN (~57h). Prop ~0.97. Open: public + X. Exploratory."
+  "read": "Urgency GREEN (~56h). Prop ~0.97. Human-only: public+X. Exploratory."
 }
