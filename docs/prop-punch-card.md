@@ -530,3 +530,6 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 211 / 2026Q3_13 | Contest-year _13 continuing — still not supported | history_progress_2026q3_13 |
 | Sweep ~589 identity | Notes follow-up done; public+X bind | sweep_589_identity |
 | Capital-light ⇒ no bond demand | PCI~0.0573; no RUNE-like NEAR security demand — claim is fee waterfall | capital_light_no_bond_demand |
+| History 212 / 2026Q4_13 | **_13 through 2026 COMPLETE** — still not supported | history_progress_2026q4_13 |
+| Dense _13 complete | 212 clusters; history not blocker; burn hours on public+X | dense_13_complete |
+| Sweep ~592 identity | _12+_13 done; research notes closed; public+X bind | sweep_592_identity |

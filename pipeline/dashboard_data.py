@@ -354,6 +354,7 @@ def build() -> dict:
             "attach_momentum": optional("derived/attach_momentum_board.json"),
             "judge_packet": optional("derived/judge_packet_completeness.json"),
             "dense_12_complete": optional("derived/dense_12_complete.json"),
+            "dense_13_complete": optional("derived/dense_13_complete.json"),
             "fee_stability": optional("derived/fee_engine_stability_under_dense.json"),
             "intents_drift": optional("derived/intents_multiple_drift_under_dense.json"),
             "conversion_quiet": optional("derived/conversion_quiet_capture_dial.json"),

@@ -380,3 +380,10 @@ Chain Signatures sits under Intents execution (execute ≫ respond ≫ sign) —
 - Intents ~**1.7d** inventory / PCI ~**0.0573** — capital-light vs bonded vault peers.
 - **No RUNE-like NEAR security demand.** Token claim = fee waterfall; leakage ~**$50.2M**/yr is the prize.
 <!-- /AUTO:NO_BOND -->
+
+<!-- AUTO:D13_DONE -->
+### Dense `_13` complete (exploratory)
+
+- Contest-year denser `_13` through **2026Q4** sealed — **212 clusters**; overall still **not supported**.
+- `_12`+`_13` done. History is **not** a submit blocker. Remaining ~**57h** burn on **public + X**.
+<!-- /AUTO:D13_DONE -->

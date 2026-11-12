@@ -141,10 +141,10 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~590 commits / 211 clusters.** Contest-year `_13` through Q3; overall still **not supported**.
-- **User all-in ≈10.6×** captured τ — distribution owns the spread.
-- Research-notes follow-up complete (20 notes / 10 twins). AI = substitute narrative.
-- **LIVE (~58h):** public + X. Hold until H1b.
+- **~593 commits / 212 clusters.** **`_12` + `_13` dense through 2026 COMPLETE.** Overall still **not supported** — history **not** a submit blocker.
+- **Fee≠L1 OoM:** intents ~**147×** vs L1 ~**0.22×**.
+- User all-in~10.6× · two bridges · whale desk · coverage wall~42.8% · capital-light⇒no bond · AI substitute.
+- **Burn ~57h on LIVE blockers:** **public repo** + **X dry-run**. Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context
