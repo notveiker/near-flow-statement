@@ -636,3 +636,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Discretionary claim = H1b underwriting | Claim=discretionary held-BB vs THOR pendulum / CF burn / Maya 10%. H1b underwrites discretion. Exploratory. | discretionary_claim_is_h1b_underwriting |
 | Peer mcap/rev multiple gap | NEAR~217× vs THOR~16× (≈13.6×) — claim design part of premium | peer_mcap_rev_multiple_claim_gap |
 | Multiple compression = claim first | SK-tax→~153× still ≫ THOR 16×; attest for discount; not volume-alone | multiple_compression_claim_first |
+| History 227 / 2026Q3_15 | intents~180× OoM; not supported; Q4 left in _15 | history_progress_2026q3_15 |
+| Entering _15 final quarter | Q4 left; strata EV ≪ public+X | entering_15_final_quarter |

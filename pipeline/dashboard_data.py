@@ -454,6 +454,7 @@ def build() -> dict:
             "disc_claim_h1b": optional("derived/discretionary_claim_is_h1b_underwriting.json"),
             "peer_mcap_rev": optional("derived/peer_mcap_rev_multiple_claim_gap.json"),
             "mult_compress": optional("derived/multiple_compression_claim_first.json"),
+            "entering_15_final": optional("derived/entering_15_final_quarter.json"),
             "f1_f4": optional("derived/f1_f4_on_submit_day.json"),
         },
         "repro": reproducibility(),

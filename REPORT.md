@@ -141,8 +141,8 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~647 commits / 226 clusters / ~54h.** `_15` Q3 sealing. Overall still **not supported**.
-- mcap/rev **217× vs THOR 16×**; compression = claim/capture first (SK→~153×), not volume-alone.
+- **~649 commits / 227 clusters / ~54h.** `_15` through 2026Q3; Q4 sealing (final in stratum). Overall still **not supported**.
+- Fee≠L1: intents~**180×** vs L1~**0.22×**. mcap/rev 217× vs THOR 16× — claim design.
 - **Repo PRIVATE.** Human-only: public + X. Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 

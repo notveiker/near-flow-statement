@@ -806,6 +806,8 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (Pmr) bits.push(`mcap/rev NEAR~${Pmr.mcap_to_rev_x.near_intents_style}× vs THOR~${Pmr.mcap_to_rev_x.thorchain}× (≈${Pmr.near_vs_thor_x}×) — claim design part of gap.`);
     const Mc = D.catalysts && D.catalysts.mult_compress;
     if (Mc) bits.push(`Multiple compression: claim/capture first (SK→~${Mc.paths_to_compress[0].implied_mult_if_mcap_fixed}×); not volume-alone to close ~${Mc.gap_x}×.`);
+    const E15 = D.catalysts && D.catalysts.entering_15_final;
+    if (E15) bits.push(`_15 through ${E15.last} @${E15.clusters}; Q4 left — strata EV ≪ public+X.`);
     const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
     if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);

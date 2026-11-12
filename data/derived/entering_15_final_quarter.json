@@ -1,0 +1,12 @@
+{
+  "asof": "2026-11-12",
+  "clusters": 227,
+  "last": "2026Q3_15",
+  "remaining_in_15": [
+    "2026Q4_15"
+  ],
+  "hours_to_submit": 54.4,
+  "commits": 649,
+  "implication": "_15 dense nearly complete; one quarter left in stratum \u2014 EV still \u226a public+X",
+  "read": "_15 through Q3 @227; Q4 remains. ~54h. Exploratory."
+}
