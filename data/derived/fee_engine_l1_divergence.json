@@ -1,8 +1,8 @@
 {
   "asof": "2026-11-12",
-  "clusters_used": 195,
-  "intents_vs_2025q1_x": 187.2336,
+  "clusters_used": 198,
+  "intents_vs_2025q1_x": 189.1248,
   "l1_yoy_tx_x": 0.2062,
-  "divergence_x": 908.0,
-  "read": "With 195 clusters, intents ~187\u00d7 vs 2025Q1; L1 YoY ~0.21\u00d7 (divergence ~908\u00d7). Overall still not supported. Preliminary."
+  "divergence_x": 917.2,
+  "read": "With 198 clusters, intents ~189\u00d7 vs 2025Q1; L1 YoY ~0.21\u00d7 (divergence ~917\u00d7). Overall still not supported. Preliminary."
 }
