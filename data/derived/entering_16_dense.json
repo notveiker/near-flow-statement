@@ -1,6 +1,7 @@
 {
   "asof": "2026-11-12",
-  "clusters": 228,
+  "clusters": 229,
+  "last": "2025Q1_16",
   "prior_complete": [
     "_12",
     "_13",
@@ -8,8 +9,11 @@
     "_15"
   ],
   "entering": "_16",
-  "hours_to_submit": 54.2,
-  "commits": 654,
-  "implication": "Entering _16 after four complete dense strata \u2014 marginal history EV near zero vs ~54h public+X clock",
-  "read": "Entering _16 @228 after _12\u2013_15 complete. ~54h \u2192 public+X. Exploratory."
+  "hours_to_submit": 54.0,
+  "commits": 659,
+  "intents_x": 192.3539,
+  "l1_yoy_tx_x": 0.2249,
+  "overall": "not_supported",
+  "implication": "_16 filling; OoM holds; public+X still bind",
+  "read": "_16 through 2025Q1 @229; intents~192\u00d7. ~54h \u2192 public+X. Exploratory."
 }

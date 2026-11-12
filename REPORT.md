@@ -141,9 +141,9 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~657 commits / 228 clusters / ~54h.** `_12`–`_15` complete; `_16` sealing. Overall still **not supported**.
-- Catalyst order: **public+X → SK-tax → logos→default BB → conversion → HSP → attest → attach**.
-- Default rail = fee engine; 217× claim design; Hold until H1b. **Repo PRIVATE.**
+- **~659 commits / 229 clusters / ~54h.** `_12`–`_15` complete; `_16` through 2025Q1. Overall still **not supported**.
+- Fee≠L1 OoM intents~**192×**. Default rail = fee engine; 217× claim design; SK-tax first.
+- **Repo PRIVATE.** Human-only: public + X. Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context
