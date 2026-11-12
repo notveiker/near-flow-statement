@@ -558,3 +558,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Sweep ~619 identity | Triple dense complete; public+X bind | sweep_619_identity |
 | Entering _15 dense | Prefer public+X; _12+_13+_14 done | entering_15_dense |
 | History 221 / 2025Q1_15 | Denser _15 started — still not supported | history_progress_2025q1_15 |
+| History 222 / 2025Q2_15 | _15 dense continuing — still not supported | history_progress_2025q2_15 |
+| Sweep ~625 identity | Triple-dense done; human-only public+X | sweep_625_identity |
