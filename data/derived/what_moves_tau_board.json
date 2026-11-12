@@ -4,14 +4,18 @@
   "appfees_to_bb_conversion",
   "whale_attach",
   "mix_to_noref_or_nearcom",
-  "hsp029_mint_cut"
+  "hsp029_mint_cut",
+  "lifi_rango_attach",
+  "mystery_high_bp_label"
  ],
  "does_not_move_tau": [
   "perps_oi",
   "npm_downloads",
   "peer_share_alone",
   "ai_agent_narrative_unlabeled",
-  "cs_sign_count_as_fee_line"
+  "cs_sign_count_as_fee_line",
+  "active_accounts",
+  "peerset_share_softening"
  ],
  "binding_holds": [
   "escrow_attestation_gap",

@@ -1,0 +1,5 @@
+{
+ "active_accounts_30d_k": 61.6,
+ "active_accounts_30d_yoy_pct": -77.1,
+ "note": "Active accounts are L1 attention, not Intents fee. With Intents ~9% gas and HOT/SWEAT dominating non-Intents gas, account growth can rise while fee density stays Intents-local. Do not lead with actives. Exploratory."
+}

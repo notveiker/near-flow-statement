@@ -186,3 +186,6 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Mystery 71bp channel | UUID front 0.4% vol → 7.2% BB-fee $ at 71bp (density ~18×) — unlabeled high-take already in print | mystery_high_bp_channel |
 | Aggregator attach pack | LI.FI+Rango to 10bp ≈ **~$1.4M/yr** combined | aggregator_attach_pack |
 | Revwallet frontend vs BB | Frontend ~31% of revwallet USD; buybacks ~69% — dual rails inside "capture" | revwallet_frontend_vs_bb |
+| Revwallets ≈ Llama | Revwallets reconcile **~100.9%** to Llama protocol rev — fee print is wallet-real | revwallet_llama_reconcile |
+| Zodl settlement 100% | Zodl 9/9 listed fees paid on-chain — leak is policy split not rails | zodl_settlement_perfect |
+| Actives ≠ fee | L1 active accounts are attention; Intents fee density is local — do not lead with actives | actives_not_fee |
