@@ -133,6 +133,11 @@ Active accounts −77% YoY while Intents fees ~11× L1 fee print; NEAR-side swap
 
 Attach/τ rose on −12% MoM volume, but 30d daily notional is still ~1.5× the year average — cool-off from an elevated print.
 
+
+### Three ~$10M magnitudes
+
+SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% emissions claim ~$11.8M (mint opex, Gap). Net the issuance narrative.
+
 ## Risks and context
 
 - **Unattested escrow dollars.** Even at 15.8% attestation high, ~$8.4M/yr of escrow-funded BB (if sustained) sits outside the band (`escrow_unattested_dollars.json`).
