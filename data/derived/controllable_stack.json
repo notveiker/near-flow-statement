@@ -95,5 +95,16 @@
   "path_read": "Conservative capture dials ~$18M + attest trust $8.4M are the signed near-term board; ADR defense $5.7M is loss-prevention; CIF $3.3M is Gap until rate card. Volume still last mile for 50\u00d7. Exploratory.",
   "vs_50x_need_m": 96.4,
   "conservative_capture_vs_50x": 0.19
- }
+ },
+ "commercial_call_order": [
+  "Ledger (via SwapKit)",
+  "Confidential / escrow attestation",
+  "CIF rate card publish",
+  "ADR-029 / solver residual defense",
+  "Appfees conversion policy",
+  "Telegram intents.tg label+attach",
+  "LI.FI / Rango Trust-template",
+  "Protect dense fronts"
+ ],
+ "near_term_principle": "leakage_trust_defense_then_volume"
 }
