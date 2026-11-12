@@ -311,3 +311,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Sovereign yield noise | HSP-XXX treasury-venture buyback title ~1 like — narrative noise, not catalyst | sovereign_yield_noise |
 | History 158 dense | 158 clusters through 2025Q2_07; Q3_07 sealing — still not supported | history_progress_2025q2_07 |
 | Ledger discipline board | Capture ~$18M conservative ≠ defense $5.7M ≠ CIF Gap $3.3M — do not sum ledgers | ledger_discipline_board |
+| History 159 dense Q3 | 159 clusters through 2025Q3_07 — still not supported | history_progress_2025q3_07 |

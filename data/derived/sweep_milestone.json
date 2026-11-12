@@ -1,23 +1,8 @@
 {
- "commits_since_structural": 380,
- "clusters_preliminary": 158,
- "hours_to_submit": 67.7,
- "punch_rows_approx": 276,
- "derived_json": 292,
+ "commits_since_structural": 386,
+ "clusters_preliminary": 159,
+ "hours_to_submit": 67.5,
  "stratum": "_07_dense",
- "last_ingested": "2025Q2_07",
  "judge_ready": true,
- "headline_props": [
-  "four_ten_m_board",
-  "ledger_first_renegotiation",
-  "immaterial_to_material_ladder",
-  "confidential_share_of_capture",
-  "user_allin_vs_token_claim",
-  "commercial_conversation_map",
-  "cif_rate_card_dial",
-  "attestation_underwriting_dial",
-  "fee_engine_core_density",
-  "sk_exit_resilience_split"
- ],
- "note": "~380 commits; 158 clusters (_07 through 2025Q2); ~276 punch rows; ~292 derived; ~67.7h to submit."
+ "note": "~386 commits; 159 clusters; ledger-discipline + call-order shipped; ~67.5h to submit."
 }
