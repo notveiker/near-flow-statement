@@ -1,0 +1,15 @@
+{
+  "asof": "2026-11-12",
+  "stratum": "_14_dense",
+  "through": "2026Q4_14",
+  "clusters": 220,
+  "commits": 620,
+  "hours_to_submit": 55.8,
+  "overall": "not supported",
+  "history_blocker": false,
+  "dense_12_complete": true,
+  "dense_13_complete": true,
+  "dense_14_complete": true,
+  "next": "further strata diminishing EV \u2014 human-only public+X",
+  "read": "Dense _14 through 2026 COMPLETE \u2014 220 clusters; overall still not supported. _12+_13+_14 done. Burn ~56h on public+X. Exploratory."
+}

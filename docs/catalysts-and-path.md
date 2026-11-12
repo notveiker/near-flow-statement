@@ -408,3 +408,10 @@ Chain Signatures sits under Intents execution (execute ≫ respond ≫ sign) —
 - Attach 43→60 uplift ~**$7.9M**/yr; SK-tax ~**$10.2M**/yr (~**1.3×**).
 - Lead whale-desk SK-tax; keep attach momentum as parallel (already +**19.4** pp).
 <!-- /AUTO:SK_VS_ATT -->
+
+<!-- AUTO:D14_DONE -->
+### Dense `_14` complete (exploratory)
+
+- Contest-year denser `_14` through **2026Q4** sealed — **220 clusters**; overall still **not supported**.
+- `_12`+`_13`+`_14` done. History **not** a submit blocker. Remaining ~**56h** = **human public + X**.
+<!-- /AUTO:D14_DONE -->

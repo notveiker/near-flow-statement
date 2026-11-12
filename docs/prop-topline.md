@@ -71,5 +71,5 @@ Prop/dashboard/judge packet ready (~437 commits, 168 clusters preliminary). **Mu
 <!-- /AUTO:DELIVERY -->
 
 <!-- AUTO:TOPLINE_NOW -->
-**Now (~56h / 216 clusters / 608 commits):** `_14` through 2025 · 600+ commits · locked pitch · **flip public + X**.
+**Now (~56h / 220 clusters / 620 commits):** `_12`+`_13`+`_14` complete · locked pitch · **flip public + X**.
 <!-- /AUTO:TOPLINE_NOW -->

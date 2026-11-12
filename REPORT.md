@@ -141,8 +141,10 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~617 commits / 219 clusters.** Contest-year `_14` through Q3; overall still **not supported**.
-- Fee≠L1 OoM ~**170×**. Human-only: public + X (~56h).
+- **~620 commits / 220 clusters.** **`_12`+`_13`+`_14` dense through 2026 COMPLETE.** Overall still **not supported**.
+- Fee≠L1 OoM intents ~**170×** vs L1 ~**0.22×**.
+- Research-notes follow-up closed. Locked pitch ready.
+- **Human-only (~56h):** **public repo** + **X dry-run**. Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context

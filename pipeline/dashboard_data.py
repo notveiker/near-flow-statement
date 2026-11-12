@@ -355,6 +355,7 @@ def build() -> dict:
             "judge_packet": optional("derived/judge_packet_completeness.json"),
             "dense_12_complete": optional("derived/dense_12_complete.json"),
             "dense_13_complete": optional("derived/dense_13_complete.json"),
+            "dense_14_complete": optional("derived/dense_14_complete.json"),
             "locked_pitch": optional("derived/locked_pitch_lines.json"),
             "entering_14": optional("derived/entering_14_dense.json"),
             "dic_buffer": optional("derived/dic_buffer_not_scarcity.json"),
