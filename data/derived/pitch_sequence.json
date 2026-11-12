@@ -33,5 +33,6 @@
  ],
  "hours_to_submit": 67.2,
  "clusters_preliminary": 160,
- "commits": 396
+ "commits": 396,
+ "near_term_board": "near_term_board.json"
 }

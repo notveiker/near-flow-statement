@@ -1,0 +1,48 @@
+{
+ "near_term_board": [
+  {
+   "item": "Ledger SK-tax renegotiation",
+   "rr_m": 10.2,
+   "vol": false
+  },
+  {
+   "item": "Attest escrow + underwriting",
+   "rr_m": 8.4,
+   "vol": false
+  },
+  {
+   "item": "CIF rate card Gap",
+   "rr_m": 3.31,
+   "vol": false
+  },
+  {
+   "item": "ADR residual defense",
+   "rr_m": 5.71,
+   "vol": false
+  },
+  {
+   "item": "Conversion 9\u219218%",
+   "rr_m": 5.5,
+   "vol": false
+  }
+ ],
+ "observed_quality": {
+  "attach_x": 1.72,
+  "vol_mom_pct": -12.3,
+  "partner_bb_ratio_improvement_x": 1.8
+ },
+ "do_not_lead_near_term": [
+  "peer_share_recovery",
+  "50x_volume_cheer",
+  "AI",
+  "npm",
+  "ETF",
+  "L1_actives"
+ ],
+ "50x_needs": {
+  "after_full_gross_hsp_vol_x": 1.3,
+  "today_at_5bp_vol_x": 4.0
+ },
+ "stance": "Hold until H1b",
+ "note": "Near-term board is leakage/trust/defense; quality already rising on cool; 50\u00d7 still wants volume after bridges. Exploratory."
+}

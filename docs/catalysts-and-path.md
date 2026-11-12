@@ -190,3 +190,9 @@ HSP-007 forum likes ~**2.1×** HSP-029 — emissions-claim politics may compete 
 
 Do not double-count SK-tax with no-BB redirect or gross-share pp; CIF with attestation (same confidential surface); ADR defense with full solver residual. Conservative capture board ~$18M. See `dial_overlap_map.json`.
 <!-- /AUTO:OVERLAP -->
+
+<!-- AUTO:NEAR_TERM -->
+### Near-term board (before volume)
+
+Ledger SK-tax ~$10.2M · attest ~$8.4M · ADR defense ~$5.7M · conversion ~$5.5M · CIF Gap ~$3.3M. Quality already 1.72× on cool. 50× still needs ~1.3× vol after full gross+HSP.
+<!-- /AUTO:NEAR_TERM -->
