@@ -141,10 +141,9 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **~574 commits / 206 clusters.** `_13` dense; overall still **not supported**.
-- **Default rail≈fee engine** (unreferred~45.8% BB $). **Call-order:** SK-tax→mix→attest→conversion→attach.
-- Conversion~9% · affiliate contest · fee≠L1 OoM · coverage wall~42.8%.
-- **LIVE (~58h):** public + X. Hold until H1b.
+- **~576 commits / 207 clusters.** `_13` through Q3; overall still **not supported**.
+- **12 locked claims** in prop-what (elasticity · wall · whale desk · double opacity · fidelity · fee≠L1 OoM · default rail · conversion · solver rent · embeds · quality-on-cool · Hold/H1b).
+- **LIVE (~58h):** public + X. History not a blocker.
 <!-- /AUTO:LATEST_SWEEP -->
 
 ## Risks and context

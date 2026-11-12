@@ -510,3 +510,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Sweep ~573 identity | Conversion+affiliate+venue; public+X bind | sweep_573_identity |
 | Default rail is fee engine | Unreferred ~45.8% of BB $ — protect/expand default path | default_rail_is_fee_engine |
 | Judge call-order now | SK-tax→mix→attest→conversion→attach; do not sum; Hold until H1b | judge_call_order_now |
+| History 207 / 2025Q3_13 | _13 dense continuing — still not supported | history_progress_2025q3_13 |

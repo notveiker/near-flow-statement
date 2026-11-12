@@ -112,3 +112,20 @@ Fee-engine≠L1 divergence now ~**132×** intents vs ~**0.19×** L1 tx YoY on 17
 <!-- AUTO:QOOL_DBL -->
 **Quality-on-cool + double opacity:** vol -12.3% MoM with rising attach/τ; escrow~58.5% + unknown~33.2% — attest AND label; SK-tax is the material dial vs ~$50.2M leakage.
 <!-- /AUTO:QOOL_DBL -->
+
+<!-- AUTO:LATEST_CLAIMS -->
+### Latest proprietary claims (asof 2026-11-12, exploratory)
+
+1. **Capture-pp ≈ 3.07× vol-pp**; SK-tax ≈ 42.5 vol-pp — leakage renegotiation before volume cheerleading.
+2. **Coverage wall ~42.8%** without volume; remaining gap is volume/price.
+3. **Whale desk = SK-tax conversation** (3.4% swaps = 77% vol).
+4. **Double opacity:** escrow BB ~59% + unknown surface ~33% — attest AND label.
+5. **Fidelity → commercial leakage** (BB~97% paid) — terms not AR.
+6. **Fee≠L1 is OoM** (intents ~147× vs L1 ~0.21×); densification drifts the point, not the gap.
+7. **Default/no-ref rail ≈ 46% of BB $** — that path is the fee engine.
+8. **Conversion quiet dial** — only ~9% appfees→BB.
+9. **Solver residual ≠ capture** — contestable rent ledger.
+10. **Multi-venue embeds ~54%** of 1Click can fill away — capture must survive exit.
+11. **Quality-on-cool proof** — attach/τ rose on −12% vol.
+12. **Hold until H1b**; HSP pending-then-lagged; delivery = public + X (~58h).
+<!-- /AUTO:LATEST_CLAIMS -->

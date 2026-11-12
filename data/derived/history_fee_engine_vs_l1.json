@@ -1,19 +1,19 @@
 {
   "asof": "2026-11-12",
-  "clusters_used": 206,
+  "clusters_used": 207,
   "overall": "not supported",
   "ratios": {
     "U1": {
-      "point": 0.205,
-      "lo90": 0.1553,
-      "hi90": 0.2712,
+      "point": 0.2107,
+      "lo90": 0.1604,
+      "hi90": 0.2744,
       "supported": false,
       "hypothesis": "NEAR usage has grown (tx per day)"
     },
     "U2": {
-      "point": 0.2086,
-      "lo90": 0.1535,
-      "hi90": 0.2857,
+      "point": 0.215,
+      "lo90": 0.1586,
+      "hi90": 0.2894,
       "supported": false,
       "hypothesis": "The growth is not one contract"
     },
@@ -25,23 +25,23 @@
       "hypothesis": "Intents is a real share of activity (receipts on intents.near per day)"
     },
     "U4": {
-      "point": 0.2717,
-      "lo90": 0.2336,
-      "hi90": 0.3192,
+      "point": 0.2753,
+      "lo90": 0.2366,
+      "hi90": 0.3198,
       "supported": false,
       "hypothesis": "More distinct users (signers per 100 blocks)"
     },
     "U5": {
-      "point": 0.3467,
-      "lo90": 0.2237,
-      "hi90": 0.5133,
+      "point": 0.3562,
+      "lo90": 0.2325,
+      "hi90": 0.52,
       "supported": false,
       "hypothesis": "Fee burn has grown (NEAR burnt per day)"
     }
   },
-  "l1_yoy_tx_x": 0.205,
-  "l1_yoy_signers_x": 0.2717,
-  "l1_yoy_burn_x": 0.3467,
+  "l1_yoy_tx_x": 0.2107,
+  "l1_yoy_signers_x": 0.2753,
+  "l1_yoy_burn_x": 0.3562,
   "intents_vs_2025q1_x": 147.1856,
-  "read": "L1 YoY ~0.20\u00d7/0.27\u00d7/0.35\u00d7; intents ~147\u00d7 vs 2025Q1. Overall not supported. Preliminary (206 clusters)."
+  "read": "L1 YoY ~0.21\u00d7/0.28\u00d7/0.36\u00d7; intents ~147\u00d7 vs 2025Q1. Overall not supported. Preliminary (207 clusters)."
 }

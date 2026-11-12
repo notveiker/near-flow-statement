@@ -1,9 +1,9 @@
 {
   "asof": "2026-11-12",
-  "commits": 562,
-  "clusters": 203,
-  "derived_json": 396,
-  "punch_table_rows_approx": 453,
-  "hours_to_submit": 58.9,
-  "read": "Sweep ~562 commits / 203 clusters / 396 derived / ~453 punch. Prop locked; public+X bind (~59h). Exploratory."
+  "commits": 576,
+  "clusters": 207,
+  "derived_json": 412,
+  "punch_table_rows_approx": 479,
+  "hours_to_submit": 58.3,
+  "read": "Sweep ~576 commits / 207 clusters / 412 derived. Public+X bind. Exploratory."
 }
