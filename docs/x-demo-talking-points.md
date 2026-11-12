@@ -27,3 +27,7 @@ Falsify if: attach stalls, no-ref mix collapses, capture share <25%, volume halv
 
 Moves capture: partner-tax renegotiation, appfees→buyback conversion, whale attach, mix to no-ref/near.com, HSP-029 mint cut.
 Does **not** move τ: perps OI, npm downloads, unlabeled AI volume, CS signature counts as a fee line.
+
+## Close
+
+Pre-registered F1–F4 in `docs/f1-f4-scorecard.md`. History sample preliminary — not a supported claim.

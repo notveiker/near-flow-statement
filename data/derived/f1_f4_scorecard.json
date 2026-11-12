@@ -1,0 +1,28 @@
+{
+ "asof": "2026-11-12",
+ "instructions": "Score F1\u2013F4 on 14 Nov against committed falsifiers; do not rescore post-hoc.",
+ "primary_falsifiers": [
+  {
+   "id": "F_quality_cool",
+   "claim": "attach/\u03c4 up on cooling vol",
+   "fail_if": "attach and \u03c4 fall while vol keeps cooling"
+  },
+  {
+   "id": "F_sk_tax",
+   "claim": "partner-tax renegotiation is the bridge",
+   "fail_if": "SK listed partner fees fall >50% without NEAR capture rising"
+  },
+  {
+   "id": "F_escrow",
+   "claim": "Hold until H1b on attestation",
+   "fail_if": "attestation stays <20% while escrow share of BB stays >50%"
+  },
+  {
+   "id": "F_relayer",
+   "claim": "ops concentration is left-tail",
+   "fail_if": "relayer top1 stays >80% through an outage week"
+  }
+ ],
+ "stance_if_pass": "Hold until H1b still binds on escrow; leakage bridge remains lead catalyst",
+ "note": "Pre-registered scoreboard for contest day. Exploratory."
+}

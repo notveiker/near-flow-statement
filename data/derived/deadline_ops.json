@@ -1,31 +1,14 @@
 {
- "asof_utc": "2026-11-12T00:55:28Z",
- "deadline_utc": "2026-11-14T23:59:00Z",
- "hours_remaining_approx": 71.1,
+ "now_utc": "2026-11-12T01:21:06.702830+00:00",
+ "hours_to_submit": 70.6,
+ "hours_submit_to_hsp029_timelock": 24.0,
  "must_ship": [
   "public_repo",
-  "X_demo_post",
-  "F1-F4_score_on_14_Nov",
-  "dashboard+REPORT_primary"
- ],
- "prop_ready": [
-  "prop-what-is-proprietary.md",
-  "prop-topline.md",
-  "prop-punch-card.md",
-  "fee-waterfall.md",
-  "structural-thesis.md",
-  "catalysts-and-path.md"
- ],
- "still_open": [
-  "public_repo_visibility",
   "X_demo",
-  "H1b_labels",
-  "attestation_map"
+  "dashboard+REPORT",
+  "falsifier_scores_F1-F4"
  ],
- "prop_depth": {
-  "commits_approx": 221,
-  "punch_rows": 108,
-  "history_clusters": 140
- },
- "note": "Prop research is deep. Remaining risk is delivery logistics (public repo + X), not thesis content."
+ "prop_ready": true,
+ "history_status": "preliminary_not_supported",
+ "note": "~71h to submit; HSP-029 timelock ~2d after. Pitch pending-not-live. History still preliminary \u2014 do not claim supported. Exploratory ops."
 }
