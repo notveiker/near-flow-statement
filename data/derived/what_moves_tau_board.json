@@ -35,10 +35,15 @@
   "capture_share",
   "conversion",
   "attestation",
-  "hsp029"
+  "hsp029",
+  "ledger_first_sk_tax",
+  "attestation_disclosure",
+  "cif_rate_card",
+  "adr_residual_defense"
  ],
  "threatens_multiple": [
   "further_vol_cool_without_take",
   "hsp007_emissions_claim"
- ]
+ ],
+ "hours_to_submit": 66.9
 }

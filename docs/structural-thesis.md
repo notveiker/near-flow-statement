@@ -56,4 +56,5 @@ Intents ≈ **99%** of DefiLlama NEAR DEX 30d volume — peer competition for �
 
 Judge spine: [`pitch-spine.md`](pitch-spine.md). Controllable dials on dashboard Capture.
 
-*Sweep stamp: four ~$10M board + CIF/attest underwriting + exit-flow gap + immaterial→material ladder; history preliminary (`investment_object.json`).*
+
+*Sweep stamp: ~403 commits; 162+ clusters; five ledgers; call-order Ledger→attest→CIF; Hold until H1b.*
