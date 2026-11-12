@@ -1,0 +1,6 @@
+{
+ "fefunds_escrow_path_usd_k": 616.9,
+ "bb_from_escrow_usd_k": 823.7,
+ "note": "Fee-funds escrow path ~$616.9k vs BB escrow unshield ~$823.7k (~1.34\u00d7) \u2014 related confidential rails, not identical. Attestation must map both. Exploratory.",
+ "ratio_bb_to_fefunds_x": 1.34
+}

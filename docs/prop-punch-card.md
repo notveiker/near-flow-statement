@@ -306,3 +306,5 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | H1c buy-side thin | Identified buying ~$1.48M < one 30d capture — demand thin vs fee narrative | h1c_buy_side_thin |
 | Intents heavier per tx | HOT≈gas share but 3× txs — Intents settlement density per tx | intents_heavier_per_tx |
 | ETF vs ladder | ETF NRR ~$0.42M ≈ AI bound, ~0.04× SK-tax — float not fee | etf_vs_ladder |
+| HSP-007 engagement vs 029 | HSP-007 likes ~2.1× HSP-029 — political attention on mint claim risk | hsp007_engagement_vs_029 |
+| Dual escrow rails | Fee-funds ~$617k vs BB unshield ~$824k — related confidential rails, not identical | dual_escrow_rails |

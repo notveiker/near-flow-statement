@@ -178,3 +178,9 @@ LST ~$196M ≈ ~611 DIC days (~25× buyback) but only ~9.3% of stake — size �
 - Dense fronts portfolio ~**$1.59M/yr** at ~20bp template — protect Arbie/Enot/Leodex/Trust; extend to LI.FI.
 - ADR-029 threat proxy ~$2.2M/yr sits inside solver residual (~$11.4M) — defend residual, contest is P&L.
 <!-- /AUTO:LEDGER_DENSE -->
+
+<!-- AUTO:HSP007_ENG -->
+### HSP-007 engagement risk
+
+HSP-007 forum likes ~**2.1×** HSP-029 — emissions-claim politics may compete with the mint-cut narrative. Illustrative 10% claim ~$11.8M/yr (Gap on actual draw).
+<!-- /AUTO:HSP007_ENG -->

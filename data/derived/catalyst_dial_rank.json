@@ -25,9 +25,27 @@
    "type": "capture"
   },
   {
+   "dial": "adr029_defend_half",
+   "score": 86,
+   "rr_m": 5.71,
+   "type": "defense"
+  },
+  {
    "dial": "gross_5pp_to_near",
    "score": 80,
    "rr_m": 3.7,
+   "type": "capture"
+  },
+  {
+   "dial": "cif_1bp_gap",
+   "score": 78,
+   "rr_m": 3.31,
+   "type": "gap_capture"
+  },
+  {
+   "dial": "lifi_to_20bp",
+   "score": 75,
+   "rr_m": 2.31,
    "type": "capture"
   },
   {
@@ -37,10 +55,10 @@
    "type": "inventory"
   },
   {
-   "dial": "lifi_to_20bp",
-   "score": 75,
-   "rr_m": 2.31,
-   "type": "capture"
+   "dial": "hsp029_pending",
+   "score": 70,
+   "rr_m": "coverage",
+   "type": "mint"
   },
   {
    "dial": "trust_sk_direct",
@@ -49,10 +67,16 @@
    "type": "capture"
   },
   {
-   "dial": "hsp029_pending",
-   "score": 70,
-   "rr_m": "coverage",
-   "type": "mint"
+   "dial": "dense_fronts_protect",
+   "score": 66,
+   "rr_m": 1.59,
+   "type": "protect"
+  },
+  {
+   "dial": "tg_half_10bp",
+   "score": 65,
+   "rr_m": 1.37,
+   "type": "label_attach"
   },
   {
    "dial": "whale_10pp",
@@ -61,5 +85,6 @@
    "type": "capture"
   }
  ],
- "note": "Attestation is scored as a trust dial of similar $ magnitude to SK-tax. Prefer commercial/trust before volume/narrative."
+ "note": "Attestation peers SK-tax $. Prefer commercial/trust/defense before volume/narrative. CIF/TG are Gap/label dials.",
+ "ledger_first": true
 }
