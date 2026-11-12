@@ -1,19 +1,23 @@
 {
- "history_clusters_preliminary": 160,
- "commits_since_structural_approx": 395,
- "derived_json_approx": 301,
- "punch_rows_approx": 302,
- "hours_to_submit_approx": 67.3,
+ "history_clusters_preliminary": 168,
+ "commits_since_structural_approx": 433,
+ "derived_json_approx": 314,
+ "punch_rows_approx": 329,
+ "hours_to_submit_approx": 65.8,
  "top_dials": [
   "sk_tax_ledger_first",
-  "attest_escrow",
+  "attest",
   "adr_defense",
   "conversion",
-  "cif_1bp_gap",
-  "tg_attach",
-  "lifi_template",
+  "cif_gap",
+  "tg",
+  "lifi",
   "dense_fronts"
  ],
  "stance": "Hold until H1b",
- "note": "~395 commits; 160 clusters; ~302 punch rows; ~301 derived; ~67.3h to submit."
+ "must_ship": [
+  "public_repo",
+  "X_demo_dry_run"
+ ],
+ "note": "~433 commits; 168+ clusters; ~329 punch; ~314 derived; ~65.8h; must-ship public repo + X."
 }
