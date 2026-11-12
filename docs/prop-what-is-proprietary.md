@@ -30,6 +30,7 @@
 18. **Full gross + HSP still <100% coverage** (~74% post-HSP flat).
 19. **Escrow climb 17.5%→58.5%** without attestation climbing.
 20. **H1b coverage still ~20–25%** — Hold until H1b is measured.
+20b. **Unattested escrow ~$8.4M/yr** at attestation band high ≈ 0.8× SK-tax dial.
 
 ## Product / ops
 
@@ -50,3 +51,7 @@
 - Falsifiers: `docs/f1-f4-scorecard.md`
 - Punch: `docs/prop-punch-card.md`
 - Dashboard: Capture → Controllable dials
+
+## Honesty
+
+Explorer partner/appfee vs DefiLlama gross are not a clean partition (sum can exceed 100%). Partners>capture uses Explorer dollars.

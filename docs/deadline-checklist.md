@@ -48,3 +48,4 @@ Ops clock: `data/derived/deadline_ops.json`.
 - [x] F1–F4 scorecard pre-registered
 - [ ] Public repo / X demo dry-run before 14 Nov 23:59 UTC
 - Hours to submit (as of refresh): **~70.4h** — public repo + X demo still open.
+- [ ] Do not block submit on history stopping rule — ship prop stack with preliminary label
