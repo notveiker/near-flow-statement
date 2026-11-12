@@ -1,7 +1,7 @@
 {
-  "commits_since_structural": 469,
+  "commits_since_structural": 470,
   "clusters_preliminary": 177,
-  "hours_to_submit": 64.0,
+  "hours_to_submit": 63.9,
   "stratum": "_09_dense",
   "last_ingested": "2026Q1_09",
   "next": "2026Q2_09",
@@ -10,5 +10,5 @@
     "public_repo_STILL_PRIVATE",
     "X_demo_dry_run"
   ],
-  "note": "~469 commits; 177 clusters; contest-year _09 filling; repo still private; ~64.0h."
+  "note": "~470 commits; 177 clusters; payment-fidelity + settlement-density + HSP-007 tension shipped; ~63.9h; repo private."
 }

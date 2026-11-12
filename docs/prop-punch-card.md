@@ -400,3 +400,7 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Public repo LIVE private | gh isPrivate=true — binding delivery blocker with ~64h left | public_repo_checklist |
 | Unknown surface diligence dial | Scaled half@10bp ~$2.23M Gap — labeling catalyst, not assumed fees | unknown_surface_diligence_dial |
 | History 177 / 2026Q1_09 | Contest-year _09 filling — still not supported | history_progress_2026q1_09 |
+| Fee payment fidelity | BB exact ~97% / SK on-chain ~91% — leakage is terms, not unpaid invoices | fee_payment_fidelity_board |
+| Settlement fee density | HOT 3× tx share at matched gas — Intents heavier/settlement; density in weight | settlement_fee_density |
+| HSP-007 vs Intents tension | 20% emissions claim ≈ Intents RR on same mint pool — Gap magnitude | hsp007_vs_intents_tension |
+| Scope not Aurora | Aurora residual; Intents ≫ Aurora fees — scope confirmation | scope_not_aurora |

@@ -323,6 +323,9 @@ def build() -> dict:
             "capture_insufficient": optional("derived/capture_alone_insufficient_50x.json"),
             "peerset_not_scarce": optional("derived/peerset_leadership_not_scarce.json"),
             "surface_opacity": optional("derived/distribution_surface_opacity.json"),
+            "fee_payment_fidelity": optional("derived/fee_payment_fidelity_board.json"),
+            "settlement_density": optional("derived/settlement_fee_density.json"),
+            "hsp007_tension": optional("derived/hsp007_vs_intents_tension.json"),
         },
         "repro": reproducibility(),
     }

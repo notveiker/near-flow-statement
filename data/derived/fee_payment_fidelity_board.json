@@ -1,0 +1,7 @@
+{
+  "asof": "2026-11-12",
+  "bb_exact_rate_pct": 96.7,
+  "swapkit_paid_rate_pct": 91.1,
+  "sample_n_swaps": 195,
+  "read": "Fee-evidence sample (n=195): BB listed\u2192paid exact ~96.7%; SwapKit listed\u2192on-chain ~91.1%. High payment fidelity on the measured slice \u2014 leakage is commercial/terms, not unpaid invoices. Exploratory sample."
+}

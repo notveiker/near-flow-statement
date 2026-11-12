@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "intents_fee_rr_m": 24.2,
+  "claim_10pct_m": 11.8,
+  "claim_20pct_m": 23.7,
+  "claim_20_vs_intents_x": 0.98,
+  "budget_unknown": true,
+  "read": "Illustrative HSP-007 10% emissions claim ~$11.8M (~0.5\u00d7 Intents RR); 20% \u2248 $23.7M (~0.98\u00d7 Intents RR). Same issuance pool as HSP-029 mint cut \u2014 competing claim. Magnitude Gap without proposal body. Exploratory."
+}

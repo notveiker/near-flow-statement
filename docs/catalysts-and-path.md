@@ -241,3 +241,13 @@ ETF/NRR implied fee ~**$0.42M/yr** is ~**0.017×** Intents RR (`etf_immaterial_v
 
 Inventory turns ~**17×**/30d (PCI ~0.057) — capital-light; binding constraint remains capture/leakage (`capital_light_fee_engine.json`). Even 60% capture share reaches only ~**0.46×** of a 50× revenue need (`capture_alone_insufficient_50x.json`).
 <!-- /AUTO:OPACITY_ACC -->
+
+<!-- AUTO:FIDELITY_DENSITY -->
+## Payment fidelity and settlement density (exploratory)
+
+`fee_payment_fidelity_board.json`: on the fee-evidence slice, buyback listed→paid exact ~**97%** and SwapKit listed→on-chain ~**91%**. Leakage is commercial terms / attach, not unpaid invoices.
+
+`settlement_fee_density.json`: HOT carries ~3× the tx share of Intents at matched gas share — Intents is heavier per tx. Fee density lives in settlement weight.
+
+`hsp007_vs_intents_tension.json`: an illustrative **20%** emissions claim is about **1×** Intents fee RR on the same issuance pool HSP-029 tries to shrink — treat as mint opex Gap until proposal bodies land.
+<!-- /AUTO:FIDELITY_DENSITY -->
