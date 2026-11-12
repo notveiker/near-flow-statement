@@ -85,6 +85,7 @@
 | 79 | Unstaker→Intents overlap | ~1.5% of 1Click NEAR sold | Staking exit ≠ main NEAR-exit driver on Intents |
 | 80 | NEAR share of partner-fee surface | ≤~22% (tight ~20%) | Distribution owns the margin |
 | 81 | NEAR-side swap share | ~3.5% of 1Click swaps | Venue is foreign-asset routing on NEAR rails |
+| 82 | Fee-evidence fidelity | BB exact ~97%; SK on-chain paid ~91% | High payment fidelity on measured slice |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.
 

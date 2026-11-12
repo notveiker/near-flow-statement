@@ -1,0 +1,10 @@
+{
+ "fee_ev_swaps_n": 195,
+ "bb_listed_n": 61,
+ "bb_paid_exact_n": 59,
+ "bb_exact_rate_pct": 96.7,
+ "swapkit_fees_listed_n": 112,
+ "swapkit_fees_paid_onchain_n": 102,
+ "swapkit_paid_rate_pct": 91.1,
+ "note": "Fee-evidence sample: buyback listed\u2192paid exact ~97%; SwapKit listed\u2192on-chain paid ~91%. High payment fidelity on the measured slice. Exploratory sample."
+}
