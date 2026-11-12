@@ -682,3 +682,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | TG + unknown 1click dials | Surfaces: unknown~33.2% / tg~20.4% / SK~15%. Label+TG dials. Exploratory. | distribution_surface_tg_unknown_dials |
 | CS bursty under Intents exec | execute/respond ×6.7; respond/sign ×23.7. CS=bursty infra. Exploratory. | cs_bursty_under_intents_execution |
 | Attach-on-1Click cannot finish 50× | 1Click@100% AITR ~0.13× of 50× need. Attach≠50× alone. Exploratory. | attach_on_1click_cannot_finish_50x |
+| History 235 / 2026Q3_16 | intents~202×; Q4 left in _16; not supported | history_progress_2026q3_16 |

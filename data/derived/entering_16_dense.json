@@ -1,18 +1,18 @@
 {
   "asof": "2026-11-12",
-  "clusters": 234,
-  "last": "2026Q2_16",
-  "next": "2026Q3_16",
+  "clusters": 235,
+  "last": "2026Q3_16",
+  "next": "2026Q4_16",
   "prior_complete": [
     "_12",
     "_13",
     "_14",
     "_15"
   ],
-  "hours_to_submit": 53.1,
-  "commits": 684,
-  "intents_x": 192.3539,
-  "l1_yoy_tx_x": 0.208,
+  "hours_to_submit": 52.9,
+  "commits": 688,
+  "intents_x": 201.695,
+  "l1_yoy_tx_x": 0.2065,
   "overall": "not_supported",
-  "read": "_16 @234; intents~192\u00d7. Leakage=bridge; Intents\u224899% DEX. public+X. Exploratory."
+  "read": "_16 through Q3 @235; Q4 left in stratum. intents~202\u00d7. public+X. Exploratory."
 }

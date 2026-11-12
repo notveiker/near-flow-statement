@@ -141,8 +141,8 @@ SK-tax ~$10M (capture), attest escrow ~$8.4M (trust), HSP-007 illustrative 10% e
 <!-- AUTO:LATEST_SWEEP -->
 ### Latest proprietary sweep (exploratory)
 
-- **HEADLINE: Leakage is the bridge.** Intents≈99% DEX. ~686c / 234cl / ~53h.
-- Escrow BB rail →58.5%; 1Click attach alone cannot finish 50×; TG/unknown dials.
+- **HEADLINE: Leakage is the bridge.** Intents≈99% DEX. ~688c / 235cl / ~53h.
+- Fee≠L1 ~**202×**. `_16` Q4 remaining. Overall still **not supported**.
 - **URGENT:** public + X. Hold until H1b.
 <!-- /AUTO:LATEST_SWEEP -->
 
