@@ -1,6 +1,6 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 64.1,
+  "hours_to_submit": 61.8,
   "github_is_private": true,
   "github_url": "https://github.com/notveiker/near-flow-statement",
   "status": "BLOCKER",
@@ -8,11 +8,11 @@
     {
       "item": "set_repo_public",
       "status": "TODO",
-      "why": "gh reports isPrivate=true \u2014 judges cannot open"
+      "why": "gh isPrivate=true"
     },
     {
-      "item": "README_points_to_dashboard_and_pitch_spine",
-      "status": "TODO"
+      "item": "README_judge_path",
+      "status": "READY"
     },
     {
       "item": "X_demo_dry_run_record",
@@ -25,5 +25,5 @@
   ],
   "prop_ready": true,
   "history_ok_preliminary": true,
-  "read": "LIVE: repo still private with ~64.1h to submit. Prop is ready; visibility is the binding delivery catalyst. Exploratory ops."
+  "read": "LIVE: still private with ~61.8h. README judge-path READY. Prop ready (511 commits / 188 clusters). Exploratory."
 }

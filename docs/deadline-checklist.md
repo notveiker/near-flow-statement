@@ -40,7 +40,7 @@ Hours≈65: blockers = public_repo + X_demo_dry_run. HSP-029 = pending-not-live 
 <!-- /AUTO:SEQ -->
 
 <!-- AUTO:PRIVATE -->
-**LIVE ~63h:** Repo still **private**. History denser (_09 complete, _10 started) — not a submit blocker. Flip public + X dry-run.
+**LIVE ~62h / 511 commits / 188 clusters:** Repo still **private**. README judge-path READY. Flip public + X dry-run. History/`_11` not blockers.
 <!-- /AUTO:PRIVATE -->
 <!-- AUTO:RUNBOOK -->
 ## Submit-day runbook (~63h)

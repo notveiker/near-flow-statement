@@ -1,15 +1,15 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 62.5,
-  "hours_to_hsp029": 86.5,
+  "hours_to_submit": 61.8,
+  "hours_to_hsp029": 85.8,
   "prop_ready": true,
-  "history_clusters": 185,
-  "commits_since_structural": 500,
+  "history_clusters": 188,
+  "commits_since_structural": 511,
   "blockers": [
     {
       "item": "public_repo",
       "status": "BLOCKER_PRIVATE",
-      "action": "gh repo edit --visibility public (needs owner)"
+      "action": "owner: gh repo edit notveiker/near-flow-statement --visibility public"
     },
     {
       "item": "X_demo_dry_run",
@@ -19,9 +19,8 @@
   ],
   "non_blockers": [
     "history_preliminary",
-    "more_dense_strata",
-    "_10_seals"
+    "_11_seals"
   ],
-  "one_breath_ref": "judge_one_breath.json",
-  "read": "~62.5h to submit. Prop/history OK. Only public repo + X bind. Exploratory ops."
+  "readme_judge_path": "READY",
+  "read": "~61.8h. Prop OK. Public+X bind. README path ready. Exploratory."
 }

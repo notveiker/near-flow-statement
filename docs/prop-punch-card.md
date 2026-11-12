@@ -435,3 +435,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 188 / 2026Q4_10 | _10 through 2026 COMPLETE — still not supported | history_progress_2026q4_10 |
 | Entering _11 dense | History not submit blocker; repo private | entering_11_dense |
 | Sweep ~510 identity | Prop ready; one-breath+runbook; Hold until H1b | sweep_510_identity |
+| Public repo still private @~62h | README path READY; flip visibility is binding delivery catalyst | public_repo_checklist |
