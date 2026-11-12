@@ -1,7 +1,7 @@
 {
-  "hours_to_submit": 62.2,
-  "clusters": 186,
-  "commits": 505,
+  "hours_to_submit": 61.1,
+  "clusters": 192,
+  "commits": 524,
   "prop_ready": true,
   "dashboard_ready": true,
   "history_preliminary": true,
@@ -12,12 +12,12 @@
     },
     {
       "item": "X_demo_dry_run",
-      "status": "TODO"
+      "status": "TODO_SCRIPT_READY"
     },
     {
       "item": "F1-F4_on_day",
       "status": "scheduled_14_nov"
     }
   ],
-  "note": "LIVE private. ~62.2h / 186 clusters / 505 commits. One-breath+runbook locked."
+  "note": "LIVE private. X script ready. ~61.1h / 192 clusters / 524 commits."
 }
