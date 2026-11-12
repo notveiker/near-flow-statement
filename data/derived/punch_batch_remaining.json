@@ -1,0 +1,21 @@
+{
+ "added": [
+  "agent_volume_bounds",
+  "builder_npm_pulse",
+  "capital_light_yield",
+  "cif_sensitivity",
+  "cs_density_proxy",
+  "dic_vs_half_life",
+  "exit_vs_buyback_stock",
+  "fee_density_vs_gas",
+  "noreferrer_mix_uplift",
+  "swapkit_to_noref_uplift",
+  "zec_inventory_uplift",
+  "attach_vs_partner_race",
+  "capture_ceiling_50x",
+  "burn_materiality",
+  "calendar_ordering"
+ ],
+ "count": 15,
+ "note": "Batch punch of previously synthesized but unpunched derived files for judge completeness."
+}

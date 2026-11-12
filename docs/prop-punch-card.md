@@ -317,3 +317,18 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Capture-share 60% still half 50× | 60% capture → ~$45M ≈0.46× of $96M need | capture_share_60_still_half_50x |
 | History 160 through 2025Q4_07 | 160 dense clusters; 2026 _07 next — still not supported | history_progress_2025q4_07 |
 | History honesty at 160 | 160 clusters ≠ supported — pitch must say preliminary | history_honesty_160 |
+| agent volume bounds | No agent-originated series published. Sizing bounds: even 5% agent share ≈ ~$0.33M/yr at current take — AI narrative is fee-immaterial until | agent_volume_bounds |
+| builder npm pulse | npm downloads include CI; level overstates people. Compare shape to fee capture — builder adoption can lead or lag token capture. Explorator | builder_npm_pulse |
+| capital light yield | Intents settles ~$17× inventory per 30d with PCI ~0.057 — capital-light vs bonded-vault peers. Annual fee/$ inventory ≈ $0.11. Flexibility c | capital_light_yield |
+| cif sensitivity | Confidential TVL ≈70% of settlement inventory. CIF rate card unpublished — 1 bp on proxy notional (TVL×17×/30d) ≈ $0.3M/30d. Escrow already  | cif_sensitivity |
+| cs density proxy | Census: ~15.7k CS signatures/day against ~$79.7M Intents deposits/day → ~$5.1k deposit notional per signature (proxy). CS is settlement rail | cs_density_proxy |
+| dic vs half life | Buyback wallet covers ~25 days of net mint (DIC); if spends continue without new buys, half the stock recirculates in ~60 days — ~2.4× DIC.  | dic_vs_half_life |
+| exit vs buyback stock | Buyback wallet stock (~$8M) covers ~0.85× one window of net NEAR exit (~$9.4M); period revenue covers ~0.21×. Stock ≠ flow offset. Explorato | exit_vs_buyback_stock |
+| fee density vs gas |  | fee_density_vs_gas |
+| noreferrer mix uplift | Moving 5pp of 1Click volume from zero-buyback SwapKit to no-referrer 10 bp default. Complements mix-shift near.com 20 bp path. Exploratory a | noreferrer_mix_uplift |
+| swapkit to noref uplift | If 10pp of SwapKit volume (currently 0 buyback) routed as no-referrer at 10 bp default. Commercial renegotiation, not product ship. Explorat | swapkit_to_noref_uplift |
+| zec inventory uplift | If ZEC inventory doubles and turns at protocol ~17×/30d with average capture 4.98 bp. Privacy/CIF narrative size, not a forecast. Explorator | zec_inventory_uplift |
+| attach vs partner race | Across three 30d blocks attach +19.4pp and explicit bb +2.25bp, but partner bp also rose +7.8bp. Capture improved; partner extraction rose w | attach_vs_partner_race |
+| capture ceiling 50x | At current Intents volume, 50× needs ~19.8 bp captured — above today’s 15.3 gross all-in. Capture-share alone cannot hit 50× without gross t | capture_ceiling_50x |
+| burn materiality | Permanently removing (burn/lock) enough NEAR to offset 25% of net mint requires ~122% of today’s fee capture as hard removal — more than 100 | burn_materiality |
+| calendar ordering |  | calendar_ordering |
