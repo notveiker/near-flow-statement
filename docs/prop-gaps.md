@@ -6,7 +6,7 @@
 |---|---|---|
 | Per-stream escrow attestation | Capture is a **4.5–15.8%** band | NEAR publishes fee-stream → wallet map |
 | Confidential Infrastructure Fee rate card | Cannot size partner-proof take | Public bp by route / asset |
-| Commercial Agreement text (SwapKit/Ledger/…) | Cannot forecast renegotiation | Redacted schedules or on-chain defaults |
+| Commercial Agreement text (SwapKit/Ledger/…) | Cannot forecast renegotiation; leakage pool ~$50M/yr (`leakage_pool_size.json`) | Redacted schedules or on-chain defaults |
 | Agent-originated Intents volume | AI narrative unmeasured; even 5% share ≈ ~$0.33M/yr at τ (`agent_volume_bounds.json`) | Named series in Explorer / Llama |
 | Full peer holders-revenue like-for-like | Multiples not comparable | Aligned DefiLlama methodology window |
 | HSP-007 emissions draw (NEAR/year) | Issuance opex vs fee coverage; 10% claim ≈ ~$12M/yr sketch (`hsp007_claim_bounds.json`) | Proposal body + execution reports |

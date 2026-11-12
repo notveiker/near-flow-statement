@@ -67,3 +67,5 @@ Capture-share dial: `data/derived/capture_share_path.json`. Volume multiples fro
 ## Pitch sequence (derived)
 
 See `data/derived/pitch_sequence.json`: lead with attach/AITR, capture share, no-ref dollar concentration, Intents≈NEAR DEX, fee÷mint$, then volume as the binding closer. Do not lead with AI/ETF/npm.
+
+Leakage→volume: `data/derived/leakage_then_volume.json` — 60% capture ≈ $45M still needs ~2.2× volume for 50×.
