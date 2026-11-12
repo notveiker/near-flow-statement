@@ -213,3 +213,4 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Escrow unattested dollars | At 15.8% attestation high, ~**$694k**/window (~$8.4M/yr) of escrow BB outside attestation | escrow_unattested_dollars |
 | Attestation vs dial magnitude | Unattested escrow ~$8.4M/yr ≈ **0.8×** SK-tax 25% dial / ~9× whale attach — provenance is top-tier $ | attestation_vs_dial_magnitude |
 | Two bridges | SK-tax ~$10M + attest escrow ~$8.4M — capture raise + trust raise before volume | two_bridges_tax_and_attest |
+| Vol recent vs year | 30d daily ~133.3M vs year-avg ~90.1M (~1.48×) — MoM cool off elevated print | vol_recent_vs_year |

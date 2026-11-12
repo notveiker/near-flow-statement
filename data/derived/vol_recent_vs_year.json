@@ -1,0 +1,11 @@
+{
+ "vol_365d_b": 32.9,
+ "vol_30d_b": 4.0,
+ "vol_prior30d_b": 4.56,
+ "vol_90d_b": 11.71,
+ "daily_from_365d_m": 90.1,
+ "daily_from_30d_m": 133.3,
+ "recent_vs_year_daily_x": 1.48,
+ "mom_cooling_but_above_year": true,
+ "note": "30d daily notional ~$133M vs year-avg ~$90M (~1.48\u00d7) \u2014 latest MoM cool (\u221212%) is off a still-elevated print vs the year. Exploratory."
+}
