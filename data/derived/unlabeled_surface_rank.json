@@ -1,0 +1,20 @@
+{
+ "unlabeled_surfaces_rr_m": [
+  {
+   "surface": "tg_half_10bp",
+   "rr_m": 1.37,
+   "status": "unmapped_attach"
+  },
+  {
+   "surface": "whale_10pp",
+   "rr_m": 0.98,
+   "status": "commercial"
+  },
+  {
+   "surface": "mystery_71bp_uuid",
+   "rr_m": 0.38,
+   "status": "already_in_print"
+  }
+ ],
+ "note": "Unlabeled/high-take surfaces already matter: mystery UUID ~$0.38M in print; TG attach gap ~$1.4M; whale +10pp ~$1.0M. Labeling TG may be larger than whale dial. Exploratory."
+}

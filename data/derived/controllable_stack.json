@@ -51,6 +51,11 @@
    "name": "Whale +10pp attach",
    "rr_m": 0.98,
    "why": "margin quality on 77% of 1Click vol"
+  },
+  {
+   "name": "TG half@10bp attach",
+   "rr_m": 1.37,
+   "why": "intents.tg ~20% tagged unmapped; label+attach"
   }
  ],
  "do_not_lead": [
@@ -61,5 +66,10 @@
  ],
  "stance": "Hold until H1b",
  "note": "Capture-share ~3\u00d7 more valuable per pp than volume. Leakage/conversion first. Overlap discipline applies. Exploratory.",
- "no_bb_partner_share_pct": 94.6
+ "no_bb_partner_share_pct": 94.6,
+ "context_not_capture": {
+  "solver_residual_rr_m": 11.41,
+  "adr029_half_residual_rr_m": 5.71,
+  "note": "Solver residual is contestable rent \u2014 defend or lose; not a capture dial until policy redirects to BB"
+ }
 }

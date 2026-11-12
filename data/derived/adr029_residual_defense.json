@@ -1,0 +1,8 @@
+{
+ "threat": "ADR-029_affiliate_revshare_on_solver_residual",
+ "residual_rr_m": 11.41,
+ "defense_keep_50pct_rr_m": 5.71,
+ "defense_keep_100pct_rr_m": 11.41,
+ "vs_trust_direct_x": 3.32,
+ "note": "Defending solver residual against ADR-029-style affiliate claim is a ~$5.7\u201311.4M/yr P&L surface \u2014 larger than Trust-direct dial. Not capture uplift; loss-prevention on contestable rent. Exploratory."
+}

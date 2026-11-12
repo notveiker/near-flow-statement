@@ -240,3 +240,8 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Gasless ≠ L1 gas lift | Delegate ~43% ⇒ Intents does not mechanically lift retail NEAR gas demand | gasless_weakens_l1_gas_narrative |
 | History 154 clusters | 154 preliminary through 2026Q2_06 — contest-year filling; still not supported | history_progress_2026q2 |
 | Deadline ~68h | Judge packet ready; must-ship: public repo, X dry-run, F1–F4 on day | deadline_ops |
+
+| ADR-029 residual defense | Defend half of solver residual ≈ **$5.7M/yr** loss-prevention (3.3× Trust-direct) | adr029_residual_defense |
+| Unlabeled surface rank | TG attach ~$1.4M > whale +10pp ~$1.0M > mystery 71bp ~$0.38M — label TG first | unlabeled_surface_rank |
+| Ledger vs Trust destination | Same SK family: Ledger ~132bp tax ≈1.01× capture; Trust ~5× BB density — prize is destination | ledger_vs_trust_fee_destination |
+| History 155 clusters | 155 preliminary through 2026Q3_06 — still not supported | history_progress_2026q3 |

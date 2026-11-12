@@ -13,6 +13,13 @@
    "controllability": "competitive"
   },
   {
+   "dial": "adr029_defend_half_residual",
+   "rr_uplift_m": 5.71,
+   "vol_needed": "none",
+   "controllability": "policy_defense",
+   "note": "loss prevention on contestable rent, not new capture"
+  },
+  {
    "dial": "appfees_conversion_double_9_to_18pct",
    "rr_uplift_m": 5.5,
    "vol_needed": "none",
@@ -29,6 +36,12 @@
    "dial": "trust_sk_to_direct_20bp",
    "rr_uplift_m": 1.72,
    "vol_needed": "none",
+   "controllability": "distribution"
+  },
+  {
+   "dial": "tg_half_10bp",
+   "rr_uplift_m": 1.37,
+   "vol_needed": "label+attach",
    "controllability": "distribution"
   },
   {

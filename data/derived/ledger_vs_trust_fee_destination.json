@@ -1,0 +1,8 @@
+{
+ "ledger_partner_bp": 132.6,
+ "ledger_vol_share_pct": 13.7,
+ "ledger_partner_fees_30d_m": 2.01,
+ "ledger_vs_near_capture_x": 1.01,
+ "trust_bb_density_x": 5.0,
+ "insight": "Ledger extracts ~132 bp partner tax (~$2.01M/30d \u2248 1.01\u00d7 NEAR capture) while Trust shows ~5\u00d7 BB density \u2014 same distribution family, opposite fee destination. Renegotiation prize sits inside one wallet family. Exploratory."
+}
