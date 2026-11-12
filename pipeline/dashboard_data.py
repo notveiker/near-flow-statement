@@ -328,6 +328,7 @@ def build() -> dict:
             "hsp007_tension": optional("derived/hsp007_vs_intents_tension.json"),
             "delivery_countdown": optional("derived/delivery_countdown.json"),
             "one_breath": optional("derived/judge_one_breath.json"),
+            "call_order_elasticity": optional("derived/call_order_elasticity.json"),
         },
         "repro": reproducibility(),
     }
