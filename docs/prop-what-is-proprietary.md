@@ -14,6 +14,7 @@
 8. **Escrow climb** ~17.5%→~58.5% of buyback NEAR Jul→Nov  
 9. **Growth honesty** — 619% USD vs 71% NEAR  
 10. **NEAR-side swaps ~3.5%** — foreign-asset routing on NEAR rails  
+11. **Inventory ~17×/30d** — capital-light settlement float  
 
 ## Pitch in one sentence
 
