@@ -92,14 +92,22 @@
     {
       "clusters": 235,
       "intents_x": 201.695
+    },
+    {
+      "clusters": 236,
+      "intents_x": 201.695
+    },
+    {
+      "clusters": 237,
+      "intents_x": 175.3371
     }
   ],
-  "latest_intents_x": 201.695,
-  "latest_clusters": 235,
+  "latest_intents_x": 175.3371,
+  "latest_clusters": 237,
   "min_intents_x": 147.1856,
   "max_intents_x": 201.695,
   "always_above_100": true,
   "l1_yoy_tx_x": 0.2065,
-  "implication": "Intents\u00d7 now ~202 under _16 (range 147\u2013202) \u2014 still always \u226b100\u00d7; pitch OoM + drift honesty",
-  "read": "Drift [189, 181, 147, 147, 147, 147, 158, 170, 170, 182, 182, 182, 182, 182, 180, 180, 192, 192, 192, 192, 192, 192, 202] \u2014 always OoM. Pitch OoM not pinned. Exploratory."
+  "implication": "Intents\u00d7 drifted to ~175 under _17 (range 147\u2013202) \u2014 still always \u226b100\u00d7; never pin the multiple",
+  "read": "Drift [189, 181, 147, 147, 147, 147, 158, 170, 170, 182, 182, 182, 182, 182, 180, 180, 192, 192, 192, 192, 192, 192, 202, 202, 175] \u2014 always OoM. Exploratory."
 }

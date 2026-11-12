@@ -497,6 +497,7 @@ def build() -> dict:
             "dense_16_complete": optional("derived/dense_16_complete.json"),
             "entering_17": optional("derived/entering_17_dense.json"),
             "strata_exhausted": optional("derived/strata_ev_exhausted.json"),
+            "commits_700": optional("derived/commits_700_milestone.json"),
             "noref_core": optional("derived/noref_concentration_is_fee_core.json"),
             "f1_f4": optional("derived/f1_f4_on_submit_day.json"),
         },

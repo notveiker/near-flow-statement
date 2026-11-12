@@ -1,0 +1,17 @@
+{
+  "asof": "2026-11-12",
+  "commits": 699,
+  "clusters": 237,
+  "hours_to_submit": 52.5,
+  "headline": "leakage_is_the_bridge",
+  "intents_x": 175.3371,
+  "dense_complete": [
+    "_12",
+    "_13",
+    "_14",
+    "_15",
+    "_16"
+  ],
+  "implication": "~700 commits; prop surplus complete; public+X is the only EV left",
+  "read": "~699c/237cl/~52h. PUBLIC+X ONLY. Exploratory."
+}
