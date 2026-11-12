@@ -64,6 +64,11 @@
    "why": "policy conversion of listed fees"
   },
   {
+   "name": "Mix +10pp to near.com",
+   "rr_m": 9.7,
+   "why": "arithmetic; wallet-implied share only ~7.7% today"
+  },
+  {
    "name": "ZEC inventory 2\u00d7",
    "rr_m": 2.83,
    "why": "balance-sheet, same turnover"
@@ -85,5 +90,6 @@
   "peer_share_alone"
  ],
  "stance": "Hold until H1b",
- "note": "Controllable stack ranked by exploratory $/yr without 4\u00d7 volume. Leakage/conversion first. Exploratory."
+ "note": "Controllable stack ranked by exploratory $/yr without 4\u00d7 volume. Leakage/conversion first. Exploratory.",
+ "overlap_note": "Naive sum of controllable dials ~$28M/yr exceeds half the leakage pool but overlaps. Conservative non-overlap sketch ~$18M/yr still leaves volume as last mile for THOR/50\u00d7 paths. Exploratory."
 }

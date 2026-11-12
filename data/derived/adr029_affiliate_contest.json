@@ -1,0 +1,8 @@
+{
+ "mechanism": "ADR-029 affiliate share of liquidity fees from reserve (cap 50%)",
+ "effect": "affiliate_margin_up_without_user_fee_up",
+ "threat_to": "NEAR_capture_share",
+ "sk_exit_vol_pct": 38.2,
+ "sk_exit_traceable_bb_pct": 2.0,
+ "note": "ADR-029-style revshare lets affiliates raise margin without raising user fee \u2014 contest is affiliate P&L, not buyback $. SK exit destroys ~38% 1Click vol but only ~2% traceable BB. Exploratory."
+}

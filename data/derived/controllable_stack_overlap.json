@@ -1,0 +1,14 @@
+{
+ "components_rr_m": {
+  "sk_tax_25pct": 10.2,
+  "conversion_double": 5.5,
+  "mix_10pp_to_nearcom": 9.7,
+  "trust_sk_to_direct": 1.72,
+  "whale_10pp_attach": 0.98
+ },
+ "naive_sum_rr_m": 28.1,
+ "overlap_warning": "SK tax, mix-to-nearcom, Trust path, and conversion partially overlap on the same partner dollars \u2014 do not add 1:1",
+ "conservative_nonoverlap_sketch_rr_m": 17.8,
+ "vs_leakage_pool_50m": true,
+ "note": "Naive sum of controllable dials ~$28M/yr exceeds half the leakage pool but overlaps. Conservative non-overlap sketch ~$18M/yr still leaves volume as last mile for THOR/50\u00d7 paths. Exploratory."
+}

@@ -168,3 +168,8 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | CS sign path cooling | CS signs 37k→16k/day (−55% Q3→Q4) alongside vol cool — infra load, not fee line | cs_sign_path_cooling |
 | What moves τ board | Moves: tax/conversion/attach/mix/HSP-029; not: perps/npm/AI/CS-as-fee | what_moves_tau_board |
 
+| near.com share vs wallet | Q3 Nansen ~25% vs fefunds-implied **7.7%** at 20bp — stated mix overstates live fee-touch by ~3.2× | nearcom_share_wallet_gap |
+| Controllable stack overlap | Naive dial sum ~$28M/yr; conservative non-overlap ~$18M — still leaves volume for THOR/50× | controllable_stack_overlap |
+| ADR-029 affiliate contest | Revshare raises affiliate margin without user-fee hike — contest is P&L not BB $ | adr029_affiliate_contest |
+| Mix +10pp to near.com | +$9.7M/yr run-rate arithmetic (~0.95× SK-tax 25% dial) | nearcom_share_wallet_gap |
+

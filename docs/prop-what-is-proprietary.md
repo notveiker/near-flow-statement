@@ -47,3 +47,5 @@ Punch card now has **100+** rows.
 - **SK tax renegotiation headroom** as measurable leakage-bridge dollars (not narrative).
 - **Dial ROI ranking** that falsifies AI/npm/peer-share as lead catalysts.
 - **Inventory-vs-vol tension** and **soft-sink hardness inverse** as float structure props.
+- **near.com stated vs wallet-implied share gap** (25% vs 7.7%) — distribution headline ≠ fee-touching flow.
+- **Controllable dial overlap discipline** — do not double-count SK tax / mix / conversion.

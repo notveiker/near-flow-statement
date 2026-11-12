@@ -1,0 +1,12 @@
+{
+ "q3_nansen_nearcom_share_pct": 25.0,
+ "fefunds_frontend_usd_k": 616.9,
+ "policy_bp": 20.0,
+ "implied_notional_m": 308.4,
+ "implied_share_of_intents_pct": 7.7,
+ "gap_pp": 17.3,
+ "gap_x": 3.25,
+ "mix_10pp_delta_run_rate_m": 9.7,
+ "mix_10pp_vs_sk_tax_25pct": 0.95,
+ "note": "Q3 Nansen near.com-class share ~25% does not reconcile to Nov frontend wallet print: $616.9k / 20bp \u21d2 ~$308M \u2248 7.7% of $4B. Stated distribution share overstates fee-touching near.com flow by ~3.2\u00d7 \u2014 mix-shift upside exists but the 25% anchor is not the live wallet share. Exploratory."
+}
