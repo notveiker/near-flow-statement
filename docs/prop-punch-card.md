@@ -81,6 +81,7 @@
 | 75 | Escrow share climb Jul→Nov | ~17.5%→~58.5% of buyback NEAR | Confidential rail dominates without attestation |
 | 76 | Attach vs partner race | Attach +19pp; partner bp +7.8 | Capture up; partner extraction rose with it |
 | 77 | 1Click vs Llama coverage | ~80%→55% of Intents net | AITR math is 1Click-conditioned |
+| 78 | Partner/bb ratio trend | ~17.8×→~9.9× across blocks | Capture quality improved even as partner $ rose |
 
 **Frozen rating remains Hold** (H1b labels). Path that compounds: attachment + mix + attestation + HSP-029 — then volume for the multiple.
 
