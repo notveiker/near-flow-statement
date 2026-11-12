@@ -10,3 +10,5 @@
 6. **Hold until H1b** — growth clears the rule; labels are the only frozen gap.
 
 Artifacts: dashboard + `docs/prop-what-is-proprietary.md`.
+
+Falsify if: attach stalls, no-ref mix collapses, capture share <25%, volume halves without take rising (`prop_falsifiers.json`).
