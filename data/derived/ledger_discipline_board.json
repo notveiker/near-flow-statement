@@ -1,0 +1,15 @@
+{
+ "capture_uplift_conservative_rr_m": 18.0,
+ "capture_uplift_naive_rr_m": 28.0,
+ "defense_ledger_rr_m": 5.71,
+ "trust_ledger_rr_m": 8.4,
+ "gap_cif_1bp_rr_m": 3.31,
+ "do_not_add": [
+  "defense_into_capture",
+  "cif_gap_into_signed_forecast",
+  "naive_sum_of_all"
+ ],
+ "path_read": "Conservative capture dials ~$18M + attest trust $8.4M are the signed near-term board; ADR defense $5.7M is loss-prevention; CIF $3.3M is Gap until rate card. Volume still last mile for 50\u00d7. Exploratory.",
+ "vs_50x_need_m": 96.4,
+ "conservative_capture_vs_50x": 0.19
+}
