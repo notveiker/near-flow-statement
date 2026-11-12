@@ -1,0 +1,48 @@
+{
+  "asof": "2026-11-12",
+  "stack_order": [
+    {
+      "rank": 1,
+      "item": "public_repo",
+      "owner": "human",
+      "blocks": "submit"
+    },
+    {
+      "rank": 2,
+      "item": "x_demo_dry_run",
+      "owner": "human",
+      "blocks": "submit"
+    },
+    {
+      "rank": 3,
+      "item": "sk_tax_whale_desk",
+      "owner": "commercial",
+      "rr_m": 10.2
+    },
+    {
+      "rank": 4,
+      "item": "conversion_appfee_to_bb",
+      "owner": "commercial",
+      "rr_m": 5.5
+    },
+    {
+      "rank": 5,
+      "item": "hsp029_pending_then_lagged",
+      "owner": "governance"
+    },
+    {
+      "rank": 6,
+      "item": "attach_finish_to_60",
+      "owner": "product",
+      "rr_m": 7.9
+    }
+  ],
+  "do_not_lead_with": [
+    "cif_gap",
+    "more_strata",
+    "ai_agents_narrative",
+    "opacity_as_capture"
+  ],
+  "implication": "Catalyst stack is delivery\u2192SK-tax\u2192conversion\u2192HSP\u2192attach; volume last; AI/opacity/CIF are non-leads",
+  "read": "Ordered catalysts: public+X first (must-ship), then SK-tax > conversion > HSP-029 > attach-to-60. Exploratory."
+}

@@ -562,3 +562,13 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | Sweep ~625 identity | Triple-dense done; human-only public+X | sweep_625_identity |
 | History 223 / 2025Q3_15 | _15 dense continuing — still not supported | history_progress_2025q3_15 |
 | Waiter restarted @40 | DONE_BATCH then durable restart; public+X bind | waiter_restart_40 |
+| Capture share of user all-in | Protocol ≈9.4% of user price; distribution owns ~91% | capture_share_of_user_all_in |
+| Leakage = dial option surface | ~$50.2M/yr; SK+conv+attach ≈$23.6M (~47.0% of leakage) | leakage_as_option_value_of_dials |
+| Opacity buys time not capture | Escrow BB 17.5→58.5% — clock/Trust, not τ | opacity_buys_time_not_capture |
+| Volume last mile = distribution | Wall 42.8% → residual ~4.41×; whale ~77.1% vol | volume_last_mile_is_distribution |
+| Hold flip = H1b not density | 223 clusters still not supported; densification ≠ Buy | hold_flip_requires_h1b_not_density |
+| Attach vs opacity co-move | Attach +19.4pp / opacity +41.0pp — quality + attestation debt | escrow_bb_acceleration_vs_attach |
+| Strata EV ≪ delivery clock | ~55h / 223 clusters — burn on public+X | strata_diminishing_vs_delivery_clock |
+| Deadline = packaging premium | Evidence already shipped; remaining premium public+X | deadline_compresses_evidence_premium |
+| Catalyst stack order | public+X → SK-tax → conversion → HSP → attach; volume last | near_term_catalyst_stack_order |
+| Judge minute vs punch depth | ~534 rows / ~8 min → lead with 5 locked lines | judge_minute_budget_vs_punch_depth |

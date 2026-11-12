@@ -1,0 +1,9 @@
+{
+  "asof": "2026-11-12",
+  "no_vol_ceiling_pct": 42.8,
+  "gap_ceiling_to_100_pp": 57.2,
+  "path50_remaining_vol_x": 4.41,
+  "whale_vol_share_pct": 77.1,
+  "implication": "After leakage stack to ~42.8% wall, remaining ~57pp / ~4.4\u00d7 is volume \u2014 and ~77% of volume already sits with whale desk, so last-mile volume = distribution terms, not retail acquisition",
+  "read": "No-vol wall ~42.8% leaves ~57.2pp; residual ~4.41\u00d7; whale owns ~77.1% vol \u2192 last mile is SK/Ledger desk. Exploratory."
+}

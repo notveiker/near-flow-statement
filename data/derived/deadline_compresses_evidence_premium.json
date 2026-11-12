@@ -1,0 +1,16 @@
+{
+  "asof": "2026-11-12",
+  "hours_to_submit": 55.1,
+  "prop_ready_excl_must_ship": 0.97,
+  "evidence_already_shipped": [
+    "fee_neq_l1_oom",
+    "dial_elasticity",
+    "opacity_product",
+    "coverage_wall",
+    "sk_tax_desk",
+    "locked_pitch"
+  ],
+  "what_deadline_buys": "packaging + public + X, not new causal identification",
+  "implication": "Deadline premium is on packaging/demo fidelity, not on more history seals \u2014 judges score shipped evidence + live demo",
+  "read": "~55h: evidence premium already paid in 629 commits; remaining premium is public repo + X dry-run. Exploratory."
+}

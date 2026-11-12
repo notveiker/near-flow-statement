@@ -1,0 +1,13 @@
+{
+  "asof": "2026-11-12",
+  "clusters": 223,
+  "hours_to_submit": 55.1,
+  "clusters_per_remaining_hour": 4.05,
+  "binding_constraints": [
+    "public_repo",
+    "x_demo_dry_run"
+  ],
+  "diminishing_note": "Each denser stratum adds clusters but U1\u2013U5 still fail; EV of seal hours << EV of public+X",
+  "implication": "At ~55h and 223 clusters, incremental seal EV is dominated by the two human delivery actions",
+  "read": "~55h left @ 223 clusters \u2014 strata EV diminishing; burn remaining hours on public+X + prop packaging. Exploratory."
+}

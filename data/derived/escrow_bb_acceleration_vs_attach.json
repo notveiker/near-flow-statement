@@ -1,0 +1,12 @@
+{
+  "asof": "2026-11-12",
+  "attach_b1_pct": 23.6,
+  "attach_b3_pct": 43.0,
+  "attach_delta_pp": 19.4,
+  "escrow_jul_pct": 17.5,
+  "escrow_nov_pct": 58.5,
+  "opacity_delta_pp": 41.0,
+  "attach_pp_per_opacity_pp": 0.47,
+  "implication": "Attach +19.4pp while escrow opacity +41pp \u2014 quality-on-cool coexists with attestation debt; never pitch attach alone",
+  "read": "Attach 23.6\u219243.0 (+19.4pp) vs opacity 17.5\u219258.5 (+41.0pp). Exploratory."
+}

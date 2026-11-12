@@ -1,0 +1,10 @@
+{
+  "asof": "2026-11-12",
+  "user_all_in_vs_capture_x": 10.6,
+  "protocol_capture_share_of_user_all_in_pct": 9.43,
+  "distribution_owns_pct": 90.57,
+  "tau_bp": 4.98,
+  "confidential_share_of_measured_capture_pct": 71.2,
+  "implication": "Protocol captures ~9.4% of what users pay all-in \u2014 ~90% is distribution/partner margin; closing leakage attacks that 90%, not \u03c4",
+  "read": "Users pay ~10.6\u00d7 capture \u2192 protocol share of user price \u22489.43%. Distribution owns ~91%. Exploratory."
+}

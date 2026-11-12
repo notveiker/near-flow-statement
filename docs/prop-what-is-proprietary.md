@@ -129,3 +129,12 @@ Fee-engine≠L1 divergence now ~**132×** intents vs ~**0.19×** L1 tx YoY on 17
 11. **Quality-on-cool proof** — attach/τ rose on −12% vol.
 12. **Hold until H1b**; HSP pending-then-lagged; delivery = public + X (~58h).
 <!-- /AUTO:LATEST_CLAIMS -->
+
+<!-- AUTO:SWEEP15 -->
+- Capture share of user all-in ≈**9.4%** (distribution owns ~90%).
+- Leakage ~**$50.2M/yr** is dial option surface; SK+conv+attach ≈**$23.6M**.
+- Opacity 17.5→58.5% buys **time/Trust**, not capture.
+- Volume last mile = whale desk (~77.1% vol), not retail.
+- Hold flip = **H1b**, not more strata (223 clusters still not supported).
+- Catalyst order: public+X → SK-tax → conversion → HSP → attach.
+<!-- /AUTO:SWEEP15 -->

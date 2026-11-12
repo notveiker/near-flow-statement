@@ -1,0 +1,15 @@
+{
+  "asof": "2026-11-12",
+  "punch_rows_approx": 532,
+  "judge_minutes_budget": 8,
+  "rows_per_judge_minute": 66.5,
+  "lead_with": [
+    "fee_neq_l1_oom",
+    "leakage_then_volume",
+    "sk_tax_desk",
+    "hold_until_h1b",
+    "coverage_wall_42p8"
+  ],
+  "implication": "~532 punch rows / ~8 judge minutes \u21d2 pitch must compress to 5 lead lines; punch card is appendix not script",
+  "read": "Punch depth ~532 rows vs ~8 min judge budget \u2014 use locked pitch spine; punch is evidence warehouse. Exploratory."
+}

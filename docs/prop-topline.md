@@ -73,3 +73,12 @@ Prop/dashboard/judge packet ready (~437 commits, 168 clusters preliminary). **Mu
 <!-- AUTO:TOPLINE_NOW -->
 **Now (~56h / 220 clusters / 620 commits):** `_12`+`_13`+`_14` complete · locked pitch · **flip public + X**.
 <!-- /AUTO:TOPLINE_NOW -->
+
+<!-- AUTO:SWEEP15 -->
+- Capture share of user all-in ≈**9.4%** (distribution owns ~90%).
+- Leakage ~**$50.2M/yr** is dial option surface; SK+conv+attach ≈**$23.6M**.
+- Opacity 17.5→58.5% buys **time/Trust**, not capture.
+- Volume last mile = whale desk (~77.1% vol), not retail.
+- Hold flip = **H1b**, not more strata (223 clusters still not supported).
+- Catalyst order: public+X → SK-tax → conversion → HSP → attach.
+<!-- /AUTO:SWEEP15 -->

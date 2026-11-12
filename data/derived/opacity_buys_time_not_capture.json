@@ -1,0 +1,11 @@
+{
+  "asof": "2026-11-12",
+  "escrow_share_jul_pct": 17.5,
+  "escrow_share_nov_pct": 58.5,
+  "opacity_delta_pp": 41.0,
+  "confidential_share_of_capture_pct": 71.2,
+  "attest_rr_m_trust": 8.4,
+  "dial_elasticity_x": 3.07,
+  "implication": "Escrow share 17.5\u219258.5% buys discovery lag / Trust option (~attest RR) but does not raise \u03c4 \u2014 opacity is a clock and underwriting surface, not a capture dial",
+  "read": "Opacity 17.5\u219258.5 (+41.0pp); confidential ~71.2% of capture. Pitch Trust lag, not opacity-as-bullish. Exploratory."
+}

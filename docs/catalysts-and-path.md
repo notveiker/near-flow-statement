@@ -415,3 +415,12 @@ Chain Signatures sits under Intents execution (execute ≫ respond ≫ sign) —
 - Contest-year denser `_14` through **2026Q4** sealed — **220 clusters**; overall still **not supported**.
 - `_12`+`_13`+`_14` done. History **not** a submit blocker. Remaining ~**56h** = **human public + X**.
 <!-- /AUTO:D14_DONE -->
+
+<!-- AUTO:SWEEP15 -->
+- Capture share of user all-in ≈**9.4%** (distribution owns ~90%).
+- Leakage ~**$50.2M/yr** is dial option surface; SK+conv+attach ≈**$23.6M**.
+- Opacity 17.5→58.5% buys **time/Trust**, not capture.
+- Volume last mile = whale desk (~77.1% vol), not retail.
+- Hold flip = **H1b**, not more strata (223 clusters still not supported).
+- Catalyst order: public+X → SK-tax → conversion → HSP → attach.
+<!-- /AUTO:SWEEP15 -->

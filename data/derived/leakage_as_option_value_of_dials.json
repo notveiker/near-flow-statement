@@ -1,0 +1,14 @@
+{
+  "asof": "2026-11-12",
+  "annualised_leakage_m": 50.2,
+  "annualised_gross_m": 74.5,
+  "capture_share_pct": 32.5,
+  "sk_tax_rr_m": 10.2,
+  "conversion_rr_m": 5.5,
+  "attach_to_60_rr_m": 7.9,
+  "three_dial_stack_rr_m": 23.6,
+  "stack_vs_leakage_pct": 47.0,
+  "four_ten_naive_sum_rr_m": 41.8,
+  "implication": "Leakage ~$50.2M/yr is the option surface; SK+conversion+attach stack \u2248$24M (~47% of leakage) without volume",
+  "read": "Dial option value on ~$50.2M leakage: SK $10.2M + conv $5.5M + attach $7.9M = ~$23.6M. Exploratory."
+}

@@ -1,0 +1,15 @@
+{
+  "asof": "2026-11-12",
+  "clusters": 223,
+  "overall": "not_supported",
+  "strata_complete": [
+    "_12",
+    "_13",
+    "_14"
+  ],
+  "stratum_filling": "_15",
+  "commits": 629,
+  "hours_to_submit": 55.1,
+  "implication": "History densification through triple-dense still leaves overall not supported \u2014 Hold\u2192Buy flip is H1b (attested escrow + capture dial execution), not more strata",
+  "read": "223 clusters / 629 commits / ~55h \u2014 density \u2260 support. Flip condition remains H1b. Exploratory."
+}
