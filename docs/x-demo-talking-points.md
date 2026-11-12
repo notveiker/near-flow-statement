@@ -9,7 +9,7 @@
 3. **Quality-on-cool:** Attach/τ already 1.72× inside the sample while vol −12% MoM — off a print still ~1.5× year-avg daily.
 4. **Path:** Fee÷mint 0.21→1.0× at full gross+HSP, then ~1.3× vol for 50× (vs ~4× at today’s ~5 bp). Marginal: capture-share pp worth ~3× volume pp.
 5. **Holds:** H1b ~20–25%, attestation ≤16%, escrow ~58% of BB, unexplained BB ~68%, relayer top1 ~83%, HSP-007 competing claim (Gap). HSP-029 pending-not-live.
-6. **Close:** Do not lead AI/npm/ETF/peer-share. F1–F4 pre-registered. History preliminary.
+6. **Close:** Do not lead AI/npm/ETF/peer-share. F1–F4 pre-registered. History: 150 preliminary clusters — say not supported.
 
 ## Densest refs
 

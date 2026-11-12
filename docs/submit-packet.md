@@ -24,3 +24,5 @@ Bull case. AI agents lead. npm lead. ETF/NRR lead. Peer-share rising. HSP-029 is
 ## Three ~$10M magnitudes
 
 SK-tax ~$10M (capture) · attest ~$8.4M (trust) · HSP-007 10% claim ~$11.8M (mint opex, Gap).
+
+History: 150 preliminary clusters through 2025Q2 — say preliminary / not supported. Do not inflate.
