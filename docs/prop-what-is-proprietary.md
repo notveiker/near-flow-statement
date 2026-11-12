@@ -28,7 +28,8 @@
 22. **50× vs cooling** — needs ~4× vol; latest print −12% MoM  
 23. **CS method asymmetry** — respond≃24×sign under Intents flow  
 24. **NEAR gas burned** — Intents≈HOT despite fewer txs  
-25. **Capture ≫ gas opex** — fee NEAR ≫ census-scaled gas burn
+25. **Capture ≫ gas opex** — fee NEAR ≫ census-scaled gas burn  
+26. **L1 attention fragment** — top5 non-Intents ~35% gas vs Intents ~9%
 
 ## Pitch in one sentence
 
