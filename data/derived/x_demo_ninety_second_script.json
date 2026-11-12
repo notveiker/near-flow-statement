@@ -1,42 +1,42 @@
 {
   "asof": "2026-11-12",
-  "hours_to_submit": 53.6,
-  "clusters": 231,
-  "commits": 670,
+  "hours_to_submit": 53.1,
+  "clusters": 234,
+  "commits": 685,
   "duration_target_sec": 90,
   "beats": [
     {
       "t": "0-15s",
-      "say": "Intents fee engine is not the L1 story \u2014 ~180\u00d7 vs cooling base. Open fee-engine card.",
-      "card": "fee-engine-l1"
+      "say": "Intents is ~99% of NEAR DEX and ~180\u00d7 the cooling L1 \u2014 fee engine, not base-layer story.",
+      "card": "fee-engine / dex"
     },
     {
       "t": "15-35s",
       "say": "Leakage is the bridge: close the ~$50M partner pool and 50\u00d7 needs only ~1.3\u00d7 volume.",
-      "card": "path50x / zero_leak"
+      "card": "headline"
     },
     {
       "t": "35-55s",
-      "say": "Default/no-ref rail is the fee engine \u2014 19% vol, 46% of BB dollars. Logo partners are volume without capture; SK-tax desk first.",
-      "card": "default_rail / sk_tax"
+      "say": "Default/no-ref rail is the fee engine \u2014 19% vol, 46% of BB dollars. Logos are volume without capture; SK-tax first.",
+      "card": "default_rail"
     },
     {
       "t": "55-75s",
-      "say": "mcap/rev ~217\u00d7 vs THOR ~16\u00d7 \u2014 part of that is discretionary held-BB claim design. Hold until H1b attestation.",
-      "card": "claim_design / hold"
+      "say": "mcap/rev ~217\u00d7 vs THOR ~16\u00d7 \u2014 discretionary held-BB claim. Hold until H1b attestation.",
+      "card": "claim/hold"
     },
     {
       "t": "75-90s",
-      "say": "Dashboard + report are live. History densified, still not supported \u2014 that's honesty. Repo must go public; this is the X dry-run.",
+      "say": "Dashboard live; history not supported = honesty. Next: repo public. This is the X dry-run.",
       "card": "delivery"
     }
   ],
   "do_not_say": [
     "bull case",
-    "AI agents lead",
+    "AI lead",
     "ETF lead",
-    "more history needed",
+    "more history",
     "opacity is bullish capture"
   ],
-  "read": "90s X script @~54h. Exploratory."
+  "read": "90s X script v2 @~53h. Exploratory."
 }

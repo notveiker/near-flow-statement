@@ -65,15 +65,15 @@ Card: `data/derived/judge_capture_card.json` — open with partners>capture, clo
 <!-- /AUTO:XLINES -->
 
 <!-- AUTO:XSCRIPT -->
-## 90-second X dry-run script (~54h left)
+## 90-second X dry-run script (~53h left)
 
-| Beat | Say | Point camera |
-|------|-----|--------------|
-| 0–15s | Fee≠L1 (~180× vs cooling base) | fee-engine card |
-| 15–35s | Leakage is the bridge (~$50M); 50× needs ~1.3× vol after | path/coverage |
-| 35–55s | Default rail = fee engine; logos = vol w/o capture; SK-tax first | capture dials |
-| 55–75s | 217× vs THOR 16× — discretionary claim; Hold until H1b | trust/hold |
-| 75–90s | Live dashboard; history not supported = honesty; repo→public next | delivery |
+| Beat | Say | Camera |
+|------|-----|--------|
+| 0–15s | Intents ≈99% of NEAR DEX + ~180× cooling L1 | fee-engine |
+| 15–35s | **Leakage is the bridge** (~$50M → 50× needs ~1.3× vol) | headline |
+| 35–55s | Default rail = fee engine; logos = vol w/o capture; SK-tax | dials |
+| 55–75s | 217× vs THOR 16× — discretionary claim; Hold until H1b | trust |
+| 75–90s | Live dashboard; history not supported = honesty; repo→public | delivery |
 
-**Do not say:** bull case, AI lead, ETF lead, opacity-as-capture, need more strata.
+**Do not say:** bull case, AI/ETF lead, opacity-as-capture, need more strata.
 <!-- /AUTO:XSCRIPT -->

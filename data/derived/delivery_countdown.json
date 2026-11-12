@@ -2,7 +2,7 @@
   "asof": "2026-11-12",
   "hours_to_submit": 53.1,
   "clusters": 234,
-  "commits": 684,
+  "commits": 685,
   "derived_json": 543,
   "repo_private": true,
   "x_dry_run_done": false,
@@ -13,5 +13,6 @@
   "prop_ready_excl_must_ship": 0.98,
   "x_script_ready": true,
   "headline": "leakage_is_the_bridge",
-  "read": "~53h / 234cl / 684c. CRITICAL. public+X. Exploratory."
+  "intents_is_near_dex": true,
+  "read": "~53h / 234cl / 685c. X script v2. PRIVATE. public+X. Exploratory."
 }
