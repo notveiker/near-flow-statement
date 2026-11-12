@@ -1,10 +1,13 @@
 {
- "commits_since_structural": 398,
- "clusters_preliminary": 161,
- "hours_to_submit": 67.1,
+ "commits_since_structural": 404,
+ "clusters_preliminary": 162,
+ "hours_to_submit": 66.9,
  "stratum": "_07_dense",
- "last_ingested": "2026Q1_07",
+ "last_ingested": "2026Q2_07",
  "judge_ready": true,
- "headline": "four_ten_m + ledger_first + call_order + conf_share_71 + ladder",
- "note": "~398 commits; 161 clusters through 2026Q1_07 dense; ~67.1h to submit; judge packet live."
+ "must_ship": [
+  "public_repo",
+  "X_demo_dry_run"
+ ],
+ "note": "~404 commits; 162 clusters through 2026Q2_07; ~66.9h; must-ship public repo + X."
 }
