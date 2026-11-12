@@ -1,17 +1,23 @@
 {
   "asof": "2026-11-12",
+  "hours_to_submit": 54.1,
+  "clusters": 228,
+  "commits": 657,
+  "dense_15_complete": true,
   "stack_order": [
     {
       "rank": 1,
       "item": "public_repo",
       "owner": "human",
-      "blocks": "submit"
+      "blocks": "submit",
+      "status": "OPEN"
     },
     {
       "rank": 2,
       "item": "x_demo_dry_run",
       "owner": "human",
-      "blocks": "submit"
+      "blocks": "submit",
+      "status": "OPEN"
     },
     {
       "rank": 3,
@@ -21,17 +27,29 @@
     },
     {
       "rank": 4,
+      "item": "convert_logos_to_default_bb_rails",
+      "owner": "commercial",
+      "note": "default rail IS fee engine"
+    },
+    {
+      "rank": 5,
       "item": "conversion_appfee_to_bb",
       "owner": "commercial",
       "rr_m": 5.5
     },
     {
-      "rank": 5,
+      "rank": 6,
       "item": "hsp029_pending_then_lagged",
       "owner": "governance"
     },
     {
-      "rank": 6,
+      "rank": 7,
+      "item": "attest_escrow",
+      "owner": "trust",
+      "rr_m": 8.4
+    },
+    {
+      "rank": 8,
       "item": "attach_finish_to_60",
       "owner": "product",
       "rr_m": 7.9
@@ -40,9 +58,11 @@
   "do_not_lead_with": [
     "cif_gap",
     "more_strata",
-    "ai_agents_narrative",
-    "opacity_as_capture"
+    "ai_agents",
+    "opacity_as_capture",
+    "bond_demand",
+    "volume_alone_multiple"
   ],
-  "implication": "Catalyst stack is delivery\u2192SK-tax\u2192conversion\u2192HSP\u2192attach; volume last; AI/opacity/CIF are non-leads",
-  "read": "Ordered catalysts: public+X first (must-ship), then SK-tax > conversion > HSP-029 > attach-to-60. Exploratory."
+  "implication": "After _15 complete: delivery\u2192SK-tax\u2192logo\u2192default conversion\u2192HSP\u2192attest\u2192attach; volume last",
+  "read": "Catalyst order refreshed post-_15 @~54h. public+X first. Exploratory."
 }

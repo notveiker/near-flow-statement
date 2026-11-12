@@ -1,11 +1,16 @@
 {
   "asof": "2026-11-12",
-  "commits": 639,
-  "clusters": 225,
-  "derived_json": 494,
-  "punch_table_rows_approx": 593,
-  "hours_to_submit": 54.7,
+  "commits": 657,
+  "clusters": 228,
+  "derived_json": 522,
+  "punch_table_rows_approx": 623,
+  "hours_to_submit": 54.1,
+  "dense_complete": [
+    "_12",
+    "_13",
+    "_14",
+    "_15"
+  ],
   "repo_private": true,
-  "stratum": "_15_dense",
-  "read": "Sweep depth: 639 commits / 225 clusters / 494 derived / ~593 punch rows @~55h. Exploratory."
+  "read": "Sweep: 657c/228cl/522 derived; _12\u2013_15 done; ~54h. Exploratory."
 }
