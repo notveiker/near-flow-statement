@@ -24,5 +24,15 @@
   "hsp007_emissions_claim_gap",
   "relayer_top1_83pct"
  ],
- "note": "Scoreboard for pitch: only conversion/leakage/attach/mix/HSP-029 move the object; perps/npm/AI/CS-as-fee do not. Holds remain attestation + unexplained BB + HSP-007 gap + relayer. Exploratory."
+ "note": "Scoreboard for pitch: only conversion/leakage/attach/mix/HSP-029 move the object; perps/npm/AI/CS-as-fee do not. Holds remain attestation + unexplained BB + HSP-007 gap + relayer. Exploratory.",
+ "protects_multiple": [
+  "capture_share",
+  "conversion",
+  "attestation",
+  "hsp029"
+ ],
+ "threatens_multiple": [
+  "further_vol_cool_without_take",
+  "hsp007_emissions_claim"
+ ]
 }
