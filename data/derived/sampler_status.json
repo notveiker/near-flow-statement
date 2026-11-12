@@ -1,10 +1,8 @@
 {
  "primary_clusters_local": 142,
- "sample2_clusters_local": 90,
+ "sample2_clusters_local": 91,
  "primary_next_part": "2023Q3_06",
- "part_lines_approx": 64,
  "overall": "not_supported_preliminary",
- "commits_since_structural_approx": 242,
- "derived_json_approx": 172,
- "note": "Hyper sweep live; 2023Q3_06 sealing. Prop stack: leakage/conversion first."
+ "commits_since_structural_approx": 248,
+ "note": "Ingested available early-stratum seals (142 primary). 2023Q3_06 still sealing. Prop hyper-sweep continuing."
 }
