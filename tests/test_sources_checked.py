@@ -69,6 +69,10 @@ ALLOW = {
         (SOURCE, "the governance post's words about the House of Stake"),
     (16, "clears its timelock on 2026-11-16"):
         (OLDER, "THESIS.md's wording before the 2026-11-08 correction, which row 16 names"),
+    (22, "appears to count both legs of a swap; its adapter states no methodology"):
+        (OLDER, "THESIS.md's hedge before the 2026-11-13 leg-count restatement, which row 22 names"),
+    (22, "we do not know whether its figure counts both sides of each swap. Halving it is an inference, used here only to give a one-sided basis"):
+        (OLDER, "docs/intents-fee-flows.md's hedge before the 2026-11-13 leg-count restatement, which row 22 names"),
     (16, "Timelock"):
         (SOURCE, "the status string that the proposal contract returns, quoted in the verdict"),
 }
@@ -328,9 +332,10 @@ class TheCheckerBites(unittest.TestCase):
         # Row 22 says THESIS.md hedges the halving. The dashboard's code carries the same words, so a check against the
         # whole corpus alone would pass after THESIS.md dropped the hedge. (Found by mutation: the first version of this test
         # passed that mutant.)
-        hedge = "appears to count both legs of a swap; its adapter states no methodology"
+        hedge = "both legs of public swaps (measured), plus, from 2026-09-01, confidential-treasury flow at about one leg (measured; what that flow represents is inferred)"
         self.assertIn(hedge, FILES["pipeline/render.py"], "premise: the renderer has the same words")
-        dropped = {**FILES, "THESIS.md": FILES["THESIS.md"].replace(hedge, "counts both legs of a swap; its adapter states no methodology")}
+        dropped = {**FILES, "THESIS.md": FILES["THESIS.md"].replace(hedge, "both legs of every swap"),
+                   "docs/intents-fee-flows.md": FILES["docs/intents-fee-flows.md"].replace(hedge, "both legs of every swap")}
         found = [p for p in problems(TEXT, dropped) if p not in problems(TEXT, FILES)]
         self.assertEqual(len(found), 1, found)
         self.assertIn("row 22 (column 2)", found[0])

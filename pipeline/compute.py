@@ -570,6 +570,95 @@ def fee_evidence(m: dict) -> None:
         m["fee_ev_collector_b_bp_n"] = len(b_bp)
 
 
+LEG_DAYS = ["2026-08-18", "2026-08-31", "2026-09-02", "2026-10-08", "2026-10-22"]
+
+
+def leg_count(m: dict, vol: dict, rev: dict, price: dict, asof: str) -> None:
+    """Does DefiLlama's NEAR Intents volume count one leg or both? (exploratory, 2026-11-13; docs/leg-count.md)
+
+    sql/leg_count_days.sql sums, for five full days, every successful dip4 token_diff amount on intents.near (public
+    swaps: user and solver each sign a diff, so the absolute sum is four legs) and every dip4 transfer into or out of
+    the Confidential Intents treasury. Priced at CoinGecko's 00:00 UTC price of each day. Public one-sided volume is
+    the absolute diff sum / 4. k = DefiLlama volume / one-sided volume, with one-sided = public + half the treasury
+    transfers (each treasury<->solver pair read as one confidential swap); k_public leaves the treasury out."""
+    bq, pf = RAW / "bq" / "leg_count_days.json", RAW / "coingecko" / "leg_count_prices.json"
+    if not (bq.exists() and pf.exists()):
+        return
+    px = read_raw("coingecko/leg_count_prices.json")
+    meta, prices = px["tokens"], px["prices"]
+    llama = vol["near-intents"]
+    exp = {x["date"]: x["usd_in"] for x in read_raw("explorer/daily.json")["days"]} \
+        if (RAW / "explorer" / "daily.json").exists() else {}
+    agg = {d: defaultdict(float) for d in LEG_DAYS}
+    for row in read_raw("bq/leg_count_days.json"):
+        d, t = row["day"], row["token"]
+        a = agg[d]
+        n_td = int(row["n_td"])
+        a["n_td"] += n_td
+        info = meta.get(t)
+        p = prices.get(info["coingeckoId"] or "", {}).get(d) if info else None
+        if p is None:
+            a["n_td_unpriced"] += n_td
+            continue
+        scale = p / 10 ** int(info["decimals"])
+        a["abs_diff"] += (float(row["td_pos"]) + float(row["td_neg"])) * scale
+        a["treasury"] += (float(row["tr_in"]) + float(row["tr_out"])) * scale
+        a["tr_in"] += float(row["tr_in"]) * scale
+        a["tr_out"] += float(row["tr_out"]) * scale
+    k, kp = {}, {}
+    for d in LEG_DAYS:
+        a, tag = agg[d], d[5:].replace("-", "")
+        pub, tr, lv = a["abs_diff"] / 4, a["treasury"], llama[d]
+        k[d], kp[d] = lv / (pub + tr / 2), lv / pub
+        m[f"legcount_{tag}_llama_m"] = r(lv / 1e6, 1)
+        m[f"legcount_{tag}_public_one_sided_m"] = r(pub / 1e6, 1)
+        m[f"legcount_{tag}_treasury_transfers_m"] = r(tr / 1e6, 1)
+        m[f"legcount_{tag}_treasury_in_over_out"] = r(a["tr_in"] / a["tr_out"], 2) if a["tr_out"] else None
+        m[f"legcount_{tag}_k_public"] = r(kp[d], 2)
+        m[f"legcount_{tag}_k"] = r(k[d], 2)
+        m[f"legcount_{tag}_gap_over_treasury"] = r((lv - 2 * pub) / tr, 2)
+        m[f"legcount_{tag}_unpriced_diff_entries_pct"] = r(a["n_td_unpriced"] / a["n_td"] * 100, 2)
+        if d in exp:
+            m[f"legcount_{tag}_explorer_over_public_pct"] = r(exp[d] / pub * 100, 1)
+    win = ["2026-10-08", "2026-10-22"]  # the only measured days inside the 30 days to 2026-11-04
+    k_lo, k_hi = min(k[d] for d in win), max(k[d] for d in win)
+    kp_lo, kp_hi = min(kp[d] for d in win), max(kp[d] for d in win)
+    m["legcount_k_window_lo"], m["legcount_k_window_hi"] = r(k_lo, 2), r(k_hi, 2)
+    m["legcount_k_public_window_lo"], m["legcount_k_public_window_hi"] = r(kp_lo, 2), r(kp_hi, 2)
+    aug = ["2026-08-18", "2026-08-31"]
+    m["legcount_k_aug_with_treasury_lo"] = r(min(k[d] for d in aug), 2)
+    m["legcount_k_aug_with_treasury_hi"] = r(max(k[d] for d in aug), 2)
+
+    # Window figures restated on one-sided volume (= reported / k). Reading 1: the treasury pairs are swaps (k).
+    # Reading 2: they are not swaps (k_public). Both are exploratory; the reported-basis figures are unchanged.
+    lo = add_days(asof, -29)
+    days = [add_days(asof, -i) for i in range(30)]
+    v30 = sum(llama.get(x, 0) for x in days)
+    take = sum(rev.get(x, 0) for x in days) / v30 * 1e4
+    import csv
+    with open(RAW / "escrow" / "deliveries.csv", newline="", encoding="utf-8") as f:
+        esc = sum(int(x["amount_yocto"]) / YOCTO * price[x["day"]] for x in csv.DictReader(f)
+                  if lo <= x["day"] <= asof and x["path"] == "escrow_unshield")
+    esc_bp = esc / v30 * 1e4
+    m["legcount_escrow_usd_30d_m"] = r(esc / 1e6, 2)
+    m["legcount_escrow_bp_reported"] = r(esc_bp, 2)
+    ex = [x for x in read_raw("explorer/daily.json")["days"] if lo <= x["date"] <= asof]
+    oc = sum(x["usd_in"] for x in ex) / sum(llama.get(x["date"], 0) for x in ex) * 100
+    m["legcount_oneclick_share_reported_pct"] = r(oc, 1)
+    others = sum(window_sum(vol[s], asof, 30) for s in PEERS if s != "near-intents")
+    for name, a, b in (("", k_lo, k_hi), ("_public", kp_lo, kp_hi)):
+        m[f"legcount_take_captured_bp{name}_lo"] = r(take * a, 2)
+        m[f"legcount_take_captured_bp{name}_hi"] = r(take * b, 2)
+        m[f"legcount_escrow_bp{name}_lo"] = r(esc_bp * a, 2)
+        m[f"legcount_escrow_bp{name}_hi"] = r(esc_bp * b, 2)
+        if not name:  # under reading 2 it passes 100%: 1Click itself settles confidentially from 2026-10-27
+            m["legcount_oneclick_share_lo_pct"] = r(oc * a, 1)
+            m["legcount_oneclick_share_hi_pct"] = r(oc * b, 1)
+        # A larger k shrinks Intents, so the high k gives the low share.
+        m[f"legcount_peer_share{name}_lo_pct"] = r(v30 / b / (others + v30 / b) * 100, 1)
+        m[f"legcount_peer_share{name}_hi_pct"] = r(v30 / a / (others + v30 / a) * 100, 1)
+
+
 def build() -> tuple[dict, dict]:
     # ---------- inputs ----------
     vol = {s: llama_daily(f"llama/volume_{s}.json") for s in PEERS}
@@ -900,6 +989,7 @@ def build() -> tuple[dict, dict]:
     # Net-basis sensitivity: DefiLlama's Intents volume is leg-sum (both sides of a swap).
     net30 = window_sum(vol["near-intents"], asof, 30) / 2
     m["intents_share_peerset_30d_net_pct"] = r(net30 / (tot30 - window_sum(vol["near-intents"], asof, 30) + net30) * 100, 1)
+    leg_count(m, vol, rev, price, asof)  # exploratory, 2026-11-13: what DefiLlama's volume counts
 
     # ---------- valuation ----------
     mcap = snap["market_cap_usd"]

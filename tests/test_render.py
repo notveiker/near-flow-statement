@@ -1248,7 +1248,7 @@ KEYFIGS = {
                ("Funded by the escrow for the exact amount", [("m", "escrow_funded_exact_30d_n"), ("m", "escrow_funded_exact_30d_pct")]),
                ("Escrow share, 30-day window", [("m", "escrow_share_of_buyback_near_30d_pct")])],
     "partners": [("SwapKit share of 1Click volume", [("m", "swapkit_vol_share_pct")]),
-                 ("SwapKit share of all Intents volume, one-sided", [("m", "swapkit_share_of_intents_net_pct")]),
+                 ("SwapKit share of all Intents volume, halved basis", [("m", "swapkit_share_of_intents_net_pct")]),
                  ("Volume HHI, SwapKit as one channel / split", [("m", "volume_channel_hhi_swapkit_merged"), ("m", "volume_channel_hhi")]),
                  ("Explicit buyback fee HHI", [("m", "buyback_fee_hhi")])],
     "paid": [("Partner fees listed", [("m", "explorer_partner_fees_all_usd_k")]), ("NEAR's captured revenue", [("m", "revwallets_usd_k")]),

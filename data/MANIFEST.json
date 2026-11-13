@@ -56,6 +56,14 @@
    "sha256": "e9588b535fff683e7b94e750b4cdf98403399f5a634c02055aa61ce66e25b963",
    "source": "bigquery: sql/h1b_c_sweep_clusters.sql"
   },
+  "raw/bq/leg_count_days.json": {
+   "bytes": 202386,
+   "bytes_processed_estimate": 6668963730,
+   "fetched_at": "2026-11-13T06:26:30Z",
+   "rows": 930,
+   "sha256": "3c7e49d865d0a37f2eda77341f0bd9c0325c884d6c94fe09c648e3dd7ba268fe",
+   "source": "bigquery: sql/leg_count_days.sql"
+  },
   "raw/bq/revenue_wallet_inflows.json": {
    "bytes": 6814,
    "bytes_processed_estimate": 86962294607,
@@ -87,6 +95,12 @@
    "rows": 2,
    "sha256": "4e1b90af3b259723a27fe8211cc7448340dbdbf73ae2f63bb25d44d56e2f3b2e",
    "source": "bigquery: sql/staking_pool_totals_endpoints.sql"
+  },
+  "raw/coingecko/leg_count_prices.json": {
+   "bytes": 29698,
+   "fetched_at": "2026-11-13T06:50:44Z",
+   "sha256": "cca74e828ba10e242b0369823ead0005ef0c3d30c1661fbd5845d3a9cfcab680",
+   "source": "https://1click.chaindefuser.com/v0/tokens (decimals and coingeckoId only) + https://coins.llama.fi/prices/historical/<00:00 UTC of each day>/coingecko:<id>,...?searchWidth=2h"
   },
   "raw/coingecko/majors_90d.json": {
    "bytes": 28442,

@@ -50,12 +50,12 @@ def add_days(iso: str, n: int) -> str:
 
 
 def http_json(url: str, params: dict | None = None, body: dict | None = None,
-              retries: int = 5, timeout: int = 90) -> object:
+              retries: int = 5, timeout: int = 90, user_agent: str | None = None) -> object:
     """GET (or POST when body is given) a JSON endpoint with exponential backoff."""
     if params:
         url = f"{url}?{urllib.parse.urlencode(params)}"
     data = json.dumps(body).encode() if body is not None else None
-    headers = {"User-Agent": USER_AGENT, "Accept": "application/json"}
+    headers = {"User-Agent": user_agent or USER_AGENT, "Accept": "application/json"}
     if data is not None:
         headers["Content-Type"] = "application/json"
     last: Exception | None = None

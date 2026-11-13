@@ -1,0 +1,63 @@
+# What DefiLlama's NEAR Intents volume counts (exploratory)
+
+*Exploratory, chosen after the freeze (2026-11-13). It changes no pre-registered result, test, threshold or probability, and nothing here feeds the rating rule. F3, F4 and P1 stay on DefiLlama's reported basis, as `PREREG.md` words them. Every figure below comes from days dated 2026-10-22 or earlier and is recomputed by `make reproduce`.*
+
+## Answer
+
+- **Public swaps: both legs, exactly (measured).** On the two August days, DefiLlama's volume is 2.0<!--n:legcount_0818_k_public-->× and 2.01<!--n:legcount_0831_k_public-->× the one-sided value of the public swaps that `intents.near` settled.
+- **From 2026-09-01, plus confidential flow at about one leg (measured; what it represents is inferred).** From that date DefiLlama's volume also holds about half the value of the transfers between the Confidential Intents treasury (`PRIVATE_TREASURY_ACCOUNT_ID`, `51e8f94d…7cbe`) and its counterparties, mostly solvers. The part above twice the public one-sided value is 0.49<!--n:legcount_0902_gap_over_treasury-->, 0.56<!--n:legcount_1008_gap_over_treasury--> and 0.5<!--n:legcount_1022_gap_over_treasury--> of those transfers on 09-02, 10-08 and 10-22, and -0.01<!--n:legcount_0818_gap_over_treasury--> and 0.01<!--n:legcount_0831_gap_over_treasury--> on 08-18 and 08-31, when the same kind of flow was on chain ($17.8<!--n:legcount_0818_treasury_transfers_m-->M and $53.6<!--n:legcount_0831_treasury_transfers_m-->M) but not counted. So the step in DefiLlama's series on 2026-09-01 looks like a change in what the dataset counts. That one treasury↔solver pair is one confidential swap is our reading; the chain shows the transfers, not the swaps behind them.
+- **Halving is therefore exact through August and too much from September.** From 2026-09-01 the reported figure is neither one-sided nor two-sided.
+
+## Measured days
+
+| Day | DefiLlama volume, $M | Public one-sided, $M | Treasury transfers, $M | DefiLlama ÷ public one-sided | (DefiLlama − 2 × public) ÷ treasury | k |
+|---|---|---|---|---|---|---|
+| 2026-08-18 | 80.9<!--n:legcount_0818_llama_m--> | 40.5<!--n:legcount_0818_public_one_sided_m--> | 17.8<!--n:legcount_0818_treasury_transfers_m--> | 2.0<!--n:legcount_0818_k_public--> | -0.01<!--n:legcount_0818_gap_over_treasury--> | 1.64<!--n:legcount_0818_k--> |
+| 2026-08-31 | 123.7<!--n:legcount_0831_llama_m--> | 61.5<!--n:legcount_0831_public_one_sided_m--> | 53.6<!--n:legcount_0831_treasury_transfers_m--> | 2.01<!--n:legcount_0831_k_public--> | 0.01<!--n:legcount_0831_gap_over_treasury--> | 1.4<!--n:legcount_0831_k--> |
+| 2026-09-02 | 143.2<!--n:legcount_0902_llama_m--> | 57.4<!--n:legcount_0902_public_one_sided_m--> | 57.7<!--n:legcount_0902_treasury_transfers_m--> | 2.5<!--n:legcount_0902_k_public--> | 0.49<!--n:legcount_0902_gap_over_treasury--> | 1.66<!--n:legcount_0902_k--> |
+| 2026-10-08 | 256.1<!--n:legcount_1008_llama_m--> | 63.8<!--n:legcount_1008_public_one_sided_m--> | 227.7<!--n:legcount_1008_treasury_transfers_m--> | 4.01<!--n:legcount_1008_k_public--> | 0.56<!--n:legcount_1008_gap_over_treasury--> | 1.44<!--n:legcount_1008_k--> |
+| 2026-10-22 | 132.3<!--n:legcount_1022_llama_m--> | 35.0<!--n:legcount_1022_public_one_sided_m--> | 124.9<!--n:legcount_1022_treasury_transfers_m--> | 3.77<!--n:legcount_1022_k_public--> | 0.5<!--n:legcount_1022_gap_over_treasury--> | 1.36<!--n:legcount_1022_k--> |
+
+- **k** is DefiLlama's volume ÷ one-sided volume, where one-sided = public one-sided + half the treasury transfers. Before 09-01 DefiLlama left the treasury flow out, so the August k is what k would have been had it counted that flow, on this definition.
+- **Treasury flow in and out balance.** Transfers into the treasury ÷ transfers out: 1.31<!--n:legcount_0818_treasury_in_over_out-->, 0.99<!--n:legcount_0831_treasury_in_over_out-->, 0.98<!--n:legcount_0902_treasury_in_over_out-->, 1.06<!--n:legcount_1008_treasury_in_over_out--> and 0.97<!--n:legcount_1022_treasury_in_over_out-->, consistent with paired legs.
+- **1Click is a subset of the public flow.** The Intents Explorer's 1Click volume (`usd_in`) is 94.5<!--n:legcount_0818_explorer_over_public_pct-->%, 88.8<!--n:legcount_0831_explorer_over_public_pct-->%, 87.7<!--n:legcount_0902_explorer_over_public_pct-->%, 82.6<!--n:legcount_1008_explorer_over_public_pct-->% and 86.1<!--n:legcount_1022_explorer_over_public_pct-->% of public one-sided volume on the five days. From 2026-10-27 1Click settles confidentially (`THESIS.md`, Limits), so this no longer holds after the measured days.
+
+## Two readings, and what each does to the window figures
+
+The 30 days to 2026-11-04 contain two measured days, 10-08 and 10-22. Nothing after 10-22 was measured, so nothing from 10-27, when 1Click moved to confidential settlement. The window figures below scale the reported-basis figures by k from those two days, so they assume k over the 30 days lay between its values on those days. The share of confidential flow grew from 09-02 to 10-08, and 1Click moved to confidential settlement on 10-27, so that assumption is the weak point.
+
+| Figure, 30 days to 2026-11-04 | Reported basis | Reading 1: the treasury pairs are swaps (k 1.36<!--n:legcount_k_window_lo--> to 1.44<!--n:legcount_k_window_hi-->) | Reading 2: they are not swaps (k 3.77<!--n:legcount_k_public_window_lo--> to 4.01<!--n:legcount_k_public_window_hi-->) |
+|---|---|---|---|
+| Captured take, bp of volume | 4.98<!--n:take_captured_bp_30d--> | 6.76<!--n:legcount_take_captured_bp_lo--> to 7.18<!--n:legcount_take_captured_bp_hi--> | 18.81<!--n:legcount_take_captured_bp_public_lo--> to 20.0<!--n:legcount_take_captured_bp_public_hi--> |
+| Escrow releases, bp of volume | 3.59<!--n:legcount_escrow_bp_reported--> | 4.88<!--n:legcount_escrow_bp_lo--> to 5.18<!--n:legcount_escrow_bp_hi--> | 13.57<!--n:legcount_escrow_bp_public_lo--> to 14.43<!--n:legcount_escrow_bp_public_hi--> |
+| 1Click's share of Intents volume, % | 27.6<!--n:legcount_oneclick_share_reported_pct--> | 37.5<!--n:legcount_oneclick_share_lo_pct--> to 39.8<!--n:legcount_oneclick_share_hi_pct--> | not meaningful: above 100%, because 1Click's own swaps settle confidentially from 10-27 |
+| Intents' share of the peer set, % | 55.7<!--n:intents_share_peerset_30d_pct--> | 46.6<!--n:legcount_peer_share_lo_pct--> to 48.1<!--n:legcount_peer_share_hi_pct--> | 23.9<!--n:legcount_peer_share_public_lo_pct--> to 25.0<!--n:legcount_peer_share_public_hi_pct--> |
+
+- **Reading 1** says DefiLlama undercounted Intents before 09-01 and that halving overcorrects from then on. **Reading 2** says DefiLlama counts non-swap flow from 09-01. Which is right turns on what the treasury↔solver pairs represent. The chain does not show it; NEAR's data team or the dataset's SQL could.
+- **The halved basis** used elsewhere in this repository (k = 2: 1Click 55.2<!--n:explorer_vs_llama_net_pct-->%, peer share 38.6<!--n:intents_share_peerset_30d_net_pct-->%) lies between the two readings for the window.
+- **The peer share is still a lower bound** under reading 1: only Intents is restated, and DefiLlama's THORChain and Maya volumes also count both pool legs of an asset-to-asset swap ([second review](second-review.md), section 11).
+- **Escrow releases** are the NEAR delivered through the escrow path (`path` `escrow_unshield` in `data/raw/escrow/deliveries.csv`), priced at the day's CoinGecko close: $1.44<!--n:legcount_escrow_usd_30d_m-->M over the window.
+
+## What the 2026-09-01 step touches
+
+Any figure that compares DefiLlama's Intents volume, or a rate built on it, across 2026-09-01 compares two definitions. The list, and what we do about each:
+
+- **Pre-registered (unchanged, scored on the reported basis).**
+  - `PREREG.md`'s 365-day peer share (62.1<!--n:intents_share_peerset_365d_pct-->% in the committed data, as at the freeze) and P1 (Intents' 365-day share of the peer set ≥ 55% on 2027-05-04): both 365-day windows hold days before and after the step. P1 resolves on the reported basis, as worded.
+  - F3 (captured take below 4.0 bp, against October's 5.49 bp) and F4 (peer share ≥ 50%): their windows and the October reference lie after the step, but the confidential share of reported volume varies by day (treasury transfers were $57.7<!--n:legcount_0902_treasury_transfers_m-->M on 09-02 and $227.7<!--n:legcount_1008_treasury_transfers_m-->M on 10-08), so the reported basis is not a fixed multiple of one-sided volume. They are scored as worded.
+  - H1a, H1b, H1c and the rating rule's G_obs and G_req use no DefiLlama volume.
+- **Exploratory.**
+  - [Second review](second-review.md), section 6: "volume 29.6%" compares the 180 days to 2026-11-04, of which 65 are after the step, with the 180 days before. Part of that rise is the change of definition. The revenue-to-fees ratio in the same section uses no volume.
+  - Second review, section 3: captured revenue per dollar of volume, 2.49 bp over 08-29 to 09-02 against 4.62 bp over 09-03 to 10-26. Three of the first window's five days are after the step.
+  - [`intents-fee-flows.md`](intents-fee-flows.md), section 6: the first 30-day block (08-07 to 09-05) mixes both definitions in its captured take (2.89<!--n:take_b1_captured_bp--> bp) and in 1Click's share of DefiLlama volume; the file already says the first block is not like-for-like. 1Click's share in the week before and the week from 09-01 (86.2<!--n:oneclick_share_of_llama_week_before_0901_pct-->% and 60.8<!--n:oneclick_share_of_llama_week_after_0901_pct-->%, halved basis) is the step itself.
+  - The dashboard's monthly series (`intents_monthly`: volume, captured and gross take; `peer_share_monthly`) and the 365-day peer share it shows: August and earlier months are on the old definition.
+  - The escrow-release forward tests E1-E5 (`PREREG-ADDENDUM.md`, 2026-11-13 entry): the base rates of E4 and E5 use halved DefiLlama volume over windows ending 2026-08-05 to 11-04, and the earlier windows straddle the step. Their thresholds and probabilities are unchanged.
+  - The window figures on the halved basis (take, 1Click share, net peer share, SwapKit's share of all Intents volume): their window lies after the step, and the table above restates them.
+
+## Recipe
+
+1. `sql/leg_count_days.sql` (BigQuery, `crypto_near_mainnet_us.execution_outcomes`, about 6.7 GB) reads every successful `dip4` event that `intents.near` emitted on the five days and sums, per day and token in raw units: the positive and the negative `token_diff` amounts over all signers, and the `transfer` amounts into, out of and not touching the treasury. Output: `data/raw/bq/leg_count_days.json`, run by `python3 -m pipeline.bq_run leg_count`.
+2. `python3 -m pipeline.fetch_leg_count` (keyless) writes `data/raw/coingecko/leg_count_prices.json`: each token's decimals and CoinGecko id from the 1Click token list (its current prices are dropped), and the CoinGecko price of each id at 00:00 UTC of each day. The prices are read through DefiLlama's keyless coins API (`coins.llama.fi/prices/historical`, keys `coingecko:<id>`), one request per day, because CoinGecko's own keyless tier allowed only a few calls a minute when this ran. Every request is for a day dated 2026-10-22 or earlier.
+3. `leg_count` in `pipeline/compute.py`: public one-sided volume is the priced absolute `token_diff` sum ÷ 4 (each public swap is two signers × two tokens). Treasury transfers are the priced sum in plus out. Tokens with no price that day (not in the 1Click list, no CoinGecko id, or an id the coins API does not price, such as QTC's `custom:qtc`) are left out. They carry at most 0.43<!--n:legcount_1022_unpriced_diff_entries_pct-->% of a day's diff entries; QTC also appears in treasury transfers on 10-08, so that day's treasury total and k rest on priced tokens only.
+
+**Differences from the first run (lane A, 2026-11-13).** That run read the raw event logs of the same days into a scratch folder before any SQL was committed. It took public one-sided volume as half the sum, over each receipt and signer, of the smaller of what the signer gave and got; the committed method uses the absolute sum ÷ 4, which needs no per-receipt rows and lands within about 1.5% of it. It also valued tokens without a daily price at the 1Click list's current price (dated 2026-11-13); the committed method leaves them out, which lowers the 10-08 treasury total and raises that day's k from the first run's 1.42 to 1.44<!--n:legcount_1008_k-->. Its prices came from CoinGecko directly; these come from CoinGecko through DefiLlama's coins API.

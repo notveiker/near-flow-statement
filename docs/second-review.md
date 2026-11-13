@@ -54,7 +54,7 @@ All figures in this section come from `data/raw/escrow/deliveries.csv`, summing 
 - **The 1Click data change on 09-03.** In `data/raw/explorer/daily.json`, `fee_split.usd_in_no_fee_listed` divided by `usd_in` gives:
   - 25.7% of 1Click volume listing no fee on 09-02, and 1.4% on 09-03;
   - 37.5% over 08-07 to 09-01, and 5.9% over 09-03 to 10-05.
-- **DefiLlama shows the same step.** Captured revenue per dollar of volume (`data/raw/llama/`, revenue divided by volume over the same days) is 2.49 bp over 08-29 to 09-02, and 4.62 bp over 09-03 to 10-26.
+- **DefiLlama shows the same step.** Captured revenue per dollar of volume (`data/raw/llama/`, revenue divided by volume over the same days) is 2.49 bp over 08-29 to 09-02, and 4.62 bp over 09-03 to 10-26. (Note, 2026-11-13: DefiLlama's volume itself changes definition on 2026-09-01, so three of the first window's five days are on the new definition and two on the old; [`leg-count.md`](leg-count.md).)
 - **One channel ran for a single week.** The `trustwallet` channel in `by_channel` appears on 7 days only, 10-23 to 10-29. It lists 12.0% of the explicit buyback fees of the 30 days to 11-04. Without it the explicit rate is 3.68 bp, against 4.08<!--n:take_b3_bb_explicit_bp--> bp with it.
 - **Reading (inferred).** The rise in the explicit fee in section 3 of `THESIS.md` is mainly a price change, not organic growth, so it should not be annualised.
 
@@ -89,7 +89,7 @@ All figures in this section come from `data/raw/escrow/deliveries.csv`, summing 
 These figures compare the 180 days to 2026-11-04 with the 180 days before, using `data/raw/llama/` sums:
 
 - **Revenue grew 2.645-fold**, which annualises to 619<!--n:rating_g_obs_pct-->%, the pipeline's figure.
-- **Over the same windows, fees rose only 3.4% and volume 29.6%.** Revenue went from 9.5% to 24.4% of fees.
+- **Over the same windows, fees rose only 3.4% and volume 29.6%.** Revenue went from 9.5% to 24.4% of fees. (Note, 2026-11-13: the later window holds 65 days after 2026-09-01, when DefiLlama's volume began to count confidential-treasury flow, so part of the 29.6% is that change of definition. The revenue-to-fees ratio uses no volume; [`leg-count.md`](leg-count.md).)
 - **The figure is fragile.** With 182-day windows the same calculation gives 426%.
 - **Reading (inferred).** The growth leg of the frozen rule rests on a rise in the share of fees captured, which sections 2 and 3 date to late August and September. It does not rest on growth in activity. Hold is unchanged.
 
@@ -129,7 +129,7 @@ Input: `data/raw/bq/staking_flows_daily.json`.
 
 ## 11. The peer set
 
-- **Only one venue is halved.** The net share (38.6<!--n:intents_share_peerset_30d_net_pct-->%) halves NEAR Intents' volume only. DefiLlama's THORChain and Maya adapters read Midgard's `totalVolume`, which counts both pool legs of an asset-to-asset swap.
+- **Only one venue is halved.** The net share (38.6<!--n:intents_share_peerset_30d_net_pct-->%) halves NEAR Intents' volume only. (Note, 2026-11-13: halving is exact for public swaps but not for the confidential flow DefiLlama counts from 2026-09-01; restated on one-sided volume the share is 46.6<!--n:legcount_peer_share_lo_pct-->% to 48.1<!--n:legcount_peer_share_hi_pct-->% if that flow is swap volume, 23.9<!--n:legcount_peer_share_public_lo_pct-->% to 25.0<!--n:legcount_peer_share_public_hi_pct-->% if not; [`leg-count.md`](leg-count.md).) DefiLlama's THORChain and Maya adapters read Midgard's `totalVolume`, which counts both pool legs of an asset-to-asset swap.
 - **A like-for-like share is not computable here.** Treating every venue alike moves the share up from the net figure toward the reported 55.7<!--n:intents_share_peerset_30d_pct-->%. Where it lands needs Midgard's leg split, which the committed data do not hold.
 - **The ranking depends on the set.** Intents leads the four venues in the thesis's peer set. Intent-based bridges such as Relay and Across report larger 30-day volumes on DefiLlama (not committed here), so a wider set changes the ranking.
 
@@ -141,7 +141,7 @@ Input: `data/raw/bq/staking_flows_daily.json`.
 
 ## What this review did not settle
 
-- **Whether DefiLlama's NEAR Intents volume counts both legs of each swap.** This moves every take rate and the peer share by about 2×. Summing one day of `intents.near` settlement legs before 2026-11-05 and comparing it with DefiLlama's volume for that day would settle it.
+- **Whether DefiLlama's NEAR Intents volume counts both legs of each swap.** This moves every take rate and the peer share by about 2×. Summing one day of `intents.near` settlement legs before 2026-11-05 and comparing it with DefiLlama's volume for that day would settle it. (Settled in part on 2026-11-13, exploratory: it counts both legs of public swaps, and from 2026-09-01 confidential-treasury flow at about one leg. What that flow represents is still open; [`leg-count.md`](leg-count.md).)
 - **Who sold the NEAR that the front-end fund bought with USDC.**
 - **How much of the escrow stream is near.com's front-end fee moved off the public rails,** as against new fees.
 - **Whether the escrow releases are fee revenue at all.** That is still unattested. Section 5 of `THESIS.md` already names an attestation by NEAR as the evidence that would settle it.

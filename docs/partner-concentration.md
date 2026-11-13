@@ -20,7 +20,7 @@ Window: 30 days, 2026-10-06 → 2026-11-04 (UTC). Every number marked with an `n
 | Ceiling (also counting all NEAR unshielded from the Confidential Intents escrow to the buyback wallet, fee stream unattested) | 43.0<!--n:swapkit_exit_ceiling_pct-->% |
 | Wider ceiling (the same logic applied to the escrow-path NEAR that reached `fefundsadmin` too) | 73.7<!--n:swapkit_exit_ceiling_all_escrow_pct-->% |
 
-SwapKit routes 38.2<!--n:swapkit_vol_share_pct-->% of 1Click volume, about 21.1<!--n:swapkit_share_of_intents_net_pct-->% of all Intents volume (one-sided). Its share of NEAR's revenue is between 2.0<!--n:swapkit_exit_traceable_pct-->% (what traces to it) and 43.0<!--n:swapkit_exit_ceiling_pct-->% (the ceiling; 73.7<!--n:swapkit_exit_ceiling_all_escrow_pct-->% if the escrow NEAR reaching the front-end fund is counted too), so the revenue line may be exposed to a similar or larger degree; the data cannot say.
+SwapKit routes 38.2<!--n:swapkit_vol_share_pct-->% of 1Click volume, about 21.1<!--n:swapkit_share_of_intents_net_pct-->% of all Intents volume on the halved basis (from 2026-09-01 that basis is not exactly one-sided: [`leg-count.md`](leg-count.md)). Its share of NEAR's revenue is between 2.0<!--n:swapkit_exit_traceable_pct-->% (what traces to it) and 43.0<!--n:swapkit_exit_ceiling_pct-->% (the ceiling; 73.7<!--n:swapkit_exit_ceiling_all_escrow_pct-->% if the escrow NEAR reaching the front-end fund is counted too), so the revenue line may be exposed to a similar or larger degree; the data cannot say.
 
 ## 1. Volume is spread out, but NEAR's explicit fees are concentrated elsewhere
 

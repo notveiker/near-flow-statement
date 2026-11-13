@@ -172,7 +172,7 @@ footer{margin:3rem 0 2rem;padding-top:1rem;border-top:1px solid var(--grid);font
 <dt>Data as of</dt>
 <dd><span data-m="asof">2026-11-04</span> (<code>data/metrics.json</code>). Revenue-wallet window <span data-m="revwallets_window">2026-10-06..2026-11-04</span>. NEAR RPC block <span data-m="rpc_block">223,230,811</span>.</dd>
 <dt>Data fingerprint</dt>
-<dd><code data-fingerprint="7d87896cc5884c17">7d87896cc5884c17</code>, the first 16 hex of the SHA-256 of <code>data/MANIFEST.json</code>, which pins every raw snapshot.</dd>
+<dd><code data-fingerprint="c7d5035d55c37962">c7d5035d55c37962</code>, the first 16 hex of the SHA-256 of <code>data/MANIFEST.json</code>, which pins every raw snapshot.</dd>
 <dt>Pre-registration</dt>
 <dd><code>PREREG.md</code> SHA-256 <code data-prereg="19e470be5398f67ce7b6b5a51f007c0c7a0fcc059b61853c52caf7401452e240">19e470be5398f67c…</code>, frozen at git tag <code>prereg-freeze</code> (commit <code>413d776</code>, 2026-11-05 22:53:29 UTC), before the first BigQuery result the repository records (<span data-r="stamp:raw/bq/staking_flows_daily.json">2026-11-05 22:55:37 UTC</span> in <code>data/MANIFEST.json</code>); the order rests on the author&rsquo;s own commit and manifest times. <a href="https://github.com/notveiker/near-flow-statement/blob/main/PREREG.md#what-we-had-already-seen-when-we-froze-this">&ldquo;What we had already seen&rdquo;</a> in that file lists the data already in hand.</dd></dl>
 <nav aria-label="Project documents">
@@ -3649,7 +3649,7 @@ ORDER BY 1, 2, 3
 <figcaption>Windows: 2026-08-07 to 2026-11-04 in three 30-day blocks (UTC). Unit: basis points. The axis starts at zero. Grey bars use a different denominator and are not like-for-like with the other two.</figcaption></figure>
 <ul class="notes">
 <li>NEAR&rsquo;s explicit take rose mainly because more volume carries a buyback fee entry (<span data-m="take_b1_vol_with_bb_pct">23.6</span>% of volume in the first block, <span data-m="take_b3_vol_with_bb_pct">43.0</span>% in the last), not because SwapKit&rsquo;s share fell: it stayed between <span data-m="take_b1_swapkit_vol_pct">35.6</span>% and <span data-m="take_b3_swapkit_vol_pct">38.2</span>%.</li>
-<li>1Click&rsquo;s share of DefiLlama&rsquo;s volume falls from <span data-m="oneclick_share_of_llama_week_before_0901_pct">86.2</span>% in the week before 2026-09-01 to <span data-m="oneclick_share_of_llama_week_after_0901_pct">60.8</span>% in the week from that day, with no matching change in 1Click&rsquo;s own volume (both shares are on the halved, one-sided basis used elsewhere on this page; on DefiLlama&rsquo;s reported basis they would be half as large). That is consistent with DefiLlama counting more of Intents&rsquo; volume from that date; if so, the first block&rsquo;s <span data-m="take_b1_captured_bp">2.89</span> bp is overstated and the true rise is, if anything, larger.</li>
+<li>1Click&rsquo;s share of DefiLlama&rsquo;s volume falls from <span data-m="oneclick_share_of_llama_week_before_0901_pct">86.2</span>% in the week before 2026-09-01 to <span data-m="oneclick_share_of_llama_week_after_0901_pct">60.8</span>% in the week from that day, with no matching change in 1Click&rsquo;s own volume (both shares are on the halved basis used elsewhere on this page; on DefiLlama&rsquo;s reported basis they would be half as large). That is consistent with DefiLlama counting more of Intents&rsquo; volume from that date, and a later sum of <code>intents.near</code> settlement shows it: from 2026-09-01 the series adds confidential-treasury flow at about one leg (exploratory, <code>docs/leg-count.md</code>). If so, the first block&rsquo;s <span data-m="take_b1_captured_bp">2.89</span> bp is overstated and the true rise is, if anything, larger.</li>
 <li>Partner numbers rest on one key-gated source, the Explorer API.</li></ul>
 <div class="source">
 <p><strong>Source:</strong></p>
@@ -3983,7 +3983,7 @@ ORDER BY 1, 2, 3
 <dt>SwapKit share of 1Click volume</dt>
 <dd><span data-m="swapkit_vol_share_pct">38.2</span>%</dd></div>
 <div>
-<dt>SwapKit share of all Intents volume, one-sided</dt>
+<dt>SwapKit share of all Intents volume, halved basis</dt>
 <dd><span data-m="swapkit_share_of_intents_net_pct">21.1</span>%</dd></div>
 <div>
 <dt>Volume HHI, SwapKit as one channel / split</dt>
@@ -4145,7 +4145,7 @@ ORDER BY 1, 2, 3
 <div class="cardtop"><span class="badge badge-exp"><svg class="ico" viewBox="0 0 20 20" width="14" height="14" aria-hidden="true" focusable="false"><circle class="i-line" cx="10" cy="10" r="8" /><path class="i-line" d="M12.9 7.1l-1.7 4.1-4.1 1.7 1.7-4.1z" /></svg> Exploratory, chosen after the freeze</span><a href="#chart-paid" aria-label="Link to this chart">#</a></div>
 <h3 id="chart-paid-h">Listed partner fees were at least <span data-m="partners_kept_vs_near_rev_low_x">1.75</span>× NEAR&rsquo;s entire captured revenue (<span data-m="partners_kept_vs_near_rev_low_tight_x">1.81</span>× on the tighter reading), and 1Click was a net route out of NEAR: $<span data-m="explorer_out_of_near_usd_m">24.0</span>M out against $<span data-m="explorer_into_near_usd_m">14.6</span>M in over 30 days.</h3>
 <p class="shows"><strong>What it shows:</strong> The fees 1Click swaps listed for partners ($<span data-m="explorer_partner_fees_all_usd_k">4,454.2</span>K) as a multiple of NEAR&rsquo;s entire captured Intents revenue ($<span data-m="revwallets_usd_k">2,009.7</span>K), between <span data-m="partners_kept_vs_near_rev_low_x">1.75</span>× and <span data-m="partners_kept_vs_near_rev_high_x">2.22</span>×, and 1Click swap volume into and out of NEAR, over the 30 days 2026-10-06 to 2026-11-04.</p>
-<p class="notshows"><strong>What it does not show:</strong> The other half of Intents: 1Click is <span data-m="explorer_vs_llama_net_pct">55.2</span>% of DefiLlama&rsquo;s volume on a one-sided basis, and near.com, direct solver flow and other integrations have a fee structure the Explorer API does not show, so we do not extrapolate.</p>
+<p class="notshows"><strong>What it does not show:</strong> The other half of Intents: 1Click is <span data-m="explorer_vs_llama_net_pct">55.2</span>% of DefiLlama&rsquo;s volume on the halved basis (<span data-m="legcount_oneclick_share_lo_pct">37.5</span>% to <span data-m="legcount_oneclick_share_hi_pct">39.8</span>% on one-sided volume if the confidential flow DefiLlama counts from 2026-09-01 is swap volume; exploratory), and near.com, direct solver flow and other integrations have a fee structure the Explorer API does not show, so we do not extrapolate.</p>
 <figure class="chart-fig">
 <div class="chart">
 <div class="cv cv-wide"><svg class="svg" viewBox="0 0 720 343" role="img" aria-labelledby="chart-paid-w-t chart-paid-w-d" focusable="false">
@@ -4463,7 +4463,7 @@ ORDER BY 1, 2, 3
 <dt>30 days, net (halved) basis</dt>
 <dd><span data-m="intents_share_peerset_30d_net_pct">38.6</span>%</dd></div></dl>
 <ul class="notes">
-<li>Reported volume appears to count both legs of an Intents swap (DefiLlama&rsquo;s adapter states no methodology); on a net, halved basis the 30-day share is <span data-m="intents_share_peerset_30d_net_pct">38.6</span>%.</li>
+<li>Reported Intents volume counts both legs of public swaps (measured), plus, from 2026-09-01, confidential-treasury flow at about one leg (measured; what that flow represents is inferred); DefiLlama&rsquo;s adapter states no methodology, and this comes from a sum of <code>intents.near</code> settlement on five days (exploratory, <code>docs/leg-count.md</code>). On one-sided volume the 30-day share is <span data-m="legcount_peer_share_lo_pct">46.6</span>% to <span data-m="legcount_peer_share_hi_pct">48.1</span>% if that confidential flow is swap volume and <span data-m="legcount_peer_share_public_lo_pct">23.9</span>% to <span data-m="legcount_peer_share_public_hi_pct">25.0</span>% if it is not; the halved basis gives <span data-m="intents_share_peerset_30d_net_pct">38.6</span>%. Only Intents is restated.</li>
 <li>The last month covers 1-4 November only. Forward test F4 asks whether the share over 2026-11-06 to 2026-11-13 is at least <span data-k="f4_min_pct">50</span>% on the reported basis; this chart is context for it, not the test.</li></ul>
 <div class="source">
 <p><strong>Source:</strong></p>
@@ -4879,7 +4879,7 @@ ORDER BY 1, 2, 3
 <dt>Captured share of gross fees, 30 days</dt>
 <dd><span data-m="capture_share_30d_pct">32.5</span>%</dd></div></dl>
 <ul class="notes">
-<li>Revenue before the 2026-02-23 fee switch counts as captured, as DefiLlama labels it. Reported volume was $<span data-s="intents_monthly.2026-10.vol_b">3.99</span>B in October. The volume is what DefiLlama reports (it appears to count both legs of a swap; its adapter states no methodology), and it steps up on 2026-09-01 (see the take chart above).</li>
+<li>Revenue before the 2026-02-23 fee switch counts as captured, as DefiLlama labels it. Reported volume was $<span data-s="intents_monthly.2026-10.vol_b">3.99</span>B in October. The volume is what DefiLlama reports: both legs of public swaps, and from 2026-09-01 also confidential-treasury flow at about one leg (exploratory, <code>docs/leg-count.md</code>; its adapter states no methodology). So it steps up on 2026-09-01 (see the take chart above), and months before September are on the old definition. On one-sided volume the last 30 days&rsquo; captured take is <span data-m="legcount_take_captured_bp_lo">6.76</span> to <span data-m="legcount_take_captured_bp_hi">7.18</span> bp if that flow is swap volume.</li>
 <li>The last month covers 1-4 November only. Forward test F3 asks whether the captured take over 2026-11-06 to 2026-11-13 is below <span data-k="f3_max_bp">4.0</span> bp; this chart is context for it, not the test.</li></ul>
 <div class="source">
 <p><strong>Source:</strong></p>
@@ -7865,7 +7865,7 @@ L276.3,133.1L277,131.1L277.6,133.1L278.2,133.1L278.9,133.4L279.5,133.6L280.1,133
 <li><strong>Net exchange inflow as one number (H1b, H1c).</strong> Only <span data-m="h1b_coverage_count_pct">20.0</span>% of the top-100 receivers carry an exchange label (<span data-m="h1b_coverage_tier1_count_pct">10.0</span>% a cited one; the rest are labelled by our sweep rule). The binding gap is labelling, not data: no citable NEAR address was found for OKX, Coinbase, Kraken, Bybit, HTX, Crypto.com, Upbit or Bithumb, and nothing is labelled from its name alone.</li>
 <li><strong>Which fee stream pays the escrow releases.</strong> <span data-m="ladder_escrow_unshields_pct_of_issuance">11.25</span> points of the ladder arrive as unshields from the Confidential Intents escrow. The public chain does not show which fee stream funds them; a per-stream attestation by NEAR would turn the range into one number.</li>
 <li><strong>NEAR&rsquo;s share of partner fees.</strong> On partner swaps with no buyback entry the ledger puts NEAR&rsquo;s share, as it reaches the buyback wallet, at no more than <span data-m="near_share_of_partner_fees_max_pct">22.4</span>% (<span data-m="near_share_of_partner_fees_max_tight_pct">19.6</span>% on the tighter reading) but does not measure it.</li>
-<li><strong>The other half of Intents.</strong> 1Click is <span data-m="explorer_vs_llama_net_pct">55.2</span>% of DefiLlama&rsquo;s volume on a one-sided basis. near.com, direct solver flow and other integrations have a fee structure the Explorer API does not show, and we do not extrapolate.</li>
+<li><strong>The other half of Intents.</strong> 1Click is <span data-m="explorer_vs_llama_net_pct">55.2</span>% of DefiLlama&rsquo;s volume on the halved basis (<span data-m="legcount_oneclick_share_lo_pct">37.5</span>% to <span data-m="legcount_oneclick_share_hi_pct">39.8</span>% on one-sided volume if the confidential flow DefiLlama counts from 2026-09-01 is swap volume; exploratory, <code>docs/leg-count.md</code>). near.com, direct solver flow and other integrations have a fee structure the Explorer API does not show, and we do not extrapolate.</li>
 <li><strong>Contract usage.</strong> The track brief names it, and the Nearblocks snapshot has an active-contract count, but that count falls from <span data-m="l1_step_contracts_before_k">2,194.2</span>K on 2026-03-31 to <span data-m="l1_step_contracts_after_k">184.6</span>K on 2026-04-02, an order of magnitude in two days, while this repository holds no definition of what is counted. The usage card&rsquo;s table shows the step; no finding rests on it.</li>
 <li><strong>The track brief&rsquo;s BigQuery topics for daily active accounts and transaction counts.</strong> No BigQuery query was written for them: the committed queries cover staking, exchange and Intents flows. The usage card uses Nearblocks aggregates instead, and says so; this repository applies no sybil or bot filter to them.</li>
 <li><strong>Who the sellers were.</strong> NEAR is fungible, so every flow here is a market-wide balance. Nothing says which coins were sold.</li>
@@ -7884,7 +7884,7 @@ L276.3,133.1L277,131.1L277.6,133.1L278.2,133.1L278.9,133.4L279.5,133.6L280.1,133
 <p class="see"><strong>See:</strong> check: PASS. Every raw snapshot under data/raw/ matches the SHA-256 recorded in data/MANIFEST.json.</p></li>
 <li>
 <p class="do"><strong>Do:</strong> <code>python3 -m pipeline.compute</code></p>
-<p class="see"><strong>See:</strong> wrote data/metrics.json (<span data-count="metrics">308</span> metrics, as of 2026-11-04). data/metrics.json and data/series.json do not change: the rebuild is deterministic.</p></li>
+<p class="see"><strong>See:</strong> wrote data/metrics.json (<span data-count="metrics">376</span> metrics, as of 2026-11-04). data/metrics.json and data/series.json do not change: the rebuild is deterministic.</p></li>
 <li>
 <p class="do"><strong>Do:</strong> <code>python3 -m pipeline.check --numbers</code></p>
 <p class="see"><strong>See:</strong> check: PASS. Every number marked in README.md, THESIS.md, PREREG-ADDENDUM.md and docs/*.md matches data/metrics.json.</p></li>
