@@ -349,8 +349,118 @@ def f3() -> dict:
             "top1_combined": {"solver": top[0][0], "share": top[0][1] / t}, "top3_combined": [{"solver": k, "share": v / t} for k, v in top[:3]]}
 
 
+# ------------------------------------------------------------------ F2b
+BRIDGE = "bridge-mng.near"
+
+
+def f2b() -> dict:
+    a = load("rb_f2b_a_daily")
+    k, n = Counter(), Counter()
+    for r in a:
+        k[r["kind"]] += int(r["yocto"]) / Y
+        n[r["kind"]] += int(r["n"])
+    R = k["out"] / k["wrap"]
+    f1_mints = f1()["external_mint_deposits_near"]
+    b = load("rb_f2b_b_withdrawals_to_bridge")
+    to_bridge = [r for r in b if r["part"] == "to_bridge"]
+    wd_native = sum(int(r["yocto"] or 0) for r in to_bridge if r["event"] == "native_withdraw" or r["token"] == "nep141:wrap.near") / Y
+    wd_share = wd_native / k["wrap"]
+    funders = load("rb_f2b_c_direct_funders")
+    by = {r["signer"]: float(r["near"] or 0) for r in funders if r["part"] == "by_signer"}
+    direct = sum(by.values())
+    top = sorted(by.items(), key=lambda kv: -kv[1])
+    unst = set(json.loads((RAW / "unstakers" / "account_set.json").read_text())["accounts"])
+    exch = set()
+    for v in json.loads((RAW / "labels" / "exchange_accounts.json").read_text()).values():
+        if isinstance(v, list):
+            for z in v:
+                if isinstance(z, dict) and "account" in z:
+                    exch.add(z["account"])
+                elif isinstance(z, str):
+                    exch.add(z)
+    in_lists = sum(v for a_, v in by.items() if a_ in unst or a_ in exch)
+    over = [r for r in load("rb_f2b_d_funder_overlap") if r["part"] == "overlap"]
+    ov_fund = sum(float(r["x"] or 0) for r in over)
+    ov_wd = sum(float(r["y"] or 0) for r in over)
+    foot = [r for r in load("rb_f2b_d_funder_overlap") if r["part"] != "overlap"]
+    return {"wrapped_near": k["wrap"], "wrap_events": n["wrap"], "passed_to_intents_near": k["out"], "R_pass_through": R,
+            "H_F2b_a_supported": 0.95 <= R <= 1.05, "H_F2b_a_falsified": R < 0.8 or R > 1.2,
+            "transfers_in_near": k["in"], "refund_in_near": k["refund_in"], "f1_mints_near": f1_mints, "f1_consistent": k["out"] >= f1_mints * 0.999,
+            "withdrawals_to_bridge_near": wd_native, "withdrawals_share_of_wrapped": wd_share,
+            "H_F2b_b_supported": wd_share >= 0.5, "H_F2b_b_falsified": wd_share < 0.1, "step3_triggered": wd_share < 0.8,
+            "direct_funded_near": direct, "direct_coverage_of_wrapped": direct / k["wrap"], "direct_transfers": sum(int(r["n"]) for r in funders if r["part"] == "by_signer"),
+            "funders": len(by), "top_funders": [{"signer": a_, "near": v, "share": v / direct} for a_, v in top[:10]], "top10_share": sum(v for _, v in top[:10]) / direct,
+            "funded_by_unstakers_or_exchange_list_near": in_lists, "funded_by_lists_share": in_lists / direct,
+            "H_F2b_c_supported": (direct / k["wrap"] >= 0.8 and sum(v for _, v in top[:10]) / direct >= 0.5 and in_lists / direct < 0.1),
+            "H_F2b_c_falsified": in_lists / direct >= 0.1,
+            "top_funder_matches_f1": {"signer": top[0][0], "near": top[0][1], "f1_mints_near": f1_mints, "ratio": top[0][1] / f1_mints},
+            "post_hoc_recycled": {"funders_also_native_withdraw_receivers": len(over), "funded_near": ov_fund, "withdrawn_to_them_near": ov_wd, "share_of_direct": ov_fund / direct},
+            "post_hoc_top_funder_intents_events": len(foot)}
+
+
+# ------------------------------------------------------------------ F4
+def f4() -> dict:
+    rows = load("rb_f4a_fee_credits")
+    q2d = load("rb_q2_native_withdraw")
+    deliv = Counter()
+    for r in q2d:
+        s = r["src"]
+        g = "5880ad2b" if s.startswith("5880ad2b") else "143f2bb4" if s.startswith("143f2bb4") else "176121bd" if s.startswith("176121bd") else "rest"
+        deliv[g] += int(r["yocto"]) / Y
+    cred = defaultdict(Counter)
+    for r in rows:
+        cred[r["grp"]][r["channel"]] += int(r["yocto"] or 0) / Y
+    recon = {g: {"delivered_near": deliv[g], "credits_all_channels_near": sum(cred[g].values()), "ratio_all": sum(cred[g].values()) / deliv[g],
+                 "credits_mt_transfer_near": cred[g]["mt_transfer"], "ratio_mt_transfer_only_post_hoc": cred[g]["mt_transfer"] / deliv[g],
+                 "token_diff_near_gross_positive": cred[g]["token_diff"]} for g in deliv}
+    for g in recon:
+        recon[g]["within_0p8_1p5_all_channels"] = 0.8 <= recon[g]["ratio_all"] <= 1.5
+    both = ("5880ad2b", "143f2bb4")
+    send = Counter()
+    credit_all, credit_mt = 0.0, 0.0
+    for r in rows:
+        if r["grp"] in both:
+            v = int(r["yocto"] or 0) / Y
+            credit_all += v
+            if r["channel"] == "mt_transfer":
+                credit_mt += v
+                send[r["cp"]] += v
+    top_sender, top_v = send.most_common(1)[0]
+    esc_p = Counter()
+    tot_p = Counter()
+    for r in rows:
+        if r["period"] == "pre_0819" or r["grp"] == "176121bd":
+            continue
+        v = int(r["yocto"] or 0) / Y
+        tot_p["all"] += v
+        if r["channel"] == "mt_transfer":
+            tot_p["mt"] += v
+        if r["channel"] == "mt_transfer" and r["cp"] == ESCROW:
+            esc_p["esc"] += v
+    esc_pre = sum(int(r["yocto"]) / Y for r in rows if r["period"] == "pre_0819" and r["channel"] == "mt_transfer" and r["cp"] == ESCROW and r["grp"] != "176121bd")
+    tot_pre = sum(int(r["yocto"] or 0) / Y for r in rows if r["period"] == "pre_0819" and r["grp"] != "176121bd")
+    esc_rest_all = sum(int(r["yocto"]) / Y for r in rows if r["grp"] == "rest" and r["cp"] == ESCROW)
+    csv_unshield = sum(int(r["amount_yocto"]) / Y for r in csv.DictReader(open(RAW / "escrow" / "deliveries.csv")) if r["path"] == "escrow_unshield" and WINDOW_START <= r["day"] <= CUTOFF_DATE)
+    mt_by_period = defaultdict(Counter)
+    for r in rows:
+        if r["grp"] in both and r["channel"] == "mt_transfer":
+            mt_by_period[r["period"]][r["cp"]] += int(r["yocto"]) / Y
+    share = esc_p["esc"] / tot_p["all"]
+    return {"reconciliation": recon, "delivered_total_near": sum(deliv.values()),
+            "H_F4a_strict": {"top_sender": top_sender, "top_sender_near": top_v, "credits_all_channels_near": credit_all, "share": top_v / credit_all,
+                              "supported": top_v / credit_all >= 0.5, "falsified": top_v / credit_all < 0.25,
+                              "attribution_allowed_by_reconciliation": all(recon[g]["within_0p8_1p5_all_channels"] for g in both)},
+            "H_F4a_mt_transfer_only_post_hoc": {"share": top_v / credit_mt, "credits_mt_transfer_near": credit_mt,
+                                                 "top_senders": [{"sender": a, "near": v, "share": v / credit_mt} for a, v in send.most_common(5)]},
+            "H_F4b_strict": {"escrow_mt_transfer_near_mid_post": esc_p["esc"], "all_credits_mid_post_near": tot_p["all"], "share": share, "supported": share >= 0.2, "falsified": share < 0.05,
+                              "share_of_mt_transfer_only_post_hoc": esc_p["esc"] / tot_p["mt"], "pre_0819_share_all_channels": esc_pre / tot_pre},
+            "rest_group_escrow_funded_near": esc_rest_all, "rest_group_escrow_share_of_credits": esc_rest_all / sum(cred["rest"].values()),
+            "deliveries_csv_escrow_unshield_near": csv_unshield, "rest_delivered_near": deliv["rest"],
+            "senders_by_period_persistent_accounts_post_hoc": {p: [{"sender": a, "near": v} for a, v in c.most_common(4)] for p, c in sorted(mt_by_period.items())}}
+
+
 def main() -> int:
-    res = {"cutoff_block": 223_088_015, "windows": {"q1_q2": [WINDOW_START, CUTOFF_DATE], "q3_q4": [SWAP_START, CUTOFF_DATE]}, "q1": q1(), "q2": q2(), "q3": q3(), "q4": q4(), "f1": f1(), "f3": f3()}
+    res = {"cutoff_block": 223_088_015, "windows": {"q1_q2": [WINDOW_START, CUTOFF_DATE], "q3_q4": [SWAP_START, CUTOFF_DATE]}, "q1": q1(), "q2": q2(), "q3": q3(), "q4": q4(), "f1": f1(), "f3": f3(), "f2b": f2b(), "f4": f4()}
     jobs = [json.loads(l) for l in (OUT / "jobs.jsonl").read_text().splitlines()]
     res["bytes_billed_total"] = sum(j["bytes_billed"] for j in jobs)
     dest = ROOT / "data" / "derived" / "rebuild_results.json"

@@ -60,3 +60,15 @@ class Results(unittest.TestCase):
         self.assertTrue(r["q1"]["ledger_complete_within_1pct"])
         self.assertEqual(r["cutoff_block"], rb.CUTOFF_BLOCK)
         self.assertEqual(r["q2"]["chain_vs_deliveries_csv"]["days_with_diff_gt_1near"], 0)
+
+    def test_f2b_and_f4_reconcile(self):
+        r = json.load(open(rb.ROOT / "data" / "derived" / "rebuild_results.json"))
+        f = r["f2b"]
+        self.assertAlmostEqual(f["R_pass_through"], 1.0, places=3)
+        self.assertAlmostEqual(f["direct_coverage_of_wrapped"], 1.0, places=2)
+        self.assertTrue(f["f1_consistent"])
+        self.assertAlmostEqual(f["top_funder_matches_f1"]["ratio"], 1.0, places=4)
+        g = r["f4"]
+        self.assertAlmostEqual(g["rest_group_escrow_funded_near"] / g["deliveries_csv_escrow_unshield_near"], 1.0, delta=0.01)
+        self.assertFalse(g["H_F4a_strict"]["attribution_allowed_by_reconciliation"])
+        self.assertTrue(g["H_F4b_strict"]["supported"])

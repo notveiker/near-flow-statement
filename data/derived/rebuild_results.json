@@ -1,5 +1,5 @@
 {
- "bytes_billed_total": 452111368192,
+ "bytes_billed_total": 862407622656,
  "cutoff_block": 223088015,
  "f1": {
   "H_F1_falsified": true,
@@ -35,6 +35,97 @@
   "net_external_near": 16410179.169153448,
   "recycling_ratio": 2.390988047007086,
   "top5_signer_share": 1.0
+ },
+ "f2b": {
+  "H_F2b_a_falsified": false,
+  "H_F2b_a_supported": true,
+  "H_F2b_b_falsified": true,
+  "H_F2b_b_supported": false,
+  "H_F2b_c_falsified": false,
+  "H_F2b_c_supported": true,
+  "R_pass_through": 1.0,
+  "direct_coverage_of_wrapped": 1.0000615467928138,
+  "direct_funded_near": 75970239.89900002,
+  "direct_transfers": 58799,
+  "f1_consistent": true,
+  "f1_mints_near": 30798973.514278293,
+  "funded_by_lists_share": 0.0,
+  "funded_by_unstakers_or_exchange_list_near": 0,
+  "funders": 55037,
+  "passed_to_intents_near": 75965564.4621431,
+  "post_hoc_recycled": {
+   "funded_near": 9025076.652,
+   "funders_also_native_withdraw_receivers": 636,
+   "share_of_direct": 0.11879752734753173,
+   "withdrawn_to_them_near": 8978298.008615041
+  },
+  "post_hoc_top_funder_intents_events": 0,
+  "refund_in_near": 1917.123571995194,
+  "step3_triggered": true,
+  "top10_share": 0.5516836431702736,
+  "top_funder_matches_f1": {
+   "f1_mints_near": 30798973.514278293,
+   "near": 30798977.710000016,
+   "ratio": 1.0000001362292714,
+   "signer": "1244d552459d7230bdaf267c1d09a296282dc85251958434e670d9b9d561fac7"
+  },
+  "top_funders": [
+   {
+    "near": 30798977.710000016,
+    "share": 0.40540845666600844,
+    "signer": "1244d552459d7230bdaf267c1d09a296282dc85251958434e670d9b9d561fac7"
+   },
+   {
+    "near": 4220148.07,
+    "share": 0.05555001636970675,
+    "signer": "58996a7de3660c2879f1f4e966e21d7af7db5d6a77d0e69fc19f255cb7fa5a46"
+   },
+   {
+    "near": 1730851.33,
+    "share": 0.022783281088767274,
+    "signer": "6ec9de2fb1bf4f758181fd88978e4926960bef9a5ce18f9cee464568c1fafbfd"
+   },
+   {
+    "near": 1214593.14,
+    "share": 0.015987749171448743,
+    "signer": "6865e23e52f1f103be7f2add14b2d4e72d0419312b1cb55f55bc94b649df9461"
+   },
+   {
+    "near": 1000000.0,
+    "share": 0.013163049127256512,
+    "signer": "3724f734a662e7068455a67b4d08e1269727fd1d36ccc3396c0ae5164dac6ee0"
+   },
+   {
+    "near": 741543.95,
+    "share": 0.009760979443869845,
+    "signer": "092634fb4267ea3269b8dc992c0ebef7312fc76cb6cf077aeb513dd3fd4f91db"
+   },
+   {
+    "near": 660539.5900000001,
+    "share": 0.008694715073667874,
+    "signer": "31f8d8ff1af47510acf2bd525be7e6c30047d799dd54ec12fac095116c65af49"
+   },
+   {
+    "near": 535164.93,
+    "share": 0.007044402264774792,
+    "signer": "5cec4b8f928abc936e530049a8f266f6ba97dbf83d407d64dfe4cd3d7cbbd2f9"
+   },
+   {
+    "near": 509720.0,
+    "share": 0.006709469401145189,
+    "signer": "4595a8f69bf55c5ce50c32644a518450d43c692672c90c620605f797b6783d7e"
+   },
+   {
+    "near": 500000.0,
+    "share": 0.006581524563628256,
+    "signer": "c4fbd749f89d80a7fbf20d9571c0a93fb9f22b54e5ad6d239607d2c3e8d52d4a"
+   }
+  ],
+  "transfers_in_near": 0,
+  "withdrawals_share_of_wrapped": 0.0,
+  "withdrawals_to_bridge_near": 0.0,
+  "wrap_events": 58705,
+  "wrapped_near": 75965564.4621431
  },
  "f3": {
   "H_F3a_robust": true,
@@ -74,6 +165,156 @@
   ],
   "unanchored_receipts": 61522,
   "uplift_vs_simple": 0.6182821364310669
+ },
+ "f4": {
+  "H_F4a_mt_transfer_only_post_hoc": {
+   "credits_mt_transfer_near": 646468.4087915203,
+   "share": 0.5247075619392908,
+   "top_senders": [
+    {
+     "near": 339206.8626477714,
+     "sender": "blockzen-1-main.near",
+     "share": 0.5247075619392908
+    },
+    {
+     "near": 177113.3778166198,
+     "sender": "crux-solver.near",
+     "share": 0.27397066184209645
+    },
+    {
+     "near": 78637.35729501044,
+     "sender": "solver-priv-liq.near",
+     "share": 0.12164145413077751
+    },
+    {
+     "near": 9251.921055372399,
+     "sender": "solver-ref.near",
+     "share": 0.014311482091858958
+    },
+    {
+     "near": 8058.24276966235,
+     "sender": "s1.anyliq-solver.near",
+     "share": 0.012465021739772366
+    }
+   ]
+  },
+  "H_F4a_strict": {
+   "attribution_allowed_by_reconciliation": false,
+   "credits_all_channels_near": 1262916.1243939903,
+   "falsified": false,
+   "share": 0.26859017483092135,
+   "supported": false,
+   "top_sender": "blockzen-1-main.near",
+   "top_sender_near": 339206.8626477714
+  },
+  "H_F4b_strict": {
+   "all_credits_mid_post_near": 1679043.432892166,
+   "escrow_mt_transfer_near_mid_post": 822714.8106050506,
+   "falsified": false,
+   "pre_0819_share_all_channels": 0.1760527673221091,
+   "share": 0.4899901899428043,
+   "share_of_mt_transfer_only_post_hoc": 0.6515084798393014,
+   "supported": true
+  },
+  "delivered_total_near": 1669164.7714230816,
+  "deliveries_csv_escrow_unshield_near": 910989.6681823933,
+  "reconciliation": {
+   "143f2bb4": {
+    "credits_all_channels_near": 381671.8260383967,
+    "credits_mt_transfer_near": 193705.99231072253,
+    "delivered_near": 194067.1085174155,
+    "ratio_all": 1.9667002252684442,
+    "ratio_mt_transfer_only_post_hoc": 0.9981392199355588,
+    "token_diff_near_gross_positive": 187965.83372767415,
+    "within_0p8_1p5_all_channels": false
+   },
+   "176121bd": {
+    "credits_all_channels_near": 209109.35172420734,
+    "credits_mt_transfer_near": 110053.15575797197,
+    "delivered_near": 110096.98532933294,
+    "ratio_all": 1.8993195054224135,
+    "ratio_mt_transfer_only_post_hoc": 0.9996019003496793,
+    "token_diff_near_gross_positive": 99056.19596623536,
+    "within_0p8_1p5_all_channels": false
+   },
+   "5880ad2b": {
+    "credits_all_channels_near": 881244.2983555804,
+    "credits_mt_transfer_near": 452762.4164807975,
+    "delivered_near": 452822.7617767396,
+    "ratio_all": 1.946113077217771,
+    "ratio_mt_transfer_only_post_hoc": 0.9998667352857764,
+    "token_diff_near_gross_positive": 428481.8818747829,
+    "within_0p8_1p5_all_channels": false
+   },
+   "rest": {
+    "credits_all_channels_near": 911915.9229290141,
+    "credits_mt_transfer_near": 911915.4153620936,
+    "delivered_near": 912177.9157995937,
+    "ratio_all": 0.9997127831467506,
+    "ratio_mt_transfer_only_post_hoc": 0.9997122267126255,
+    "token_diff_near_gross_positive": 0.5075669204647814,
+    "within_0p8_1p5_all_channels": true
+   }
+  },
+  "rest_delivered_near": 912177.9157995937,
+  "rest_group_escrow_funded_near": 909999.7681823932,
+  "rest_group_escrow_share_of_credits": 0.9978987594158173,
+  "senders_by_period_persistent_accounts_post_hoc": {
+   "mid_0819_0828": [
+    {
+     "near": 66062.59834442037,
+     "sender": "blockzen-1-main.near"
+    },
+    {
+     "near": 23345.07982565642,
+     "sender": "crux-solver.near"
+    },
+    {
+     "near": 9747.091110633883,
+     "sender": "solver-priv-liq.near"
+    },
+    {
+     "near": 1235.5504687069188,
+     "sender": "6247d9c671ca6a80cf2c75e26edb8cd75ebf00fcd3c56c39107d6ca20c9cfb29"
+    }
+   ],
+   "post_0829": [
+    {
+     "near": 246802.1101358577,
+     "sender": "blockzen-1-main.near"
+    },
+    {
+     "near": 54960.67786809962,
+     "sender": "crux-solver.near"
+    },
+    {
+     "near": 8058.24276966235,
+     "sender": "s1.anyliq-solver.near"
+    },
+    {
+     "near": 5146.480083598537,
+     "sender": "solver-ref.near"
+    }
+   ],
+   "pre_0819": [
+    {
+     "near": 98807.62012286375,
+     "sender": "crux-solver.near"
+    },
+    {
+     "near": 66724.95695972073,
+     "sender": "solver-priv-liq.near"
+    },
+    {
+     "near": 26342.154167493325,
+     "sender": "blockzen-1-main.near"
+    },
+    {
+     "near": 4349.766758501461,
+     "sender": "4fdbc608fd712338c7680c224f249360c855987cc25ec4501a9a47ef4c789264"
+    }
+   ]
+  }
  },
  "q1": {
   "attack_test": {
