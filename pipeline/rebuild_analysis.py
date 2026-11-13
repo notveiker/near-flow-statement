@@ -634,8 +634,47 @@ def f9() -> dict:
     return out
 
 
+# ------------------------------------------------------------------ F10
+def f10() -> dict:
+    a = load("rb_f10_a_ledger")
+    k = Counter()
+    cp = defaultdict(Counter)
+    for r in a:
+        v = int(r["yocto"]) / Y
+        k[r["kind"]] += v
+        cp[r["kind"]][r["cp"]] += v
+    bal = json.loads((OUT / "f10_intents_wnear_balances.json").read_text())
+    d = (int(bal[1]["yocto"]) - int(bal[0]["yocto"])) / Y
+    inflow, outflow = k["in"] + k["refund_in"], k["out"] + k["refund_out"] + k["unwrap"]
+    resid = d - (inflow - outflow)
+    unst, exch = _lists()
+    ex_out = sum(v for c, v in cp["out"].items() if c in exch)
+    ex_in = sum(v for c, v in cp["in"].items() if c in exch)
+    un_in = sum(v for c, v in cp["in"].items() if c in unst)
+    top = lambda c: [{"account": x, "near": v} for x, v in c.most_common(10)]
+    rows = load("rb_f10_b_d6b7_flows")
+    f = lambda v: float(v or 0)
+    out_t = sorted([(r["a"], f(r["near"]), int(r["n"])) for r in rows if r["part"] == "out_by_receiver" and r["kind"] == "TRANSFER"], key=lambda t: -t[1])
+    in_t = [(r["a"], f(r["near"]), int(r["n"])) for r in rows if r["part"] == "in_by_sender"]
+    sent = sum(t[1] for t in out_t)
+    ex_sent = sum(t[1] for t in out_t if t[0] in exch)
+    recv_direct = sum(t[1] for t in in_t)
+    f1n = f1()["native_withdraw_by_receiver_near"]
+    native_to_d6 = sum(v for kx, v in f1n.items() if kx.startswith("d6b77389"))
+    return {"balance_start_near": int(bal[0]["yocto"]) / Y, "balance_end_near": int(bal[1]["yocto"]) / Y, "balance_change_near": d,
+            "ledger_near": {x: k[x] for x in ("in", "refund_in", "out", "refund_out", "unwrap", "other")}, "ledger_net_near": inflow - outflow,
+            "residual_near": resid, "residual_over_larger_flow": abs(resid) / max(inflow, outflow), "H_F10a_complete": abs(resid) / max(inflow, outflow) <= 0.01,
+            "in_top10": top(cp["in"]), "out_top10": top(cp["out"]), "bridge_mng_share_of_inflow": cp["in"][BRIDGE] / k["in"],
+            "exchange_list_share_of_in": ex_in / k["in"], "exchange_list_share_of_out_transfers": ex_out / k["out"], "unstakers_share_of_in": un_in / k["in"],
+            "H_F10b_supported": ex_out / k["out"] >= 0.25, "H_F10b_falsified": ex_out / k["out"] < 0.05,
+            "d6b77389": {"sent_transfer_near": sent, "to_exchange_list_near": ex_sent, "to_exchange_share": ex_sent / sent, "top_receivers": [{"account": a_, "near": v, "transfers": n, "in_exchange_list": a_ in exch} for a_, v, n in out_t[:3]],
+                         "direct_received_near": recv_direct, "native_withdraw_received_near_f1": native_to_d6, "sent_over_direct_received": sent / recv_direct if recv_direct else None,
+                         "sent_over_direct_plus_native_withdraw_post_hoc": sent / (recv_direct + native_to_d6),
+                         "H_F10c_supported": ex_sent / sent >= 0.5, "H_F10c_falsified": ex_sent / sent < 0.1}}
+
+
 def main() -> int:
-    res = {"cutoff_block": 223_088_015, "windows": {"q1_q2": [WINDOW_START, CUTOFF_DATE], "q3_q4": [SWAP_START, CUTOFF_DATE]}, "q1": q1(), "q2": q2(), "q3": q3(), "q4": q4(), "f1": f1(), "f3": f3(), "f2b": f2b(), "f4": f4(), "f5": f5(), "f6": f6(), "f7": f7(), "f8": f8(), "f9": f9()}
+    res = {"cutoff_block": 223_088_015, "windows": {"q1_q2": [WINDOW_START, CUTOFF_DATE], "q3_q4": [SWAP_START, CUTOFF_DATE]}, "q1": q1(), "q2": q2(), "q3": q3(), "q4": q4(), "f1": f1(), "f3": f3(), "f2b": f2b(), "f4": f4(), "f5": f5(), "f6": f6(), "f7": f7(), "f8": f8(), "f9": f9(), "f10": f10()}
     jobs = [json.loads(l) for l in (OUT / "jobs.jsonl").read_text().splitlines()]
     res["bytes_billed_total"] = sum(j["bytes_billed"] for j in jobs)
     dest = ROOT / "data" / "derived" / "rebuild_results.json"

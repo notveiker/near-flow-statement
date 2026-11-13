@@ -99,3 +99,9 @@ class Results(unittest.TestCase):
         r = json.load(open(rb.ROOT / "data" / "derived" / "rebuild_results.json"))["f9"]
         for sv in ("blockzen-1-main.near", "crux-solver.near"):
             self.assertEqual(r[sv]["H_F9a_falsified"], any(abs(x) > 0.5 for x in r[sv]["month_deviation"].values()))
+
+    def test_f10_books_close(self):
+        r = json.load(open(rb.ROOT / "data" / "derived" / "rebuild_results.json"))["f10"]
+        self.assertTrue(r["H_F10a_complete"])
+        self.assertLess(r["residual_over_larger_flow"], 1e-9)
+        self.assertAlmostEqual(r["d6b77389"]["sent_over_direct_plus_native_withdraw_post_hoc"], 1.0, places=4)

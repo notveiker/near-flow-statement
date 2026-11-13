@@ -1,5 +1,5 @@
 {
- "bytes_billed_total": 1213397467136,
+ "bytes_billed_total": 1563576762368,
  "cutoff_block": 223088015,
  "f1": {
   "H_F1_falsified": true,
@@ -35,6 +35,132 @@
   "net_external_near": 16410179.169153448,
   "recycling_ratio": 2.390988047007086,
   "top5_signer_share": 1.0
+ },
+ "f10": {
+  "H_F10a_complete": true,
+  "H_F10b_falsified": true,
+  "H_F10b_supported": false,
+  "balance_change_near": 7611764.477724442,
+  "balance_end_near": 16566224.2906412,
+  "balance_start_near": 8954459.812916756,
+  "bridge_mng_share_of_inflow": 0.7808955730762955,
+  "d6b77389": {
+   "H_F10c_falsified": false,
+   "H_F10c_supported": true,
+   "direct_received_near": 782066.5800000001,
+   "native_withdraw_received_near_f1": 13606732.021309018,
+   "sent_over_direct_plus_native_withdraw_post_hoc": 1.000000029793383,
+   "sent_over_direct_received": 18.398432304830116,
+   "sent_transfer_near": 14388799.030000009,
+   "to_exchange_list_near": 14388799.030000009,
+   "to_exchange_share": 1.0,
+   "top_receivers": [
+    {
+     "account": "5c33c6218d47e00ef229f60da78d0897e1ee9665312550b8afd5f9c7bc6957d2",
+     "in_exchange_list": true,
+     "near": 14388799.030000009,
+     "transfers": 428
+    }
+   ]
+  },
+  "exchange_list_share_of_in": 0.0,
+  "exchange_list_share_of_out_transfers": 0.0,
+  "in_top10": [
+   {
+    "account": "bridge-mng.near",
+    "near": 75965564.46214314
+   },
+   {
+    "account": "omni.bridge.near",
+    "near": 5915997.690241034
+   },
+   {
+    "account": "lst-pool.near",
+    "near": 4006901.6203538724
+   },
+   {
+    "account": "v2.ref-finance.near",
+    "near": 444194.56992262014
+   },
+   {
+    "account": "hideon.near",
+    "near": 373065.5
+   },
+   {
+    "account": "n1-transit.near",
+    "near": 303654.8
+   },
+   {
+    "account": "jasnah-payments.near",
+    "near": 227006.91
+   },
+   {
+    "account": "dclv2.ref-labs.near",
+    "near": 172161.82052768258
+   },
+   {
+    "account": "irisout.near",
+    "near": 154640.0
+   },
+   {
+    "account": "swapkit.near",
+    "near": 136500.0
+   }
+  ],
+  "ledger_near": {
+   "in": 97280055.21004677,
+   "other": 140.48362359640413,
+   "out": 20968493.256664526,
+   "refund_in": 189493.26196671216,
+   "refund_out": 1962.562947933287,
+   "unwrap": 68887328.17467701
+  },
+  "ledger_net_near": 7611764.477724001,
+  "out_top10": [
+   {
+    "account": "omni.bridge.near",
+    "near": 10119669.865494367
+   },
+   {
+    "account": "lst-pool.near",
+    "near": 8660931.253574813
+   },
+   {
+    "account": "v2.ref-finance.near",
+    "near": 877066.9832391301
+   },
+   {
+    "account": "solver-priv-liq.near",
+    "near": 782051.2701676199
+   },
+   {
+    "account": "dclv2.ref-labs.near",
+    "near": 375102.1463004722
+   },
+   {
+    "account": "312435df0274d062b400bb8a44d325a091fc36fe2982804aadb005f5642e3ae4",
+    "near": 61011.653606682135
+   },
+   {
+    "account": "aurora",
+    "near": 34066.38154419517
+   },
+   {
+    "account": "c34972e917a83a37ff6a5214cc40af06c64e7e551afbafc4a194265bbb711b83",
+    "near": 20035.0
+   },
+   {
+    "account": "a84802e8929452e75799418afea7c7eb5f8facf15b75fafadc974831b53d7f44",
+    "near": 12082.95655863
+   },
+   {
+    "account": "router2.latedata9580.near",
+    "near": 5739.559354341082
+   }
+  ],
+  "residual_near": 4.414469003677368e-07,
+  "residual_over_larger_flow": 4.529075052548231e-15,
+  "unstakers_share_of_in": 5.139799714549932e-05
  },
  "f2b": {
   "H_F2b_a_falsified": false,

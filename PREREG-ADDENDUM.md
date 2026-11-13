@@ -268,3 +268,7 @@ Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. F
 ## 2026-11-13 01:26 UTC: F9 result
 
 Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. F9 ran after its method commit (`2bd39cd`, 01:25:27 UTC). Payments by `blockzen-1-main.near` to the persistent fee accounts are 30.0 bp of its simple-swap volume but the monthly ratio drifts from 58.8 to 20.3 bp (H-F9a falsified); weekly r 0.58 (H-F9b supported). `crux-solver.near`: 6.6 bp, monthly 7.4/3.3/11.5, r = -0.03 (both falsified). No fixed share of volume. Job: `rb_f9_a_solver_payments` 17.2 GB.
+
+## 2026-11-13 01:36 UTC: F10 result
+
+Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. F10 ran after its method commit (`fe7ac83`, 01:29:08 UTC). Contract-wide wNEAR books close (+7,611,764 NEAR, residual 4e-7 NEAR); counterparties: `bridge-mng.near` 78% of inflow, Omni bridge and the LST pool the main exits besides unwrap; exchange-list share of transfer outflow 0% (H-F10b falsified); `d6b77389…` forwarded 14.39M NEAR to a Binance PoR wallet (H-F10c supported), which is also one of the four wallets that fed the F7 relay. Operational note: the first run of `rb_f10_b_d6b7_flows` hit a network error ("No route to host"), a retry hung and was stopped by me, and a third run completed; only the completed job is in `jobs.jsonl` (0.0 GB billed on the aborted ones). Jobs: `rb_f10_s_wrap_intents` 181.9 GB, `rb_f10_s_acct_d6b7` 166.9 GB, `rb_f10_a_ledger` 0.1 GB; RPC balances in `f10_intents_wnear_balances.json`.
