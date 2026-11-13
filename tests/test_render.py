@@ -1477,8 +1477,8 @@ CARD_PHRASES = {
     "peers": ("context for it, not the test", "reported volume"),
     "revenue": ("NEAR delivered to the wallets", "context for it, not the test"),
     "supply": ("HSP-029", "context for it, not the test", "rounding"),
-    "usage": ("one step", "no sybil or bot filter", "cannot tell a change in what is counted", "by an order of magnitude", "not the BigQuery queries the track brief asks for",
-              "does not decompose either fall", "is not a pre-registered test"),
+    "usage": ("one step", "no sybil or bot filter", "Why they stopped is not in the data", "by an order of magnitude", "exploratory",
+              "is not a pre-registered test"),
 }
 # The hedges the headline itself carries (the headline is what a reader sees first).
 HEADLINE_PHRASES = {
@@ -1494,8 +1494,8 @@ HEADLINE_PHRASES = {
 # And the sections of the page that carry hedges of their own.
 SECTION_PHRASES = {
     "limits": ("inferred", "consistent with the docs rather than proven", "sample-attributed", "lower bounds", "mechanical"),
-    "not-computed": ("attestation", "fungible", "pending resolver", "Contract usage", "an order of magnitude in two days",
-                     "BigQuery topics", "no sybil or bot filter", "on the tighter reading"),
+    "not-computed": ("attestation", "fungible", "pending resolver", "Why the usage step happened", "is not in the data",
+                     "no sybil or bot filter", "on the tighter reading"),
 }
 
 
@@ -2637,18 +2637,19 @@ class Usage(unittest.TestCase):
 
     def test_what_the_card_does_not_show_names_the_gaps_the_brief_asks_about(self):
         text = re.sub(r"\s+", " ", card_node(DOM, "usage").find("p", "notshows").text())
-        for want in ("Why the step happened", "this repository holds no definition of what Nearblocks counts",
-                     "cannot tell a change in what is counted, or the end of automated traffic, from a real fall in usage",
-                     "That active accounts are people: this repository applies no sybil or bot filter",
-                     "Contract usage: the active-contract count falls by an order of magnitude on the same days (see the table), so it is not used",
-                     "Anything from BigQuery: these are Nearblocks aggregates, not the BigQuery queries the track brief asks for", "A cause for any of it."):
+        # Since 2026-11-13 (exploratory, docs/usage.md) BigQuery reproduces the Nearblocks series and decomposes the step; the card says who
+        # stopped, not why, and still applies no sybil filter.
+        for want in ("Why the step happened", "reproduces both series exactly", f"{METRICS['usage_bq_step_kaiching_share_pct']}% of the step",
+                     "Why they stopped is not in the data", "That active accounts are people: this repository applies no sybil or bot filter",
+                     "Contract usage: the Nearblocks active-contract count falls by an order of magnitude on the same days (see the table), so it is not used",
+                     f"has a median of {METRICS['usage_bq_contracts_called_median_30d_n']:,} a day"):
             self.assertIn(want, text)
-        # "none of the committed BigQuery queries measures" the brief's topics: a coarse guard, a distinct count of signers or predecessors, or a
-        # name of a Nearblocks column
+        # The usage queries are the only ones that count distinct signers, and each says it is exploratory and post-freeze.
         for sql in sorted((ROOT / "sql").rglob("*.sql")):
             body = sql.read_text(encoding="utf-8")
-            self.assertIsNone(re.search(r"(?i)count\s*\(\s*distinct\s+(signer|predecessor)", body), sql.name)
-            self.assertIsNone(re.search(r"(?i)active_accounts|active_contracts|daily active", body), sql.name)
+            if re.search(r"(?i)count\s*\(\s*distinct\s+(signer|predecessor)|n_signers", body):
+                self.assertTrue(sql.name.startswith("usage_"), sql.name)
+                self.assertIn("Exploratory (written 2026-11-13, after the freeze)", body, sql.name)
 
     def test_the_card_names_its_source_query_and_data(self):
         card = card_node(DOM, "usage")
@@ -2671,17 +2672,12 @@ class Usage(unittest.TestCase):
         heads = [li.find("strong").text().strip() for li in sec.find_all("li")]
         old = ["Net exchange inflow as one number (H1b, H1c).", "Which fee stream pays the escrow releases.", "NEAR’s share of partner fees.",
                "The other half of Intents.", "Who the sellers were.", "Longer-dated predictions P1 to P3.", "HSP-029’s issuance cut.", "Earlier work."]
-        self.assertEqual(heads, old[:4] + ["Contract usage.", "The track brief’s BigQuery topics for daily active accounts and transaction counts."] + old[4:])
+        self.assertEqual(heads, old[:4] + ["Why the usage step happened."] + old[4:])
         items = {li.find("strong").text().strip(): li for li in sec.find_all("li")}
-        contracts = items["Contract usage."]
-        self.assertEqual([r for _, r in refs_in(contracts)], ["l1_step_contracts_before_k", "l1_step_contracts_after_k"])
-        text = re.sub(r"\s+", " ", contracts.text())
-        self.assertIn(f"falls from {METRICS['l1_step_contracts_before_k']:,}K on {METRICS['l1_step_ref_date']} to {METRICS['l1_step_contracts_after_k']}K "
-                      f"on {METRICS['l1_step_date']}, an order of magnitude in two days", text)
-        self.assertIn("this repository holds no definition of what is counted", text)
-        topics = re.sub(r"\s+", " ", items["The track brief’s BigQuery topics for daily active accounts and transaction counts."].text())
-        self.assertIn("No BigQuery query was written for them", topics)
-        self.assertIn("uses Nearblocks aggregates instead", topics)
+        why = items["Why the usage step happened."]
+        self.assertEqual([r for _, r in refs_in(why)], ["usage_bq_step_kaiching_share_pct", "usage_bq_tg_share_of_signer_drop_pct"])
+        text = re.sub(r"\s+", " ", why.text())
+        self.assertIn("Why either happened is not in the data", text)
         lead = sec.find("p", "note").text()
         self.assertNotIn("cannot be computed from the committed sources, so the page does not show a number", lead)
         self.assertIn("The page shows no finding for these", lead)

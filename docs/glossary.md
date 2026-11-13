@@ -77,6 +77,9 @@ Plain-language definitions of the terms a first-time reader meets in the [README
 - **Single-use account.** A fresh account that receives NEAR from the escrow and withdraws it to a revenue wallet. It appears in exactly one row of the delivery table.
 - **Funding hop.** The transfer from the escrow that funds a single-use account. Every single-use delivery in the ladder's window has a traced funding hop; before the window, most funding hops are sampled.
 
+- **Signer, active account.** The account that signs a transaction. Nearblocks' "active accounts" are the distinct signers of a day, which BigQuery reproduces exactly (`docs/usage.md`). A signer is an account, not a person.
+- **Relayed user, meta-transaction.** A user whose action a relayer signs and pays for (a `DELEGATE_ACTION`). It counts as a signer for the relayer, not for the user.
+
 ## Sources and how the repository checks itself
 
 - **DefiLlama, Nearblocks, CoinGecko, FastNEAR, BigQuery.** The public sources of the data. DefiLlama gives Intents volume, fees and revenue and the peers' series; Nearblocks gives daily transactions, active accounts and total supply; CoinGecko gives prices; FastNEAR gives RPC reads, including archival balances at fixed blocks, and a transaction API; BigQuery's public NEAR dataset gives the on-chain flows.

@@ -2679,10 +2679,12 @@ def card_usage(ctx: Ctx) -> str:
         shows=(f'Nearblocks&rsquo; counts of transactions (Panel A) and of active accounts (Panel B) on each day from {esc(first)} to {esc(last)}, in thousands. '
                f'A dashed line marks {esc(step)}, the largest one-day fall in daily transactions in the 365 days to {esc(asof)}. The headline averages are '
                f'the 30 days {window_text(ctx, 30)} against the same 30 days a year earlier.'),
-        notshows=('Why the step happened: this repository holds no definition of what Nearblocks counts, and these data cannot tell a change in what is counted, '
-                  'or the end of automated traffic, from a real fall in usage. That active accounts are people: this repository applies no sybil or bot filter to the counts. '
-                  'Contract usage: the active-contract count falls by an order of magnitude on the same days (see the table), so it is not used. Anything from '
-                  'BigQuery: these are Nearblocks aggregates, not the BigQuery queries the track brief asks for. A cause for any of it.'),
+        notshows=('Why the step happened. BigQuery (exploratory, <code>docs/usage.md</code>) reproduces both series exactly and shows who stopped: '
+                  f'Sweat Economy&rsquo;s signers, {M("usage_bq_step_kaiching_share_pct")}% of the step. Why they stopped is not in the data. '
+                  'That active accounts are people: this repository applies no sybil or bot filter to the counts. '
+                  'Contract usage: the Nearblocks active-contract count falls by an order of magnitude on the same days (see the table), so it is not used; '
+                  f'the BigQuery count of contracts called has a median of {M("usage_bq_contracts_called_median_30d_n")} a day, against '
+                  f'{M("usage_bq_contracts_called_median_yago_n")} a year earlier.'),
         figure=fig,
         caption=(f'Window: {esc(first)} to {esc(last)} (UTC), one point per day. Unit: thousand a day. Both axes start at zero. The dashed line is {esc(step)}. '
                  f'The headline figures are 30-day averages; each line shows single days, so its last point, the as-of date, differs from them.'),
@@ -2691,10 +2693,12 @@ def card_usage(ctx: Ctx) -> str:
                f'Active contracts and new accounts fall with it, but active accounts barely move ({M("l1_step_active_accounts_before_k")}K to '
                f'{M("l1_step_active_accounts_after_k")}K): they fall gradually, with spikes this card does not explain, not in a step. Since the step, the change is {M("tx_per_day_since_step_pct")}% for '
                f'daily transactions and {M("active_accounts_since_step_pct")}% for daily active accounts (the latest 30 days against the 30 days that start on {esc(step)}).',
-               'Both counts are lower than a year ago, but they fall differently. This card does not decompose either fall, it is not a pre-registered test, and it feeds '
+               'Both counts are lower than a year ago, but they fall differently. This card is not a pre-registered test, and it feeds '
                'neither the rating rule nor any pre-registered test.',
-               'The track brief names daily active accounts, transaction counts and contract usage. This card reports the first two from Nearblocks aggregates and says why '
-               'it does not use the third; none of the committed BigQuery queries measures network-wide daily transactions, active accounts or contract usage.'),
+               f'The track brief names daily active accounts, transaction counts and contract usage. The BigQuery queries in <code>sql/usage_*.sql</code> (exploratory, '
+               f'run on 2026-11-13) reproduce the two Nearblocks series on all {M("usage_bq_nearblocks_match_days_n")} days they cover, put '
+               f'{M("usage_bq_tg_share_of_signer_drop_pct")}% of the fall in active accounts in HOT Wallet&rsquo;s <code>.tg</code> accounts, and count contracts called; '
+               '<code>docs/usage.md</code> has the details.'),
         source=source_p(ctx, raw=("raw/nearblocks/charts.json",), code=("pipeline/fetch_keyless.py", "pipeline/compute.py"),
                         upstream=("Nearblocks /v1/charts daily transactions, active accounts, active contracts and new accounts",)),
         query=query_details(ctx, endpoints=(
@@ -2828,13 +2832,10 @@ def not_computed(ctx: Ctx) -> str:
          f'1Click is {M("explorer_vs_llama_net_pct")}% of DefiLlama&rsquo;s volume on the halved basis ({M("legcount_oneclick_share_lo_pct")}% to {M("legcount_oneclick_share_hi_pct")}% '
          f'on one-sided volume if the confidential flow DefiLlama counts from 2026-09-01 is swap volume; exploratory, <code>docs/leg-count.md</code>). near.com, direct solver flow and other integrations have a fee '
          f'structure the Explorer API does not show, and we do not extrapolate.'),
-        ("Contract usage.",
-         f'The track brief names it, and the Nearblocks snapshot has an active-contract count, but that count falls from {M("l1_step_contracts_before_k")}K on '
-         f'{esc(m["l1_step_ref_date"])} to {M("l1_step_contracts_after_k")}K on {esc(m["l1_step_date"])}, an order of magnitude in two days, while this repository holds no '
-         f'definition of what is counted. The usage card&rsquo;s table shows the step; no finding rests on it.'),
-        ("The track brief&rsquo;s BigQuery topics for daily active accounts and transaction counts.",
-         'No BigQuery query was written for them: the committed queries cover staking, exchange and Intents flows. The usage card uses Nearblocks aggregates instead, '
-         'and says so; this repository applies no sybil or bot filter to them.'),
+        ("Why the usage step happened.",
+         f'BigQuery shows that Sweat Economy&rsquo;s signers account for {M("usage_bq_step_kaiching_share_pct")}% of the fall in daily transactions on '
+         f'{esc(m["l1_step_date"])}, and that HOT Wallet&rsquo;s <code>.tg</code> accounts account for {M("usage_bq_tg_share_of_signer_drop_pct")}% of the fall in active accounts '
+         'over a year (exploratory, <code>docs/usage.md</code>). Why either happened is not in the data, and no sybil or bot filter is applied.'),
         ("Who the sellers were.", 'NEAR is fungible, so every flow here is a market-wide balance. Nothing says which coins were sold.'),
         ("Longer-dated predictions P1 to P3.", 'They resolve on 2027-05-04 and 2027-11-04 and cannot be scored yet.'),
         ("HSP-029&rsquo;s issuance cut.",

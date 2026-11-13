@@ -765,6 +765,92 @@ def second_review(m: dict, rev: dict, fees: dict, vol: dict) -> None:
         m[f"sr_collector_{c}_transfers_1104"] = n("2026-11-04", "2026-11-04")
 
 
+def _median(xs) -> float:
+    import statistics
+    return statistics.median(list(xs))
+
+
+def usage_bq(m: dict, nb: dict) -> None:
+    """Exploratory (2026-11-13): the brief's BigQuery usage queries. sql/usage_daily.sql, sql/usage_receipts.sql and
+    sql/usage_signer_groups.sql; write-up in docs/usage.md. Skipped if the results are not committed."""
+    if not (RAW / "bq" / "usage_daily.json").exists():
+        return
+    d = {x["day"]: x for x in read_raw("bq/usage_daily.json")}
+    rc = {x["day"]: x for x in read_raw("bq/usage_receipts.json")}
+    grp = read_raw("bq/usage_signer_groups.json")
+    m["usage_bq_days_n"] = len(d)
+    m["usage_bq_nearblocks_match_days_n"] = sum(
+        1 for k, x in d.items() if k in nb and int(x["n_tx"]) == int(nb[k]["txns"]) and int(x["n_signers"]) == int(nb[k]["active_accounts"]))
+    win = sorted(k for k in d if "2026-10-06" <= k <= "2026-11-04")
+    yago = sorted(k for k in d if "2025-10-06" <= k <= "2025-11-04")
+    mean = lambda ks, f: sum(f(k) for k in ks) / len(ks)  # noqa: E731
+    sig = lambda ks: mean(ks, lambda k: int(d[k]["n_signers"]))  # noqa: E731
+    m["usage_bq_signers_30d_k"] = r(sig(win) / 1e3, 1)
+    m["usage_bq_signers_yago_30d_k"] = r(sig(yago) / 1e3, 1)
+    m["usage_bq_top10_signer_tx_share_30d_pct"] = r(mean(win, lambda k: int(d[k]["top10_signer_tx"]) / int(d[k]["n_tx"])) * 100, 1)
+    m["usage_bq_top1_signer_tx_share_30d_pct"] = r(mean(win, lambda k: int(d[k]["top1_signer_tx"]) / int(d[k]["n_tx"])) * 100, 1)
+    m["usage_bq_top1_signer_30d"] = sorted({d[k]["top1_signer"] for k in win})[0] if len({d[k]["top1_signer"] for k in win}) == 1 else "varies"
+
+    def gsum(ks: list, g: str, f: str = "n_signers") -> float:
+        ks = set(ks)
+        return sum(int(x[f]) for x in grp if x["day"] in ks and x["grp"] == g) / len(ks)
+
+    tg_w, tg_y = gsum(win, "tg"), gsum(yago, "tg")
+    m["usage_bq_tg_signers_30d_k"] = r(tg_w / 1e3, 1)
+    m["usage_bq_tg_signers_yago_30d_k"] = r(tg_y / 1e3, 1)
+    m["usage_bq_tg_share_of_signer_drop_pct"] = r((tg_y - tg_w) / (sig(yago) - sig(win)) * 100, 1)
+    m["usage_bq_non_tg_signers_30d_k"] = r((sig(win) - tg_w) / 1e3, 1)
+    m["usage_bq_non_tg_signers_yago_30d_k"] = r((sig(yago) - tg_y) / 1e3, 1)
+    m["usage_bq_non_tg_signers_yoy_pct"] = r(((sig(win) - tg_w) / (sig(yago) - tg_y) - 1) * 100, 1)
+
+    # The 2026-04-02 step: Sweat Economy's signers, 2026-03-31 against 2026-04-02.
+    sweat = ("top_signer:hotwallet.kaiching", "top_signer:users.kaiching", "top_signer:sweat-migration.near")
+    st = lambda day: sum(int(x["n_tx"]) for x in grp if x["day"] == day and x["grp"] in sweat)  # noqa: E731
+    b, a = st("2026-03-31"), st("2026-04-02")
+    m["usage_bq_step_kaiching_tx_before_k"] = r(b / 1e3, 1)
+    m["usage_bq_step_kaiching_tx_after_k"] = r(a / 1e3, 1)
+    m["usage_bq_step_kaiching_share_pct"] = r((b - a) / (int(d["2026-03-31"]["n_tx"]) - int(d["2026-04-02"]["n_tx"])) * 100, 1)
+    m["usage_bq_step_relayed_before_k"] = r(int(rc["2026-03-31"]["n_delegate_senders"]) / 1e3, 1)
+    m["usage_bq_step_relayed_after_k"] = r(int(rc["2026-04-02"]["n_delegate_senders"]) / 1e3, 1)
+
+    # Relayed users and contract usage (receipt_actions; three spans only).
+    m["usage_bq_users_incl_relayed_30d_k"] = r(mean(win, lambda k: int(rc[k]["n_users"])) / 1e3, 1)
+    m["usage_bq_users_incl_relayed_yago_30d_k"] = r(mean(yago, lambda k: int(rc[k]["n_users"])) / 1e3, 1)
+    m["usage_bq_relayed_30d_k"] = r(mean(win, lambda k: int(rc[k]["n_delegate_senders"])) / 1e3, 1)
+    m["usage_bq_relayed_yago_30d_k"] = r(mean(yago, lambda k: int(rc[k]["n_delegate_senders"])) / 1e3, 1)
+    med = lambda ks, f: _median(int(rc[k][f]) for k in ks)  # noqa: E731
+    m["usage_bq_contracts_called_median_30d_n"] = int(med(win, "n_contracts_called"))
+    m["usage_bq_contracts_called_median_yago_n"] = int(med(yago, "n_contracts_called"))
+    dw = mean(win, lambda k: int(rc[k]["n_contracts_called_by_tx_signer"]))
+    dy = mean(yago, lambda k: int(rc[k]["n_contracts_called_by_tx_signer"]))
+    m["usage_bq_contracts_direct_30d_n"] = r(dw, 1)
+    m["usage_bq_contracts_direct_yago_n"] = r(dy, 1)
+    m["usage_bq_contracts_direct_yoy_pct"] = r((dw / dy - 1) * 100, 1)
+
+
+def escrow_funding_rescan(m: dict) -> None:
+    """Exploratory (2026-11-13): sql/escrow_funding_scan.sql re-derives, from BigQuery alone, the funding columns of
+    data/raw/escrow/deliveries.csv for the 30-day window. Counts how many of the table's single-use rows it reproduces."""
+    import csv as _csv
+    import io
+    if not (RAW / "bq" / "escrow_funding_scan.json").exists():
+        return
+    scan = read_raw("bq/escrow_funding_scan.json")
+    rows = [x for x in _csv.DictReader(io.StringIO((RAW / "escrow" / "deliveries.csv").read_text(encoding="utf-8")))
+            if "2026-10-06" <= x["day"] <= "2026-11-04"]
+    by = {}
+    for x in scan:
+        by.setdefault((x["amount_yocto"], x["wallet"]), []).append(x)
+    m["escrow_rescan_deliveries_n"] = len(scan)
+    m["escrow_rescan_table_rows_matched_n"] = sum(1 for x in rows if len(by.get((x["amount_yocto"], x["wallet"]), [])) == 1)
+    su = [(x, by[(x["amount_yocto"], x["wallet"])][0]) for x in rows
+          if x["single_use_account"] and len(by.get((x["amount_yocto"], x["wallet"]), [])) == 1]
+    m["escrow_rescan_single_use_n"] = sum(1 for x in scan if x["src_deliveries_window"] == "1")
+    m["escrow_rescan_reproduced_n"] = sum(
+        1 for x, y in su if y["src"] == x["single_use_account"] and y["fund_receipt_id"] == x["funding_receipt_id"]
+        and y["fund_amount_yocto"] == y["amount_yocto"] and y["n_treasury_fundings"] == "1" and y["n_other_inflows"] == "0")
+
+
 def build() -> tuple[dict, dict]:
     # ---------- inputs ----------
     vol = {s: llama_daily(f"llama/volume_{s}.json") for s in PEERS}
@@ -838,6 +924,8 @@ def build() -> tuple[dict, dict]:
     m["active_accounts_30d_k"] = r(nb_avg("active_accounts", nb_end, 30) / 1e3, 1)
     m["active_accounts_30d_yoy_pct"] = r((nb_avg("active_accounts", nb_end, 30) / nb_avg("active_accounts", add_days(nb_end, -365), 30) - 1) * 100, 1)
     l1_daily = l1_usage(m, nb, nb_end)
+    usage_bq(m, nb)
+    escrow_funding_rescan(m)
 
     # ---------- supply / issuance (net of burn, from daily total supply) ----------
     def supply_delta(end: str, days: int) -> float:
@@ -862,6 +950,8 @@ def build() -> tuple[dict, dict]:
     iu30 = issuance_usd(asof, 30)
     m["net_issuance_usd_30d_m"] = r(iu30 / 1e6)
     m["coverage_rev_usd_30d_pct"] = r(rv30 / iu30 * 100, 1)
+    # P3 (pre-registered, resolves 2027-11-04) as descriptive context only: its quantity on the 90 days to the as-of date.
+    m["p3_quantity_90d_asof_pct"] = r(window_sum(rev, asof, 90) / issuance_usd(asof, 90) * 100, 1)
     rev_near_30 = sum(rev.get(add_days(asof, -i), 0) / price[add_days(asof, -i)] for i in range(30)
                       if add_days(asof, -i) in price)
     m["coverage_rev_near_30d_pct"] = r(rev_near_30 / d30 * 100, 1)
