@@ -459,8 +459,54 @@ def f4() -> dict:
             "senders_by_period_persistent_accounts_post_hoc": {p: [{"sender": a, "near": v} for a, v in c.most_common(4)] for p, c in sorted(mt_by_period.items())}}
 
 
+# ------------------------------------------------------------------ F5
+def f5() -> dict:
+    ds = days(SWAP_START, CUTOFF_DATE)
+    px = {r["day"]: r["usd"] for r in map(json.loads, (OUT / "aux_prices.ndjson").read_text().splitlines()) if r["symbol"] == "NEAR"}
+    cx = {r["day"]: float(r["usd_anchored"]) for r in load("rb_f3a_daily")}
+    q4d = {r["day"]: float(r["usd_all"]) for r in load("rb_q4a_daily_volume")}
+    vol = {d: q4d[d] + cx[d] for d in ds}
+    exp = {r["date"]: r["usd_in"] for r in json.loads((RAW / "explorer" / "daily.json").read_text())["days"]}
+    grp = {d: Counter() for d in ds}
+    for r in load("rb_q2_native_withdraw"):
+        if r["day"] in grp:
+            sname = r["src"]
+            g = "persistent_5880ad2b_143f2bb4" if sname.startswith(("5880ad2b", "143f2bb4")) else "fee_176121bd" if sname.startswith("176121bd") else "escrow_funded_rest"
+            grp[r["day"]][g] += int(r["yocto"]) / Y * px[r["day"]]
+    usd = {d: sum(grp[d].values()) for d in ds}
+    tau_c = sum(usd.values()) / sum(vol.values()) * 1e4
+    tau_1 = sum(usd.values()) / sum(exp.get(d, 0) for d in ds) * 1e4
+    months = {}
+    for mo in sorted({d[:7] for d in ds}):
+        md = [d for d in ds if d[:7] == mo]
+        if len(md) < 14:
+            continue
+        months[mo] = {"days": len(md), "tau_chain_bp": sum(usd[d] for d in md) / sum(vol[d] for d in md) * 1e4,
+                      "tau_1click_bp": sum(usd[d] for d in md) / sum(exp.get(d, 0) for d in md) * 1e4}
+    weeks = [ds[i:i + 7] for i in range(0, len(ds) - 6, 7)]
+    wv = [sum(vol[d] for d in w) for w in weeks]
+    corr = {"total": pearson([sum(usd[d] for d in w) for w in weeks], wv)}
+    for g in ("persistent_5880ad2b_143f2bb4", "fee_176121bd", "escrow_funded_rest"):
+        corr[g] = pearson([sum(grp[d][g] for d in w) for w in weeks], wv)
+    dev = {mo: v["tau_chain_bp"] / tau_c - 1 for mo, v in months.items()}
+    by_group_usd = {g: sum(grp[d][g] for d in ds) for g in ("persistent_5880ad2b_143f2bb4", "fee_176121bd", "escrow_funded_rest")}
+    ll = {datetime.fromtimestamp(t, timezone.utc).date().isoformat(): v for t, v in json.loads((RAW / "llama" / "volume_near-intents.json").read_text())["totalDataChart"]}
+    tau_l = sum(usd.values()) / sum(ll.get(d, 0) for d in ds) * 1e4
+    llama_months = {mo: sum(usd[d] for d in ds if d[:7] == mo) / sum(ll.get(d, 0) for d in ds if d[:7] == mo) * 1e4 for mo in months}
+    group_months = {mo: {g: sum(grp[d][g] for d in ds if d[:7] == mo) for g in ("persistent_5880ad2b_143f2bb4", "fee_176121bd", "escrow_funded_rest")} for mo in months}
+    post_hoc_llama = {"note": "post hoc: the repo's 4.98 bp is over DefiLlama volume, not 1Click; the pre-registered H-F5a compared the wrong denominator",
+                      "tau_llama_bp": tau_l, "tau_llama_over_repo": tau_l / 4.98, "within_25pct": abs(tau_l / 4.98 - 1) <= 0.25, "tau_llama_bp_by_month": llama_months,
+                      "delivered_usd_by_group_by_month": group_months}
+    return {"post_hoc_llama_denominator": post_hoc_llama, "window": [SWAP_START, CUTOFF_DATE], "delivered_usd": sum(usd.values()), "chain_volume_usd": sum(vol.values()),
+            "oneclick_volume_usd": sum(exp.get(d, 0) for d in ds), "tau_chain_bp": tau_c, "tau_1click_bp": tau_1, "repo_tau_bp": 4.98,
+            "H_F5a_supported": abs(tau_1 / 4.98 - 1) <= 0.25, "H_F5a_falsified": abs(tau_1 / 4.98 - 1) > 0.5, "tau_1click_over_repo": tau_1 / 4.98,
+            "months": months, "month_deviation_from_window": dev, "H_F5c_supported": all(abs(v) <= 0.3 for v in dev.values()), "H_F5c_falsified": any(abs(v) > 0.5 for v in dev.values()),
+            "weekly_corr": corr, "weeks": len(weeks), "H_F5b_supported": corr["total"] is not None and corr["total"] >= 0.5, "H_F5b_falsified": corr["total"] is not None and corr["total"] < 0.2,
+            "delivered_usd_by_group": by_group_usd, "mean_near_price": sum(px[d] for d in ds) / len(ds)}
+
+
 def main() -> int:
-    res = {"cutoff_block": 223_088_015, "windows": {"q1_q2": [WINDOW_START, CUTOFF_DATE], "q3_q4": [SWAP_START, CUTOFF_DATE]}, "q1": q1(), "q2": q2(), "q3": q3(), "q4": q4(), "f1": f1(), "f3": f3(), "f2b": f2b(), "f4": f4()}
+    res = {"cutoff_block": 223_088_015, "windows": {"q1_q2": [WINDOW_START, CUTOFF_DATE], "q3_q4": [SWAP_START, CUTOFF_DATE]}, "q1": q1(), "q2": q2(), "q3": q3(), "q4": q4(), "f1": f1(), "f3": f3(), "f2b": f2b(), "f4": f4(), "f5": f5()}
     jobs = [json.loads(l) for l in (OUT / "jobs.jsonl").read_text().splitlines()]
     res["bytes_billed_total"] = sum(j["bytes_billed"] for j in jobs)
     dest = ROOT / "data" / "derived" / "rebuild_results.json"

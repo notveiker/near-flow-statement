@@ -70,12 +70,22 @@ Window and rules: [chain-rebuild-method.md](chain-rebuild-method.md), committed 
 - **H-F4a (concentrated funding) is not decided by the pre-registered rule.** Reconciliation failed for those accounts: credits over deliveries are 1.95 and 1.97 (rule: 0.8 to 1.5), because positive `token_diff` events are gross swap proceeds, not net funding (the same accounts also pay out). By the rule no attribution is allowed and the strict share is 26.9% (between 25% and 50%, inconclusive). **Post hoc**, on transfers only, reconciliation is 1.00 and the top sender share is 52.5%, which would support it. That is a flaw in the pre-registered credit definition, disclosed, not a result.
 - **Reading (INFERRED).** The public fee stream is solver payments, not user-signed fees: the fee accounts are credited by the largest solvers at about the amount they later withdraw. What remains unattested is the solvers' own source, i.e. which fills these transfers correspond to.
 
+## F5. Revenue yield on the chain-visible volume (method `bf156fa`, 01:18:51 UTC; local computation, no BigQuery job)
+
+- **What reached the revenue wallets: \$4.74M in the 90 days from 2026-08-07** (1.67M NEAR at a mean \$3.42), of which the escrow-funded group \$3.10M (65%), the persistent fee accounts \$1.53M (32%), `176121bd…` \$0.11M (2%). By month (Aug is 25 days): \$0.64M, \$1.74M, \$2.21M, so the monthly total rose 3.4 times from August to October.
+- **Yield.** τ over chain-visible volume (simple plus anchored, \$3.51B) is **13.5 bp**; over Explorer 1Click volume (\$3.81B) 12.4 bp. By month over chain volume: 6.8, 11.6, 21.5 bp.
+- **H-F5a, as pre-registered, is falsified, and the pre-registration was wrong.** It compared τ over 1Click volume (12.4 bp) with the repo's 4.98 bp, 2.5 times higher, outside ±50%. But the repo's 4.98 bp is over **DefiLlama** volume (`docs/fee-waterfall.md`), not 1Click; the method text said otherwise. **Post hoc, with the correct denominator:** τ over DefiLlama volume (\$11.71B) is **4.05 bp**, 0.81 of the repo's number, inside ±25%. So the repo's τ **replicates from the chain** within 19%, window-for-window (the windows may differ). By month over Llama volume: 2.7, 3.6, 5.5 bp.
+- **H-F5b (revenue scales with volume): neither supported nor falsified.** Weekly r (12 weeks) of delivered USD against chain-visible volume is **0.26**: between 0.2 and 0.5. By group: persistent fee accounts 0.46, escrow-funded group 0.17, `176121bd…` 0.05.
+- **H-F5c (stable yield): falsified.** October's τ is 60% above the window mean (August 49% below, September 14% below); the rule falsifies at any month beyond 50%.
+- **Reading (INFERRED).** Revenue to the NEAR wallets nearly quadrupled in dollar terms from August to October while public-leg volume was flat or falling (Explorer 1Click volume fell about 11% across the Q2 switch windows), and the growth is carried by the escrow-funded path (\$0.25M to \$1.59M a month). Fees that arrive through the escrow without a matching public swap leg are what the Q4 gap and the confidential-mode terms predict, but this test cannot separate that from a change in what is charged, so the cause is not established. Caveat from the method: the numerator is native NEAR delivered by `native_withdraw`, a lower bound on take.
+
 ## Deviations and corrections (disclosed)
 
 1. **Pricing bug, found on seeing zero priced swaps in the first Q4 output.** The staging step stored each event as a string, so the diff was wrapped in a second layer of quotes and the token regex matched nothing. The synthetic self-test passed because it used a JSON-typed value. Fixed in `rb_s2_swaps.sql`, self-test extended to the production form, stages 2 and 3 and the Q3/Q4 queries rerun at 23:36 UTC. First-run outputs are kept in `data/raw/rebuild/superseded/`. No volume number from the first run was used; fill counts and solver assignment were unaffected.
 2. **Q3d hit the 1,000,000-row output cap** on first run; rewritten to keep the 50 most frequent counterparties per solver and rerun.
 3. **F4's credit definition counted gross `token_diff` gains as funding**, so the pre-registered reconciliation failed for two accounts and H-F4a could not be decided by its rule. The transfers-only figures are post hoc and tagged so.
-4. The `fefundsadmin`-only series, the complex-receipt step check and the single-use round-trip note are post hoc and tagged so.
+4. **F5's H-F5a named the wrong denominator** (1Click instead of DefiLlama, which the repo's τ uses). The pre-registered test, which falsifies, is reported as it stands; the DefiLlama check is post hoc and tagged so.
+5. The `fefundsadmin`-only series, the complex-receipt step check and the single-use round-trip note are post hoc and tagged so.
 
 ## Reproduce
 

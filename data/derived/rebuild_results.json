@@ -316,6 +316,88 @@
    ]
   }
  },
+ "f5": {
+  "H_F5a_falsified": true,
+  "H_F5a_supported": false,
+  "H_F5b_falsified": false,
+  "H_F5b_supported": false,
+  "H_F5c_falsified": true,
+  "H_F5c_supported": false,
+  "chain_volume_usd": 3513732049.040238,
+  "delivered_usd": 4740825.047461938,
+  "delivered_usd_by_group": {
+   "escrow_funded_rest": 3100303.3272426063,
+   "fee_176121bd": 107129.24106881258,
+   "persistent_5880ad2b_143f2bb4": 1533392.479150519
+  },
+  "mean_near_price": 3.418976996709141,
+  "month_deviation_from_window": {
+   "2026-08": -0.49298263699850153,
+   "2026-09": -0.1412536211422053,
+   "2026-10": 0.5959542134726938
+  },
+  "months": {
+   "2026-08": {
+    "days": 25,
+    "tau_1click_bp": 6.149138454603701,
+    "tau_chain_bp": 6.840819335305211
+   },
+   "2026-09": {
+    "days": 30,
+    "tau_1click_bp": 11.469084258576114,
+    "tau_chain_bp": 11.586445083136875
+   },
+   "2026-10": {
+    "days": 31,
+    "tau_1click_bp": 20.13547191939883,
+    "tau_chain_bp": 21.53305831018169
+   }
+  },
+  "oneclick_volume_usd": 3814970211.06,
+  "post_hoc_llama_denominator": {
+   "delivered_usd_by_group_by_month": {
+    "2026-08": {
+     "escrow_funded_rest": 246063.90864571705,
+     "fee_176121bd": 90956.37883263486,
+     "persistent_5880ad2b_143f2bb4": 304846.0342603689
+    },
+    "2026-09": {
+     "escrow_funded_rest": 1158749.5246461893,
+     "fee_176121bd": 11415.868702162204,
+     "persistent_5880ad2b_143f2bb4": 565987.5358960697
+    },
+    "2026-10": {
+     "escrow_funded_rest": 1588498.7754892502,
+     "fee_176121bd": 4756.993534015511,
+     "persistent_5880ad2b_143f2bb4": 612268.4305308472
+    }
+   },
+   "note": "post hoc: the repo's 4.98 bp is over DefiLlama volume, not 1Click; the pre-registered H-F5a compared the wrong denominator",
+   "tau_llama_bp": 4.049862840962048,
+   "tau_llama_bp_by_month": {
+    "2026-08": 2.6763468087047304,
+    "2026-09": 3.614655038964314,
+    "2026-10": 5.533674174317995
+   },
+   "tau_llama_over_repo": 0.8132254700727003,
+   "within_25pct": true
+  },
+  "repo_tau_bp": 4.98,
+  "tau_1click_bp": 12.426899255249197,
+  "tau_1click_over_repo": 2.4953612962347784,
+  "tau_chain_bp": 13.492278242323218,
+  "weekly_corr": {
+   "escrow_funded_rest": 0.17181377938249393,
+   "fee_176121bd": 0.05454631165157946,
+   "persistent_5880ad2b_143f2bb4": 0.4584506611315948,
+   "total": 0.26068272092164346
+  },
+  "weeks": 12,
+  "window": [
+   "2026-08-07",
+   "2026-11-04"
+  ]
+ },
  "q1": {
   "attack_test": {
    "S_accounts": [

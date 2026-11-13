@@ -72,3 +72,9 @@ class Results(unittest.TestCase):
         self.assertAlmostEqual(g["rest_group_escrow_funded_near"] / g["deliveries_csv_escrow_unshield_near"], 1.0, delta=0.01)
         self.assertFalse(g["H_F4a_strict"]["attribution_allowed_by_reconciliation"])
         self.assertTrue(g["H_F4b_strict"]["supported"])
+
+    def test_f5_numbers_are_consistent(self):
+        r = json.load(open(rb.ROOT / "data" / "derived" / "rebuild_results.json"))["f5"]
+        self.assertAlmostEqual(sum(r["delivered_usd_by_group"].values()), r["delivered_usd"], delta=1.0)
+        self.assertTrue(r["H_F5a_falsified"])
+        self.assertTrue(r["post_hoc_llama_denominator"]["within_25pct"])
