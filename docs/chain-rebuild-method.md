@@ -127,3 +127,5 @@ Why: `docs/fee-waterfall.md` rests on user all-in cost (AITR 9.5 bp, realised co
 - **H-FU11b (cost falls with size):** spread in the under-$100 bucket exceeds the spread in the at-least-$100k bucket (same population): supported; otherwise falsified.
 - **H-FU11c (solvers price differently):** among solvers with at least $5M paid in the primary class, max / min of their volume-weighted spread is at least 2: supported; below 1.5: falsified.
 - The spread contains the NEAR/1Click fee, the solver's margin and any fee paid inside the leg, and is not decomposed (**INFERRED** if split). Negative spreads are kept in the sums and counted.
+
+> **Correction (2026-11-13 03:09 UTC, 2026-11-13; the text above is unchanged).** The FU4 "Why" paragraph says the persistent accounts `5880ad2b…` and `143f2bb4…` "deliver 1.37 times as much as" `176121bd…`. The figure is wrong: from the saved Q2 output the two together deliver 5.9 times as much (646.9K against 110.1K NEAR; 4.1 times for `5880ad2b…` alone). It was an observation stated before the run and was not used in any rule or result.
