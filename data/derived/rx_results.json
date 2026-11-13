@@ -957,5 +957,154 @@
     "week_start": "2026-10-27"
    }
   ]
+ },
+ "rx7": {
+  "H_RX7a_falsified": false,
+  "H_RX7a_supported": true,
+  "H_RX7b_falsified": false,
+  "H_RX7b_supported": true,
+  "spike_bridge_mng": 31714232.651414663,
+  "spike_bridge_share": 0.8964212154186821,
+  "spike_relay": 14522583.469999997,
+  "spike_relay_share_of_bridge": 0.4579200647742046,
+  "spike_transfers_in": 35378717.1766146,
+  "weeks": [
+   {
+    "bridge_mng": 1739161.2474537354,
+    "bridge_share": 0.831241526916769,
+    "relay": 186238.99,
+    "relay_share_of_bridge": 0.10708552198519146,
+    "transfers_in": 2092245.3837269312,
+    "week_start": "2026-07-07"
+   },
+   {
+    "bridge_mng": 720623.4128263046,
+    "bridge_share": 0.7495376702905164,
+    "relay": 153000.03,
+    "relay_share_of_bridge": 0.21231620743479557,
+    "transfers_in": 961423.8768639809,
+    "week_start": "2026-07-14"
+   },
+   {
+    "bridge_mng": 1428974.6039298712,
+    "bridge_share": 0.8219004031824658,
+    "relay": 179343.28,
+    "relay_share_of_bridge": 0.12550487566873617,
+    "transfers_in": 1738622.5854090888,
+    "week_start": "2026-07-21"
+   },
+   {
+    "bridge_mng": 1537331.6659532504,
+    "bridge_share": 0.7969384979620108,
+    "relay": 865540.95,
+    "relay_share_of_bridge": 0.5630151054381005,
+    "transfers_in": 1929046.8083605284,
+    "week_start": "2026-07-28"
+   },
+   {
+    "bridge_mng": 2167789.9203541353,
+    "bridge_share": 0.8925099977775369,
+    "relay": 1106431.03,
+    "relay_share_of_bridge": 0.5103958735167708,
+    "transfers_in": 2428869.0611334406,
+    "week_start": "2026-08-04"
+   },
+   {
+    "bridge_mng": 2243359.9090311006,
+    "bridge_share": 0.8755400416167166,
+    "relay": 435291.7200000001,
+    "relay_share_of_bridge": 0.19403561517153128,
+    "transfers_in": 2562258.4946413813,
+    "week_start": "2026-08-11"
+   },
+   {
+    "bridge_mng": 3477103.755308393,
+    "bridge_share": 0.8485313139332844,
+    "relay": 2112321.04,
+    "relay_share_of_bridge": 0.6074943943720923,
+    "transfers_in": 4097790.733485859,
+    "week_start": "2026-08-18"
+   },
+   {
+    "bridge_mng": 3769919.2349762656,
+    "bridge_share": 0.8916425489294948,
+    "relay": 1152673.13,
+    "relay_share_of_bridge": 0.30575539107199384,
+    "transfers_in": 4228061.165881358,
+    "week_start": "2026-08-25"
+   },
+   {
+    "bridge_mng": 3482197.1404445088,
+    "bridge_share": 0.8477463719215091,
+    "relay": 767982.34,
+    "relay_share_of_bridge": 0.22054533647166388,
+    "transfers_in": 4107593.0912588052,
+    "week_start": "2026-09-01"
+   },
+   {
+    "bridge_mng": 3691327.8867998747,
+    "bridge_share": 0.7903282078800908,
+    "relay": 1944330.6199999999,
+    "relay_share_of_bridge": 0.5267293179110132,
+    "transfers_in": 4670626.51945725,
+    "week_start": "2026-09-08"
+   },
+   {
+    "bridge_mng": 9393335.789011007,
+    "bridge_share": 0.8471229683172125,
+    "relay": 4210028.65,
+    "relay_share_of_bridge": 0.4481931386851082,
+    "transfers_in": 11088515.056640033,
+    "week_start": "2026-09-15"
+   },
+   {
+    "bridge_mng": 22320896.862403657,
+    "bridge_share": 0.9189259419150124,
+    "relay": 10312554.819999997,
+    "relay_share_of_bridge": 0.46201346135737104,
+    "transfers_in": 24290202.119974565,
+    "week_start": "2026-09-22"
+   },
+   {
+    "bridge_mng": 6225408.989234825,
+    "bridge_share": 0.5229530888249467,
+    "relay": 2285237.5,
+    "relay_share_of_bridge": 0.3670823079980296,
+    "transfers_in": 11904335.44091508,
+    "week_start": "2026-09-29"
+   },
+   {
+    "bridge_mng": 5574554.114116587,
+    "bridge_share": 0.712228409512732,
+    "relay": 1783485.63,
+    "relay_share_of_bridge": 0.3199333244400002,
+    "transfers_in": 7826919.060881598,
+    "week_start": "2026-10-06"
+   },
+   {
+    "bridge_mng": 3303757.758161447,
+    "bridge_share": 0.6633704450777717,
+    "relay": 1244050.1,
+    "relay_share_of_bridge": 0.37655608887387626,
+    "transfers_in": 4980260.7015061155,
+    "week_start": "2026-10-13"
+   },
+   {
+    "bridge_mng": 3010119.696819826,
+    "bridge_share": 0.6232346368325362,
+    "relay": 1440932.51,
+    "relay_share_of_bridge": 0.4786960835884157,
+    "transfers_in": 4829833.771945265,
+    "week_start": "2026-10-20"
+   },
+   {
+    "bridge_mng": 1568301.7986023428,
+    "bridge_share": 0.5821368357565734,
+    "relay": 619535.37,
+    "relay_share_of_bridge": 0.3950358091485482,
+    "transfers_in": 2694043.225359724,
+    "week_start": "2026-10-27"
+   }
+  ]
  }
 }

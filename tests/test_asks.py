@@ -119,3 +119,10 @@ class RX56(unittest.TestCase):
         self.assertEqual(r["rx5"]["H_RX5a_supported"], abs(r["rx5"]["ratio_over_repo"] - 1) <= 0.10)
         self.assertEqual(len(r["rx6"]["weeks"]), 17)
         self.assertEqual(r["rx6"]["H_RX6a_supported"], r["rx6"]["rho_same_week"] >= 0.30 and r["rx6"]["p_same_week"] <= 0.10)
+
+
+class RX7(unittest.TestCase):
+    def test_rx7_rules(self):
+        r = json.load(open(ROOT / "data" / "derived" / "rx_results.json"))["rx7"]
+        self.assertEqual(r["H_RX7b_supported"], r["spike_relay_share_of_bridge"] >= 0.40)
+        self.assertLessEqual(r["spike_bridge_mng"], r["spike_transfers_in"] * 1.01)

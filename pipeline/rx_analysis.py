@@ -189,8 +189,31 @@ def rx6() -> dict:
             "total_net_near": sum(net), "H_RX6a_supported": rho >= 0.30 and p <= 0.10, "H_RX6a_falsified": rho <= -0.30, "H_RX6b_supported": rho_l >= 0.30 and p_l <= 0.10, "H_RX6b_falsified": rho_l <= -0.30}
 
 
+def rx7() -> dict:
+    br, rel, inn = {}, {}, {}
+    for r in json.loads((RAW / "rebuild" / "rb_fu2b_a_daily.json").read_text()):
+        if r["kind"] == "wrap":
+            br[r["day"]] = int(r["yocto"]) / 1e24
+    for r in json.loads((RAW / "rebuild" / "rb_fu7_a_summary.json").read_text()):
+        if r["part"] == "out_by_day":
+            rel[r["day"]] = float(r["near"] or 0)
+    for r in json.loads((OUT / "rx6_wrap_daily.json").read_text()):
+        if r["kind"] == "in":
+            inn[r["day"]] = int(r["yocto"]) / 1e24
+    start = date(2026, 7, 7)
+    weeks = []
+    for w in range(17):
+        ds = [(start + timedelta(days=7 * w + i)).isoformat() for i in range(7)]
+        I, B, R = (sum(x.get(d, 0.0) for d in ds) for x in (inn, br, rel))
+        weeks.append({"week_start": ds[0], "transfers_in": I, "bridge_mng": B, "bridge_share": B / I, "relay": R, "relay_share_of_bridge": R / B if B else None})
+    sp = [w for w in weeks if w["week_start"] in ("2026-09-15", "2026-09-22")]
+    I, B, R = (sum(w[k] for w in sp) for k in ("transfers_in", "bridge_mng", "relay"))
+    return {"weeks": weeks, "spike_transfers_in": I, "spike_bridge_mng": B, "spike_bridge_share": B / I, "spike_relay": R, "spike_relay_share_of_bridge": R / B,
+            "H_RX7a_supported": B / I >= 0.60, "H_RX7a_falsified": B / I < 0.30, "H_RX7b_supported": R / B >= 0.40, "H_RX7b_falsified": R / B < 0.15}
+
+
 def main() -> int:
-    res = {"rx1": rx1(), "rx2": rx2(), "rx3": rx3(), "rx4": rx4(), "rx5": rx5(), "rx6": rx6()}
+    res = {"rx1": rx1(), "rx2": rx2(), "rx3": rx3(), "rx4": rx4(), "rx5": rx5(), "rx6": rx6(), "rx7": rx7()}
     dest = ROOT / "data" / "derived" / "rx_results.json"
     dest.write_text(json.dumps(res, indent=1, sort_keys=True) + "\n")
     print("wrote", dest.relative_to(ROOT))

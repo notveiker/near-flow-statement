@@ -322,3 +322,7 @@ Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. A
 ## 2026-11-13 03:14 UTC: RX5 and RX6 results
 
 Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. Method `0b09de6` (03:13:47 UTC) before computation. RX5: the chain's deliveries over the repo's net issuance give 15.81% (repo 15.81%), escrow-funded share 71.5% (repo 71.2%): both supported. RX6: weekly net NEAR flow into Intents and the same-week price return have Spearman rho +0.45 (p 0.07, supported narrowly); the lagged version is not supported (rho +0.19); post hoc, without the two September spike weeks rho is +0.21 (p 0.45), and gross turnover against absolute price return is +0.66 (p 0.005). Job `rx6_wrap_daily` (0.1 GB).
+
+## 2026-11-13 03:15 UTC: RX7 result
+
+Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. Method `d9f6527` (03:15:11 UTC) before computation. In the weeks of 2026-09-15 and 09-22, 90% of wNEAR transfers into `intents.near` came from `bridge-mng.near` (H-RX7a supported) and 46% of what `bridge-mng.near` wrapped came from the FU7 Binance relay (H-RX7b supported). Local computation from saved outputs.
