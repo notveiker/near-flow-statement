@@ -510,6 +510,8 @@
  "legcount_peer_share_lo_pct": 46.6,
  "legcount_peer_share_public_hi_pct": 25.0,
  "legcount_peer_share_public_lo_pct": 23.9,
+ "legcount_reading_gap_peer_share_x": 1.9,
+ "legcount_reading_gap_take_x": 2.8,
  "legcount_take_captured_bp_hi": 7.18,
  "legcount_take_captured_bp_lo": 6.76,
  "legcount_take_captured_bp_public_hi": 20.0,

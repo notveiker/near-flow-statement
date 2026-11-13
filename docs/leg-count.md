@@ -1,6 +1,6 @@
 # What DefiLlama's NEAR Intents volume counts (exploratory)
 
-*Exploratory, chosen after the freeze (2026-11-13). It changes no pre-registered result, test, threshold or probability, and nothing here feeds the rating rule. F3, F4 and P1 stay on DefiLlama's reported basis, as `PREREG.md` words them. Every figure below comes from days dated 2026-10-22 or earlier and is recomputed by `make reproduce`.*
+*Exploratory, chosen after the freeze (2026-11-13). It changes no pre-registered result, test, threshold or probability, and nothing here feeds the rating rule. F3, F4 and P1 stay on DefiLlama's reported basis, as `PREREG.md` words them. Every measured day is 2026-10-22 or earlier; the window figures also use data for the 30 days to 2026-11-04. All of it is recomputed by `make reproduce`.*
 
 ## Answer
 

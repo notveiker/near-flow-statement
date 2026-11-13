@@ -657,6 +657,11 @@ def leg_count(m: dict, vol: dict, rev: dict, price: dict, asof: str) -> None:
         # A larger k shrinks Intents, so the high k gives the low share.
         m[f"legcount_peer_share{name}_lo_pct"] = r(v30 / b / (others + v30 / b) * 100, 1)
         m[f"legcount_peer_share{name}_hi_pct"] = r(v30 / a / (others + v30 / a) * 100, 1)
+    # How far apart the two readings are (THESIS.md, Limits): every take rate scales by kp/k; the peer share by less,
+    # because the other protocols' volume does not change. Each factor is the mean of its low-end and high-end ratio.
+    share = lambda kk: v30 / kk / (others + v30 / kk)
+    m["legcount_reading_gap_take_x"] = r((kp_lo / k_lo + kp_hi / k_hi) / 2, 1)
+    m["legcount_reading_gap_peer_share_x"] = r((share(k_hi) / share(kp_hi) + share(k_lo) / share(kp_lo)) / 2, 1)
 
 
 def build() -> tuple[dict, dict]:
