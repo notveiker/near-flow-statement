@@ -12,9 +12,50 @@ Terms such as H1a, Hold, the ladder and the escrow are defined in the [glossary]
 4. **Evidence against (exploratory): partners, usage, valuation.** Listed partner fees were at least 1.75<!--n:partners_kept_vs_near_rev_low_x-->× NEAR's entire captured revenue. Daily active accounts (Nearblocks, an unfiltered aggregate, not adjusted for sybils or relayers) averaged 61.6<!--n:active_accounts_30d_k-->K over the 30 days to 2026-11-04, -77.1<!--n:active_accounts_30d_yoy_pct-->% on the same days a year earlier. NEAR's market cap is 199<!--n:mcap_to_rev_30d_annualized_x-->× its last 30 days of captured Intents revenue annualised (descriptive, not a valuation).
 5. **What happens next.** The pre-registered forward tests F1-F4 are scored after 2026-11-14 00:00 UTC, misses included, and the longer-dated predictions P1-P3 resolve on 2027-05-04 and 2027-11-04. HSP-029's on-chain timelock ends on 2026-11-16 by our own arithmetic (no published text gives that date), after the submission deadline, and the rating's required growth assumes the cut is in force. Correction (2026-11-12): two published sources do give 2026-11-16, and under the House of Stake procedures a Directors' decision on execution follows the timelock (`PREREG-ADDENDUM.md`, 2026-11-12 23:50 UTC entry, item 3).
 
-**Where to look.** The [bottom line](#bottom-line) above is the short version, and [`docs/glossary.md`](docs/glossary.md) defines the terms. The claim in full is [the thesis](#the-thesis). Evidence for it is sections 1 and 2; evidence against it is section 3 (who else gets paid, usage, valuation context) and section 4 (the supply side). What would change our mind is section 5, and the limits close the file. **Labels:** only the tests in section 4, the forward tests F1-F4 and the longer-dated predictions P1-P3 are pre-registered. Everything else is exploratory and was chosen after the freeze ([`PREREG-ADDENDUM.md`](PREREG-ADDENDUM.md)); section 4's additions are labelled where they appear.
+**Where to look.** The [bottom line](#bottom-line) above is the short version, and [`docs/glossary.md`](docs/glossary.md) defines the terms. The claim in full is [the thesis](#the-thesis). Evidence for it is sections 1 and 2; evidence against it is section 3 (who else gets paid, usage, valuation context) and section 4 (the supply side). What would change our mind is section 5, and the limits close the file. **Labels:** only the tests in section 4, the forward tests F1-F4 and the longer-dated predictions P1-P3 are pre-registered. Everything else is exploratory and was chosen after the freeze ([`PREREG-ADDENDUM.md`](PREREG-ADDENDUM.md)); section 4's additions are labelled where they appear. The three tiers (measured, required, believed), the frozen probabilities and how they will be scored are in [At a glance](#at-a-glance-measured-required-believed).
 
 **The pre-registered result comes first.** H1a fails: net staking outflow was 6.56<!--n:h1a_ratio_as_written_x-->× staking rewards, where a pass needed under 0.5×. H1b, whether less NEAR reached exchanges than was minted, is **inconclusive**: only 20.0<!--n:h1b_coverage_count_pct-->% of the top-100 NEAR receivers carry an exchange label (10.0<!--n:h1b_coverage_tier1_count_pct-->% a cited one; the rest are labelled by our own sweep rule), below the 50% the pre-registration requires, so net exchange inflow is a range, 4.42<!--n:h1b_net_inflow_lower_m-->M to 152.45<!--n:h1b_net_inflow_upper_m-->M NEAR, against 8.0098<!--n:h1a_gross_issuance_90d_m-->M NEAR minted. H1c is inconclusive. Our priors that they would pass were 0.70, 0.55 and 0.40; one test failed and two could not be decided. The frozen rating rule therefore outputs **Hold**. That output carries no view on NEAR: below 50% label coverage H1b can come out pass or inconclusive but never fail, and observed revenue growth (619.0<!--n:rating_g_obs_pct-->% a year; 71.4<!--n:rating_g_obs_near_pct-->% in NEAR terms) is far above the rule's Avoid line (16.6<!--n:rating_g_avoid_line_pct-->% a year, half of the required 33.2<!--n:rating_g_req_pct-->%), so the rule could only ever have output Buy or Hold, and had H1b failed it would also have said Hold.
+
+## At a glance: measured, required, believed
+
+Every claim in this file sits in one of three tiers. Measured is what the committed data show. Required is what the frozen rating rule says NEAR would need. Believed is what we said would happen before we could see it.
+
+| Tier | What it is | The figures | Label |
+|---|---|---|---|
+| **Measured** | What the committed data show; `make reproduce` recomputes every marked number | Verifiable value capture of 4.53<!--n:ladder_public_collectors_pct_of_issuance-->% to 15.81<!--n:ladder_all_wallets_pct_of_issuance-->% of net issuance over the 30 days to 2026-11-04 (section 1). H1a: net staking outflow 6.56<!--n:h1a_ratio_as_written_x-->× staking rewards, so it fails. H1b: net exchange inflow between 4.42<!--n:h1b_net_inflow_lower_m-->M and 152.45<!--n:h1b_net_inflow_upper_m-->M NEAR against 8.0098<!--n:h1a_gross_issuance_90d_m-->M minted, so it is inconclusive (section 4) | the range is exploratory; H1a-H1c are pre-registered |
+| **Required** | The growth in captured revenue at which it would pay for the dollar value of new supply (G_req, an input to the frozen rule) | 33.2<!--n:rating_g_req_pct-->% a year if HSP-029's cut takes effect, 46.8<!--n:rating_g_req_no_hsp029_pct-->% if not. Observed growth (G_obs) is 619.0<!--n:rating_g_obs_pct-->% a year, 71.4<!--n:rating_g_obs_near_pct-->% in NEAR terms, and comes from a step in the share of fees captured rather than from growth in activity ([`docs/second-review.md`](docs/second-review.md), section 6) | rule inputs; the assumptions are in `data/raw/rpc/rating_assumptions.json` and the 2026-11-12 23:50 UTC addendum entry |
+| **Believed** | Probabilities frozen in `PREREG.md` before any outcome was seen | The table below, and the priors of 0.70, 0.55 and 0.40 for H1a-H1c | pre-registered |
+
+**The frozen probabilities.** The predictions are quoted from `PREREG.md`, which is the authoritative text.
+
+| ID | Prediction | Probability | Resolves |
+|---|---|---|---|
+| F1 | The buyback wallet's balance at the first final block after 2026-11-14 00:00 UTC is in [2.21M, 2.40M] NEAR | 0.70 | scored after 2026-11-14 00:00 UTC |
+| F2 | Mean net supply increase per day (Nearblocks `total_supply`, 2026-11-06 → 11-13) is in [86.0K, 89.5K] NEAR | 0.75 | same |
+| F3 | The captured take rate over the window is below 4.0 bp | 0.65 | same |
+| F4 | NEAR Intents' share of peer-set volume (reported basis) over the window is at least 50% | 0.70 | same |
+| P1 | Intents' 365-day share of the peer set is at least 55% | 0.65 | 2027-05-04 |
+| P2 | 90-day captured Intents revenue is at least $6.0M (it was $4.84<!--n:rating_r90_usd_m-->M for the 90 days to 2026-11-04) | 0.50 | 2027-05-04 |
+| P3 | 90-day captured revenue ÷ USD value of net new supply is at least 25% | 0.35 | 2027-11-04 |
+
+**How F1-F4 will be scored.** `pipeline/score_forward.py` scores each test PASS, MISS or not scorable, as `PREREG.md` words it, and every outcome is published, misses included.
+
+Alongside that, the record will report the Brier score of the four probabilities. That is the mean of (p − outcome)² over the scorable tests, with outcome 1 for PASS and 0 for MISS. Lower is better, and a forecaster who always said 0.5 would score 0.25. A test that is not scorable will be listed by name rather than dropped. This reporting choice was made after the freeze and before any F1-F4 outcome was scored (`PREREG-ADDENDUM.md`, 2026-11-13 01:50 UTC entry), and it changes no test.
+
+Under the stated probabilities, at least one of F1-F4 should miss: 0.76 if the four are independent, with 2.8 passes expected.
+
+**How this maps to the judging.** The track asks for "evidence someone else can reproduce". The organizers name technical implementation, design, impact, originality and sustainability as a guide.
+
+| Criterion | Where to check it |
+|---|---|
+| Reproducible evidence | The README's "do X, see Y" steps; `make reproduce`; `python3 -m pipeline.check --numbers`; the offline tests; `bash scripts/fresh_clone_check.sh` |
+| Technical implementation | A standard-library pipeline over archival RPC, BigQuery and keyless APIs. Every revenue-wallet delivery is traced in `data/raw/escrow/deliveries.csv`, and a frozen scorer is in `pipeline/score_forward.py` |
+| Design | One static page (`site/index.html`) where each chart has its source and one plain sentence. Markers tie the figures in the prose to `data/metrics.json`, and a check fails if one disagrees |
+| Impact | It turns the claim that Intents revenue buys NEAR into a checkable range, and names the one disclosure that would settle it: a per-stream attestation of the escrow releases |
+| Originality | A pre-registration frozen before the first BigQuery flow result the repository records, and a ladder that separates what is traceable on chain from what is not |
+| Sustainability | It re-runs offline from committed snapshots. P1-P3 resolve in 2027, and the forward tests are scored with misses included |
+
+The gaps against the track prompt are in [Limits](#limits). The brief's BigQuery usage queries were not run.
 
 ## The thesis
 

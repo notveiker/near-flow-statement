@@ -173,3 +173,12 @@ Written by an AI coding assistant at the owner's request, after a second review 
    - transfers out of the account that received the 2026-10-29 Binance theft;
    - the state of Binance's native NEAR deposits;
    - HSP-029's on-chain state.
+
+## 2026-11-13 01:50 UTC: how the F1-F4 results will be reported (written before scoring)
+
+Written by an AI coding assistant at the owner's request, before any F1-F4 outcome is scored. It changes no test, threshold, probability, rule or script. `pipeline/score_forward.py` is unchanged, and F1-F4 will be scored as `PREREG.md` words them.
+
+1. **A Brier score next to PASS and MISS.** When F1-F4 are scored, the record will also give the Brier score of the four probabilities in `PREREG.md` (0.70, 0.75, 0.65 and 0.70). That is the mean of (p − outcome)² over the scorable tests, with outcome 1 for PASS and 0 for MISS. It is computed by hand from the scorer's `result.json` and shown with its arithmetic. Lower is better, and always saying 0.5 would score 0.25.
+2. **Not scorable is listed, not dropped.** A test the scorer marks not scorable is named with the scorer's reason, and the Brier score states how many tests it covers.
+3. **What the stated probabilities imply.** If the four tests are independent, 2.8 passes are expected, and the chance that at least one misses is 0.76. A miss is therefore the expected outcome, not a surprise.
+4. **Why this entry exists.** The scoring procedure itself (the start time, re-runs and the snapshot) gets its own entry before scoring; this entry adds only how the outcome is summarised. It was chosen after the freeze. It is written now, before any window data are scored, so that the summary cannot be picked after seeing the results.
