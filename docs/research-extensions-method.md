@@ -20,3 +20,10 @@ Transactions with receiver `intents.near`, 2025-01-01..2026-11-04, by signer, pe
 - **H-RX3a (one relayer):** the top signer's share is at least **80%** in every month 2026-05 to 2026-10. Falsified if any of those months is under 60%.
 - **H-RX3b (a handful of operators):** the top-5 share is at least **95%** in every one of those months. Falsified if any is under 85%.
 - Reported: distinct signers, the top signer's name (an account name, not a person), its share by month and by 7-day block, and the minimum 7-day share. This is pre-window context for the pre-registered F4 relayer test, not a score of it; nothing from the forward window (2026-11-06 on) is read.
+
+## RX4: who sends Intents NEAR to the liquid-staking pool and the Omni bridge? (added 2026-11-13 03:04 UTC, before the query runs; `sql/rx/rx4_lst_omni.sql`, staged `intents_events`)
+Why: the contract-wide wNEAR books (FU10) show transfers to `lst-pool.near` (8.66M NEAR out, 4.01M in) and to `omni.bridge.near` (10.12M out, 5.92M in) that start in September 2026; a local look at the saved FU10 ledger (monthly totals by counterparty, read before this method was written and stated here) shows no flow to either in July and August beyond small amounts. Window 2026-07-07..2026-11-04.
+- Withdrawal events on `intents.near` with receiver `lst-pool.near` or `omni.bridge.near`: the initiating Intents account, month and amount (wNEAR only, token read from the event).
+- **H-RX4a (concentrated initiators):** the 3 largest source accounts carry at least **70%** of the NEAR sent to `lst-pool.near` through these events. Falsified below 40%.
+- **H-RX4b (it is the solver family):** at least **50%** of that NEAR comes from the FU1 solver family (`solver-priv-liq.near`, `solver-multichain-asset.near`, `-escrow`, `-2`). Falsified below 10%. The same two tests for `omni.bridge.near`.
+- If the events do not account for at least 80% of the wrap.near transfer totals of FU10 for the receiver, the shortfall is reported and the shares are for the covered part only. Ownership of any account is INFERRED.
