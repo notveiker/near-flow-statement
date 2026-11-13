@@ -32,6 +32,14 @@
    "sha256": "76ca2d1194f0c19db1a517d4850724ef5da63d8b6ee9568abfa774dcb06ea272",
    "source": "bigquery: sql/collector_inflows.sql"
   },
+  "raw/bq/escrow_funding_scan.json": {
+   "bytes": 593662,
+   "bytes_processed_estimate": 66859382761,
+   "fetched_at": "2026-11-13T10:00:43Z",
+   "rows": 1262,
+   "sha256": "d951d53bfc0f9fbcaccf848a01b2bed12a6b5410070e6745a39c41c7117bd9fa",
+   "source": "bigquery: sql/escrow_funding_scan.sql"
+  },
   "raw/bq/h1b_a_native_flows.json": {
    "bytes": 5985011,
    "bytes_processed_estimate": 262380873736,
@@ -95,6 +103,30 @@
    "rows": 2,
    "sha256": "4e1b90af3b259723a27fe8211cc7448340dbdbf73ae2f63bb25d44d56e2f3b2e",
    "source": "bigquery: sql/staking_pool_totals_endpoints.sql"
+  },
+  "raw/bq/usage_daily.json": {
+   "bytes": 78385,
+   "bytes_processed_estimate": 45572024101,
+   "fetched_at": "2026-11-13T09:57:54Z",
+   "rows": 395,
+   "sha256": "ee5f22eee9a1b17d5503f2ca27ed86631d201f504f72f64e512bb95b7a853827",
+   "source": "bigquery: sql/usage_daily.sql"
+  },
+  "raw/bq/usage_receipts.json": {
+   "bytes": 14658,
+   "bytes_processed_estimate": 73603121232,
+   "fetched_at": "2026-11-13T09:58:03Z",
+   "rows": 75,
+   "sha256": "28f0e235144025924b8c1f7368d954c643c43279a1716896bdef74f745325c1b",
+   "source": "bigquery: sql/usage_receipts.sql"
+  },
+  "raw/bq/usage_signer_groups.json": {
+   "bytes": 25332,
+   "bytes_processed_estimate": 4648613025,
+   "fetched_at": "2026-11-13T09:58:48Z",
+   "rows": 343,
+   "sha256": "6c325db3249f504508aec307224fcfe0bb654ba2acf26c69b9b39aff542b8512",
+   "source": "bigquery: sql/usage_signer_groups.sql"
   },
   "raw/coingecko/leg_count_prices.json": {
    "bytes": 29698,
