@@ -39,3 +39,9 @@ Daily contract-wide wNEAR ledger (the FU10 line shapes) for 2026-07-07..2026-11-
 - **H-RX6a (flows chase price):** Spearman rho of weekly net flow with the same week's price return is at least **+0.30** with a Monte Carlo permutation p at most 0.10 (20,000 permutations, seed 20261113). **Falsified** if rho is at most **-0.30** (flows lean against price). Between: no relation.
 - **H-RX6b (lagged):** the same with the net flow of week t and the price return of week t+1, to see whether flows lead.
 - Also reported: weekly net flow, unwrap and deposits in NEAR, and the share of weeks with net inflow. No causal reading is drawn (**INFERRED** only as a pattern).
+
+## RX7: who made the September spike? (added 2026-11-13 03:15 UTC, before it is computed; local, from saved FU2b and FU7 outputs)
+RX6 found that the weeks of 2026-09-15 and 2026-09-22 carry 31% of the window's gross NEAR flow through Intents. The question is whether that burst is broad or one operator's relay (FU7). Saved inputs: `rb_fu2b_a_daily.json` (wNEAR wrapped by `bridge-mng.near` per day, all of it passed to `intents.near`), `rb_fu7_a_summary.json` (`out_by_day`: NEAR sent by the relay `1244d552…` to `bridge-mng.near` per day), `rx6_wrap_daily.json` (transfers into `intents.near` per day).
+- **Spike weeks:** 2026-09-15..09-28. **H-RX7a:** transfers in from `bridge-mng.near` are at least **60%** of all wNEAR transfers into `intents.near` in those two weeks (so the deposit path, not Omni/Ref/LST returns, drives it). Falsified under 30%.
+- **H-RX7b (one operator):** the relay's NEAR is at least **40%** of what `bridge-mng.near` wrapped in those two weeks. Falsified under **15%**.
+- Also reported for every week of the window: transfers in, bridge-mng's share, the relay's NEAR and its share of bridge-mng's deposits. Day mismatches between tables (UTC date of the log line versus the transaction) are small and not corrected.
