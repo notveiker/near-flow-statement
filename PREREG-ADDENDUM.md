@@ -245,6 +245,10 @@ Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. R
 
 Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. F5 (the chain-side check of the repo's token-claimable take, τ = 4.98 bp) is in the F5 section of `docs/chain-rebuild-method.md`, committed as `bf156fa` at 01:18:51 UTC before any number was computed. It is a local computation on saved outputs (no BigQuery job). **Corrections:** the F5 section header first read "~01:25 UTC", an estimate written before the commit; and the F2b/F4 results entry above was headed 01:20 UTC although its commit (`2d17f70`) is 01:17:44 UTC. Both now carry the commit minute; git history holds the earlier text.
 
-## 2026-11-13 01:24 UTC: F5 result and a disclosed pre-registration error
+## 2026-11-13 01:20 UTC: F5 result and a disclosed pre-registration error
 
 Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. F5 ran after its method commit (`bf156fa`, 01:18:51 UTC); no BigQuery job. Delivered to the revenue wallets from 2026-08-07: \$4.74M (monthly \$0.64M, \$1.74M, \$2.21M); τ over chain-visible volume 13.5 bp. **H-F5a (the repo's τ = 4.98 bp replicates) is falsified as pre-registered, and the pre-registration was wrong:** it set the denominator to 1Click volume, but the repo's τ is over DefiLlama volume. The pre-registered result stands (12.4 bp over 1Click); the check with the correct denominator, post hoc, gives 4.05 bp, inside ±25%. H-F5b (r = 0.26) is neither supported nor falsified; H-F5c (stable yield) is falsified (October +60% against the window).
+
+## 2026-11-13 01:20 UTC: timestamp correction
+
+Post-freeze. The F5 result entry above was headed 01:24 UTC but committed (`cd381d4`) at 01:20:24 UTC; it now reads 01:20. From here each entry's minute is taken from the clock at the moment of writing (`date -u`), not estimated. No result changed.
