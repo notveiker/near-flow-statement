@@ -80,3 +80,9 @@ Why: `docs/fee-waterfall.md` states the token-claimable take τ = 4.98 bp (what 
 - **H-F5b (revenue scales with volume).** Pearson r of weekly delivered USD against weekly chain-visible volume over the 12 complete weeks: supported at r of 0.5 or more, **falsified** below 0.2. Run for the total, the persistent fee accounts and the escrow-funded group separately.
 - **H-F5c (the yield is stable).** Each scored month's τ_chain within ±30% of the window τ_chain: supported; **falsified** if any scored month deviates by more than 50%.
 - Whatever comes out, the unit caveat applies: the numerator is native NEAR delivered by `native_withdraw`, not all fee income (confidential-mode fees accrue inside the private ledger), so τ here is a lower bound on take (**INFERRED**).
+
+## F6 (is DefiLlama's 2026-09-01 step in the revenue stream; fixed before it runs, committed 2026-11-13 01:20 UTC)
+Why: Q4 and F3 find no step on 1 September in public swap legs (week after / week before 0.995 for simple plus anchored volume), while DefiLlama's volume rises x1.316. If that volume were ordinary flow paying the usual take, the delivered fee stream (F4/F5) would step too. Local computation on saved outputs.
+- **Ratio** = delivered USD (Q2 deliveries priced at the F5 daily NEAR price) in 2026-09-01..09-07 over 2026-08-25..08-31, for the total and for the three groups of F5. Threshold as in Q4/F3: a step is mirrored if the total ratio reaches 1 + 0.5(L - 1) = 1.158 (L = 1.316); **falsified** (revenue does not mirror Llama's step) if below 1.05; between them inconclusive.
+- **Placebo.** The same ratio at every other 7-day boundary from 2026-08-14 to 2026-10-27 (week after over week before), and the rank of the 09-01 ratio among them; a step is only called a step if its ratio is in the top 10% of boundaries.
+- Whatever the result, the switch dates found in Q2 (08-19, 08-29) are inside the 08-25..08-31 base week for one of them; stated in the result, not adjusted for.
