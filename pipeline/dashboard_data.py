@@ -273,6 +273,10 @@ def rebuild_view() -> dict | None:
         "revenue_by_month": [{"month": m, "escrow": v["escrow_funded_rest"], "persistent": v["persistent_5880ad2b_143f2bb4"], "public": v["fee_176121bd"]} for m, v in sorted(gm.items())],
         "tx_per_day": [{"q": k, "c": v["c_per_day"], "rest": v["exc_per_day"]} for k, v in sorted(q.items()) if k >= "2024Q1"],
         "weekly_flows": [{"w": w["week_start"], "in": w["in"], "out": w["out"], "ret": w["ret"]} for w in x["rx6"]["weeks"]],
+        "mix": {"buckets": [{"k": k, "swap_share": v["swap_share"], "usd_share": v["usd_share"]} for k, v in sorted(x["rx10"]["buckets"].items())],
+                "median_usd": x["rx10"]["percentiles_usd"]["p50"], "swaps": x["rx10"]["swaps"], "usd": x["rx10"]["usd"],
+                "classes": [("Stable to stable", x["rx9"]["stable_stable_share"]), ("Stable to volatile", x["rx9"]["stable_volatile_share"]), ("Volatile to volatile", x["rx9"]["volatile_volatile_share"])],
+                "same_symbol": x["rx9"]["post_hoc_same_symbol_share"], "cross_chain": x["rx9"]["cross_chain_share"], "near_token": x["rx9"]["near_token_share"]},
         "stats": {
             "books_residual_near": r["fu10"]["residual_near"], "books_change_near": r["fu10"]["balance_change_near"],
             "deposit_near": r["fu2b"]["wrapped_near"], "relay_near": r["fu2b"]["top_funder_matches_fu1"]["near"], "relay_share": r["fu2b"]["top_funders"][0]["share"],

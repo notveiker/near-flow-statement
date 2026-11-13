@@ -4,7 +4,7 @@ Method: the RX8 and RX8b sections of [research-extensions-method.md](research-ex
 
 | Quarter | Days | Transactions to `v1.signer` per day | Distinct senders per day | Failed |
 |---|---|---|---|---|
-| 2025Q1 | 88 | 399 | 7 | 0.0% |
+| 2025Q1 | 88 (two zero-transaction days, 2025-01-06 and 01-19, have no rows and are left out of the averages) | 399 | 7 | 0.0% |
 | 2025Q2 | 91 | 529 | 9 | 0.0% |
 | 2025Q3 | 92 | 3,268 | 11 | 0.0% |
 | 2025Q4 | 92 | 5,330 | 12 | 0.0% |

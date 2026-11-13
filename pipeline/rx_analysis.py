@@ -1,4 +1,4 @@
-"""Apply docs/research-extensions-method.md (RX1-RX3) to the saved outputs. Writes data/derived/rx_results.json."""
+"""Apply docs/research-extensions-method.md (RX1-RX8) and docs/rx9-rx10-method.md (RX9-RX10) to the saved outputs. Writes data/derived/rx_results.json."""
 from __future__ import annotations
 
 import json
@@ -240,8 +240,67 @@ def rx8() -> dict:
             "H_RX8c_supported": sratio >= 3, "H_RX8c_falsified": sratio < 1.2, "H_RX8d_supported": top3 >= 0.80, "H_RX8d_falsified": top3 < 0.50}
 
 
+def _mix_rows() -> list[dict]:
+    return json.loads((OUT / "rx9_rx10_mix.json").read_text())
+
+
+def rx9() -> dict:
+    rows = _mix_rows()
+    part = lambda n: [r for r in rows if r["part"] == n]
+    cls = {r["k"]: {"swaps": f(r["x1"]), "usd": f(r["x2"])} for r in part("class")}
+    classified = [k for k in cls if k in ("stable_stable", "stable_volatile", "volatile_volatile")]
+    tot = sum(cls[k]["usd"] for k in classified)
+    pairs = sorted(({"pair": r["k"], "swaps": f(r["x1"]), "usd": f(r["x2"])} for r in part("pair") if r["k"] and "UNKNOWN" not in r["k"]), key=lambda r: -r["usd"])
+    ptot = sum(x["usd"] for x in pairs)
+    top5 = sum(x["usd"] for x in pairs[:5]) / ptot
+    near = {r["k"]: {"swaps": f(r["x1"]), "usd": f(r["x2"])} for r in part("near")}
+    near_share = near["true"]["usd"] / (near["true"]["usd"] + near["false"]["usd"])
+    xc = {r["k"]: {"swaps": f(r["x1"]), "usd": f(r["x2"])} for r in part("xchain")}
+    xshare = xc["true"]["usd"] / (xc["true"]["usd"] + xc["false"]["usd"])
+    ss = cls["stable_stable"]["usd"] / tot
+    strip = lambda x: x.replace("(DEPRECATED)", "")
+    same = sum(x["usd"] for x in pairs if len(x["pair"].split("/")) == 2 and strip(x["pair"].split("/")[0]) == strip(x["pair"].split("/")[1])) / ptot
+    wk = sorted(((int(r["k"]), f(r["x1"]), f(r["x2"]), f(r["x3"])) for r in part("weekly")))
+    return {
+        "classes": cls, "priced_total_usd_classified": tot, "stable_stable_share": ss,
+        "stable_volatile_share": cls["stable_volatile"]["usd"] / tot, "volatile_volatile_share": cls["volatile_volatile"]["usd"] / tot,
+        "unknown_swaps": cls.get("unknown", {}).get("swaps", 0),
+        "top25_pairs": [{**x, "share": x["usd"] / ptot} for x in pairs[:25]], "top5_share": top5, "post_hoc_same_symbol_share": same,
+        "near_token_share": near_share, "near_token_swaps": near["true"]["swaps"], "cross_chain_share": xshare,
+        "weekly_stable_stable": [{"block": b, "share": (a / t) if t else None, "swaps": n} for b, a, t, n in wk],
+        "H_RX9a_supported": ss >= 0.50, "H_RX9a_falsified": ss < 0.25,
+        "H_RX9b_supported": top5 >= 0.50, "H_RX9b_falsified": top5 < 0.30,
+        "H_RX9c_supported": near_share <= 0.10, "H_RX9c_falsified": near_share > 0.25,
+        "H_RX9d_supported": xshare >= 0.70, "H_RX9d_falsified": xshare < 0.40,
+    }
+
+
+def rx10() -> dict:
+    rows = _mix_rows()
+    part = lambda n: [r for r in rows if r["part"] == n]
+    size = {r["k"]: {"swaps": f(r["x1"]), "usd": f(r["x2"])} for r in part("size")}
+    n_all, v_all = sum(x["swaps"] for x in size.values()), sum(x["usd"] for x in size.values())
+    big = [size[k] for k in ("e_100k-1m", "f_>=1m")]
+    big_n, big_v = sum(x["swaps"] for x in big), sum(x["usd"] for x in big)
+    pct = {int(r["k"]): f(r["x1"]) for r in part("pct")}
+    days = sorted(((r["k"], f(r["x1"]), f(r["x2"])) for r in part("topday")), key=lambda t: -t[1])
+    d_tot = sum(x[1] for x in days)
+    top_day_share = days[0][1] / d_tot
+    return {
+        "swaps": n_all, "usd": v_all, "percentiles_usd": {"p10": pct[100], "p25": pct[250], "p50": pct[500], "p75": pct[750], "p90": pct[900], "p99": pct[990], "p99.9": pct[999]},
+        "buckets": {k: {**v, "swap_share": v["swaps"] / n_all, "usd_share": v["usd"] / v_all} for k, v in sorted(size.items())},
+        "ge_100k_swaps": big_n, "ge_100k_swap_share": big_n / n_all, "ge_100k_usd_share": big_v / v_all,
+        "largest_day": days[0][0], "largest_day_share": top_day_share, "largest_day_usd": days[0][1], "largest_day_swaps": days[0][2],
+        "top3_days": [{"day": d, "share": u / d_tot} for d, u, _ in days[:3]],
+        "top10_swaps_usd": [f(r["x1"]) for r in sorted(part("top"), key=lambda r: -f(r["x1"]))],
+        "H_RX10a_supported": pct[500] < 1000, "H_RX10a_falsified": pct[500] > 5000,
+        "H_RX10b_supported": big_n / n_all < 0.01 and big_v / v_all >= 0.30, "H_RX10b_falsified": big_v / v_all < 0.15 or big_n / n_all >= 0.01,
+        "H_RX10c_supported": top_day_share < 0.05, "H_RX10c_falsified": top_day_share > 0.10,
+    }
+
+
 def main() -> int:
-    res = {"rx1": rx1(), "rx2": rx2(), "rx3": rx3(), "rx4": rx4(), "rx5": rx5(), "rx6": rx6(), "rx7": rx7(), "rx8": rx8()}
+    res = {"rx1": rx1(), "rx2": rx2(), "rx3": rx3(), "rx4": rx4(), "rx5": rx5(), "rx6": rx6(), "rx7": rx7(), "rx8": rx8(), "rx9": rx9(), "rx10": rx10()}
     dest = ROOT / "data" / "derived" / "rx_results.json"
     dest.write_text(json.dumps(res, indent=1, sort_keys=True) + "\n")
     print("wrote", dest.relative_to(ROOT))

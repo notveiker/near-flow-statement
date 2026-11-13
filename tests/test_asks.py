@@ -133,3 +133,16 @@ class RX8(unittest.TestCase):
         r = json.load(open(ROOT / "data" / "derived" / "rx_results.json"))["rx8"]
         self.assertEqual(r["H_RX8d_supported"], r["top3_share_2026Q3"] >= 0.80)
         self.assertAlmostEqual(r["ratio_tx_2026Q3_over_2025Q3"], r["series"]["2026Q3"]["tx_per_day"] / r["series"]["2025Q3"]["tx_per_day"], places=9)
+
+
+class RX910(unittest.TestCase):
+    def test_rx9_rx10_rules_and_totals(self):
+        d = json.load(open(ROOT / "data" / "derived" / "rx_results.json"))
+        a, b = d["rx9"], d["rx10"]
+        self.assertAlmostEqual(a["stable_stable_share"] + a["stable_volatile_share"] + a["volatile_volatile_share"], 1.0, places=9)
+        self.assertEqual(a["H_RX9a_supported"], a["stable_stable_share"] >= 0.50)
+        self.assertEqual(a["H_RX9c_falsified"], a["near_token_share"] > 0.25)
+        self.assertEqual(b["H_RX10b_supported"], b["ge_100k_swap_share"] < 0.01 and b["ge_100k_usd_share"] >= 0.30)
+        # the size buckets and the class split are two cuts of the same priced population (rebuild Q4: $2.17B)
+        self.assertAlmostEqual(b["usd"] / a["priced_total_usd_classified"], 1.0, places=4)
+        self.assertAlmostEqual(sum(x["usd_share"] for x in b["buckets"].values()), 1.0, places=9)

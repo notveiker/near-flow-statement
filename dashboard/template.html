@@ -89,6 +89,7 @@ html,body{overflow-x:hidden}
 .hbar .t{height:10px;border-radius:5px;background:rgba(190,211,200,.08);overflow:hidden}
 .hbar .t i{display:block;height:100%;background:var(--accent);border-radius:5px;transform-origin:left;animation:grow 1.1s var(--ease) both}
 .hbar.alt .t i{background:var(--g1)}
+.hbar.w2{grid-template-columns:230px 1fr 120px}
 .hbar .p{text-align:right;color:var(--ink);font-weight:550}
 @keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 
@@ -136,7 +137,7 @@ footer code{font-size:12px;color:var(--soft)}
   @keyframes rv{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.hbar .t i{transform:none}}
-@media (max-width:980px){.stats{grid-template-columns:repeat(2,1fr)}.grid2,.grid3,.explorer,.cols,section>.wrap>.head{grid-template-columns:1fr}.hbar{grid-template-columns:150px 1fr 56px}nav .links{display:none}}
+@media (max-width:980px){.hbar.w2{grid-template-columns:110px 1fr 104px}.stats{grid-template-columns:repeat(2,1fr)}.grid2,.grid3,.explorer,.cols,section>.wrap>.head{grid-template-columns:1fr}.hbar{grid-template-columns:150px 1fr 56px}nav .links{display:none}}
 </style>
 </head>
 <body>
@@ -262,8 +263,9 @@ footer code{font-size:12px;color:var(--soft)}
     <div class="card reveal"><h3>Where the NEAR in the revenue wallets passed through</h3><p class="sub">Dollars delivered by native withdrawals, by funding path, from 7 August.</p><div class="legend" id="rb-lg1"></div><div class="chart" id="rb-c1"></div><div class="foot" id="rb-f1"></div></div>
     <div class="card reveal"><h3>What the transaction count was made of</h3><p class="sub">Transactions a day, millions: one automated class against everything else.</p><div class="legend" id="rb-lg2"></div><div class="chart" id="rb-c2"></div><div class="foot" id="rb-f2"></div></div>
   </div>
-  <div class="card reveal" style="margin-top:var(--s4)"><h3>NEAR through the Intents contract, week by week</h3><p class="sub">Millions of NEAR moved in and out of the contract each week from 7 July. The weeks of 15 and 22 September, when the price rose 81% and then 30%, were the peak.</p><div class="legend" id="rb-lg3"></div><div class="chart" id="rb-c3"></div><div class="foot" id="rb-f3"></div></div>
-  <p class="foot" style="margin-top:var(--s4)">Method, rules and falsifiers were committed before each run: <a href="https://github.com/notveiker/near-flow-statement/blob/main/docs/chain-rebuild-results.md">chain-rebuild-results</a>, <a href="https://github.com/notveiker/near-flow-statement/blob/main/docs/class-census-results.md">class-census-results</a>, <a href="https://github.com/notveiker/near-flow-statement/blob/main/docs/research-extensions-results.md">research-extensions-results</a>. Data cutoff 4 November 2026.</p>
+  <div class="card reveal" style="margin-top:var(--s4)"><h3>NEAR through the Intents contract, week by week</h3><p class="sub">Millions of NEAR moved in and out of the contract each week from 7 July. The weeks of 15 and 22 September, when the price rose 81% and then 29%, were the peak.</p><div class="legend" id="rb-lg3"></div><div class="chart" id="rb-c3"></div><div class="foot" id="rb-f3"></div></div>
+  <div class="card reveal" style="margin-top:var(--s4)"><h3>What the public swaps are made of</h3><p class="sub" id="rb-mixsub"></p><div id="rb-mix"></div><div class="foot" id="rb-f4"></div></div>
+  <p class="foot" style="margin-top:var(--s4)">Method, rules and falsifiers were committed before each run: <a href="https://github.com/notveiker/near-flow-statement/blob/main/docs/chain-rebuild-results.md">chain-rebuild-results</a>, <a href="https://github.com/notveiker/near-flow-statement/blob/main/docs/class-census-results.md">class-census-results</a>, <a href="https://github.com/notveiker/near-flow-statement/blob/main/docs/research-extensions-results.md">research-extensions-results</a>, <a href="https://github.com/notveiker/near-flow-statement/blob/main/docs/rx9-rx10-results.md">rx9-rx10-results</a>. Data cutoff 4 November 2026.</p>
 </div></section>
 
 <section id="rating"><div class="wrap">
@@ -445,7 +447,7 @@ if (D.rebuild) {
     ["Revenue wallets, from 7 Aug", `$${(S.delivered_usd / 1e6).toFixed(2)}<small>M</small>`, `${S.tau_llama_bp.toFixed(2)} bp of DefiLlama volume; ${(S.escrow_funded_share * 100).toFixed(0)}% of the NEAR passed through the private escrow`],
     ["NEAR deposited through one wrapper", `${(S.deposit_near / 1e6).toFixed(0)}<small>M</small>`, `every deposit is wrapped and passed on one for one; ${(S.exchange_share_all * 100).toFixed(0)}% traces to Binance wallets, almost all through a single forwarding account`],
     ["Contract wNEAR books", `${S.books_residual_near.toExponential(0).replace("e-", "×10⁻")}<small> NEAR off</small>`, `net change +${(S.books_change_near / 1e6).toFixed(1)}M NEAR, reconciled to the balance at both ends`],
-    ["Solver spread, stable swaps", `${S.spread_bp.toFixed(1)}<small> bp</small>`, `solvers kept $${(S.solver_margin_usd / 1e3).toFixed(0)}K in 90 days, about ${(S.solver_margin_usd / S.delivered_usd * 100).toFixed(0)}% of what reached the revenue wallets`],
+    ["Solver spread, stable swaps", `${S.spread_bp.toFixed(1)}<small> bp</small>`, `spread on 1Click stable swaps; across all public stable swaps solvers kept $${(S.solver_margin_usd / 1e3).toFixed(0)}K in 90 days, about ${(S.solver_margin_usd / S.delivered_usd * 100).toFixed(0)}% of what reached the revenue wallets`],
     ["One automated class", `${(S.class_share_2025q3 * 100).toFixed(0)}<small>%</small>`, `of all transactions in 2025Q3, gone since 2 April 2026; it is most of the fall in raw transaction counts`],
   ];
   $("#rb-stats").innerHTML = rbs.map(s => `<div class="stat"><div class="k">${s[0]}</div><div class="v">${s[1]}</div><div class="n">${s[2]}</div></div>`).join("");
@@ -460,7 +462,14 @@ if (D.rebuild) {
   const k3 = [{k: "in", name: "Into the contract", color: C.accent}, {k: "out", name: "Out of the contract", color: C.g2}];
   legend($("#rb-lg3"), k3);
   stackedBars($("#rb-c3"), RB.weekly_flows.map(w => ({label: w.w.slice(5), in: w.in / 1e6, out: w.out / 1e6})), k3, {max: 48, w: innerWidth < 700 ? 560 : 1120, ht: innerWidth < 700 ? 260 : 300, fy: v => v.toFixed(0) + "M", ft: v => v.toFixed(1) + "M NEAR"});
-  $("#rb-f3").textContent = "Close to half of the deposits in the two peak weeks were Binance withdrawals relayed through one account. By late October weekly flow was back to its July level.";
+  if (RB.mix) {
+    const M = RB.mix, nm = {"a_<100": "Under $100", "b_100-1k": "$100 to 1K", "c_1k-10k": "$1K to 10K", "d_10k-100k": "$10K to 100K", "e_100k-1m": "$100K to 1M", "f_>=1m": "$1M or more"};
+    $("#rb-mixsub").textContent = `${(M.swaps / 1e6).toFixed(2)}M public swaps with a priced leg, $${(M.usd / 1e9).toFixed(2)}B, 7 Aug to 4 Nov. Bars show each size band's share of dollars; the numbers are its share of dollars, then its share of swaps.`;
+    $("#rb-mix").innerHTML = M.buckets.map(b => `<div class="hbar w2"><span>${nm[b.k]}</span><span class="t"><i style="width:${b.usd_share * 100}%"></i></span><span class="p mono">${(b.usd_share * 100).toFixed(0)}% · ${b.swap_share >= .0005 ? (b.swap_share * 100).toFixed(1) : "<0.1"}%</span></div>`).join("") +
+      M.classes.map(c => `<div class="hbar alt w2"><span>${c[0]}</span><span class="t"><i style="width:${c[1] * 100}%"></i></span><span class="p mono">${(c[1] * 100).toFixed(0)}%</span></div>`).join("");
+    $("#rb-f4").textContent = `Median swap $${M.median_usd.toFixed(0)}. ${(M.cross_chain * 100).toFixed(0)}% of dollars are between tokens on different chains and ${(M.same_symbol * 100).toFixed(0)}% are the same asset on both sides; the NEAR token is on one side of ${(M.near_token * 100).toFixed(1)}%. Public swaps only: confidential and unpriced swaps are not here.`;
+  }
+  $("#rb-f3").textContent = "Close to half of the deposits in the two peak weeks were Binance withdrawals relayed through one account. By late October weekly gross flow was about 5M NEAR, down from 40M at the peak.";
 } else { document.getElementById("rebuild").style.display = "none"; }
 
 /* ---------------- hero ---------------- */
@@ -565,12 +574,12 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
   const Cv = D.catalysts && D.catalysts.conversion;
   const Tp = D.catalysts && D.catalysts.trust_path;
   const bits = [];
-  if (Cv) bits.push(`Appfees→buybacks: <b class="mono">${Cv.appfees_to_buybacks_pct}%</b> of listed appfees ($${(Cv.explorer_appfees_usd_m||0).toFixed(2)}M → $${(Cv.appfees_to_buybacks_usd_m||0).toFixed(2)}M).`);
-  if (Tp) bits.push(`Trust SK→direct-20bp: ~<b class="mono">$${(Tp.counterfactual_rr_m||0).toFixed(1)}M/yr</b> BB uplift arithmetic.`);
+  try { if (Cv) bits.push(`Appfees→buybacks: <b class="mono">${Cv.appfees_to_buybacks_pct}%</b> of listed appfees ($${(Cv.explorer_appfees_usd_m||0).toFixed(2)}M → $${(Cv.appfees_to_buybacks_usd_m||0).toFixed(2)}M).`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+  try { if (Tp) bits.push(`Trust SK→direct-20bp: ~<b class="mono">$${(Tp.counterfactual_rr_m||0).toFixed(1)}M/yr</b> BB uplift arithmetic.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
   const Sk = D.catalysts && D.catalysts.sk_tax_headroom;
-  if (Sk) bits.push(`SK listed tax ~<b class="mono">$${(Sk.sk_listed_partner_fees_rr_m||0).toFixed(0)}M/yr</b> vs NEAR capture ~$${(Sk.near_capture_rr_m||0).toFixed(0)}M (~${Sk.sk_tax_vs_near_capture_x}×).`);
+  try { if (Sk) bits.push(`SK listed tax ~<b class="mono">$${(Sk.sk_listed_partner_fees_rr_m||0).toFixed(0)}M/yr</b> vs NEAR capture ~$${(Sk.near_capture_rr_m||0).toFixed(0)}M (~${Sk.sk_tax_vs_near_capture_x}×).`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
   const Qc = D.catalysts && D.catalysts.quality_on_cool;
-  if (Qc && Qc.note) bits.push(Qc.note.split('.')[0] + '.');
+  try { if (Qc && Qc.note) bits.push(Qc.note.split('.')[0] + '.'); } catch (e) { console.warn("catalyst note skipped:", e.message); }
   $("#conv-trust").innerHTML = bits.length
     ? `<p class="sub">${bits.join(' ')}</p>`
     : `<p class="sub">Conversion / Trust path appear when derived JSON is in the build.</p>`;
@@ -624,99 +633,99 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
   const Pu = D.catalysts && D.catalysts.intents_purity;
   if ($("#fee-engine-l1")) {
     const bits = [];
-    if (Fe) bits.push(`L1 YoY tx ~<b class="mono">${Fe.l1_yoy_tx_x}×</b> / signers ~${Fe.l1_yoy_signers_x}× / burn ~${Fe.l1_yoy_burn_x}×; intents.near ~<b class="mono">${Math.round(Fe.intents_vs_2025q1_x)}×</b> vs 2025Q1. Overall: <b>${Fe.overall}</b>.`);
-    if (Pu && Pu.intents_share_of_near_fees_pct != null) bits.push(`Intents ≈ <b class="mono">${Pu.intents_share_of_near_fees_pct}%</b> of NEAR fees on that cool L1.`);
-    if (Op) bits.push(`Opacity product: attest + CIF 1bp ≈ ~$${(Op.stack_trust_plus_gap_rr_m||0).toFixed(1)}M underwriting stack on ~${Op.confidential_share_of_measured_capture_pct}% unattested capture.`);
-    if (Th) bits.push(`THOR two-step: leakage close ~<b class="mono">${Th.step1_leakage_close_fee_x}×</b> then remaining ~${Th.step2_remaining_vol_or_price_x}× volume/price.`);
+    try { if (Fe) bits.push(`L1 YoY tx ~<b class="mono">${Fe.l1_yoy_tx_x}×</b> / signers ~${Fe.l1_yoy_signers_x}× / burn ~${Fe.l1_yoy_burn_x}×; intents.near ~<b class="mono">${Math.round(Fe.intents_vs_2025q1_x)}×</b> vs 2025Q1. Overall: <b>${Fe.overall}</b>.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Pu && Pu.intents_share_of_near_fees_pct != null) bits.push(`Intents ≈ <b class="mono">${Pu.intents_share_of_near_fees_pct}%</b> of NEAR fees on that cool L1.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Op) bits.push(`Opacity product: attest + CIF 1bp ≈ ~$${(Op.stack_trust_plus_gap_rr_m||0).toFixed(1)}M underwriting stack on ~${Op.confidential_share_of_measured_capture_pct}% unattested capture.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Th) bits.push(`THOR two-step: leakage close ~<b class="mono">${Th.step1_leakage_close_fee_x}×</b> then remaining ~${Th.step2_remaining_vol_or_price_x}× volume/price.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     if (Cov && Cov.steps) {
       const last = Cov.steps[Cov.steps.length - 1];
       bits.push(`No-vol coverage path → ~<b class="mono">${last.coverage_pct}%</b> at conservative stack + HSP-029 (still short of 100%; volume last mile for 50×).`);
     }
-    if (Rf) bits.push(`Rating window: 30d RR ≈ <b class="mono">${Rf.run_vs_r90_acceleration_x}×</b> r90-annualised — cool falsifies beside H1b.`);
+    try { if (Rf) bits.push(`Rating window: 30d RR ≈ <b class="mono">${Rf.run_vs_r90_acceleration_x}×</b> r90-annualised — cool falsifies beside H1b.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Fr = D.catalysts && D.catalysts.foreign_rail;
     const Fs = D.catalysts && D.catalysts.fee_surface_risk;
-    if (Fr) bits.push(`Foreign rail: only ~<b class="mono">${Fr.near_side_swap_share_pct}%</b> NEAR-sided; net exit ~${Fr.net_exit_vs_capture_x}× capture.`);
-    if (Fs) bits.push(`Fee≠surface: SK exit ~${Fs.sk_exit.traceable_bb_loss_pct}% BB / ~${Fs.sk_exit.vol_at_risk_pct}% vol; relayer UX≫fee.`);
+    try { if (Fr) bits.push(`Foreign rail: only ~<b class="mono">${Fr.near_side_swap_share_pct}%</b> NEAR-sided; net exit ~${Fr.net_exit_vs_capture_x}× capture.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Fs) bits.push(`Fee≠surface: SK exit ~${Fs.sk_exit.traceable_bb_loss_pct}% BB / ~${Fs.sk_exit.vol_at_risk_pct}% vol; relayer UX≫fee.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Oa = D.catalysts && D.catalysts.opacity_accelerating;
     const Ei = D.catalysts && D.catalysts.etf_immaterial;
-    if (Oa) bits.push(`Opacity accelerating: escrow BB share ~${Oa.escrow_share_jul_pct}%→~${Oa.escrow_share_nov_pct}% Jul→Nov — attest urgency rises.`);
-    if (Ei) bits.push(`ETF/NRR ~$${Ei.nrr_implied_rr_m}M/yr ≈${Ei.nrr_vs_intents_x}× Intents — do not lead.`);
+    try { if (Oa) bits.push(`Opacity accelerating: escrow BB share ~${Oa.escrow_share_jul_pct}%→~${Oa.escrow_share_nov_pct}% Jul→Nov — attest urgency rises.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Ei) bits.push(`ETF/NRR ~$${Ei.nrr_implied_rr_m}M/yr ≈${Ei.nrr_vs_intents_x}× Intents — do not lead.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Wall = D.catalysts && D.catalysts.coverage_wall;
     const OxE = D.catalysts && D.catalysts.opacity_x_elasticity;
     const FidC = D.catalysts && D.catalysts.fidelity_commercial;
     const Three = D.catalysts && D.catalysts.three_scoreboards;
     const Res = D.catalysts && D.catalysts.path50x_residual;
     const Asym = D.catalysts && D.catalysts.submit_asymmetry;
-    if (Wall) bits.push(`Coverage wall (no-vol): ~<b class="mono">${Wall.no_vol_ceiling_pct}%</b> — remaining ~${Wall.gap_ceiling_to_100_pp} pp is volume/price.`);
-    if (OxE) bits.push(`Opacity×elasticity: escrow BB ~${OxE.escrow_bb_share_pct}% × capture~${OxE.capture_vs_volume_x}×; attest~${OxE.attest_vol_pp_equivalent} vol-pp trust (do not sum).`);
-    if (FidC) bits.push(`Fidelity→terms: BB~${FidC.bb_exact_rate_pct}% / SK~${FidC.swapkit_paid_rate_pct}% paid — ~$${FidC.leakage_pool_rr_m}M/yr leakage is commercial, not AR.`);
-    if (Three) bits.push(`Three scoreboards: intents~${Math.round(Three.intents_vs_2025q1_x)}× / L1~${Number(Three.l1_yoy_tx_x).toFixed(2)}× / NEAR-sided~${Three.near_side_swap_share_pct}% — venue≠token demand.`);
-    if (Res) bits.push(`50× residual: after full stack still ~<b class="mono">${Res.after_full_capture_hsp_vol_x_for_50x}×</b> vol; order leakage→HSP→volume.`);
-    if (Asym) bits.push(`Submit asymmetry: ~${Asym.hours_to_submit}h to deadline; HSP timelock ~${Asym.hours_to_hsp029_timelock}h — pending-then-lagged.`);
+    try { if (Wall) bits.push(`Coverage wall (no-vol): ~<b class="mono">${Wall.no_vol_ceiling_pct}%</b> — remaining ~${Wall.gap_ceiling_to_100_pp} pp is volume/price.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (OxE) bits.push(`Opacity×elasticity: escrow BB ~${OxE.escrow_bb_share_pct}% × capture~${OxE.capture_vs_volume_x}×; attest~${OxE.attest_vol_pp_equivalent} vol-pp trust (do not sum).`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (FidC) bits.push(`Fidelity→terms: BB~${FidC.bb_exact_rate_pct}% / SK~${FidC.swapkit_paid_rate_pct}% paid — ~$${FidC.leakage_pool_rr_m}M/yr leakage is commercial, not AR.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Three) bits.push(`Three scoreboards: intents~${Math.round(Three.intents_vs_2025q1_x)}× / L1~${Number(Three.l1_yoy_tx_x).toFixed(2)}× / NEAR-sided~${Three.near_side_swap_share_pct}% — venue≠token demand.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Res) bits.push(`50× residual: after full stack still ~<b class="mono">${Res.after_full_capture_hsp_vol_x_for_50x}×</b> vol; order leakage→HSP→volume.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Asym) bits.push(`Submit asymmetry: ~${Asym.hours_to_submit}h to deadline; HSP timelock ~${Asym.hours_to_hsp029_timelock}h — pending-then-lagged.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Mx = D.catalysts && D.catalysts.capture_mutex;
     const Hb = D.catalysts && D.catalysts.hours_burn;
     const DvH = D.catalysts && D.catalysts.delivery_vs_hold;
-    if (Mx) bits.push(`Capture mutex: naive sum ~$${Mx.naive_sum_rr_m}M / ~${Mx.naive_sum_vol_pp} vol-pp — do not sum; Ledger-first call-order.`);
-    if (Hb) bits.push(`Hours burn: ~${Hb.hours_to_submit}h — spend on public+X, not more history strata.`);
-    if (DvH) bits.push(`Delivery ≠ Hold flip — contest delivery; Hold binder still H1b.`);
+    try { if (Mx) bits.push(`Capture mutex: naive sum ~$${Mx.naive_sum_rr_m}M / ~${Mx.naive_sum_vol_pp} vol-pp — do not sum; Ledger-first call-order.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Hb) bits.push(`Hours burn: ~${Hb.hours_to_submit}h — spend on public+X, not more history strata.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (DvH) bits.push(`Delivery ≠ Hold flip — contest delivery; Hold binder still H1b.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Qc = D.catalysts && D.catalysts.quality_cool_proof;
     const Dbl = D.catalysts && D.catalysts.double_opacity;
     const IvL = D.catalysts && D.catalysts.immaterial_vs_leakage;
     const SvS = D.catalysts && D.catalysts.settlement_vs_spam;
-    if (Qc) bits.push(`Quality-on-cool proof: vol ${Qc.vol_mom_pct}% MoM while attach/τ rose — capture dials work without vol cheerleading.`);
-    if (Dbl) bits.push(`Double opacity: escrow BB~${Dbl.escrow_bb_share_pct}% + unknown surface~${Dbl.unknown_surface_pct}% — attest AND label.`);
-    if (IvL) bits.push(`Immaterial vs leakage: SK-tax~$${IvL.sk_tax_25_rr_m}M vs ~$${IvL.leakage_pool_rr_m}M prize; ETF/AI noise.`);
-    if (SvS) bits.push(`Settlement≠spam: HOT tx-heavy / Intents settlement-heavy — coverage is capture not L1 count.`);
+    try { if (Qc) bits.push(`Quality-on-cool proof: vol ${Qc.vol_mom_pct}% MoM while attach/τ rose — capture dials work without vol cheerleading.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Dbl) bits.push(`Double opacity: escrow BB~${Dbl.escrow_bb_share_pct}% + unknown surface~${Dbl.unknown_surface_pct}% — attest AND label.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (IvL) bits.push(`Immaterial vs leakage: SK-tax~$${IvL.sk_tax_25_rr_m}M vs ~$${IvL.leakage_pool_rr_m}M prize; ETF/AI noise.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (SvS) bits.push(`Settlement≠spam: HOT tx-heavy / Intents settlement-heavy — coverage is capture not L1 count.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Wd = D.catalysts && D.catalysts.whale_desk;
     const PvS = D.catalysts && D.catalysts.peerset_vs_sk;
     const ClL = D.catalysts && D.catalysts.capital_vs_leakage;
     const Tn = D.catalysts && D.catalysts.trust_nested;
     const PrH = D.catalysts && D.catalysts.price_heavy;
-    if (Wd) bits.push(`Whale desk=SK-tax: ${Wd.whale_swap_count_pct}% swaps=${Wd.whale_vol_share_pct}% vol; partner tax pool ~$${Wd.sk_listed_partner_fees_rr_m}M.`);
-    if (PvS) bits.push(`Peerset recovery ~$${PvS.peerset_recovery_rr_m}M ≈ ${PvS.recovery_vs_sk_tax_x}× SK-tax — share not scarce.`);
-    if (ClL) bits.push(`Capital-light (PCI~${ClL.pci}): WC not binding — leakage terms bind.`);
-    if (Tn) bits.push(`Trust SK→direct ~$${Tn.trust_sk_to_direct_rr_m}M nests under SK-tax (~${(100*Tn.trust_vs_sk_tax_x).toFixed(0)}%).`);
-    if (PrH) bits.push(`Price-heavy print: USD~${PrH.usd_fee_growth_pct}% vs NEAR-unit~${PrH.near_unit_growth_pct}% (~${PrH.usd_vs_near_x}×).`);
+    try { if (Wd) bits.push(`Whale desk=SK-tax: ${Wd.whale_swap_count_pct}% swaps=${Wd.whale_vol_share_pct}% vol; partner tax pool ~$${Wd.sk_listed_partner_fees_rr_m}M.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (PvS) bits.push(`Peerset recovery ~$${PvS.peerset_recovery_rr_m}M ≈ ${PvS.recovery_vs_sk_tax_x}× SK-tax — share not scarce.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (ClL) bits.push(`Capital-light (PCI~${ClL.pci}): WC not binding — leakage terms bind.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Tn) bits.push(`Trust SK→direct ~$${Tn.trust_sk_to_direct_rr_m}M nests under SK-tax (~${(100*Tn.trust_vs_sk_tax_x).toFixed(0)}%).`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (PrH) bits.push(`Price-heavy print: USD~${PrH.usd_fee_growth_pct}% vs NEAR-unit~${PrH.near_unit_growth_pct}% (~${PrH.usd_vs_near_x}×).`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Am = D.catalysts && D.catalysts.attach_momentum;
     const Jp = D.catalysts && D.catalysts.judge_packet;
-    if (Am) bits.push(`Attach momentum: ${Am.b1_attach_pct}%→${Am.b3_attach_pct}% (+${Am.delta_pp_three_blocks}pp) on a cool; ~${Am.pp_remaining_to_60}pp to 60% (~$${Am.rr_uplift_43_to_60_m}M RR).`);
-    if (Jp) bits.push(`Judge packet ~${Jp.score_excl_must_ship} excl must-ship — open public+X recorded.`);
+    try { if (Am) bits.push(`Attach momentum: ${Am.b1_attach_pct}%→${Am.b3_attach_pct}% (+${Am.delta_pp_three_blocks}pp) on a cool; ~${Am.pp_remaining_to_60}pp to 60% (~$${Am.rr_uplift_43_to_60_m}M RR).`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Jp) bits.push(`Judge packet ~${Jp.score_excl_must_ship} excl must-ship — open public+X recorded.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const D12 = D.catalysts && D.catalysts.dense_12_complete;
-    if (D12) bits.push(`Dense _12 complete through ${D12.through}: ${D12.clusters} clusters; history not submit blocker — burn hours on public+X.`);
+    try { if (D12) bits.push(`Dense _12 complete through ${D12.through}: ${D12.clusters} clusters; history not submit blocker — burn hours on public+X.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Fst = D.catalysts && D.catalysts.fee_stability;
     const Ds = D.catalysts && D.catalysts.diminishing_strata;
-    if (Fst) bits.push(`Fee≠L1 stable under dense: intents~${Math.round(Fst.intents_vs_2025q1_x_now)}× (was~189) vs L1~${Number(Fst.l1_yoy_tx_x_now).toFixed(2)}×.`);
+    try { if (Fst) bits.push(`Fee≠L1 stable under dense: intents~${Math.round(Fst.intents_vs_2025q1_x_now)}× (was~189) vs L1~${Number(Fst.l1_yoy_tx_x_now).toFixed(2)}×.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Id = D.catalysts && D.catalysts.intents_drift;
-    if (Id) bits.push(`Intents× drift ~189→~${Math.round(Id.series[Id.series.length-1].intents_x)} as 2025Q1 den fills — pitch OoM gap not point estimate.`);
+    try { if (Id) bits.push(`Intents× drift ~189→~${Math.round(Id.series[Id.series.length-1].intents_x)} as 2025Q1 den fills — pitch OoM gap not point estimate.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Cq = D.catalysts && D.catalysts.conversion_quiet;
     const Ac = D.catalysts && D.catalysts.affiliate_contest;
     const Sv = D.catalysts && D.catalysts.single_venue_fee;
-    if (Cq) bits.push(`Conversion quiet dial: only ~${Cq.appfees_to_buybacks_pct}% appfees→BB; ~$${Cq.conversion_dial_rr_m}M ≈ ${Cq.conversion_vol_pp} vol-pp.`);
-    if (Ac) bits.push(`Affiliate P&L contest: SK exit ~${Ac.sk_exit_vol_pct}% vol / ~${Ac.sk_exit_traceable_bb_pct}% BB (~${Ac.vol_to_bb_asymmetry_x}×).`);
-    if (Sv) bits.push(`Single-venue fee power: Intents~${Sv.intents_share_of_near_fees_pct}% NEAR fees; BB more concentrated than vol.`);
+    try { if (Cq) bits.push(`Conversion quiet dial: only ~${Cq.appfees_to_buybacks_pct}% appfees→BB; ~$${Cq.conversion_dial_rr_m}M ≈ ${Cq.conversion_vol_pp} vol-pp.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Ac) bits.push(`Affiliate P&L contest: SK exit ~${Ac.sk_exit_vol_pct}% vol / ~${Ac.sk_exit_traceable_bb_pct}% BB (~${Ac.vol_to_bb_asymmetry_x}×).`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Sv) bits.push(`Single-venue fee power: Intents~${Sv.intents_share_of_near_fees_pct}% NEAR fees; BB more concentrated than vol.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Dr = D.catalysts && D.catalysts.default_rail;
     const Jc = D.catalysts && D.catalysts.judge_call_now;
-    if (Dr) bits.push(`Default rail≈fee engine: unreferred~${Dr.bb_unreferred_share_pct}% of BB $ — protect/expand that path.`);
-    if (Jc) bits.push(`Call-order: SK-tax→mix→attest→conversion→attach. Do not sum. Hold until H1b.`);
+    try { if (Dr) bits.push(`Default rail≈fee engine: unreferred~${Dr.bb_unreferred_share_pct}% of BB $ — protect/expand that path.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Jc) bits.push(`Call-order: SK-tax→mix→attest→conversion→attach. Do not sum. Hold until H1b.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Mn = D.catalysts && D.catalysts.mint_not_fee;
-    if (Mn) bits.push(`Mint ledger≠fee upside: HSP-007~$${Mn.hsp007_claim_rr_m}M issuance claim; HSP-029 pending-then-lagged.`);
+    try { if (Mn) bits.push(`Mint ledger≠fee upside: HSP-007~$${Mn.hsp007_claim_rr_m}M issuance claim; HSP-029 pending-then-lagged.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Du = D.catalysts && D.catalysts.delivery_urgency;
-    if (Du) bits.push(`Delivery urgency <b>${Du.urgency_band}</b> (~${Du.hours_to_submit}h) — public+X bind; do not block on strata.`);
+    try { if (Du) bits.push(`Delivery urgency <b>${Du.urgency_band}</b> (~${Du.hours_to_submit}h) — public+X bind; do not block on strata.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const AnT = D.catalysts && D.catalysts.attest_not_tau;
     const Cg = D.catalysts && D.catalysts.cif_gap;
-    if (AnT) bits.push(`Attest=underwriting not τ: band compression; escrow BB~${AnT.escrow_bb_share_pct}% — parallel to SK-tax.`);
-    if (Cg) bits.push(`CIF Gap: 1bp proxy~$${Cg.cif_1bp_rr_m}M — do not lead; lead SK-tax+attest.`);
+    try { if (AnT) bits.push(`Attest=underwriting not τ: band compression; escrow BB~${AnT.escrow_bb_share_pct}% — parallel to SK-tax.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Cg) bits.push(`CIF Gap: 1bp proxy~$${Cg.cif_1bp_rr_m}M — do not lead; lead SK-tax+attest.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Pg = D.catalysts && D.catalysts.peerset_gap;
-    if (Pg) bits.push(`Peerset gross~${Pg.gross_30d_pct}% vs net~${Pg.net_30d_pct}% (gap ${Pg.gross_vs_net_gap_pp}pp) — leadership overstates exclusivity.`);
+    try { if (Pg) bits.push(`Peerset gross~${Pg.gross_30d_pct}% vs net~${Pg.net_30d_pct}% (gap ${Pg.gross_vs_net_gap_pp}pp) — leadership overstates exclusivity.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const AiS = D.catalysts && D.catalysts.ai_substitute;
-    if (AiS) bits.push(`AI/agents: stack real, fees still Intents — substitute narrative; do not lead.`);
-    if (Ds) bits.push(`Diminishing strata: marginal seals low EV vs ~${Ds.hours_to_submit}h public+X clock.`);
+    try { if (AiS) bits.push(`AI/agents: stack real, fees still Intents — substitute narrative; do not lead.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Ds) bits.push(`Diminishing strata: marginal seals low EV vs ~${Ds.hours_to_submit}h public+X clock.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const SrL = D.catalysts && D.catalysts.solver_rent_ledger;
     const Ro = D.catalysts && D.catalysts.relayer_ops;
     const Mv = D.catalysts && D.catalysts.multi_venue_embed;
-    if (SrL) bits.push(`Solver rent≠capture: residual~$${SrL.solver_residual_rr_m}M ≈ SK-tax league but contestable rent (do not sum).`);
-    if (Ro) bits.push(`Relayer ops≠fee: top1~${Ro.top1_share_pct}%; vol/fee~${Ro.vol_to_fee_x}× — UX≫fee$.`);
-    if (Mv) bits.push(`Multi-venue embeds~${Mv.multi_venue_embed_1click_pct}% of 1Click can fill away — capture must survive exit.`);
+    try { if (SrL) bits.push(`Solver rent≠capture: residual~$${SrL.solver_residual_rr_m}M ≈ SK-tax league but contestable rent (do not sum).`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Ro) bits.push(`Relayer ops≠fee: top1~${Ro.top1_share_pct}%; vol/fee~${Ro.vol_to_fee_x}× — UX≫fee$.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Mv) bits.push(`Multi-venue embeds~${Mv.multi_venue_embed_1click_pct}% of 1Click can fill away — capture must survive exit.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Csa = D.catalysts && D.catalysts.capture_share_all_in;
     const Lod = D.catalysts && D.catalysts.leakage_option_dials;
     const Obt = D.catalysts && D.catalysts.opacity_buys_time;
@@ -727,16 +736,16 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     const Dp = D.catalysts && D.catalysts.deadline_premium;
     const Cso = D.catalysts && D.catalysts.catalyst_stack_order;
     const Jmb = D.catalysts && D.catalysts.judge_minute_budget;
-    if (Csa) bits.push(`Protocol capture share of user all-in ≈${Csa.protocol_capture_share_of_user_all_in_pct}% — distribution owns ~${Csa.distribution_owns_pct}%.`);
-    if (Lod) bits.push(`Leakage option surface ~$${Lod.annualised_leakage_m}M/yr; SK+conv+attach ≈$${Lod.three_dial_stack_rr_m}M (~${Lod.stack_vs_leakage_pct}%).`);
-    if (Obt) bits.push(`Opacity ${Obt.escrow_share_jul_pct}→${Obt.escrow_share_nov_pct}% buys Trust time, not τ.`);
-    if (Vlm) bits.push(`Volume last mile = distribution: wall ${Vlm.no_vol_ceiling_pct}% → residual ~${Vlm.path50_remaining_vol_x}×; whale ~${Vlm.whale_vol_share_pct}% vol.`);
-    if (Hfh) bits.push(`Hold flip = H1b not density (${Hfh.clusters} clusters still not supported).`);
-    if (Eva) bits.push(`Attach +${Eva.attach_delta_pp}pp co-moves with opacity +${Eva.opacity_delta_pp}pp — quality + attestation debt.`);
-    if (Svc) bits.push(`Strata EV ≪ delivery: ~${Svc.hours_to_submit}h left — burn on public+X.`);
-    if (Dp) bits.push(`Deadline premium = packaging/demo, not more seals (prop_ready~${Dp.prop_ready_excl_must_ship}).`);
-    if (Cso) bits.push(`Catalyst order: public+X → SK-tax → conversion → HSP → attach.`);
-    if (Jmb) bits.push(`Judge ~${Jmb.judge_minutes_budget} min vs ~${Jmb.punch_rows_approx} punch rows — lead with 5 locked lines.`);
+    try { if (Csa) bits.push(`Protocol capture share of user all-in ≈${Csa.protocol_capture_share_of_user_all_in_pct}% — distribution owns ~${Csa.distribution_owns_pct}%.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Lod) bits.push(`Leakage option surface ~$${Lod.annualised_leakage_m}M/yr; SK+conv+attach ≈$${Lod.three_dial_stack_rr_m}M (~${Lod.stack_vs_leakage_pct}%).`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Obt) bits.push(`Opacity ${Obt.escrow_share_jul_pct}→${Obt.escrow_share_nov_pct}% buys Trust time, not τ.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Vlm) bits.push(`Volume last mile = distribution: wall ${Vlm.no_vol_ceiling_pct}% → residual ~${Vlm.path50_remaining_vol_x}×; whale ~${Vlm.whale_vol_share_pct}% vol.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Hfh) bits.push(`Hold flip = H1b not density (${Hfh.clusters} clusters still not supported).`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Eva) bits.push(`Attach +${Eva.attach_delta_pp}pp co-moves with opacity +${Eva.opacity_delta_pp}pp — quality + attestation debt.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Svc) bits.push(`Strata EV ≪ delivery: ~${Svc.hours_to_submit}h left — burn on public+X.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Dp) bits.push(`Deadline premium = packaging/demo, not more seals (prop_ready~${Dp.prop_ready_excl_must_ship}).`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Cso) bits.push(`Catalyst order: public+X → SK-tax → conversion → HSP → attach.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Jmb) bits.push(`Judge ~${Jmb.judge_minutes_budget} min vs ~${Jmb.punch_rows_approx} punch rows — lead with 5 locked lines.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Ask = D.catalysts && D.catalysts.affiliate_sk_desk;
     const Ssw = D.catalysts && D.catalysts.soft_sink_wall;
     const Nmm = D.catalysts && D.catalysts.nearcom_mix_mutex;
@@ -749,18 +758,18 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     const Pnp = D.catalysts && D.catalysts.peerset_not_prize;
     const Tsn = D.catalysts && D.catalysts.trust_sk_nested;
     const Mst = D.catalysts && D.catalysts.mutex_sum_trap;
-    if (Ask) bits.push(`Affiliate contest = SK desk (vol/BB asymmetry ~${Ask.affiliate_vol_to_bb_asymmetry_x}×).`);
-    if (Ssw) bits.push(`Soft-sink/burn do not move wall ~${Ssw.coverage_wall_pct}%; burn-25% needs ~${Ssw.burn_needs_pct_of_capture_for_25pct_mint}% of capture.`);
-    if (Nmm) bits.push(`near.com mix+10pp ~$${Nmm.mix_10pp_rr_m}M ≈ SK-tax but mutex.`);
-    if (Ft) bits.push(`Fidelity BB~${Ft.bb_exact_rate_pct}%/SK~${Ft.swapkit_paid_rate_pct}% ⇒ leakage=terms not unpaid.`);
-    if (Sw) bits.push(`Settlement weight: HOT tx~${Sw.hot_tx_share_pct}% vs Intents~${Sw.intents_tx_share_pct}% gas-matched.`);
-    if (Fnd) bits.push(`Foreign rail: NEAR-sided~${Fnd.near_side_swap_share_pct}%; exit~${Fnd.net_exit_vs_capture_x}× capture.`);
-    if (Ivs) bits.push(`ETF/AI immaterial (~${Ivs.etf_vs_sk_x}× SK-tax) — do not lead.`);
-    if (Flc) bits.push(`Five ledgers: lead capture $${Flc.lead_rr_m}M; attest parallel; never sum $${Flc.naive_four_ten_sum_rr_m}M.`);
-    if (Clb) bits.push(`Capital-light (turnover~${Clb.turnover_x_30d}×/30d) ⇒ leakage binds, not WC.`);
-    if (Pnp) bits.push(`Peerset gross~${Pnp.gross_pct}% vs net~${Pnp.net_pct}% — leadership ≠ prize.`);
-    if (Tsn) bits.push(`Trust-via-SK ~${Tsn.trust_sk_partner_vs_direct_bb_x}× partner vs direct BB — nest under SK.`);
-    if (Mst) bits.push(`Mutex trap: naive dial sum ~$${Mst.naive_sum_rr_m}M forbidden.`);
+    try { if (Ask) bits.push(`Affiliate contest = SK desk (vol/BB asymmetry ~${Ask.affiliate_vol_to_bb_asymmetry_x}×).`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Ssw) bits.push(`Soft-sink/burn do not move wall ~${Ssw.coverage_wall_pct}%; burn-25% needs ~${Ssw.burn_needs_pct_of_capture_for_25pct_mint}% of capture.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Nmm) bits.push(`near.com mix+10pp ~$${Nmm.mix_10pp_rr_m}M ≈ SK-tax but mutex.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Ft) bits.push(`Fidelity BB~${Ft.bb_exact_rate_pct}%/SK~${Ft.swapkit_paid_rate_pct}% ⇒ leakage=terms not unpaid.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Sw) bits.push(`Settlement weight: HOT tx~${Sw.hot_tx_share_pct}% vs Intents~${Sw.intents_tx_share_pct}% gas-matched.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Fnd) bits.push(`Foreign rail: NEAR-sided~${Fnd.near_side_swap_share_pct}%; exit~${Fnd.net_exit_vs_capture_x}× capture.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Ivs) bits.push(`ETF/AI immaterial (~${Ivs.etf_vs_sk_x}× SK-tax) — do not lead.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Flc) bits.push(`Five ledgers: lead capture $${Flc.lead_rr_m}M; attest parallel; never sum $${Flc.naive_four_ten_sum_rr_m}M.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Clb) bits.push(`Capital-light (turnover~${Clb.turnover_x_30d}×/30d) ⇒ leakage binds, not WC.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Pnp) bits.push(`Peerset gross~${Pnp.gross_pct}% vs net~${Pnp.net_pct}% — leadership ≠ prize.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Tsn) bits.push(`Trust-via-SK ~${Tsn.trust_sk_partner_vs_direct_bb_x}× partner vs direct BB — nest under SK.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Mst) bits.push(`Mutex trap: naive dial sum ~$${Mst.naive_sum_rr_m}M forbidden.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Cif = D.catalysts && D.catalysts.cs_infra_not_fee;
     const H7 = D.catalysts && D.catalysts.hsp007_vs_fee;
     const Po = D.catalysts && D.catalysts.perps_overlay;
@@ -772,19 +781,19 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     const Shl = D.catalysts && D.catalysts.sk_hhi_leverage;
     const Fnl = D.catalysts && D.catalysts.fee_neq_l1_224;
     const D15 = D.catalysts && D.catalysts.dense_15_progress;
-    if (Cif) bits.push(`CS = infra enabling Intents, not additive fee line.`);
-    if (H7) bits.push(`HSP-007 mint claim ~$${H7.four_ten_hsp007_rr_m}M competes with fee offset — do not stack.`);
-    if (Po) bits.push(`Perps OI ${Po.oi_change_30d_pct}% — delever overlay, not fee signal.`);
-    if (Doi) bits.push(`Double opacity: inv conf~${Doi.conf_tvl_vs_inventory_pct}% + capture conf~${Doi.confidential_share_of_measured_capture_pct}%; unattested~$${Doi.unattested_rr_m}M.`);
-    if (Rr) bits.push(`Relayer top1~${Rr.top1_share_pct}% — resilience not capture (vol/fee~${Rr.vol_to_fee_x}×).`);
-    if (Ivs2) bits.push(`Intents deposits/day ~$${Ivs2.intents_deposits_per_day_m}M ≈${Ivs2.intents_deposit_vs_stablecoin_x}× stablecoin L1.`);
-    if (Ipr) bits.push(`Inventory privacy+foreign: wNEAR~${Ipr.wnear_share_pct}% ZEC~${Ipr.zec_share_pct}%.`);
-    if (Dtg) bits.push(`Dist tax~${Dtg.distribution_tax_bp_approx}bp > τ~${Dtg.captured_bp}bp; partners keep ~${Dtg.partners_kept_vs_near_x}×.`);
-    if (Shl) bits.push(`SK~${Shl.swapkit_vol_share_pct}% vol; HHI ${Shl.hhi_raw}→${Shl.hhi_sk_merged} = tax leverage.`);
-    if (Fnl) bits.push(`Fee≠L1 @${Fnl.clusters}: intents~${Math.round(Fnl.intents_x)}× vs L1~${Fnl.l1_yoy_tx_x}×.`);
-    if (D15) bits.push(`_15 dense through ${D15.last} @${D15.clusters}; next ${D15.next}.`);
+    try { if (Cif) bits.push(`CS = infra enabling Intents, not additive fee line.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (H7) bits.push(`HSP-007 mint claim ~$${H7.four_ten_hsp007_rr_m}M competes with fee offset — do not stack.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Po) bits.push(`Perps OI ${Po.oi_change_30d_pct}% — delever overlay, not fee signal.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Doi) bits.push(`Double opacity: inv conf~${Doi.conf_tvl_vs_inventory_pct}% + capture conf~${Doi.confidential_share_of_measured_capture_pct}%; unattested~$${Doi.unattested_rr_m}M.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Rr) bits.push(`Relayer top1~${Rr.top1_share_pct}% — resilience not capture (vol/fee~${Rr.vol_to_fee_x}×).`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Ivs2) bits.push(`Intents deposits/day ~$${Ivs2.intents_deposits_per_day_m}M ≈${Ivs2.intents_deposit_vs_stablecoin_x}× stablecoin L1.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Ipr) bits.push(`Inventory privacy+foreign: wNEAR~${Ipr.wnear_share_pct}% ZEC~${Ipr.zec_share_pct}%.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Dtg) bits.push(`Dist tax~${Dtg.distribution_tax_bp_approx}bp > τ~${Dtg.captured_bp}bp; partners keep ~${Dtg.partners_kept_vs_near_x}×.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Shl) bits.push(`SK~${Shl.swapkit_vol_share_pct}% vol; HHI ${Shl.hhi_raw}→${Shl.hhi_sk_merged} = tax leverage.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Fnl) bits.push(`Fee≠L1 @${Fnl.clusters}: intents~${Math.round(Fnl.intents_x)}× vs L1~${Fnl.l1_yoy_tx_x}×.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (D15) bits.push(`_15 dense through ${D15.last} @${D15.clusters}; next ${D15.next}.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Cau = D.catalysts && D.catalysts.channel_attach_uneven;
-    if (Cau) bits.push(`Channel attach uneven: default/no-BB ~${Cau.no_bb_channel_vol_share_pct}% vol; LiFi ~${Cau.lifi_vol_share_pct}%@${Cau.lifi_buyback_bp}bp.`);
+    try { if (Cau) bits.push(`Channel attach uneven: default/no-BB ~${Cau.no_bb_channel_vol_share_pct}% vol; LiFi ~${Cau.lifi_vol_share_pct}%@${Cau.lifi_buyback_bp}bp.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Qnb = D.catalysts && D.catalysts.qoc_not_beta;
     const Rfr = D.catalysts && D.catalysts.rating_fragile;
     const Cn5 = D.catalysts && D.catalysts.capture_never_50x;
@@ -797,28 +806,28 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     const Pdw = D.catalysts && D.catalysts.peerset_dwarfed;
     const Clo = D.catalysts && D.catalysts.cross_ledger_ok;
     const Shs = D.catalysts && D.catalysts.submit_hsp_seq;
-    if (Qnb) bits.push(`QoC: attach ${Qnb.attach_b1}→${Qnb.attach_b3}% on vol mom ${Qnb.vol_mom_pct}% — capture≠beta.`);
-    if (Rfr) bits.push(`Rating fragile: run $${Rfr.run_rate_m}M vs R90ann $${Rfr.r90_annualised_m}M (×${Rfr.acceleration_x}).`);
-    if (Cn5) bits.push(`Capture@60% ~$${Cn5.at_60_rr_m}M = ${Cn5.at_60_vs_50x}× of 50× need — never finishes alone.`);
-    if (Pc) bits.push(`Purity Intents~${Pc.intents_share_of_near_fees_pct}% fees = concentration risk.`);
-    if (Ho) bits.push(`Hold flip ⊥ delivery clock (~${Ho.hours_to_submit}h).`);
-    if (Bwg) bits.push(`BB wallet ~${Bwg.wallet_vs_implied_pct}% of implied (missing ~${Bwg.missing_near_m}M NEAR).`);
-    if (Rwm) bits.push(`Revwallets frontend~${Rwm.frontend_share_pct}% / BB~${Rwm.buybacks_share_pct}%.`);
-    if (Pd) bits.push(`Price-heavy print: USD +${Pd.usd_fee_growth_pct}% vs NEAR-unit +${Pd.near_unit_growth_pct}% — disclose both.`);
-    if (Su) bits.push(`Staked~${Su.staked_share_pct}%; unstake→Intents ~${Su.unstake_overlap_pct}% of NEAR sold.`);
-    if (Pdw) bits.push(`Peerset recovery ~$${Pdw.fee_rr_if_gross_recovery_m}M ≈${Pdw.vs_sk_tax_25_x}× SK-tax.`);
-    if (Clo) bits.push(`Cross-ledger stack OK; same-ledger mutex.`);
-    if (Shs) bits.push(`Submit≺HSP-029: ~${Shs.hours_to_submit}h vs ~${Shs.hours_to_hsp029}h — pending-then-lagged.`);
+    try { if (Qnb) bits.push(`QoC: attach ${Qnb.attach_b1}→${Qnb.attach_b3}% on vol mom ${Qnb.vol_mom_pct}% — capture≠beta.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Rfr) bits.push(`Rating fragile: run $${Rfr.run_rate_m}M vs R90ann $${Rfr.r90_annualised_m}M (×${Rfr.acceleration_x}).`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Cn5) bits.push(`Capture@60% ~$${Cn5.at_60_rr_m}M = ${Cn5.at_60_vs_50x}× of 50× need — never finishes alone.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Pc) bits.push(`Purity Intents~${Pc.intents_share_of_near_fees_pct}% fees = concentration risk.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Ho) bits.push(`Hold flip ⊥ delivery clock (~${Ho.hours_to_submit}h).`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Bwg) bits.push(`BB wallet ~${Bwg.wallet_vs_implied_pct}% of implied (missing ~${Bwg.missing_near_m}M NEAR).`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Rwm) bits.push(`Revwallets frontend~${Rwm.frontend_share_pct}% / BB~${Rwm.buybacks_share_pct}%.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Pd) bits.push(`Price-heavy print: USD +${Pd.usd_fee_growth_pct}% vs NEAR-unit +${Pd.near_unit_growth_pct}% — disclose both.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Su) bits.push(`Staked~${Su.staked_share_pct}%; unstake→Intents ~${Su.unstake_overlap_pct}% of NEAR sold.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Pdw) bits.push(`Peerset recovery ~$${Pdw.fee_rr_if_gross_recovery_m}M ≈${Pdw.vs_sk_tax_25_x}× SK-tax.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Clo) bits.push(`Cross-ledger stack OK; same-ledger mutex.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Shs) bits.push(`Submit≺HSP-029: ~${Shs.hours_to_submit}h vs ~${Shs.hours_to_hsp029}h — pending-then-lagged.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Pcn = D.catalysts && D.catalysts.peer_claimable_neq;
     const Lti = D.catalysts && D.catalysts.ledger_tax_intensity;
     const Pi = D.catalysts && D.catalysts.pip_irrelevant;
     const N1g = D.catalysts && D.catalysts.non1click_gap;
     const Rpc = D.catalysts && D.catalysts.repo_private_confirmed;
-    if (Pcn) bits.push(`Peer gross bp ≠ token-claimable bp — pitch claimable τ not gross leadership.`);
-    if (Lti) bits.push(`Ledger@SK ~${Lti.ledger_via_sk_vol_pct}% vol @~${Lti.ledger_partner_bp_avg}bp partner tax.`);
-    if (Pi) bits.push(`Protocol pip ${Pi.protocol_pip_bp}bp irrelevant vs τ ${Pi.captured_bp}bp.`);
-    if (N1g) bits.push(`Non-1Click ~${N1g.non_1click_share_of_defillama_vol_pct}% vol fee composition = Gap.`);
-    if (Rpc) bits.push(`Repo PRIVATE confirmed @~${Rpc.hours_to_submit}h — must-ship #1.`);
+    try { if (Pcn) bits.push(`Peer gross bp ≠ token-claimable bp — pitch claimable τ not gross leadership.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Lti) bits.push(`Ledger@SK ~${Lti.ledger_via_sk_vol_pct}% vol @~${Lti.ledger_partner_bp_avg}bp partner tax.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Pi) bits.push(`Protocol pip ${Pi.protocol_pip_bp}bp irrelevant vs τ ${Pi.captured_bp}bp.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (N1g) bits.push(`Non-1Click ~${N1g.non_1click_share_of_defillama_vol_pct}% vol fee composition = Gap.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Rpc) bits.push(`Repo PRIVATE confirmed @~${Rpc.hours_to_submit}h — must-ship #1.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Pm = D.catalysts && D.catalysts.partner_micro;
     const Cn1 = D.catalysts && D.catalysts.collector_not_1to1;
     const Fnt = D.catalysts && D.catalysts.fee_neq_trust;
@@ -827,121 +836,121 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     const Ha = D.catalysts && D.catalysts.hsp029_attn;
     const Ir = D.catalysts && D.catalysts.invest_refresh;
     const Ma = D.catalysts && D.catalysts.mix_arith;
-    if (Pm) bits.push(`Partner-path micro ~$${Pm.partner_path_sum_rr_m}M ≪ SK-tax $${Pm.sk_tax_rr_m}M.`);
-    if (Cn1) bits.push(`Collector A→BB ~${Cn1.a_to_bb_pct}% — not clean 1:1.`);
-    if (Fnt) bits.push(`Fee print ≠ escrow trust: BB escrow~${Fnt.escrow_share_of_bb_pct}% vs attest ${Fnt.attestation_band_low_pct}–${Fnt.attestation_band_high_pct}%.`);
-    if (Tbv) bits.push(`Two bridges before volume: SK $${Tbv.sk_tax_rr_m}M + attest $${Tbv.attest_rr_m}M.`);
-    if (Drc) bits.push(`Dial rank commercial≻volume: ${Drc.top4_capture_or_trust.slice(0,3).join(' → ')}.`);
-    if (Ha) bits.push(`HSP-029 views~${Ha.hsp029_views} ≫ HSP-007~${Ha.hsp007_views}.`);
-    if (Ir) bits.push(`Investment object refreshed @~${Ir.hours_to_submit}h.`);
-    if (Ma) bits.push(`Mix-shift = arithmetic sizing, not forecast.`);
+    try { if (Pm) bits.push(`Partner-path micro ~$${Pm.partner_path_sum_rr_m}M ≪ SK-tax $${Pm.sk_tax_rr_m}M.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Cn1) bits.push(`Collector A→BB ~${Cn1.a_to_bb_pct}% — not clean 1:1.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Fnt) bits.push(`Fee print ≠ escrow trust: BB escrow~${Fnt.escrow_share_of_bb_pct}% vs attest ${Fnt.attestation_band_low_pct}–${Fnt.attestation_band_high_pct}%.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Tbv) bits.push(`Two bridges before volume: SK $${Tbv.sk_tax_rr_m}M + attest $${Tbv.attest_rr_m}M.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Drc) bits.push(`Dial rank commercial≻volume: ${Drc.top4_capture_or_trust.slice(0,3).join(' → ')}.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Ha) bits.push(`HSP-029 views~${Ha.hsp029_views} ≫ HSP-007~${Ha.hsp007_views}.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Ir) bits.push(`Investment object refreshed @~${Ir.hours_to_submit}h.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Ma) bits.push(`Mix-shift = arithmetic sizing, not forecast.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Ff = D.catalysts && D.catalysts.f1_f4;
     const Ceb = D.catalysts && D.catalysts.cap_eff_binds;
-    if (Ff) bits.push(`F1–F4 resolve ${Ff.resolve_on}; human clears F1/F2.`);
-    if (Ceb) bits.push(`Capital-efficiency: leakage binds (PCI light).`);
+    try { if (Ff) bits.push(`F1–F4 resolve ${Ff.resolve_on}; human clears F1/F2.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Ceb) bits.push(`Capital-efficiency: leakage binds (PCI light).`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Pl = D.catalysts && D.catalysts.pci_light;
     const C640 = D.catalysts && D.catalysts.commits_640;
-    if (Pl) bits.push(`PCI~${Pl.pci_30d} / ~${Pl.days_of_volume_in_inventory}d inventory — leakage $${Pl.leakage_m}M binds.`);
-    if (C640) bits.push(`~${C640.commits} commits / ${C640.clusters} clusters — delivery still binds.`);
+    try { if (Pl) bits.push(`PCI~${Pl.pci_30d} / ~${Pl.days_of_volume_in_inventory}d inventory — leakage $${Pl.leakage_m}M binds.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (C640) bits.push(`~${C640.commits} commits / ${C640.clusters} clusters — delivery still binds.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Bp = D.catalysts && D.catalysts.bonded_peers;
-    if (Bp) bits.push(`Capital-light vs bonded peers (PCI~${Bp.intents_pci_30d}) — no bond-demand catalyst.`);
+    try { if (Bp) bits.push(`Capital-light vs bonded peers (PCI~${Bp.intents_pci_30d}) — no bond-demand catalyst.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Iro = D.catalysts && D.catalysts.inv_risk_off_bs;
     const Clf = D.catalysts && D.catalysts.cap_light_falsifier;
-    if (Iro) bits.push(`Inventory risk off token BS — fee capture is the value link.`);
-    if (Clf) bits.push(`Capital-light falsifier = on-balance inventory / bonds (watch, not pitch).`);
+    try { if (Iro) bits.push(`Inventory risk off token BS — fee capture is the value link.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Clf) bits.push(`Capital-light falsifier = on-balance inventory / bonds (watch, not pitch).`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const T3 = D.catalysts && D.catalysts.thor_3x_pci;
     const Cwl = D.catalysts && D.catalysts.cap_wins_loses;
     const Nbd = D.catalysts && (D.catalysts.no_bond_from_cl || D.catalysts.no_bond_demand);
-    if (T3) bits.push(`THOR-matched stack PCI~${T3.thor_matched_pci_30d} ≈${T3.vs_intents_x}× Intents (bond~$${T3.implied_bond_usd_m}M illus.).`);
-    if (Cwl) bits.push(`Capital-light wins long-tail/embed/privacy; loses TEE/solver/relayer/no floor.`);
-    if (Nbd && Nbd.capital_light_creates_near_bond_demand === false) bits.push(`Explicit: capital-light does not create NEAR bond demand.`);
+    try { if (T3) bits.push(`THOR-matched stack PCI~${T3.thor_matched_pci_30d} ≈${T3.vs_intents_x}× Intents (bond~$${T3.implied_bond_usd_m}M illus.).`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Cwl) bits.push(`Capital-light wins long-tail/embed/privacy; loses TEE/solver/relayer/no floor.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Nbd && Nbd.capital_light_creates_near_bond_demand === false) bits.push(`Explicit: capital-light does not create NEAR bond demand.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Cdg = D.catalysts && D.catalysts.claim_design_gap;
     const Dch = D.catalysts && D.catalysts.disc_claim_h1b;
-    if (Cdg) bits.push(`Claim design (discretionary BB) drives part of mcap/rev multiple gap vs mechanical peers.`);
-    if (Dch) bits.push(`Discretionary held-BB claim → H1b is underwriting discretion, not waiting for volume.`);
+    try { if (Cdg) bits.push(`Claim design (discretionary BB) drives part of mcap/rev multiple gap vs mechanical peers.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Dch) bits.push(`Discretionary held-BB claim → H1b is underwriting discretion, not waiting for volume.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Pmr = D.catalysts && D.catalysts.peer_mcap_rev;
-    if (Pmr) bits.push(`mcap/rev NEAR~${Pmr.mcap_to_rev_x.near_intents_style}× vs THOR~${Pmr.mcap_to_rev_x.thorchain}× (≈${Pmr.near_vs_thor_x}×) — claim design part of gap.`);
+    try { if (Pmr) bits.push(`mcap/rev NEAR~${Pmr.mcap_to_rev_x.near_intents_style}× vs THOR~${Pmr.mcap_to_rev_x.thorchain}× (≈${Pmr.near_vs_thor_x}×) — claim design part of gap.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Mc = D.catalysts && D.catalysts.mult_compress;
-    if (Mc) bits.push(`Multiple compression: claim/capture first (SK→~${Mc.paths_to_compress[0].implied_mult_if_mcap_fixed}×); not volume-alone to close ~${Mc.gap_x}×.`);
+    try { if (Mc) bits.push(`Multiple compression: claim/capture first (SK→~${Mc.paths_to_compress[0].implied_mult_if_mcap_fixed}×); not volume-alone to close ~${Mc.gap_x}×.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const E15 = D.catalysts && D.catalysts.entering_15_final;
-    if (E15) bits.push(`_15 through ${E15.last} @${E15.clusters}; Q4 left — strata EV ≪ public+X.`);
+    try { if (E15) bits.push(`_15 through ${E15.last} @${E15.clusters}; Q4 left — strata EV ≪ public+X.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const C650 = D.catalysts && D.catalysts.commits_650;
     const Iod = D.catalysts && D.catalysts.intents_oom_drift;
-    if (C650) bits.push(`~${C650.commits} commits milestone; delivery still binds.`);
-    if (Iod) bits.push(`Intents× drifts ${JSON.stringify(Iod.series.map(s=>Math.round(s.intents_x)))} — always ≫100×; pitch OoM.`);
+    try { if (C650) bits.push(`~${C650.commits} commits milestone; delivery still binds.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Iod) bits.push(`Intents× drifts ${JSON.stringify(Iod.series_rounded)} — always ≫100×; pitch OoM.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Js = D.catalysts && D.catalysts.judge_sixty;
-    if (Js) bits.push(`<b>60s:</b> ${Js.sixty_seconds.join(' ')}`);
+    try { if (Js) bits.push(`<b>60s:</b> ${Js.script}`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     
     const D15c = D.catalysts && D.catalysts.dense_15_complete;
     const Sbe = D.catalysts && D.catalysts.sk_bb_extreme;
     const Pnb = D.catalysts && D.catalysts.partner_no_bb;
-    if (D15c) bits.push(`_15 COMPLETE @${D15c.clusters} — strata EV exhausted; public+X bind.`);
-    if (Sbe) bits.push(`SK BB ~${Sbe.sk_near_share_of_partner_fees_pct}% of partner fees (L~${Sbe.leakage_ratio_listed_vs_bb_x}×).`);
-    if (Pnb) bits.push(`~${Pnb.partner_fees_no_bb_line_pct}% partner fees have no BB line.`);
+    try { if (D15c) bits.push(`_15 COMPLETE @${D15c.clusters} — strata EV exhausted; public+X bind.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Sbe) bits.push(`SK BB ~${Sbe.sk_near_share_of_partner_fees_pct}% of partner fees (L~${Sbe.leakage_ratio_listed_vs_bb_x}×).`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Pnb) bits.push(`~${Pnb.partner_fees_no_bb_line_pct}% partner fees have no BB line.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const E16 = D.catalysts && D.catalysts.entering_16;
     const Bas = D.catalysts && D.catalysts.blended_alpha_sk;
     const Cls = D.catalysts && D.catalysts.core_lt_sk;
-    if (E16) bits.push(`Entering _16 after _12–_15 complete — strata EV≪public+X.`);
-    if (Bas) bits.push(`Blended α~${Bas.all_in_token_claim_alpha_pct}% overstates SK paths (explicit NEAR≈0).`);
-    if (Cls) bits.push(`Fee-engine core ~$${Cls.fee_engine_core_noref_dense_fronts_rr_m}M < SK-tax $${Cls.sk_tax_rr_m}M.`);
+    try { if (E16) bits.push(`Entering _16 after _12–_15 complete — strata EV≪public+X.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Bas) bits.push(`Blended α~${Bas.all_in_token_claim_alpha_pct}% overstates SK paths (explicit NEAR≈0).`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Cls) bits.push(`Fee-engine core ~$${Cls.fee_engine_core_noref_dense_fronts_rr_m}M < SK-tax $${Cls.sk_tax_rr_m}M.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Drn = D.catalysts && D.catalysts.default_rail_noref;
     const Lvn = D.catalysts && D.catalysts.logo_vol_no_capture;
-    if (Drn) bits.push(`Default/no-ref ${Drn.noref_vol_share_pct}% vol → ${Drn.noref_buyback_fee_share_pct}% BB$ (×${Drn.buyback_dollar_concentration_x}) — default rail IS fee engine.`);
-    if (Lvn) bits.push(`Logo partners = volume without capture; convert logos→BB rails.`);
+    try { if (Drn) bits.push(`Default/no-ref ${Drn.noref_vol_share_pct}% vol → ${Drn.noref_buyback_fee_share_pct}% BB$ (×${Drn.buyback_dollar_concentration_x}) — default rail IS fee engine.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Lvn) bits.push(`Logo partners = volume without capture; convert logos→BB rails.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const T10 = D.catalysts && D.catalysts.top10_prop;
-    if (T10) bits.push(`<b>Top-10:</b> ${T10.top10_proprietary.map(x=>x.claim).slice(0,5).join(' · ')} …`);
+    try { if (T10) bits.push(`<b>Top-10:</b> ${T10.items.slice(0,5).join(' · ')} …`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const H29m = D.catalysts && D.catalysts.hsp029_mint;
     const Ap = D.catalysts && D.catalysts.attest_payoff;
-    if (H29m) bits.push(`HSP-029 alone = mint↓ not capture dial.`);
-    if (Ap) bits.push(`Attest band compression = Trust payoff (parallel to SK-tax).`);
+    try { if (H29m) bits.push(`HSP-029 alone = mint↓ not capture dial.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Ap) bits.push(`Attest band compression = Trust payoff (parallel to SK-tax).`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Zlv = D.catalysts && D.catalysts.zero_leak_vol;
     const An = D.catalysts && D.catalysts.aurora_not;
     const Ht = D.catalysts && D.catalysts.h1c_thin;
     const Bn = D.catalysts && D.catalysts.bitwise_neq;
-    if (Zlv) bits.push(`Zero leakage → $${Zlv.full_capture_rr_m}M RR; 50× needs only ~${Zlv.vol_x_for_50x}× vol — leakage is the bridge.`);
-    if (An) bits.push(`Aurora residual ~${An.aurora_tvl_vs_peak_pct}% of peak — not the thesis.`);
-    if (Ht) bits.push(`H1c buying ~$${Ht.h1c_buying_m}M thin vs fee print — not a catalyst.`);
-    if (Bn) bits.push(`Bitwise NRR ≠ Intents capture — do not stack.`);
+    try { if (Zlv) bits.push(`Zero leakage → $${Zlv.full_capture_rr_m}M RR; 50× needs only ~${Zlv.vol_x_for_50x}× vol — leakage is the bridge.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (An) bits.push(`Aurora residual ~${An.aurora_tvl_vs_peak_pct}% of peak — not the thesis.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Ht) bits.push(`H1c buying ~$${Ht.h1c_buying_m}M thin vs fee print — not a catalyst.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Bn) bits.push(`Bitwise NRR ≠ Intents capture — do not stack.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Xs = D.catalysts && D.catalysts.x_script_90;
-    if (Xs) bits.push(`<b>X 90s:</b> ${Xs.beats.map(b=>b.say.split('.')[0]).join(' → ')}.`);
+    try { if (Xs) bits.push(`<b>X 90s:</b> ${Xs.script.split('.').slice(0,3).join('.')}.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Rd = D.catalysts && D.catalysts.rating_disclose;
-    if (Rd) bits.push(`Rating growth: disclose USD +${Rd.g_obs_usd_pct}% and NEAR-unit +${Rd.g_obs_near_pct}% (req ${Rd.g_req_pct}%).`);
+    try { if (Rd) bits.push(`Rating growth: disclose USD +${Rd.g_obs_usd_pct}% and NEAR-unit +${Rd.g_obs_near_pct}% (req ${Rd.g_req_pct}%).`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Smh = D.catalysts && D.catalysts.sk_merged_hhi;
-    if (Smh) bits.push(`SK-merged HHI ${Smh.channel_hhi}→${Smh.channel_hhi_swapkit_merged} (>${Smh.doj_moderate_threshold}) = tax leverage.`);
+    try { if (Smh) bits.push(`SK-merged HHI ${Smh.channel_hhi}→${Smh.channel_hhi_swapkit_merged} (>${Smh.doj_moderate_threshold}) = tax leverage.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Hl = D.catalysts && D.catalysts.headline_leakage;
-    if (Hl) bits.push(`<b>HEADLINE:</b> ${Hl.one_liner}`);
+    try { if (Hl) bits.push(`<b>HEADLINE:</b> ${Hl.one_liner}`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
         const Nlp = D.catalysts && D.catalysts.non_leads_pack;
-    if (Nlp) bits.push(`Non-leads: ${Nlp.do_not_lead.slice(0,4).map(x=>x.item).join(', ')}…`);
+    try { if (Nlp) bits.push(`Non-leads: ${Nlp.never_lead.slice(0,4).join(', ')}…`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Ids = D.catalysts && D.catalysts.intents_dex_surface;
     const Iou = D.catalysts && D.catalysts.intents_ok_ux;
     const Hvs = D.catalysts && D.catalysts.hot_vs_settle;
     const Enl = D.catalysts && D.catalysts.etf_nonlead;
-    if (Ids) bits.push(`Intents IS the NEAR DEX surface (~${Ids.intents_share_of_near_dex_pct}% of chain DEX vol).`);
-    if (Iou) bits.push(`Intents OK~${Iou.intents_ok_share_pct}% — failure tail = UX risk not fee dial.`);
-    if (Hvs) bits.push(`HOT~${Hvs.hot_tx_share_pct}% tx vs Intents~${Hvs.intents_tx_share_pct}% at matched gas — settlement weight.`);
-    if (Enl) bits.push(`ETF NRR~$${Enl.etf_nrr_m}M ≈${Enl.nrr_vs_intents_x}× Intents — non-lead.`);
+    try { if (Ids) bits.push(`Intents IS the NEAR DEX surface (~${Ids.intents_share_of_near_dex_pct}% of chain DEX vol).`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Iou) bits.push(`Intents OK~${Iou.intents_ok_share_pct}% — failure tail = UX risk not fee dial.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Hvs) bits.push(`HOT~${Hvs.hot_tx_share_pct}% tx vs Intents~${Hvs.intents_tx_share_pct}% at matched gas — settlement weight.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Enl) bits.push(`ETF NRR~$${Enl.etf_nrr_m}M ≈${Enl.nrr_vs_intents_x}× Intents — non-lead.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Edb = D.catalysts && D.catalysts.escrow_dom_bb;
     const Tud = D.catalysts && D.catalysts.tg_unknown_dials;
     const Csb = D.catalysts && D.catalysts.cs_bursty;
     const An5 = D.catalysts && D.catalysts.attach_not_50x;
-    if (Edb) bits.push(`Escrow BB rail ${Edb.escrow_jul_pct}→${Edb.escrow_nov_pct}% — Trust urgency.`);
-    if (Tud) bits.push(`Surfaces: unknown~${Tud.unknown_1click_share_pct}% / tg~${Tud.tg_share_pct}% — label+TG dials.`);
-    if (Csb) bits.push(`CS bursty under Intents (execute/respond ×${Csb.execute_vs_respond_x}) — infra not fee.`);
-    if (An5) bits.push(`1Click@100% AITR only ~${An5.oneclick_100aitr_vs_need_x}× of 50× need — attach≠50×.`);
+    try { if (Edb) bits.push(`Escrow BB rail ${Edb.escrow_jul_pct}→${Edb.escrow_nov_pct}% — Trust urgency.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Tud) bits.push(`Surfaces: unknown~${Tud.unknown_1click_share_pct}% / tg~${Tud.tg_share_pct}% — label+TG dials.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Csb) bits.push(`CS bursty under Intents (execute/respond ×${Csb.execute_vs_respond_x}) — infra not fee.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (An5) bits.push(`1Click@100% AITR only ~${An5.oneclick_100aitr_vs_need_x}× of 50× need — attach≠50×.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const H7n = D.catalysts && D.catalysts.hsp007_nostack;
-    if (H7n) bits.push(`HSP-007 10–20% claim ~0.5–1× Intents RR — do not stack with capture (budget unknown).`);
+    try { if (H7n) bits.push(`HSP-007 10–20% claim ~0.5–1× Intents RR — do not stack with capture (budget unknown).`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const D16c = D.catalysts && D.catalysts.dense_16_complete;
-    if (D16c) bits.push(`_12–_16 COMPLETE @${D16c.clusters} — strata EV exhausted; public+X ONLY.`);
+    try { if (D16c) bits.push(`_12–_16 COMPLETE @${D16c.clusters} — strata EV exhausted; public+X ONLY.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const E17 = D.catalysts && D.catalysts.entering_17;
     const Sex = D.catalysts && D.catalysts.strata_exhausted;
-    if (E17) bits.push(`Entering _17 after _12–_16 — do not burn hours; public+X ONLY.`);
-    if (Sex) bits.push(`5 dense strata still not supported — density≠Buy.`);
+    try { if (E17) bits.push(`Entering _17 after _12–_16 — do not burn hours; public+X ONLY.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Sex) bits.push(`5 dense strata still not supported — density≠Buy.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
 const Ob = D.catalysts && D.catalysts.one_breath;
     const Dc = D.catalysts && D.catalysts.delivery_countdown;
-    if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`);
-    if (Dc) bits.push(`Delivery: ~${Dc.hours_to_submit}h — blockers public repo + X.`);
+    try { if (Ob && Ob.one_breath) bits.push(`<b>One breath:</b> ${Ob.one_breath}`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
+    try { if (Dc) bits.push(`Delivery: ~${Dc.hours_to_submit}h — blockers public repo + X.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     const Sd = D.catalysts && D.catalysts.sweep_depth;
-    if (Sd) bits.push(`Sweep depth: ~${Sd.commits} commits / ${Sd.clusters} clusters / ${Sd.derived_json || Sd.punch_table_rows_approx} derived.`);
+    try { if (Sd) bits.push(`Sweep depth: ~${Sd.commits} commits / ${Sd.clusters} clusters / ${Sd.derived_json || Sd.punch_table_rows_approx} derived.`); } catch (e) { console.warn("catalyst note skipped:", e.message); }
     $("#fee-engine-l1").innerHTML = bits.length ? `<p class="sub">${bits.join(' ')}</p>` : `<p class="sub">Fee-engine / coverage cards appear when derived JSON is in the build.</p>`;
   }
 }
