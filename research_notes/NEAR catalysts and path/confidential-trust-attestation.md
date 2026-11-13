@@ -31,7 +31,7 @@ The confidential trust set is a **permissioned private-shard venue** (seven vali
 - Distinct from **public** Intents MPC: Chain Signatures **11-of-17** in Intel TDX with named operators and Trail of Bits audits cited — that attestation stack covers cross-chain signing, **not** the seven-validator private shard. Do not conflate. — [Chain Signatures in TEEs](https://www.near.org/blog/chain-signatures-tee)
 
 **Measured (repo, not DefiLlama scrape alone)**
-- Escrow identity and exact-funded unshields: all **909** window deliveries funded to yoctoNEAR — privacy path working as designed; fee *stream* still unattested. — [REPORT.md](file:///tmp/nfs/REPORT.md); [partner-concentration.md](file:///tmp/nfs/docs/partner-concentration.md)
+- Escrow identity and exact-funded unshields: all **909** window deliveries funded to yoctoNEAR — privacy path working as designed; fee *stream* still unattested. — [REPORT.md](../../REPORT.md); [partner-concentration.md](../../docs/partner-concentration.md)
 
 ### Inferences
 - Trust surface hierarchy for diligence: (1) private-shard validator collusion/compromise of order flow; (2) TEE break / bridge key failure (false mint-burn); (3) SHIELD/operator policy freeze; (4) public-edge re-linking despite private mid-path.
@@ -56,20 +56,20 @@ Confidential rails are the only fee vertical where partners have **zero contract
 **Contract / fee ownership (primary — not marketing)**
 - Confidential swaps: **no AppFee**, no developer entitlement; Intents Technology “sets, charges, and retains” the Confidential Infrastructure Fee “for its own account”; rates vary by route/asset/developer; Intents Technology “determines which mode applies by default.” — [1Click Terms §6.8 / Schedule 1 §6](https://docs.near-intents.org/security-compliance/terms-of-service)
 - Schedule 1 §1.7: Infrastructure Fees **may** be directed to ecosystem recipients — permission, **not** a public obligation to buybacks. — same Terms
-- Public path contrast: partners set `appFees`; documented default 50/50 with 1Click floor; Commercial Agreements override Schedule 1. Observed SwapKit-class channels pay listed partner fees in full with near-zero explicit buyback. — [Fees](https://docs.near-intents.org/resources/fees); [capture-stack.md](file:///tmp/nfs/research_notes/NEAR%20Intents%20structural%20thesis/capture-stack.md)
+- Public path contrast: partners set `appFees`; documented default 50/50 with 1Click floor; Commercial Agreements override Schedule 1. Observed SwapKit-class channels pay listed partner fees in full with near-zero explicit buyback. — [Fees](https://docs.near-intents.org/resources/fees); [capture-stack.md](../NEAR%20Intents%20structural%20thesis/capture-stack.md)
 
 **Measured window (30d to 2026-11-04)**
-- Three revenue wallets: **418.8K NEAR (~$2.01M)** = **100.9%** of DefiLlama Intents revenue — aggregate capture reconciles. — [REPORT.md](file:///tmp/nfs/REPORT.md)
-- Buyback-wallet composition: ~$460K explicit buyback collector; ~$109K quote-improvement; **~$823.7K (~59.1%)** escrow unshields. Same path feeds most of `fefundsadmin`. — [partner-concentration.md](file:///tmp/nfs/docs/partner-concentration.md); REPORT marker `escrow_share_of_buyback_near_30d_pct` **58.8%**
-- Issuance ladder (exploratory): all-wallets offset **15.81%** of net issuance; public collectors **4.53** pts; escrow unshields **11.25** pts → underwrite as **4.5–15.8%** pending attestation. — [THESIS.md](file:///tmp/nfs/THESIS.md); [REPORT.md](file:///tmp/nfs/REPORT.md)
-- Escrow share of buyback NEAR climbed with rollout: Jul (from 07-07) **17.5%**, Aug **28.6%**, Sep **53.0%**, Oct **57.4%** (then ~59% in latest 30d block). — [confidential-intents.md](file:///tmp/nfs/research_notes/NEAR%20Intents%20structural%20thesis/confidential-intents.md) citing THESIS
-- Gross venue take ~**15.3 bp**; captured ~**4.98 bp**; capture share ~**32.5%**; partners kept ≥**1.81×** NEAR captured revenue on visible 1Click half. — [catalyst_math.json](file:///tmp/nfs/data/derived/catalyst_math.json); [REPORT.md](file:///tmp/nfs/REPORT.md)
-- Two documented readings for escrow NEAR (chain cannot distinguish): (1) near.com confidential-mode fees; (2) Confidential Infrastructure Fee retained then swept. — [partner-concentration.md](file:///tmp/nfs/docs/partner-concentration.md)
+- Three revenue wallets: **418.8K NEAR (~$2.01M)** = **100.9%** of DefiLlama Intents revenue — aggregate capture reconciles. — [REPORT.md](../../REPORT.md)
+- Buyback-wallet composition: ~$460K explicit buyback collector; ~$109K quote-improvement; **~$823.7K (~59.1%)** escrow unshields. Same path feeds most of `fefundsadmin`. — [partner-concentration.md](../../docs/partner-concentration.md); REPORT marker `escrow_share_of_buyback_near_30d_pct` **58.8%**
+- Issuance ladder (exploratory): all-wallets offset **15.81%** of net issuance; public collectors **4.53** pts; escrow unshields **11.25** pts → underwrite as **4.5–15.8%** pending attestation. — [THESIS.md](../../THESIS.md); [REPORT.md](../../REPORT.md)
+- Escrow share of buyback NEAR climbed with rollout: Jul (from 07-07) **17.5%**, Aug **28.6%**, Sep **53.0%**, Oct **57.4%** (then ~59% in latest 30d block). — [confidential-intents.md](../NEAR%20Intents%20structural%20thesis/confidential-intents.md) citing THESIS
+- Gross venue take ~**15.3 bp**; captured ~**4.98 bp**; capture share ~**32.5%**; partners kept ≥**1.81×** NEAR captured revenue on visible 1Click half. — [catalyst_math.json](../../data/derived/catalyst_math.json); [REPORT.md](../../REPORT.md)
+- Two documented readings for escrow NEAR (chain cannot distinguish): (1) near.com confidential-mode fees; (2) Confidential Infrastructure Fee retained then swept. — [partner-concentration.md](../../docs/partner-concentration.md)
 - Authenticated Partner JWT cannot read user confidential data — third-party analytics cannot reconstruct confidential fee attribution from public APIs. — [API authentication](https://docs.near-intents.org/integration/distribution-channels/1click-api/authentication)
 
 **Marketing vs measured**
 - Marketing: near.com “100% of fees to a NEAR revenue wallet”; FAQ “50/50” with third parties. — [revenue.near.org](https://revenue.near.org/)
-- Measured: SwapKit ~38% of 1Click volume with ~$159 explicit buyback fees vs ~$3.53M partner fees; DefiLlama investors page “100% of volume triggers $NEAR purchases” **overstates** vs ~5 bp captured / high-20s% of gross. — [capture-stack.md](file:///tmp/nfs/research_notes/NEAR%20Intents%20structural%20thesis/capture-stack.md); [Nansen](https://nansen.ai/post/near-q3-2026-report) capture 28.4% trailing 30d (down from 30.5%)
+- Measured: SwapKit ~38% of 1Click volume with ~$159 explicit buyback fees vs ~$3.53M partner fees; DefiLlama investors page “100% of volume triggers $NEAR purchases” **overstates** vs ~5 bp captured / high-20s% of gross. — [capture-stack.md](../NEAR%20Intents%20structural%20thesis/capture-stack.md); [Nansen](https://nansen.ai/post/near-q3-2026-report) capture 28.4% trailing 30d (down from 30.5%)
 
 ### Inferences
 - **High-margin condition for confidential volume:** CIF stays partner-proof *and* continues to be swept into the three DefiLlama revenue wallets at rates that support (or raise) captured bp — without that sweep, confidential mix is a product win that can be a token **null**.
@@ -105,8 +105,8 @@ For desks that want **dark pre-trade + public settlement + ingress screening + e
 
 **Evidenced adoption proxies vs marketing**
 - **Measured / sourced:** ZEC settled across Intents $1.5B (GA Jul) → >$2.6B (Nansen Q3); near.com ~40–42% confidential share *before* default; Confidential TVL ~$30M (Jul) → ~$160M Q3-end (+463% QoQ); near.com confidential-by-default **1 Sep 2026**, ~$2.57B Q3 (~¼ of Intents). — [GA](https://www.near.org/blog/announcing-general-availability-of-confidential-intents); [Nansen Q3 2026](https://nansen.ai/post/near-q3-2026-report)
-- **Mostly marketing:** “trading desks / institutions require this”; a16z privacy-moat slogan used in GA materials. — labelled in [confidential-intents.md](file:///tmp/nfs/research_notes/NEAR%20Intents%20structural%20thesis/confidential-intents.md)
-- Public 1Click already whale-skewed (≥$10K = 3.4% of count, **77.1%** of volume) — size preference for dark mode is **plausible, not ticket-distributed**. — [intents-fee-flows.md](file:///tmp/nfs/docs/intents-fee-flows.md)
+- **Mostly marketing:** “trading desks / institutions require this”; a16z privacy-moat slogan used in GA materials. — labelled in [confidential-intents.md](../NEAR%20Intents%20structural%20thesis/confidential-intents.md)
+- Public 1Click already whale-skewed (≥$10K = 3.4% of count, **77.1%** of volume) — size preference for dark mode is **plausible, not ticket-distributed**. — [intents-fee-flows.md](../../docs/intents-fee-flows.md)
 
 ### Inferences
 - **Feature regime:** capital that already trusts CEX matching engines / dark pools and wants self-custody narrative + wallet embed + sanctions hygiene — trust-minimized is sellable.
@@ -130,7 +130,7 @@ The confidentiality *idea* is copyable; the current wedge is **liquidity + 1Clic
 ### Cited Findings
 
 **What Intents has that peers must match**
-- Peer-set leadership: Intents **$4.0B / 15.3 bp / 55.7%** share vs THOR $1.8B / 12.3 bp, Chainflip $0.85B / 31.5 bp, Maya $0.53B / 9.4 bp (30d to 2026-11-04). — [REPORT.md](file:///tmp/nfs/REPORT.md); [competitive-structure.md](file:///tmp/nfs/research_notes/NEAR%20Intents%20structural%20thesis/competitive-structure.md)
+- Peer-set leadership: Intents **$4.0B / 15.3 bp / 55.7%** share vs THOR $1.8B / 12.3 bp, Chainflip $0.85B / 31.5 bp, Maya $0.53B / 9.4 bp (30d to 2026-11-04). — [REPORT.md](../../REPORT.md); [competitive-structure.md](../NEAR%20Intents%20structural%20thesis/competitive-structure.md)
 - 1Click REST collapses solver discovery; ~39 chains / ~229 assets vs vault venues’ thinner sets. — [1Click API](https://docs.near-intents.org/integration/distribution-channels/1click-api/about-1click-api); nearstats cited in competitive note
 - Confidentiality as API parameter on rails partners already use (GA opened near.com infra to integrators). — [GA announcement](https://www.near.org/blog/announcing-general-availability-of-confidential-intents)
 - Protocol-layer private shard (Nightshade) — harder for pure app-layer bridges to match “no public mempool/explorer” without L1 cooperation; first-mover, not forever exclusive. — [NEAR Blockchain](https://www.near.org/blockchain)
@@ -139,12 +139,12 @@ The confidentiality *idea* is copyable; the current wedge is **liquidity + 1Clic
 - Security model difference: THOR/Maya/Chainflip = bonded threshold vaults (economic underwriting); Intents = solver inventory + bridges/MPC. Peers do **not** need private shards to underwrite native BTC/ETH depth. — [THOR security](https://docs.thorchain.org/network-security-governance); [Chainflip overview](https://docs.chainflip.io/protocol/protocol-overview)
 - THOR ADR-029 REVSHARE subsidizes affiliates inside SwapKit without raising user fee — explicit fight for the same wallet pipe; early data: THOR still single-digit % of SwapKit trades. — [ADR-029](https://blog.thorchain.org/adr-029-affiliate-revenue-share)
 - SwapKit monetizes Intents **beside** THOR, Maya, Chainflip, Garden, Mayan, etc. — share is quote-win × coverage, not exclusive distribution. — [SwapKit Monetization](https://www.swapkit.dev/monetization/)
-- Any L1/L2 can add TEEs, permissioned shards, encrypted mempools, or ZK execution privacy and expose a swap flag; CEX dark books already offer size privacy with deeper capital. — inference in [confidential-intents.md](file:///tmp/nfs/research_notes/NEAR%20Intents%20structural%20thesis/confidential-intents.md); [structural-thesis.md](file:///tmp/nfs/docs/structural-thesis.md)
-- RFQ / ERC-7683 / Across-UniswapX paths make settlement rails interchangeable — Intents as one backend among backends. — [competitive-structure.md](file:///tmp/nfs/research_notes/NEAR%20Intents%20structural%20thesis/competitive-structure.md)
+- Any L1/L2 can add TEEs, permissioned shards, encrypted mempools, or ZK execution privacy and expose a swap flag; CEX dark books already offer size privacy with deeper capital. — inference in [confidential-intents.md](../NEAR%20Intents%20structural%20thesis/confidential-intents.md); [structural-thesis.md](../../docs/structural-thesis.md)
+- RFQ / ERC-7683 / Across-UniswapX paths make settlement rails interchangeable — Intents as one backend among backends. — [competitive-structure.md](../NEAR%20Intents%20structural%20thesis/competitive-structure.md)
 
 **Marketing vs measured on moat**
 - Marketing: “privacy will be the most important moat” (a16z quote in GA). — slogan
-- Measured: durability rests on liquidity primacy + API distribution + compliance niche — repo judgment: **conditional moat, not cryptographic moat**. — [confidential-intents.md](file:///tmp/nfs/research_notes/NEAR%20Intents%20structural%20thesis/confidential-intents.md); [structural-thesis.md](file:///tmp/nfs/docs/structural-thesis.md)
+- Measured: durability rests on liquidity primacy + API distribution + compliance niche — repo judgment: **conditional moat, not cryptographic moat**. — [confidential-intents.md](../NEAR%20Intents%20structural%20thesis/confidential-intents.md); [structural-thesis.md](../../docs/structural-thesis.md)
 
 ### Inferences
 - **Commoditization path that kills the wedge:** peer ships dark-enough UX *and* wins/keeps SwapKit-Ledger-Trust default quotes at lower all-in cost → Intents keeps volume only by giving away capture (race to supply side). That is the competition falsifier in the capture stack.
