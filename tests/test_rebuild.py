@@ -78,3 +78,7 @@ class Results(unittest.TestCase):
         self.assertAlmostEqual(sum(r["delivered_usd_by_group"].values()), r["delivered_usd"], delta=1.0)
         self.assertTrue(r["H_F5a_falsified"])
         self.assertTrue(r["post_hoc_llama_denominator"]["within_25pct"])
+
+    def test_f6_placebo_gate(self):
+        r = json.load(open(rb.ROOT / "data" / "derived" / "rebuild_results.json"))["f6"]
+        self.assertEqual(r["step_called"], r["mirrored"] and r["share_of_boundaries_with_ratio_at_least_0901"] <= 0.10)

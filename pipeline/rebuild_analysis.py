@@ -505,8 +505,40 @@ def f5() -> dict:
             "delivered_usd_by_group": by_group_usd, "mean_near_price": sum(px[d] for d in ds) / len(ds)}
 
 
+# ------------------------------------------------------------------ F6
+def f6() -> dict:
+    ds = days("2026-08-07", CUTOFF_DATE)
+    px = {r["day"]: r["usd"] for r in map(json.loads, (OUT / "aux_prices.ndjson").read_text().splitlines()) if r["symbol"] == "NEAR"}
+    names = ("persistent_5880ad2b_143f2bb4", "fee_176121bd", "escrow_funded_rest")
+    grp = {d: Counter() for d in ds}
+    for r in load("rb_q2_native_withdraw"):
+        if r["day"] in grp:
+            sname = r["src"]
+            g = names[0] if sname.startswith(("5880ad2b", "143f2bb4")) else names[1] if sname.startswith("176121bd") else names[2]
+            grp[r["day"]][g] += int(r["yocto"]) / Y * px[r["day"]]
+    tot = lambda d: sum(grp[d].values())
+
+    def ratio(day, g=None):
+        d0 = date.fromisoformat(day)
+        a = [(d0 + timedelta(days=i)).isoformat() for i in range(7)]
+        b = [(d0 - timedelta(days=7 - i)).isoformat() for i in range(7)]
+        f = (lambda d: tot(d)) if g is None else (lambda d: grp[d][g])
+        return sum(f(d) for d in a) / sum(f(d) for d in b)
+
+    L = q4()["step_2026_09_01"]["weeks"]["llama"]["ratio"]
+    thr = 1 + 0.5 * (L - 1)
+    r0 = ratio("2026-09-01")
+    bounds = [(date(2026, 8, 14) + timedelta(days=i)).isoformat() for i in range(0, 75)]
+    bounds = [b for b in bounds if b <= "2026-10-27"]
+    allr = {b: ratio(b) for b in bounds}
+    rank = sum(1 for v in allr.values() if v >= r0) / len(allr)
+    return {"ratio_total": r0, "ratio_by_group": {g: ratio("2026-09-01", g) for g in names}, "threshold": thr, "llama_ratio": L,
+            "mirrored": r0 >= thr, "not_mirrored_falsified": r0 < 1.05, "boundaries": len(allr), "share_of_boundaries_with_ratio_at_least_0901": rank,
+            "step_called": r0 >= thr and rank <= 0.10, "top5_boundaries": sorted(allr.items(), key=lambda kv: -kv[1])[:5]}
+
+
 def main() -> int:
-    res = {"cutoff_block": 223_088_015, "windows": {"q1_q2": [WINDOW_START, CUTOFF_DATE], "q3_q4": [SWAP_START, CUTOFF_DATE]}, "q1": q1(), "q2": q2(), "q3": q3(), "q4": q4(), "f1": f1(), "f3": f3(), "f2b": f2b(), "f4": f4(), "f5": f5()}
+    res = {"cutoff_block": 223_088_015, "windows": {"q1_q2": [WINDOW_START, CUTOFF_DATE], "q3_q4": [SWAP_START, CUTOFF_DATE]}, "q1": q1(), "q2": q2(), "q3": q3(), "q4": q4(), "f1": f1(), "f3": f3(), "f2b": f2b(), "f4": f4(), "f5": f5(), "f6": f6()}
     jobs = [json.loads(l) for l in (OUT / "jobs.jsonl").read_text().splitlines()]
     res["bytes_billed_total"] = sum(j["bytes_billed"] for j in jobs)
     dest = ROOT / "data" / "derived" / "rebuild_results.json"

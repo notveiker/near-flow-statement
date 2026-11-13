@@ -398,6 +398,43 @@
    "2026-11-04"
   ]
  },
+ "f6": {
+  "boundaries": 75,
+  "llama_ratio": 1.3160838394406043,
+  "mirrored": true,
+  "not_mirrored_falsified": false,
+  "ratio_by_group": {
+   "escrow_funded_rest": 2.5135934622808698,
+   "fee_176121bd": 0.28586514666998497,
+   "persistent_5880ad2b_143f2bb4": 1.1432233155514895
+  },
+  "ratio_total": 1.6625888335371384,
+  "share_of_boundaries_with_ratio_at_least_0901": 0.2,
+  "step_called": false,
+  "threshold": 1.158041919720302,
+  "top5_boundaries": [
+   [
+    "2026-08-17",
+    3.0768313774427747
+   ],
+   [
+    "2026-08-19",
+    3.021675374974164
+   ],
+   [
+    "2026-08-18",
+    2.823665048949529
+   ],
+   [
+    "2026-09-17",
+    2.801885006056021
+   ],
+   [
+    "2026-08-16",
+    2.5128128848686107
+   ]
+  ]
+ },
  "q1": {
   "attack_test": {
    "S_accounts": [
