@@ -1,0 +1,173 @@
+{
+ "dry_run_total_gb_all_eight": 2004.3,
+ "not_run_over_cap": [
+  "W7",
+  "W8"
+ ],
+ "rank": {
+  "by_net_outflow_near": 1,
+  "by_net_over_rewards": 1,
+  "by_net_share_of_stake": 1,
+  "earlier_windows_with_ratio_ge_3": [
+   "W3",
+   "W4"
+  ],
+  "h1a_over_max_earlier": 1.501703473008672,
+  "h1a_over_median": null,
+  "max_of_earlier": 4.471357960947891,
+  "median_is_negative": true,
+  "median_of_earlier": -0.4310106765518275,
+  "of": 7,
+  "order_by_net_over_rewards": [
+   "H1a",
+   "W3",
+   "W4",
+   "W6",
+   "W2",
+   "W5",
+   "W1"
+  ],
+  "reading": "unusual"
+ },
+ "rank_correlation_with_price_change": {
+  "net_outflow_near": {
+   "n": 7,
+   "perm_p": 0.3535714285714286,
+   "reading": "weak",
+   "rho": 0.42857142857142855
+  },
+  "net_share_of_stake": {
+   "n": 7,
+   "perm_p": 0.3535714285714286,
+   "reading": "weak",
+   "rho": 0.42857142857142855
+  }
+ },
+ "windows": {
+  "H1a": {
+   "days": 90,
+   "end": "2026-11-04",
+   "flow_residual_near": 7113973.900999993,
+   "inflow_near": 188014124.038,
+   "net_outflow_near": 47257102.032000005,
+   "net_over_rewards": 6.714653779020423,
+   "net_share_of_stake_pct": 7.559414048698458,
+   "outflow_near": 235271226.07,
+   "pool_total_end_near": 592037253.0,
+   "pool_total_start_near": 625142395.0,
+   "price_change_pct": 125.72655215502904,
+   "price_end": 3.832591772442751,
+   "price_start": 1.6978914247582741,
+   "rewards_near": 7037905.987,
+   "seed": "2026-08-06"
+  },
+  "W1": {
+   "days": 90,
+   "end": "2026-08-06",
+   "flow_residual_near": -8062477.698000014,
+   "inflow_near": 155409572.517,
+   "net_outflow_near": -13083729.243,
+   "net_over_rewards": -1.8392985689192742,
+   "net_share_of_stake_pct": -2.1343500828557365,
+   "outflow_near": 142325843.274,
+   "pool_total_end_near": 625142395.0,
+   "pool_total_start_near": 613007648.0,
+   "price_change_pct": 6.484752317274656,
+   "price_end": 1.6978914247582741,
+   "price_start": 1.5944925332589903,
+   "rewards_near": 7113434.145,
+   "seed": "2026-05-08",
+   "start": "2026-05-09"
+  },
+  "W2": {
+   "days": 90,
+   "end": "2026-05-08",
+   "flow_residual_near": -4805.657999992371,
+   "inflow_near": 110060567.323,
+   "net_outflow_near": -6203899.458999991,
+   "net_over_rewards": -0.8840854490026705,
+   "net_share_of_stake_pct": -1.0343436171023939,
+   "outflow_near": 103856667.86400001,
+   "pool_total_end_near": 613007648.0,
+   "pool_total_start_near": 599790955.0,
+   "price_change_pct": 48.405067222303174,
+   "price_end": 1.5944925332589903,
+   "price_start": 1.0744191981467333,
+   "rewards_near": 7017307.508,
+   "seed": "2026-02-07",
+   "start": "2026-02-08"
+  },
+  "W3": {
+   "days": 90,
+   "end": "2026-02-07",
+   "flow_residual_near": 11725.053999990225,
+   "inflow_near": 185476726.549,
+   "net_outflow_near": 31068573.349999994,
+   "net_over_rewards": 4.471357960947891,
+   "net_share_of_stake_pct": 4.97974079661252,
+   "outflow_near": 216545299.899,
+   "pool_total_end_near": 599790955.0,
+   "pool_total_start_near": 623899408.0,
+   "price_change_pct": -63.4985283363664,
+   "price_end": 1.0744191981467333,
+   "price_start": 2.943495561076724,
+   "rewards_near": 6948352.966,
+   "seed": "2025-11-09",
+   "start": "2025-11-10"
+  },
+  "W4": {
+   "days": 90,
+   "end": "2025-11-09",
+   "flow_residual_near": 178266.2650000155,
+   "inflow_near": 172406590.294,
+   "net_outflow_near": 39219048.20500001,
+   "net_over_rewards": 3.0661941167683993,
+   "net_share_of_stake_pct": 6.0323170054226605,
+   "outflow_near": 211625638.499,
+   "pool_total_end_near": 623899408.0,
+   "pool_total_start_near": 650148992.0,
+   "price_change_pct": 12.777607704089045,
+   "price_end": 2.943495561076724,
+   "price_start": 2.61,
+   "rewards_near": 12790791.03,
+   "seed": "2025-08-11",
+   "start": "2025-08-12"
+  },
+  "W5": {
+   "days": 90,
+   "end": "2025-08-11",
+   "flow_residual_near": -178258.40299996734,
+   "inflow_near": 161333923.473,
+   "net_outflow_near": -19784571.091999978,
+   "net_over_rewards": -1.4730270793453881,
+   "net_share_of_stake_pct": -3.2059968981838236,
+   "outflow_near": 141549352.381,
+   "pool_total_end_near": 650148992.0,
+   "pool_total_start_near": 617111361.0,
+   "price_change_pct": -17.9245283018868,
+   "price_end": 2.61,
+   "price_start": 3.18,
+   "rewards_near": 13431233.797,
+   "seed": "2025-05-13",
+   "start": "2025-05-14"
+  },
+  "W6": {
+   "days": 90,
+   "end": "2025-05-13",
+   "flow_residual_near": 147541.0420000255,
+   "inflow_near": 138706047.178,
+   "net_outflow_near": 284872.8440000117,
+   "net_over_rewards": 0.022064095899015458,
+   "net_share_of_stake_pct": 0.04713804795593013,
+   "outflow_near": 138990920.022,
+   "pool_total_end_near": 617111361.0,
+   "pool_total_start_near": 604337380.0,
+   "price_change_pct": -0.6249999999999978,
+   "price_end": 3.18,
+   "price_start": 3.2,
+   "rewards_near": 12911149.648,
+   "seed": "2025-02-12",
+   "start": "2025-02-13"
+  }
+ }
+}

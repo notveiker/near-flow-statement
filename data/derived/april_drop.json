@@ -1,0 +1,826 @@
+{
+ "classification": "one class of automated traffic ended",
+ "fortnights": {
+  "after_over_before": 0.2513536672578299,
+  "after_total": 13026672.0,
+  "before_total": 51826067.0,
+  "broad_fall": false,
+  "criteria": {
+   "i_signers_for_half_le_10": true,
+   "ii_top_family_ge_60pct": true,
+   "iii_first_half_fall_ge_90pct": true,
+   "iv_step_at_0402": true
+  },
+  "families": [
+   {
+    "after": 1713.0,
+    "before": 28767111.0,
+    "drop": 28767106.0,
+    "family": "users.kaiching",
+    "share_of_gross_drop": 0.7128110533352023
+   },
+   {
+    "after": 1779013.0,
+    "before": 9489243.0,
+    "drop": 8727615.0,
+    "family": "<64hex>",
+    "share_of_gross_drop": 0.21625882149056327
+   },
+   {
+    "after": 462.0,
+    "before": 2111651.0,
+    "drop": 2111189.0,
+    "family": "wallet.kaiching",
+    "share_of_gross_drop": 0.0523124868688457
+   },
+   {
+    "after": 3119030.0,
+    "before": 3850022.0,
+    "drop": 1095032.0,
+    "family": "tg",
+    "share_of_gross_drop": 0.027133452817803546
+   },
+   {
+    "after": 2759541.0,
+    "before": 2867885.0,
+    "drop": 108344.0,
+    "family": "game.hot.tg",
+    "share_of_gross_drop": 0.0026846218303137326
+   },
+   {
+    "after": 1662771.0,
+    "before": 1361956.0,
+    "drop": 53019.0,
+    "family": "near",
+    "share_of_gross_drop": 0.001313741091536253
+   },
+   {
+    "after": 88.0,
+    "before": 40503.0,
+    "drop": 40415.0,
+    "family": "0x4e4542dd.c.aurora",
+    "share_of_gross_drop": 0.0010014305478118725
+   },
+   {
+    "after": 29737.0,
+    "before": 64738.0,
+    "drop": 35001.0,
+    "family": "usdt.tether-token.near",
+    "share_of_gross_drop": 0.000867278748087674
+   },
+   {
+    "after": 2.0,
+    "before": 31188.0,
+    "drop": 31186.0,
+    "family": "meme-priceoracle.ref-labs.near",
+    "share_of_gross_drop": 0.0007727480654227652
+   },
+   {
+    "after": 1286.0,
+    "before": 26984.0,
+    "drop": 25698.0,
+    "family": "reflect-adam-mainnet-agent-contract.near",
+    "share_of_gross_drop": 0.0006367626430204007
+   },
+   {
+    "after": 28898.0,
+    "before": 46532.0,
+    "drop": 17634.0,
+    "family": "0x4e4542bc.c.aurora",
+    "share_of_gross_drop": 0.00043694732846998784
+   },
+   {
+    "after": 2543.0,
+    "before": 20001.0,
+    "drop": 17458.0,
+    "family": "0x4e454228.c.aurora",
+    "share_of_gross_drop": 0.0004325862799381336
+   },
+   {
+    "after": 216688.0,
+    "before": 191169.0,
+    "drop": 13624.0,
+    "family": "omft.near",
+    "share_of_gross_drop": 0.00033758480226126316
+   },
+   {
+    "after": 78.0,
+    "before": 12807.0,
+    "drop": 12729.0,
+    "family": "purge-558.meme-cooking.near",
+    "share_of_gross_drop": 0.0003154078793293907
+   },
+   {
+    "after": 192123.0,
+    "before": 203389.0,
+    "drop": 11266.0,
+    "family": "aurora",
+    "share_of_gross_drop": 0.0002791566634083522
+   }
+  ],
+  "first_half_after_over_before": 1.6345700021324483e-05,
+  "first_half_signers_after": 479.0,
+  "first_half_signers_before": 29304343.0,
+  "gross_drop": 40357267.0,
+  "net_change": -38799395.0,
+  "one_class_ended": true,
+  "signers_for_50pct": 1,
+  "signers_for_80pct": 2,
+  "signers_for_90pct": 2,
+  "signers_total": 350523,
+  "signers_with_a_drop": 169382,
+  "top_family_share": 0.7128110533352023,
+  "top_signers": [
+   {
+    "after": 479.0,
+    "before": 29304343.0,
+    "cum_share": 0.7261112106525945,
+    "drop": 29303864.0,
+    "rank": 1,
+    "signer": "hotwallet.kaiching"
+   },
+   {
+    "after": 144229.0,
+    "before": 7930643.0,
+    "cum_share": 0.9190483091929887,
+    "drop": 7786414.0,
+    "rank": 2,
+    "signer": "sweat-migration.near"
+   },
+   {
+    "after": 1696.0,
+    "before": 1574419.0,
+    "cum_share": 0.9580183167507353,
+    "drop": 1572723.0,
+    "rank": 3,
+    "signer": "users.kaiching"
+   },
+   {
+    "after": 1453048.0,
+    "before": 1883347.0,
+    "cum_share": 0.9686805600587374,
+    "drop": 430299.0,
+    "rank": 4,
+    "signer": "relay.tg"
+   },
+   {
+    "after": 1597908.0,
+    "before": 1889844.0,
+    "cum_share": 0.9759143501962112,
+    "drop": 291936.0,
+    "rank": 5,
+    "signer": "0-relay.hot.tg"
+   },
+   {
+    "after": 210798.0,
+    "before": 263318.0,
+    "cum_share": 0.9772157267240124,
+    "drop": 52520.0,
+    "rank": 6,
+    "signer": "bridge-mng.near"
+   },
+   {
+    "after": 10693.0,
+    "before": 58129.0,
+    "cum_share": 0.9783911284180864,
+    "drop": 47436.0,
+    "rank": 7,
+    "signer": "watcher04.ref-watchdog.near"
+   },
+   {
+    "after": 88.0,
+    "before": 39785.0,
+    "cum_share": 0.9793747678701831,
+    "drop": 39697.0,
+    "rank": 8,
+    "signer": "relay.0x4e4542dd.c.aurora"
+   },
+   {
+    "after": 2271.0,
+    "before": 37137.0,
+    "cum_share": 0.9802387014958174,
+    "drop": 34866.0,
+    "rank": 9,
+    "signer": "auto.tmplr.near"
+   },
+   {
+    "after": 1286.0,
+    "before": 26984.0,
+    "cum_share": 0.9808754641388377,
+    "drop": 25698.0,
+    "rank": 10,
+    "signer": "12d602abebd48bb531e534c221c751b6e2ccb0b4e37914591de55468ac345e12"
+   },
+   {
+    "after": 28894.0,
+    "before": 46524.0,
+    "cum_share": 0.9813123123525683,
+    "drop": 17630.0,
+    "rank": 11,
+    "signer": "relay.0x4e4542bc.c.aurora"
+   },
+   {
+    "after": 2542.0,
+    "before": 19998.0,
+    "cum_share": 0.9817448490751368,
+    "drop": 17456.0,
+    "rank": 12,
+    "signer": "relay.0x4e454228.c.aurora"
+   },
+   {
+    "after": 381851.0,
+    "before": 396745.0,
+    "cum_share": 0.982113902807145,
+    "drop": 14894.0,
+    "rank": 13,
+    "signer": "meteor-relayer.near"
+   },
+   {
+    "after": 19303.0,
+    "before": 33348.0,
+    "cum_share": 0.9824619194357239,
+    "drop": 14045.0,
+    "rank": 14,
+    "signer": "7c5206b1b75b8787420b09d8697e08180cdf896c5fcf15f6afbf5f33fcc3cf72"
+   },
+   {
+    "after": 190813.0,
+    "before": 202516.0,
+    "cum_share": 0.9827519043844074,
+    "drop": 11703.0,
+    "rank": 15,
+    "signer": "relay.aurora"
+   }
+  ]
+ },
+ "largest_1d_drops": [
+  [
+   0.2829130996846485,
+   "2026-04-02"
+  ],
+  [
+   0.5789582959167167,
+   "2025-07-13"
+  ],
+  [
+   0.6422415968507116,
+   "2026-10-12"
+  ]
+ ],
+ "largest_7d_steps": [
+  [
+   0.2407423255458419,
+   "2026-04-02"
+  ],
+  [
+   0.2647471263298476,
+   "2026-04-03"
+  ],
+  [
+   0.3010232915939129,
+   "2026-04-04"
+  ]
+ ],
+ "months": {
+  "2025-07": {
+   "top1": "game.hot.tg",
+   "top1_share": 0.1011567358399121,
+   "top20_share": 0.24813864932144755,
+   "top5_share": 0.2045927977121476,
+   "total": 148950170
+  },
+  "2025-08": {
+   "top1": "game.hot.tg",
+   "top1_share": 0.09349931759300976,
+   "top20_share": 0.23776366031676158,
+   "top5_share": 0.19056782331935004,
+   "total": 155806581
+  },
+  "2025-09": {
+   "top1": "game.hot.tg",
+   "top1_share": 0.08770352337863078,
+   "top20_share": 0.21864878968592313,
+   "top5_share": 0.173764607702664,
+   "total": 140330930
+  },
+  "2025-10": {
+   "top1": "game.hot.tg",
+   "top1_share": 0.08155483657694731,
+   "top20_share": 0.23356451466408168,
+   "top5_share": 0.1788256910498867,
+   "total": 140982405
+  },
+  "2025-11": {
+   "top1": "game.hot.tg",
+   "top1_share": 0.0780063631848516,
+   "top20_share": 0.24261030371626088,
+   "top5_share": 0.17921241936622823,
+   "total": 128032427
+  },
+  "2025-12": {
+   "top1": "game.hot.tg",
+   "top1_share": 0.08175470604712591,
+   "top20_share": 0.2168474838390441,
+   "top5_share": 0.16697741854916498,
+   "total": 119122904
+  },
+  "2026-01": {
+   "top1": "game.hot.tg",
+   "top1_share": 0.06990515747399219,
+   "top20_share": 0.21253284635950237,
+   "top5_share": 0.15482391521005043,
+   "total": 108680994
+  },
+  "2026-02": {
+   "top1": "game.hot.tg",
+   "top1_share": 0.05781740964682246,
+   "top20_share": 0.20710151320270287,
+   "top5_share": 0.14884337345228627,
+   "total": 97681097
+  },
+  "2026-03": {
+   "top1": "game.hot.tg",
+   "top1_share": 0.06302532878269243,
+   "top20_share": 0.19667121387710906,
+   "top5_share": 0.1442147073261174,
+   "total": 107857335
+  },
+  "2026-04": {
+   "top1": "game.hot.tg",
+   "top1_share": 0.19224487708987772,
+   "top20_share": 0.5631301606940582,
+   "top5_share": 0.3762962390158964,
+   "total": 28398312
+  },
+  "2026-05": {
+   "top1": "game.hot.tg",
+   "top1_share": 0.1816011186417283,
+   "top20_share": 0.6966094868422289,
+   "top5_share": 0.4302530112224916,
+   "total": 24893046
+  },
+  "2026-06": {
+   "top1": "game.hot.tg",
+   "top1_share": 0.16481070729909744,
+   "top20_share": 0.7123415618385482,
+   "top5_share": 0.42747242827230386,
+   "total": 24415046
+  },
+  "2026-07": {
+   "top1": "game.hot.tg",
+   "top1_share": 0.15258152758970794,
+   "top20_share": 0.7009370303946352,
+   "top5_share": 0.45436446239714445,
+   "total": 22874925
+  },
+  "2026-08": {
+   "top1": "game.hot.tg",
+   "top1_share": 0.14401289191774944,
+   "top20_share": 0.7324764749143915,
+   "top5_share": 0.4356048415013521,
+   "total": 21131379
+  },
+  "2026-09": {
+   "top1": "v2.ref-finance.near",
+   "top1_share": 0.19519854854081103,
+   "top20_share": 0.7778754121148701,
+   "top5_share": 0.502474886722437,
+   "total": 24004533
+  },
+  "2026-10": {
+   "top1": "v2.ref-finance.near",
+   "top1_share": 0.129365892203597,
+   "top20_share": 0.7033093386559578,
+   "top5_share": 0.4154934155502922,
+   "total": 22627935
+  },
+  "2026-11": {
+   "top1": "intents.near",
+   "top1_share": 0.1856081267966614,
+   "top20_share": 0.73040638264895,
+   "top5_share": 0.48166581177625106,
+   "total": 2335582
+  }
+ },
+ "months_top5_receivers": {
+  "2025-07": [
+   [
+    "game.hot.tg",
+    0.1012
+   ],
+   [
+    "wallet.kaiching",
+    0.057
+   ],
+   [
+    "intents.near",
+    0.0229
+   ],
+   [
+    "spin.sweat",
+    0.0166
+   ],
+   [
+    "v2.ref-finance.near",
+    0.007
+   ]
+  ],
+  "2025-08": [
+   [
+    "game.hot.tg",
+    0.0935
+   ],
+   [
+    "wallet.kaiching",
+    0.0658
+   ],
+   [
+    "spin.sweat",
+    0.014
+   ],
+   [
+    "intents.near",
+    0.0113
+   ],
+   [
+    "v2.ref-finance.near",
+    0.006
+   ]
+  ],
+  "2025-09": [
+   [
+    "game.hot.tg",
+    0.0877
+   ],
+   [
+    "wallet.kaiching",
+    0.057
+   ],
+   [
+    "spin.sweat",
+    0.0146
+   ],
+   [
+    "intents.near",
+    0.0083
+   ],
+   [
+    "jars-oracle.sweat",
+    0.0062
+   ]
+  ],
+  "2025-10": [
+   [
+    "game.hot.tg",
+    0.0816
+   ],
+   [
+    "wallet.kaiching",
+    0.0567
+   ],
+   [
+    "spin.sweat",
+    0.0169
+   ],
+   [
+    "intents.near",
+    0.0165
+   ],
+   [
+    "v2.ref-finance.near",
+    0.0072
+   ]
+  ],
+  "2025-11": [
+   [
+    "game.hot.tg",
+    0.078
+   ],
+   [
+    "wallet.kaiching",
+    0.0521
+   ],
+   [
+    "intents.near",
+    0.0218
+   ],
+   [
+    "spin.sweat",
+    0.0183
+   ],
+   [
+    "sweat_welcome.near",
+    0.009
+   ]
+  ],
+  "2025-12": [
+   [
+    "game.hot.tg",
+    0.0818
+   ],
+   [
+    "wallet.kaiching",
+    0.0451
+   ],
+   [
+    "spin.sweat",
+    0.0203
+   ],
+   [
+    "intents.near",
+    0.0105
+   ],
+   [
+    "sweat_welcome.near",
+    0.0093
+   ]
+  ],
+  "2026-01": [
+   [
+    "game.hot.tg",
+    0.0699
+   ],
+   [
+    "wallet.kaiching",
+    0.044
+   ],
+   [
+    "spin.sweat",
+    0.0217
+   ],
+   [
+    "sweat_welcome.near",
+    0.0099
+   ],
+   [
+    "jars-oracle.sweat",
+    0.0094
+   ]
+  ],
+  "2026-02": [
+   [
+    "game.hot.tg",
+    0.0578
+   ],
+   [
+    "wallet.kaiching",
+    0.046
+   ],
+   [
+    "spin.sweat",
+    0.0191
+   ],
+   [
+    "v2.ref-finance.near",
+    0.0164
+   ],
+   [
+    "intents.near",
+    0.0095
+   ]
+  ],
+  "2026-03": [
+   [
+    "game.hot.tg",
+    0.063
+   ],
+   [
+    "wallet.kaiching",
+    0.0454
+   ],
+   [
+    "spin.sweat",
+    0.016
+   ],
+   [
+    "v2.ref-finance.near",
+    0.0102
+   ],
+   [
+    "jars-oracle.sweat",
+    0.0096
+   ]
+  ],
+  "2026-04": [
+   [
+    "game.hot.tg",
+    0.1922
+   ],
+   [
+    "spin.sweat",
+    0.0598
+   ],
+   [
+    "jars-oracle.sweat",
+    0.0567
+   ],
+   [
+    "intents.near",
+    0.0349
+   ],
+   [
+    "v2.ref-finance.near",
+    0.0326
+   ]
+  ],
+  "2026-05": [
+   [
+    "game.hot.tg",
+    0.1816
+   ],
+   [
+    "jars-oracle.sweat",
+    0.0913
+   ],
+   [
+    "spin.sweat",
+    0.0672
+   ],
+   [
+    "v2.ref-finance.near",
+    0.0497
+   ],
+   [
+    "intents.near",
+    0.0405
+   ]
+  ],
+  "2026-06": [
+   [
+    "game.hot.tg",
+    0.1648
+   ],
+   [
+    "jars-oracle.sweat",
+    0.1036
+   ],
+   [
+    "spin.sweat",
+    0.0607
+   ],
+   [
+    "v2.ref-finance.near",
+    0.0538
+   ],
+   [
+    "intents.near",
+    0.0445
+   ]
+  ],
+  "2026-07": [
+   [
+    "game.hot.tg",
+    0.1526
+   ],
+   [
+    "jars-oracle.sweat",
+    0.1203
+   ],
+   [
+    "spin.sweat",
+    0.0697
+   ],
+   [
+    "intents.near",
+    0.0578
+   ],
+   [
+    "v2.ref-finance.near",
+    0.054
+   ]
+  ],
+  "2026-08": [
+   [
+    "game.hot.tg",
+    0.144
+   ],
+   [
+    "intents.near",
+    0.0812
+   ],
+   [
+    "jars-oracle.sweat",
+    0.0808
+   ],
+   [
+    "spin.sweat",
+    0.0779
+   ],
+   [
+    "v2.ref-finance.near",
+    0.0517
+   ]
+  ],
+  "2026-09": [
+   [
+    "v2.ref-finance.near",
+    0.1952
+   ],
+   [
+    "game.hot.tg",
+    0.087
+   ],
+   [
+    "intents.near",
+    0.0846
+   ],
+   [
+    "jars-oracle.sweat",
+    0.0721
+   ],
+   [
+    "spin.sweat",
+    0.0635
+   ]
+  ],
+  "2026-10": [
+   [
+    "v2.ref-finance.near",
+    0.1294
+   ],
+   [
+    "intents.near",
+    0.089
+   ],
+   [
+    "game.hot.tg",
+    0.0814
+   ],
+   [
+    "jars-oracle.sweat",
+    0.0615
+   ],
+   [
+    "spin.sweat",
+    0.0543
+   ]
+  ],
+  "2026-11": [
+   [
+    "intents.near",
+    0.1856
+   ],
+   [
+    "game.hot.tg",
+    0.1213
+   ],
+   [
+    "jars-oracle.sweat",
+    0.0636
+   ],
+   [
+    "v2.ref-finance.near",
+    0.0556
+   ],
+   [
+    "spin.sweat",
+    0.0555
+   ]
+  ]
+ },
+ "q2_over_q1_receivers": 0.06840799245725702,
+ "q2_over_q1_signers": 0.6160665253446371,
+ "q2_over_q1_tx": 0.24458222857465048,
+ "quarters": {
+  "2025-Q3": {
+   "receivers_per_day": 2703580.4565217393,
+   "signers_per_day": 322731.5869565217,
+   "tx_per_day": 4837909.576086956
+  },
+  "2025-Q4": {
+   "receivers_per_day": 2554578.0217391304,
+   "signers_per_day": 247631.15217391305,
+   "tx_per_day": 4218888.434782608
+  },
+  "2026-Q1": {
+   "receivers_per_day": 2352753.1666666665,
+   "signers_per_day": 196378.67777777778,
+   "tx_per_day": 3491326.9555555554
+  },
+  "2026-Q2": {
+   "receivers_per_day": 160947.1208791209,
+   "signers_per_day": 120982.32967032967,
+   "tx_per_day": 853916.5274725275
+  },
+  "2026-Q3": {
+   "receivers_per_day": 84712.72826086957,
+   "signers_per_day": 79288.81521739131,
+   "tx_per_day": 739248.2282608695
+  }
+ },
+ "receivers_0401_0402": [
+  2835740,
+  338581
+ ],
+ "signers_0401_0402": [
+  139048,
+  137183
+ ],
+ "step_0402_7d_ratio": 0.2407423255458419,
+ "step_exists_at_0402": true,
+ "tx_0401_0402_0403": [
+  3758663,
+  1063375,
+  907861
+ ]
+}
