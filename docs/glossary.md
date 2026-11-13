@@ -6,7 +6,7 @@ Plain-language definitions of the terms a first-time reader meets in the [README
 
 - **Pre-registered.** Written into `PREREG.md` at the freeze (below) and not edited since. The pre-registered items are the hypotheses H1a to H1c, the rating rule, the forward tests F1 to F4 and the longer-dated predictions P1 to P3.
 - **Exploratory.** Chosen after the freeze, so not pre-registered. The repository labels such results as exploratory wherever they appear, and the ladder, for example, does not feed the rating rule.
-- **The freeze.** The commit and git tag `prereg-freeze` at which `PREREG.md` was fixed. Its time rests on git and manifest timestamps written by the author's machine; nothing external attests it, and no on-chain anchor is committed to check.
+- **The freeze.** The commit and git tag `prereg-freeze` at which `PREREG.md` was fixed. Its time rests on git and manifest timestamps written by the author's machine; nothing external attests it, and no on-chain anchor is committed to check. (Correction, 2026-11-12: GitHub's own activity record dates the push of the freeze commit to 2026-11-05 22:53:33 UTC; `PREREG-ADDENDUM.md`, 2026-11-12 23:50 UTC entry, item 2.)
 - **Addendum.** `PREREG-ADDENDUM.md`, the dated record of post-freeze results, method choices and corrections. It never changes `PREREG.md`.
 - **Prior.** The probability the author wrote down in `PREREG.md` at the freeze for each pre-registered test and prediction; the data already seen then are listed in that file.
 - **Token flow statement.** A statement of how a token moves. Here it covers NEAR's issuance, staking withdrawals, exchange inflows and identified buying.
@@ -39,7 +39,7 @@ Plain-language definitions of the terms a first-time reader meets in the [README
 - **G_req.** The yearly growth in captured Intents revenue needed for it to equal the USD value of net issuance by a fixed date. It assumes HSP-029's ramp and a constant price.
 - **G_obs.** The observed yearly growth of captured revenue: the most recent window of about half a year against the window of the same length before it.
 - **HSP-029.** A NEAR governance proposal to lower the issuance cap gradually over two years. The rating rule assumes its ramp is in force. It also needs validator adoption through a protocol upgrade, a second step the repository does not date.
-- **Timelock.** The stage of the on-chain proposal after voting. The repository assumes it starts when voting ends and adds up its end date itself; no published text gives that date.
+- **Timelock.** The stage of the on-chain proposal after voting. The repository assumes it starts when voting ends and adds up its end date itself; no published text gives that date. (Correction, 2026-11-12: two published sources do give it; `PREREG-ADDENDUM.md`, 2026-11-12 23:50 UTC entry, item 3.)
 
 ## Forward tests
 
