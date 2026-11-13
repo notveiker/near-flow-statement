@@ -408,6 +408,12 @@
    "sha256": "d43f06b4d597137e03bfbbe0db0baeafa3f00cdee1d48cc2f4bf39d70e8cf657",
    "source": "built by pipeline.rebuild build_aux from tokens_1click_20261112.json and data/raw/coingecko"
   },
+  "raw/rebuild/f10_intents_wnear_balances.json": {
+   "bytes": 258,
+   "fetched_at": "2026-11-13T01:36:39Z",
+   "sha256": "0dac90070ccbbd994f2c510bf10cc60b5b88169aff315b6bc39465fa21c5d207",
+   "source": "archival RPC call_function at fixed blocks (keyless), pipeline.rebuild_rpc"
+  },
   "raw/rebuild/jobs.jsonl": {
    "bytes": 22990,
    "fetched_at": "2026-11-13T01:35:23Z",
