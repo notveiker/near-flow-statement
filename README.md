@@ -52,7 +52,7 @@ Rebuilt from `bigquery-public-data.crypto_near_mainnet_us` and archival RPC at o
 | [`docs/history-sample-final-cut.md`](docs/history-sample-final-cut.md) | Seal SHA-256 list, final cut by the stopping rule, validation status |
 | [`docs/class-census-results.md`](docs/class-census-results.md), [`docs/history-class-adjusted-results.md`](docs/history-class-adjusted-results.md) | The April class counted exactly on the full chain (52% of 2025Q3 transactions) and what else fell (two `.tg` relay signers) |
 | [`docs/history-sample-validation-results.md`](docs/history-sample-validation-results.md) | The history sample checked against full-chain counts (intervals too narrow before 2025, covered from 2025) |
-| [`docs/research-extensions-results.md`](docs/research-extensions-results.md) | RX1 to RX3: Intents accounts are not users, solver margin on stable swaps, relayer concentration on `intents.near` |
+| [`docs/research-extensions-results.md`](docs/research-extensions-results.md), [`docs/rx4-lst-omni-results.md`](docs/rx4-lst-omni-results.md) | RX1 to RX4: Intents accounts are not users, solver margin on stable swaps, relayer concentration on `intents.near`, NEAR leaving Intents for the LST pool and the Omni bridge |
 
 Re-run: `make rebuild-check` (offline: unit tests, manifest hashes, recomputation of `data/derived/rebuild_results.json`, `staking_windows.json`, `april_drop.json`). Live BigQuery re-runs are described in each results doc and cost money; none is part of `make`.
 
