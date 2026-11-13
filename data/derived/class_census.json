@@ -1,0 +1,719 @@
+{
+ "H_E1_falsified": false,
+ "H_E1_supported": false,
+ "H_E2_exc_inside_sample_interval": true,
+ "H_E2_raw_inside_sample_interval": false,
+ "c_share_2025Q3": 0.5178044031283805,
+ "decline": {
+  "broad": false,
+  "concentrated": true,
+  "ex_c_a": 214619320.0,
+  "ex_c_b": 68010837.0,
+  "ex_c_b_over_a": 0.31689056232216184,
+  "gross_decline": 167132168.0,
+  "gross_rise": 20523685.0,
+  "signers": 1315862,
+  "signers_for_50pct": 2,
+  "signers_for_80pct": 20145,
+  "top1_share": 0.3157730712857144,
+  "top20_share": 0.7318552763582891,
+  "top5_share": 0.7031818255358239,
+  "top_decliners": [
+   {
+    "a": 52793652.0,
+    "b": 17814.0,
+    "cum_share": 0.3157730712857144,
+    "decline": 52775838.0,
+    "signer": "relay.tg",
+    "top_receiver": "5248191285.tg"
+   },
+   {
+    "a": 53085137.0,
+    "b": 3101477.0,
+    "cum_share": 0.6148397356994735,
+    "decline": 49983660.0,
+    "signer": "0-relay.hot.tg",
+    "top_receiver": "i6934012862.tg"
+   },
+   {
+    "a": 8207212.0,
+    "b": 0.0,
+    "cum_share": 0.663945853918439,
+    "decline": 8207212.0,
+    "signer": "mytestapi.embr.playember_reserve.near",
+    "top_receiver": "5271409f8301a85399e7f860f0c79f2fae5339ce8df8e67ed51ae6c3b264fe42"
+   },
+   {
+    "a": 29912844.0,
+    "b": 25662688.0,
+    "cum_share": 0.6893757639762084,
+    "decline": 4250156.0,
+    "signer": "sweat-relayer.near",
+    "top_receiver": "spin.sweat"
+   },
+   {
+    "a": 6269131.0,
+    "b": 3961694.0,
+    "cum_share": 0.7031818255358239,
+    "decline": 2307437.0,
+    "signer": "intents.near",
+    "top_receiver": "intents.near"
+   },
+   {
+    "a": 1490315.0,
+    "b": 708231.0,
+    "cum_share": 0.7078612598383813,
+    "decline": 782084.0,
+    "signer": "relay.aurora",
+    "top_receiver": "aurora"
+   },
+   {
+    "a": 714894.0,
+    "b": 2.0,
+    "cum_share": 0.7121386650115136,
+    "decline": 714892.0,
+    "signer": "relay.0x4e454228.c.aurora",
+    "top_receiver": "0x4e454228.c.aurora"
+   },
+   {
+    "a": 418453.0,
+    "b": 50821.0,
+    "cum_share": 0.7143383133760343,
+    "decline": 367632.0,
+    "signer": "watcher04.ref-watchdog.near",
+    "top_receiver": "v2.ref-finance.near"
+   },
+   {
+    "a": 354138.0,
+    "b": 12.0,
+    "cum_share": 0.7164571514443587,
+    "decline": 354126.0,
+    "signer": "7c5206b1b75b8787420b09d8697e08180cdf896c5fcf15f6afbf5f33fcc3cf72",
+    "top_receiver": "wrap.near"
+   },
+   {
+    "a": 419178.0,
+    "b": 76890.0,
+    "cum_share": 0.7185051593419167,
+    "decline": 342288.0,
+    "signer": "oktest.near",
+    "top_receiver": "v2.ref-finance.near"
+   },
+   {
+    "a": 298549.0,
+    "b": 0.0,
+    "cum_share": 0.7202914641782185,
+    "decline": 298549.0,
+    "signer": "5adcddad84c166d8792684c3ad652803df01fac582526dd5c21903b0b5aafe2d",
+    "top_receiver": "17208628f84f5d6ad33f0da3bbbeb27ffcb398eac501a31bd6ad2011e36133a1"
+   },
+   {
+    "a": 309523.0,
+    "b": 35694.0,
+    "cum_share": 0.7219298621196609,
+    "decline": 273829.0,
+    "signer": "game.hot.tg",
+    "top_receiver": "game.hot.tg"
+   },
+   {
+    "a": 237284.0,
+    "b": 1.0,
+    "cum_share": 0.723349594794941,
+    "decline": 237283.0,
+    "signer": "meme-poba.ref-labs.near",
+    "top_receiver": "meme-priceoracle.ref-labs.near"
+   },
+   {
+    "a": 231165.0,
+    "b": 1.0,
+    "cum_share": 0.7247327157271124,
+    "decline": 231164.0,
+    "signer": "meme-pobc.ref-labs.near",
+    "top_receiver": "meme-priceoracle.ref-labs.near"
+   },
+   {
+    "a": 230841.0,
+    "b": 1.0,
+    "cum_share": 0.7261138980737688,
+    "decline": 230840.0,
+    "signer": "meme-pobb.ref-labs.near",
+    "top_receiver": "meme-priceoracle.ref-labs.near"
+   },
+   {
+    "a": 204459.0,
+    "b": 0.0,
+    "cum_share": 0.7273372352831563,
+    "decline": 204459.0,
+    "signer": "231422898afce2dbe99b46699070e116dbce31cde547d56cb80cd47d7ff0590e",
+    "top_receiver": "usdt.tether-token.near"
+   },
+   {
+    "a": 199886.0,
+    "b": 0.0,
+    "cum_share": 0.7285332109136525,
+    "decline": 199886.0,
+    "signer": "pythia.near",
+    "top_receiver": "priceoracle.near"
+   },
+   {
+    "a": 197369.0,
+    "b": 0.0,
+    "cum_share": 0.7297141266066746,
+    "decline": 197369.0,
+    "signer": "sweat_welcome.near",
+    "top_receiver": "98a49e595c4b08faac49a7dbcb1a3b2c42d1fdf104c6aa92683c406364ee0b90"
+   },
+   {
+    "a": 285360.0,
+    "b": 102704.0,
+    "cum_share": 0.7308070101741275,
+    "decline": 182656.0,
+    "signer": "pyth-bot-a.ref-labs.near",
+    "top_receiver": "pyth-oracle.near"
+   },
+   {
+    "a": 572381.0,
+    "b": 397182.0,
+    "cum_share": 0.7318552763582891,
+    "decline": 175199.0,
+    "signer": "watcher03.ref-watchdog.near",
+    "top_receiver": "v2.ref-finance.near"
+   }
+  ],
+  "top_risers": [
+   {
+    "a": 5211.0,
+    "b": 1904665.0,
+    "rise": 1899454.0,
+    "signer": "omni-relayer.bridge.near",
+    "top_receiver": "omni.bridge.near"
+   },
+   {
+    "a": 0.0,
+    "b": 1631050.0,
+    "rise": 1631050.0,
+    "signer": "closemeat6237.near",
+    "top_receiver": "v2.ref-finance.near"
+   },
+   {
+    "a": 239023.0,
+    "b": 1298513.0,
+    "rise": 1059490.0,
+    "signer": "bridge-mng.near",
+    "top_receiver": "omft.near"
+   },
+   {
+    "a": 0.0,
+    "b": 1027376.0,
+    "rise": 1027376.0,
+    "signer": "escrow.ai.near",
+    "top_receiver": "intents.near"
+   },
+   {
+    "a": 0.0,
+    "b": 727576.0,
+    "rise": 727576.0,
+    "signer": "malejaguar616.near",
+    "top_receiver": "v2.ref-finance.near"
+   },
+   {
+    "a": 1434206.0,
+    "b": 2064285.0,
+    "rise": 630079.0,
+    "signer": "meteor-relayer.near",
+    "top_receiver": "near"
+   },
+   {
+    "a": 98749.0,
+    "b": 656257.0,
+    "rise": 557508.0,
+    "signer": "roundzest8415.near",
+    "top_receiver": "v2.ref-finance.near"
+   },
+   {
+    "a": 0.0,
+    "b": 555304.0,
+    "rise": 555304.0,
+    "signer": "leftdress3225.near",
+    "top_receiver": "v2.ref-finance.near"
+   },
+   {
+    "a": 175601.0,
+    "b": 720102.0,
+    "rise": 544501.0,
+    "signer": "coin.abound.near",
+    "top_receiver": "coin.abound.near"
+   },
+   {
+    "a": 463066.0,
+    "b": 912613.0,
+    "rise": 449547.0,
+    "signer": "0here.tg",
+    "top_receiver": "v2_1.omni.hot.tg"
+   }
+  ]
+ },
+ "exc_ratio_2026Q3_over_2025Q3": 0.31689056232216184,
+ "first_month_c_ge_10pct": "2023-08",
+ "first_month_c_ge_1pct": "2023-08",
+ "months": {
+  "2023-01": {
+   "c": 0.0,
+   "c_share": 0.0,
+   "tx": 13011739.0
+  },
+  "2023-02": {
+   "c": 0.0,
+   "c_share": 0.0,
+   "tx": 11171945.0
+  },
+  "2023-03": {
+   "c": 0.0,
+   "c_share": 0.0,
+   "tx": 11189950.0
+  },
+  "2023-04": {
+   "c": 0.0,
+   "c_share": 0.0,
+   "tx": 11568391.0
+  },
+  "2023-05": {
+   "c": 0.0,
+   "c_share": 0.0,
+   "tx": 10352346.0
+  },
+  "2023-06": {
+   "c": 0.0,
+   "c_share": 0.0,
+   "tx": 10325105.0
+  },
+  "2023-07": {
+   "c": 0.0,
+   "c_share": 0.0,
+   "tx": 12451605.0
+  },
+  "2023-08": {
+   "c": 3248760.0,
+   "c_share": 0.18653313834615737,
+   "tx": 17416530.0
+  },
+  "2023-09": {
+   "c": 6232031.0,
+   "c_share": 0.15202967510819923,
+   "tx": 40992201.0
+  },
+  "2023-10": {
+   "c": 7677749.0,
+   "c_share": 0.17461815925837756,
+   "tx": 43968789.0
+  },
+  "2023-11": {
+   "c": 8004736.0,
+   "c_share": 0.11407301255599808,
+   "tx": 70172040.0
+  },
+  "2023-12": {
+   "c": 27921230.0,
+   "c_share": 0.23750296504115467,
+   "tx": 117561606.0
+  },
+  "2024-01": {
+   "c": 18132829.0,
+   "c_share": 0.2034966972072455,
+   "tx": 89106257.0
+  },
+  "2024-02": {
+   "c": 12675400.0,
+   "c_share": 0.09649758103614926,
+   "tx": 131354588.0
+  },
+  "2024-03": {
+   "c": 12604626.0,
+   "c_share": 0.07307150249687312,
+   "tx": 172497151.0
+  },
+  "2024-04": {
+   "c": 11370154.0,
+   "c_share": 0.04995270000286049,
+   "tx": 227618407.0
+  },
+  "2024-05": {
+   "c": 8322089.0,
+   "c_share": 0.03589836671123201,
+   "tx": 231823611.0
+  },
+  "2024-06": {
+   "c": 19033696.0,
+   "c_share": 0.07852416212083345,
+   "tx": 242392857.0
+  },
+  "2024-07": {
+   "c": 15878940.0,
+   "c_share": 0.07235511065593812,
+   "tx": 219458444.0
+  },
+  "2024-08": {
+   "c": 35619052.0,
+   "c_share": 0.18032330500327515,
+   "tx": 197528833.0
+  },
+  "2024-09": {
+   "c": 43723981.0,
+   "c_share": 0.202572227345755,
+   "tx": 215843907.0
+  },
+  "2024-10": {
+   "c": 45933969.0,
+   "c_share": 0.21191954937201732,
+   "tx": 216751919.0
+  },
+  "2024-11": {
+   "c": 47558806.0,
+   "c_share": 0.22010581088884582,
+   "tx": 216072469.0
+  },
+  "2024-12": {
+   "c": 80211142.0,
+   "c_share": 0.3130215826888924,
+   "tx": 256247960.0
+  },
+  "2025-01": {
+   "c": 82918128.0,
+   "c_share": 0.3726522697190567,
+   "tx": 222508045.0
+  },
+  "2025-02": {
+   "c": 65343660.0,
+   "c_share": 0.33970555769845273,
+   "tx": 192353815.0
+  },
+  "2025-03": {
+   "c": 70240897.0,
+   "c_share": 0.34354503843370815,
+   "tx": 204459064.0
+  },
+  "2025-04": {
+   "c": 78505589.0,
+   "c_share": 0.4179163952665932,
+   "tx": 187849986.0
+  },
+  "2025-05": {
+   "c": 78519055.0,
+   "c_share": 0.4826806124437445,
+   "tx": 162672900.0
+  },
+  "2025-06": {
+   "c": 75673876.0,
+   "c_share": 0.515434247969411,
+   "tx": 146815770.0
+  },
+  "2025-07": {
+   "c": 74353712.0,
+   "c_share": 0.49918514359533794,
+   "tx": 148950170.0
+  },
+  "2025-08": {
+   "c": 81334734.0,
+   "c_share": 0.5220237391641371,
+   "tx": 155806581.0
+  },
+  "2025-09": {
+   "c": 74779915.0,
+   "c_share": 0.5328826296526361,
+   "tx": 140330930.0
+  },
+  "2025-10": {
+   "c": 76731995.0,
+   "c_share": 0.5442664636058663,
+   "tx": 140982405.0
+  },
+  "2025-11": {
+   "c": 72134974.0,
+   "c_share": 0.5634117519306261,
+   "tx": 128032427.0
+  },
+  "2025-12": {
+   "c": 71163708.0,
+   "c_share": 0.5973973569348175,
+   "tx": 119122904.0
+  },
+  "2026-01": {
+   "c": 70320950.0,
+   "c_share": 0.647039996708164,
+   "tx": 108680994.0
+  },
+  "2026-02": {
+   "c": 63429416.0,
+   "c_share": 0.6493520030799818,
+   "tx": 97681097.0
+  },
+  "2026-03": {
+   "c": 77043918.0,
+   "c_share": 0.7143131990049634,
+   "tx": 107857335.0
+  },
+  "2026-04": {
+   "c": 3175112.0,
+   "c_share": 0.11180636370218061,
+   "tx": 28398312.0
+  },
+  "2026-05": {
+   "c": 3.0,
+   "c_share": 1.2051558495493078e-07,
+   "tx": 24893046.0
+  },
+  "2026-06": {
+   "c": 0.0,
+   "c_share": 0.0,
+   "tx": 24415046.0
+  },
+  "2026-07": {
+   "c": 0.0,
+   "c_share": 0.0,
+   "tx": 22874925.0
+  },
+  "2026-08": {
+   "c": 0.0,
+   "c_share": 0.0,
+   "tx": 21131379.0
+  },
+  "2026-09": {
+   "c": 0.0,
+   "c_share": 0.0,
+   "tx": 24004533.0
+  },
+  "2026-10": {
+   "c": 560094.0,
+   "c_share": 0.02475232494701792,
+   "tx": 22627935.0
+  },
+  "2026-11": {
+   "c": 0.0,
+   "c_share": 0.0,
+   "tx": 2335582.0
+  }
+ },
+ "quarters": {
+  "2023Q1": {
+   "c_per_day": 0.0,
+   "c_share": 0.0,
+   "days": 90,
+   "exc_per_day": 393040.3777777778,
+   "parts_per_day": {
+    "tx_hotwallet": 0.0,
+    "tx_recv_family": 0.0,
+    "tx_sweat": 0.0,
+    "tx_users_signer": 0.0
+   },
+   "tx_per_day": 393040.3777777778
+  },
+  "2023Q2": {
+   "c_per_day": 0.0,
+   "c_share": 0.0,
+   "days": 91,
+   "exc_per_day": 354349.9120879121,
+   "parts_per_day": {
+    "tx_hotwallet": 0.0,
+    "tx_recv_family": 0.0,
+    "tx_sweat": 0.0,
+    "tx_users_signer": 0.0
+   },
+   "tx_per_day": 354349.9120879121
+  },
+  "2023Q3": {
+   "c_per_day": 103052.07608695653,
+   "c_share": 0.13379545645959115,
+   "days": 92,
+   "exc_per_day": 667168.9673913043,
+   "parts_per_day": {
+    "tx_hotwallet": 78551.77173913043,
+    "tx_recv_family": 0.021739130434782608,
+    "tx_sweat": 0.0,
+    "tx_users_signer": 24500.282608695652
+   },
+   "tx_per_day": 770221.0434782609
+  },
+  "2023Q4": {
+   "c_per_day": 473953.42391304346,
+   "c_share": 0.18818841934052183,
+   "days": 92,
+   "exc_per_day": 2044551.3043478262,
+   "parts_per_day": {
+    "tx_hotwallet": 346893.02173913043,
+    "tx_recv_family": 0.021739130434782608,
+    "tx_sweat": 0.0,
+    "tx_users_signer": 127060.38043478261
+   },
+   "tx_per_day": 2518504.7282608696
+  },
+  "2024Q1": {
+   "c_per_day": 477064.34065934067,
+   "c_share": 0.11047708773433382,
+   "days": 91,
+   "exc_per_day": 3841155.395604396,
+   "parts_per_day": {
+    "tx_hotwallet": 359226.2417582418,
+    "tx_recv_family": 5.56043956043956,
+    "tx_sweat": 0.0,
+    "tx_users_signer": 117832.53846153847
+   },
+   "tx_per_day": 4318219.736263736
+  },
+  "2024Q2": {
+   "c_per_day": 425559.76923076925,
+   "c_share": 0.05517813431542569,
+   "days": 91,
+   "exc_per_day": 7286911.384615385,
+   "parts_per_day": {
+    "tx_hotwallet": 284836.43956043955,
+    "tx_recv_family": 1.5164835164835164,
+    "tx_sweat": 0.0,
+    "tx_users_signer": 140721.81318681317
+   },
+   "tx_per_day": 7712471.153846154
+  },
+  "2024Q3": {
+   "c_per_day": 1035021.445652174,
+   "c_share": 0.15046978626767546,
+   "days": 92,
+   "exc_per_day": 5843578.380434782,
+   "parts_per_day": {
+    "tx_hotwallet": 817014.804347826,
+    "tx_recv_family": 0.0,
+    "tx_sweat": 0.0,
+    "tx_users_signer": 218006.64130434784
+   },
+   "tx_per_day": 6878599.826086956
+  },
+  "2024Q4": {
+   "c_per_day": 1888086.0543478262,
+   "c_share": 0.252083714437486,
+   "days": 92,
+   "exc_per_day": 5601830.771739131,
+   "parts_per_day": {
+    "tx_hotwallet": 1569954.0543478262,
+    "tx_recv_family": 0.0,
+    "tx_sweat": 0.0,
+    "tx_users_signer": 318132.0
+   },
+   "tx_per_day": 7489916.826086956
+  },
+  "2025Q1": {
+   "c_per_day": 2427807.611111111,
+   "c_share": 0.35281011270983637,
+   "days": 90,
+   "exc_per_day": 4453535.988888889,
+   "parts_per_day": {
+    "tx_hotwallet": 2118785.3777777776,
+    "tx_recv_family": 0.0,
+    "tx_sweat": 0.0,
+    "tx_users_signer": 309022.23333333334
+   },
+   "tx_per_day": 6881343.6
+  },
+  "2025Q2": {
+   "c_per_day": 2557126.5934065934,
+   "c_share": 0.4678874589631738,
+   "days": 91,
+   "exc_per_day": 2908133.3626373624,
+   "parts_per_day": {
+    "tx_hotwallet": 2304101.087912088,
+    "tx_recv_family": 0.02197802197802198,
+    "tx_sweat": 0.0,
+    "tx_users_signer": 253025.4835164835
+   },
+   "tx_per_day": 5465259.956043956
+  },
+  "2025Q3": {
+   "c_per_day": 2505090.8804347827,
+   "c_share": 0.5178044031283805,
+   "days": 92,
+   "exc_per_day": 2332818.695652174,
+   "parts_per_day": {
+    "tx_hotwallet": 2254111.434782609,
+    "tx_recv_family": 0.021739130434782608,
+    "tx_sweat": 0.0,
+    "tx_users_signer": 250979.4239130435
+   },
+   "tx_per_day": 4837909.576086956
+  },
+  "2025Q4": {
+   "c_per_day": 2391637.7934782607,
+   "c_share": 0.5668881342678826,
+   "days": 92,
+   "exc_per_day": 1827250.641304348,
+   "parts_per_day": {
+    "tx_hotwallet": 2214066.445652174,
+    "tx_recv_family": 0.0,
+    "tx_sweat": 0.0,
+    "tx_users_signer": 177571.34782608695
+   },
+   "tx_per_day": 4218888.434782608
+  },
+  "2026Q1": {
+   "c_per_day": 2342158.711111111,
+   "c_share": 0.6708505794291661,
+   "days": 90,
+   "exc_per_day": 1149168.2444444445,
+   "parts_per_day": {
+    "tx_hotwallet": 2152629.7,
+    "tx_recv_family": 0.0,
+    "tx_sweat": 72175.84444444445,
+    "tx_users_signer": 117353.16666666667
+   },
+   "tx_per_day": 3491326.9555555554
+  },
+  "2026Q2": {
+   "c_per_day": 34891.37362637363,
+   "c_share": 0.04086040321721746,
+   "days": 91,
+   "exc_per_day": 819025.1538461539,
+   "parts_per_day": {
+    "tx_hotwallet": 14184.34065934066,
+    "tx_recv_family": 0.0,
+    "tx_sweat": 19802.67032967033,
+    "tx_users_signer": 904.3626373626373
+   },
+   "tx_per_day": 853916.5274725275
+  },
+  "2026Q3": {
+   "c_per_day": 0.0,
+   "c_share": 0.0,
+   "days": 92,
+   "exc_per_day": 739248.2282608695,
+   "parts_per_day": {
+    "tx_hotwallet": 0.0,
+    "tx_recv_family": 0.0,
+    "tx_sweat": 0.0,
+    "tx_users_signer": 0.0
+   },
+   "tx_per_day": 739248.2282608695
+  },
+  "2026Q4": {
+   "c_per_day": 16002.685714285713,
+   "c_share": 0.022436502036151395,
+   "days": 35,
+   "exc_per_day": 697240.6571428571,
+   "parts_per_day": {
+    "tx_hotwallet": 0.05714285714285714,
+    "tx_recv_family": 16002.628571428571,
+    "tx_sweat": 0.0,
+    "tx_users_signer": 0.0
+   },
+   "tx_per_day": 713243.3428571429
+  }
+ },
+ "raw_ratio_2026Q3_over_2025Q3": 0.152803233841918,
+ "sample_intervals": {
+  "exc": {
+   "hi90": 0.3732240203178034,
+   "lo90": 0.23740685165238593,
+   "point": 0.2981456006997239
+  },
+  "raw": {
+   "hi90": 0.27234314660199344,
+   "lo90": 0.15734106822689642,
+   "point": 0.20617212505577362
+  }
+ }
+}

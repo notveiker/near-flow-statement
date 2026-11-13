@@ -21,10 +21,24 @@
    "sha256": "52583ddbaf0adc5a608cb0888a59b834f35b07008f21fa3ff6ff9084e65d7d29",
    "source": "bigquery job ask_b3_fortnights_20261113T021314Z: sql/april/b3_fortnights.sql"
   },
+  "raw/april/c1_class_daily.json": {
+   "bytes": 168058,
+   "fetched_at": "2026-11-13T02:46:15Z",
+   "rows": 1404,
+   "sha256": "7fce32831e6c4be8c8695d386ae4bd27081949f3f3b302fb11f99536f4085a8e",
+   "source": "bigquery job ask_c1_class_daily_20261113T024606Z: sql/april/c1_class_daily.sql"
+  },
+  "raw/april/c2_signer_decline.json": {
+   "bytes": 13594,
+   "fetched_at": "2026-11-13T02:46:27Z",
+   "rows": 83,
+   "sha256": "f4af05e2cc2ed22f179b855295b45448c8dc3ae3b4db904ac5d7d50b72765f46",
+   "source": "bigquery job ask_c2_signer_decline_20261113T024617Z: sql/april/c2_signer_decline.sql"
+  },
   "raw/april/jobs.jsonl": {
-   "bytes": 1697,
-   "fetched_at": "2026-11-13T02:13:33Z",
-   "sha256": "fd5bda29431458070111bf0d8a7f3a50782fc78353fd845364e490389709387d",
+   "bytes": 2857,
+   "fetched_at": "2026-11-13T02:46:27Z",
+   "sha256": "a8a471c7847832a2bd3dcd84bfcd1fee7bf647444a890a27f54886ae5acc753b",
    "source": "append-only log written by pipeline.windows run-file"
   },
   "raw/bq/buyback_withdraw_sources.json": {

@@ -40,3 +40,6 @@ Method: [history-class-adjusted-method.md](history-class-adjusted-method.md), co
 
 ## Reading
 The April result and this one fit together: one automated class ran at 30% to 74% of the sampled series from 2024 to 2026Q1 and stopped on 2026-04-02, which makes the series very steep at that date; but the rest of the series was already falling, from 4.9M transactions a day outside C in 2025Q1 to 0.83M in 2026Q3. A quarter-on-quarter "activity" comparison that crosses 2026-04 is therefore dominated by C, and a year-on-year comparison is dominated by the broad decline of everything else, which this analysis does not explain.
+
+## Correction after the full-chain count (`class-census-results.md`)
+Counting C exactly on the full chain gives 51.8% of 2025Q3 transactions, not the 31% (198 clusters) or 43% (268) estimated here, so H-C1's "at least 30%" holds but the sample understated the class. The ex-C fall of 2025Q3 to 2026Q3 is confirmed (ratio 0.317, inside the sample interval) and is **concentrated**, not broad: two `.tg` relay signers carry 62% of it. The phrase "broad decline of everything else" above is superseded by that result.

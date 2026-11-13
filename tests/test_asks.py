@@ -77,3 +77,11 @@ class SampleValidation(unittest.TestCase):
     def test_class_adjusted_cut_is_the_198(self):
         r = json.load(open(ROOT / "data" / "derived" / "history_class_adjusted.json"))
         self.assertEqual(r["primary_198_sealed_by_stop"]["clusters"], 198)
+
+
+class ClassCensus(unittest.TestCase):
+    def test_exact_class_shares_consistent(self):
+        r = json.load(open(ROOT / "data" / "derived" / "class_census.json"))
+        q = r["quarters"]["2025Q3"]
+        self.assertAlmostEqual(q["c_per_day"] + q["exc_per_day"], q["tx_per_day"], delta=1.0)
+        self.assertEqual(r["decline"]["concentrated"], r["decline"]["signers_for_50pct"] <= 20)
