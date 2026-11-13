@@ -330,3 +330,5 @@ Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. M
 ## 2026-11-13 03:18 UTC: RX8 result (Chain Signatures direct transactions)
 
 Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. Methods `60aafcb` and `5162dd5` (03:16 and 03:17 UTC) before the queries (225 GB). Direct transactions to `v1.signer` per day: 3.3K (2025Q3) to 27.5K (2026Q3), 8.4 times (H-RX8a neither); senders per day 11 to 19 (H-RX8c neither); the top senders are about eleven MPC-node-style accounts with identical counts, plus a benchmarking account that was 42% of 2025Q3 (H-RX8d falsified). The series is a node-side activity count; user requests per day are not established by it or by the sample figure. The receipt-level exact count (4.7 TB) was not run.
+
+RX8 cross-check (same entry): the exact 2026Q4 direct-transaction rate to `v1.signer` (15,624 a day) is within 1% of the node census's `signatures_per_day_k` (15.7K, from `respond` calls); the census figure is a node-side count, as its research note states.
