@@ -256,3 +256,7 @@ Post-freeze. The F5 result entry above was headed 01:24 UTC but committed (`cd38
 ## 2026-11-13 01:21 UTC: F6 result
 
 Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. F6 ran after its method commit (`2bef34e`, 01:20:53 UTC); local computation on saved outputs. Delivered-revenue ratio around 2026-09-01 is 1.66 (threshold 1.158), so the threshold is met, but 20% of the 75 weekly boundaries have an equal or larger ratio (rule: top 10%), so no step is called. Escrow-funded group 2.51, persistent fee accounts 1.14, `176121bd` 0.29.
+
+## 2026-11-13 01:23 UTC: F7 result
+
+Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. F7 ran after its method commit (`5ffd9f1`, 01:22:07 UTC). `1244d552…`, the account behind F1's 30.8M NEAR, only relays: it received 30,798,979 NEAR in 1,175 transfers from four Binance proof-of-reserves wallets (all on the exchange list) and sent 30,798,978 NEAR to `bridge-mng.near` in 1,175 transfers. H-F7a, -b and -c supported. Ownership of the relay is INFERRED. Jobs: `rb_f7_s_acct` 166.9 GB, `rb_f7_a_summary` (staged table, 0.0 GB).

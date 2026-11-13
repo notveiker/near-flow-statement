@@ -537,8 +537,41 @@ def f6() -> dict:
             "step_called": r0 >= thr and rank <= 0.10, "top5_boundaries": sorted(allr.items(), key=lambda kv: -kv[1])[:5]}
 
 
+# ------------------------------------------------------------------ F7
+def _lists():
+    unst = set(json.loads((RAW / "unstakers" / "account_set.json").read_text())["accounts"])
+    exch = set()
+    for v in json.loads((RAW / "labels" / "exchange_accounts.json").read_text()).values():
+        if isinstance(v, list):
+            for z in v:
+                if isinstance(z, dict) and "account" in z:
+                    exch.add(z["account"])
+                elif isinstance(z, str):
+                    exch.add(z)
+    return unst, exch
+
+
+def f7() -> dict:
+    rows = load("rb_f7_a_summary")
+    f = lambda v: float(v or 0)
+    inn = sorted([(r["a"], f(r["near"]), int(r["n"])) for r in rows if r["part"] == "in_by_sender"], key=lambda t: -t[1])
+    out = sorted([(r["a"], r["kind"], f(r["near"]), int(r["n"])) for r in rows if r["part"] == "out_by_receiver"], key=lambda t: -t[2])
+    unst, exch = _lists()
+    tin, tout = sum(t[1] for t in inn), sum(t[2] for t in out if t[1] == "TRANSFER")
+    f1m = f1()["external_mint_deposits_near"]
+    in_lists = sum(t[1] for t in inn if t[0] in unst or t[0] in exch)
+    to_bridge = sum(t[2] for t in out if t[0] == BRIDGE and t[1] == "TRANSFER")
+    K = tin / f1m
+    top3 = sum(t[1] for t in inn[:3]) / tin
+    return {"coverage_K": K, "inflow_near": tin, "senders": len(inn), "top_senders": [{"sender": a, "near": v, "share": v / tin, "transfers": n, "in_unstakers_set": a in unst, "in_exchange_list": a in exch} for a, v, n in inn[:6]],
+            "top3_share": top3, "in_lists_share": in_lists / tin, "outflow_transfer_near": tout, "to_bridge_mng_near": to_bridge, "to_bridge_share_of_outflow": to_bridge / tout,
+            "other_signed_actions": [{"receiver": a, "kind": k, "near": v, "n": n} for a, k, v, n in out if not (a == BRIDGE and k == "TRANSFER")][:5],
+            "H_F7a_supported": K >= 0.5 and top3 >= 0.5, "H_F7b_supported": K >= 0.5 and in_lists / tin >= 0.5, "H_F7b_falsified": K >= 0.5 and in_lists / tin < 0.1,
+            "H_F7c_supported": to_bridge / tout >= 0.9, "H_F7c_falsified": to_bridge / tout < 0.5}
+
+
 def main() -> int:
-    res = {"cutoff_block": 223_088_015, "windows": {"q1_q2": [WINDOW_START, CUTOFF_DATE], "q3_q4": [SWAP_START, CUTOFF_DATE]}, "q1": q1(), "q2": q2(), "q3": q3(), "q4": q4(), "f1": f1(), "f3": f3(), "f2b": f2b(), "f4": f4(), "f5": f5(), "f6": f6()}
+    res = {"cutoff_block": 223_088_015, "windows": {"q1_q2": [WINDOW_START, CUTOFF_DATE], "q3_q4": [SWAP_START, CUTOFF_DATE]}, "q1": q1(), "q2": q2(), "q3": q3(), "q4": q4(), "f1": f1(), "f3": f3(), "f2b": f2b(), "f4": f4(), "f5": f5(), "f6": f6(), "f7": f7()}
     jobs = [json.loads(l) for l in (OUT / "jobs.jsonl").read_text().splitlines()]
     res["bytes_billed_total"] = sum(j["bytes_billed"] for j in jobs)
     dest = ROOT / "data" / "derived" / "rebuild_results.json"
