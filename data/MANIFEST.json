@@ -777,6 +777,26 @@
    "sha256": "b8b264ed703b8ba338747cc7e0df9b0bf5ec81eea80d8ec8c8a728179a693b02",
    "source": "rpc view_account at block 223230811"
   },
+  "raw/rx/jobs.jsonl": {
+   "bytes": 1098,
+   "fetched_at": "2026-11-13T03:03:01Z",
+   "sha256": "5e3c7a844ac49347fe5f4314ec896c69e49881f36cb0d3e9da1dd6594bafecd6",
+   "source": "append-only log written by pipeline.windows run-file"
+  },
+  "raw/rx/rx1_users.json": {
+   "bytes": 3033,
+   "fetched_at": "2026-11-13T03:02:54Z",
+   "rows": 35,
+   "sha256": "f4c0ae15b5193ab903f686c67cbcb76a29b6fdd9c1aeec9b2dc2e9441931f6c5",
+   "source": "bigquery job ask_rx1_users_20261113T030249Z: sql/rx/rx1_users.sql"
+  },
+  "raw/rx/rx3_relayer.json": {
+   "bytes": 6693,
+   "fetched_at": "2026-11-13T03:03:01Z",
+   "rows": 39,
+   "sha256": "01af0392e06024716d88d42ee70062bf077f0b281a8087f1e6b7823e33e1fd0a",
+   "source": "bigquery job ask_rx3_relayer_20261113T030256Z: sql/rx/rx3_relayer.sql"
+  },
   "raw/unstakers/account_set.json": {
    "bytes": 21282,
    "fetched_at": "2026-11-06T23:50:01Z",

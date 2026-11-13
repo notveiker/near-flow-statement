@@ -94,3 +94,12 @@ class OtherMetrics(unittest.TestCase):
             for m in cut.values():
                 self.assertEqual(m["definitions_match"], 0.9 <= m["median_sample_over_census"] <= 1.1)
                 self.assertEqual(m["coverage"] is None, not m["definitions_match"])
+
+
+class RX(unittest.TestCase):
+    def test_rx_rules_applied(self):
+        r = json.load(open(ROOT / "data" / "derived" / "rx_results.json"))
+        self.assertEqual(r["rx1"]["H_RX1a_supported"], r["rx1"]["share_top10"] >= 0.25)
+        self.assertAlmostEqual(r["rx2"]["total_margin_usd"] / r["rx2"]["delivered_to_revenue_wallets_usd"], r["rx2"]["margin_over_delivered"], places=9)
+        win = [m for m in r["rx3"]["months"] if m["per"] in r["rx3"]["window_months"]]
+        self.assertEqual(r["rx3"]["H_RX3a_supported"], all(m["top1_share"] >= 0.8 for m in win))

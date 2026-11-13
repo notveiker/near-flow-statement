@@ -1,0 +1,653 @@
+{
+ "rx1": {
+  "H_RX1a_falsified": true,
+  "H_RX1a_supported": false,
+  "H_RX1b_falsified": true,
+  "H_RX1b_supported": false,
+  "H_RX1c_falsified": true,
+  "H_RX1c_supported": false,
+  "fills": 1222617.0,
+  "priced_volume_usd": 2171272813.325558,
+  "retention_first_blocks_0_3": {
+   "returned_4_plus_blocks_later": 225.0,
+   "share": 0.0007764269865315798,
+   "users": 289789.0
+  },
+  "share_top1": 0.013083505471215378,
+  "share_top10": 0.04180877735073044,
+  "share_top100": 0.07662593359887873,
+  "share_top1000": 0.2228440070913981,
+  "size_buckets": {
+   "a_<100": {
+    "fills": 495977.0,
+    "users": 489400.0,
+    "volume": 12007822.376265505
+   },
+   "b_100-1k": {
+    "fills": 239332.0,
+    "users": 238223.0,
+    "volume": 90217825.8170185
+   },
+   "c_1k-10k": {
+    "fills": 137207.0,
+    "users": 117431.0,
+    "volume": 413815944.12289095
+   },
+   "d_10k-100k": {
+    "fills": 57696.0,
+    "users": 31122.0,
+    "volume": 902585248.3911179
+   },
+   "e_>=100k": {
+    "fills": 292405.0,
+    "users": 2850.0,
+    "volume": 752645972.6181936
+   }
+  },
+  "top10": [
+   {
+    "fills": 63236.0,
+    "span_days": 89.0,
+    "user8": "kipseli.",
+    "volume": 28407859.732646145
+   },
+   {
+    "fills": 4211.0,
+    "span_days": 89.0,
+    "user8": "crux-sol",
+    "volume": 17724959.12790546
+   },
+   {
+    "fills": 2170.0,
+    "span_days": 50.0,
+    "user8": "0x8c60fa",
+    "volume": 15618870.356483877
+   },
+   {
+    "fills": 55075.0,
+    "span_days": 89.0,
+    "user8": "brlabs-s",
+    "volume": 10243194.987030564
+   },
+   {
+    "fills": 12402.0,
+    "span_days": 66.0,
+    "user8": "6af11753",
+    "volume": 4342920.3232185785
+   },
+   {
+    "fills": 17304.0,
+    "span_days": 89.0,
+    "user8": "c4d748df",
+    "volume": 3865165.545677178
+   },
+   {
+    "fills": 2684.0,
+    "span_days": 77.0,
+    "user8": "nawr.nea",
+    "volume": 3538823.2285405076
+   },
+   {
+    "fills": 2644.0,
+    "span_days": 75.0,
+    "user8": "0x948453",
+    "volume": 2582470.8288170844
+   },
+   {
+    "fills": 16393.0,
+    "span_days": 89.0,
+    "user8": "6247d9c6",
+    "volume": 2287190.2538085817
+   },
+   {
+    "fills": 1.0,
+    "span_days": 0.0,
+    "user8": "e6f5cdd6",
+    "volume": 2166807.235894377
+   }
+  ],
+  "users": 879026.0,
+  "users_ge_100k": 2850.0,
+  "users_ge_100k_share_of_users": 0.0032422249171241806,
+  "volume_share_ge_100k": 0.3466381414620249,
+  "weekly_active_new": [
+   {
+    "active": 56732.0,
+    "block": 0,
+    "new": 56732.0
+   },
+   {
+    "active": 64789.0,
+    "block": 1,
+    "new": 64722.0
+   },
+   {
+    "active": 86718.0,
+    "block": 2,
+    "new": 86631.0
+   },
+   {
+    "active": 81797.0,
+    "block": 3,
+    "new": 81704.0
+   },
+   {
+    "active": 84666.0,
+    "block": 4,
+    "new": 84566.0
+   },
+   {
+    "active": 59520.0,
+    "block": 5,
+    "new": 59409.0
+   },
+   {
+    "active": 72675.0,
+    "block": 6,
+    "new": 72569.0
+   },
+   {
+    "active": 80533.0,
+    "block": 7,
+    "new": 80403.0
+   },
+   {
+    "active": 68142.0,
+    "block": 8,
+    "new": 67972.0
+   },
+   {
+    "active": 64323.0,
+    "block": 9,
+    "new": 64049.0
+   },
+   {
+    "active": 68096.0,
+    "block": 10,
+    "new": 67780.0
+   },
+   {
+    "active": 66065.0,
+    "block": 11,
+    "new": 65769.0
+   },
+   {
+    "active": 26987.0,
+    "block": 12,
+    "new": 26720.0
+   }
+  ]
+ },
+ "rx2": {
+  "H_RX2a_falsified": false,
+  "H_RX2a_supported": true,
+  "H_RX2b_falsified": false,
+  "H_RX2b_supported": true,
+  "delivered_to_revenue_wallets_usd": 4740825.047461938,
+  "margin_over_delivered": 0.01845837943768169,
+  "positive_margin_usd": 87507.94757371776,
+  "solvers": 26,
+  "solvers_negative": 0,
+  "top": [
+   {
+    "bp": 4.605945620701801,
+    "margin_usd": 19751.517570042233,
+    "paid_usd": 42882654.71756204,
+    "solver": "27695d3e216982e4b32db97ca046ae31b1feb354710e65f0f420859bdbcd8e2c"
+   },
+   {
+    "bp": 8.6440780288951,
+    "margin_usd": 18694.407097001,
+    "paid_usd": 21626837.511774,
+    "solver": "6247d9c671ca6a80cf2c75e26edb8cd75ebf00fcd3c56c39107d6ca20c9cfb29"
+   },
+   {
+    "bp": 4.182040427900294,
+    "margin_usd": 14934.757200996508,
+    "paid_usd": 35711651.90408,
+    "solver": "433d1f6e5452c9f6087af460d1c6b799587132caabeb2477a0ad37e3e0b88d0c"
+   },
+   {
+    "bp": 0.867507761833836,
+    "margin_usd": 10013.685074987987,
+    "paid_usd": 115430495.443867,
+    "solver": "0x8c60fa34790d4661ae4b5302f2a654539352e81b"
+   },
+   {
+    "bp": 1.6211782563539263,
+    "margin_usd": 7077.969326005226,
+    "paid_usd": 43659414.36892801,
+    "solver": "crux-solver.near"
+   },
+   {
+    "bp": 1.4940350558779567,
+    "margin_usd": 5489.935761391596,
+    "paid_usd": 36745695.757222265,
+    "solver": "solver-multichain-asset-escrow.near"
+   },
+   {
+    "bp": 0.7353420648757024,
+    "margin_usd": 5032.67827694118,
+    "paid_usd": 68439961.7175698,
+    "solver": "solver-multichain-asset.near"
+   },
+   {
+    "bp": 0.5015071678953944,
+    "margin_usd": 3503.1381585045483,
+    "paid_usd": 69852205.16798757,
+    "solver": "kipseli.near"
+   }
+  ],
+  "top3_share_of_positive": 0.6100095288267526,
+  "total_margin_usd": 87507.94757371776
+ },
+ "rx3": {
+  "H_RX3a_falsified": false,
+  "H_RX3a_supported": false,
+  "H_RX3b_falsified": false,
+  "H_RX3b_supported": true,
+  "min_week_top1_share": 0.6722011083557108,
+  "months": [
+   {
+    "per": "2025-01",
+    "signers": 164,
+    "top1": "intents.near",
+    "top1_share": 0.935276765573486,
+    "top2": "solver-multichain-asset.near",
+    "top2_share": 0.01318757591532188,
+    "top5_share": 0.9673781016831511,
+    "tx": 5763
+   },
+   {
+    "per": "2025-02",
+    "signers": 177,
+    "top1": "intents.near",
+    "top1_share": 0.8510932395074139,
+    "top2": "tester12345.near",
+    "top2_share": 0.07715506408645388,
+    "top5_share": 0.953757225433526,
+    "tx": 7958
+   },
+   {
+    "per": "2025-03",
+    "signers": 469,
+    "top1": "intents.near",
+    "top1_share": 0.8975335209402416,
+    "top2": "solver-multichain-asset.near",
+    "top2_share": 0.010925343486177784,
+    "top5_share": 0.929316338354577,
+    "tx": 12082
+   },
+   {
+    "per": "2025-04",
+    "signers": 6497,
+    "top1": "intents.near",
+    "top1_share": 0.7293144057546629,
+    "top2": "1lluzor.near",
+    "top2_share": 0.0025972372525303964,
+    "top5_share": 0.7365077344197594,
+    "tx": 78545
+   },
+   {
+    "per": "2025-05",
+    "signers": 21117,
+    "top1": "intents.near",
+    "top1_share": 0.5512376453430771,
+    "top2": "solver-multichain-asset.near",
+    "top2_share": 0.005223235869918442,
+    "top5_share": 0.5606141066998502,
+    "tx": 126167
+   },
+   {
+    "per": "2025-06",
+    "signers": 17282,
+    "top1": "intents.near",
+    "top1_share": 0.9185708392445692,
+    "top2": "quodlokus.tg",
+    "top2_share": 0.001614899332910743,
+    "top5_share": 0.9235144770778204,
+    "tx": 596322
+   },
+   {
+    "per": "2025-07",
+    "signers": 16338,
+    "top1": "intents.near",
+    "top1_share": 0.9924878004945876,
+    "top2": "solver-multichain-asset.near",
+    "top2_share": 0.00016268943848944326,
+    "top5_share": 0.9930284345311563,
+    "tx": 3405261
+   },
+   {
+    "per": "2025-08",
+    "signers": 11046,
+    "top1": "intents.near",
+    "top1_share": 0.9914191396740065,
+    "top2": "solver-multichain-asset.near",
+    "top2_share": 0.0006589783968215181,
+    "top5_share": 0.9927551971618112,
+    "tx": 1767888
+   },
+   {
+    "per": "2025-09",
+    "signers": 19482,
+    "top1": "intents.near",
+    "top1_share": 0.9796677654967358,
+    "top2": "solver-multichain-asset.near",
+    "top2_share": 0.0009807597009458557,
+    "top5_share": 0.9816327322086484,
+    "tx": 1160325
+   },
+   {
+    "per": "2025-10",
+    "signers": 26272,
+    "top1": "intents.near",
+    "top1_share": 0.9836578695214592,
+    "top2": "9d86e2b3dfbc8e9fa21ac2928fb582fd01a83cb9f27c14ec2eabb16fa92d40f8",
+    "top2_share": 0.0005148518605324473,
+    "top5_share": 0.9853846697365337,
+    "tx": 2321056
+   },
+   {
+    "per": "2025-11",
+    "signers": 6742,
+    "top1": "intents.near",
+    "top1_share": 0.9963251024076952,
+    "top2": "hako-intent-admin.near",
+    "top2_share": 0.0001797348588598007,
+    "top5_share": 0.9966842140878474,
+    "tx": 2793003
+   },
+   {
+    "per": "2025-12",
+    "signers": 3361,
+    "top1": "intents.near",
+    "top1_share": 0.9942365732010222,
+    "top2": "6c379f0bec7563a607ed663e3d5be642dd8de19c7a5dcac9acf1a9cbefb0a709",
+    "top2_share": 0.0018188124693508969,
+    "top5_share": 0.9965098894439505,
+    "tx": 1254115
+   },
+   {
+    "per": "2026-01",
+    "signers": 5214,
+    "top1": "intents.near",
+    "top1_share": 0.9918604532177872,
+    "top2": "00000000012.near",
+    "top2_share": 0.00011710760142029918,
+    "top5_share": 0.9922060911870276,
+    "tx": 879533
+   },
+   {
+    "per": "2026-02",
+    "signers": 3958,
+    "top1": "intents.near",
+    "top1_share": 0.976650526195218,
+    "top2": "escrow.ai.near",
+    "top2_share": 0.015044028799989626,
+    "top5_share": 0.9922629474064124,
+    "tx": 925417
+   },
+   {
+    "per": "2026-03",
+    "signers": 2749,
+    "top1": "intents.near",
+    "top1_share": 0.9640317022742936,
+    "top2": "escrow.ai.near",
+    "top2_share": 0.020682288077188145,
+    "top5_share": 0.9879157231465984,
+    "tx": 1015700
+   },
+   {
+    "per": "2026-04",
+    "signers": 3295,
+    "top1": "intents.near",
+    "top1_share": 0.9394916678110132,
+    "top2": "escrow.ai.near",
+    "top2_share": 0.046521725082191004,
+    "top5_share": 0.9926118968957245,
+    "tx": 990376
+   },
+   {
+    "per": "2026-05",
+    "signers": 5025,
+    "top1": "intents.near",
+    "top1_share": 0.9244305709034912,
+    "top2": "escrow.ai.near",
+    "top2_share": 0.058009735969173734,
+    "top5_share": 0.9867711550814988,
+    "tx": 1007193
+   },
+   {
+    "per": "2026-06",
+    "signers": 2907,
+    "top1": "intents.near",
+    "top1_share": 0.8913374042035386,
+    "top2": "escrow.ai.near",
+    "top2_share": 0.09884225040454042,
+    "top5_share": 0.9921273395691161,
+    "tx": 1086418
+   },
+   {
+    "per": "2026-07",
+    "signers": 2124,
+    "top1": "intents.near",
+    "top1_share": 0.8168001015879158,
+    "top2": "escrow.ai.near",
+    "top2_share": 0.14381719617352184,
+    "top5_share": 0.9949198483437541,
+    "tx": 1322992
+   },
+   {
+    "per": "2026-08",
+    "signers": 1885,
+    "top1": "intents.near",
+    "top1_share": 0.7941125710740756,
+    "top2": "escrow.ai.near",
+    "top2_share": 0.20216405692456235,
+    "top5_share": 0.9969488873029866,
+    "tx": 1715112
+   },
+   {
+    "per": "2026-09",
+    "signers": 9363,
+    "top1": "intents.near",
+    "top1_share": 0.7476488966498869,
+    "top2": "escrow.ai.near",
+    "top2_share": 0.24134762468181112,
+    "top5_share": 0.9908387193303317,
+    "tx": 2031812
+   },
+   {
+    "per": "2026-10",
+    "signers": 5354,
+    "top1": "intents.near",
+    "top1_share": 0.7166921571937909,
+    "top2": "escrow.ai.near",
+    "top2_share": 0.2549080851317397,
+    "top5_share": 0.9888843094218948,
+    "tx": 2013820
+   },
+   {
+    "per": "2026-11",
+    "signers": 536,
+    "top1": "intents.near",
+    "top1_share": 0.8246102103099633,
+    "top2": "escrow.ai.near",
+    "top2_share": 0.1515768056968464,
+    "top5_share": 0.9942953105284161,
+    "tx": 433503
+   }
+  ],
+  "weeks": [
+   {
+    "per": "2026-07-22",
+    "signers": 539,
+    "top1": "intents.near",
+    "top1_share": 0.7898508548563113,
+    "top2": "escrow.ai.near",
+    "top2_share": 0.14542808955322598,
+    "top5_share": 0.9951519560832038,
+    "tx": 302390
+   },
+   {
+    "per": "2026-07-29",
+    "signers": 571,
+    "top1": "intents.near",
+    "top1_share": 0.8147501544263468,
+    "top2": "escrow.ai.near",
+    "top2_share": 0.18064956598068857,
+    "top5_share": 0.9959946682271855,
+    "tx": 307590
+   },
+   {
+    "per": "2026-08-05",
+    "signers": 472,
+    "top1": "intents.near",
+    "top1_share": 0.7854396953329901,
+    "top2": "escrow.ai.near",
+    "top2_share": 0.2103477802661046,
+    "top5_share": 0.9968952467635118,
+    "tx": 334004
+   },
+   {
+    "per": "2026-08-12",
+    "signers": 463,
+    "top1": "intents.near",
+    "top1_share": 0.780142046509237,
+    "top2": "escrow.ai.near",
+    "top2_share": 0.21564282185357272,
+    "top5_share": 0.9971099503950972,
+    "tx": 350167
+   },
+   {
+    "per": "2026-08-19",
+    "signers": 413,
+    "top1": "intents.near",
+    "top1_share": 0.7876453179153393,
+    "top2": "escrow.ai.near",
+    "top2_share": 0.20916893098257397,
+    "top5_share": 0.997404003328477,
+    "tx": 371341
+   },
+   {
+    "per": "2026-08-26",
+    "signers": 635,
+    "top1": "intents.near",
+    "top1_share": 0.8333911735083909,
+    "top2": "escrow.ai.near",
+    "top2_share": 0.1628302047056825,
+    "top5_share": 0.9965732729854024,
+    "tx": 412055
+   },
+   {
+    "per": "2026-09-02",
+    "signers": 674,
+    "top1": "intents.near",
+    "top1_share": 0.7791636259540445,
+    "top2": "escrow.ai.near",
+    "top2_share": 0.21772980731625696,
+    "top5_share": 0.9973570999463759,
+    "tx": 496046
+   },
+   {
+    "per": "2026-09-09",
+    "signers": 754,
+    "top1": "intents.near",
+    "top1_share": 0.7693489441693145,
+    "top2": "escrow.ai.near",
+    "top2_share": 0.22378648651227587,
+    "top5_share": 0.9969598946554834,
+    "tx": 523995
+   },
+   {
+    "per": "2026-09-16",
+    "signers": 655,
+    "top1": "intents.near",
+    "top1_share": 0.7030591772752696,
+    "top2": "escrow.ai.near",
+    "top2_share": 0.2929513723196281,
+    "top5_share": 0.9965441866908856,
+    "tx": 389778
+   },
+   {
+    "per": "2026-09-23",
+    "signers": 5083,
+    "top1": "intents.near",
+    "top1_share": 0.7514432368665445,
+    "top2": "escrow.ai.near",
+    "top2_share": 0.23271044066832325,
+    "top5_share": 0.9848355546631192,
+    "tx": 478092
+   },
+   {
+    "per": "2026-09-30",
+    "signers": 3314,
+    "top1": "intents.near",
+    "top1_share": 0.7500940713896206,
+    "top2": "escrow.ai.near",
+    "top2_share": 0.23141360624432805,
+    "top5_share": 0.9859245054460795,
+    "tx": 496963
+   },
+   {
+    "per": "2026-10-07",
+    "signers": 1635,
+    "top1": "intents.near",
+    "top1_share": 0.7006512229071385,
+    "top2": "escrow.ai.near",
+    "top2_share": 0.2880667130642275,
+    "top5_share": 0.9911289520779479,
+    "tx": 402320
+   },
+   {
+    "per": "2026-10-14",
+    "signers": 1898,
+    "top1": "intents.near",
+    "top1_share": 0.7484961361829063,
+    "top2": "escrow.ai.near",
+    "top2_share": 0.22206009367521107,
+    "top5_share": 0.9862702274915057,
+    "tx": 525646
+   },
+   {
+    "per": "2026-10-21",
+    "signers": 1263,
+    "top1": "intents.near",
+    "top1_share": 0.6722011083557108,
+    "top2": "escrow.ai.near",
+    "top2_share": 0.2855899083870147,
+    "top5_share": 0.9880775946822404,
+    "tx": 408894
+   },
+   {
+    "per": "2026-10-28",
+    "signers": 770,
+    "top1": "intents.near",
+    "top1_share": 0.6848363625680599,
+    "top2": "escrow.ai.near",
+    "top2_share": 0.28190734067139334,
+    "top5_share": 0.9924301774452583,
+    "tx": 408464
+   },
+   {
+    "per": "2026-11-04",
+    "signers": 825,
+    "top1": "intents.near",
+    "top1_share": 0.8131635515150306,
+    "top2": "escrow.ai.near",
+    "top2_share": 0.16310991895999852,
+    "top5_share": 0.9945299067377589,
+    "tx": 701999
+   }
+  ],
+  "window_months": [
+   "2026-05",
+   "2026-06",
+   "2026-07",
+   "2026-08",
+   "2026-09",
+   "2026-10"
+  ]
+ }
+}
