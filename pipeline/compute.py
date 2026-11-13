@@ -260,6 +260,136 @@ def escrow_recheck(m: dict, lo: str, hi: str) -> None:
     m["escrow_recheck_window_rows_ok_n"] = len([x for x in win if rows[x["delivery_tx_hash"]]["ok"]])
 
 
+CONFIDENTIAL_1CLICK = "2026-10-27"  # NEAR Intents changelog: 1Click swaps settle confidentially from this day
+
+
+def collector_funders(m: dict, near_price: dict, lo: str, hi: str) -> None:
+    """Split the public-collector rung of the ladder by who funded the collectors' fees (exploratory, 2026-11-13).
+
+    data/raw/bq/collector_inflow_funders.json classifies every transfer into collector A or B by its sender
+    (sql/collector_inflow_funders.sql): a public swap account, a single-use account the Confidential Intents
+    treasury had funded (escrow_funded), the treasury itself, or other. Summed over class it must equal
+    collector_inflows.json, or the build stops. Shares are USD-weighted, because each collector's NEAR comes
+    from all its fee tokens, and each day's NEAR delivered (deliveries.csv) takes that day's share."""
+    import csv
+    import statistics
+    from datetime import date
+    if not (RAW / "bq" / "collector_inflow_funders.json").exists():
+        return
+    fund = read_raw("bq/collector_inflow_funders.json")
+    tot: dict = defaultdict(lambda: [0, 0])
+    for x in fund:
+        k = (x["day"], x["collector"], x["token"])
+        tot[k][0] += int(x["amount"]); tot[k][1] += int(x["n"])
+    ref = {(x["day"], x["collector"], x["token"]): [int(x["amount"]), int(x["n"])]
+           for x in read_raw("bq/collector_inflows.json")}
+    if dict(tot) != ref:
+        raise ValueError("collector_inflow_funders.json summed over class differs from collector_inflows.json")
+
+    prices = {c: {day(ms / 1000): float(p) for ms, p in pts} for c, pts in read_raw("coingecko/majors_90d.json").items()}
+    prices["near"] = near_price
+    CLS = ("public_swap", "escrow_funded", "escrow_direct", "other")
+    ESC = ("escrow_funded", "escrow_direct")
+    coll = {COLLECTOR_A: "a", COLLECTOR_B: "b"}
+    usd: dict = defaultdict(float)
+    cnt: dict = defaultdict(int)
+    usd_n: dict = defaultdict(int)  # priced transfers
+    for x in fund:
+        if not lo <= x["day"] <= hi:
+            continue
+        k = (x["day"], coll[x["collector"]], x["class"])
+        cnt[k] += int(x["n"])
+        v = token_usd(x["token"], float(x["amount"]), x["day"], prices)
+        if v is not None:
+            usd[k] += v; usd_n[k] += int(x["n"])
+    with open(RAW / "escrow" / "deliveries.csv", newline="", encoding="utf-8") as f:
+        win = [x for x in csv.DictReader(f) if lo <= x["day"] <= hi]
+    dl = [x for x in win if x["path"] in ("collector_a", "collector_b")]
+    deliv: dict = defaultdict(float)
+    for x in dl:
+        deliv[(x["day"], x["path"][-1])] += int(x["amount_yocto"]) / YOCTO
+    days = [add_days(lo, i) for i in range((date.fromisoformat(hi) - date.fromisoformat(lo)).days + 1)]
+    pre = [d for d in days if d < CONFIDENTIAL_1CLICK]
+    post = [d for d in days if d >= CONFIDENTIAL_1CLICK]
+    iss = m["net_issuance_near_per_day_window"]
+
+    def share(src: dict, c: str, ds: list, classes=ESC) -> float:
+        t = sum(src[(d, c, k)] for d in ds for k in CLS)
+        return sum(src[(d, c, k)] for d in ds for k in classes) / t if t else 0.0
+
+    def pts(near: float) -> float:
+        return near / len(days) / iss * 100
+
+    # Primary: same-day attribution.
+    esc_near = {c: sum(deliv[(d, c)] * share(usd, c, [d]) for d in days) for c in "ab"}
+    oth_near = sum(deliv[(d, c)] * share(usd, c, [d], ("other",)) for d in days for c in "ab")
+    all_near = sum(deliv.values())
+    esc_all = sum(esc_near.values())
+    pub_near = all_near - esc_all - oth_near
+    m["ladder_collectors_public_swap_pct_of_issuance"] = r(pts(pub_near), 2)
+    m["ladder_collectors_escrow_funded_pct_of_issuance"] = r(pts(esc_all), 2)
+    m["ladder_collectors_public_swap_near_k"] = r(pub_near / 1e3, 1)
+    m["ladder_collectors_escrow_funded_near_k"] = r(esc_all / 1e3, 1)
+    m["ladder_collector_a_public_swap_pct_of_issuance"] = r(pts(sum(deliv[(d, "a")] for d in days) - esc_near["a"]), 2)
+    m["ladder_collector_b_public_swap_pct_of_issuance"] = r(pts(sum(deliv[(d, "b")] for d in days) - esc_near["b"]), 2)
+    ladder_esc = sum(int(x["amount_yocto"]) for x in win if x["path"] == "escrow_unshield") / YOCTO
+    m["ladder_escrow_all_pct_of_issuance"] = r(pts(ladder_esc + esc_all), 2)
+
+    # Sensitivities: pooled before / after CONFIDENTIAL_1CLICK; unpriced transfers imputed at their class mean;
+    # weighted by transfer count (not a valid weighting: shown because counts and value diverge).
+    def pooled(src: dict) -> float:
+        return sum(sum(deliv[(d, c)] for d in ds) * share(src, c, ds) for c in "ab" for ds in (pre, post))
+    imp: dict = defaultdict(float)
+    for c in "ab":
+        for ds in (pre, post):
+            for k in CLS:
+                u, n_p, n = (sum(src[(d, c, k)] for d in ds) for src in (usd, usd_n, cnt))
+                imp[(ds[0], c, k)] = u + (n - n_p) * (u / n_p if n_p else 0.0)
+    imp_esc = sum(sum(deliv[(d, c)] for d in ds) * share(imp, c, [ds[0]]) for c in "ab" for ds in (pre, post))
+    m["ladder_collectors_escrow_funded_pooled_pct_of_issuance"] = r(pts(pooled(usd)), 2)
+    m["ladder_collectors_escrow_funded_imputed_pct_of_issuance"] = r(pts(imp_esc), 2)
+    m["ladder_collectors_escrow_funded_by_count_pct_of_issuance"] = r(pts(pooled(cnt)), 2)
+
+    # Collector A before / after, and the last day; collector B; mean fee per transfer.
+    m["collector_a_escrow_usd_share_pre_pct"] = r(share(usd, "a", pre) * 100, 1)
+    m["collector_a_escrow_usd_share_post_pct"] = r(share(usd, "a", post) * 100, 1)
+    m["collector_a_escrow_usd_share_first_post_day_pct"] = r(share(usd, "a", post[:1]) * 100, 1)
+    m["collector_a_escrow_usd_share_last_day_pct"] = r(share(usd, "a", days[-1:]) * 100, 1)
+    m["collector_a_escrow_count_share_pre_pct"] = r(share(cnt, "a", pre) * 100, 1)
+    m["collector_a_escrow_count_share_post_pct"] = r(share(cnt, "a", post) * 100, 1)
+    for k in CLS:
+        m[f"collector_a_{k}_n"] = sum(cnt[(d, "a", k)] for d in days)
+        m[f"collector_b_{k}_n"] = sum(cnt[(d, "b", k)] for d in days)
+    m["collectors_transfers_n"] = sum(cnt.values())
+    for k in ("public_swap", "escrow_funded"):
+        u = sum(usd[(d, "a", k)] for d in pre); n = sum(usd_n[(d, "a", k)] for d in pre)
+        m[f"collector_a_{k}_mean_fee_pre_usd"] = r(u / n, 2)
+    m["collector_a_unpriced_transfers_pct"] = r(
+        (1 - sum(usd_n[(d, "a", k)] for d in days for k in CLS) / sum(cnt[(d, "a", k)] for d in days for k in CLS)) * 100, 1)
+
+    # Collector A sweeps the same day: correlation of daily inflow USD with delivered USD, by lag.
+    u = [sum(usd[(d, "a", k)] for k in CLS) for d in days]
+    v = [deliv[(d, "a")] * near_price[d] for d in days]
+    for lag in (0, 1):
+        m[f"collector_a_inflow_delivery_corr_lag{lag}"] = r(statistics.correlation(u[:len(u) - lag], v[lag:]), 2)
+    m["collector_a_delivered_near_k"] = r(sum(deliv[(d, "a")] for d in days) / 1e3, 1)
+    m["collector_a_wnear_inflow_near_k"] = r(sum(int(x["amount"]) for x in fund if x["collector"] == COLLECTOR_A
+                                                and x["token"] == "nep141:wrap.near" and lo <= x["day"] <= hi) / YOCTO / 1e3, 1)
+
+    # Checks of the escrow_funded class (data/raw/bq/collector_funder_checks.json, sql/collector_funder_checks.sql).
+    if (RAW / "bq" / "collector_funder_checks.json").exists():
+        ck = [x for x in read_raw("bq/collector_funder_checks.json") if x["class"] == "escrow_funded"]
+        n = sum(int(x["n"]) for x in ck)
+        if n != m["collector_a_escrow_funded_n"] + m["collector_b_escrow_funded_n"]:
+            raise ValueError("collector_funder_checks.json counts differ from collector_inflow_funders.json")
+        for f_ in ("n_sender_single_tx", "n_sender_single_day", "n_funded_once", "n_no_other_inflow"):
+            m[f"collector_escrow_funded_{f_[2:]}_pct"] = r(sum(int(x[f_]) for x in ck) / n * 100, 1)
+        m["collector_escrow_funded_lag_blocks_median_max"] = max(int(x["lag_blocks_q"][2]) for x in ck)
+        pub = [x for x in read_raw("bq/collector_funder_checks.json") if x["class"] == "public_swap"]
+        m["collector_public_swap_with_token_diff_pct"] = r(sum(int(x["n_with_diff"]) for x in pub)
+                                                           / sum(int(x["n"]) for x in pub) * 100, 1)
+
+
 def l1_usage(m: dict, nb: dict, end: str) -> list[dict]:
     """Nearblocks daily usage (exploratory, descriptive; data/raw/nearblocks/charts.json).
 
@@ -704,6 +834,7 @@ def build() -> tuple[dict, dict]:
             concentration(m, price, lo, hi)
             escrow_ladder(m, lo, hi)
             escrow_recheck(m, lo, hi)
+            collector_funders(m, price, lo, hi)
 
     # ---------- H1a as written: gross issuance from epoch-boundary headers (PREREG-ADDENDUM 2026-11-06) ----------
     if (RAW / "rpc" / "epoch_issuance.json").exists():

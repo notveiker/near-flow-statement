@@ -8,6 +8,22 @@
    "sha256": "e310eb0c522acb9fb2a69a544cf0c2316448188348a3d10ec064fb4b556074f5",
    "source": "bigquery: sql/buyback_withdraw_sources.sql"
   },
+  "raw/bq/collector_funder_checks.json": {
+   "bytes": 1620,
+   "bytes_processed_estimate": 66859382761,
+   "fetched_at": "2026-11-13T04:53:04Z",
+   "rows": 7,
+   "sha256": "15360dcfb5e6f71c1c71d90604450c576a637361e8ea70a35557d9054f08778e",
+   "source": "bigquery: sql/collector_funder_checks.sql"
+  },
+  "raw/bq/collector_inflow_funders.json": {
+   "bytes": 1410164,
+   "bytes_processed_estimate": 66859382761,
+   "fetched_at": "2026-11-13T04:52:53Z",
+   "rows": 6199,
+   "sha256": "c16656a80c73752b191a3edb5b82c072519f713508c43a6357ca5ed26f16bf22",
+   "source": "bigquery: sql/collector_inflow_funders.sql"
+  },
   "raw/bq/collector_inflows.json": {
    "bytes": 915074,
    "bytes_processed_estimate": 36784492112,
