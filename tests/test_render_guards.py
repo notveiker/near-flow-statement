@@ -1045,6 +1045,18 @@ class WhatMainReports(unittest.TestCase):
                                         f"{want[0]} bytes, fingerprint {want[1]}, data as of {want[2]}. Edit those two lines of README.md to say so "
                                         "(`python3 -m pipeline.render --check` prints them).")
 
+    def test_the_metric_count_the_readme_quotes_is_the_one_compute_prints(self):
+        """README.md steps 2 and 5 quote what `python3 -m pipeline.compute` prints: the number of metrics and the data date. Nothing compared
+        them with data/metrics.json, so the README went on saying 270 after compute had grown to 378 (found by an outside screen, 2026-11-13)."""
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        quoted = re.findall(r"wrote data/metrics\.json \((\d+) metrics, as of (\d{4}-\d{2}-\d{2})\)", readme)
+        self.assertEqual(len(quoted), 3, "README.md quotes the compute line three times: step 2 (twice) and step 5")
+        m = json.loads((ROOT / "data" / "metrics.json").read_text(encoding="utf-8"))
+        want = (str(len(m)), m["asof"])
+        for got in quoted:
+            self.assertEqual(got, want, f"README.md quotes ({got[0]} metrics, as of {got[1]}); `python3 -m pipeline.compute` prints "
+                                        f"({want[0]} metrics, as of {want[1]}). Edit README.md steps 2 and 5 to say so.")
+
     def test_a_given_forward_dir_is_not_this_repositorys_own_render_so_the_hint_carries_it(self):
         """`render --check --forward-dir DIR` without --out was taken for the repository's own check, and its hint said to run
         `python3 -m pipeline.render` and commit the result, which reads data/forward and not DIR: following it could not make the check pass."""
