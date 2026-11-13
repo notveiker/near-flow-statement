@@ -18,6 +18,7 @@ Window and rules: [chain-rebuild-method.md](chain-rebuild-method.md), committed 
 | Exchange-sourced share of the deposit path | 43.8%, all but 7.4% is that relay | F8 |
 | Family's native withdrawals | 14.4M NEAR to a Binance wallet | F10 |
 | Solver payments vs volume | no fixed rate | F9 |
+| Spread on the settlement legs, stable to stable | 1.4 bp (solvers 0.2 to 8.6 bp) | F11 |
 
 ## Q1. Escrow mass balance (wNEAR)
 
@@ -126,6 +127,13 @@ Window and rules: [chain-rebuild-method.md](chain-rebuild-method.md), committed 
 - **Who it exchanges with.** Inflow: `bridge-mng.near` 75.97M (78.1%), `omni.bridge.near` 5.92M, `lst-pool.near` 4.01M, Ref Finance 0.6M. Transfers out: `omni.bridge.near` 10.12M, `lst-pool.near` 8.66M, Ref Finance 1.25M, `solver-priv-liq.near` 0.78M. So the NEAR side of Intents is a net importer from the bridge path (+75.97M) and a net exporter to the Omni bridge (-4.2M) and the liquid-staking pool (-4.65M); the unwrap path (native withdrawals) is the biggest exit, 68.89M. **H-F10b falsified:** exchange-list accounts receive 0% of the transfer outflow (rule: under 5%), and none of the transfer inflow either; the exchange link is through native NEAR, below.
 - **H-F10c supported: the family's native withdrawals go to Binance.** `d6b77389…` (F1's destination for the family's 13.6M NEAR of native withdrawals) sent 14,388,799 NEAR in 428 direct transfers to a single account, `5c33c621…`, **a Binance proof-of-reserves wallet** (100% to the exchange list; rule 50%). Its direct inflow is 782K from `solver-priv-liq.near` and its contract-originated inflow is the 13.6M `native_withdraw` of F1; together 14,388,799 (post hoc: sent / received = 1.00000003). The same wallet `5c33c621…` is one of the four that fed the F7 relay (5.92M).
 - **The loop, as the chain reads it (INFERRED as one operator).** Binance wallets send 30.8M NEAR in through the F7 relay and the deposit path; the solver family sends 14.4M back out through `d6b77389…` to a Binance wallet. Net NEAR from Binance into Intents through these two accounts: **16.4M**. If both accounts belong to the same market maker, this is inventory being shuttled between a CEX and Intents, which is not user demand; the chain does not name the owner of either account, and the two are linked only by the shared Binance wallet and the same solver family.
+
+## F11. What users pay on stable-to-stable swaps (method `979863c`, 01:37:56 UTC)
+
+- **The settlement spread is small: 1.42 bp** (volume-weighted, same-symbol swaps tagged `1click-`, 158,266 swaps, \$628M paid). **H-F11a falsified** (rule: under 2 bp). All same-symbol swaps 1.34 bp; different-symbol stables 1.42 bp (not used for the rule). By month: 1.5, 1.8, 0.8 bp (Aug, Sep, Oct), 0.6 bp for the first four days of November. 24.5% of these swaps have a negative spread (the user received more than paid, within rounding and peg dust). Swaps with no referral tag: -0.63 bp, 63% negative, \$27.5M.
+- **H-F11b not supported (the gradient is reversed).** Under \$100: 0.49 bp; \$100 to 1K: 0.42; 1K to 10K: 0.52; 10K to 100K: 0.80; at least \$100K: **2.51** bp (963 swaps, \$250M). Larger swaps pay more at the settlement, not less.
+- **H-F11c supported: solvers price very differently.** Among 11 solvers with at least \$5M paid, the volume-weighted spread runs from 0.20 bp (`blockzen-2-main.near`) and 0.22 (`blockzen-1-main.near`) to 4.6, 4.2 and 8.6 bp for three hex-named solvers on large tickets (712, 120 and 555 swaps), ratio 44. `crux-solver.near` 1.63, `kipseli.near` 0.53, `solver-multichain-asset.near` 0.74.
+- **Reading (INFERRED).** The two legs of the settlement carry about 1.4 bp, far below the 9.5 bp user cost in `docs/fee-waterfall.md` and below the 4 to 5 bp that reaches the revenue wallets (F5). So the fee layers (NEAR's, partners') are not inside the token_diff legs; they are charged outside them, at deposit or in a separate transfer. This is consistent with the fee waterfall and does not contradict it, but it means the chain legs measure the solver's margin, not the user's all-in cost; the all-in figure cannot be rebuilt from the settlement alone. The measurement is for stable-to-stable swaps with a public leg (non-confidential) only.
 
 ## Deviations and corrections (disclosed)
 

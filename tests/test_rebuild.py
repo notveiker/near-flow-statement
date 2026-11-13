@@ -105,3 +105,9 @@ class Results(unittest.TestCase):
         self.assertTrue(r["H_F10a_complete"])
         self.assertLess(r["residual_over_larger_flow"], 1e-9)
         self.assertAlmostEqual(r["d6b77389"]["sent_over_direct_plus_native_withdraw_post_hoc"], 1.0, places=4)
+
+    def test_f11_rules_applied(self):
+        r = json.load(open(rb.ROOT / "data" / "derived" / "rebuild_results.json"))["f11"]
+        p = r["primary_same_symbol_1click"]
+        self.assertGreaterEqual(p["swaps"], 10000)
+        self.assertEqual(r["H_F11a_falsified"], p["spread_bp"] < 2 or p["spread_bp"] > 25)

@@ -272,3 +272,7 @@ Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. F
 ## 2026-11-13 01:36 UTC: F10 result
 
 Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. F10 ran after its method commit (`fe7ac83`, 01:29:08 UTC). Contract-wide wNEAR books close (+7,611,764 NEAR, residual 4e-7 NEAR); counterparties: `bridge-mng.near` 78% of inflow, Omni bridge and the LST pool the main exits besides unwrap; exchange-list share of transfer outflow 0% (H-F10b falsified); `d6b77389…` forwarded 14.39M NEAR to a Binance PoR wallet (H-F10c supported), which is also one of the four wallets that fed the F7 relay. Operational note: the first run of `rb_f10_b_d6b7_flows` hit a network error ("No route to host"), a retry hung and was stopped by me, and a third run completed; only the completed job is in `jobs.jsonl` (0.0 GB billed on the aborted ones). Jobs: `rb_f10_s_wrap_intents` 181.9 GB, `rb_f10_s_acct_d6b7` 166.9 GB, `rb_f10_a_ledger` 0.1 GB; RPC balances in `f10_intents_wnear_balances.json`.
+
+## 2026-11-13 01:38 UTC: F11 result
+
+Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. F11 ran after its method commit (`979863c`, 01:37:56 UTC). Volume-weighted spread of the two user legs on same-symbol stable swaps tagged `1click-`: 1.42 bp over 158,266 swaps (H-F11a, 5 to 15 bp, falsified); larger swaps pay more, not less (H-F11b not supported); solvers range from 0.2 to 8.6 bp (H-F11c supported). Reading is INFERRED: fee layers sit outside the settlement legs. Job: `rb_f11_a_stable_spread` 20.2 GB.

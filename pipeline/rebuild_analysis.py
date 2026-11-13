@@ -673,8 +673,44 @@ def f10() -> dict:
                          "H_F10c_supported": ex_sent / sent >= 0.5, "H_F10c_falsified": ex_sent / sent < 0.1}}
 
 
+# ------------------------------------------------------------------ F11
+def f11() -> dict:
+    rows = load("rb_f11_a_stable_spread")
+    f = lambda v: float(v or 0)
+
+    def agg(sel):
+        n = paid = rec = neg = 0.0
+        for r in rows:
+            if sel(r):
+                n += int(r["n"]); paid += f(r["paid"]); rec += f(r["received"]); neg += int(r["n_negative_spread"])
+        return {"swaps": int(n), "paid_usd": paid, "spread_bp": (paid - rec) / paid * 1e4 if paid else None, "negative_share": neg / n if n else None}
+    prim = lambda r: r["pair_class"] == "same_symbol" and r["ref_class"] == "1click"
+    res = {"primary_same_symbol_1click": agg(prim), "same_symbol_all": agg(lambda r: r["pair_class"] == "same_symbol"),
+           "diff_symbol_all": agg(lambda r: r["pair_class"] == "diff_symbol")}
+    res["by_ref_class_same_symbol"] = {c: agg(lambda r, c=c: r["pair_class"] == "same_symbol" and r["ref_class"] == c) for c in ("1click", "other", "none")}
+    res["by_size_primary"] = {sz: agg(lambda r, sz=sz: prim(r) and r["size"] == sz) for sz in sorted({r["size"] for r in rows})}
+    res["by_month_primary"] = {m: agg(lambda r, m=m: prim(r) and r["month"] == m) for m in sorted({r["month"] for r in rows})}
+    solvers = {}
+    for sv in {r["solver"] for r in rows}:
+        a = agg(lambda r, sv=sv: prim(r) and r["solver"] == sv)
+        if a["paid_usd"] >= 5e6:
+            solvers[sv] = a
+    res["solvers_ge_5m"] = dict(sorted(solvers.items(), key=lambda kv: -kv[1]["paid_usd"]))
+    p = res["primary_same_symbol_1click"]["spread_bp"]
+    res["H_F11a_supported"] = res["primary_same_symbol_1click"]["swaps"] >= 10000 and 5 <= p <= 15
+    res["H_F11a_falsified"] = res["primary_same_symbol_1click"]["swaps"] >= 10000 and (p < 2 or p > 25)
+    a_, e_ = res["by_size_primary"].get("a_<100", {}).get("spread_bp"), res["by_size_primary"].get("e_>=100k", {}).get("spread_bp")
+    res["H_F11b_supported"] = a_ is not None and e_ is not None and a_ > e_
+    sp = [v["spread_bp"] for v in solvers.values() if v["spread_bp"] and v["spread_bp"] > 0]
+    ratio = max(sp) / min(sp) if len(sp) >= 2 else None
+    res["solver_spread_max_over_min"] = ratio
+    res["H_F11c_supported"] = ratio is not None and ratio >= 2
+    res["H_F11c_falsified"] = ratio is not None and ratio < 1.5
+    return res
+
+
 def main() -> int:
-    res = {"cutoff_block": 223_088_015, "windows": {"q1_q2": [WINDOW_START, CUTOFF_DATE], "q3_q4": [SWAP_START, CUTOFF_DATE]}, "q1": q1(), "q2": q2(), "q3": q3(), "q4": q4(), "f1": f1(), "f3": f3(), "f2b": f2b(), "f4": f4(), "f5": f5(), "f6": f6(), "f7": f7(), "f8": f8(), "f9": f9(), "f10": f10()}
+    res = {"cutoff_block": 223_088_015, "windows": {"q1_q2": [WINDOW_START, CUTOFF_DATE], "q3_q4": [SWAP_START, CUTOFF_DATE]}, "q1": q1(), "q2": q2(), "q3": q3(), "q4": q4(), "f1": f1(), "f3": f3(), "f2b": f2b(), "f4": f4(), "f5": f5(), "f6": f6(), "f7": f7(), "f8": f8(), "f9": f9(), "f10": f10(), "f11": f11()}
     jobs = [json.loads(l) for l in (OUT / "jobs.jsonl").read_text().splitlines()]
     res["bytes_billed_total"] = sum(j["bytes_billed"] for j in jobs)
     dest = ROOT / "data" / "derived" / "rebuild_results.json"

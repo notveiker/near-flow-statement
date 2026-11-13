@@ -1,5 +1,5 @@
 {
- "bytes_billed_total": 1563576762368,
+ "bytes_billed_total": 1583755558912,
  "cutoff_block": 223088015,
  "f1": {
   "H_F1_falsified": true,
@@ -161,6 +161,178 @@
   "residual_near": 4.414469003677368e-07,
   "residual_over_larger_flow": 4.529075052548231e-15,
   "unstakers_share_of_in": 5.139799714549932e-05
+ },
+ "f11": {
+  "H_F11a_falsified": true,
+  "H_F11a_supported": false,
+  "H_F11b_supported": false,
+  "H_F11c_falsified": false,
+  "H_F11c_supported": true,
+  "by_month_primary": {
+   "2026-08": {
+    "negative_share": 0.2438971282026468,
+    "paid_usd": 176829012.7556869,
+    "spread_bp": 1.5069617683542005,
+    "swaps": 41333
+   },
+   "2026-09": {
+    "negative_share": 0.2394734419589432,
+    "paid_usd": 277934755.8923852,
+    "spread_bp": 1.7828776396074317,
+    "swaps": 54315
+   },
+   "2026-10": {
+    "negative_share": 0.24807642654273174,
+    "paid_usd": 164898493.25077727,
+    "spread_bp": 0.7611237933745177,
+    "swaps": 58095
+   },
+   "2026-11": {
+    "negative_share": 0.283882378952023,
+    "paid_usd": 8120798.622498301,
+    "spread_bp": 0.6168622528236036,
+    "swaps": 4523
+   }
+  },
+  "by_ref_class_same_symbol": {
+   "1click": {
+    "negative_share": 0.24505579214739742,
+    "paid_usd": 627783060.5213474,
+    "spread_bp": 1.4216946271225654,
+    "swaps": 158266
+   },
+   "none": {
+    "negative_share": 0.6316689856526996,
+    "paid_usd": 27510335.35157593,
+    "spread_bp": -0.6338163528434897,
+    "swaps": 43841
+   },
+   "other": {
+    "negative_share": 0.16666666666666666,
+    "paid_usd": 567.2750510000001,
+    "spread_bp": 0.303219324957195,
+    "swaps": 6
+   }
+  },
+  "by_size_primary": {
+   "a_<100": {
+    "negative_share": 0.19638986423962784,
+    "paid_usd": 1505650.1058642303,
+    "spread_bp": 0.4855110817487527,
+    "swaps": 78889
+   },
+   "b_100-1k": {
+    "negative_share": 0.2993640522146603,
+    "paid_usd": 20379028.678008396,
+    "spread_bp": 0.4158165164993591,
+    "swaps": 44815
+   },
+   "c_1k-10k": {
+    "negative_share": 0.28976302941293214,
+    "paid_usd": 104130677.88548093,
+    "spread_bp": 0.518083062505648,
+    "swaps": 25193
+   },
+   "d_10k-100k": {
+    "negative_share": 0.28717582679038783,
+    "paid_usd": 251709601.82155234,
+    "spread_bp": 0.8025142867487469,
+    "swaps": 8406
+   },
+   "e_>=100k": {
+    "negative_share": 0.1671858774662513,
+    "paid_usd": 250058102.03044188,
+    "spread_bp": 2.50886478164549,
+    "swaps": 963
+   }
+  },
+  "diff_symbol_all": {
+   "negative_share": 0.3220778883290943,
+   "paid_usd": 481244823.44445777,
+   "spread_bp": 1.417320235213706,
+   "swaps": 307851
+  },
+  "primary_same_symbol_1click": {
+   "negative_share": 0.24505579214739742,
+   "paid_usd": 627783060.5213474,
+   "spread_bp": 1.4216946271225654,
+   "swaps": 158266
+  },
+  "same_symbol_all": {
+   "negative_share": 0.3289150128888295,
+   "paid_usd": 655293963.1479744,
+   "spread_bp": 1.3353998738643114,
+   "swaps": 202113
+  },
+  "solver_spread_max_over_min": 44.16372579493256,
+  "solvers_ge_5m": {
+   "0x8c60fa34790d4661ae4b5302f2a654539352e81b": {
+    "negative_share": 0.3567849473361284,
+    "paid_usd": 115427436.16247799,
+    "spread_bp": 0.8675297203064793,
+    "swaps": 9779
+   },
+   "27695d3e216982e4b32db97ca046ae31b1feb354710e65f0f420859bdbcd8e2c": {
+    "negative_share": 0.0,
+    "paid_usd": 42879267.85756204,
+    "spread_bp": 4.606064470514286,
+    "swaps": 712
+   },
+   "433d1f6e5452c9f6087af460d1c6b799587132caabeb2477a0ad37e3e0b88d0c": {
+    "negative_share": 0.0,
+    "paid_usd": 35711651.90408,
+    "spread_bp": 4.182040427901565,
+    "swaps": 120
+   },
+   "6247d9c671ca6a80cf2c75e26edb8cd75ebf00fcd3c56c39107d6ca20c9cfb29": {
+    "negative_share": 0.1891891891891892,
+    "paid_usd": 21626088.961774003,
+    "spread_bp": 8.644034204263656,
+    "swaps": 555
+   },
+   "blockzen-1-main.near": {
+    "negative_share": 0.33980468290387106,
+    "paid_usd": 97947707.57933497,
+    "spread_bp": 0.21779935940542838,
+    "swaps": 25497
+   },
+   "blockzen-2-main.near": {
+    "negative_share": 0.3872454151691088,
+    "paid_usd": 81340788.603239,
+    "spread_bp": 0.19572701461830674,
+    "swaps": 10851
+   },
+   "brlabs-solver.near": {
+    "negative_share": 0.1488375626804437,
+    "paid_usd": 6378571.050271,
+    "spread_bp": 0.3858052752870452,
+    "swaps": 13162
+   },
+   "crux-solver.near": {
+    "negative_share": 0.0,
+    "paid_usd": 43243730.312506005,
+    "spread_bp": 1.6311623206510748,
+    "swaps": 13252
+   },
+   "kipseli.near": {
+    "negative_share": 0.4203891607974215,
+    "paid_usd": 66369513.15571958,
+    "spread_bp": 0.5299142389953778,
+    "swaps": 41885
+   },
+   "solver-multichain-asset-escrow.near": {
+    "negative_share": 0.0,
+    "paid_usd": 36745695.757222265,
+    "spread_bp": 1.4940350558740432,
+    "swaps": 7519
+   },
+   "solver-multichain-asset.near": {
+    "negative_share": 0.0,
+    "paid_usd": 68439961.7175698,
+    "spread_bp": 0.7353420648757024,
+    "swaps": 23124
+   }
+  }
  },
  "f2b": {
   "H_F2b_a_falsified": false,

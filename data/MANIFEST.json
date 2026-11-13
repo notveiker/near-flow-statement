@@ -415,9 +415,9 @@
    "source": "archival RPC call_function at fixed blocks (keyless), pipeline.rebuild_rpc"
   },
   "raw/rebuild/jobs.jsonl": {
-   "bytes": 22990,
-   "fetched_at": "2026-11-13T01:35:23Z",
-   "sha256": "cbf8057a41964bd05cd56cf903580b770386275afe1d3b22a23bf3eff8f92b2c",
+   "bytes": 23544,
+   "fetched_at": "2026-11-13T01:38:05Z",
+   "sha256": "bbd12653112feeb1c8787ce4de1e329c22a876d70f7786d91703586ea70aff1a",
    "source": "append-only log written by pipeline.rebuild"
   },
   "raw/rebuild/post_hoc_bridge_mng_mint_share.json": {
@@ -445,6 +445,13 @@
    "rows": 5,
    "sha256": "96a15aa15fc517ff04d82c9edf8a16c61873e183376de19fa4d91abdeaadaf57",
    "source": "bigquery job rb_rb_f10_b_d6b7_flows_20261113T013521Z: sql/rebuild/rb_f10_b_d6b7_flows.sql"
+  },
+  "raw/rebuild/rb_f11_a_stable_spread.json": {
+   "bytes": 175362,
+   "fetched_at": "2026-11-13T01:38:05Z",
+   "rows": 697,
+   "sha256": "b8438f555145541d755bf4266195c639123af7f3061975798ac471a5b99e0d88",
+   "source": "bigquery job rb_rb_f11_a_stable_spread_20261113T013759Z: sql/rebuild/rb_f11_a_stable_spread.sql"
   },
   "raw/rebuild/rb_f1a_family_deposits.json": {
    "bytes": 13418,
