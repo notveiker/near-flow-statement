@@ -123,8 +123,8 @@ Input: `data/raw/bq/staking_flows_daily.json`.
 
 - **What the published floor counts.** `partners_kept_vs_near_rev_low_x` (1.75<!--n:partners_kept_vs_near_rev_low_x-->×) subtracts from the listed partner fees ($4,454.2<!--n:explorer_partner_fees_all_usd_k-->K) only the buyback wallet's unexplained dollars ($942.2<!--n:buybacks_unexplained_usd_k-->K).
 - **A lower floor.** If the front-end fund's escrow arrivals ($616.9<!--n:revwallets_frontend_usd_k-->K) may also be partner money:
-  - the floor is (listed partner fees − unexplained buyback dollars − front-end escrow arrivals) ÷ the revenue wallets' $2,009.7<!--n:revwallets_usd_k-->K = 1.44×;
-  - NEAR's share of the partner fees on swaps without a buyback entry is at most 37.0%.
+  - the floor is (listed partner fees − unexplained buyback dollars − front-end escrow arrivals) ÷ the revenue wallets' $2,009.7<!--n:revwallets_usd_k-->K = 1.44<!--n:partners_kept_vs_near_rev_floor_x-->× (`partners_kept_vs_near_rev_floor_x`, added 2026-11-13);
+  - NEAR's share of the partner fees on swaps without a buyback entry is at most 37.0<!--n:near_share_of_partner_fees_max_wide_pct-->%.
 - **Context.** `THESIS.md` already states that the published floor leaves the front-end fund out. This section gives the number.
 
 ## 11. The peer set

@@ -6,14 +6,14 @@ Plain-language definitions of the terms a first-time reader meets in the [README
 
 - **Pre-registered.** Written into `PREREG.md` at the freeze (below) and not edited since. The pre-registered items are the hypotheses H1a to H1c, the rating rule, the forward tests F1 to F4 and the longer-dated predictions P1 to P3.
 - **Exploratory.** Chosen after the freeze, so not pre-registered. The repository labels such results as exploratory wherever they appear, and the ladder, for example, does not feed the rating rule.
-- **The freeze.** The commit and git tag `prereg-freeze` at which `PREREG.md` was fixed. Its time rests on git and manifest timestamps written by the author's machine; nothing external attests it, and no on-chain anchor is committed to check. (Correction, 2026-11-12: GitHub's own activity record dates the push of the freeze commit to 2026-11-05 22:53:33 UTC; `PREREG-ADDENDUM.md`, 2026-11-12 23:50 UTC entry, item 2.)
+- **The freeze.** The commit and git tag `prereg-freeze` at which `PREREG.md` was fixed. Its time rests on git and manifest timestamps written by the author's machine, and on one external record: GitHub's activity log dates the push of the freeze commit to 2026-11-05 22:53:33 UTC (`PREREG-ADDENDUM.md`, 2026-11-12 23:50 UTC entry, item 2). No on-chain anchor is committed to check.
 - **Addendum.** `PREREG-ADDENDUM.md`, the dated record of post-freeze results, method choices and corrections. It never changes `PREREG.md`.
 - **Prior.** The probability the author wrote down in `PREREG.md` at the freeze for each pre-registered test and prediction; the data already seen then are listed in that file.
 - **Token flow statement.** A statement of how a token moves. Here it covers NEAR's issuance, staking withdrawals, exchange inflows and identified buying.
 
 ## The pre-registered tests
 
-- **H1a.** "Most staking rewards stay staked." It passes if net staking outflow is less than half of staking rewards.
+- **H1a.** "Most staking rewards stay staked." It passes if net staking outflow is less than half of staking rewards. Because that outflow nets large principal flows in both directions, the test measures net principal churn; it does not show whether rewards themselves stay staked.
 - **H1b.** "Less NEAR reaches exchanges than is minted." It passes if net exchange inflow is below gross issuance over the window. When label coverage is below half, H1b can come out pass or inconclusive but never fail.
 - **H1c.** Identified buyers absorb a larger share of exchange-bound supply than of issuance. It passes if identified buying is at least a quarter of net exchange inflow.
 - **Inconclusive.** The verdict of H1b or H1c when label coverage is below half and the test does not pass under both bounds. It is neither a pass nor a fail.
@@ -37,9 +37,9 @@ Plain-language definitions of the terms a first-time reader meets in the [README
 
 - **Rating rule.** The frozen rule that turns the results into a rating. Buy if G_obs is at least G_req and H1b passes; Avoid if G_obs is below half of G_req (the "Avoid line") and H1b fails; Hold otherwise. Hold carries no view on NEAR.
 - **G_req.** The yearly growth in captured Intents revenue needed for it to equal the USD value of net issuance by a fixed date. It assumes HSP-029's ramp and a constant price.
-- **G_obs.** The observed yearly growth of captured revenue: the most recent window of about half a year against the window of the same length before it.
+- **G_obs.** The observed yearly growth of captured revenue: the most recent window of about half a year against the window of the same length before it. Over the 180 days to 2026-11-04 it measures a step in the share of fees NEAR captures, not growth in activity ([second review](second-review.md), section 6).
 - **HSP-029.** A NEAR governance proposal to lower the issuance cap gradually over two years. The rating rule assumes its ramp is in force. It also needs validator adoption through a protocol upgrade, a second step the repository does not date.
-- **Timelock.** The stage of the on-chain proposal after voting. The repository assumes it starts when voting ends and adds up its end date itself; no published text gives that date. (Correction, 2026-11-12: two published sources do give it; `PREREG-ADDENDUM.md`, 2026-11-12 23:50 UTC entry, item 3.)
+- **Timelock.** The stage of the on-chain proposal after voting. The repository assumes it starts when voting ends and first added up its end date itself, 2026-11-16; two published sources give the same date (`PREREG-ADDENDUM.md`, 2026-11-12 23:50 UTC entry, item 3). Under the House of Stake procedures a Directors' decision on execution follows the timelock.
 
 ## Forward tests
 
@@ -67,7 +67,7 @@ Plain-language definitions of the terms a first-time reader meets in the [README
 
 ## The ladder and the escrow
 
-- **The ladder.** The exploratory table in `THESIS.md` that splits the NEAR arriving in the revenue wallets, as shares of net issuance. Each line is a rung. The rungs are not nested: the buyback-wallet rung is a subset of the total, while collectors, escrow and the other source add up to it.
+- **The ladder.** The exploratory table in `THESIS.md` that splits the NEAR arriving in the revenue wallets, as shares of net issuance. Each line is a rung. The rungs are not nested: the buyback-wallet rung is a subset of the total, while collectors, escrow and the other source add up to it. The collector rung (4.53<!--n:ladder_public_collectors_pct_of_issuance--> points) splits into 3.97<!--n:ladder_collectors_public_swap_pct_of_issuance--> from publicly settled swaps and 0.56<!--n:ladder_collectors_escrow_funded_pct_of_issuance--> from fees paid by escrow-funded single-use accounts, so 11.81<!--n:ladder_escrow_all_pct_of_issuance--> points passed through the escrow in all ([`collector-funders.md`](collector-funders.md)).
 - **Delivery.** A native-NEAR transfer from `intents.near` to one of the revenue wallets. Every delivery is a row of `data/raw/escrow/deliveries.csv`.
 - **Collector A and collector B.** The two recurring public fee collectors that deliver NEAR to the buyback wallet. Collector A receives the explicit buyback fee. Collector B receives a variable cut that fits a share of quote improvement, a role that is inferred, not proven.
 - **Quote improvement.** The case where a swap is filled at a better price than quoted. According to the fee docs, that difference is split between the integrator and the protocol.

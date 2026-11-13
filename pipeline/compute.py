@@ -920,6 +920,10 @@ def build() -> tuple[dict, dict]:
             kept_low = m["explorer_partner_fees_all_usd_k"] - max(unexplained, 0)
             m["partners_kept_vs_near_rev_low_x"] = r(kept_low / m["revwallets_usd_k"], 2)
             m["partners_kept_vs_near_rev_high_x"] = r(m["explorer_partner_fees_all_usd_k"] / m["revwallets_usd_k"], 2)
+            # Exploratory (second review, section 10): if the front-end fund's escrow arrivals may be partner money too.
+            if "revwallets_frontend_usd_k" in m:
+                m["partners_kept_vs_near_rev_floor_x"] = r((kept_low - m["revwallets_frontend_usd_k"]) / m["revwallets_usd_k"], 2)
+                m["near_share_of_partner_fees_max_wide_pct"] = r((unexplained + m["revwallets_frontend_usd_k"]) / partner_nobb * 100, 1)
             concentration(m, price, lo, hi)
             escrow_ladder(m, lo, hi)
             escrow_recheck(m, lo, hi)

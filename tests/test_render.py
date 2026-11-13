@@ -1206,11 +1206,13 @@ HEADLINE_REFS = {
     "rating": [("m", "rating_output"), ("m", "h1b_verdict")],
     "ladder": [("m", "ladder_all_wallets_pct_of_issuance"), ("m", "ladder_public_collectors_pct_of_issuance"),
                ("m", "ladder_escrow_unshields_pct_of_issuance")],
-    "escrow": [("m", "escrow_share_buyback_2026_07_pct"), ("m", "escrow_share_buyback_2026_10_pct"), ("m", "escrow_share_buyback_2026_11_pct")],
+    "escrow": [("m", "escrow_share_buyback_2026_07_pct"), ("m", "escrow_share_buyback_2026_08_pct"), ("m", "escrow_share_buyback_2026_09_pct"),
+               ("m", "escrow_share_buyback_2026_10_pct"), ("m", "escrow_share_buyback_2026_11_pct")],
     "take": [("m", "take_b1_bb_explicit_bp"), ("m", "take_b3_bb_explicit_bp"), ("m", "take_b3_partner_bp")],
     "partners": [("m", "swapkit_vol_share_pct"), ("m", "swapkit_buyback_fees_usd"), ("m", "swapkit_exit_traceable_pct"),
                  ("m", "swapkit_exit_ceiling_pct"), ("m", "swapkit_exit_ceiling_all_escrow_pct")],
-    "paid": [("m", "partners_kept_vs_near_rev_low_x"), ("m", "partners_kept_vs_near_rev_low_tight_x"), ("m", "explorer_out_of_near_usd_m"),
+    "paid": [("m", "partners_kept_vs_near_rev_floor_x"), ("m", "partners_kept_vs_near_rev_high_x"), ("m", "partners_kept_vs_near_rev_low_x"),
+             ("m", "partners_kept_vs_near_rev_low_tight_x"), ("m", "explorer_out_of_near_usd_m"),
              ("m", "explorer_into_near_usd_m")],
     "peers": [("m", "intents_share_peerset_30d_pct"), ("m", "intents_share_peerset_365d_pct")],
     "revenue": [("s", "intents_monthly.2026-10.rev_m"), ("s", "intents_monthly.2026-10.captured_bp"),
@@ -1482,7 +1484,7 @@ CARD_PHRASES = {
 HEADLINE_PHRASES = {
     "ladder": ("fee stream unattested",),
     "partners": ("about", "The ceiling is", "if the escrow NEAR reaching the front-end fund is counted too"),
-    "paid": ("at least", "on the tighter reading"),
+    "paid": ("is one reading", "on the tighter one"),
     "h1b": ("on either side of",),
     "h1c": ("a pass needs",),
     "rating": ("which carries no view on NEAR", "Buy needs H1b to pass and observed growth at least the required growth, Avoid needs H1b to fail and observed growth under half the required growth"),
@@ -2221,7 +2223,8 @@ class PageClaims(unittest.TestCase):
         note = re.sub(r"\s+", " ", next(p for p in DOM.find_all("p", "note") if p.text().startswith("Frozen at commit")).text())
         self.assertIn(f"Frozen at commit {R.FREEZE_COMMIT} ({R.FREEZE_UTC} UTC), {words[round(gap / 60)]} before the first BigQuery result the repository "
                       f"records ({stamp} UTC in data/MANIFEST.json).", note)
-        self.assertIn("Commit and manifest times are written by the author’s machine, and nothing external attests them", note)
+        self.assertIn("Commit and manifest times are written by the author’s machine; one external record, GitHub’s activity log, dates the push of the freeze commit to 2026-11-05 22:53:33 UTC", note)
+        self.assertNotIn("nothing external attests", note)
         header = re.sub(r"\s+", " ", next(d for d in DOM.find("header").find_all("dd") if d.text().startswith("PREREG.md SHA-256")).text())
         self.assertIn(f"(commit {R.FREEZE_COMMIT}, {R.FREEZE_UTC} UTC), before the first BigQuery result the repository records ({stamp} UTC in data/MANIFEST.json); "
                       f"the order rests on the author’s own commit and manifest times", header)
@@ -2868,8 +2871,11 @@ class Wording(unittest.TestCase):
         self.assertGreater(m["near_share_of_partner_fees_max_pct"], m["near_share_of_partner_fees_max_tight_pct"])  # and the higher ceiling on NEAR's share
         self.assertGreater(m["swapkit_exit_ceiling_all_escrow_pct"], m["swapkit_exit_ceiling_pct"])                 # the second ceiling adds to the first
         paid = re.sub(r"\s+", " ", card_node(DOM, "paid").find("h3").text())
-        self.assertTrue(paid.startswith(f"Listed partner fees were at least {m['partners_kept_vs_near_rev_low_x']}× NEAR’s entire captured revenue "
-                                        f"({m['partners_kept_vs_near_rev_low_tight_x']}× on the tighter reading), and 1Click was a net route out of NEAR"), paid)
+        self.assertLess(m["partners_kept_vs_near_rev_floor_x"], m["partners_kept_vs_near_rev_low_x"])          # the floor is below the published reading
+        self.assertTrue(paid.startswith(f"Listed partner fees were {m['partners_kept_vs_near_rev_floor_x']}× to {m['partners_kept_vs_near_rev_high_x']}× NEAR’s entire captured revenue "
+                                        f"({m['partners_kept_vs_near_rev_low_x']}× is one reading, {m['partners_kept_vs_near_rev_low_tight_x']}× on the tighter one), "
+                                        f"and 1Click was a net route out of NEAR"), paid)
+        self.assertNotIn("at least", paid)
         partners = re.sub(r"\s+", " ", card_node(DOM, "partners").find("h3").text())
         self.assertNotIn("at most", partners)
         self.assertIn(f"The ceiling is {m['swapkit_exit_ceiling_pct']}% if all the escrow NEAR delivered to the buyback wallet counts as SwapKit’s, and "

@@ -1343,7 +1343,8 @@ def card_h1a(ctx: Ctx) -> str:
                f'deposited {ctx.M("pool_inflow_90d_m")}M, a net outflow of {ctx.M("pool_net_outflow_90d_m")}M NEAR against '
                f'{ctx.M("h1a_staking_rewards_90d_m")}M NEAR of staking rewards ({ctx.K("staking_rewards_share_pct")}% of the '
                f'{ctx.M("h1a_gross_issuance_90d_m")}M NEAR minted).'),
-        notshows=('Who withdrew or where the NEAR went: NEAR is fungible, so nothing here says which coins were sold, and whether the NEAR '
+        notshows=('Whether rewards themselves stay staked: the ratio nets large principal flows in both directions, so it measures net principal churn. '
+                  'Nor who withdrew or where the NEAR went: NEAR is fungible, so nothing here says which coins were sold, and whether the NEAR '
                   'reached exchanges is H1b, which is inconclusive.'),
         figure=fig,
         caption=f'Window: 90 days, {window_text(ctx, 90)} (UTC). Unit: million NEAR. Panel A bars start at zero; Panel B accumulates the daily flows.',
@@ -1641,13 +1642,14 @@ def card_rating(ctx: Ctx) -> str:
                   f'with the as-written H1a result (the price, the length of HSP-029&rsquo;s ramp and its activation date; '
                   f'<code>data/raw/rpc/rating_assumptions.json</code>), and G_obs compares the last 180 days with the 180 before, a base window that straddles the '
                   f'2026-02-23 fee switch (pre-switch revenue counts as captured, as DefiLlama labels it), so it does not separate the switch from other causes, '
-                  f'and most of the USD growth is the NEAR price.'),
+                  f'and most of the USD growth is the NEAR price. What the NEAR-terms growth measures is a step in the share of fees NEAR captures, not growth in activity: over the same '
+                  f'windows gross fees and volume grew far less (<code>docs/second-review.md</code>).'),
         figure=fig,
         caption=f'Unit: percent a year. The axis starts at zero, so the observed USD growth dwarfs the other bars. Observed growth compares the last 180 days with the 180 before, to {ctx.m["asof"]}.',
         extra=f'{rule}{figs}',
         notes=(f'G_req is the annual growth in captured Intents revenue ({ctx.M("rating_r90_usd_m")}M USD over the last 90 days, DefiLlama) needed for it to equal '
                f'the USD value of net new supply by 2031-11-04. G_obs is the growth of the last 180 days over the 180 before, annualized.',
-               'G_req assumes HSP-029&rsquo;s issuance ramp. Its on-chain timelock ends on 2026-11-16 by our sum of the proposal&rsquo;s voting start, voting period and timelock period (no published text gives the date), after the submission deadline, and the proposal text also says the cut needs validator adoption through a protocol upgrade; we state it as a pending resolver and do not predict it.',
+               'G_req assumes HSP-029&rsquo;s issuance ramp. Its on-chain timelock ends on 2026-11-16, after the submission deadline. We first added that date up from the proposal&rsquo;s voting start, voting period and timelock period; two published sources give the same date (<code>PREREG-ADDENDUM.md</code>, 2026-11-12 23:50 UTC entry, item 3). Under the House of Stake procedures a Directors&rsquo; decision on execution follows the timelock, and the proposal text also says the cut needs validator adoption through a protocol upgrade; we state it as a pending resolver and do not predict it.',
                f'Under the range rule as read before the results, a low-coverage H1b can come out pass or inconclusive, never fail, so the Avoid branch cannot be '
                f'reached while coverage is below {ctx.K("h1b_coverage_min_pct")}%. The exploratory ladder below does not feed the rule.'),
         source=source_p(ctx, raw=("raw/rpc/rating_assumptions.json", "raw/rpc/epoch_issuance.json",
@@ -2019,8 +2021,8 @@ def card_ladder(ctx: Ctx) -> str:
                f'(exploratory, every transfer into the collectors classified by sender), so {ctx.M("ladder_escrow_all_pct_of_issuance", 2)} points '
                f'passed through the escrow in all, and counting only publicly settled swaps the floor is {ctx.M("ladder_collectors_public_swap_pct_of_issuance", 2)}%. '
                f'By the last day, {ctx.M("collector_a_escrow_usd_share_last_day_pct")}% of collector A&rsquo;s fee value came from escrow-funded accounts.',
-               f'The total reconciles with DefiLlama: {ctx.M("revwallets_near_k")}K NEAR is {ctx.M("revwallets_vs_llama_rev_pct")}% of its reported Intents revenue '
-               f'for the same days. Even the top of the range covers about a sixth of issuance, and the buyback wallet&rsquo;s NEAR is held, not burned.',
+               f'The total matches DefiLlama: {ctx.M("revwallets_near_k")}K NEAR is {ctx.M("revwallets_vs_llama_rev_pct")}% of its reported Intents revenue '
+               f'for the same days. DefiLlama&rsquo;s adapter takes the same three wallets from NEAR&rsquo;s own Dune query, so this is the same count, not an independent check: it checks our pricing and wallet list. Even the top of the range covers about a sixth of issuance, and the buyback wallet&rsquo;s NEAR is held, not burned.',
                f'No valuation is made here. The range is the finding: {ctx.M("ladder_all_wallets_pct_of_issuance", 2)}% is what reached the three wallets and '
                f'{ctx.M("ladder_public_collectors_pct_of_issuance", 2)}% is what is traced to public fee collectors. None of this feeds the rating rule.'),
         source=source_p(ctx, sql=("sql/buyback_withdraw_sources.sql", "sql/collector_inflow_funders.sql", "sql/collector_funder_checks.sql"),
@@ -2112,8 +2114,8 @@ def card_escrow(ctx: Ctx) -> str:
                     ("Escrow share, 30-day window", f'{ctx.M("escrow_share_of_buyback_near_30d_pct")}%')])
     return card(
         cid="escrow", kind="exp",
-        headline=(f'The escrow&rsquo;s share of the buyback wallet&rsquo;s NEAR rose from {ctx.M("escrow_share_buyback_2026_07_pct")}% in July to '
-                  f'{ctx.M("escrow_share_buyback_2026_10_pct")}% in October, and is {ctx.M("escrow_share_buyback_2026_11_pct")}% for {partial_month_note(ctx)}.'),
+        headline=(f'The escrow&rsquo;s share of the buyback wallet&rsquo;s NEAR stepped up once, at the end of August, and has been flat since: {ctx.M("escrow_share_buyback_2026_07_pct")}% in July and '
+                  f'{ctx.M("escrow_share_buyback_2026_08_pct")}% in August, then {ctx.M("escrow_share_buyback_2026_09_pct")}% in September, {ctx.M("escrow_share_buyback_2026_10_pct")}% in October and {ctx.M("escrow_share_buyback_2026_11_pct")}% for {partial_month_note(ctx)}.'),
         shows=('For each calendar month, the share of NEAR delivered to <code>buybacks.multisignature.near</code> that came from single-use accounts '
                'funded by the Confidential Intents escrow (unshields) rather than from the recurring fee collectors.'),
         notshows='Which fee stream the escrow NEAR comes from, which is unattested, and any share in USD terms: these are shares of NEAR delivered.',
@@ -2354,11 +2356,11 @@ def card_paid(ctx: Ctx) -> str:
                     ("Share of 1Click volume with NEAR on one side", f'{ctx.M("explorer_near_side_swap_share_pct")}%')])
     return card(
         cid="paid", kind="exp",
-        headline=(f'Listed partner fees were at least {ctx.M("partners_kept_vs_near_rev_low_x")}× NEAR&rsquo;s entire captured revenue ({ctx.M("partners_kept_vs_near_rev_low_tight_x")}× '
-                  f'on the tighter reading), and 1Click was a net route out of NEAR: ${ctx.M("explorer_out_of_near_usd_m")}M out against '
+        headline=(f'Listed partner fees were {ctx.M("partners_kept_vs_near_rev_floor_x")}× to {ctx.M("partners_kept_vs_near_rev_high_x")}× NEAR&rsquo;s entire captured revenue ({ctx.M("partners_kept_vs_near_rev_low_x")}× is one reading, '
+                  f'{ctx.M("partners_kept_vs_near_rev_low_tight_x")}× on the tighter one), and 1Click was a net route out of NEAR: ${ctx.M("explorer_out_of_near_usd_m")}M out against '
                   f'${ctx.M("explorer_into_near_usd_m")}M in over 30 days.'),
         shows=(f'The fees 1Click swaps listed for partners (${ctx.M("explorer_partner_fees_all_usd_k")}K) as a multiple of NEAR&rsquo;s entire captured Intents revenue '
-               f'(${ctx.M("revwallets_usd_k")}K), between {ctx.M("partners_kept_vs_near_rev_low_x")}× and {ctx.M("partners_kept_vs_near_rev_high_x")}×, and 1Click swap volume '
+               f'(${ctx.M("revwallets_usd_k")}K), between {ctx.M("partners_kept_vs_near_rev_low_x")}× and {ctx.M("partners_kept_vs_near_rev_high_x")}× on the readings charted, and 1Click swap volume '
                f'into and out of NEAR, over the 30 days {window_text(ctx, 30)}.'),
         notshows=(f'The other half of Intents: 1Click is {ctx.M("explorer_vs_llama_net_pct")}% of DefiLlama&rsquo;s volume on the halved basis ({ctx.M("legcount_oneclick_share_lo_pct")}% to '
                   f'{ctx.M("legcount_oneclick_share_hi_pct")}% on one-sided volume if the confidential flow DefiLlama counts from 2026-09-01 is swap volume; exploratory), and near.com, direct solver flow '
@@ -2371,7 +2373,8 @@ def card_paid(ctx: Ctx) -> str:
                f'partner fees left after that are at least {ctx.M("partners_kept_vs_near_rev_low_x")}× NEAR&rsquo;s revenue, and at most {ctx.M("near_share_of_partner_fees_max_pct")}% of the fees on '
                f'partner swaps with no buyback fee entry reached NEAR. The tight reading counts only the escrow unshields, reading collector B&rsquo;s NEAR as quote improvement, a role that is inferred, '
                f'not proven: {ctx.M("partners_kept_vs_near_rev_low_tight_x")}× and {ctx.M("near_share_of_partner_fees_max_tight_pct")}%. Both leave out the escrow NEAR '
-               f'that reached the front-end fund, where the ledger cannot exclude a partner settlement.',
+               f'that reached the front-end fund, where the ledger cannot exclude a partner settlement. If that NEAR (${ctx.M("revwallets_frontend_usd_k")}K) may be partner money too, the floor is '
+               f'{ctx.M("partners_kept_vs_near_rev_floor_x")}× and NEAR&rsquo;s share of those fees at most {ctx.M("near_share_of_partner_fees_max_wide_pct")}% (exploratory; <code>docs/second-review.md</code>).',
                f'In the per-swap sample ({ctx.M("fee_ev_swaps_n")} swaps from {ctx.M("fee_ev_hours_with_swaps_n")} sampled hours) every non-zero partner fee entry was matched '
                f'on chain by a payment of about the listed amount to an account other than NEAR&rsquo;s two fee collectors, except {ctx.M("fee_ev_partner_fees_nonzero_unmatched_n")} unmatched {unmatched_word}, in a swap whose tokens went '
                f'into the Confidential Intents escrow, where the public chain shows no fee on that route. A further {ctx.M("fee_ev_swapkit_fees_zero_rate_n")} SwapKit entries '
@@ -2800,8 +2803,8 @@ def scorecard(ctx: Ctx) -> str:
     freeze_stamp, freeze_gap = freeze_order(ctx)
     return (f'<section id="scorecard" aria-labelledby="scorecard-h"><h2 id="scorecard-h">Scorecard (pre-registered)</h2>'
             f'<p class="note">Frozen at commit <code>{FREEZE_COMMIT}</code> ({FREEZE_UTC} UTC), {freeze_gap} before the first BigQuery result the repository records '
-            f'({freeze_stamp} in <code>data/MANIFEST.json</code>). Commit and manifest times are written by the author&rsquo;s machine, and nothing external '
-            f'attests them; BigQuery job IDs, which embed their creation time, are recorded only for the H1b and H1c runs and one October escrow scan, not for the '
+            f'({freeze_stamp} in <code>data/MANIFEST.json</code>). Commit and manifest times are written by the author&rsquo;s machine; one external record, GitHub&rsquo;s activity log, dates the push of the freeze commit to '
+            f'2026-11-05 22:53:33 UTC (<code>PREREG-ADDENDUM.md</code>, 2026-11-12 23:50 UTC entry, item 2). BigQuery job IDs, which embed their creation time, are recorded only for the H1b and H1c runs and one October escrow scan, not for the '
             f'H1a queries. The table <a href="{esc(gh("PREREG.md"))}#{PREREG_ANCHOR}">&ldquo;What we had already '
             f'seen&rdquo; in PREREG.md</a> lists the data already in hand at the freeze. Each status is shown by a shape and a word, not by colour alone.</p>'
             f'<ul class="tiles">{"".join(tiles)}</ul></section>')
@@ -2834,7 +2837,7 @@ def not_computed(ctx: Ctx) -> str:
         ("Who the sellers were.", 'NEAR is fungible, so every flow here is a market-wide balance. Nothing says which coins were sold.'),
         ("Longer-dated predictions P1 to P3.", 'They resolve on 2027-05-04 and 2027-11-04 and cannot be scored yet.'),
         ("HSP-029&rsquo;s issuance cut.",
-         'Its on-chain timelock ends on 2026-11-16 by our sum of the proposal&rsquo;s voting start, voting period and timelock period (no published text gives the date), after the submission deadline, and the proposal text also says the cut needs validator adoption through a protocol upgrade. G_req assumes the ramp; we state it as a pending resolver and do not predict it.'),
+         'Its on-chain timelock ends on 2026-11-16, after the submission deadline; we added that date up from the proposal&rsquo;s voting start, voting period and timelock period, and two published sources give the same date (<code>PREREG-ADDENDUM.md</code>, 2026-11-12 23:50 UTC entry, item 3). A House of Stake Directors&rsquo; decision on execution follows the timelock, and the proposal text also says the cut needs validator adoption through a protocol upgrade. G_req assumes the ramp; we state it as a pending resolver and do not predict it.'),
         ("Earlier work.", f'An earlier analysis of {ctx.M("unstakers_a14_n")} accounts that reach one unlabelled hub (THESIS.md, the supply-side section, and docs/supply-side.md) is exploratory and is not reproduced here; the repository does not record when it was done or whether it preceded the freeze (PREREG-ADDENDUM.md, 2026-11-08 02:03 UTC entry, item 5). No card on this page uses it.'),
     ]
     lis = "".join(f"<li><strong>{a}</strong> {b}</li>" for a, b in items)
@@ -2957,7 +2960,7 @@ def header(ctx: Ctx) -> str:
         f'which pins every raw snapshot.</dd>'
         f'<dt>Pre-registration</dt><dd><code>PREREG.md</code> SHA-256 <code data-prereg="{esc(ctx.prereg_sha)}">{esc(ctx.prereg_sha[:16])}…</code>, frozen at git tag '
         f'<code>{FREEZE_TAG}</code> (commit <code>{FREEZE_COMMIT}</code>, {FREEZE_UTC} UTC), before the first BigQuery result the repository records '
-        f'({freeze_stamp} in <code>data/MANIFEST.json</code>); the order rests on the author&rsquo;s own commit and manifest times. '
+        f'({freeze_stamp} in <code>data/MANIFEST.json</code>); the order rests on the author&rsquo;s own commit and manifest times, and GitHub&rsquo;s activity log dates the push of the freeze commit to 2026-11-05 22:53:33 UTC. '
         f'<a href="{esc(gh("PREREG.md"))}#{PREREG_ANCHOR}">&ldquo;What we had already seen&rdquo;</a> in that file lists the data already in hand.</dd></dl>'
         f'<nav aria-label="Project documents"><ul class="docs">{docs}</ul></nav></header>')
 
