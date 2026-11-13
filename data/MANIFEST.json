@@ -409,9 +409,9 @@
    "source": "built by pipeline.rebuild build_aux from tokens_1click_20261112.json and data/raw/coingecko"
   },
   "raw/rebuild/jobs.jsonl": {
-   "bytes": 19092,
-   "fetched_at": "2026-11-13T01:22:25Z",
-   "sha256": "7f81c0f9e2d6a66bc7c8879d35f6c1093cc3e94410abe1af7e70b494560a4631",
+   "bytes": 20040,
+   "fetched_at": "2026-11-13T01:24:12Z",
+   "sha256": "6e11b520a1ba4695b84f41a5432c1ba07ea2dfeeb61a7d513052f053f8d6b56f",
    "source": "append-only log written by pipeline.rebuild"
   },
   "raw/rebuild/post_hoc_bridge_mng_mint_share.json": {
@@ -502,6 +502,13 @@
    "rows": 92,
    "sha256": "1d72f6c16332edaf48e982dd4f21337004cd0fab34b9489988add10ddd5ba91a",
    "source": "bigquery job rb_rb_f7_a_summary_20261113T012223Z: sql/rebuild/rb_f7_a_summary.sql"
+  },
+  "raw/rebuild/rb_f8_a_funder_sources.json": {
+   "bytes": 11166893,
+   "fetched_at": "2026-11-13T01:24:12Z",
+   "rows": 55037,
+   "sha256": "7fbaca2ca3e360519bbc9ee24541d835d18c9f55fdbbcbd78f360931dc161c00",
+   "source": "bigquery job rb_rb_f8_a_funder_sources_20261113T012404Z: sql/rebuild/rb_f8_a_funder_sources.sql"
   },
   "raw/rebuild/rb_p0_format_probe.json": {
    "bytes": 428,

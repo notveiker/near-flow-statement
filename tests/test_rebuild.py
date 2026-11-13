@@ -88,3 +88,9 @@ class Results(unittest.TestCase):
         self.assertAlmostEqual(r["coverage_K"], 1.0, places=3)
         self.assertAlmostEqual(r["to_bridge_share_of_outflow"], 1.0, places=3)
         self.assertTrue(r["H_F7b_supported"])
+
+    def test_f8_relay_dominates_exchange_share(self):
+        r = json.load(open(rb.ROOT / "data" / "derived" / "rebuild_results.json"))["f8"]
+        self.assertGreater(r["all"]["coverage"], 0.6)
+        self.assertTrue(r["H_F8a_supported"])
+        self.assertTrue(r["H_F8b_falsified"])

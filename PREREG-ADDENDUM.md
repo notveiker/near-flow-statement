@@ -260,3 +260,7 @@ Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. F
 ## 2026-11-13 01:23 UTC: F7 result
 
 Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. F7 ran after its method commit (`5ffd9f1`, 01:22:07 UTC). `1244d552…`, the account behind F1's 30.8M NEAR, only relays: it received 30,798,979 NEAR in 1,175 transfers from four Binance proof-of-reserves wallets (all on the exchange list) and sent 30,798,978 NEAR to `bridge-mng.near` in 1,175 transfers. H-F7a, -b and -c supported. Ownership of the relay is INFERRED. Jobs: `rb_f7_s_acct` 166.9 GB, `rb_f7_a_summary` (staged table, 0.0 GB).
+
+## 2026-11-13 01:24 UTC: F8 result
+
+Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. F8 ran after its method commit (`a79e6a4`, 01:23:44 UTC). Of the NEAR funded through `bridge-mng.near`, 43.8% is estimated exchange-sourced one hop up (51.5% of the 85% that is covered): H-F8a supported; without the F7 relay it is 5.5% of all funded NEAR (7.4% of the covered part): H-F8b falsified. Proportional estimate, one hop, direct transfers only; the `intents.near` channel is invisible to this table. Jobs: `rb_f8_s_funder_inflow` 166.9 GB, `rb_f8_a_funder_sources` 0.0 GB.

@@ -1,5 +1,5 @@
 {
- "bytes_billed_total": 1029300027392,
+ "bytes_billed_total": 1196207112192,
  "cutoff_block": 223088015,
  "f1": {
   "H_F1_falsified": true,
@@ -484,6 +484,38 @@
     "transfers": 263
    }
   ]
+ },
+ "f8": {
+  "H_F8a_falsified": false,
+  "H_F8a_supported": true,
+  "H_F8b_falsified": true,
+  "H_F8b_supported": false,
+  "all": {
+   "coverage": 0.8500377540449227,
+   "covered_near": 64577572.09799976,
+   "exchange_near": 33283785.721384935,
+   "exchange_share_of_all_funded": 0.43811610659167,
+   "exchange_share_of_covered": 0.5154078210136964,
+   "funded_near": 75970239.8989998,
+   "intents_near": 0.0,
+   "intents_share_of_covered": 0.0,
+   "unstakers_near": 566483.4182188525,
+   "unstakers_share_of_covered": 0.008772138682438929
+  },
+  "excluding_relay": {
+   "coverage": 0.7477894739063925,
+   "covered_near": 33778594.38800002,
+   "exchange_near": 2484808.011384924,
+   "exchange_share_of_all_funded": 0.05500860261527116,
+   "exchange_share_of_covered": 0.07356161665115532,
+   "funded_near": 45171262.18899999,
+   "intents_near": 0.0,
+   "intents_share_of_covered": 0.0,
+   "unstakers_near": 566483.4182188525,
+   "unstakers_share_of_covered": 0.016770485228363972
+  },
+  "funders": 55037,
+  "funders_with_inflow": 54230
  },
  "q1": {
   "attack_test": {

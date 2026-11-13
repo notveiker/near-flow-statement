@@ -570,8 +570,41 @@ def f7() -> dict:
             "H_F7c_supported": to_bridge / tout >= 0.9, "H_F7c_falsified": to_bridge / tout < 0.5}
 
 
+# ------------------------------------------------------------------ F8
+RELAY = "1244d552459d7230bdaf267c1d09a296282dc85251958434e670d9b9d561fac7"
+
+
+def f8() -> dict:
+    rows = load("rb_f8_a_funder_sources")
+    f = lambda v: float(v or 0)
+    tot = sum(f(r["funded"]) for r in rows)
+
+    def shares(skip=None):
+        cov = ex = un = it = funded = 0.0
+        for r in rows:
+            if r["funder"] == skip:
+                continue
+            fd = f(r["funded"])
+            funded += fd
+            inflow = f(r["inflow"])
+            if inflow <= 0:
+                continue
+            cov += fd
+            ex += fd * min(1.0, f(r["from_exchange"]) / inflow)
+            un += fd * min(1.0, f(r["from_unstakers"]) / inflow)
+            it += fd * min(1.0, f(r["from_intents"]) / inflow)
+        return {"funded_near": funded, "covered_near": cov, "coverage": cov / funded, "exchange_near": ex, "unstakers_near": un, "intents_near": it,
+                "exchange_share_of_covered": ex / cov if cov else None, "unstakers_share_of_covered": un / cov if cov else None,
+                "intents_share_of_covered": it / cov if cov else None, "exchange_share_of_all_funded": ex / funded}
+    a, b = shares(), shares(RELAY)
+    return {"all": a, "excluding_relay": b, "funders": len(rows),
+            "H_F8a_supported": a["coverage"] >= 0.6 and a["exchange_share_of_covered"] >= 0.5, "H_F8a_falsified": a["exchange_share_of_covered"] is not None and a["exchange_share_of_covered"] < 0.25,
+            "H_F8b_supported": b["exchange_share_of_covered"] is not None and b["exchange_share_of_covered"] >= 0.25, "H_F8b_falsified": b["exchange_share_of_covered"] is not None and b["exchange_share_of_covered"] < 0.10,
+            "funders_with_inflow": sum(1 for r in rows if f(r["inflow"]) > 0)}
+
+
 def main() -> int:
-    res = {"cutoff_block": 223_088_015, "windows": {"q1_q2": [WINDOW_START, CUTOFF_DATE], "q3_q4": [SWAP_START, CUTOFF_DATE]}, "q1": q1(), "q2": q2(), "q3": q3(), "q4": q4(), "f1": f1(), "f3": f3(), "f2b": f2b(), "f4": f4(), "f5": f5(), "f6": f6(), "f7": f7()}
+    res = {"cutoff_block": 223_088_015, "windows": {"q1_q2": [WINDOW_START, CUTOFF_DATE], "q3_q4": [SWAP_START, CUTOFF_DATE]}, "q1": q1(), "q2": q2(), "q3": q3(), "q4": q4(), "f1": f1(), "f3": f3(), "f2b": f2b(), "f4": f4(), "f5": f5(), "f6": f6(), "f7": f7(), "f8": f8()}
     jobs = [json.loads(l) for l in (OUT / "jobs.jsonl").read_text().splitlines()]
     res["bytes_billed_total"] = sum(j["bytes_billed"] for j in jobs)
     dest = ROOT / "data" / "derived" / "rebuild_results.json"
