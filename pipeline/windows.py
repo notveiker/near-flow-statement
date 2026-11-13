@@ -113,8 +113,38 @@ def run_all(cap_each_gb: float = 400.0) -> None:
             print(f"ok {stem}: {rec['bytes_billed']/1e9:.1f} GB billed, {len(rows)} rows", flush=True)
 
 
+def run_file(rel: str, cap_gb: float, outdir: str) -> None:
+    """Run one SQL file (guarded, dry-run first, capped, logged) and save data/raw/<outdir>/<stem>.json."""
+    path = ROOT / rel
+    sql = path.read_text()
+    guard(sql)
+    est = rb_dry(sql)
+    if est > cap_gb * 1e9:
+        raise SystemExit(f"{rel}: dry run {est/1e9:.1f} GB exceeds cap {cap_gb} GB")
+    now = datetime.now(timezone.utc)
+    stem = path.stem
+    job_id = f"ask_{stem}_{now.strftime('%Y%m%dT%H%M%SZ')}"
+    out = rb._bq(["query", "--use_legacy_sql=false", f"--job_id={job_id}", f"--maximum_bytes_billed={int(cap_gb*1e9)}", "--format=json", "--max_rows=1000000", "\n" + sql])
+    rows = json.loads(out or "[]")
+    dest_dir = RAW / outdir
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    dest = dest_dir / f"{stem}.json"
+    dest.write_text(json.dumps(rows, sort_keys=True, separators=(",", ":")) + "\n")
+    rec = rb.job_record(stem, job_id, sql)
+    rec.update(rows=len(rows), output=str(dest.relative_to(ROOT)), output_sha256=sha256(dest), sql_file=rel)
+    jobs = dest_dir / "jobs.jsonl"
+    with jobs.open("a") as f:
+        f.write(json.dumps(rec, sort_keys=True) + "\n")
+    record(dest, f"bigquery job {job_id}: {rel}", {"rows": len(rows)})
+    record(jobs, "append-only log written by pipeline.windows run-file")
+    print(f"ok {stem}: {rec['bytes_billed']/1e9:.1f} GB billed, {len(rows)} rows")
+
+
 def main(argv: list[str]) -> int:
     cmd = argv[0] if argv else "plan"
+    if cmd == "run-file":
+        run_file(argv[1], float(argv[2]), argv[3])
+        return 0
     if cmd == "plan":
         print(json.dumps(windows(), indent=1))
     elif cmd == "dry":

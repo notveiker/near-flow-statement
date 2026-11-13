@@ -771,6 +771,53 @@
    "fetched_at": "2026-11-11T05:47:52Z",
    "sha256": "daaac0bdf3f632ef68dbfd33eb312dfae2344e2d2da84324ae214a11baa8e891",
    "source": "https://bitwiseinvestments.com/newsroom/the-bitwise-near-etf-nrr-launches-as-first-spot-near-etp-in-the-us; https://brave.com/blog/near-intents/; https://cryptoetf.today/en/crypto-etf-filings/coin/near; https://nansen.ai/post/near-q3-2026-report"
+  },
+  "raw/windows/jobs.jsonl": {
+   "bytes": 3035,
+   "fetched_at": "2026-11-13T02:12:10Z",
+   "sha256": "e8c669d37867599e8cc6f106509605b5518169a4de10a533e55556d0ee427dd3",
+   "source": "append-only log written by pipeline.windows"
+  },
+  "raw/windows/plan_run.json": {
+   "bytes": 540,
+   "fetched_at": "2026-11-13T02:11:43Z",
+   "sha256": "f5edd398a9a2861bcb6f1cad505fb178503e49b03142f3c833ea6a283261a6d7",
+   "source": "dry-run sizes and the windows run under the 1.5 TB cap, pipeline.windows"
+  },
+  "raw/windows/sw_endpoints_w1.json": {
+   "bytes": 219,
+   "fetched_at": "2026-11-13T02:11:52Z",
+   "rows": 2,
+   "sha256": "9b4c910fdea19340e48e5a09e601f11fa1d2532565e1219dd6445d69e5957e4b",
+   "source": "bigquery job sw_endpoints_w1_20261113T021149Z: sql/windows/staking_endpoints_window.sql.tpl"
+  },
+  "raw/windows/sw_endpoints_w2.json": {
+   "bytes": 219,
+   "fetched_at": "2026-11-13T02:12:01Z",
+   "rows": 2,
+   "sha256": "b94068e6e027efa7cd29dd6e2bea00d095a53527f61fb5d11fe3aa21920fb279",
+   "source": "bigquery job sw_endpoints_w2_20261113T021158Z: sql/windows/staking_endpoints_window.sql.tpl"
+  },
+  "raw/windows/sw_flows_w1.json": {
+   "bytes": 13569,
+   "fetched_at": "2026-11-13T02:11:49Z",
+   "rows": 90,
+   "sha256": "09270441cc127a88d776214659e49d36a60825dff3a856ec587a81b4789791dd",
+   "source": "bigquery job sw_flows_w1_20261113T021143Z: sql/windows/staking_flows_window.sql.tpl"
+  },
+  "raw/windows/sw_flows_w2.json": {
+   "bytes": 13539,
+   "fetched_at": "2026-11-13T02:11:58Z",
+   "rows": 90,
+   "sha256": "de1c72e4d3e1095afcc40f53aebc84b3a9a0075c5d1c14690c6acf5ce5ac2039",
+   "source": "bigquery job sw_flows_w2_20261113T021152Z: sql/windows/staking_flows_window.sql.tpl"
+  },
+  "raw/windows/sw_flows_w3.json": {
+   "bytes": 13571,
+   "fetched_at": "2026-11-13T02:12:10Z",
+   "rows": 90,
+   "sha256": "36235d617ab3448b34932a6c05fc9234f7f0420d9e3b3bdd693ac61fd669cef9",
+   "source": "bigquery job sw_flows_w3_20261113T021201Z: sql/windows/staking_flows_window.sql.tpl"
   }
  }
 }
