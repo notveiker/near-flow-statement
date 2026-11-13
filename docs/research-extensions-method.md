@@ -27,3 +27,15 @@ Why: the contract-wide wNEAR books (FU10) show transfers to `lst-pool.near` (8.6
 - **H-RX4a (concentrated initiators):** the 3 largest source accounts carry at least **70%** of the NEAR sent to `lst-pool.near` through these events. Falsified below 40%.
 - **H-RX4b (it is the solver family):** at least **50%** of that NEAR comes from the FU1 solver family (`solver-priv-liq.near`, `solver-multichain-asset.near`, `-escrow`, `-2`). Falsified below 10%. The same two tests for `omni.bridge.near`.
 - If the events do not account for at least 80% of the wrap.near transfer totals of FU10 for the receiver, the shortfall is reported and the shares are for the covered part only. Ownership of any account is INFERRED.
+
+## RX5: does the repo's capture ladder replicate from the chain? (added 2026-11-13 03:13 UTC, before it is computed; local)
+The repo's ladder (`data/metrics.json`: all wallets 15.81% of net issuance, of which public collectors 4.53%, escrow unshields 11.25%, other 0.03%; 30 days to 2026-11-04; net issuance $12.71M) was built from `deliveries.csv` and the Explorer path. The rebuild's Q2 deliveries already equal `deliveries.csv` exactly; this recomputes the ladder from the chain's `native_withdraw` deliveries alone, split by the FU4 groups (escrow-funded group = the many-account group the escrow funds; public = `5880ad2b…`, `143f2bb4…`, `176121bd…`), priced at the daily NEAR price, over 2026-10-06..2026-11-04, divided by the repo's $12.71M.
+- **H-RX5a:** the chain-derived all-wallet ratio is within **10%** (relative) of 15.81%. Falsified if it differs by more than 25%.
+- **H-RX5b:** the escrow-funded share of delivered dollars is within **5 points** of 11.25 / 15.81 = 71.2%. Falsified if it differs by more than 15 points.
+- The denominator is the repo's, not re-derived; the numerator is the only thing tested.
+
+## RX6: do Intents' NEAR flows follow the NEAR price? (added 2026-11-13 03:13 UTC, before the query runs; `sql/rx/rx6_wrap_daily.sql`, staged `wrap_intents`)
+Daily contract-wide wNEAR ledger (the FU10 line shapes) for 2026-07-07..2026-11-04; NEAR price from `data/raw/windows/near_price_daily_llama.json`. 17 complete 7-day weeks from 2026-07-07 (to 2026-11-01). Weekly net NEAR flow into Intents = (transfers in + refunds in) - (transfers out + refunds out + unwrap); weekly bridge-path deposits = transfers in from `bridge-mng.near` are not separable in this table, so total transfers in are used; weekly price return = last-day close over the previous week's last-day close minus 1.
+- **H-RX6a (flows chase price):** Spearman rho of weekly net flow with the same week's price return is at least **+0.30** with a Monte Carlo permutation p at most 0.10 (20,000 permutations, seed 20261113). **Falsified** if rho is at most **-0.30** (flows lean against price). Between: no relation.
+- **H-RX6b (lagged):** the same with the net flow of week t and the price return of week t+1, to see whether flows lead.
+- Also reported: weekly net flow, unwrap and deposits in NEAR, and the share of weeks with net inflow. No causal reading is drawn (**INFERRED** only as a pattern).
