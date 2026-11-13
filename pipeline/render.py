@@ -1972,11 +1972,15 @@ def card_ladder(ctx: Ctx) -> str:
     tab = table_html(
         [{"h": "Rung", "num": False}, {"h": "% of net issuance"}, {"h": "How the NEAR arrived", "num": False}],
         [{"k": None, "cells": [esc("All three revenue wallets"), ctx.M("ladder_all_wallets_pct_of_issuance", 2),
-                               esc("sum of the three rows below")]},
+                               esc("sum of the collector, escrow and other-source rows below")]},
          {"k": None, "cells": [esc("Of which the buyback wallet alone"), ctx.M("ladder_buyback_only_pct_of_issuance", 2),
                                esc("a subset of the total, not nested with the rows below")]},
          {"k": None, "cells": [esc("Traceable to two recurring public fee collectors"), ctx.M("ladder_public_collectors_pct_of_issuance", 2),
                                esc("fee collectors A and B")]},
+         {"k": None, "cells": [esc("… of which fees from publicly settled swaps"), ctx.M("ladder_collectors_public_swap_pct_of_issuance", 2),
+                               esc("the fee payer swapped publicly in the same receipt")]},
+         {"k": None, "cells": [esc("… of which fees paid from escrow-funded single-use accounts"), ctx.M("ladder_collectors_escrow_funded_pct_of_issuance", 2),
+                               esc("the escrow funded the payer moments before; all at collector A")]},
          {"k": None, "cells": [esc("Released from the Confidential Intents escrow"), ctx.M("ladder_escrow_unshields_pct_of_issuance", 2),
                                esc("fee stream unattested")]},
          {"k": None, "cells": [esc("One other recurring source"), ctx.M("ladder_other_pct_of_issuance", 2), esc("recurring, unnamed")]},
@@ -2010,17 +2014,23 @@ def card_ladder(ctx: Ctx) -> str:
         notes=('The two candidate readings are near.com&rsquo;s fees and the Confidential Infrastructure Fee. A per-stream attestation by NEAR would turn the '
                'range into one number. Nothing here alleges misconduct. This is consistent with a privacy feature working as documented, and the question is auditability.',
                'The rungs are not nested: collectors, escrow and one other source add up to all three wallets, and the buyback-wallet rung is a subset of the total.',
+               f'Not all of the collector rung is public settlement. Of its {ctx.M("ladder_public_collectors_pct_of_issuance", 2)} points, '
+               f'{ctx.M("ladder_collectors_escrow_funded_pct_of_issuance", 2)} were fees paid by single-use accounts the escrow had funded '
+               f'(exploratory, every transfer into the collectors classified by sender), so {ctx.M("ladder_escrow_all_pct_of_issuance", 2)} points '
+               f'passed through the escrow in all, and counting only publicly settled swaps the floor is {ctx.M("ladder_collectors_public_swap_pct_of_issuance", 2)}%. '
+               f'By the last day, {ctx.M("collector_a_escrow_usd_share_last_day_pct")}% of collector A&rsquo;s fee value came from escrow-funded accounts.',
                f'The total reconciles with DefiLlama: {ctx.M("revwallets_near_k")}K NEAR is {ctx.M("revwallets_vs_llama_rev_pct")}% of its reported Intents revenue '
                f'for the same days. Even the top of the range covers about a sixth of issuance, and the buyback wallet&rsquo;s NEAR is held, not burned.',
                f'No valuation is made here. The range is the finding: {ctx.M("ladder_all_wallets_pct_of_issuance", 2)}% is what reached the three wallets and '
                f'{ctx.M("ladder_public_collectors_pct_of_issuance", 2)}% is what is traced to public fee collectors. None of this feeds the rating rule.'),
-        source=source_p(ctx, sql=("sql/buyback_withdraw_sources.sql",),
+        source=source_p(ctx, sql=("sql/buyback_withdraw_sources.sql", "sql/collector_inflow_funders.sql", "sql/collector_funder_checks.sql"),
                         raw=("raw/escrow/deliveries.csv", "raw/escrow/issuance_reads.json", "raw/escrow/verify_sample.json",
-                             "raw/bq/buyback_withdraw_sources.json"),
+                             "raw/bq/buyback_withdraw_sources.json", "raw/bq/collector_inflow_funders.json",
+                             "raw/bq/collector_funder_checks.json"),
                         code=("pipeline/compute.py", "pipeline/fetch_escrow.py"),
                         upstream=("BigQuery public dataset bigquery-public-data.crypto_near_mainnet_us, table execution_outcomes (intents.near native_withdraw events)",
                                   "FastNEAR transaction API and NEAR archival RPC (keyless) for the funding hops and the two total_supply reads")),
-        query=query_details(ctx, sql=("sql/buyback_withdraw_sources.sql",),
+        query=query_details(ctx, sql=("sql/buyback_withdraw_sources.sql", "sql/collector_inflow_funders.sql", "sql/collector_funder_checks.sql"),
                             note="Re-check any delivery or funding transfer from the chain with no key: <code>python3 -m pipeline.fetch_escrow verify --sample 60</code>."
                                  + job_text),
         data=data_details(tab))

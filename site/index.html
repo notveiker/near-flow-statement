@@ -3146,17 +3146,20 @@ SELECT &#x27;qa&#x27;, NULL, NULL, NULL, NULL, fmt, ROUND(SUM(near), 6), COUNT(*
 <ul class="notes">
 <li>The two candidate readings are near.com&rsquo;s fees and the Confidential Infrastructure Fee. A per-stream attestation by NEAR would turn the range into one number. Nothing here alleges misconduct. This is consistent with a privacy feature working as documented, and the question is auditability.</li>
 <li>The rungs are not nested: collectors, escrow and one other source add up to all three wallets, and the buyback-wallet rung is a subset of the total.</li>
+<li>Not all of the collector rung is public settlement. Of its <span data-m="ladder_public_collectors_pct_of_issuance">4.53</span> points, <span data-m="ladder_collectors_escrow_funded_pct_of_issuance">0.56</span> were fees paid by single-use accounts the escrow had funded (exploratory, every transfer into the collectors classified by sender), so <span data-m="ladder_escrow_all_pct_of_issuance">11.81</span> points passed through the escrow in all, and counting only publicly settled swaps the floor is <span data-m="ladder_collectors_public_swap_pct_of_issuance">3.97</span>%. By the last day, <span data-m="collector_a_escrow_usd_share_last_day_pct">96.0</span>% of collector A&rsquo;s fee value came from escrow-funded accounts.</li>
 <li>The total reconciles with DefiLlama: <span data-m="revwallets_near_k">418.8</span>K NEAR is <span data-m="revwallets_vs_llama_rev_pct">100.9</span>% of its reported Intents revenue for the same days. Even the top of the range covers about a sixth of issuance, and the buyback wallet&rsquo;s NEAR is held, not burned.</li>
 <li>No valuation is made here. The range is the finding: <span data-m="ladder_all_wallets_pct_of_issuance">15.81</span>% is what reached the three wallets and <span data-m="ladder_public_collectors_pct_of_issuance">4.53</span>% is what is traced to public fee collectors. None of this feeds the rating rule.</li></ul>
 <div class="source">
 <p><strong>Source:</strong></p>
 <ul>
-<li>SQL: <a href="https://github.com/notveiker/near-flow-statement/blob/main/sql/buyback_withdraw_sources.sql"><code>sql/buyback_withdraw_sources.sql</code></a></li>
+<li>SQL: <a href="https://github.com/notveiker/near-flow-statement/blob/main/sql/buyback_withdraw_sources.sql"><code>sql/buyback_withdraw_sources.sql</code></a>, <a href="https://github.com/notveiker/near-flow-statement/blob/main/sql/collector_inflow_funders.sql"><code>sql/collector_inflow_funders.sql</code></a>, <a href="https://github.com/notveiker/near-flow-statement/blob/main/sql/collector_funder_checks.sql"><code>sql/collector_funder_checks.sql</code></a></li>
 <li>Raw snapshot: <ul>
 <li><a href="https://github.com/notveiker/near-flow-statement/blob/main/data/raw/escrow/deliveries.csv"><code class="rawref">data/raw/escrow/deliveries.csv</code></a> <span class="sha" data-sha-of="raw/escrow/deliveries.csv">sha256 3176231d2065</span></li>
 <li><a href="https://github.com/notveiker/near-flow-statement/blob/main/data/raw/escrow/issuance_reads.json"><code class="rawref">data/raw/escrow/issuance_reads.json</code></a> <span class="sha" data-sha-of="raw/escrow/issuance_reads.json">sha256 2e9c824b4b3d</span></li>
 <li><a href="https://github.com/notveiker/near-flow-statement/blob/main/data/raw/escrow/verify_sample.json"><code class="rawref">data/raw/escrow/verify_sample.json</code></a> <span class="sha" data-sha-of="raw/escrow/verify_sample.json">sha256 3a64f2ad0615</span></li>
-<li><a href="https://github.com/notveiker/near-flow-statement/blob/main/data/raw/bq/buyback_withdraw_sources.json"><code class="rawref">data/raw/bq/buyback_withdraw_sources.json</code></a> <span class="sha" data-sha-of="raw/bq/buyback_withdraw_sources.json">sha256 e310eb0c522a</span></li></ul></li>
+<li><a href="https://github.com/notveiker/near-flow-statement/blob/main/data/raw/bq/buyback_withdraw_sources.json"><code class="rawref">data/raw/bq/buyback_withdraw_sources.json</code></a> <span class="sha" data-sha-of="raw/bq/buyback_withdraw_sources.json">sha256 e310eb0c522a</span></li>
+<li><a href="https://github.com/notveiker/near-flow-statement/blob/main/data/raw/bq/collector_inflow_funders.json"><code class="rawref">data/raw/bq/collector_inflow_funders.json</code></a> <span class="sha" data-sha-of="raw/bq/collector_inflow_funders.json">sha256 c16656a80c73</span></li>
+<li><a href="https://github.com/notveiker/near-flow-statement/blob/main/data/raw/bq/collector_funder_checks.json"><code class="rawref">data/raw/bq/collector_funder_checks.json</code></a> <span class="sha" data-sha-of="raw/bq/collector_funder_checks.json">sha256 15360dcfb5e6</span></li></ul></li>
 <li>Code: <a href="https://github.com/notveiker/near-flow-statement/blob/main/pipeline/compute.py"><code>pipeline/compute.py</code></a>, <a href="https://github.com/notveiker/near-flow-statement/blob/main/pipeline/fetch_escrow.py"><code>pipeline/fetch_escrow.py</code></a></li>
 <li>Upstream: BigQuery public dataset bigquery-public-data.crypto_near_mainnet_us, table execution_outcomes (intents.near native_withdraw events); FastNEAR transaction API and NEAR archival RPC (keyless) for the funding hops and the two total_supply reads</li></ul></div>
 <details class="query">
@@ -3180,6 +3183,116 @@ WHERE o.block_date BETWEEN &#x27;2026-10-06&#x27; AND &#x27;2026-11-04&#x27;
                                          &#x27;1csfundsadmin.sputnik-dao.near&#x27;)
 GROUP BY 1, 2, 3
 ORDER BY 1, 2, 3
+</code></pre><p class="qh"><a href="https://github.com/notveiker/near-flow-statement/blob/main/sql/collector_inflow_funders.sql"><code>sql/collector_inflow_funders.sql</code></a> <span class="sha" data-r="bytes:sql/collector_inflow_funders.sql">2,990 bytes</span></p><pre tabindex="0"><code>-- Exploratory (written 2026-11-12, after the freeze). Who funded the fees that reached NEAR&#x27;s two fee collectors
+-- (collector A 5880ad2b..., collector B 143f2bb4..., see sql/collector_inflows.sql), 2026-10-06..11-04.
+-- Every dip4 transfer into A or B is classified by its sender (account_id):
+--   escrow_direct  sender is the Confidential Intents treasury (PRIVATE_TREASURY_ACCOUNT_ID 51e8f94d...7cbe)
+--   escrow_funded  sender received a dip4 transfer from that treasury between 2026-09-22 and the transfer&#x27;s block
+--   public_swap    otherwise, and the same receipt emits a dip4 token_diff for the sender (a public swap intent)
+--   other          none of the above
+-- Per day, collector, class and token: summed raw amounts, transfer count, distinct senders. Summed over class,
+-- the rows equal data/raw/bq/collector_inflows.json.
+WITH ev AS (
+  SELECT o.block_date AS day, o.block_height AS h, o.receipt_id AS rid,
+         l.element AS el
+  FROM `bigquery-public-data.crypto_near_mainnet_us.execution_outcomes` o, UNNEST(o.logs.list) l
+  WHERE o.block_date BETWEEN &#x27;2026-09-22&#x27; AND &#x27;2026-11-04&#x27;
+    AND o.executor_account_id = &#x27;intents.near&#x27;
+    AND l.element LIKE &#x27;EVENT_JSON:{&quot;standard&quot;:&quot;dip4&quot;%&#x27;
+    AND (l.element LIKE &#x27;%&quot;event&quot;:&quot;transfer&quot;%&#x27; OR l.element LIKE &#x27;%&quot;event&quot;:&quot;token_diff&quot;%&#x27;)
+),
+rows_ AS (
+  SELECT day, h, rid,
+         REGEXP_EXTRACT(el, r&#x27;&quot;event&quot;:&quot;([a-z_]+)&quot;&#x27;) AS event,
+         JSON_VALUE(d, &#x27;$.account_id&#x27;) AS sender, JSON_VALUE(d, &#x27;$.receiver_id&#x27;) AS receiver,
+         JSON_QUERY(d, &#x27;$.tokens&#x27;) AS tokens
+  FROM ev, UNNEST(JSON_QUERY_ARRAY(SUBSTR(el, 12), &#x27;$.data&#x27;)) d
+),
+funded AS (  -- first escrow funding of each account
+  SELECT receiver AS acct, MIN(h) AS first_h
+  FROM rows_ WHERE event = &#x27;transfer&#x27; AND sender = &#x27;51e8f94d77b5e90dc9852ca6113771e11e8382ce69473a75e313e41665de7cbe&#x27; GROUP BY receiver
+),
+diffs AS (SELECT DISTINCT rid, sender FROM rows_ WHERE event = &#x27;token_diff&#x27;),
+inflow AS (
+  SELECT r.day, r.receiver AS collector, r.sender, r.tokens,
+         CASE WHEN r.sender = &#x27;51e8f94d77b5e90dc9852ca6113771e11e8382ce69473a75e313e41665de7cbe&#x27; THEN &#x27;escrow_direct&#x27;
+              WHEN f.first_h IS NOT NULL AND f.first_h &lt;= r.h THEN &#x27;escrow_funded&#x27;
+              WHEN dd.rid IS NOT NULL THEN &#x27;public_swap&#x27;
+              ELSE &#x27;other&#x27; END AS class
+  FROM rows_ r
+  LEFT JOIN funded f ON f.acct = r.sender
+  LEFT JOIN diffs dd ON dd.rid = r.rid AND dd.sender = r.sender
+  WHERE r.event = &#x27;transfer&#x27; AND r.day &gt;= &#x27;2026-10-06&#x27;
+    AND r.receiver IN (&#x27;5880ad2b362620fadf759cbceb1cd5737ce8c6ed7fb8e9942881e6731f9247dd&#x27;,
+                       &#x27;143f2bb439575c286f4f585163f0e5fb4e464f8ce57ec06ae80741407d3cfb31&#x27;)
+)
+SELECT day, collector, class, REGEXP_EXTRACT(kv, r&#x27;^&quot;([^&quot;]+)&quot;&#x27;) AS token,
+       CAST(SUM(CAST(REGEXP_EXTRACT(kv, r&#x27;:&quot;([0-9]+)&quot;$&#x27;) AS BIGNUMERIC)) AS STRING) AS amount,
+       COUNT(*) AS n, COUNT(DISTINCT sender) AS senders
+FROM inflow, UNNEST(REGEXP_EXTRACT_ALL(tokens, r&#x27;&quot;[^&quot;]+&quot;:&quot;[0-9]+&quot;&#x27;)) AS kv
+GROUP BY 1, 2, 3, 4
+ORDER BY 1, 2, 3, 4
+</code></pre><p class="qh"><a href="https://github.com/notveiker/near-flow-statement/blob/main/sql/collector_funder_checks.sql"><code>sql/collector_funder_checks.sql</code></a> <span class="sha" data-r="bytes:sql/collector_funder_checks.sql">4,260 bytes</span></p><pre tabindex="0"><code>-- Exploratory (written 2026-11-12, after the freeze). Who funded the fees that reached NEAR&#x27;s two fee collectors
+-- (collector A 5880ad2b..., collector B 143f2bb4..., see sql/collector_inflows.sql), 2026-10-06..11-04.
+-- Every dip4 transfer into A or B is classified by its sender (account_id):
+--   escrow_direct  sender is the Confidential Intents treasury (PRIVATE_TREASURY_ACCOUNT_ID 51e8f94d...7cbe)
+--   escrow_funded  sender received a dip4 transfer from that treasury between 2026-09-22 and the transfer&#x27;s block
+--   public_swap    otherwise, and the same receipt emits a dip4 token_diff for the sender (a public swap intent)
+--   other          none of the above
+-- Checks of that classification, per period (post = from 2026-10-27), collector (first character) and class:
+--   n_with_diff           transfers whose receipt carries a token_diff for the sender
+--   n_sender_single_tx    transfers whose sender sent exactly one transfer to A or B in the window
+--   n_sender_single_day   ... whose sender sent to A or B on one day only
+--   n_funded_once         ... whose sender received exactly one transfer from the treasury since 2026-09-22
+--   n_no_other_inflow     ... whose sender received no dip4 transfer from any other account since 2026-09-22
+--   lag_blocks_q          quartiles of blocks from the sender&#x27;s first treasury funding to the transfer
+WITH ev AS (
+  SELECT o.block_date AS day, o.block_height AS h, o.receipt_id AS rid,
+         l.element AS el
+  FROM `bigquery-public-data.crypto_near_mainnet_us.execution_outcomes` o, UNNEST(o.logs.list) l
+  WHERE o.block_date BETWEEN &#x27;2026-09-22&#x27; AND &#x27;2026-11-04&#x27;
+    AND o.executor_account_id = &#x27;intents.near&#x27;
+    AND l.element LIKE &#x27;EVENT_JSON:{&quot;standard&quot;:&quot;dip4&quot;%&#x27;
+    AND (l.element LIKE &#x27;%&quot;event&quot;:&quot;transfer&quot;%&#x27; OR l.element LIKE &#x27;%&quot;event&quot;:&quot;token_diff&quot;%&#x27;)
+),
+rows_ AS (
+  SELECT day, h, rid,
+         REGEXP_EXTRACT(el, r&#x27;&quot;event&quot;:&quot;([a-z_]+)&quot;&#x27;) AS event,
+         JSON_VALUE(d, &#x27;$.account_id&#x27;) AS sender, JSON_VALUE(d, &#x27;$.receiver_id&#x27;) AS receiver,
+         JSON_QUERY(d, &#x27;$.tokens&#x27;) AS tokens
+  FROM ev, UNNEST(JSON_QUERY_ARRAY(SUBSTR(el, 12), &#x27;$.data&#x27;)) d
+),
+funded AS (  -- first escrow funding of each account
+  SELECT receiver AS acct, MIN(h) AS first_h
+  FROM rows_ WHERE event = &#x27;transfer&#x27; AND sender = &#x27;51e8f94d77b5e90dc9852ca6113771e11e8382ce69473a75e313e41665de7cbe&#x27; GROUP BY receiver
+),
+diffs AS (SELECT DISTINCT rid, sender FROM rows_ WHERE event = &#x27;token_diff&#x27;),
+inflow AS (
+  SELECT r.day, r.h, r.receiver AS collector, r.sender, r.tokens, f.first_h, dd.rid IS NOT NULL AS has_diff,
+         CASE WHEN r.sender = &#x27;51e8f94d77b5e90dc9852ca6113771e11e8382ce69473a75e313e41665de7cbe&#x27; THEN &#x27;escrow_direct&#x27;
+              WHEN f.first_h IS NOT NULL AND f.first_h &lt;= r.h THEN &#x27;escrow_funded&#x27;
+              WHEN dd.rid IS NOT NULL THEN &#x27;public_swap&#x27;
+              ELSE &#x27;other&#x27; END AS class
+  FROM rows_ r
+  LEFT JOIN funded f ON f.acct = r.sender
+  LEFT JOIN diffs dd ON dd.rid = r.rid AND dd.sender = r.sender
+  WHERE r.event = &#x27;transfer&#x27; AND r.day &gt;= &#x27;2026-10-06&#x27;
+    AND r.receiver IN (&#x27;5880ad2b362620fadf759cbceb1cd5737ce8c6ed7fb8e9942881e6731f9247dd&#x27;,
+                       &#x27;143f2bb439575c286f4f585163f0e5fb4e464f8ce57ec06ae80741407d3cfb31&#x27;)
+)
+
+, s AS (SELECT sender, COUNT(*) AS n_tx, COUNT(DISTINCT day) AS n_days FROM inflow GROUP BY sender),
+fo AS (SELECT receiver AS acct, COUNT(*) AS n_fund FROM rows_ WHERE event=&#x27;transfer&#x27;
+       AND sender=&#x27;51e8f94d77b5e90dc9852ca6113771e11e8382ce69473a75e313e41665de7cbe&#x27; GROUP BY receiver),
+oth AS (SELECT receiver AS acct, COUNT(*) AS n_in_other FROM rows_ WHERE event=&#x27;transfer&#x27;
+       AND sender!=&#x27;51e8f94d77b5e90dc9852ca6113771e11e8382ce69473a75e313e41665de7cbe&#x27; GROUP BY receiver)
+SELECT i.day &gt;= &#x27;2026-10-27&#x27; AS post, SUBSTR(i.collector,1,1) AS coll, i.class,
+  COUNT(*) AS n, COUNTIF(i.has_diff) AS n_with_diff, COUNT(DISTINCT i.sender) AS senders,
+  COUNTIF(s.n_tx = 1) AS n_sender_single_tx, COUNTIF(s.n_days = 1) AS n_sender_single_day,
+  COUNTIF(fo.n_fund = 1) AS n_funded_once, COUNTIF(oth.n_in_other IS NULL) AS n_no_other_inflow,
+  APPROX_QUANTILES(i.h - i.first_h, 4) AS lag_blocks_q
+FROM inflow i JOIN s USING (sender) LEFT JOIN fo ON fo.acct=i.sender LEFT JOIN oth ON oth.acct=i.sender
+GROUP BY 1,2,3 ORDER BY 1,2,3
 </code></pre></details>
 <details class="data">
 <summary>Data</summary>
@@ -3196,7 +3309,7 @@ ORDER BY 1, 2, 3
 <tr>
 <td class="t">All three revenue wallets</td>
 <td><span data-m="ladder_all_wallets_pct_of_issuance">15.81</span></td>
-<td class="t">sum of the three rows below</td></tr>
+<td class="t">sum of the collector, escrow and other-source rows below</td></tr>
 <tr>
 <td class="t">Of which the buyback wallet alone</td>
 <td><span data-m="ladder_buyback_only_pct_of_issuance">11.00</span></td>
@@ -3205,6 +3318,14 @@ ORDER BY 1, 2, 3
 <td class="t">Traceable to two recurring public fee collectors</td>
 <td><span data-m="ladder_public_collectors_pct_of_issuance">4.53</span></td>
 <td class="t">fee collectors A and B</td></tr>
+<tr>
+<td class="t">… of which fees from publicly settled swaps</td>
+<td><span data-m="ladder_collectors_public_swap_pct_of_issuance">3.97</span></td>
+<td class="t">the fee payer swapped publicly in the same receipt</td></tr>
+<tr>
+<td class="t">… of which fees paid from escrow-funded single-use accounts</td>
+<td><span data-m="ladder_collectors_escrow_funded_pct_of_issuance">0.56</span></td>
+<td class="t">the escrow funded the payer moments before; all at collector A</td></tr>
 <tr>
 <td class="t">Released from the Confidential Intents escrow</td>
 <td><span data-m="ladder_escrow_unshields_pct_of_issuance">11.25</span></td>

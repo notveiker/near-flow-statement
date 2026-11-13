@@ -1361,6 +1361,8 @@ TABLE_ROWS = {
         ('All three revenue wallets', ['ladder_all_wallets_pct_of_issuance']),
         ('Of which the buyback wallet alone', ['ladder_buyback_only_pct_of_issuance']),
         ('Traceable to two recurring public fee collectors', ['ladder_public_collectors_pct_of_issuance']),
+        ('… of which fees from publicly settled swaps', ['ladder_collectors_public_swap_pct_of_issuance']),
+        ('… of which fees paid from escrow-funded single-use accounts', ['ladder_collectors_escrow_funded_pct_of_issuance']),
         ('Released from the Confidential Intents escrow', ['ladder_escrow_unshields_pct_of_issuance']),
         ('One other recurring source', ['ladder_other_pct_of_issuance']),
         ('Net issuance, NEAR a day (denominator)', ['net_issuance_near_per_day_window']),
