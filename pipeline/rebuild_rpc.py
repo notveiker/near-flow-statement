@@ -44,6 +44,8 @@ def main(argv: list[str]) -> int:
         rows = [{"block": int(b), "account": ESCROW, "token": WNEAR, "yocto": str(mt_balance_of(ESCROW, WNEAR, int(b)))} for b in argv]
         dest = OUT / "q1_escrow_balances.json"
     dest.write_text(json.dumps(rows, indent=1, sort_keys=True) + "\n")
+    from .common import record
+    record(dest, "archival RPC call_function at fixed blocks (keyless), pipeline.rebuild_rpc")
     print(json.dumps(rows, indent=1))
     return 0
 
