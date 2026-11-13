@@ -94,3 +94,11 @@ Why: F2b found one external account, `1244d552459d7230bdaf267c1d09a296282dc85251
 - **H-F7a (concentrated source):** if K is at least 0.5, the top 3 senders hold at least 50% of the inflow. **H-F7b (exchange or staking origin):** senders in the exchange list or unstakers set supply at least 50% of the inflow: supported; under 10%: **falsified**.
 - **H-F7c (a single-purpose account):** at least 90% of the NEAR it sends in the window goes to `bridge-mng.near`: supported; under 50% falsified (it is then a general treasury).
 - Whatever the senders are, ownership is INFERRED from labels and from nothing else.
+
+## F8 (how much of the deposit path is exchange-sourced; fixed before it runs, committed 2026-11-13 01:23 UTC)
+Why: F7 traced the largest funder to Binance in two hops. The question for the whole deposit path is how much of the 75.97M NEAR that `bridge-mng.near` wrapped came one hop further up from exchange accounts. Direct transfers only (`transaction_actions`), window 2026-07-07..2026-11-04; label lists as in F2b (exchange list, unstakers set).
+- **Per funder** (every direct funder of `bridge-mng.near`, 55,037): NEAR funded, NEAR received directly in the window, and the part of that received from exchange-list accounts, the unstakers set and `intents.near` itself.
+- **Estimate (INFERRED, proportional):** exchange-sourced NEAR = sum over funders of funded NEAR × (exchange inflow / total inflow), with the ratio capped at 1; the same for the unstakers set and `intents.near`. A funder with no direct inflow in the window is `unobserved`. The proportional rule assumes a funder's outflow carries the same mix as its inflow; it is reported as an estimate, with the share of funded NEAR it covers.
+- **Coverage** = funded NEAR of funders with direct inflow in the window / all funded NEAR. If under 0.6, the shares are reported for the covered part only.
+- **H-F8a (exchange-sourced is large):** the estimated exchange-sourced share of the covered funded NEAR is at least 50%: supported; under 25%: **falsified**. **H-F8b (exchange-sourced excluding F7's relay):** the same share with `1244d552…` removed is at least 25%: supported; under 10%: **falsified**.
+- Queries: `rb_f8_s_funder_inflow.sql` (stage), `rb_f8_a_funder_sources.sql`.
