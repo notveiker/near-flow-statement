@@ -143,7 +143,7 @@ footer code{font-size:12px;color:var(--soft)}
 <div class="tip" id="tip" role="tooltip"></div>
 <nav aria-label="Sections"><div class="wrap">
   <a class="brand" href="#top"><span class="mark" aria-hidden="true"></span>NEAR flow statement</a>
-  <div class="links"><a href="#intents">Intents</a><a href="#capture">Capture</a><a href="#builders">Builders</a><a href="#supply">Supply</a><a href="#explorer">Scenarios</a><a href="#market">Market</a><a href="#chain">Chain data</a><a href="#method">Method</a></div>
+  <div class="links"><a href="#intents">Intents</a><a href="#capture">Capture</a><a href="#builders">Builders</a><a href="#supply">Supply</a><a href="#explorer">Scenarios</a><a href="#market">Market</a><a href="#chain">Chain data</a><a href="#rebuild">Rebuild</a><a href="#method">Method</a></div>
 </div></nav>
 
 <header class="hero" id="top"><div class="wrap">
@@ -254,8 +254,20 @@ footer code{font-size:12px;color:var(--soft)}
   <div id="chain-body"></div>
 </div></section>
 
+<section id="rebuild"><div class="wrap">
+  <div class="head"><div><div class="eyebrow">08 · Chain rebuild</div><h2>Rebuilt from the chain, without the Explorer or DefiLlama</h2></div>
+  <p id="rb-lede"></p></div>
+  <div class="stats" id="rb-stats"></div>
+  <div class="grid2" style="margin-top:var(--s4)">
+    <div class="card reveal"><h3>Where the NEAR in the revenue wallets passed through</h3><p class="sub">Dollars delivered by native withdrawals, by funding path, from 7 August.</p><div class="legend" id="rb-lg1"></div><div class="chart" id="rb-c1"></div><div class="foot" id="rb-f1"></div></div>
+    <div class="card reveal"><h3>What the transaction count was made of</h3><p class="sub">Transactions a day, millions: one automated class against everything else.</p><div class="legend" id="rb-lg2"></div><div class="chart" id="rb-c2"></div><div class="foot" id="rb-f2"></div></div>
+  </div>
+  <div class="card reveal" style="margin-top:var(--s4)"><h3>NEAR through the Intents contract, week by week</h3><p class="sub">Millions of NEAR moved in and out of the contract each week from 7 July. The weeks of 15 and 22 September, when the price rose 81% and then 30%, were the peak.</p><div class="legend" id="rb-lg3"></div><div class="chart" id="rb-c3"></div><div class="foot" id="rb-f3"></div></div>
+  <p class="foot" style="margin-top:var(--s4)">Method, rules and falsifiers were committed before each run: <a href="https://github.com/notveiker/near-flow-statement/blob/main/docs/chain-rebuild-results.md">chain-rebuild-results</a>, <a href="https://github.com/notveiker/near-flow-statement/blob/main/docs/class-census-results.md">class-census-results</a>, <a href="https://github.com/notveiker/near-flow-statement/blob/main/docs/research-extensions-results.md">research-extensions-results</a>. Data cutoff 4 November 2026.</p>
+</div></section>
+
 <section id="rating"><div class="wrap">
-  <div class="head"><div><div class="eyebrow">08 · Rating path</div><h2>What separates the frozen rule's Hold from Buy</h2></div>
+  <div class="head"><div><div class="eyebrow">09 · Rating path</div><h2>What separates the frozen rule's Hold from Buy</h2></div>
   <p id="rating-lede"></p></div>
   <div class="grid2">
     <div class="card reveal"><h3>Pre-registered scorecard</h3><p class="sub">Frozen on 2026-11-05, before any flow query. Results are published as they came out.</p><table id="score"></table></div>
@@ -405,6 +417,51 @@ function stacked100(host, labels, series, o = {}) {
 }
 function legend(host, items) { host.innerHTML = items.map(i => `<span><i style="background:${i.color}"></i>${i.name}</span>`).join(""); }
 const mlab = s => { const [y, m] = s.split("-"); return ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][+m - 1] + " \u2019" + y.slice(2); };
+
+/* ---------------- chain rebuild ---------------- */
+function stackedBars(host, rows, keys, o = {}) {
+  const f = frame(host, o), tot = rows.map(r => keys.reduce((a, k) => a + r[k.k], 0)), max = o.max || niceMax(Math.max(...tot) * 1.05);
+  yAxis(f, max, o.fy || (v => fmt.n(v, max < 10 ? 1 : 0)));
+  const step = f.iw / rows.length, bw = Math.max(2, step * .66);
+  rows.forEach((r, i) => {
+    let base = 0;
+    const x = f.ml + step * i + (step - bw) / 2;
+    keys.forEach(k => {
+      const hgt = Math.max(0, r[k.k] / max * f.ih), y = f.mt + f.ih - (base + r[k.k]) / max * f.ih;
+      f.svg.appendChild(el("rect", {x, y, width: bw, height: hgt, fill: k.color, rx: 1}));
+      base += r[k.k];
+    });
+    const hit = el("rect", {x: f.ml + step * i, y: f.mt, width: step, height: f.ih, fill: "transparent"});
+    hit.addEventListener("mousemove", e => showTip(e, `<b>${r.label}</b>` + keys.map(k => `<br><span style="color:${k.color}">●</span> ${k.name}: ${(o.ft || (v => fmt.n(v, 2)))(r[k.k])}`).join("")));
+    hit.addEventListener("mouseleave", hideTip);
+    f.svg.appendChild(hit);
+  });
+  xLabels(f, rows.map(r => r.label), o.every || 1);
+}
+if (D.rebuild) {
+  const RB = D.rebuild, S = RB.stats;
+  $("#rb-lede").textContent = "Every number here was recomputed by a script from saved BigQuery outputs and archival RPC reads, with the rule and what would falsify it written down before the run. The contract's wNEAR books close to the yoctoNEAR, which is what lets the rest be read at face value.";
+  const rbs = [
+    ["Revenue wallets, from 7 Aug", `$${(S.delivered_usd / 1e6).toFixed(2)}<small>M</small>`, `${S.tau_llama_bp.toFixed(2)} bp of DefiLlama volume; ${(S.escrow_funded_share * 100).toFixed(0)}% of the NEAR passed through the private escrow`],
+    ["NEAR deposited through one wrapper", `${(S.deposit_near / 1e6).toFixed(0)}<small>M</small>`, `every deposit is wrapped and passed on one for one; ${(S.exchange_share_all * 100).toFixed(0)}% traces to Binance wallets, almost all through a single forwarding account`],
+    ["Contract wNEAR books", `${S.books_residual_near.toExponential(0).replace("e-", "×10⁻")}<small> NEAR off</small>`, `net change +${(S.books_change_near / 1e6).toFixed(1)}M NEAR, reconciled to the balance at both ends`],
+    ["Solver spread, stable swaps", `${S.spread_bp.toFixed(1)}<small> bp</small>`, `solvers kept $${(S.solver_margin_usd / 1e3).toFixed(0)}K in 90 days, about ${(S.solver_margin_usd / S.delivered_usd * 100).toFixed(0)}% of what reached the revenue wallets`],
+    ["One automated class", `${(S.class_share_2025q3 * 100).toFixed(0)}<small>%</small>`, `of all transactions in 2025Q3, gone since 2 April 2026; it is most of the fall in raw transaction counts`],
+  ];
+  $("#rb-stats").innerHTML = rbs.map(s => `<div class="stat"><div class="k">${s[0]}</div><div class="v">${s[1]}</div><div class="n">${s[2]}</div></div>`).join("");
+  const k1 = [{k: "escrow", name: "Funded by the escrow", color: C.accent}, {k: "persistent", name: "Solver payments to fee accounts", color: C.amber}, {k: "public", name: "Public fee account", color: C.g2}];
+  legend($("#rb-lg1"), k1);
+  stackedBars($("#rb-c1"), RB.revenue_by_month.map(r => ({label: mlab(r.month), escrow: r.escrow / 1e6, persistent: r.persistent / 1e6, public: r.public / 1e6})), k1, {max: 2.4, fy: v => "$" + v.toFixed(1) + "M", ft: v => "$" + v.toFixed(2) + "M"});
+  $("#rb-f1").textContent = "August starts on the 7th. The escrow-funded path grew from $0.25M to $1.59M a month while public-leg volume did not.";
+  const k2 = [{k: "rest", name: "Everything else", color: C.accent}, {k: "c", name: "One automated class", color: C.danger}];
+  legend($("#rb-lg2"), k2);
+  stackedBars($("#rb-c2"), RB.tx_per_day.map(r => ({label: r.q.slice(2, 4) + "Q" + r.q.slice(-1), rest: r.rest / 1e6, c: r.c / 1e6})), k2, {max: 10, fy: v => (v % 1 ? v.toFixed(1) : v.toFixed(0)) + "M", ft: v => v.toFixed(2) + "M", every: 2});
+  $("#rb-f2").textContent = "Exact counts on the full chain. The class is 52% of 2025Q3 and 67% of 2026Q1; two more relay signers carry most of the rest of the fall.";
+  const k3 = [{k: "in", name: "Into the contract", color: C.accent}, {k: "out", name: "Out of the contract", color: C.g2}];
+  legend($("#rb-lg3"), k3);
+  stackedBars($("#rb-c3"), RB.weekly_flows.map(w => ({label: w.w.slice(5), in: w.in / 1e6, out: w.out / 1e6})), k3, {max: 48, w: innerWidth < 700 ? 560 : 1120, ht: innerWidth < 700 ? 260 : 300, fy: v => v.toFixed(0) + "M", ft: v => v.toFixed(1) + "M NEAR"});
+  $("#rb-f3").textContent = "Close to half of the deposits in the two peak weeks were Binance withdrawals relayed through one account. By late October weekly flow was back to its July level.";
+} else { document.getElementById("rebuild").style.display = "none"; }
 
 /* ---------------- hero ---------------- */
 const peer = M.peers[0];
@@ -626,9 +683,9 @@ $("#stats").innerHTML = stats.map(s => `<div class="stat"><div class="k">${s[0]}
     if (Jp) bits.push(`Judge packet ~${Jp.score_excl_must_ship} excl must-ship — open public+X recorded.`);
     const D12 = D.catalysts && D.catalysts.dense_12_complete;
     if (D12) bits.push(`Dense _12 complete through ${D12.through}: ${D12.clusters} clusters; history not submit blocker — burn hours on public+X.`);
-    const Fs = D.catalysts && D.catalysts.fee_stability;
+    const Fst = D.catalysts && D.catalysts.fee_stability;
     const Ds = D.catalysts && D.catalysts.diminishing_strata;
-    if (Fs) bits.push(`Fee≠L1 stable under dense: intents~${Math.round(Fs.intents_vs_2025q1_x_now)}× (was~189) vs L1~${Number(Fs.l1_yoy_tx_x_now).toFixed(2)}×.`);
+    if (Fst) bits.push(`Fee≠L1 stable under dense: intents~${Math.round(Fst.intents_vs_2025q1_x_now)}× (was~189) vs L1~${Number(Fst.l1_yoy_tx_x_now).toFixed(2)}×.`);
     const Id = D.catalysts && D.catalysts.intents_drift;
     if (Id) bits.push(`Intents× drift ~189→~${Math.round(Id.series[Id.series.length-1].intents_x)} as 2025Q1 den fills — pitch OoM gap not point estimate.`);
     const Cq = D.catalysts && D.catalysts.conversion_quiet;

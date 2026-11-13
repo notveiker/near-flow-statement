@@ -261,6 +261,31 @@ def reproducibility() -> dict:
     }
 
 
+def rebuild_view() -> dict | None:
+    """Compact numbers for the chain-rebuild section; every value is read from the derived results (recomputed by scripts from saved BigQuery outputs)."""
+    paths = [DATA / "derived" / n for n in ("rebuild_results.json", "class_census.json", "rx_results.json")]
+    if not all(p.exists() for p in paths):
+        return None
+    r, c, x = (_load(p) for p in paths)
+    gm = r["fu5"]["post_hoc_llama_denominator"]["delivered_usd_by_group_by_month"]
+    q = c["quarters"]
+    return {
+        "revenue_by_month": [{"month": m, "escrow": v["escrow_funded_rest"], "persistent": v["persistent_5880ad2b_143f2bb4"], "public": v["fee_176121bd"]} for m, v in sorted(gm.items())],
+        "tx_per_day": [{"q": k, "c": v["c_per_day"], "rest": v["exc_per_day"]} for k, v in sorted(q.items()) if k >= "2024Q1"],
+        "weekly_flows": [{"w": w["week_start"], "in": w["in"], "out": w["out"], "ret": w["ret"]} for w in x["rx6"]["weeks"]],
+        "stats": {
+            "books_residual_near": r["fu10"]["residual_near"], "books_change_near": r["fu10"]["balance_change_near"],
+            "deposit_near": r["fu2b"]["wrapped_near"], "relay_near": r["fu2b"]["top_funder_matches_fu1"]["near"], "relay_share": r["fu2b"]["top_funders"][0]["share"],
+            "exchange_share_all": r["fu8"]["all"]["exchange_share_of_all_funded"], "exchange_share_excl_relay": r["fu8"]["excluding_relay"]["exchange_share_of_covered"],
+            "d6_to_exchange_near": r["fu10"]["d6b77389"]["to_exchange_list_near"], "spread_bp": r["fu11"]["primary_same_symbol_1click"]["spread_bp"],
+            "delivered_usd": r["fu5"]["delivered_usd"], "tau_llama_bp": r["fu5"]["post_hoc_llama_denominator"]["tau_llama_bp"],
+            "escrow_funded_share": 0.0 + r["fu4"]["rest_group_escrow_funded_near"] / r["fu4"]["delivered_total_near"],
+            "class_share_2025q3": c["c_share_2025Q3"],
+            "solver_margin_usd": x["rx2"]["total_margin_usd"], "relayer_top1_oct": [m for m in x["rx3"]["months"] if m["per"] == "2026-10"][0]["top1_share"],
+        },
+    }
+
+
 def build() -> dict:
     m = _load(DATA / "metrics.json")
     s = _load(DATA / "series.json")
@@ -271,7 +296,7 @@ def build() -> dict:
         "hsp029": hsp029(assump), "price_usd": assump["price_usd"],
         "history": optional("derived/history_results.json"), "census": optional("derived/census_summary.json"),
         "hub_trail": optional("derived/hub_trail.json"), "census_hourly": optional("derived/census_hourly.json"), "usage": optional("derived/census_usage.json"), "usage_flows": usage_flows(optional("derived/census_usage.json")),
-        "sample_extras": optional("derived/sample_extras_results.json"),
+        "sample_extras": optional("derived/sample_extras_results.json"), "rebuild": rebuild_view(),
         "holdings": holdings(), "peers": peers(), "builders": builders(), "validators": validators(), "web_facts": web_facts(),
         "prop": prop(),
         "catalysts": {

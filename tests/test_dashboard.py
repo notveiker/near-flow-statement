@@ -46,5 +46,21 @@ class TestDashboard(unittest.TestCase):
         self.assertGreater(len(mk["weekly"]), 50)
 
 
+    def test_script_parses(self):
+        """The page's script must be valid JavaScript: a duplicate const once left the whole dashboard blank while every other test passed."""
+        import re
+        import shutil
+        import subprocess
+        import tempfile
+        node = shutil.which("node")
+        if not node:
+            self.skipTest("node not installed")
+        big = max(re.findall(r"<script>(.*?)</script>", self.html, re.S), key=len)
+        with tempfile.NamedTemporaryFile("w", suffix=".js", delete=False) as f:
+            f.write(big)
+        out = subprocess.run([node, "--check", f.name], capture_output=True, text=True)
+        self.assertEqual(out.returncode, 0, out.stderr[:500])
+
+
 if __name__ == "__main__":
     unittest.main()
