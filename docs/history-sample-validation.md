@@ -16,3 +16,9 @@ Every stratum except **2020Q3** (starts mid-day on 2020-07-21) and **2026Q4** (r
 - **Point error:** median absolute relative error and median signed relative error (bias) of the point estimate against the census; reported by era (the 18 strata before 2025 have 6 clusters each, the 6 from 2025Q1 to 2026Q3 have 11 or 12).
 - A quarter with fewer than 5 clusters is not scored (none expected).
 - No quarter is dropped or re-defined after seeing the comparison. The result is published whatever it is, including a finding that the intervals are too narrow.
+
+## Addendum: the other full-chain-reproducible metrics (added 2026-11-13 02:49 UTC, before their queries run)
+Same logic, for the quarters 2025Q1 to 2026Q3 (7 quarters; the plan has 11 or 12 clusters in each). Census queries: `sql/validation/outcomes_daily_census.sql` (execution_outcomes per day: all outcomes, outcomes executed on `intents.near`, tokens burnt; about 673 GB) and `tx_burn_daily_census.sql` (tokens burnt at transaction-to-receipt conversion). Mapping to the sampler's metrics: `receipts_per_day` = outcomes per day; `intents_per_day` = outcomes executed on `intents.near` per day; `burn_near_per_day` = outcome tokens burnt plus conversion tokens burnt per day.
+- **Definition check first.** For each metric, the median over the 7 quarters of (sample estimate / census value). **If it lies outside 0.9 to 1.1 the definitions are taken not to match and no coverage is claimed for that metric** (reported as a mismatch, not as a sampler failure).
+- **Coverage rule** as before: 90% interval covers the census value; below 80% of quarters is "too narrow" (with 7 quarters that means 5 or fewer covered). Point error as median absolute relative error.
+- The result is reported for the primary 198-cluster cut and for all 268. Nothing is dropped.
