@@ -2,6 +2,23 @@
 
 Window and rules: [chain-rebuild-method.md](chain-rebuild-method.md), committed (`047b429`, 23:30:41 UTC) before the first job (23:30:46 UTC). Cutoff block 223,088,015 (2026-11-04). All numbers come from `python3 -m pipeline.rebuild_analysis` reading saved BigQuery outputs (`data/raw/rebuild/`, job IDs and SHA-256 in `jobs.jsonl` and `data/MANIFEST.json`); results in `data/derived/rebuild_results.json`. Nothing here is a forward test. **INFERRED** marks a reading, not an observation.
 
+## Summary of what the chain shows (all rules and falsifiers pre-committed; details below)
+
+| Finding | Number | Section |
+|---|---|---|
+| Escrow wNEAR ledger reconciles to `mt_balance_of` at both ends | residual 3e-9 NEAR | Q1 |
+| Contract-wide wNEAR books on `wrap.near` close | residual 4e-7 NEAR, +7.61M NEAR | F10 |
+| Fee stream left the public account | 2026-08-29, 35% re-routed | Q2 |
+| Escrow funds the many-account delivery group | 99.8%; 55% of all NEAR delivered | F4 |
+| Revenue to the three wallets since 08-07 | \$4.74M; 4.05 bp of Llama volume (repo 4.98) | F5 |
+| Public swap legs vs 1Click / Llama | 0.92 / 0.30 | F3 |
+| 09-01 step in public legs / in revenue | absent / not distinguishable from noise | Q4, F3, F6 |
+| Deposit path (`bridge-mng.near`) | pure pass-through, 75.97M NEAR | F2b |
+| Solver family's external inflow | one relay, 4 Binance wallets, 30.8M NEAR | F7 |
+| Exchange-sourced share of the deposit path | 43.8%, all but 7.4% is that relay | F8 |
+| Family's native withdrawals | 14.4M NEAR to a Binance wallet | F10 |
+| Solver payments vs volume | no fixed rate | F9 |
+
 ## Q1. Escrow mass balance (wNEAR)
 
 | | NEAR |
