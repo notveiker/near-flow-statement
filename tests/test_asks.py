@@ -146,3 +146,16 @@ class RX910(unittest.TestCase):
         # the size buckets and the class split are two cuts of the same priced population (rebuild Q4: $2.17B)
         self.assertAlmostEqual(b["usd"] / a["priced_total_usd_classified"], 1.0, places=4)
         self.assertAlmostEqual(sum(x["usd_share"] for x in b["buckets"].values()), 1.0, places=9)
+
+
+class RX1112(unittest.TestCase):
+    def test_rx11_rx12_rules_and_totals(self):
+        d = json.load(open(ROOT / "data" / "derived" / "rx_results.json"))
+        a, b = d["rx11"], d["rx12"]
+        self.assertEqual(a["H_RX11b_supported"], a["btc_leads_weeks"] >= 11)
+        self.assertEqual(a["H_RX11a_supported"], a["zec_ratio"] >= 1.5)
+        self.assertEqual(b["H_RX12c_falsified"], b["nonstable_sold_usd"] > b["nonstable_bought_usd"])
+        self.assertFalse(b["H_RX12a_supported"] or b["H_RX12a_falsified"])  # 25.8% is between 15% and 30%
+        # same population as RX9/RX10 (rebuild Q4: $2.17B), minus the 11 excluded swaps
+        self.assertAlmostEqual((b["total_usd"] + b["excluded"]["usd"]) / d["rx10"]["usd"], 1.0, places=4)
+        self.assertLessEqual(sum(b["destination_share"].values()), 1.0 + 1e-9)

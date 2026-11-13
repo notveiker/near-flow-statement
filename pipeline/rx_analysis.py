@@ -299,8 +299,89 @@ def rx10() -> dict:
     }
 
 
+def _flows_rows() -> list[dict]:
+    return json.loads((OUT / "rx11_rx12_flows.json").read_text())
+
+
+def _group(sym: str) -> str:
+    import re
+    g = re.sub(r"\(DEPRECATED\)$", "", sym)
+    return {"USDT0": "USDT", "WBTC": "BTC", "wNEAR": "NEAR"}.get(g, g)
+
+
+def rx11() -> dict:
+    rows = _flows_rows()
+    part = lambda n: [r for r in rows if r["part"] == n]
+    stable = set()
+    for line in (RAW / "rebuild" / "aux_tokens.ndjson").read_text().splitlines():
+        t = json.loads(line)
+        if t["is_stable"]:
+            stable.add(_group(t["symbol"]))
+    wk_total = {int(r["k"]): f(r["x1"]) for r in part("week_total")}
+    aw: dict[int, dict[str, float]] = {}
+    for r in part("asset_week"):
+        b, g = r["k"].split("|", 1)
+        aw.setdefault(int(b), {})[g] = f(r["x1"])
+    complete = range(12)
+    zshare = {b: aw[b].get("ZEC", 0) / wk_total[b] for b in sorted(wk_total)}
+    zfirst, zlast = sum(zshare[b] for b in range(0, 4)) / 4, sum(zshare[b] for b in range(8, 12)) / 4
+    lead = {b: max((g for g in aw[b] if g not in stable), key=lambda g: aw[b][g]) for b in complete}
+    btc_weeks = sum(1 for b in complete if lead[b] == "BTC")
+    assets = {r["k"]: {"sold_usd": f(r["x1"]), "bought_usd": f(r["x2"]), "swap_legs": f(r["x3"])} for r in part("asset")}
+    top3 = part("top3")[0]
+    t3_share = f(top3["x1"]) / f(top3["x2"])
+    tot_inv = {g: sum(aw[b].get(g, 0) for b in aw) for g in {g for b in aw for g in aw[b]} if g not in stable}
+    top10 = sorted(tot_inv, key=lambda g: -tot_inv[g])[:10]
+    ratio = zlast / zfirst if zfirst else None
+    return {
+        "zec_share_by_week": {str(b): zshare[b] for b in sorted(zshare)}, "zec_share_blocks_0_3": zfirst, "zec_share_blocks_8_11": zlast, "zec_ratio": ratio,
+        "leading_nonstable_by_week": {str(b): lead[b] for b in complete}, "btc_leads_weeks": btc_weeks,
+        "top3_nonstable": top3["k"], "top3_share_of_nonstable_leg_dollars": t3_share,
+        "top10_nonstable": [{"asset": g, "usd_involved": tot_inv[g], "share_of_all_priced": tot_inv[g] / sum(wk_total.values()),
+                             "by_week": [aw.get(b, {}).get(g, 0) for b in sorted(wk_total)]} for g in top10],
+        "assets_sold_bought": {g: assets[g] for g in top10 + ["USDT", "USDC"] if g in assets},
+        "H_RX11a_supported": bool(ratio and ratio >= 1.5), "H_RX11a_falsified": bool(ratio is not None and ratio < 1.0),
+        "H_RX11b_supported": btc_weeks >= 11, "H_RX11b_falsified": btc_weeks < 7,
+        "H_RX11c_supported": t3_share >= 0.70, "H_RX11c_falsified": t3_share < 0.50,
+    }
+
+
+def rx12() -> dict:
+    rows = _flows_rows()
+    part = lambda n: [r for r in rows if r["part"] == n]
+    flows = [{"from": r["k"].split("|")[0], "to": r["k"].split("|")[1], "swaps": f(r["x1"]), "usd": f(r["x2"])} for r in part("flow")]
+    tot = sum(x["usd"] for x in flows)
+    to_ch: dict[str, float] = {}
+    fr_ch: dict[str, float] = {}
+    for x in flows:
+        to_ch[x["to"]] = to_ch.get(x["to"], 0) + x["usd"]
+        fr_ch[x["from"]] = fr_ch.get(x["from"], 0) + x["usd"]
+    top3 = sorted(to_ch, key=lambda c: -to_ch[c])[:3]
+    top3_share = sum(to_ch[c] for c in top3) / tot
+    near = [r for r in part("touch") if r["k"] == "near_chain"][0]
+    near_share = f(near["x2"]) / f(near["x3"])
+    vn = {int(r["k"]): (f(r["x1"]), f(r["x2"])) for r in part("vnet")}
+    bought, sold = sum(v[0] for v in vn.values()), sum(v[1] for v in vn.values())
+    same = sum(x["usd"] for x in flows if x["from"] == x["to"]) / tot
+    chains = sorted(set(to_ch) | set(fr_ch))
+    near_flows = sorted(({"from": x["from"], "to": x["to"], "usd": x["usd"], "share": x["usd"] / tot} for x in flows if "near" in (x["from"], x["to"])), key=lambda x: -x["usd"])[:8]
+    return {
+        "total_usd": tot, "excluded": {k: f(v) for k, v in [("swaps", part("excl")[0]["x1"]), ("usd", part("excl")[0]["x2"]), ("of_swaps", part("excl")[0]["x3"])]},
+        "top3_destination_chains": top3, "top3_destination_share": top3_share,
+        "destination_share": {c: to_ch[c] / tot for c in sorted(to_ch, key=lambda c: -to_ch[c])[:10]},
+        "net_usd_by_chain": {c: to_ch.get(c, 0) - fr_ch.get(c, 0) for c in sorted(chains, key=lambda c: -abs(to_ch.get(c, 0) - fr_ch.get(c, 0)))[:10]},
+        "top10_flows": [{**x, "share": x["usd"] / tot} for x in sorted(flows, key=lambda x: -x["usd"])[:10]],
+        "near_chain_touch_share": near_share, "near_chain_touch_swaps": f(near["x1"]), "near_chain_top_flows": near_flows, "same_chain_share": same,
+        "nonstable_bought_usd": bought, "nonstable_sold_usd": sold, "nonstable_net_bought_usd": bought - sold,
+        "nonstable_net_by_week": {str(b): vn[b][0] - vn[b][1] for b in sorted(vn)},
+        "H_RX12a_supported": near_share <= 0.15, "H_RX12a_falsified": near_share > 0.30,
+        "H_RX12b_supported": top3_share >= 0.60, "H_RX12b_falsified": top3_share < 0.40,
+        "H_RX12c_supported": bought > sold, "H_RX12c_falsified": sold > bought,
+    }
+
+
 def main() -> int:
-    res = {"rx1": rx1(), "rx2": rx2(), "rx3": rx3(), "rx4": rx4(), "rx5": rx5(), "rx6": rx6(), "rx7": rx7(), "rx8": rx8(), "rx9": rx9(), "rx10": rx10()}
+    res = {"rx1": rx1(), "rx2": rx2(), "rx3": rx3(), "rx4": rx4(), "rx5": rx5(), "rx6": rx6(), "rx7": rx7(), "rx8": rx8(), "rx9": rx9(), "rx10": rx10(), "rx11": rx11(), "rx12": rx12()}
     dest = ROOT / "data" / "derived" / "rx_results.json"
     dest.write_text(json.dumps(res, indent=1, sort_keys=True) + "\n")
     print("wrote", dest.relative_to(ROOT))

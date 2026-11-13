@@ -778,10 +778,17 @@
    "source": "rpc view_account at block 223230811"
   },
   "raw/rx/jobs.jsonl": {
-   "bytes": 4053,
-   "fetched_at": "2026-11-13T06:46:55Z",
-   "sha256": "998948e14b70798f12e97f6ad00c0da58848cffc252808195478e1cfa73ce4e0",
+   "bytes": 4625,
+   "fetched_at": "2026-11-13T06:53:36Z",
+   "sha256": "e9e00b28c82f3479d5435010cbefccb219eb5db7a3cf2fa5d6efaea412af1398",
    "source": "append-only log written by pipeline.windows run-file"
+  },
+  "raw/rx/rx11_rx12_flows.json": {
+   "bytes": 89888,
+   "fetched_at": "2026-11-13T06:53:36Z",
+   "rows": 1119,
+   "sha256": "64cf596898f797c27b58207a178a56d4b02618e11eabb8872534966dde55220f",
+   "source": "bigquery job ask_rx11_rx12_flows_20261113T065327Z: sql/rx/rx11_rx12_flows.sql"
   },
   "raw/rx/rx1_users.json": {
    "bytes": 3033,
