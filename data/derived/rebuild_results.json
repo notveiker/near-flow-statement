@@ -1,9 +1,9 @@
 {
  "bytes_billed_total": 1583755558912,
  "cutoff_block": 223088015,
- "f1": {
-  "H_F1_falsified": true,
-  "H_F1_supported": false,
+ "fu1": {
+  "H_FU1_falsified": true,
+  "H_FU1_supported": false,
   "deposits_by_month_near": {
    "2026-07": 809840.9591037201,
    "2026-08": 5380998.157517361,
@@ -36,19 +36,19 @@
   "recycling_ratio": 2.390988047007086,
   "top5_signer_share": 1.0
  },
- "f10": {
-  "H_F10a_complete": true,
-  "H_F10b_falsified": true,
-  "H_F10b_supported": false,
+ "fu10": {
+  "H_FU10a_complete": true,
+  "H_FU10b_falsified": true,
+  "H_FU10b_supported": false,
   "balance_change_near": 7611764.477724442,
   "balance_end_near": 16566224.2906412,
   "balance_start_near": 8954459.812916756,
   "bridge_mng_share_of_inflow": 0.7808955730762955,
   "d6b77389": {
-   "H_F10c_falsified": false,
-   "H_F10c_supported": true,
+   "H_FU10c_falsified": false,
+   "H_FU10c_supported": true,
    "direct_received_near": 782066.5800000001,
-   "native_withdraw_received_near_f1": 13606732.021309018,
+   "native_withdraw_received_near_fu1": 13606732.021309018,
    "sent_over_direct_plus_native_withdraw_post_hoc": 1.000000029793383,
    "sent_over_direct_received": 18.398432304830116,
    "sent_transfer_near": 14388799.030000009,
@@ -162,12 +162,12 @@
   "residual_over_larger_flow": 4.529075052548231e-15,
   "unstakers_share_of_in": 5.139799714549932e-05
  },
- "f11": {
-  "H_F11a_falsified": true,
-  "H_F11a_supported": false,
-  "H_F11b_supported": false,
-  "H_F11c_falsified": false,
-  "H_F11c_supported": true,
+ "fu11": {
+  "H_FU11a_falsified": true,
+  "H_FU11a_supported": false,
+  "H_FU11b_supported": false,
+  "H_FU11c_falsified": false,
+  "H_FU11c_supported": true,
   "by_month_primary": {
    "2026-08": {
     "negative_share": 0.2438971282026468,
@@ -334,19 +334,19 @@
    }
   }
  },
- "f2b": {
-  "H_F2b_a_falsified": false,
-  "H_F2b_a_supported": true,
-  "H_F2b_b_falsified": true,
-  "H_F2b_b_supported": false,
-  "H_F2b_c_falsified": false,
-  "H_F2b_c_supported": true,
+ "fu2b": {
+  "H_FU2b_a_falsified": false,
+  "H_FU2b_a_supported": true,
+  "H_FU2b_b_falsified": true,
+  "H_FU2b_b_supported": false,
+  "H_FU2b_c_falsified": false,
+  "H_FU2b_c_supported": true,
   "R_pass_through": 1.0,
   "direct_coverage_of_wrapped": 1.0000615467928138,
   "direct_funded_near": 75970239.89900002,
   "direct_transfers": 58799,
-  "f1_consistent": true,
-  "f1_mints_near": 30798973.514278293,
+  "fu1_consistent": true,
+  "fu1_mints_near": 30798973.514278293,
   "funded_by_lists_share": 0.0,
   "funded_by_unstakers_or_exchange_list_near": 0,
   "funders": 55037,
@@ -361,8 +361,8 @@
   "refund_in_near": 1917.123571995194,
   "step3_triggered": true,
   "top10_share": 0.5516836431702736,
-  "top_funder_matches_f1": {
-   "f1_mints_near": 30798973.514278293,
+  "top_funder_matches_fu1": {
+   "fu1_mints_near": 30798973.514278293,
    "near": 30798977.710000016,
    "ratio": 1.0000001362292714,
    "signer": "1244d552459d7230bdaf267c1d09a296282dc85251958434e670d9b9d561fac7"
@@ -425,8 +425,8 @@
   "wrap_events": 58705,
   "wrapped_near": 75965564.4621431
  },
- "f3": {
-  "H_F3a_robust": true,
+ "fu3": {
+  "H_FU3a_robust": true,
   "anchored_receipts": 1079278,
   "anchored_share_of_complex": 0.9460711781206171,
   "anchored_usd": 1342459209.812484,
@@ -464,8 +464,8 @@
   "unanchored_receipts": 61522,
   "uplift_vs_simple": 0.6182821364310669
  },
- "f4": {
-  "H_F4a_mt_transfer_only_post_hoc": {
+ "fu4": {
+  "H_FU4a_mt_transfer_only_post_hoc": {
    "credits_mt_transfer_near": 646468.4087915203,
    "share": 0.5247075619392908,
    "top_senders": [
@@ -496,7 +496,7 @@
     }
    ]
   },
-  "H_F4a_strict": {
+  "H_FU4a_strict": {
    "attribution_allowed_by_reconciliation": false,
    "credits_all_channels_near": 1262916.1243939903,
    "falsified": false,
@@ -505,7 +505,7 @@
    "top_sender": "blockzen-1-main.near",
    "top_sender_near": 339206.8626477714
   },
-  "H_F4b_strict": {
+  "H_FU4b_strict": {
    "all_credits_mid_post_near": 1679043.432892166,
    "escrow_mt_transfer_near_mid_post": 822714.8106050506,
    "falsified": false,
@@ -614,13 +614,13 @@
    ]
   }
  },
- "f5": {
-  "H_F5a_falsified": true,
-  "H_F5a_supported": false,
-  "H_F5b_falsified": false,
-  "H_F5b_supported": false,
-  "H_F5c_falsified": true,
-  "H_F5c_supported": false,
+ "fu5": {
+  "H_FU5a_falsified": true,
+  "H_FU5a_supported": false,
+  "H_FU5b_falsified": false,
+  "H_FU5b_supported": false,
+  "H_FU5c_falsified": true,
+  "H_FU5c_supported": false,
   "chain_volume_usd": 3513732049.040238,
   "delivered_usd": 4740825.047461938,
   "delivered_usd_by_group": {
@@ -670,7 +670,7 @@
      "persistent_5880ad2b_143f2bb4": 612268.4305308472
     }
    },
-   "note": "post hoc: the repo's 4.98 bp is over DefiLlama volume, not 1Click; the pre-registered H-F5a compared the wrong denominator",
+   "note": "post hoc: the repo's 4.98 bp is over DefiLlama volume, not 1Click; the pre-registered H-FU5a compared the wrong denominator",
    "tau_llama_bp": 4.049862840962048,
    "tau_llama_bp_by_month": {
     "2026-08": 2.6763468087047304,
@@ -696,7 +696,7 @@
    "2026-11-04"
   ]
  },
- "f6": {
+ "fu6": {
   "boundaries": 75,
   "llama_ratio": 1.3160838394406043,
   "mirrored": true,
@@ -733,12 +733,12 @@
    ]
   ]
  },
- "f7": {
-  "H_F7a_supported": true,
-  "H_F7b_falsified": false,
-  "H_F7b_supported": true,
-  "H_F7c_falsified": false,
-  "H_F7c_supported": true,
+ "fu7": {
+  "H_FU7a_supported": true,
+  "H_FU7b_falsified": false,
+  "H_FU7b_supported": true,
+  "H_FU7c_falsified": false,
+  "H_FU7c_supported": true,
   "coverage_K": 1.0000001790878423,
   "in_lists_share": 1.0,
   "inflow_near": 30798979.03000001,
@@ -783,11 +783,11 @@
    }
   ]
  },
- "f8": {
-  "H_F8a_falsified": false,
-  "H_F8a_supported": true,
-  "H_F8b_falsified": true,
-  "H_F8b_supported": false,
+ "fu8": {
+  "H_FU8a_falsified": false,
+  "H_FU8a_supported": true,
+  "H_FU8b_falsified": true,
+  "H_FU8b_supported": false,
   "all": {
    "coverage": 0.8500377540449227,
    "covered_near": 64577572.09799976,
@@ -815,12 +815,12 @@
   "funders": 55037,
   "funders_with_inflow": 54230
  },
- "f9": {
+ "fu9": {
   "blockzen-1-main.near": {
-   "H_F9a_falsified": true,
-   "H_F9a_supported": false,
-   "H_F9b_falsified": false,
-   "H_F9b_supported": true,
+   "H_FU9a_falsified": true,
+   "H_FU9a_supported": false,
+   "H_FU9b_falsified": false,
+   "H_FU9b_supported": true,
    "month_deviation": {
     "2026-08": 0.9622321481432268,
     "2026-09": 0.26709117532071236,
@@ -849,10 +849,10 @@
    "window_bp": 29.965340626566054
   },
   "crux-solver.near": {
-   "H_F9a_falsified": true,
-   "H_F9a_supported": false,
-   "H_F9b_falsified": true,
-   "H_F9b_supported": false,
+   "H_FU9a_falsified": true,
+   "H_FU9a_supported": false,
+   "H_FU9b_falsified": true,
+   "H_FU9b_supported": false,
    "month_deviation": {
     "2026-08": 0.12185349195067974,
     "2026-09": -0.5019357747699866,

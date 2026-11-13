@@ -285,21 +285,21 @@ def q4() -> dict:
     }
 
 
-# ------------------------------------------------------------------ F1
+# ------------------------------------------------------------------ FU1
 FAMILY = {"solver-priv-liq.near", "solver-multichain-asset.near", "solver-multichain-asset-escrow.near", "solver-multichain-asset-2.near"}
 
 
-def f1() -> dict:
+def fu1() -> dict:
     rows = [r for r in load("rb_q1a_escrow_ledger") if r["event"] == "mt_transfer"]
     gin = sum(int(r["mt_yocto"]) for r in rows if r["new_owner"] == ESCROW and r["old_owner"] in FAMILY) / Y
     gout = sum(int(r["mt_yocto"]) for r in rows if r["old_owner"] == ESCROW and r["new_owner"] in FAMILY) / Y
-    dep = load("rb_f1a_family_deposits")
+    dep = load("rb_fu1a_family_deposits")
     by_signer = Counter()
     month = Counter()
     for r in dep:
         by_signer[(r["signer"], r["tx_receiver"])] += int(r["yocto"]) / Y
         month[r["day"][:7]] += int(r["yocto"]) / Y
-    wd = load("rb_f1b_family_withdrawals")
+    wd = load("rb_fu1b_family_withdrawals")
     burn = sum(int(r["yocto"] or 0) for r in wd if r["event"] == "mt_burn") / Y
     native = Counter()
     for r in wd:
@@ -311,15 +311,15 @@ def f1() -> dict:
     return {"family": sorted(FAMILY), "gross_inflow_to_escrow_near": gin, "gross_outflow_from_escrow_near": gout,
             "external_mint_deposits_near": ext, "external_deposits_over_gross_inflow": ext / gin, "mt_burn_near": burn,
             "native_withdraw_by_receiver_near": dict(native), "net_external_near": net, "recycling_ratio": gin / net if net > 0 else None,
-            "H_F1_supported": (net > 0 and gin / net >= 5 and ext / gin < 0.25), "H_F1_falsified": ext / gin >= 0.5,
+            "H_FU1_supported": (net > 0 and gin / net >= 5 and ext / gin < 0.25), "H_FU1_falsified": ext / gin >= 0.5,
             "deposits_by_signer": [{"signer": a, "tx_receiver": b, "near": v, "in_unstakers_set": a in unst} for (a, b), v in by_signer.most_common(5)],
             "top5_signer_share": sum(v for _, v in by_signer.most_common(5)) / ext, "deposits_by_month_near": dict(month)}
 
 
-# ------------------------------------------------------------------ F3
-def f3() -> dict:
+# ------------------------------------------------------------------ FU3
+def fu3() -> dict:
     ds = days(SWAP_START, CUTOFF_DATE)
-    cx = {r["day"]: r for r in load("rb_f3a_daily")}
+    cx = {r["day"]: r for r in load("rb_fu3a_daily")}
     q4d = {r["day"]: r for r in load("rb_q4a_daily_volume")}
     n_anch = sum(int(r["n_anchored"]) for r in cx.values())
     n_un = sum(int(r["n_unanchored"]) for r in cx.values())
@@ -334,7 +334,7 @@ def f3() -> dict:
     one = sum(exp.get(d, 0) for d in ds)
     ll = {datetime.fromtimestamp(t, timezone.utc).date().isoformat(): v for t, v in json.loads((RAW / "llama" / "volume_near-intents.json").read_text())["totalDataChart"]}
     llt = sum(ll.get(d, 0) for d in ds)
-    rows = load("rb_f3b_solver_fills")
+    rows = load("rb_fu3b_solver_fills")
     tot = {r["solver"]: int(r["fills_simple"]) + int(r["fills_complex"]) for r in rows}
     t = sum(tot.values())
     top = sorted(tot.items(), key=lambda kv: -kv[1])
@@ -345,27 +345,27 @@ def f3() -> dict:
             "combined_over_oneclick": sum(comb) / one, "combined_over_llama": sum(comb) / llt, "llama_over_oneclick": llt / one,
             "step_ratio_combined": step(comb), "step_ratio_anchored_only": step(anch), "step_threshold": thr, "step_shows_on_chain": step(comb) >= thr,
             "fills_simple": sum(int(r["fills_simple"]) for r in rows), "fills_complex": sum(int(r["fills_complex"]) for r in rows),
-            "top10_fill_share_combined": comb_top10, "top10_fill_share_simple": simple_top10, "H_F3a_robust": abs(comb_top10 - simple_top10) <= 0.05,
+            "top10_fill_share_combined": comb_top10, "top10_fill_share_simple": simple_top10, "H_FU3a_robust": abs(comb_top10 - simple_top10) <= 0.05,
             "top1_combined": {"solver": top[0][0], "share": top[0][1] / t}, "top3_combined": [{"solver": k, "share": v / t} for k, v in top[:3]]}
 
 
-# ------------------------------------------------------------------ F2b
+# ------------------------------------------------------------------ FU2b
 BRIDGE = "bridge-mng.near"
 
 
-def f2b() -> dict:
-    a = load("rb_f2b_a_daily")
+def fu2b() -> dict:
+    a = load("rb_fu2b_a_daily")
     k, n = Counter(), Counter()
     for r in a:
         k[r["kind"]] += int(r["yocto"]) / Y
         n[r["kind"]] += int(r["n"])
     R = k["out"] / k["wrap"]
-    f1_mints = f1()["external_mint_deposits_near"]
-    b = load("rb_f2b_b_withdrawals_to_bridge")
+    f1_mints = fu1()["external_mint_deposits_near"]
+    b = load("rb_fu2b_b_withdrawals_to_bridge")
     to_bridge = [r for r in b if r["part"] == "to_bridge"]
     wd_native = sum(int(r["yocto"] or 0) for r in to_bridge if r["event"] == "native_withdraw" or r["token"] == "nep141:wrap.near") / Y
     wd_share = wd_native / k["wrap"]
-    funders = load("rb_f2b_c_direct_funders")
+    funders = load("rb_fu2b_c_direct_funders")
     by = {r["signer"]: float(r["near"] or 0) for r in funders if r["part"] == "by_signer"}
     direct = sum(by.values())
     top = sorted(by.items(), key=lambda kv: -kv[1])
@@ -379,28 +379,28 @@ def f2b() -> dict:
                 elif isinstance(z, str):
                     exch.add(z)
     in_lists = sum(v for a_, v in by.items() if a_ in unst or a_ in exch)
-    over = [r for r in load("rb_f2b_d_funder_overlap") if r["part"] == "overlap"]
+    over = [r for r in load("rb_fu2b_d_funder_overlap") if r["part"] == "overlap"]
     ov_fund = sum(float(r["x"] or 0) for r in over)
     ov_wd = sum(float(r["y"] or 0) for r in over)
-    foot = [r for r in load("rb_f2b_d_funder_overlap") if r["part"] != "overlap"]
+    foot = [r for r in load("rb_fu2b_d_funder_overlap") if r["part"] != "overlap"]
     return {"wrapped_near": k["wrap"], "wrap_events": n["wrap"], "passed_to_intents_near": k["out"], "R_pass_through": R,
-            "H_F2b_a_supported": 0.95 <= R <= 1.05, "H_F2b_a_falsified": R < 0.8 or R > 1.2,
-            "transfers_in_near": k["in"], "refund_in_near": k["refund_in"], "f1_mints_near": f1_mints, "f1_consistent": k["out"] >= f1_mints * 0.999,
+            "H_FU2b_a_supported": 0.95 <= R <= 1.05, "H_FU2b_a_falsified": R < 0.8 or R > 1.2,
+            "transfers_in_near": k["in"], "refund_in_near": k["refund_in"], "fu1_mints_near": f1_mints, "fu1_consistent": k["out"] >= f1_mints * 0.999,
             "withdrawals_to_bridge_near": wd_native, "withdrawals_share_of_wrapped": wd_share,
-            "H_F2b_b_supported": wd_share >= 0.5, "H_F2b_b_falsified": wd_share < 0.1, "step3_triggered": wd_share < 0.8,
+            "H_FU2b_b_supported": wd_share >= 0.5, "H_FU2b_b_falsified": wd_share < 0.1, "step3_triggered": wd_share < 0.8,
             "direct_funded_near": direct, "direct_coverage_of_wrapped": direct / k["wrap"], "direct_transfers": sum(int(r["n"]) for r in funders if r["part"] == "by_signer"),
             "funders": len(by), "top_funders": [{"signer": a_, "near": v, "share": v / direct} for a_, v in top[:10]], "top10_share": sum(v for _, v in top[:10]) / direct,
             "funded_by_unstakers_or_exchange_list_near": in_lists, "funded_by_lists_share": in_lists / direct,
-            "H_F2b_c_supported": (direct / k["wrap"] >= 0.8 and sum(v for _, v in top[:10]) / direct >= 0.5 and in_lists / direct < 0.1),
-            "H_F2b_c_falsified": in_lists / direct >= 0.1,
-            "top_funder_matches_f1": {"signer": top[0][0], "near": top[0][1], "f1_mints_near": f1_mints, "ratio": top[0][1] / f1_mints},
+            "H_FU2b_c_supported": (direct / k["wrap"] >= 0.8 and sum(v for _, v in top[:10]) / direct >= 0.5 and in_lists / direct < 0.1),
+            "H_FU2b_c_falsified": in_lists / direct >= 0.1,
+            "top_funder_matches_fu1": {"signer": top[0][0], "near": top[0][1], "fu1_mints_near": f1_mints, "ratio": top[0][1] / f1_mints},
             "post_hoc_recycled": {"funders_also_native_withdraw_receivers": len(over), "funded_near": ov_fund, "withdrawn_to_them_near": ov_wd, "share_of_direct": ov_fund / direct},
             "post_hoc_top_funder_intents_events": len(foot)}
 
 
-# ------------------------------------------------------------------ F4
-def f4() -> dict:
-    rows = load("rb_f4a_fee_credits")
+# ------------------------------------------------------------------ FU4
+def fu4() -> dict:
+    rows = load("rb_fu4a_fee_credits")
     q2d = load("rb_q2_native_withdraw")
     deliv = Counter()
     for r in q2d:
@@ -447,23 +447,23 @@ def f4() -> dict:
             mt_by_period[r["period"]][r["cp"]] += int(r["yocto"]) / Y
     share = esc_p["esc"] / tot_p["all"]
     return {"reconciliation": recon, "delivered_total_near": sum(deliv.values()),
-            "H_F4a_strict": {"top_sender": top_sender, "top_sender_near": top_v, "credits_all_channels_near": credit_all, "share": top_v / credit_all,
+            "H_FU4a_strict": {"top_sender": top_sender, "top_sender_near": top_v, "credits_all_channels_near": credit_all, "share": top_v / credit_all,
                               "supported": top_v / credit_all >= 0.5, "falsified": top_v / credit_all < 0.25,
                               "attribution_allowed_by_reconciliation": all(recon[g]["within_0p8_1p5_all_channels"] for g in both)},
-            "H_F4a_mt_transfer_only_post_hoc": {"share": top_v / credit_mt, "credits_mt_transfer_near": credit_mt,
+            "H_FU4a_mt_transfer_only_post_hoc": {"share": top_v / credit_mt, "credits_mt_transfer_near": credit_mt,
                                                  "top_senders": [{"sender": a, "near": v, "share": v / credit_mt} for a, v in send.most_common(5)]},
-            "H_F4b_strict": {"escrow_mt_transfer_near_mid_post": esc_p["esc"], "all_credits_mid_post_near": tot_p["all"], "share": share, "supported": share >= 0.2, "falsified": share < 0.05,
+            "H_FU4b_strict": {"escrow_mt_transfer_near_mid_post": esc_p["esc"], "all_credits_mid_post_near": tot_p["all"], "share": share, "supported": share >= 0.2, "falsified": share < 0.05,
                               "share_of_mt_transfer_only_post_hoc": esc_p["esc"] / tot_p["mt"], "pre_0819_share_all_channels": esc_pre / tot_pre},
             "rest_group_escrow_funded_near": esc_rest_all, "rest_group_escrow_share_of_credits": esc_rest_all / sum(cred["rest"].values()),
             "deliveries_csv_escrow_unshield_near": csv_unshield, "rest_delivered_near": deliv["rest"],
             "senders_by_period_persistent_accounts_post_hoc": {p: [{"sender": a, "near": v} for a, v in c.most_common(4)] for p, c in sorted(mt_by_period.items())}}
 
 
-# ------------------------------------------------------------------ F5
-def f5() -> dict:
+# ------------------------------------------------------------------ FU5
+def fu5() -> dict:
     ds = days(SWAP_START, CUTOFF_DATE)
     px = {r["day"]: r["usd"] for r in map(json.loads, (OUT / "aux_prices.ndjson").read_text().splitlines()) if r["symbol"] == "NEAR"}
-    cx = {r["day"]: float(r["usd_anchored"]) for r in load("rb_f3a_daily")}
+    cx = {r["day"]: float(r["usd_anchored"]) for r in load("rb_fu3a_daily")}
     q4d = {r["day"]: float(r["usd_all"]) for r in load("rb_q4a_daily_volume")}
     vol = {d: q4d[d] + cx[d] for d in ds}
     exp = {r["date"]: r["usd_in"] for r in json.loads((RAW / "explorer" / "daily.json").read_text())["days"]}
@@ -494,19 +494,19 @@ def f5() -> dict:
     tau_l = sum(usd.values()) / sum(ll.get(d, 0) for d in ds) * 1e4
     llama_months = {mo: sum(usd[d] for d in ds if d[:7] == mo) / sum(ll.get(d, 0) for d in ds if d[:7] == mo) * 1e4 for mo in months}
     group_months = {mo: {g: sum(grp[d][g] for d in ds if d[:7] == mo) for g in ("persistent_5880ad2b_143f2bb4", "fee_176121bd", "escrow_funded_rest")} for mo in months}
-    post_hoc_llama = {"note": "post hoc: the repo's 4.98 bp is over DefiLlama volume, not 1Click; the pre-registered H-F5a compared the wrong denominator",
+    post_hoc_llama = {"note": "post hoc: the repo's 4.98 bp is over DefiLlama volume, not 1Click; the pre-registered H-FU5a compared the wrong denominator",
                       "tau_llama_bp": tau_l, "tau_llama_over_repo": tau_l / 4.98, "within_25pct": abs(tau_l / 4.98 - 1) <= 0.25, "tau_llama_bp_by_month": llama_months,
                       "delivered_usd_by_group_by_month": group_months}
     return {"post_hoc_llama_denominator": post_hoc_llama, "window": [SWAP_START, CUTOFF_DATE], "delivered_usd": sum(usd.values()), "chain_volume_usd": sum(vol.values()),
             "oneclick_volume_usd": sum(exp.get(d, 0) for d in ds), "tau_chain_bp": tau_c, "tau_1click_bp": tau_1, "repo_tau_bp": 4.98,
-            "H_F5a_supported": abs(tau_1 / 4.98 - 1) <= 0.25, "H_F5a_falsified": abs(tau_1 / 4.98 - 1) > 0.5, "tau_1click_over_repo": tau_1 / 4.98,
-            "months": months, "month_deviation_from_window": dev, "H_F5c_supported": all(abs(v) <= 0.3 for v in dev.values()), "H_F5c_falsified": any(abs(v) > 0.5 for v in dev.values()),
-            "weekly_corr": corr, "weeks": len(weeks), "H_F5b_supported": corr["total"] is not None and corr["total"] >= 0.5, "H_F5b_falsified": corr["total"] is not None and corr["total"] < 0.2,
+            "H_FU5a_supported": abs(tau_1 / 4.98 - 1) <= 0.25, "H_FU5a_falsified": abs(tau_1 / 4.98 - 1) > 0.5, "tau_1click_over_repo": tau_1 / 4.98,
+            "months": months, "month_deviation_from_window": dev, "H_FU5c_supported": all(abs(v) <= 0.3 for v in dev.values()), "H_FU5c_falsified": any(abs(v) > 0.5 for v in dev.values()),
+            "weekly_corr": corr, "weeks": len(weeks), "H_FU5b_supported": corr["total"] is not None and corr["total"] >= 0.5, "H_FU5b_falsified": corr["total"] is not None and corr["total"] < 0.2,
             "delivered_usd_by_group": by_group_usd, "mean_near_price": sum(px[d] for d in ds) / len(ds)}
 
 
-# ------------------------------------------------------------------ F6
-def f6() -> dict:
+# ------------------------------------------------------------------ FU6
+def fu6() -> dict:
     ds = days("2026-08-07", CUTOFF_DATE)
     px = {r["day"]: r["usd"] for r in map(json.loads, (OUT / "aux_prices.ndjson").read_text().splitlines()) if r["symbol"] == "NEAR"}
     names = ("persistent_5880ad2b_143f2bb4", "fee_176121bd", "escrow_funded_rest")
@@ -537,7 +537,7 @@ def f6() -> dict:
             "step_called": r0 >= thr and rank <= 0.10, "top5_boundaries": sorted(allr.items(), key=lambda kv: -kv[1])[:5]}
 
 
-# ------------------------------------------------------------------ F7
+# ------------------------------------------------------------------ FU7
 def _lists():
     unst = set(json.loads((RAW / "unstakers" / "account_set.json").read_text())["accounts"])
     exch = set()
@@ -551,14 +551,14 @@ def _lists():
     return unst, exch
 
 
-def f7() -> dict:
-    rows = load("rb_f7_a_summary")
+def fu7() -> dict:
+    rows = load("rb_fu7_a_summary")
     f = lambda v: float(v or 0)
     inn = sorted([(r["a"], f(r["near"]), int(r["n"])) for r in rows if r["part"] == "in_by_sender"], key=lambda t: -t[1])
     out = sorted([(r["a"], r["kind"], f(r["near"]), int(r["n"])) for r in rows if r["part"] == "out_by_receiver"], key=lambda t: -t[2])
     unst, exch = _lists()
     tin, tout = sum(t[1] for t in inn), sum(t[2] for t in out if t[1] == "TRANSFER")
-    f1m = f1()["external_mint_deposits_near"]
+    f1m = fu1()["external_mint_deposits_near"]
     in_lists = sum(t[1] for t in inn if t[0] in unst or t[0] in exch)
     to_bridge = sum(t[2] for t in out if t[0] == BRIDGE and t[1] == "TRANSFER")
     K = tin / f1m
@@ -566,16 +566,16 @@ def f7() -> dict:
     return {"coverage_K": K, "inflow_near": tin, "senders": len(inn), "top_senders": [{"sender": a, "near": v, "share": v / tin, "transfers": n, "in_unstakers_set": a in unst, "in_exchange_list": a in exch} for a, v, n in inn[:6]],
             "top3_share": top3, "in_lists_share": in_lists / tin, "outflow_transfer_near": tout, "to_bridge_mng_near": to_bridge, "to_bridge_share_of_outflow": to_bridge / tout,
             "other_signed_actions": [{"receiver": a, "kind": k, "near": v, "n": n} for a, k, v, n in out if not (a == BRIDGE and k == "TRANSFER")][:5],
-            "H_F7a_supported": K >= 0.5 and top3 >= 0.5, "H_F7b_supported": K >= 0.5 and in_lists / tin >= 0.5, "H_F7b_falsified": K >= 0.5 and in_lists / tin < 0.1,
-            "H_F7c_supported": to_bridge / tout >= 0.9, "H_F7c_falsified": to_bridge / tout < 0.5}
+            "H_FU7a_supported": K >= 0.5 and top3 >= 0.5, "H_FU7b_supported": K >= 0.5 and in_lists / tin >= 0.5, "H_FU7b_falsified": K >= 0.5 and in_lists / tin < 0.1,
+            "H_FU7c_supported": to_bridge / tout >= 0.9, "H_FU7c_falsified": to_bridge / tout < 0.5}
 
 
-# ------------------------------------------------------------------ F8
+# ------------------------------------------------------------------ FU8
 RELAY = "1244d552459d7230bdaf267c1d09a296282dc85251958434e670d9b9d561fac7"
 
 
-def f8() -> dict:
-    rows = load("rb_f8_a_funder_sources")
+def fu8() -> dict:
+    rows = load("rb_fu8_a_funder_sources")
     f = lambda v: float(v or 0)
     tot = sum(f(r["funded"]) for r in rows)
 
@@ -598,17 +598,17 @@ def f8() -> dict:
                 "intents_share_of_covered": it / cov if cov else None, "exchange_share_of_all_funded": ex / funded}
     a, b = shares(), shares(RELAY)
     return {"all": a, "excluding_relay": b, "funders": len(rows),
-            "H_F8a_supported": a["coverage"] >= 0.6 and a["exchange_share_of_covered"] >= 0.5, "H_F8a_falsified": a["exchange_share_of_covered"] is not None and a["exchange_share_of_covered"] < 0.25,
-            "H_F8b_supported": b["exchange_share_of_covered"] is not None and b["exchange_share_of_covered"] >= 0.25, "H_F8b_falsified": b["exchange_share_of_covered"] is not None and b["exchange_share_of_covered"] < 0.10,
+            "H_FU8a_supported": a["coverage"] >= 0.6 and a["exchange_share_of_covered"] >= 0.5, "H_FU8a_falsified": a["exchange_share_of_covered"] is not None and a["exchange_share_of_covered"] < 0.25,
+            "H_FU8b_supported": b["exchange_share_of_covered"] is not None and b["exchange_share_of_covered"] >= 0.25, "H_FU8b_falsified": b["exchange_share_of_covered"] is not None and b["exchange_share_of_covered"] < 0.10,
             "funders_with_inflow": sum(1 for r in rows if f(r["inflow"]) > 0)}
 
 
-# ------------------------------------------------------------------ F9
-def f9() -> dict:
+# ------------------------------------------------------------------ FU9
+def fu9() -> dict:
     ds = days(SWAP_START, CUTOFF_DATE)
     px = {r["day"]: r["usd"] for r in map(json.loads, (OUT / "aux_prices.ndjson").read_text().splitlines()) if r["symbol"] == "NEAR"}
     pay = defaultdict(lambda: Counter())
-    for r in load("rb_f9_a_solver_payments"):
+    for r in load("rb_fu9_a_solver_payments"):
         pay[r["payer"]][r["day"]] += int(r["yocto"] or 0) / Y * px[r["day"]]
     vol = defaultdict(lambda: Counter())
     for r in load("rb_q3c_solver_daily_top30"):
@@ -628,15 +628,15 @@ def f9() -> dict:
         dev = {m: v["bp"] / base - 1 for m, v in months.items() if v["bp"] is not None and base}
         r = pearson([sum(pay[sv][d] for d in w) for w in weeks], [sum(vol[sv][d] for d in w) for w in weeks])
         out[sv] = {"payments_usd": tp, "volume_usd": tv, "window_bp": base, "months": months, "month_deviation": dev,
-                   "H_F9a_supported": bool(dev) and all(abs(x) <= 0.3 for x in dev.values()), "H_F9a_falsified": any(abs(x) > 0.5 for x in dev.values()),
-                   "weekly_corr": r, "H_F9b_supported": r is not None and r >= 0.5, "H_F9b_falsified": r is not None and r < 0.2}
+                   "H_FU9a_supported": bool(dev) and all(abs(x) <= 0.3 for x in dev.values()), "H_FU9a_falsified": any(abs(x) > 0.5 for x in dev.values()),
+                   "weekly_corr": r, "H_FU9b_supported": r is not None and r >= 0.5, "H_FU9b_falsified": r is not None and r < 0.2}
     out["solver_priv_liq_payments_usd"] = sum(pay["solver-priv-liq.near"].values())
     return out
 
 
-# ------------------------------------------------------------------ F10
-def f10() -> dict:
-    a = load("rb_f10_a_ledger")
+# ------------------------------------------------------------------ FU10
+def fu10() -> dict:
+    a = load("rb_fu10_a_ledger")
     k = Counter()
     cp = defaultdict(Counter)
     for r in a:
@@ -652,30 +652,30 @@ def f10() -> dict:
     ex_in = sum(v for c, v in cp["in"].items() if c in exch)
     un_in = sum(v for c, v in cp["in"].items() if c in unst)
     top = lambda c: [{"account": x, "near": v} for x, v in c.most_common(10)]
-    rows = load("rb_f10_b_d6b7_flows")
+    rows = load("rb_fu10_b_d6b7_flows")
     f = lambda v: float(v or 0)
     out_t = sorted([(r["a"], f(r["near"]), int(r["n"])) for r in rows if r["part"] == "out_by_receiver" and r["kind"] == "TRANSFER"], key=lambda t: -t[1])
     in_t = [(r["a"], f(r["near"]), int(r["n"])) for r in rows if r["part"] == "in_by_sender"]
     sent = sum(t[1] for t in out_t)
     ex_sent = sum(t[1] for t in out_t if t[0] in exch)
     recv_direct = sum(t[1] for t in in_t)
-    f1n = f1()["native_withdraw_by_receiver_near"]
+    f1n = fu1()["native_withdraw_by_receiver_near"]
     native_to_d6 = sum(v for kx, v in f1n.items() if kx.startswith("d6b77389"))
     return {"balance_start_near": int(bal[0]["yocto"]) / Y, "balance_end_near": int(bal[1]["yocto"]) / Y, "balance_change_near": d,
             "ledger_near": {x: k[x] for x in ("in", "refund_in", "out", "refund_out", "unwrap", "other")}, "ledger_net_near": inflow - outflow,
-            "residual_near": resid, "residual_over_larger_flow": abs(resid) / max(inflow, outflow), "H_F10a_complete": abs(resid) / max(inflow, outflow) <= 0.01,
+            "residual_near": resid, "residual_over_larger_flow": abs(resid) / max(inflow, outflow), "H_FU10a_complete": abs(resid) / max(inflow, outflow) <= 0.01,
             "in_top10": top(cp["in"]), "out_top10": top(cp["out"]), "bridge_mng_share_of_inflow": cp["in"][BRIDGE] / k["in"],
             "exchange_list_share_of_in": ex_in / k["in"], "exchange_list_share_of_out_transfers": ex_out / k["out"], "unstakers_share_of_in": un_in / k["in"],
-            "H_F10b_supported": ex_out / k["out"] >= 0.25, "H_F10b_falsified": ex_out / k["out"] < 0.05,
+            "H_FU10b_supported": ex_out / k["out"] >= 0.25, "H_FU10b_falsified": ex_out / k["out"] < 0.05,
             "d6b77389": {"sent_transfer_near": sent, "to_exchange_list_near": ex_sent, "to_exchange_share": ex_sent / sent, "top_receivers": [{"account": a_, "near": v, "transfers": n, "in_exchange_list": a_ in exch} for a_, v, n in out_t[:3]],
-                         "direct_received_near": recv_direct, "native_withdraw_received_near_f1": native_to_d6, "sent_over_direct_received": sent / recv_direct if recv_direct else None,
+                         "direct_received_near": recv_direct, "native_withdraw_received_near_fu1": native_to_d6, "sent_over_direct_received": sent / recv_direct if recv_direct else None,
                          "sent_over_direct_plus_native_withdraw_post_hoc": sent / (recv_direct + native_to_d6),
-                         "H_F10c_supported": ex_sent / sent >= 0.5, "H_F10c_falsified": ex_sent / sent < 0.1}}
+                         "H_FU10c_supported": ex_sent / sent >= 0.5, "H_FU10c_falsified": ex_sent / sent < 0.1}}
 
 
-# ------------------------------------------------------------------ F11
-def f11() -> dict:
-    rows = load("rb_f11_a_stable_spread")
+# ------------------------------------------------------------------ FU11
+def fu11() -> dict:
+    rows = load("rb_fu11_a_stable_spread")
     f = lambda v: float(v or 0)
 
     def agg(sel):
@@ -697,20 +697,20 @@ def f11() -> dict:
             solvers[sv] = a
     res["solvers_ge_5m"] = dict(sorted(solvers.items(), key=lambda kv: -kv[1]["paid_usd"]))
     p = res["primary_same_symbol_1click"]["spread_bp"]
-    res["H_F11a_supported"] = res["primary_same_symbol_1click"]["swaps"] >= 10000 and 5 <= p <= 15
-    res["H_F11a_falsified"] = res["primary_same_symbol_1click"]["swaps"] >= 10000 and (p < 2 or p > 25)
+    res["H_FU11a_supported"] = res["primary_same_symbol_1click"]["swaps"] >= 10000 and 5 <= p <= 15
+    res["H_FU11a_falsified"] = res["primary_same_symbol_1click"]["swaps"] >= 10000 and (p < 2 or p > 25)
     a_, e_ = res["by_size_primary"].get("a_<100", {}).get("spread_bp"), res["by_size_primary"].get("e_>=100k", {}).get("spread_bp")
-    res["H_F11b_supported"] = a_ is not None and e_ is not None and a_ > e_
+    res["H_FU11b_supported"] = a_ is not None and e_ is not None and a_ > e_
     sp = [v["spread_bp"] for v in solvers.values() if v["spread_bp"] and v["spread_bp"] > 0]
     ratio = max(sp) / min(sp) if len(sp) >= 2 else None
     res["solver_spread_max_over_min"] = ratio
-    res["H_F11c_supported"] = ratio is not None and ratio >= 2
-    res["H_F11c_falsified"] = ratio is not None and ratio < 1.5
+    res["H_FU11c_supported"] = ratio is not None and ratio >= 2
+    res["H_FU11c_falsified"] = ratio is not None and ratio < 1.5
     return res
 
 
 def main() -> int:
-    res = {"cutoff_block": 223_088_015, "windows": {"q1_q2": [WINDOW_START, CUTOFF_DATE], "q3_q4": [SWAP_START, CUTOFF_DATE]}, "q1": q1(), "q2": q2(), "q3": q3(), "q4": q4(), "f1": f1(), "f3": f3(), "f2b": f2b(), "f4": f4(), "f5": f5(), "f6": f6(), "f7": f7(), "f8": f8(), "f9": f9(), "f10": f10(), "f11": f11()}
+    res = {"cutoff_block": 223_088_015, "windows": {"q1_q2": [WINDOW_START, CUTOFF_DATE], "q3_q4": [SWAP_START, CUTOFF_DATE]}, "q1": q1(), "q2": q2(), "q3": q3(), "q4": q4(), "fu1": fu1(), "fu3": fu3(), "fu2b": fu2b(), "fu4": fu4(), "fu5": fu5(), "fu6": fu6(), "fu7": fu7(), "fu8": fu8(), "fu9": fu9(), "fu10": fu10(), "fu11": fu11()}
     jobs = [json.loads(l) for l in (OUT / "jobs.jsonl").read_text().splitlines()]
     res["bytes_billed_total"] = sum(j["bytes_billed"] for j in jobs)
     dest = ROOT / "data" / "derived" / "rebuild_results.json"

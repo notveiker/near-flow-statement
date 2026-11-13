@@ -415,10 +415,10 @@
    "source": "archival RPC call_function at fixed blocks (keyless), pipeline.rebuild_rpc"
   },
   "raw/rebuild/jobs.jsonl": {
-   "bytes": 23544,
-   "fetched_at": "2026-11-13T01:38:05Z",
-   "sha256": "bbd12653112feeb1c8787ce4de1e329c22a876d70f7786d91703586ea70aff1a",
-   "source": "append-only log written by pipeline.rebuild"
+   "bytes": 24607,
+   "fetched_at": "2026-11-13T02:08:40Z",
+   "sha256": "ffe41c0761fe456865c4f212fa406b68cfbf742f93015da2b6efb5fdc5acd894",
+   "source": "bigquery job log, stems renamed F->FU (see docs/chain-rebuild-method.md labels note)"
   },
   "raw/rebuild/post_hoc_bridge_mng_mint_share.json": {
    "bytes": 128,
@@ -432,112 +432,112 @@
    "sha256": "e4e0d835c4755c7bb5eaa17042674dc0629b4fb88b3d0986120af4d045e2caf8",
    "source": "archival RPC mt_balance_of via pipeline.rebuild_rpc"
   },
-  "raw/rebuild/rb_f10_a_ledger.json": {
+  "raw/rebuild/rb_fu10_a_ledger.json": {
    "bytes": 5084058,
    "fetched_at": "2026-11-13T01:29:42Z",
    "rows": 35280,
    "sha256": "d6066b76a16bc18e3090ee323b8a80d517f16a06de1c6cbe218755a660a140ae",
    "source": "bigquery job rb_rb_f10_a_ledger_20261113T012935Z: sql/rebuild/rb_f10_a_ledger.sql"
   },
-  "raw/rebuild/rb_f10_b_d6b7_flows.json": {
+  "raw/rebuild/rb_fu10_b_d6b7_flows.json": {
    "bytes": 634,
    "fetched_at": "2026-11-13T01:35:23Z",
    "rows": 5,
    "sha256": "96a15aa15fc517ff04d82c9edf8a16c61873e183376de19fa4d91abdeaadaf57",
    "source": "bigquery job rb_rb_f10_b_d6b7_flows_20261113T013521Z: sql/rebuild/rb_f10_b_d6b7_flows.sql"
   },
-  "raw/rebuild/rb_f11_a_stable_spread.json": {
+  "raw/rebuild/rb_fu11_a_stable_spread.json": {
    "bytes": 175362,
    "fetched_at": "2026-11-13T01:38:05Z",
    "rows": 697,
    "sha256": "b8438f555145541d755bf4266195c639123af7f3061975798ac471a5b99e0d88",
    "source": "bigquery job rb_rb_f11_a_stable_spread_20261113T013759Z: sql/rebuild/rb_f11_a_stable_spread.sql"
   },
-  "raw/rebuild/rb_f1a_family_deposits.json": {
+  "raw/rebuild/rb_fu1a_family_deposits.json": {
    "bytes": 13418,
    "fetched_at": "2026-11-12T23:43:35Z",
    "rows": 87,
    "sha256": "9aa9ddd6b31888a712a0e406f1bf37467a7fcfc4fe1f335d0d2640f56abc81a1",
    "source": "bigquery job rb_rb_f1a_family_deposits_20261112T234332Z: sql/rebuild/rb_f1a_family_deposits.sql"
   },
-  "raw/rebuild/rb_f1b_family_withdrawals.json": {
+  "raw/rebuild/rb_fu1b_family_withdrawals.json": {
    "bytes": 77929,
    "fetched_at": "2026-11-12T23:43:39Z",
    "rows": 415,
    "sha256": "3bd7249106dea960ef8dc2ec86edba117b200861b20d91a65cd0b7ffd1a06134",
    "source": "bigquery job rb_rb_f1b_family_withdrawals_20261112T234336Z: sql/rebuild/rb_f1b_family_withdrawals.sql"
   },
-  "raw/rebuild/rb_f2_bridge_mng_funding.json": {
+  "raw/rebuild/rb_fu2_bridge_mng_funding.json": {
    "bytes": 3,
    "fetched_at": "2026-11-12T23:44:45Z",
    "rows": 0,
    "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
    "source": "bigquery job rb_rb_f2_bridge_mng_funding_20261112T234442Z: sql/rebuild/rb_f2_bridge_mng_funding.sql"
   },
-  "raw/rebuild/rb_f2b_a_daily.json": {
+  "raw/rebuild/rb_fu2b_a_daily.json": {
    "bytes": 24206,
    "fetched_at": "2026-11-13T01:13:02Z",
    "rows": 243,
    "sha256": "f875892941d06c6cce9f2fdd3a16e17aada2197d054be307a48d1507b26cbccf",
    "source": "bigquery job rb_rb_f2b_a_daily_20261113T011259Z: sql/rebuild/rb_f2b_a_daily.sql"
   },
-  "raw/rebuild/rb_f2b_b_withdrawals_to_bridge.json": {
+  "raw/rebuild/rb_fu2b_b_withdrawals_to_bridge.json": {
    "bytes": 5750,
    "fetched_at": "2026-11-13T01:13:07Z",
    "rows": 27,
    "sha256": "6513189b05416e037a4abce0bac6552effdc21c4f7ef2ec366bc2a75b4c71f05",
    "source": "bigquery job rb_rb_f2b_b_withdrawals_to_bridge_20261113T011303Z: sql/rebuild/rb_f2b_b_withdrawals_to_bridge.sql"
   },
-  "raw/rebuild/rb_f2b_c_direct_funders.json": {
+  "raw/rebuild/rb_fu2b_c_direct_funders.json": {
    "bytes": 7190050,
    "fetched_at": "2026-11-13T01:14:53Z",
    "rows": 55158,
    "sha256": "2085ca2b0a8481035e8093fc97a61c60fa2827820b68eac72aee618cdf520a26",
    "source": "bigquery job rb_rb_f2b_c_direct_funders_20261113T011446Z: sql/rebuild/rb_f2b_c_direct_funders.sql"
   },
-  "raw/rebuild/rb_f2b_d_funder_overlap.json": {
+  "raw/rebuild/rb_fu2b_d_funder_overlap.json": {
    "bytes": 82383,
    "fetched_at": "2026-11-13T01:15:43Z",
    "rows": 636,
    "sha256": "7ec5b79b0c47924f7b14a5338d2271d1c1f20d6c74946bc84966b7fa46ff3f2c",
    "source": "bigquery job rb_rb_f2b_d_funder_overlap_20261113T011535Z: sql/rebuild/rb_f2b_d_funder_overlap.sql"
   },
-  "raw/rebuild/rb_f3a_daily.json": {
+  "raw/rebuild/rb_fu3a_daily.json": {
    "bytes": 10650,
    "fetched_at": "2026-11-12T23:47:20Z",
    "rows": 90,
    "sha256": "8128b7a8860951aaa8003678aea23568d9448dcb54c4afc88f4a03463c63a5db",
    "source": "bigquery job rb_rb_f3a_daily_20261112T234718Z: sql/rebuild/rb_f3a_daily.sql"
   },
-  "raw/rebuild/rb_f3b_solver_fills.json": {
+  "raw/rebuild/rb_fu3b_solver_fills.json": {
    "bytes": 5237,
    "fetched_at": "2026-11-12T23:47:25Z",
    "rows": 61,
    "sha256": "d20bfc4b9a0f5259b7f3ed26e9aa0a22617b77ae8c0686f1e6e20b25d396e064",
    "source": "bigquery job rb_rb_f3b_solver_fills_20261112T234722Z: sql/rebuild/rb_f3b_solver_fills.sql"
   },
-  "raw/rebuild/rb_f4a_fee_credits.json": {
+  "raw/rebuild/rb_fu4a_fee_credits.json": {
    "bytes": 4994471,
    "fetched_at": "2026-11-13T01:13:17Z",
    "rows": 28380,
    "sha256": "1bdef849449654221a1f7a60da6796417754e4bdfa1f4a0445d02bf370310c0e",
    "source": "bigquery job rb_rb_f4a_fee_credits_20261113T011308Z: sql/rebuild/rb_f4a_fee_credits.sql"
   },
-  "raw/rebuild/rb_f7_a_summary.json": {
+  "raw/rebuild/rb_fu7_a_summary.json": {
    "bytes": 8430,
    "fetched_at": "2026-11-13T01:22:25Z",
    "rows": 92,
    "sha256": "1d72f6c16332edaf48e982dd4f21337004cd0fab34b9489988add10ddd5ba91a",
    "source": "bigquery job rb_rb_f7_a_summary_20261113T012223Z: sql/rebuild/rb_f7_a_summary.sql"
   },
-  "raw/rebuild/rb_f8_a_funder_sources.json": {
+  "raw/rebuild/rb_fu8_a_funder_sources.json": {
    "bytes": 11166893,
    "fetched_at": "2026-11-13T01:24:12Z",
    "rows": 55037,
    "sha256": "7fbaca2ca3e360519bbc9ee24541d835d18c9f55fdbbcbd78f360931dc161c00",
    "source": "bigquery job rb_rb_f8_a_funder_sources_20261113T012404Z: sql/rebuild/rb_f8_a_funder_sources.sql"
   },
-  "raw/rebuild/rb_f9_a_solver_payments.json": {
+  "raw/rebuild/rb_fu9_a_solver_payments.json": {
    "bytes": 26250,
    "fetched_at": "2026-11-13T01:25:43Z",
    "rows": 267,
