@@ -38,7 +38,7 @@ Plain-language definitions of the terms a first-time reader meets in the [README
 - **Rating rule.** The frozen rule that turns the results into a rating. Buy if G_obs is at least G_req and H1b passes; Avoid if G_obs is below half of G_req (the "Avoid line") and H1b fails; Hold otherwise. Hold carries no view on NEAR.
 - **G_req.** The yearly growth in captured Intents revenue needed for it to equal the USD value of net issuance by a fixed date. It assumes HSP-029's ramp and a constant price.
 - **G_obs.** The observed yearly growth of captured revenue: the most recent window of about half a year against the window of the same length before it. Over the 180 days to 2026-11-04 it measures a step in the share of fees NEAR captures, not growth in activity ([second review](second-review.md), section 6).
-- **HSP-029.** A NEAR governance proposal to lower the issuance cap gradually over two years. The rating rule assumes its ramp is in force. It also needs validator adoption through a protocol upgrade, a second step the repository does not date.
+- **HSP-029.** A NEAR governance proposal to lower the issuance cap gradually over two years. The rating rule assumes its ramp is in force. After its timelock, a Directors' decision on execution follows; it then needs validator adoption through a protocol upgrade, a further step the repository does not date.
 - **Timelock.** The stage of the on-chain proposal after voting. The repository assumes it starts when voting ends and first added up its end date itself, 2026-11-16; two published sources give the same date (`PREREG-ADDENDUM.md`, 2026-11-12 23:50 UTC entry, item 3). Under the House of Stake procedures a Directors' decision on execution follows the timelock.
 
 ## Forward tests
@@ -60,6 +60,7 @@ Plain-language definitions of the terms a first-time reader meets in the [README
 - **Listed partner fees.** The app fees that 1Click swaps list for partner accounts (wallets and front ends). Who owns the receiving accounts is not shown.
 - **Value capture.** Used narrowly here: the NEAR that verifiably reaches NEAR's revenue wallets, as a share of net issuance. It is not a valuation.
 - **Attestation and unattested.** An attestation would be a statement by NEAR of which fee stream funds the escrow releases. Unattested means that no such statement exists in the sources the repository read.
+- **Point.** One percentage point of net issuance. The ladder's rungs are given in points: 4.53<!--n:ladder_public_collectors_pct_of_issuance--> points means NEAR equal to 4.53<!--n:ladder_public_collectors_pct_of_issuance-->% of net issuance over the window.
 - **Peer set.** The native cross-chain venues that Intents is compared with: THORChain, Chainflip and Maya.
 - **Take rate.** Revenue as basis points of volume. The captured take is DefiLlama revenue over reported volume.
 - **Basis point (bp).** One hundredth of one percent.

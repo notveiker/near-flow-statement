@@ -69,6 +69,8 @@ ALLOW = {
         (SOURCE, "the governance post's words about the House of Stake"),
     (16, "clears its timelock on 2026-11-16"):
         (OLDER, "THESIS.md's wording before the 2026-11-08 correction, which row 16 names"),
+    (16, "a date we add up from the contract's voting start, the voting period and the timelock period; no published text gives it"):
+        (OLDER, "THESIS.md's parenthesis before the 2026-11-13 correction (the date is published), which row 16 names"),
     (22, "appears to count both legs of a swap; its adapter states no methodology"):
         (OLDER, "THESIS.md's hedge before the 2026-11-13 leg-count restatement, which row 22 names"),
     (22, "we do not know whether its figure counts both sides of each swap. Halving it is an inference, used here only to give a one-sided basis"):

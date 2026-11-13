@@ -385,6 +385,15 @@ def collector_funders(m: dict, near_price: dict, lo: str, hi: str) -> None:
         for f_ in ("n_sender_single_tx", "n_sender_single_day", "n_funded_once", "n_no_other_inflow"):
             m[f"collector_escrow_funded_{f_[2:]}_pct"] = r(sum(int(x[f_]) for x in ck) / n * 100, 1)
         m["collector_escrow_funded_lag_blocks_median_max"] = max(int(x["lag_blocks_q"][2]) for x in ck)
+        m["collector_escrow_funded_lag_blocks_max"] = max(int(x["lag_blocks_q"][-1]) for x in ck)
+        # Overlap (exploratory, disclosed 2026-11-13): escrow-funded transfers whose receipt also carries a token_diff for
+        # the sender. They stay in the escrow_funded class. The committed amounts are not split by this flag, so only
+        # the count is computed, not the USD share.
+        wd = {p_: sum(int(x["n_with_diff"]) for x in ck if x["post"] == p_) for p_ in ("false", "true")}
+        m["collector_escrow_funded_with_diff_n"] = wd["false"] + wd["true"]
+        m["collector_escrow_funded_with_diff_pre_n"] = wd["false"]
+        m["collector_escrow_funded_with_diff_post_n"] = wd["true"]
+        m["collector_escrow_funded_with_diff_pct"] = r((wd["false"] + wd["true"]) / n * 100, 1)
         pub = [x for x in read_raw("bq/collector_funder_checks.json") if x["class"] == "public_swap"]
         m["collector_public_swap_with_token_diff_pct"] = r(sum(int(x["n_with_diff"]) for x in pub)
                                                            / sum(int(x["n"]) for x in pub) * 100, 1)

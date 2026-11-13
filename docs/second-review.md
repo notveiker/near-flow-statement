@@ -20,7 +20,7 @@ This page records a second review of the repository and its sources, made on 202
   - four to `aurorafinance.sputnik-dao.near`;
   - one to `aurorasupport.near`.
 
-  The review did not establish what these transfers paid for. Some of the USDC appears to have come back as NEAR bought through NEAR Intents; that was not re-checked.
+  These are the recipient account ids as the chain records them. Their names do not show who controls the accounts, and the review did not establish what these transfers paid for. Nothing here suggests that they were improper. Some of the USDC appears to have come back as NEAR bought through NEAR Intents; that was not re-checked.
 - **Who decides.** The fund's policy at the same block (`get_policy`) gives the same five members to its Requestor, Admin and Approver roles: `aurorafinance1.near`, `aurorafinance2.near`, `aurorafinance3.near`, `auroracfo.near` and `paperclip-maximizer.near`.
   - A transfer needs 2 approvals.
   - A policy change, a new member or a code upgrade (`upgrade_self`) needs one Admin vote.
