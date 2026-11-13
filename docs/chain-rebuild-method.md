@@ -86,3 +86,11 @@ Why: Q4 and F3 find no step on 1 September in public swap legs (week after / wee
 - **Ratio** = delivered USD (Q2 deliveries priced at the F5 daily NEAR price) in 2026-09-01..09-07 over 2026-08-25..08-31, for the total and for the three groups of F5. Threshold as in Q4/F3: a step is mirrored if the total ratio reaches 1 + 0.5(L - 1) = 1.158 (L = 1.316); **falsified** (revenue does not mirror Llama's step) if below 1.05; between them inconclusive.
 - **Placebo.** The same ratio at every other 7-day boundary from 2026-08-14 to 2026-10-27 (week after over week before), and the rank of the 09-01 ratio among them; a step is only called a step if its ratio is in the top 10% of boundaries.
 - Whatever the result, the switch dates found in Q2 (08-19, 08-29) are inside the 08-25..08-31 base week for one of them; stated in the result, not adjusted for.
+
+## F7 (where the 30.8M NEAR came from; fixed before it runs, committed 2026-11-13 01:22 UTC)
+Why: F2b found one external account, `1244d552459d7230bdaf267c1d09a296282dc85251958434e670d9b9d561fac7`, sending 30,798,978 NEAR to `bridge-mng.near`, which is the whole of F1's "external" deposit into the solver family. This is the second hop. Direct transfers only (`transaction_actions`; contract-originated NEAR is not visible), window 2026-07-07..2026-11-04.
+- **Staging and queries:** `rb_f7_s_acct.sql` (transfers received, all actions signed), `rb_f7_a_summary.sql`.
+- **Coverage K** = direct NEAR received in the window / 30.80M. If K is below 0.5 the NEAR predates the window and the window cannot identify the source; that is reported as unresolved, and a wider scan is a new pre-registered step, not part of this one.
+- **H-F7a (concentrated source):** if K is at least 0.5, the top 3 senders hold at least 50% of the inflow. **H-F7b (exchange or staking origin):** senders in the exchange list or unstakers set supply at least 50% of the inflow: supported; under 10%: **falsified**.
+- **H-F7c (a single-purpose account):** at least 90% of the NEAR it sends in the window goes to `bridge-mng.near`: supported; under 50% falsified (it is then a general treasury).
+- Whatever the senders are, ownership is INFERRED from labels and from nothing else.
