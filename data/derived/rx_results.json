@@ -649,5 +649,97 @@
    "2026-09",
    "2026-10"
   ]
+ },
+ "rx4": {
+  "lst-pool.near": {
+   "H_RX4a_falsified": true,
+   "H_RX4a_supported": false,
+   "H_RX4b_falsified": true,
+   "H_RX4b_supported": false,
+   "accounts": 1645,
+   "by_month_near": {
+    "2026-07": 335621.78954632283,
+    "2026-08": 2206306.4222855237,
+    "2026-09": 3990752.8975260733,
+    "2026-10": 2107880.862290305,
+    "2026-11": 20369.281926586285
+   },
+   "coverage": 0.9999999999999998,
+   "events": 3537,
+   "events_near": 8660931.253574813,
+   "evm_accounts": 1048,
+   "evm_address_accounts_share_of_near": 0.8415859081012581,
+   "family_share": 0.0,
+   "fu10_wrap_transfers_out_near": 8660931.253574815,
+   "median_account_near": 105.80000000000001,
+   "top3_share": 0.2876031820482507,
+   "top_sources": [
+    {
+     "near": 1300530.2639947634,
+     "src": "0x7f0be1f819e6"
+    },
+    {
+     "near": 597253.3641078398,
+     "src": "0xbde12f6a5933"
+    },
+    {
+     "near": 593127.7599266578,
+     "src": "0x2d7661dac9c7"
+    },
+    {
+     "near": 493368.60702635004,
+     "src": "0xbc0d19174e40"
+    },
+    {
+     "near": 273135.29716083227,
+     "src": "0x935c0a2b8611"
+    }
+   ]
+  },
+  "omni.bridge.near": {
+   "H_RX4a_falsified": true,
+   "H_RX4a_supported": false,
+   "H_RX4b_falsified": true,
+   "H_RX4b_supported": false,
+   "accounts": 1254,
+   "by_month_near": {
+    "2026-07": 19999.994821883556,
+    "2026-08": 9.993304586446,
+    "2026-09": 2772955.3893761085,
+    "2026-10": 6933392.226961461,
+    "2026-11": 393312.2610303304
+   },
+   "coverage": 1.0,
+   "events": 1285,
+   "events_near": 10119669.865494367,
+   "evm_accounts": 0,
+   "evm_address_accounts_share_of_near": 0.0,
+   "family_share": 0.0,
+   "fu10_wrap_transfers_out_near": 10119669.865494367,
+   "median_account_near": 300.914472824023,
+   "top3_share": 0.034942849092014776,
+   "top_sources": [
+    {
+     "near": 153610.09697097915,
+     "src": "e138e95309b14c"
+    },
+    {
+     "near": 100000.0,
+     "src": "e16671b0747dc2"
+    },
+    {
+     "near": 100000.0,
+     "src": "edee224ca4f5f9"
+    },
+    {
+     "near": 100000.0,
+     "src": "6da6d1a170c4b7"
+    },
+    {
+     "near": 100000.0,
+     "src": "56d40c79e00b9b"
+    }
+   ]
+  }
  }
 }

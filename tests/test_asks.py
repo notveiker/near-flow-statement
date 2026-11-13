@@ -103,3 +103,11 @@ class RX(unittest.TestCase):
         self.assertAlmostEqual(r["rx2"]["total_margin_usd"] / r["rx2"]["delivered_to_revenue_wallets_usd"], r["rx2"]["margin_over_delivered"], places=9)
         win = [m for m in r["rx3"]["months"] if m["per"] in r["rx3"]["window_months"]]
         self.assertEqual(r["rx3"]["H_RX3a_supported"], all(m["top1_share"] >= 0.8 for m in win))
+
+
+class RX4(unittest.TestCase):
+    def test_events_cover_the_wrap_ledger(self):
+        r = json.load(open(ROOT / "data" / "derived" / "rx_results.json"))["rx4"]
+        for v in r.values():
+            self.assertAlmostEqual(v["coverage"], 1.0, places=6)
+            self.assertEqual(v["H_RX4a_falsified"], v["top3_share"] < 0.40)

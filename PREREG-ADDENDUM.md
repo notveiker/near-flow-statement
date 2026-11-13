@@ -308,3 +308,9 @@ Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. M
 ## 2026-11-13 03:03 UTC: research extensions RX1 to RX3, results
 
 Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. Method `c86431b` (03:02:43 UTC) before the queries. RX1: on-chain Intents accounts are almost never reused (retention 0.08%), top 10 accounts 4.2% of priced volume: H-RX1a, -b and -c falsified as written; the reading is that an account is not a user for 1Click flow. RX2: solver margin on same-symbol stable swaps is \$87.5K, 1.8% of the \$4.74M delivered to the revenue wallets (H-RX2a, -b supported). RX3: top signer of transactions to `intents.near` is `intents.near` itself; its share fell from 99% to 72% (2026-01 to 2026-10) with the top 5 steady at 99% (H-RX3b supported; H-RX3a neither). Jobs: `rx1_users`, `rx3_relayer` (145 GB).
+
+## 2026-11-13 03:06 UTC: RX4 result
+
+Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. Method `94dcf81` (03:04:51 UTC) before the query. The `ft_withdraw` events cover 100.0% of the wNEAR that left `intents.near` for `lst-pool.near` (8.66M NEAR, 1,645 accounts, 84% of the NEAR from EVM-style accounts) and for `omni.bridge.near` (10.12M NEAR, 1,254 accounts, from September). H-RX4a and H-RX4b falsified for both: many accounts, none from the solver family. Job `rx4_lst_omni` (17.2 GB).
+
+Storage note for RX4 (same entry, added at commit): the saved output of `rx4_lst_omni` (640K rows, 126 MB) exceeded GitHub's 100 MB file limit, so it is stored gzipped (`data/raw/rx/rx4_lst_omni.json.gz`; the log records both the uncompressed and stored SHA-256). The query selected every token of the withdrawal events, not only wNEAR as the method text says; the analysis filters to wNEAR, and the coverage check against FU10 (100.0%) confirms nothing is missing. `pipeline.windows run-file` now gzips outputs over 50 MB automatically.

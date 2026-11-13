@@ -132,6 +132,15 @@ def run_file(rel: str, cap_gb: float, outdir: str) -> None:
     dest.write_text(json.dumps(rows, sort_keys=True, separators=(",", ":")) + "\n")
     rec = rb.job_record(stem, job_id, sql)
     rec.update(rows=len(rows), output=str(dest.relative_to(ROOT)), output_sha256=sha256(dest), sql_file=rel)
+    if dest.stat().st_size > 50_000_000:     # GitHub's file limit is 100 MB: store gzipped, keep the uncompressed hash in the log
+        import gzip
+        raw = dest.read_bytes()
+        gz = Path(str(dest) + ".gz")
+        with gzip.GzipFile(filename="", fileobj=open(gz, "wb"), mode="wb", mtime=0) as f:
+            f.write(raw)
+        dest.unlink()
+        rec.update(stored_as=str(gz.relative_to(ROOT)), stored_sha256=sha256(gz))
+        dest = gz
     jobs = dest_dir / "jobs.jsonl"
     with jobs.open("a") as f:
         f.write(json.dumps(rec, sort_keys=True) + "\n")

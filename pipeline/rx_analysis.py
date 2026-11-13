@@ -65,8 +65,37 @@ def rx3() -> dict:
             "H_RX3b_supported": all(m["top5_share"] >= 0.95 for m in win), "H_RX3b_falsified": any(m["top5_share"] < 0.85 for m in win)}
 
 
+FAMILY = {"solver-priv-liq.near", "solver-multichain-asset.near", "solver-multichain-asset-escrow.near", "solver-multichain-asset-2.near"}
+
+
+def rx4() -> dict:
+    import gzip
+    d = json.loads(gzip.open(OUT / "rx4_lst_omni.json.gz", "rt").read())
+    led = json.loads((RAW / "rebuild" / "rb_fu10_a_ledger.json").read_text())
+    res = {}
+    for rc in ("lst-pool.near", "omni.bridge.near"):
+        rows = [r for r in d if r["receiver"] == rc and r["token"] in ("nep141:wrap.near", "wrap.near")]
+        by, mon = {}, {}
+        for r in rows:
+            v = int(r["yocto"]) / 1e24
+            by[r["src"]] = by.get(r["src"], 0.0) + v
+            mon[r["month"]] = mon.get(r["month"], 0.0) + v
+        tot = sum(by.values())
+        top = sorted(by.items(), key=lambda kv: -kv[1])
+        fu10_out = sum(int(x["yocto"]) / 1e24 for x in led if x["cp"] == rc and x["kind"] == "out")
+        fam = sum(v for k, v in by.items() if k in FAMILY)
+        evm = sum(v for k, v in by.items() if k.startswith("0x"))
+        vals = sorted(by.values())
+        top3 = sum(v for _, v in top[:3]) / tot
+        res[rc] = {"events_near": tot, "fu10_wrap_transfers_out_near": fu10_out, "coverage": tot / fu10_out, "accounts": len(by), "events": sum(int(r["n"]) for r in rows),
+                   "top3_share": top3, "top_sources": [{"src": k[:14], "near": v} for k, v in top[:5]], "family_share": fam / tot, "evm_address_accounts_share_of_near": evm / tot,
+                   "evm_accounts": sum(1 for k in by if k.startswith("0x")), "median_account_near": vals[len(vals) // 2], "by_month_near": dict(sorted(mon.items())),
+                   "H_RX4a_supported": top3 >= 0.70, "H_RX4a_falsified": top3 < 0.40, "H_RX4b_supported": fam / tot >= 0.50, "H_RX4b_falsified": fam / tot < 0.10}
+    return res
+
+
 def main() -> int:
-    res = {"rx1": rx1(), "rx2": rx2(), "rx3": rx3()}
+    res = {"rx1": rx1(), "rx2": rx2(), "rx3": rx3(), "rx4": rx4()}
     dest = ROOT / "data" / "derived" / "rx_results.json"
     dest.write_text(json.dumps(res, indent=1, sort_keys=True) + "\n")
     print("wrote", dest.relative_to(ROOT))
