@@ -2783,7 +2783,7 @@ SELECT &#x27;qa&#x27;, NULL, NULL, NULL, NULL, fmt, ROUND(SUM(near), 6), COUNT(*
 <div class="chart">
 <div class="cv cv-wide"><svg class="svg" viewBox="0 0 720 553" role="img" aria-labelledby="chart-forward-w-t chart-forward-w-d" focusable="false">
 <title id="chart-forward-w-t">Forward tests F1 to F4: the frozen predictions, pending</title>
-<desc id="chart-forward-w-d">Four number lines, one per forward test. Each shows the frozen prediction as a shaded band and, as a diamond, the last value committed before the window opened. No test is scored yet, so there is no observed value.</desc>
+<desc id="chart-forward-w-d">Four number lines, one per forward test. Each shows the frozen prediction as a shaded band and, as a diamond, the last value committed before the window opened. For F1 that is the balance known at the freeze (2026-11-05 22:51 UTC), not a reading from the window. No test is scored yet, so there is no observed value.</desc>
 <g class="nl" data-id="F1" data-lo="2" data-hi="2.6" data-x0="10" data-pw="700">
 <text x="0" y="12.5" class="ttl" font-size="12.5">F1 · buyback wallet balance at the first final block after 2026-11-14 00:00 (million NEAR, axis does</text>
 <text x="0" y="28" class="ttl" font-size="12.5">not start at zero)</text>
@@ -2801,7 +2801,7 @@ SELECT &#x27;qa&#x27;, NULL, NULL, NULL, NULL, fmt, ROUND(SUM(near), 6), COUNT(*
 <text x="720" y="107.5" class="tk" text-anchor="end" font-size="12.5">2.6</text>
 <text x="365.8" y="71" class="val" text-anchor="middle" font-size="12.5">predicted <tspan data-k="f1_lo">2.21</tspan>M to <tspan data-k="f1_hi">2.40</tspan>M</text>
 <path class="ghost" data-v="2.187" d="M228.2,81l5,6l-5,6l-5,-6z" />
-<text x="228.2" y="126" class="tk" text-anchor="middle" font-size="12.5">read at block <tspan data-m="rpc_block">223,230,811</tspan>: <tspan data-m="buyback_wallet_near_m">2.187</tspan>M</text></g>
+<text x="228.2" y="126" class="tk" text-anchor="middle" font-size="12.5">at freeze, block <tspan data-m="rpc_block">223,230,811</tspan>: <tspan data-m="buyback_wallet_near_m">2.187</tspan>M</text></g>
 <g class="nl" data-id="F2" data-lo="82" data-hi="94" data-x0="10" data-pw="700">
 <text x="0" y="158.5" class="ttl" font-size="12.5">F2 · mean net supply increase per day, 2026-11-06 to 2026-11-13 (thousand NEAR a day, axis does not</text>
 <text x="0" y="174" class="ttl" font-size="12.5">start at zero)</text>
@@ -2858,7 +2858,7 @@ SELECT &#x27;qa&#x27;, NULL, NULL, NULL, NULL, fmt, ROUND(SUM(near), 6), COUNT(*
 <text x="399.9" y="533" class="tk" text-anchor="middle" font-size="12.5">30 days to 2026-11-04: <tspan data-m="intents_share_peerset_30d_pct">55.7</tspan>%</text></g></svg></div>
 <div class="cv cv-narrow"><svg class="svg" viewBox="0 0 340 597" role="img" aria-labelledby="chart-forward-n-t chart-forward-n-d" focusable="false">
 <title id="chart-forward-n-t">Forward tests F1 to F4: the frozen predictions, pending</title>
-<desc id="chart-forward-n-d">Four number lines, one per forward test. Each shows the frozen prediction as a shaded band and, as a diamond, the last value committed before the window opened. No test is scored yet, so there is no observed value.</desc>
+<desc id="chart-forward-n-d">Four number lines, one per forward test. Each shows the frozen prediction as a shaded band and, as a diamond, the last value committed before the window opened. For F1 that is the balance known at the freeze (2026-11-05 22:51 UTC), not a reading from the window. No test is scored yet, so there is no observed value.</desc>
 <g class="nl" data-id="F1" data-lo="2" data-hi="2.6" data-x0="10" data-pw="320">
 <text x="0" y="11.5" class="ttl" font-size="11.5">F1 · buyback wallet balance at the first final block</text>
 <text x="0" y="26" class="ttl" font-size="11.5">after 2026-11-14 00:00 (million NEAR, axis does not</text>
@@ -2877,7 +2877,7 @@ SELECT &#x27;qa&#x27;, NULL, NULL, NULL, NULL, fmt, ROUND(SUM(near), 6), COUNT(*
 <text x="330" y="119" class="tk" text-anchor="middle" font-size="11.5">2.6</text>
 <text x="172.7" y="83.5" class="val" text-anchor="middle" font-size="11.5">predicted <tspan data-k="f1_lo">2.21</tspan>M to <tspan data-k="f1_hi">2.40</tspan>M</text>
 <path class="ghost" data-v="2.187" d="M109.7,93.5l5,6l-5,6l-5,-6z" />
-<text x="109.7" y="136.5" class="tk" text-anchor="middle" font-size="11.5">read at block <tspan data-m="rpc_block">223,230,811</tspan>: <tspan data-m="buyback_wallet_near_m">2.187</tspan>M</text></g>
+<text x="2" y="136.5" class="tk" font-size="11.5">at freeze, block <tspan data-m="rpc_block">223,230,811</tspan>: <tspan data-m="buyback_wallet_near_m">2.187</tspan>M</text></g>
 <g class="nl" data-id="F2" data-lo="82" data-hi="94" data-x0="10" data-pw="320">
 <text x="0" y="168" class="ttl" font-size="11.5">F2 · mean net supply increase per day, 2026-11-06 to</text>
 <text x="0" y="182.5" class="ttl" font-size="11.5">2026-11-13 (thousand NEAR a day, axis does not start</text>
@@ -7884,7 +7884,7 @@ L276.3,133.1L277,131.1L277.6,133.1L278.2,133.1L278.9,133.4L279.5,133.6L280.1,133
 <p class="see"><strong>See:</strong> check: PASS. Every raw snapshot under data/raw/ matches the SHA-256 recorded in data/MANIFEST.json.</p></li>
 <li>
 <p class="do"><strong>Do:</strong> <code>python3 -m pipeline.compute</code></p>
-<p class="see"><strong>See:</strong> wrote data/metrics.json (<span data-count="metrics">378</span> metrics, as of 2026-11-04). data/metrics.json and data/series.json do not change: the rebuild is deterministic.</p></li>
+<p class="see"><strong>See:</strong> wrote data/metrics.json (<span data-count="metrics">380</span> metrics, as of 2026-11-04). data/metrics.json and data/series.json do not change: the rebuild is deterministic.</p></li>
 <li>
 <p class="do"><strong>Do:</strong> <code>python3 -m pipeline.check --numbers</code></p>
 <p class="see"><strong>See:</strong> check: PASS. Every number marked in README.md, THESIS.md, PREREG-ADDENDUM.md and docs/*.md matches data/metrics.json.</p></li>

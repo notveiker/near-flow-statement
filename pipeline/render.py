@@ -1788,7 +1788,8 @@ def card_forward(ctx: Ctx) -> str:
         desc = "Four number lines, one per forward test. Each shows the frozen prediction as a shaded band and the observed value as a dot."
     else:
         desc = ("Four number lines, one per forward test. Each shows the frozen prediction as a shaded band and, as a diamond, the "
-                "last value committed before the window opened. No test is scored yet, so there is no observed value.")
+                "last value committed before the window opened. For F1 that is the balance known at the freeze (2026-11-05 22:51 UTC), "
+                "not a reading from the window. No test is scored yet, so there is no observed value.")
 
     def build(v: Variant) -> tuple[str, float]:
         rows = [
@@ -1796,7 +1797,7 @@ def card_forward(ctx: Ctx) -> str:
              "lo": a1[0], "hi": a1[1], "ticks": a1[2], "tick_fmt": lambda t: f"{t:.1f}",
              "band": (CONSTS["f1_lo"][0] / 1e6, CONSTS["f1_hi"][0] / 1e6),
              "band_label": T("predicted ", ctx.Kt("f1_lo"), "M to ", ctx.Kt("f1_hi"), "M"),
-             "refs": [] if fw else [{"v": m["buyback_wallet_near_m"], "label": T("read at block ", Mt("rpc_block", 0), ": ", Mt("buyback_wallet_near_m"), "M")}],
+             "refs": [] if fw else [{"v": m["buyback_wallet_near_m"], "label": T("at freeze, block ", Mt("rpc_block", 0), ": ", Mt("buyback_wallet_near_m"), "M")}],
              "obs": mk_obs("F1", "balance_near", o1 / 1e6 if o1 is not None else None, 3, 1e6, "M")},
             {"id": "F2", "title": T("F2 · mean net supply increase per day, ", w0, " to ", w1, " (thousand NEAR a day, axis does not start at zero)"),
              "lo": a2[0], "hi": a2[1], "ticks": a2[2], "tick_fmt": lambda t: f"{t:g}",
