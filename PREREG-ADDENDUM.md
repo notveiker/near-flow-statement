@@ -292,3 +292,7 @@ Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. A
 ## 2026-11-13 02:43 UTC: history sample, class-adjusted result (post hoc)
 
 Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. Method `28739ea` (02:42:48 UTC) before the class counts. Class C carried 31% of sampled transactions in 2025Q3 (43% with all 268 clusters), 67% to 74% in 2025Q4 and 2026Q1, and 0% from 2026Q2 (H-C1 supported); traffic outside C fell about 70% from 2025Q3 to 2026Q3 (ratio 0.30), so the class explains the April step but not most of the year-on-year fall (H-C2 falsified on the primary 198-cluster cut, between the bars on 268). U1 is unchanged (fail). A sentence in `docs/april-drop-results.md` that implied the class explained the whole fall was corrected to say so.
+
+## 2026-11-13 02:45 UTC: history sample validated against the full chain (partial substitute), result
+
+Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. Method `3243a5f` (02:44:31 UTC) before the census query. For transactions per day only: 90%-interval coverage over 24 quarters is 19 of 24 = 79.2% (primary 198-cluster cut and all 268), under the 80% bar, so by the pre-registration's rule the intervals are labelled too narrow; all five misses are before 2025 (6 clusters per quarter); from 2025Q1 coverage is 7 of 7. The quarters U1 uses are covered. A counting error in the method text (seven strata from 2025Q1, not six; 17 scored before 2025) is corrected in the results. The node-census design is still not run.

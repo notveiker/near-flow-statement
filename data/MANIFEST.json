@@ -787,6 +787,19 @@
    "sha256": "0d2782ddce85bbe2e1fbce662c0c894108a636c18b2d354966ca75979e86f968",
    "source": "event-level NEAR moved into intents.near by large unstakers, 2026-08-07..11-04 (BigQuery q1-q6 + FastNEAR; lane unstakers-intents, 63.9 GB)"
   },
+  "raw/validation/jobs.jsonl": {
+   "bytes": 588,
+   "fetched_at": "2026-11-13T02:44:41Z",
+   "sha256": "96036610f9479dcc55353605a3bb8b11bbd6e0403f7e3e6b87bab64d9602a8ae",
+   "source": "append-only log written by pipeline.windows run-file"
+  },
+  "raw/validation/tx_daily_census.json": {
+   "bytes": 80422,
+   "fetched_at": "2026-11-13T02:44:41Z",
+   "rows": 2285,
+   "sha256": "28f29e1ae81b8dee94e830c05addfd6ce43a6bc5520d903c90d80d24686072cb",
+   "source": "bigquery job ask_tx_daily_census_20261113T024436Z: sql/validation/tx_daily_census.sql"
+  },
   "raw/web/primary_pages.json": {
    "bytes": 1064,
    "fetched_at": "2026-11-11T20:00:47Z",

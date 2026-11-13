@@ -66,3 +66,14 @@ class CrossSection(unittest.TestCase):
         from pipeline import fetch_cross_section as f
         p = f.ROOT / "data" / "raw" / "cross_section"
         self.assertFalse((p / "all.json").exists() and not f.scoring_has_run())
+
+
+class SampleValidation(unittest.TestCase):
+    def test_validation_matches_rule(self):
+        r = json.load(open(ROOT / "data" / "derived" / "history_sample_validation.json"))["primary_198"]
+        self.assertEqual(r["intervals_too_narrow_by_rule"], r["covered"] / r["scored_quarters"] < 0.8)
+        self.assertEqual(r["scored_quarters"], 24)
+
+    def test_class_adjusted_cut_is_the_198(self):
+        r = json.load(open(ROOT / "data" / "derived" / "history_class_adjusted.json"))
+        self.assertEqual(r["primary_198_sealed_by_stop"]["clusters"], 198)

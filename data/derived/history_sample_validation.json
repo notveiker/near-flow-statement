@@ -1,0 +1,584 @@
+{
+ "all_268": {
+  "coverage": 0.7916666666666666,
+  "covered": 19,
+  "from_2025": {
+   "coverage": 1.0,
+   "median_abs_rel_error": 0.0768624473332502,
+   "n": 7
+  },
+  "intervals_too_narrow_by_rule": true,
+  "median_abs_rel_error": 0.12972131565915312,
+  "median_signed_rel_error": -0.03789395660331035,
+  "not_covered": [
+   "2021Q3",
+   "2021Q4",
+   "2022Q3",
+   "2023Q3",
+   "2024Q3"
+  ],
+  "pre_2025": {
+   "coverage": 0.7058823529411765,
+   "median_abs_rel_error": 0.20516746609178682,
+   "n": 17
+  },
+  "quarters": [
+   {
+    "census_tx_per_day": 10172.670212765957,
+    "clusters": 6,
+    "covered": true,
+    "days": 94,
+    "estimate": 15479.642476834568,
+    "hi90": 23299.25568678193,
+    "lo90": 7811.634012794353,
+    "quarter": "2020Q4",
+    "rel_error": 0.5216892077567548
+   },
+   {
+    "census_tx_per_day": 11362.560439560439,
+    "clusters": 6,
+    "covered": true,
+    "days": 91,
+    "estimate": 7880.916353923249,
+    "hi90": 12872.163378074638,
+    "lo90": 3546.4123592654614,
+    "quarter": "2021Q1",
+    "rel_error": -0.30641369118841644
+   },
+   {
+    "census_tx_per_day": 96601.83516483517,
+    "clusters": 6,
+    "covered": true,
+    "days": 91,
+    "estimate": 125065.80189581952,
+    "hi90": 157766.4932172035,
+    "lo90": 86456.03828302752,
+    "quarter": "2021Q2",
+    "rel_error": 0.2946524430143098
+   },
+   {
+    "census_tx_per_day": 249900.72340425532,
+    "clusters": 6,
+    "covered": false,
+    "days": 94,
+    "estimate": 275287.7549587731,
+    "hi90": 295653.7841379073,
+    "lo90": 255475.90344437727,
+    "quarter": "2021Q3",
+    "rel_error": 0.10158846764701068
+   },
+   {
+    "census_tx_per_day": 302128.47826086957,
+    "clusters": 6,
+    "covered": false,
+    "days": 92,
+    "estimate": 231303.72827160504,
+    "hi90": 290896.1009156439,
+    "lo90": 172511.25324694923,
+    "quarter": "2021Q4",
+    "rel_error": -0.2344193119329574
+   },
+   {
+    "census_tx_per_day": 564641.6086956522,
+    "clusters": 6,
+    "covered": true,
+    "days": 92,
+    "estimate": 448795.52058957506,
+    "hi90": 571878.0909899664,
+    "lo90": 331753.11336624,
+    "quarter": "2022Q1",
+    "rel_error": -0.20516746609178682
+   },
+   {
+    "census_tx_per_day": 679801.0978260869,
+    "clusters": 6,
+    "covered": true,
+    "days": 92,
+    "estimate": 569213.8462776145,
+    "hi90": 758107.1501819625,
+    "lo90": 404162.56304899824,
+    "quarter": "2022Q2",
+    "rel_error": -0.16267589431984697
+   },
+   {
+    "census_tx_per_day": 442630.4623655914,
+    "clusters": 6,
+    "covered": false,
+    "days": 93,
+    "estimate": 263417.5933172006,
+    "hi90": 306046.29795252596,
+    "lo90": 222178.95513737501,
+    "quarter": "2022Q3",
+    "rel_error": -0.4048814627231182
+   },
+   {
+    "census_tx_per_day": 451299.4193548387,
+    "clusters": 6,
+    "covered": true,
+    "days": 93,
+    "estimate": 424950.66975867783,
+    "hi90": 541218.7152129234,
+    "lo90": 308682.62430443225,
+    "quarter": "2022Q4",
+    "rel_error": -0.05838418678629831
+   },
+   {
+    "census_tx_per_day": 392174.4505494505,
+    "clusters": 6,
+    "covered": true,
+    "days": 91,
+    "estimate": 363760.45411650673,
+    "hi90": 437518.8997723841,
+    "lo90": 288136.5702343909,
+    "quarter": "2023Q1",
+    "rel_error": -0.07245244149162389
+   },
+   {
+    "census_tx_per_day": 356330.6630434783,
+    "clusters": 6,
+    "covered": true,
+    "days": 92,
+    "estimate": 389018.6691366652,
+    "hi90": 560418.6072056199,
+    "lo90": 276305.26386722026,
+    "quarter": "2023Q2",
+    "rel_error": 0.09173503569407515
+   },
+   {
+    "census_tx_per_day": 770221.0434782609,
+    "clusters": 6,
+    "covered": false,
+    "days": 92,
+    "estimate": 390836.06732099206,
+    "hi90": 540501.963530506,
+    "lo90": 278147.9260376143,
+    "quarter": "2023Q3",
+    "rel_error": -0.49256636048788605
+   },
+   {
+    "census_tx_per_day": 2520851.1808510637,
+    "clusters": 6,
+    "covered": true,
+    "days": 94,
+    "estimate": 3490909.3685847665,
+    "hi90": 8878388.533030998,
+    "lo90": 638140.7982202366,
+    "quarter": "2023Q4",
+    "rel_error": 0.3848137466830557
+   },
+   {
+    "census_tx_per_day": 4366838.706521739,
+    "clusters": 6,
+    "covered": true,
+    "days": 92,
+    "estimate": 5384285.81799708,
+    "hi90": 6943324.692920351,
+    "lo90": 3781243.960083773,
+    "quarter": "2024Q1",
+    "rel_error": 0.23299397570050284
+   },
+   {
+    "census_tx_per_day": 7731103.065217392,
+    "clusters": 6,
+    "covered": true,
+    "days": 92,
+    "estimate": 7806932.872424588,
+    "hi90": 8914640.513738107,
+    "lo90": 6719018.423503467,
+    "quarter": "2024Q2",
+    "rel_error": 0.009808407230833316
+   },
+   {
+    "census_tx_per_day": 6876821.935483871,
+    "clusters": 6,
+    "covered": false,
+    "days": 93,
+    "estimate": 6064140.339273055,
+    "hi90": 6813288.69722352,
+    "lo90": 5276882.694037292,
+    "quarter": "2024Q3",
+    "rel_error": -0.11817691425416177
+   },
+   {
+    "census_tx_per_day": 7493877.150537634,
+    "clusters": 6,
+    "covered": true,
+    "days": 93,
+    "estimate": 6789231.916753642,
+    "hi90": 7758631.557732012,
+    "lo90": 5802787.327357598,
+    "quarter": "2024Q4",
+    "rel_error": -0.09402946160298864
+   },
+   {
+    "census_tx_per_day": 6881343.6,
+    "clusters": 20,
+    "covered": true,
+    "days": 90,
+    "estimate": 7301939.504526002,
+    "hi90": 8060711.028138076,
+    "lo90": 6580636.057519058,
+    "quarter": "2025Q1",
+    "rel_error": 0.06112118925815624
+   },
+   {
+    "census_tx_per_day": 5466976.107526882,
+    "clusters": 20,
+    "covered": true,
+    "days": 93,
+    "estimate": 4890447.444799707,
+    "hi90": 5889400.521882399,
+    "lo90": 3911370.0488501843,
+    "quarter": "2025Q2",
+    "rel_error": -0.10545659088091042
+   },
+   {
+    "census_tx_per_day": 4835703.40860215,
+    "clusters": 20,
+    "covered": true,
+    "days": 93,
+    "estimate": 4464019.410039249,
+    "hi90": 5440351.710608893,
+    "lo90": 3574054.8311705873,
+    "quarter": "2025Q3",
+    "rel_error": -0.0768624473332502
+   },
+   {
+    "census_tx_per_day": 4211229.677419355,
+    "clusters": 20,
+    "covered": true,
+    "days": 93,
+    "estimate": 4806132.057521806,
+    "hi90": 5767970.105181606,
+    "lo90": 3880586.7517938428,
+    "quarter": "2025Q4",
+    "rel_error": 0.14126571706414448
+   },
+   {
+    "census_tx_per_day": 3494264.714285714,
+    "clusters": 20,
+    "covered": true,
+    "days": 91,
+    "estimate": 4049492.398785944,
+    "hi90": 5188237.711605934,
+    "lo90": 3004046.3086911454,
+    "quarter": "2026Q1",
+    "rel_error": 0.15889685810873888
+   },
+   {
+    "census_tx_per_day": 853916.5274725275,
+    "clusters": 20,
+    "covered": true,
+    "days": 91,
+    "estimate": 839055.1978426039,
+    "hi90": 905963.7565529251,
+    "lo90": 776860.4725335705,
+    "quarter": "2026Q2",
+    "rel_error": -0.017403726420322396
+   },
+   {
+    "census_tx_per_day": 743716.6808510638,
+    "clusters": 20,
+    "covered": true,
+    "days": 94,
+    "estimate": 790779.1118608734,
+    "hi90": 916630.9910932883,
+    "lo90": 679171.8238461217,
+    "quarter": "2026Q3",
+    "rel_error": 0.06328005303841544
+   }
+  ],
+  "scored_quarters": 24
+ },
+ "primary_198": {
+  "coverage": 0.7916666666666666,
+  "covered": 19,
+  "from_2025": {
+   "coverage": 1.0,
+   "median_abs_rel_error": 0.11596441044636607,
+   "n": 7
+  },
+  "intervals_too_narrow_by_rule": true,
+  "median_abs_rel_error": 0.16700805645472128,
+  "median_signed_rel_error": -0.030090500535688403,
+  "not_covered": [
+   "2021Q3",
+   "2021Q4",
+   "2022Q3",
+   "2023Q3",
+   "2024Q3"
+  ],
+  "pre_2025": {
+   "coverage": 0.7058823529411765,
+   "median_abs_rel_error": 0.20516746609178682,
+   "n": 17
+  },
+  "quarters": [
+   {
+    "census_tx_per_day": 10172.670212765957,
+    "clusters": 6,
+    "covered": true,
+    "days": 94,
+    "estimate": 15479.642476834568,
+    "hi90": 23299.25568678193,
+    "lo90": 7811.634012794353,
+    "quarter": "2020Q4",
+    "rel_error": 0.5216892077567548
+   },
+   {
+    "census_tx_per_day": 11362.560439560439,
+    "clusters": 6,
+    "covered": true,
+    "days": 91,
+    "estimate": 7880.916353923249,
+    "hi90": 12872.163378074638,
+    "lo90": 3546.4123592654614,
+    "quarter": "2021Q1",
+    "rel_error": -0.30641369118841644
+   },
+   {
+    "census_tx_per_day": 96601.83516483517,
+    "clusters": 6,
+    "covered": true,
+    "days": 91,
+    "estimate": 125065.80189581952,
+    "hi90": 157766.4932172035,
+    "lo90": 86456.03828302752,
+    "quarter": "2021Q2",
+    "rel_error": 0.2946524430143098
+   },
+   {
+    "census_tx_per_day": 249900.72340425532,
+    "clusters": 6,
+    "covered": false,
+    "days": 94,
+    "estimate": 275287.7549587731,
+    "hi90": 295653.7841379073,
+    "lo90": 255475.90344437727,
+    "quarter": "2021Q3",
+    "rel_error": 0.10158846764701068
+   },
+   {
+    "census_tx_per_day": 302128.47826086957,
+    "clusters": 6,
+    "covered": false,
+    "days": 92,
+    "estimate": 231303.72827160504,
+    "hi90": 290896.1009156439,
+    "lo90": 172511.25324694923,
+    "quarter": "2021Q4",
+    "rel_error": -0.2344193119329574
+   },
+   {
+    "census_tx_per_day": 564641.6086956522,
+    "clusters": 6,
+    "covered": true,
+    "days": 92,
+    "estimate": 448795.52058957506,
+    "hi90": 571878.0909899664,
+    "lo90": 331753.11336624,
+    "quarter": "2022Q1",
+    "rel_error": -0.20516746609178682
+   },
+   {
+    "census_tx_per_day": 679801.0978260869,
+    "clusters": 6,
+    "covered": true,
+    "days": 92,
+    "estimate": 569213.8462776145,
+    "hi90": 758107.1501819625,
+    "lo90": 404162.56304899824,
+    "quarter": "2022Q2",
+    "rel_error": -0.16267589431984697
+   },
+   {
+    "census_tx_per_day": 442630.4623655914,
+    "clusters": 6,
+    "covered": false,
+    "days": 93,
+    "estimate": 263417.5933172006,
+    "hi90": 306046.29795252596,
+    "lo90": 222178.95513737501,
+    "quarter": "2022Q3",
+    "rel_error": -0.4048814627231182
+   },
+   {
+    "census_tx_per_day": 451299.4193548387,
+    "clusters": 6,
+    "covered": true,
+    "days": 93,
+    "estimate": 424950.66975867783,
+    "hi90": 541218.7152129234,
+    "lo90": 308682.62430443225,
+    "quarter": "2022Q4",
+    "rel_error": -0.05838418678629831
+   },
+   {
+    "census_tx_per_day": 392174.4505494505,
+    "clusters": 6,
+    "covered": true,
+    "days": 91,
+    "estimate": 363760.45411650673,
+    "hi90": 437518.8997723841,
+    "lo90": 288136.5702343909,
+    "quarter": "2023Q1",
+    "rel_error": -0.07245244149162389
+   },
+   {
+    "census_tx_per_day": 356330.6630434783,
+    "clusters": 6,
+    "covered": true,
+    "days": 92,
+    "estimate": 389018.6691366652,
+    "hi90": 560418.6072056199,
+    "lo90": 276305.26386722026,
+    "quarter": "2023Q2",
+    "rel_error": 0.09173503569407515
+   },
+   {
+    "census_tx_per_day": 770221.0434782609,
+    "clusters": 6,
+    "covered": false,
+    "days": 92,
+    "estimate": 390836.06732099206,
+    "hi90": 540501.963530506,
+    "lo90": 278147.9260376143,
+    "quarter": "2023Q3",
+    "rel_error": -0.49256636048788605
+   },
+   {
+    "census_tx_per_day": 2520851.1808510637,
+    "clusters": 6,
+    "covered": true,
+    "days": 94,
+    "estimate": 3490909.3685847665,
+    "hi90": 8878388.533030998,
+    "lo90": 638140.7982202366,
+    "quarter": "2023Q4",
+    "rel_error": 0.3848137466830557
+   },
+   {
+    "census_tx_per_day": 4366838.706521739,
+    "clusters": 6,
+    "covered": true,
+    "days": 92,
+    "estimate": 5384285.81799708,
+    "hi90": 6943324.692920351,
+    "lo90": 3781243.960083773,
+    "quarter": "2024Q1",
+    "rel_error": 0.23299397570050284
+   },
+   {
+    "census_tx_per_day": 7731103.065217392,
+    "clusters": 6,
+    "covered": true,
+    "days": 92,
+    "estimate": 7806932.872424588,
+    "hi90": 8914640.513738107,
+    "lo90": 6719018.423503467,
+    "quarter": "2024Q2",
+    "rel_error": 0.009808407230833316
+   },
+   {
+    "census_tx_per_day": 6876821.935483871,
+    "clusters": 6,
+    "covered": false,
+    "days": 93,
+    "estimate": 6064140.339273055,
+    "hi90": 6813288.69722352,
+    "lo90": 5276882.694037292,
+    "quarter": "2024Q3",
+    "rel_error": -0.11817691425416177
+   },
+   {
+    "census_tx_per_day": 7493877.150537634,
+    "clusters": 6,
+    "covered": true,
+    "days": 93,
+    "estimate": 6789231.916753642,
+    "hi90": 7758631.557732012,
+    "lo90": 5802787.327357598,
+    "quarter": "2024Q4",
+    "rel_error": -0.09402946160298864
+   },
+   {
+    "census_tx_per_day": 6881343.6,
+    "clusters": 12,
+    "covered": true,
+    "days": 90,
+    "estimate": 7544418.197857998,
+    "hi90": 8522252.617649566,
+    "lo90": 6576126.824729542,
+    "quarter": "2025Q1",
+    "rel_error": 0.0963583039012903
+   },
+   {
+    "census_tx_per_day": 5466976.107526882,
+    "clusters": 12,
+    "covered": true,
+    "days": 93,
+    "estimate": 4833001.4462931575,
+    "hi90": 6298546.073018956,
+    "lo90": 3482833.907831245,
+    "quarter": "2025Q2",
+    "rel_error": -0.11596441044636607
+   },
+   {
+    "census_tx_per_day": 4835703.40860215,
+    "clusters": 11,
+    "covered": true,
+    "days": 93,
+    "estimate": 4007152.9295378053,
+    "hi90": 4864741.115874204,
+    "lo90": 3230867.2507081786,
+    "quarter": "2025Q3",
+    "rel_error": -0.17134021858959558
+   },
+   {
+    "census_tx_per_day": 4211229.677419355,
+    "clusters": 11,
+    "covered": true,
+    "days": 93,
+    "estimate": 5334611.114465919,
+    "hi90": 6650388.230690212,
+    "lo90": 4119040.653151824,
+    "quarter": "2025Q4",
+    "rel_error": 0.26675852971642544
+   },
+   {
+    "census_tx_per_day": 3494264.714285714,
+    "clusters": 11,
+    "covered": true,
+    "days": 91,
+    "estimate": 4242491.79677181,
+    "hi90": 5521245.487424107,
+    "lo90": 2998325.255107993,
+    "quarter": "2026Q1",
+    "rel_error": 0.21413005128864326
+   },
+   {
+    "census_tx_per_day": 853916.5274725275,
+    "clusters": 11,
+    "covered": true,
+    "days": 91,
+    "estimate": 852382.1980577002,
+    "hi90": 937373.501233449,
+    "lo90": 768950.3683347175,
+    "quarter": "2026Q2",
+    "rel_error": -0.0017968142850784963
+   },
+   {
+    "census_tx_per_day": 743716.6808510638,
+    "clusters": 11,
+    "covered": true,
+    "days": 94,
+    "estimate": 826163.234906278,
+    "hi90": 997877.1004435425,
+    "lo90": 671043.0820949217,
+    "quarter": "2026Q3",
+    "rel_error": 0.1108574759421388
+   }
+  ],
+  "scored_quarters": 24
+ }
+}
