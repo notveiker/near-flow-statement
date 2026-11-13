@@ -212,8 +212,36 @@ def rx7() -> dict:
             "H_RX7a_supported": B / I >= 0.60, "H_RX7a_falsified": B / I < 0.30, "H_RX7b_supported": R / B >= 0.40, "H_RX7b_falsified": R / B < 0.15}
 
 
+def rx8() -> dict:
+    d = json.loads((OUT / "rx8_signer_tx_daily.json").read_text())
+
+    def q(day):
+        return f"{day[:4]}Q{(int(day[5:7]) - 1) // 3 + 1}"
+    agg = {}
+    for r in d:
+        a = agg.setdefault(q(r["day"]), {"days": 0, "tx": 0, "signers": 0, "failed": 0})
+        a["days"] += 1; a["tx"] += int(r["tx"]); a["signers"] += int(r["signers"]); a["failed"] += int(r["failed"])
+    series = {k: {"days": a["days"], "tx_per_day": a["tx"] / a["days"], "signers_per_day": a["signers"] / a["days"], "failed_share": a["failed"] / a["tx"]} for k, a in sorted(agg.items())}
+    ratio = series["2026Q3"]["tx_per_day"] / series["2025Q3"]["tx_per_day"]
+    sratio = series["2026Q3"]["signers_per_day"] / series["2025Q3"]["signers_per_day"]
+    t = json.loads((OUT / "rx8b_signer_top.json").read_text())
+    tot = next(x for x in t if x["part"] == "total")
+    top = sorted([x for x in t if x["part"] == "top"], key=lambda x: int(x["n"]))
+    a_tot, b_tot = float(tot["a"]), float(tot["b"])
+    top3 = sum(float(x["b"]) for x in top[:3]) / b_tot
+    bench = next((x for x in top if x["sg"] == "tx-bench.near"), None)
+    nodes = [x for x in top if x["sg"] != "tx-bench.near"]
+    return {"series": series, "ratio_tx_2026Q3_over_2025Q3": ratio, "ratio_signers": sratio, "sample_estimate_2026Q3": 36633, "sample_over_exact_2026Q3": 36633 / series["2026Q3"]["tx_per_day"],
+            "quarter_totals": {"2025Q3": a_tot, "2026Q3": b_tot, "signers_in_quarter_union": float(tot["n"])},
+            "top15": [{"signer": x["sg"], "q3_2025": float(x["a"]), "q3_2026": float(x["b"]), "share_2026Q3": float(x["b"]) / b_tot} for x in top],
+            "top3_share_2026Q3": top3, "tx_bench_share_2025Q3": (float(bench["a"]) / a_tot) if bench else None, "tx_bench_share_2026Q3": (float(bench["b"]) / b_tot) if bench else None,
+            "top_nodes_each_share_2026Q3": [float(x["b"]) / b_tot for x in nodes[:9]],
+            "H_RX8a_supported": ratio >= 10, "H_RX8a_falsified": ratio < 3, "H_RX8b_within_factor_2": 0.5 <= 36633 / series["2026Q3"]["tx_per_day"] <= 2,
+            "H_RX8c_supported": sratio >= 3, "H_RX8c_falsified": sratio < 1.2, "H_RX8d_supported": top3 >= 0.80, "H_RX8d_falsified": top3 < 0.50}
+
+
 def main() -> int:
-    res = {"rx1": rx1(), "rx2": rx2(), "rx3": rx3(), "rx4": rx4(), "rx5": rx5(), "rx6": rx6(), "rx7": rx7()}
+    res = {"rx1": rx1(), "rx2": rx2(), "rx3": rx3(), "rx4": rx4(), "rx5": rx5(), "rx6": rx6(), "rx7": rx7(), "rx8": rx8()}
     dest = ROOT / "data" / "derived" / "rx_results.json"
     dest.write_text(json.dumps(res, indent=1, sort_keys=True) + "\n")
     print("wrote", dest.relative_to(ROOT))

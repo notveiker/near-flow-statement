@@ -1106,5 +1106,179 @@
     "week_start": "2026-10-27"
    }
   ]
+ },
+ "rx8": {
+  "H_RX8a_falsified": false,
+  "H_RX8a_supported": false,
+  "H_RX8b_within_factor_2": true,
+  "H_RX8c_falsified": false,
+  "H_RX8c_supported": false,
+  "H_RX8d_falsified": true,
+  "H_RX8d_supported": false,
+  "quarter_totals": {
+   "2025Q3": 300691.0,
+   "2026Q3": 2525394.0,
+   "signers_in_quarter_union": 185.0
+  },
+  "ratio_signers": 1.7474747474747476,
+  "ratio_tx_2026Q3_over_2025Q3": 8.398635143718968,
+  "sample_estimate_2026Q3": 36633,
+  "sample_over_exact_2026Q3": 1.3345386898044425,
+  "series": {
+   "2025Q1": {
+    "days": 88,
+    "failed_share": 0.0,
+    "signers_per_day": 7.409090909090909,
+    "tx_per_day": 399.0568181818182
+   },
+   "2025Q2": {
+    "days": 91,
+    "failed_share": 0.0,
+    "signers_per_day": 8.989010989010989,
+    "tx_per_day": 529.4725274725274
+   },
+   "2025Q3": {
+    "days": 92,
+    "failed_share": 0.0,
+    "signers_per_day": 10.76086956521739,
+    "tx_per_day": 3268.3804347826085
+   },
+   "2025Q4": {
+    "days": 92,
+    "failed_share": 0.0,
+    "signers_per_day": 12.065217391304348,
+    "tx_per_day": 5330.413043478261
+   },
+   "2026Q1": {
+    "days": 90,
+    "failed_share": 0.0,
+    "signers_per_day": 10.666666666666666,
+    "tx_per_day": 10517.744444444445
+   },
+   "2026Q2": {
+    "days": 91,
+    "failed_share": 0.0,
+    "signers_per_day": 13.010989010989011,
+    "tx_per_day": 29808.20879120879
+   },
+   "2026Q3": {
+    "days": 92,
+    "failed_share": 0.0,
+    "signers_per_day": 18.804347826086957,
+    "tx_per_day": 27449.934782608696
+   },
+   "2026Q4": {
+    "days": 35,
+    "failed_share": 0.0,
+    "signers_per_day": 20.114285714285714,
+    "tx_per_day": 15624.485714285714
+   }
+  },
+  "top15": [
+   {
+    "q3_2025": 125299.0,
+    "q3_2026": 247078.0,
+    "share_2026Q3": 0.09783740675712384,
+    "signer": "tx-bench.near"
+   },
+   {
+    "q3_2025": 2279.0,
+    "q3_2026": 183435.0,
+    "share_2026Q3": 0.07263619063005614,
+    "signer": "everstake-mpc-1.near"
+   },
+   {
+    "q3_2025": 22137.0,
+    "q3_2026": 183339.0,
+    "share_2026Q3": 0.07259817675974521,
+    "signer": "multichain-mainnet-aurora.near"
+   },
+   {
+    "q3_2025": 21413.0,
+    "q3_2026": 182751.0,
+    "share_2026Q3": 0.07236534180409077,
+    "signer": "blacksandtech.near"
+   },
+   {
+    "q3_2025": 19773.0,
+    "q3_2026": 182698.0,
+    "share_2026Q3": 0.07234435497985661,
+    "signer": "n1-multichain.near"
+   },
+   {
+    "q3_2025": 22801.0,
+    "q3_2026": 182523.0,
+    "share_2026Q3": 0.07227505886210231,
+    "signer": "nodemonster.near"
+   },
+   {
+    "q3_2025": 22010.0,
+    "q3_2026": 181957.0,
+    "share_2026Q3": 0.07205093541839412,
+    "signer": "mpc-lgns.near"
+   },
+   {
+    "q3_2025": 2018.0,
+    "q3_2026": 181898.0,
+    "share_2026Q3": 0.07202757272726552,
+    "signer": "stakin-mpc.near"
+   },
+   {
+    "q3_2025": 22160.0,
+    "q3_2026": 181851.0,
+    "share_2026Q3": 0.0720089617699258,
+    "signer": "near-mpc-staking4all-01.near"
+   },
+   {
+    "q3_2025": 0.0,
+    "q3_2026": 181670.0,
+    "share_2026Q3": 0.07193728978527707,
+    "signer": "mpch-01.near"
+   },
+   {
+    "q3_2025": 0.0,
+    "q3_2026": 180941.0,
+    "share_2026Q3": 0.07164862195760345,
+    "signer": "svrn-01.near"
+   },
+   {
+    "q3_2025": 0.0,
+    "q3_2026": 103806.0,
+    "share_2026Q3": 0.041104873140587174,
+    "signer": "greenfield-mpc01.near"
+   },
+   {
+    "q3_2025": 0.0,
+    "q3_2026": 89005.0,
+    "share_2026Q3": 0.03524400548983644,
+    "signer": "natsai-mpc.near"
+   },
+   {
+    "q3_2025": 0.0,
+    "q3_2026": 88757.0,
+    "share_2026Q3": 0.0351458029915332,
+    "signer": "hashkeympc.near"
+   },
+   {
+    "q3_2025": 0.0,
+    "q3_2026": 68404.0,
+    "share_2026Q3": 0.027086466507800368,
+    "signer": "astrostakers-mainnet.near"
+   }
+  ],
+  "top3_share_2026Q3": 0.24307177414692518,
+  "top_nodes_each_share_2026Q3": [
+   0.07263619063005614,
+   0.07259817675974521,
+   0.07236534180409077,
+   0.07234435497985661,
+   0.07227505886210231,
+   0.07205093541839412,
+   0.07202757272726552,
+   0.0720089617699258,
+   0.07193728978527707
+  ],
+  "tx_bench_share_2025Q3": 0.4167035262112933,
+  "tx_bench_share_2026Q3": 0.09783740675712384
  }
 }

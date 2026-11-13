@@ -126,3 +126,10 @@ class RX7(unittest.TestCase):
         r = json.load(open(ROOT / "data" / "derived" / "rx_results.json"))["rx7"]
         self.assertEqual(r["H_RX7b_supported"], r["spike_relay_share_of_bridge"] >= 0.40)
         self.assertLessEqual(r["spike_bridge_mng"], r["spike_transfers_in"] * 1.01)
+
+
+class RX8(unittest.TestCase):
+    def test_rx8_rules(self):
+        r = json.load(open(ROOT / "data" / "derived" / "rx_results.json"))["rx8"]
+        self.assertEqual(r["H_RX8d_supported"], r["top3_share_2026Q3"] >= 0.80)
+        self.assertAlmostEqual(r["ratio_tx_2026Q3_over_2025Q3"], r["series"]["2026Q3"]["tx_per_day"] / r["series"]["2025Q3"]["tx_per_day"], places=9)

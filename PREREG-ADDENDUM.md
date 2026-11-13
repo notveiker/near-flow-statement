@@ -326,3 +326,7 @@ Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. M
 ## 2026-11-13 03:15 UTC: RX7 result
 
 Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. Method `d9f6527` (03:15:11 UTC) before computation. In the weeks of 2026-09-15 and 09-22, 90% of wNEAR transfers into `intents.near` came from `bridge-mng.near` (H-RX7a supported) and 46% of what `bridge-mng.near` wrapped came from the FU7 Binance relay (H-RX7b supported). Local computation from saved outputs.
+
+## 2026-11-13 03:18 UTC: RX8 result (Chain Signatures direct transactions)
+
+Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. Methods `60aafcb` and `5162dd5` (03:16 and 03:17 UTC) before the queries (225 GB). Direct transactions to `v1.signer` per day: 3.3K (2025Q3) to 27.5K (2026Q3), 8.4 times (H-RX8a neither); senders per day 11 to 19 (H-RX8c neither); the top senders are about eleven MPC-node-style accounts with identical counts, plus a benchmarking account that was 42% of 2025Q3 (H-RX8d falsified). The series is a node-side activity count; user requests per day are not established by it or by the sample figure. The receipt-level exact count (4.7 TB) was not run.
