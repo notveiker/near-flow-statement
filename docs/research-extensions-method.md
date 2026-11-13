@@ -52,3 +52,6 @@ Why: the sample-based extras estimate Chain Signatures requests at about 1.4K a 
 - **H-RX8b (the sample's level):** the sample's 2026Q3 estimate (36.6K a day) is within a factor of 2 of the exact direct-call count (that is, direct calls are between half and double of the sample's receipt-level figure); if the exact count is under half of it, most requests come through contracts or the sample overstates. Reported as one of the two, not as a validation.
 - **H-RX8c (broad use):** distinct signers per day grew at least **3 times** between 2025Q3 and 2026Q3. Falsified if they did not grow (ratio under 1.2).
 - Also reported: the failed share and the quarterly series. Accounts are not people; a handful of signers can send most of the calls (the share of the top signer is not measured here).
+
+### RX8b (added 2026-11-13 03:17 UTC, before the query runs; `sql/rx/rx8b_signer_top.sql`)
+After the RX8 quarterly series (read before this was written: about 11 distinct signers a day in 2025Q3 and 19 in 2026Q3 send all direct transactions): who are they? Per signer, transactions in 2025Q3 and 2026Q3. **H-RX8d (a handful of senders):** the top 3 signers carry at least **80%** of the direct transactions in 2026Q3; falsified under 50%. Account names only; no claim about who operates them (**INFERRED**).

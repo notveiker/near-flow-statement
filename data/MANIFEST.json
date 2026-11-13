@@ -778,9 +778,9 @@
    "source": "rpc view_account at block 223230811"
   },
   "raw/rx/jobs.jsonl": {
-   "bytes": 2355,
-   "fetched_at": "2026-11-13T03:13:56Z",
-   "sha256": "f5e028ebcd0f881dfa4eb17766e56faf89de9d69b65214de4328080df82179f1",
+   "bytes": 2944,
+   "fetched_at": "2026-11-13T03:16:58Z",
+   "sha256": "0a9930fef87d5da9fa538d0f79296cc1bd9ee74eccd0eab33f2c5149a9632632",
    "source": "append-only log written by pipeline.windows run-file"
   },
   "raw/rx/rx1_users.json": {
@@ -811,6 +811,13 @@
    "rows": 453,
    "sha256": "e2b94180ae1892290e7f14b1b787a570801433f6377c0a011437be75ed8c95e8",
    "source": "bigquery job ask_rx6_wrap_daily_20261113T031352Z: sql/rx/rx6_wrap_daily.sql"
+  },
+  "raw/rx/rx8_signer_tx_daily.json": {
+   "bytes": 40763,
+   "fetched_at": "2026-11-13T03:16:58Z",
+   "rows": 671,
+   "sha256": "399055cdce54a0fc3a1c26bcbb7ff5e889749be7b8d1e6fa24b640f8ef530f58",
+   "source": "bigquery job ask_rx8_signer_tx_daily_20261113T031620Z: sql/rx/rx8_signer_tx_daily.sql"
   },
   "raw/unstakers/account_set.json": {
    "bytes": 21282,
