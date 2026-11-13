@@ -76,7 +76,7 @@ Same-day attribution. "A escrow $ share" is the escrow-funded share of collector
 
 ## What this does not show
 
-- **Which fee the escrow-funded accounts paid.** The fees reach collector A, the explicit buyback fee's collector, so they are consistent with buyback fees on confidentially settled swaps. The swap itself is not visible.
+- **Which fee the escrow-funded accounts paid.** The fees reach collector A, the explicit buyback fee's collector, so they are consistent with buyback fees on confidentially settled swaps. The swap itself is not visible; its public trace, a solver shield paired with an unshield, is described in [`confidential-flow.md`](confidential-flow.md).
 - **Before 2026-09-22.** The query looks for escrow funding from 2026-09-22 only. The median gap is a few blocks, so a sender funded earlier would be unusual, but it would be counted as `public_swap` (if it swapped publicly) or `other`.
 - **Prices.** Unpriced tokens are left out of the USD shares; the imputed reading above bounds their effect.
 

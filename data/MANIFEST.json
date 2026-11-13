@@ -32,6 +32,22 @@
    "sha256": "76ca2d1194f0c19db1a517d4850724ef5da63d8b6ee9568abfa774dcb06ea272",
    "source": "bigquery: sql/collector_inflows.sql"
   },
+  "raw/bq/confidential_solver_blocks.json": {
+   "bytes": 10209118,
+   "bytes_processed_estimate": 4161963594,
+   "fetched_at": "2026-11-13T21:55:52Z",
+   "rows": 55291,
+   "sha256": "67b19f55ff50a02b50f471f6343364e745a01943ad04c6b5779f86a0a14f36d2",
+   "source": "bigquery: sql/confidential_solver_blocks.sql"
+  },
+  "raw/bq/confidential_treasury_daily.json": {
+   "bytes": 4572626,
+   "bytes_processed_estimate": 161962056899,
+   "fetched_at": "2026-11-13T21:56:04Z",
+   "rows": 32775,
+   "sha256": "481527a4c20971318928e47e32989217adc56fda2204e5f9994705ec97d70d31",
+   "source": "bigquery: sql/confidential_treasury_daily.sql"
+  },
   "raw/bq/escrow_funding_scan.json": {
    "bytes": 593662,
    "bytes_processed_estimate": 66859382761,

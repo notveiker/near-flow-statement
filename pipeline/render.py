@@ -2119,7 +2119,7 @@ def card_escrow(ctx: Ctx) -> str:
                   f'{ctx.M("escrow_share_buyback_2026_08_pct")}% in August, then {ctx.M("escrow_share_buyback_2026_09_pct")}% in September, {ctx.M("escrow_share_buyback_2026_10_pct")}% in October and {ctx.M("escrow_share_buyback_2026_11_pct")}% for {partial_month_note(ctx)}.'),
         shows=('For each calendar month, the share of NEAR delivered to <code>buybacks.multisignature.near</code> that came from single-use accounts '
                'funded by the Confidential Intents escrow (unshields) rather than from the recurring fee collectors.'),
-        notshows='Which fee stream the escrow NEAR comes from, which is unattested, and any share in USD terms: these are shares of NEAR delivered.',
+        notshows='Which fee stream the escrow NEAR comes from, which is unattested (the releases move day by day with confidential swap volume, <code>docs/confidential-flow.md</code>), and any share in USD terms: these are shares of NEAR delivered.',
         figure=fig,
         caption=f'Window: 2026-07-07 to {esc(asof)} (UTC), by calendar month. Unit: percent of NEAR delivered. The axis starts at zero.',
         extra=figs,
@@ -2363,8 +2363,8 @@ def card_paid(ctx: Ctx) -> str:
         shows=(f'The fees 1Click swaps listed for partners (${ctx.M("explorer_partner_fees_all_usd_k")}K) as a multiple of NEAR&rsquo;s entire captured Intents revenue '
                f'(${ctx.M("revwallets_usd_k")}K), between {ctx.M("partners_kept_vs_near_rev_low_x")}× and {ctx.M("partners_kept_vs_near_rev_high_x")}× on the readings charted, and 1Click swap volume '
                f'into and out of NEAR, over the 30 days {window_text(ctx, 30)}.'),
-        notshows=(f'The other half of Intents: 1Click is {ctx.M("explorer_vs_llama_net_pct")}% of DefiLlama&rsquo;s volume on the halved basis ({ctx.M("legcount_oneclick_share_lo_pct")}% to '
-                  f'{ctx.M("legcount_oneclick_share_hi_pct")}% on one-sided volume if the confidential flow DefiLlama counts from 2026-09-01 is swap volume; exploratory), and near.com, direct solver flow '
+        notshows=(f'The other half of Intents: 1Click is {ctx.M("explorer_vs_llama_net_pct")}% of DefiLlama&rsquo;s volume on the halved basis ({ctx.M("legcount_oneclick_share_solver_lo_pct")}% to '
+                  f'{ctx.M("legcount_oneclick_share_solver_hi_pct")}% on one-sided volume, taking confidential solver shields as one-sided confidential volume; exploratory), and near.com, direct solver flow '
                   f'and other integrations have a fee structure the Explorer API does not show, so we do not extrapolate.'),
         figure=fig,
         caption=(f'Window: the 30 days {window_text(ctx, 30)} (UTC). Units: a multiple of NEAR&rsquo;s revenue (Panel A) and USD million (Panel B). Both axes start at zero. '
@@ -2446,9 +2446,9 @@ def card_peers(ctx: Ctx) -> str:
         figure=fig,
         caption=f'Window: {esc(rows[0]["month"])} to {esc(last)} (UTC), by calendar month. Unit: percent of the peer set&rsquo;s reported volume. The axis starts at zero.',
         extra=figs,
-        notes=(f'Reported Intents volume counts both legs of public swaps (measured), plus, from 2026-09-01, confidential-treasury flow at about one leg (measured; what that flow represents is inferred); DefiLlama&rsquo;s adapter states no methodology, and this comes from a sum of <code>intents.near</code> settlement on five days (exploratory, <code>docs/leg-count.md</code>). '
-               f'On one-sided volume the 30-day share is {ctx.M("legcount_peer_share_lo_pct")}% to {ctx.M("legcount_peer_share_hi_pct")}% if that confidential flow is swap volume and '
-               f'{ctx.M("legcount_peer_share_public_lo_pct")}% to {ctx.M("legcount_peer_share_public_hi_pct")}% if it is not; the halved basis gives {ctx.M("intents_share_peerset_30d_net_pct")}%. Only Intents is restated.',
+        notes=(f'Reported Intents volume counts both legs of public swaps (measured), plus, from 2026-09-01, confidential-treasury flow at about one leg (measured; what that flow represents is inferred), which on the solver pairs is swap volume counted at close to both legs; DefiLlama&rsquo;s adapter states no methodology, and this comes from a sum of <code>intents.near</code> settlement on five days and the solver pairs on three (exploratory, <code>docs/leg-count.md</code>, <code>docs/confidential-flow.md</code>). '
+               f'On one-sided volume the 30-day share is {ctx.M("legcount_peer_share_solver_lo_pct")}% to {ctx.M("legcount_peer_share_solver_hi_pct")}%, '
+               f'near the halved basis, {ctx.M("intents_share_peerset_30d_net_pct")}%. Only Intents is restated.',
                f'The last month covers {partial_month_note(ctx)} only. Forward test F4 asks whether the share over 2026-11-06 to 2026-11-13 is at least '
                f'{ctx.K("f4_min_pct")}% on the reported basis; this chart is context for it, not the test.'),
         source=source_p(ctx, raw=("raw/llama/volume_near-intents.json", "raw/llama/volume_thorchain-dex.json", "raw/llama/volume_chainflip-amm.json",
@@ -2517,9 +2517,9 @@ def card_revenue(ctx: Ctx) -> str:
                  f'Units: USD million (Panel A) and basis points (Panel B). Both axes start at zero.'),
         extra=figs,
         notes=(f'Revenue before the 2026-02-23 fee switch counts as captured, as DefiLlama labels it. Reported volume was ${ctx.S("intents_monthly.2026-10.vol_b")}B in October. '
-               f'The volume is what DefiLlama reports: both legs of public swaps, and from 2026-09-01 also confidential-treasury flow at about one leg (exploratory, <code>docs/leg-count.md</code>; its adapter states no methodology). '
+               f'The volume is what DefiLlama reports: both legs of public swaps, and from 2026-09-01 also the confidential flow, counted at close to both legs (exploratory, <code>docs/confidential-flow.md</code>; its adapter states no methodology). '
                f'So it steps up on 2026-09-01 (see the take chart above), and months before September are on the old definition. On one-sided volume the last 30 days&rsquo; captured take is '
-               f'{ctx.M("legcount_take_captured_bp_lo")} to {ctx.M("legcount_take_captured_bp_hi")} bp if that flow is swap volume.',
+               f'{ctx.M("legcount_take_captured_bp_solver_lo")} to {ctx.M("legcount_take_captured_bp_solver_hi")} bp.',
                f'The last month covers {partial_month_note(ctx)} only. Forward test F3 asks whether the captured take over 2026-11-06 to 2026-11-13 is below '
                f'{ctx.K("f3_max_bp")} bp; this chart is context for it, not the test.'),
         source=source_p(ctx, raw=("raw/llama/volume_near-intents.json", "raw/llama/dailyRevenue_near-intents.json", "raw/llama/fees_near-intents.json"),
@@ -2829,8 +2829,8 @@ def not_computed(ctx: Ctx) -> str:
          f'On partner swaps with no buyback entry the ledger puts NEAR&rsquo;s share, as it reaches the buyback wallet, at no more than {M("near_share_of_partner_fees_max_pct")}% '
          f'({M("near_share_of_partner_fees_max_tight_pct")}% on the tighter reading) but does not measure it.'),
         ("The other half of Intents.",
-         f'1Click is {M("explorer_vs_llama_net_pct")}% of DefiLlama&rsquo;s volume on the halved basis ({M("legcount_oneclick_share_lo_pct")}% to {M("legcount_oneclick_share_hi_pct")}% '
-         f'on one-sided volume if the confidential flow DefiLlama counts from 2026-09-01 is swap volume; exploratory, <code>docs/leg-count.md</code>). near.com, direct solver flow and other integrations have a fee '
+         f'1Click is {M("explorer_vs_llama_net_pct")}% of DefiLlama&rsquo;s volume on the halved basis ({M("legcount_oneclick_share_solver_lo_pct")}% to {M("legcount_oneclick_share_solver_hi_pct")}% '
+         f'on one-sided volume, taking confidential solver shields as one-sided confidential volume; exploratory, <code>docs/confidential-flow.md</code>). near.com, direct solver flow and other integrations have a fee '
          f'structure the Explorer API does not show, and we do not extrapolate.'),
         ("Why the usage step happened.",
          f'BigQuery shows that Sweat Economy&rsquo;s signers account for {M("usage_bq_step_kaiching_share_pct")}% of the fall in daily transactions on '

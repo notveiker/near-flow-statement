@@ -59,7 +59,7 @@ Plain-language definitions of the terms a first-time reader meets in the [README
 - **Front-end fund.** `fefundsadmin.sputnik-dao.near`, the wallet that receives the fees of NEAR's own front ends; the fee docs name it for the near-intents.org fee.
 - **Listed partner fees.** The app fees that 1Click swaps list for partner accounts (wallets and front ends). Who owns the receiving accounts is not shown.
 - **Value capture.** Used narrowly here: the NEAR that verifiably reaches NEAR's revenue wallets, as a share of net issuance. It is not a valuation.
-- **Attestation and unattested.** An attestation would be a statement by NEAR of which fee stream funds the escrow releases. Unattested means that no such statement exists in the sources the repository read.
+- **Attestation and unattested.** An attestation would be a statement by NEAR of which fee stream funds the escrow releases. Unattested means that no such statement exists in the sources the repository read. Evidence from the chain, such as the releases tracking confidential volume, can make a reading likely but does not attest it.
 - **Point.** One percentage point of net issuance. The ladder's rungs are given in points: 4.53<!--n:ladder_public_collectors_pct_of_issuance--> points means NEAR equal to 4.53<!--n:ladder_public_collectors_pct_of_issuance-->% of net issuance over the window.
 - **Peer set.** The native cross-chain venues that Intents is compared with: THORChain, Chainflip and Maya.
 - **Take rate.** Revenue as basis points of volume. The captured take is DefiLlama revenue over reported volume.
@@ -75,6 +75,8 @@ Plain-language definitions of the terms a first-time reader meets in the [README
 - **Confidential Intents escrow.** Our word for the Treasury account that NEAR's Confidential Intents docs say backs each confidential token one for one.
 - **Unshield.** A confidential withdrawal: the Treasury releases the backing tokens. On chain it shows as the escrow paying the exact amount to a fresh account, which then withdraws it to a revenue wallet. That pattern is an observation; the documentation describes the release, not the pattern.
 - **Single-use account.** A fresh account that receives NEAR from the escrow and withdraws it to a revenue wallet. It appears in exactly one row of the delivery table.
+- **FAR, shield, IMT.** FAR is the permissioned chain on which confidential swaps settle; its RPC is private. A shield moves tokens from `intents.near` to the escrow, after which the bridge mints the same amount on FAR as an IMT (Intents Multi-Token). An unshield burns the IMT and releases the tokens from the escrow.
+- **Solver pair.** Our name for the public trace of a confidential swap on a solver's side: the solver shields one token and, about eight blocks later, unshields another token of the same value ([`confidential-flow.md`](confidential-flow.md)).
 - **Funding hop.** The transfer from the escrow that funds a single-use account. Every single-use delivery in the ladder's window has a traced funding hop; before the window, most funding hops are sampled.
 
 - **Signer, active account.** The account that signs a transaction. Nearblocks' "active accounts" are the distinct signers of a day, which BigQuery reproduces exactly (`docs/usage.md`). A signer is an account, not a person.

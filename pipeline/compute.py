@@ -194,6 +194,7 @@ def escrow_ladder(m: dict, lo: str, hi: str) -> None:
                                                      / near(bb) * 100), 1)
     m["net_issuance_near_per_day_window"] = r(float(iss), 0)
     for key, sel in (("all_wallets", lambda x: True), ("buyback_only", bb),
+                     ("frontend_only", lambda x: x["wallet"] == "fefundsadmin.sputnik-dao.near"),
                      ("public_collectors", lambda x: x["path"] in ("collector_a", "collector_b")),
                      ("escrow_unshields", lambda x: x["path"] == "escrow_unshield")):
         m[f"ladder_{key}_pct_of_issuance"] = r(float(near(sel) / n_days / iss * 100), 2)
@@ -629,6 +630,32 @@ def leg_count(m: dict, vol: dict, rev: dict, price: dict, asof: str) -> None:
         m[f"legcount_{tag}_unpriced_diff_entries_pct"] = r(a["n_td_unpriced"] / a["n_td"] * 100, 2)
         if d in exp:
             m[f"legcount_{tag}_explorer_over_public_pct"] = r(exp[d] / pub * 100, 1)
+    # Reading 3 (exploratory, 2026-11-13; docs/confidential-flow.md): one-sided confidential volume is what solvers
+    # shield into the treasury (each shield pairs with an equal-value unshield of another token), not half of every
+    # treasury transfer. Solver shields come from sql/confidential_treasury_daily.sql, priced as above.
+    ks = {}
+    if (RAW / "bq" / "confidential_treasury_daily.json").exists():
+        sv, alltr = defaultdict(float), defaultdict(float)
+        for row in read_raw("bq/confidential_treasury_daily.json"):
+            d, info = row["day"], meta.get(row["token"])
+            if d not in agg or not info:
+                continue
+            p = prices.get(info["coingeckoId"] or "", {}).get(d)
+            if p is None:
+                continue
+            v = float(row["amt"]) * p / 10 ** int(info["decimals"])
+            alltr[d] += v
+            if row["cls"] == "solver" and row["dir"] == "in":
+                sv[d] += v
+        for d in LEG_DAYS:
+            tag = d[5:].replace("-", "")
+            pub, lv = agg[d]["abs_diff"] / 4, llama[d]
+            m[f"legcount_{tag}_solver_shield_m"] = r(sv[d] / 1e6, 1)
+            m[f"legcount_{tag}_solver_shield_over_treasury_pct"] = r(sv[d] / agg[d]["treasury"] * 100, 1)
+            m[f"legcount_{tag}_daily_query_over_leg_query_pct"] = r(alltr[d] / agg[d]["treasury"] * 100, 1)
+            m[f"legcount_{tag}_gap_over_solver_shield"] = r((lv - 2 * pub) / sv[d], 2)
+            ks[d] = lv / (pub + sv[d])
+            m[f"legcount_{tag}_k_solver"] = r(ks[d], 2)
     win = ["2026-10-08", "2026-10-22"]  # the only measured days inside the 30 days to 2026-11-04
     k_lo, k_hi = min(k[d] for d in win), max(k[d] for d in win)
     kp_lo, kp_hi = min(kp[d] for d in win), max(kp[d] for d in win)
@@ -637,6 +664,11 @@ def leg_count(m: dict, vol: dict, rev: dict, price: dict, asof: str) -> None:
     aug = ["2026-08-18", "2026-08-31"]
     m["legcount_k_aug_with_treasury_lo"] = r(min(k[d] for d in aug), 2)
     m["legcount_k_aug_with_treasury_hi"] = r(max(k[d] for d in aug), 2)
+    readings = [("", k_lo, k_hi), ("_public", kp_lo, kp_hi)]
+    if ks:
+        ks_lo, ks_hi = min(ks[d] for d in win), max(ks[d] for d in win)
+        m["legcount_k_solver_window_lo"], m["legcount_k_solver_window_hi"] = r(ks_lo, 2), r(ks_hi, 2)
+        readings.append(("_solver", ks_lo, ks_hi))
 
     # Window figures restated on one-sided volume (= reported / k). Reading 1: the treasury pairs are swaps (k).
     # Reading 2: they are not swaps (k_public). Both are exploratory; the reported-basis figures are unchanged.
@@ -655,14 +687,14 @@ def leg_count(m: dict, vol: dict, rev: dict, price: dict, asof: str) -> None:
     oc = sum(x["usd_in"] for x in ex) / sum(llama.get(x["date"], 0) for x in ex) * 100
     m["legcount_oneclick_share_reported_pct"] = r(oc, 1)
     others = sum(window_sum(vol[s], asof, 30) for s in PEERS if s != "near-intents")
-    for name, a, b in (("", k_lo, k_hi), ("_public", kp_lo, kp_hi)):
+    for name, a, b in readings:
         m[f"legcount_take_captured_bp{name}_lo"] = r(take * a, 2)
         m[f"legcount_take_captured_bp{name}_hi"] = r(take * b, 2)
         m[f"legcount_escrow_bp{name}_lo"] = r(esc_bp * a, 2)
         m[f"legcount_escrow_bp{name}_hi"] = r(esc_bp * b, 2)
-        if not name:  # under reading 2 it passes 100%: 1Click itself settles confidentially from 2026-10-27
-            m["legcount_oneclick_share_lo_pct"] = r(oc * a, 1)
-            m["legcount_oneclick_share_hi_pct"] = r(oc * b, 1)
+        if name != "_public":  # under reading 2 it passes 100%: 1Click itself settles confidentially from 2026-10-27
+            m[f"legcount_oneclick_share{name}_lo_pct"] = r(oc * a, 1)
+            m[f"legcount_oneclick_share{name}_hi_pct"] = r(oc * b, 1)
         # A larger k shrinks Intents, so the high k gives the low share.
         m[f"legcount_peer_share{name}_lo_pct"] = r(v30 / b / (others + v30 / b) * 100, 1)
         m[f"legcount_peer_share{name}_hi_pct"] = r(v30 / a / (others + v30 / a) * 100, 1)
@@ -671,6 +703,154 @@ def leg_count(m: dict, vol: dict, rev: dict, price: dict, asof: str) -> None:
     share = lambda kk: v30 / kk / (others + v30 / kk)
     m["legcount_reading_gap_take_x"] = r((kp_lo / k_lo + kp_hi / k_hi) / 2, 1)
     m["legcount_reading_gap_peer_share_x"] = r((share(k_hi) / share(kp_hi) + share(k_lo) / share(kp_lo)) / 2, 1)
+
+
+def _corr(x: list, y: list) -> float:
+    mx, my = sum(x) / len(x), sum(y) / len(y)
+    sxy = sum((a - mx) * (b - my) for a, b in zip(x, y))
+    return sxy / (sum((a - mx) ** 2 for a in x) * sum((b - my) ** 2 for b in y)) ** 0.5
+
+
+def confidential_flow(m: dict, price: dict) -> None:
+    """What the Confidential Intents treasury flow is, and what pays for the escrow releases (exploratory,
+    2026-11-13; docs/confidential-flow.md).
+
+    1. Solver pairs (sql/confidential_solver_blocks.sql, three days): each block in which a solver shielded tokens is
+       matched to the first unused block, 1 to 20 blocks later, in which the same solver unshielded tokens worth the
+       same within a tolerance (greedy, in block order). Priced like leg_count (data/raw/coingecko/leg_count_prices.json).
+    2. Releases against volume (sql/confidential_treasury_daily.sql, 2026-08-07 to 11-04): the NEAR delivered to the
+       revenue wallets through the escrow path (data/raw/escrow/deliveries.csv, `escrow_unshield`), priced at the day's
+       close, against solver shields (token_usd: stablecoins and the majors), 1Click volume and 1Click's explicit
+       buyback fee (data/raw/explorer/daily.json). Pearson correlations on levels, on levels minus a centred 7-day mean,
+       and on day-over-day changes of log(1 + x)."""
+    import csv
+    import math
+    if not ((RAW / "bq" / "confidential_solver_blocks.json").exists()
+            and (RAW / "bq" / "confidential_treasury_daily.json").exists()):
+        return
+    px = read_raw("coingecko/leg_count_prices.json")
+    meta, lp = px["tokens"], px["prices"]
+
+    def legs_usd(legs: str, d: str):
+        tot, toks = 0.0, set()
+        for leg in legs.split(";"):
+            tok, amt = leg.rsplit("=", 1)
+            info = meta.get(tok)
+            p = lp.get(info["coingeckoId"] or "", {}).get(d) if info else None
+            if p is None:
+                return None, None
+            tot += float(amt) * p / 10 ** int(info["decimals"])
+            toks.add(tok)
+        return tot, toks
+
+    blocks = defaultdict(lambda: {"in": [], "out": []})
+    for row in read_raw("bq/confidential_solver_blocks.json"):
+        v, toks = legs_usd(row["legs"], row["day"])
+        blocks[(row["day"], row["solver"])][row["dir"]].append((int(row["blk"]), v, toks))
+    for d in ("2026-09-02", "2026-10-08", "2026-10-22"):
+        tag = d[5:].replace("-", "")
+        res = {}
+        for tol in (0.01, 0.03):
+            tot = matched = diff = 0.0
+            gaps, n_in, n_unpriced = [], 0, 0
+            for (day_, _), b in blocks.items():
+                if day_ != d:
+                    continue
+                outs = sorted(b["out"], key=lambda x: x[0])
+                used = set()
+                for blk, v, toks in sorted(b["in"], key=lambda x: x[0]):
+                    n_in += 1
+                    if v is None or v <= 0:
+                        n_unpriced += 1
+                        continue
+                    tot += v
+                    for j, (oblk, ov, otoks) in enumerate(outs):
+                        if oblk <= blk or j in used or ov is None:
+                            continue
+                        if oblk - blk > 20:
+                            break
+                        if abs(ov / v - 1) < tol:
+                            used.add(j)
+                            matched += v
+                            diff += v if otoks != toks else 0.0
+                            gaps.append(oblk - blk)
+                            break
+            res[tol] = (tot, matched, diff, gaps, n_in, n_unpriced)
+        tot, matched, diff, gaps, n_in, n_unpriced = res[0.03]
+        m[f"conf_{tag}_solver_shield_m"] = r(tot / 1e6, 1)
+        m[f"conf_{tag}_paired_3pct_pct"] = r(matched / tot * 100, 1)
+        m[f"conf_{tag}_paired_1pct_pct"] = r(res[0.01][1] / tot * 100, 1)
+        m[f"conf_{tag}_paired_other_token_pct"] = r(diff / matched * 100, 1)
+        m[f"conf_{tag}_paired_gap_median_blocks"] = _median(gaps)
+        m[f"conf_{tag}_shield_blocks_unpriced_pct"] = r(n_unpriced / n_in * 100, 2)
+
+    prices = {c: {day(ms / 1000): float(p) for ms, p in pts} for c, pts in read_raw("coingecko/majors_90d.json").items()}
+    prices["near"] = price
+    # Daily prices exist for the stablecoins (1 USD), NEAR and the majors only. A token is valued through the 1Click
+    # token list's CoinGecko id and decimals (leg_count_prices.json, "tokens") when that id is one of these, else
+    # through token_usd; anything else is left unpriced and counted in conf_daily_solver_shields_priced_pct.
+    stable = {"usd-coin", "tether", "usdt0", "dai", "usds", "usd1-wlfi", "first-digital-usd", "ethena-usde"}
+    alias = {"wrapped-near": "near", "coinbase-wrapped-btc": "bitcoin", "wrapped-bitcoin": "bitcoin"}
+
+    def daily_usd(token: str, amount: float, d: str):
+        info = meta.get(token)
+        cg = alias.get(info["coingeckoId"], info["coingeckoId"]) if info else None
+        if cg in stable:
+            return amount / 10 ** int(info["decimals"])
+        if cg in prices and d in prices[cg]:
+            return amount / 10 ** int(info["decimals"]) * prices[cg][d]
+        return token_usd(token, amount, d, prices)
+
+    lo, hi = "2026-08-07", "2026-11-04"
+    solver, n_all, n_priced = defaultdict(float), 0, 0
+    for row in read_raw("bq/confidential_treasury_daily.json"):
+        if not (lo <= row["day"] <= hi) or row["cls"] != "solver" or row["dir"] != "in":
+            continue
+        n_all += int(row["n"])
+        v = daily_usd(row["token"], float(row["amt"]), row["day"])
+        if v is not None:
+            n_priced += int(row["n"])
+            solver[row["day"]] += v
+    m["conf_daily_solver_shields_priced_pct"] = r(n_priced / n_all * 100, 1)
+    rel = defaultdict(lambda: defaultdict(float))
+    with open(RAW / "escrow" / "deliveries.csv", newline="", encoding="utf-8") as f:
+        for x in csv.DictReader(f):
+            if x["path"] == "escrow_unshield" and lo <= x["day"] <= hi:
+                rel[x["day"]][x["wallet"]] += int(x["amount_yocto"]) / YOCTO * price[x["day"]]
+    ex = {x["date"]: x for x in read_raw("explorer/daily.json")["days"]}
+    days = [add_days(lo, i) for i in range(90)]
+    assert days[-1] == hi
+    rt = [sum(rel[d].values()) for d in days]
+    sv = [solver[d] for d in days]
+    oc = [ex[d]["usd_in"] for d in days]
+    bb = [ex[d]["fee_split"]["bb_explicit_usd"] for d in days]
+    ma = lambda x: [sum(x[max(0, i - 3):i + 4]) / len(x[max(0, i - 3):i + 4]) for i in range(len(x))]
+    det = lambda x: [a - b for a, b in zip(x, ma(x))]
+    dl = lambda x: [math.log(1 + x[i + 1]) - math.log(1 + x[i]) for i in range(len(x) - 1)]
+    for name, y in (("solver", sv), ("oneclick", oc), ("bbfee", bb)):
+        m[f"conf_rel_corr_{name}"] = r(_corr(rt, y), 2)
+        m[f"conf_rel_corr_{name}_detrended"] = r(_corr(det(rt), det(y)), 2)
+        m[f"conf_rel_corr_{name}_dlog"] = r(_corr(dl(rt), dl(y)), 2)
+    m["conf_rel_corr_solver_lag1"] = r(_corr(rt[1:], sv[:-1]), 2)  # releases one day after the volume
+    m["conf_rel_corr_solver_lead1"] = r(_corr(rt[:-1], sv[1:]), 2)  # releases one day before the volume
+    wk = [(sum(rt[i:i + 7]), sum(sv[i:i + 7])) for i in range(0, 84, 7)]
+    m["conf_rel_corr_solver_weekly"] = r(_corr([a for a, _ in wk], [b for _, b in wk]), 2)
+    BB, FE = "buybacks.multisignature.near", "fefundsadmin.sputnik-dao.near"
+    for tag, a, b in (("aug", "2026-08-07", "2026-08-31"), ("sep", "2026-09-01", "2026-09-30"),
+                      ("oct", "2026-10-01", "2026-10-31"), ("window", add_days(hi, -29), hi)):
+        ds = [d for d in days if a <= d <= b]
+        m[f"conf_rel_bp_of_solver_{tag}"] = r(sum(rt[days.index(d)] for d in ds) / sum(solver[d] for d in ds) * 1e4, 1)
+        m[f"conf_rel_bb_over_fe_{tag}"] = r(sum(rel[d][BB] for d in ds) / sum(rel[d][FE] for d in ds), 2)
+    win = [add_days(hi, -i) for i in range(30)]
+    m["conf_solver_shields_window_m"] = r(sum(solver[d] for d in win) / 1e6, 1)
+    # near-intents.org's 0.2% fee (paid to fefundsadmin) as 1Click lists it, before and from 2026-08-29
+    fe1 = lambda d: ex[d]["fee_usd_by_recipient"].get(FE, 0.0)
+    pre = [d for d in days if d <= "2026-08-28"]
+    post = [d for d in days if d >= "2026-08-29"]
+    m["conf_fe_listed_usd_per_day_pre"] = r(sum(fe1(d) for d in pre) / len(pre) / 1e3, 2)
+    m["conf_fe_listed_usd_per_day_post"] = r(sum(fe1(d) for d in post) / len(post) / 1e3, 2)
+    m["conf_fe_escrow_usd_per_day_pre"] = r(sum(rel[d][FE] for d in pre) / len(pre) / 1e3, 2)
+    m["conf_fe_escrow_usd_per_day_post"] = r(sum(rel[d][FE] for d in post) / len(post) / 1e3, 2)
 
 
 def second_review(m: dict, rev: dict, fees: dict, vol: dict) -> None:
@@ -1194,6 +1374,7 @@ def build() -> tuple[dict, dict]:
     net30 = window_sum(vol["near-intents"], asof, 30) / 2
     m["intents_share_peerset_30d_net_pct"] = r(net30 / (tot30 - window_sum(vol["near-intents"], asof, 30) + net30) * 100, 1)
     leg_count(m, vol, rev, price, asof)  # exploratory, 2026-11-13: what DefiLlama's volume counts
+    confidential_flow(m, price)  # exploratory, 2026-11-13: what the treasury flow is, what pays the escrow releases
 
     # ---------- valuation ----------
     mcap = snap["market_cap_usd"]

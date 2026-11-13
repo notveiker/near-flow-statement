@@ -142,7 +142,7 @@ Input: `data/raw/bq/staking_flows_daily.json`.
 
 ## What this review did not settle
 
-- **Whether DefiLlama's NEAR Intents volume counts both legs of each swap.** This moves every take rate and the peer share by about 2×. Summing one day of `intents.near` settlement legs before 2026-11-05 and comparing it with DefiLlama's volume for that day would settle it. (Settled in part on 2026-11-13, exploratory: it counts both legs of public swaps, and from 2026-09-01 confidential-treasury flow at about one leg. What that flow represents is still open; [`leg-count.md`](leg-count.md).)
+- **Whether DefiLlama's NEAR Intents volume counts both legs of each swap.** This moves every take rate and the peer share by about 2×. Summing one day of `intents.near` settlement legs before 2026-11-05 and comparing it with DefiLlama's volume for that day would settle it. (Settled in part on 2026-11-13, exploratory: it counts both legs of public swaps, and from 2026-09-01 confidential-treasury flow at about one leg. What that flow represents is still open; [`leg-count.md`](leg-count.md). Later the same day: the treasury↔solver pairs are swaps, counted at close to both legs; [`confidential-flow.md`](confidential-flow.md).)
 - **Who sold the NEAR that the front-end fund bought with USDC.**
 - **How much of the escrow stream is near.com's front-end fee moved off the public rails,** as against new fees.
-- **Whether the escrow releases are fee revenue at all.** That is still unattested. Section 5 of `THESIS.md` already names an attestation by NEAR as the evidence that would settle it.
+- **Whether the escrow releases are fee revenue at all.** That is still unattested. Section 5 of `THESIS.md` already names an attestation by NEAR as the evidence that would settle it. (Added 2026-11-13: the releases move day by day with confidential swap volume, as fees would; [`confidential-flow.md`](confidential-flow.md), exploratory.)
