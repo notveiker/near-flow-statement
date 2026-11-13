@@ -4,7 +4,7 @@
 
 **Start here:** open [`dashboard/index.html`](dashboard/index.html) in a browser (one self-contained file, no network), and read [`REPORT.md`](REPORT.md).
 
-> Status: **work in progress** (2026-11-11). Data pipeline, offline rebuild, dashboard and report are in place. The history sample is still being collected.
+> Status: **work in progress** (2026-11-13). Data pipeline, offline rebuild, dashboard, report, the chain-only rebuild of NEAR Intents and the history sample (268 clusters sealed) are in place. Forward tests F1 to F4 are scored on 14 Nov, not before.
 
 ## Try it (offline, no keys, standard-library Python 3.10+)
 
@@ -26,7 +26,7 @@
 - [`docs/confidential-attestation.md`](docs/confidential-attestation.md): confidential rails raise economic take while thinning public proof — escrow-dependence and the CIF kill switch.
 - [`docs/float-sink.md`](docs/float-sink.md): buyback quality — days-of-issuance covered, scarcity half-life, held vs burned.
 - [`docs/prop-research-index.md`](docs/prop-research-index.md): index of proprietary notes and the scoreboard to read first.
-- [`docs/prop-punch-card.md` · controllable dials on dashboard Capture section / `docs/catalysts-and-path.md`](docs/prop-punch-card.md` · controllable dials on dashboard Capture section / `docs/catalysts-and-path.md): one-page punch card of proprietary insights and falsifiers.
+- [`docs/prop-punch-card.md`](docs/prop-punch-card.md): controllable dials (dashboard Capture section) and the full card list.
 - [`docs/prop-topline.md`](docs/prop-topline.md): judge-facing topline — fee engine, dials, binding gaps, pitch order.
 - [`docs/prop-what-is-proprietary.md`](docs/prop-what-is-proprietary.md): ten proprietary arithmetics judges will not find on a public dashboard.
 - [`docs/prop-gaps.md`](docs/prop-gaps.md): measurement gaps that still block a closed fee→scarcity loop.
@@ -38,6 +38,20 @@
 - [`docs/partner-concentration.md`](docs/partner-concentration.md): how much of NEAR's Intents revenue depends on SwapKit and a few other channels. Traces the buyback wallet's NEAR to its on-chain sources.
 - [`docs/supply-side.md`](docs/supply-side.md): the pre-registered scorecard (H1a fails; H1b and H1c inconclusive; the frozen rating rule gives **Hold**) and where the largest unstakers' NEAR went.
 - [`PREREG-ADDENDUM.md`](PREREG-ADDENDUM.md): every post-freeze result, method choice and correction, dated.
+
+## Chain-only rebuild and follow-up asks (2026-11-12 to 13)
+
+Rebuilt from `bigquery-public-data.crypto_near_mainnet_us` and archival RPC at or before the data cutoff (block 223,088,015, 2026-11-04), independent of the Explorer API and DefiLlama. Every rule, threshold and falsifier was committed before the run that returned a number; every number is recomputed by a script from saved files with SHA-256 and BigQuery job IDs. The rebuild is frozen at tag `rebuild-frozen` (`ac419e3`).
+
+| Doc | What it answers |
+|---|---|
+| [`docs/chain-rebuild-method.md`](docs/chain-rebuild-method.md), [`docs/chain-rebuild-results.md`](docs/chain-rebuild-results.md) | Q1 escrow mass balance, Q2 fee-stream switch, Q3 solvers, Q4 non-1Click volume, and follow-ups FU1 to FU11 (deposit path, Binance relay, revenue yield, settlement spread). Summary table at the top of the results |
+| [`docs/staking-windows-method.md`](docs/staking-windows-method.md), [`docs/staking-windows-results.md`](docs/staking-windows-results.md) | Is H1a's staking outflow unusual against earlier 90-day windows? (W1 to W6 run under a 1.5 TB cap; W7 and W8 not run) |
+| [`docs/april-drop-method.md`](docs/april-drop-method.md), [`docs/april-drop-results.md`](docs/april-drop-results.md) | What stopped in April 2026: one signer's automated traffic |
+| [`docs/cross-section-method.md`](docs/cross-section-method.md) | Fee-sharing token cross-section; method and fetcher only, the four swap venues are refused in code until the forward scoring has run |
+| [`docs/history-sample-final-cut.md`](docs/history-sample-final-cut.md) | Seal SHA-256 list, final cut by the stopping rule, validation status |
+
+Re-run: `make rebuild-check` (offline: unit tests, manifest hashes, recomputation of `data/derived/rebuild_results.json`, `staking_windows.json`, `april_drop.json`). Live BigQuery re-runs are described in each results doc and cost money; none is part of `make`.
 
 ## Pre-registration
 

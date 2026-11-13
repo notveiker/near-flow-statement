@@ -1,7 +1,7 @@
 # near-flow-statement: every target is plain Python 3.10+ (standard library only).
 PY ?= python3
 
-.PHONY: reproduce fetch explorer bq compute render check test all sample sample-verify sample-rows history-results dashboard census-metrics
+.PHONY: rebuild-check reproduce fetch explorer bq compute render check test all sample sample-verify sample-rows history-results dashboard census-metrics
 
 reproduce: ## Offline: verify raw-data hashes, then recompute every number into data/metrics.json
 	$(PY) -m pipeline.check --manifest
@@ -51,3 +51,11 @@ test:
 	$(PY) -m unittest discover -s tests -v
 
 all: fetch bq reproduce test
+
+rebuild-check: ## Offline: tests, manifest hashes, recompute the rebuild, staking-window and April-drop results
+	$(PY) -m unittest discover -s tests
+	$(PY) -m pipeline.check --manifest
+	$(PY) -m pipeline.rebuild_analysis
+	$(PY) -m pipeline.staking_analysis
+	$(PY) -m pipeline.april_analysis
+	$(PY) -m pipeline.check --numbers

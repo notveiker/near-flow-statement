@@ -340,7 +340,7 @@ See `data/derived/prop_falsifiers.json` — attach stall, no-ref mix down, leaka
 | History 162 through 2026Q2_07 | Dense contest-year strata continuing — still not supported | history_progress_2026q2_07 |
 | Judge capture card | Single JSON card: call-order + four \$10M + ladder + holds | judge_capture_card |
 | relayer risk | Derived RELAYER / SOLVER operational concentration risk from node census + fee-waterfall structural facts. HHI bounded from top1/t | relayer_risk |
-| contestability | Derived DISTRIBUTION CONTESTABILITY arithmetic on committed metrics. Scenarios are arithmetic, not forecasts. No bull case. Gaps l | contestability |
+| contestability | Derived DISTRIBUTION CONTESTABILITY arithmetic on committed metrics. Scenarios are arithmetic, not forecasts. Gaps l | contestability |
 | capital efficiency | Exploratory. Protocol capital intensity (PCI) = protocol-controlled capital / 30d volume. Intents numerator is intents.near invent | capital_efficiency |
 | chain signatures link | Derived Chain Signatures → NEAR token value-link read. CS is infrastructure for Intents cross-chain; no separate holders-revenue l | chain_signatures_link |
 | concentration overlays | Confidential TVL (~$160M Q3 Nansen) is ~70% of total Intents inventory (~$229M) — privacy balances are a large share of working ca | concentration_overlays |

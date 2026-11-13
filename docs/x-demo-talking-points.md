@@ -75,7 +75,7 @@ Card: `data/derived/judge_capture_card.json` — open with partners>capture, clo
 | 55–75s | 217× vs THOR 16× — discretionary claim; Hold until H1b | trust |
 | 75–90s | Live dashboard; history not supported = honesty; repo→public | delivery |
 
-**Do not say:** bull case, AI/ETF lead, opacity-as-capture, need more strata.
+**Do not say:** AI/ETF lead, opacity-as-capture, need more strata.
 <!-- /AUTO:XSCRIPT -->
 
 <!-- AUTO:BEATS 2026-11-12 -->

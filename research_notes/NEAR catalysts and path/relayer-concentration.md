@@ -1,6 +1,6 @@
 # Relayer / solver operational concentration — NEAR Intents
 
-*Prop note. As of November 2026. Census window ~**10.3 hours** / **343K** txs on our node (`census_usage.json`, `census_metrics.json`). Twin: `data/derived/relayer_risk.json`. No bull case. Gaps labeled. No Akash / Cronos / Pi.*
+*Prop note. As of November 2026. Census window ~**10.3 hours** / **343K** txs on our node (`census_usage.json`, `census_metrics.json`). Twin: `data/derived/relayer_risk.json`. Gaps labeled.*
 
 Sources: `REPORT.md` §7 / risks / catalysts census bullets; `data/derived/census_{usage,metrics}.json`; `docs/structural-thesis.md` (solver-as-principal; vault-peer contrast); `docs/fee-waterfall.md` / `fee-waterfall-capture.md` (excess ~8.5 bp; gas/relayer layer).
 

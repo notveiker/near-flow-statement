@@ -1,6 +1,6 @@
 # Chain Signatures — necessary for Intents, not a separate cash-flow
 
-*Prop note. As of November 2026. Twin: `data/derived/chain_signatures_link.json`. No bull case. Gaps labeled. No Akash / Cronos / Pi.*
+*Prop note. As of November 2026. Twin: `data/derived/chain_signatures_link.json`. Gaps labeled.*
 
 Sources: `REPORT.md` §7–8; `data/derived/census_{usage,metrics}.json`; `data/derived/sample_extras_results.json` + `pipeline/sample_extras.py`; `docs/structural-thesis.md`; `docs/intents-fee-flows.md` / `docs/fee-waterfall.md`; `research_notes/NEAR Intents structural thesis/competitive-structure.md` (cites [Chain Signatures in TEEs](https://www.near.org/blog/chain-signatures-tee)).
 

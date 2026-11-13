@@ -1,6 +1,6 @@
 # Confidential Intents — trust, attestation, regulatory surface
 
-*Prop research sub-note for NEAR investment thesis. As of November 2026. Window metrics: 30 days to **2026-11-04** unless dated otherwise. No bull case. Marketing claims labelled separately from measured facts. No Akash / Cronos / Pi.*
+*Prop research sub-note for NEAR investment thesis. As of November 2026. Window metrics: 30 days to **2026-11-04** unless dated otherwise.  Marketing claims labelled separately from measured facts.*
 
 Sources: primary Intents / 1Click terms, NEAR blogs, MM docs, LeoDex integrator note, Nansen Q3 2026, DefiLlama adapter, and committed repo series (`REPORT.md`, `structural-thesis.md`, `confidential-intents.md`, `capture-stack.md`, `competitive-structure.md`, `partner-concentration.md`, `catalyst_math.json`).
 

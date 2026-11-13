@@ -1,6 +1,6 @@
 # Competitive structure of native cross-chain venues — NEAR Intents vs THORChain vs Chainflip vs Maya
 
-*As of November 2026. Industry-structure notes for prop research. Peer volumes/fees from repo metrics (`/tmp/nfs/data/metrics.json`) as of 2026-11-04 unless noted. No Akash/Cronos/Pi.*
+*As of November 2026. Industry-structure notes for prop research. Peer volumes/fees from repo metrics (`data/metrics.json`) as of 2026-11-04 unless noted.*
 
 Repo peer set (30d): NEAR Intents $4.0B vol / 15.3 bp fees / 55.7% share; THORChain $1.8B / 12.3 bp / 25.1%; Chainflip $0.85B / 31.5 bp / 11.8%; Maya $0.53B / 9.4 bp / 7.3%. 365d volumes: Intents $32.9B, THOR $13.1B, Chainflip $5.6B, Maya $1.3B. — [metrics.json peers](file:///tmp/nfs/data/metrics.json); [REPORT.md §1](file:///tmp/nfs/REPORT.md)
 

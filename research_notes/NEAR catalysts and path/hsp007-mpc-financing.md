@@ -1,6 +1,6 @@
 # HSP-007 — MPC financing as opex claim on issuance
 
-*Prop note. As of **November 2026**. Twin: `data/derived/hsp007_mpc.json`. No bull case. Gaps labeled. No Akash / Cronos / Pi.*
+*Prop note. As of **November 2026**. Twin: `data/derived/hsp007_mpc.json`. Gaps labeled.*
 
 Sources: `data/raw/governance/top_yearly.json` (topic titles / engagement); `data/derived/governance_catalysts.json`; `REPORT.md`; `research_notes/NEAR catalysts and path/chain-signatures-value-link.md` + `data/derived/chain_signatures_link.json`; `docs/float-sink.md` / `data/derived/float_sink.json`; `docs/catalysts-and-path.md`; `docs/structural-thesis.md`; `research_notes/NEAR catalysts and path/buyback-quality-float.md`.
 

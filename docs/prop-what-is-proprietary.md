@@ -1,6 +1,6 @@
 # What is proprietary here
 
-*Judge-facing. Exploratory. Not a bull case — a measurement edge.*
+*Judge-facing. Exploratory. A measurement edge, not a forecast.*
 
 ## Fee / capture
 

@@ -1,6 +1,6 @@
 # Capital efficiency — solver inventory vs bonded vaults
 
-*Exploratory prop research as of November 2026. Twin: `data/derived/capital_efficiency.json`. Sources: `docs/structural-thesis.md`, `research_notes/NEAR Intents structural thesis/competitive-structure.md`, `data/derived/catalyst_math.json` (inventory), `REPORT.md` peers, `docs/fee-waterfall.md`. No Akash/Cronos/Pi. No bull case.*
+*Exploratory prop research as of November 2026. Twin: `data/derived/capital_efficiency.json`. Sources: `docs/structural-thesis.md`, `research_notes/NEAR Intents structural thesis/competitive-structure.md`, `data/derived/catalyst_math.json` (inventory), `REPORT.md` peers, `docs/fee-waterfall.md`.*
 
 ## Takeaway
 
