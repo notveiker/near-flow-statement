@@ -102,3 +102,9 @@ Why: F7 traced the largest funder to Binance in two hops. The question for the w
 - **Coverage** = funded NEAR of funders with direct inflow in the window / all funded NEAR. If under 0.6, the shares are reported for the covered part only.
 - **H-F8a (exchange-sourced is large):** the estimated exchange-sourced share of the covered funded NEAR is at least 50%: supported; under 25%: **falsified**. **H-F8b (exchange-sourced excluding F7's relay):** the same share with `1244d552…` removed is at least 25%: supported; under 10%: **falsified**.
 - Queries: `rb_f8_s_funder_inflow.sql` (stage), `rb_f8_a_funder_sources.sql`.
+
+## F9 (do the big solvers pay the fee accounts a share of their volume; fixed before it runs, committed 2026-11-13 01:25 UTC)
+Why: F4 found the persistent fee accounts funded by transfers from `blockzen-1-main.near` (52.5%), `crux-solver.near` (27.4%) and `solver-priv-liq.near` (12.2%). If these are per-fill payments, the dollars paid should scale with the payer's volume. Window 2026-08-07..2026-11-04. Payments = daily wNEAR `mt_transfer` from each payer to the three persistent fee accounts, priced at the F5 NEAR price (`rb_f9_a_solver_payments.sql`). Volume = the payer's daily priced simple-swap volume from Q3 (`rb_q3c_solver_daily_top30`); `solver-priv-liq.near` is excluded from the volume tests because 98% of its fills are complex receipts (F3), so its simple-swap volume is not its volume.
+- **H-F9a (a share of volume):** for `blockzen-1-main.near` and `crux-solver.near` separately, the monthly ratio payments / own volume (months of at least 14 days) lies within ±30% of that payer's window ratio. **Falsified** if any month deviates by more than 50%.
+- **H-F9b (tracks volume):** Pearson r of weekly payments against weekly own volume (12 weeks) is at least 0.5: supported; under 0.2: **falsified**.
+- Whatever the result, a payment's purpose is INFERRED from the destination only.
