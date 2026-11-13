@@ -111,3 +111,11 @@ class RX4(unittest.TestCase):
         for v in r.values():
             self.assertAlmostEqual(v["coverage"], 1.0, places=6)
             self.assertEqual(v["H_RX4a_falsified"], v["top3_share"] < 0.40)
+
+
+class RX56(unittest.TestCase):
+    def test_rx5_rx6_rules(self):
+        r = json.load(open(ROOT / "data" / "derived" / "rx_results.json"))
+        self.assertEqual(r["rx5"]["H_RX5a_supported"], abs(r["rx5"]["ratio_over_repo"] - 1) <= 0.10)
+        self.assertEqual(len(r["rx6"]["weeks"]), 17)
+        self.assertEqual(r["rx6"]["H_RX6a_supported"], r["rx6"]["rho_same_week"] >= 0.30 and r["rx6"]["p_same_week"] <= 0.10)

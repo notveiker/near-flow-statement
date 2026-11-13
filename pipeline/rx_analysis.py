@@ -94,8 +94,103 @@ def rx4() -> dict:
     return res
 
 
+import random
+from datetime import date, timedelta
+
+
+def _price(px, day):
+    d0 = date.fromisoformat(day)
+    for k in (0, 1, -1, 2, -2, 3, -3):
+        v = px.get((d0 + timedelta(days=k)).isoformat())
+        if v:
+            return v
+    raise KeyError(day)
+
+
+def _px():
+    return json.loads((OUT.parent / "windows" / "near_price_daily_llama.json").read_text())
+
+
+def rx5() -> dict:
+    px = _px()
+    q2 = json.loads((RAW / "rebuild" / "rb_q2_native_withdraw.json").read_text())
+    days = [(date(2026, 10, 6) + timedelta(days=i)).isoformat() for i in range(30)]
+    pub = esc = 0.0
+    for r in q2:
+        if r["day"] in days:
+            v = int(r["yocto"]) / 1e24 * _price(px, r["day"])
+            if r["src"].startswith(("5880ad2b", "143f2bb4", "176121bd")):
+                pub += v
+            else:
+                esc += v
+    iss = json.loads((ROOT / "data" / "metrics.json").read_text())["net_issuance_usd_30d_m"] * 1e6
+    ratio = (pub + esc) / iss
+    target, tshare = 0.1581, 11.25 / 15.81
+    share = esc / (pub + esc)
+    return {"window": [days[0], days[-1]], "public_usd": pub, "escrow_funded_usd": esc, "total_usd": pub + esc, "net_issuance_usd": iss, "ratio": ratio, "repo_ratio": target,
+            "ratio_over_repo": ratio / target, "public_ratio": pub / iss, "escrow_ratio": esc / iss, "escrow_share": share, "repo_escrow_share": tshare,
+            "H_RX5a_supported": abs(ratio / target - 1) <= 0.10, "H_RX5a_falsified": abs(ratio / target - 1) > 0.25,
+            "H_RX5b_supported": abs(share - tshare) <= 0.05, "H_RX5b_falsified": abs(share - tshare) > 0.15}
+
+
+def _rank(v):
+    o = sorted(range(len(v)), key=lambda i: v[i]); r = [0.0] * len(v); i = 0
+    while i < len(o):
+        j = i
+        while j + 1 < len(o) and v[o[j + 1]] == v[o[i]]:
+            j += 1
+        for k in range(i, j + 1):
+            r[o[k]] = (i + j) / 2 + 1
+        i = j + 1
+    return r
+
+
+def _spearman(x, y):
+    a, b = _rank(x), _rank(y); n = len(a); ma, mb = sum(a) / n, sum(b) / n
+    num = sum((p - ma) * (q - mb) for p, q in zip(a, b)); den = (sum((p - ma) ** 2 for p in a) * sum((q - mb) ** 2 for q in b)) ** 0.5
+    return num / den if den else None
+
+
+def _mc_p(x, y, rho, n=20000, seed=20261113):
+    rng = random.Random(seed); y = list(y); c = 0
+    for _ in range(n):
+        rng.shuffle(y)
+        r = _spearman(x, y)
+        if r is not None and abs(r) >= abs(rho) - 1e-12:
+            c += 1
+    return c / n
+
+
+def rx6() -> dict:
+    px = _px()
+    led = {}
+    for r in json.loads((OUT / "rx6_wrap_daily.json").read_text()):
+        led.setdefault(r["day"], {})[r["kind"]] = int(r["yocto"]) / 1e24
+    start = date(2026, 7, 7)
+    weeks = []
+    for w in range(17):
+        ds = [(start + timedelta(days=7 * w + i)).isoformat() for i in range(7)]
+        g = lambda k: sum(led.get(d, {}).get(k, 0.0) for d in ds)
+        inn, out = g("in") + g("refund_in"), g("out") + g("refund_out") + g("unwrap")
+        weeks.append({"week_start": ds[0], "in": inn, "out": out, "unwrap": g("unwrap"), "net": inn - out, "close": _price(px, ds[-1]), "prev_close": _price(px, (start + timedelta(days=7 * w - 1)).isoformat())})
+    for w in weeks:
+        w["ret"] = w["close"] / w["prev_close"] - 1
+    net = [w["net"] for w in weeks]; ret = [w["ret"] for w in weeks]
+    rho = _spearman(net, ret); p = _mc_p(net, ret, rho)
+    rho_l = _spearman(net[:-1], ret[1:]); p_l = _mc_p(net[:-1], ret[1:], rho_l)
+    keep = [i for i, w in enumerate(weeks) if w["week_start"] not in ("2026-09-15", "2026-09-22")]
+    rho_ex = _spearman([net[i] for i in keep], [ret[i] for i in keep])
+    gross = [w["in"] + w["out"] for w in weeks]
+    rho_turn = _spearman(gross, [abs(x) for x in ret])
+    post_hoc = {"note": "post hoc, tagged: robustness of the same-week result and a turnover check", "rho_same_week_without_0915_0922": rho_ex, "p_without": _mc_p([net[i] for i in keep], [ret[i] for i in keep], rho_ex),
+                "n_without": len(keep), "rho_gross_turnover_vs_abs_return": rho_turn, "p_turnover": _mc_p(gross, [abs(x) for x in ret], rho_turn),
+                "net_near_0915_0922": net[10] + net[11], "gross_near_0915_0922": gross[10] + gross[11], "gross_near_all": sum(gross)}
+    return {"post_hoc": post_hoc, "weeks": weeks, "rho_same_week": rho, "p_same_week": p, "rho_flow_leads_return": rho_l, "p_lead": p_l, "share_weeks_net_inflow": sum(1 for x in net if x > 0) / len(net),
+            "total_net_near": sum(net), "H_RX6a_supported": rho >= 0.30 and p <= 0.10, "H_RX6a_falsified": rho <= -0.30, "H_RX6b_supported": rho_l >= 0.30 and p_l <= 0.10, "H_RX6b_falsified": rho_l <= -0.30}
+
+
 def main() -> int:
-    res = {"rx1": rx1(), "rx2": rx2(), "rx3": rx3(), "rx4": rx4()}
+    res = {"rx1": rx1(), "rx2": rx2(), "rx3": rx3(), "rx4": rx4(), "rx5": rx5(), "rx6": rx6()}
     dest = ROOT / "data" / "derived" / "rx_results.json"
     dest.write_text(json.dumps(res, indent=1, sort_keys=True) + "\n")
     print("wrote", dest.relative_to(ROOT))
