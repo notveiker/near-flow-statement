@@ -21,3 +21,11 @@ Tier 1, the four cross-chain swap venues (fetch held): NEAR Intents (`near-inten
 
 ## Fetcher
 `python3 -m pipeline.fetch_cross_section` fetches Tier 2 only. `python3 -m pipeline.fetch_cross_section --held` adds the four, and refuses unless the guard passes. Per-protocol DefiLlama endpoints (`/summary/fees/{slug}?dataType=`) are used, **not** the all-protocol overview, because the overview payload contains the four held protocols. Every fetch is saved to `data/raw/cross_section/` with SHA-256 and fetch time.
+
+## Operational definitions (added 2026-11-13 02:47 UTC, before any held protocol is fetched; they fix readings the text above left open)
+- **Window days:** 30 UTC days 2026-10-15..2026-11-13; a DefiLlama point is keyed by the UTC date of its unix timestamp. A protocol missing any of the 30 days in a series is "not scorable" for the metric that needs it.
+- **Supply:** CoinGecko `market_chart` (daily, USD): circulating supply on a day = market cap / price of the point for that UTC date; `S_start` is 2026-10-15, `S_end` 2026-11-13. Net new supply value = (`S_end` - `S_start`) x the mean daily price over the window. Capture ratio = sum of `dailyHoldersRevenue` / that value; if `S_end` is at most `S_start` the protocol is `net_burn` (ranked above every finite ratio).
+- **Rank:** 1 = highest capture ratio. "Bottom half" = rank greater than n/2; "top third" = rank at most ceil(n/3); ties take the better rank. **H-X2 percentile** = share of the other protocols with a strictly lower revenue-over-fees; "below the cohort median" = percentile under 50%; "above the 60th percentile" = percentile over 60%.
+- **H-X3:** the partner share of each swap venue is read from `data/raw/cross_section/partner_share.json` (venue: value and a source URL), written at fetch time from the venue's own public series; absent or without a source means null. At least 3 non-null values are needed; "top two" = rank 1 or 2 among the non-null ones.
+- **n for H-X1:** protocols with a defined (or net_burn) capture ratio; at least 6 are needed (the four swap venues plus at least two cited comparators), else "not scorable".
+- **Analysis code:** `pipeline/cross_section_analysis.py`, tested on synthetic fixtures (`tests/test_cross_section.py`), reads `data/raw/cross_section/all.json` (and `comparators.json`) and writes `data/derived/cross_section.json`.
