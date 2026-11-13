@@ -50,6 +50,9 @@ Rebuilt from `bigquery-public-data.crypto_near_mainnet_us` and archival RPC at o
 | [`docs/april-drop-method.md`](docs/april-drop-method.md), [`docs/april-drop-results.md`](docs/april-drop-results.md) | What stopped in April 2026: one signer's automated traffic |
 | [`docs/cross-section-method.md`](docs/cross-section-method.md) | Fee-sharing token cross-section; method and fetcher only, the four swap venues are refused in code until the forward scoring has run |
 | [`docs/history-sample-final-cut.md`](docs/history-sample-final-cut.md) | Seal SHA-256 list, final cut by the stopping rule, validation status |
+| [`docs/class-census-results.md`](docs/class-census-results.md), [`docs/history-class-adjusted-results.md`](docs/history-class-adjusted-results.md) | The April class counted exactly on the full chain (52% of 2025Q3 transactions) and what else fell (two `.tg` relay signers) |
+| [`docs/history-sample-validation-results.md`](docs/history-sample-validation-results.md) | The history sample checked against full-chain counts (intervals too narrow before 2025, covered from 2025) |
+| [`docs/research-extensions-results.md`](docs/research-extensions-results.md) | RX1 to RX3: Intents accounts are not users, solver margin on stable swaps, relayer concentration on `intents.near` |
 
 Re-run: `make rebuild-check` (offline: unit tests, manifest hashes, recomputation of `data/derived/rebuild_results.json`, `staking_windows.json`, `april_drop.json`). Live BigQuery re-runs are described in each results doc and cost money; none is part of `make`.
 
