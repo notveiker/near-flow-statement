@@ -37,3 +37,17 @@ Method: [history-sample-validation.md](history-sample-validation.md), committed 
 | 2026Q1 | 11 | 3.49 | 4.24 | 3.00 to 5.52 | yes |
 | 2026Q2 | 11 | 0.85 | 0.85 | 0.77 to 0.94 | yes |
 | 2026Q3 | 11 | 0.74 | 0.83 | 0.67 to 1.00 | yes |
+
+
+## Addendum results: receipts, intents receipts and burn, 2025Q1 to 2026Q3 (7 quarters)
+Method addendum committed at `4986724` (2026-11-13 02:49:41 UTC) before the queries ran (`outcomes_daily_census` 672.9 GB, `tx_burn_daily_census` 57.8 GB).
+
+| Metric | Primary 198: sample / census (median) | Definitions match (0.9 to 1.1)? | 90% interval covers census | Median abs error | All 268: sample / census | Match? | Covered | Median abs error |
+|---|---|---|---|---|---|---|---|---|
+| receipts per day | 1.13 | **no** | 7 of 7 | 20% | 1.07 | yes | 7 of 7 | 9% |
+| intents receipts per day | 1.25 | **no** | 7 of 7 | 25% | 1.21 | **no** | 7 of 7 | 21% |
+| burn (NEAR per day) | 1.11 | **no** | 6 of 7 | 17% | 1.12 | **no** | 6 of 7 | 12% |
+
+- **By the pre-registered definition check, five of the six metric and cut combinations do not match, so no coverage claim is made for them.** Only receipts per day on the 268-cluster set passes the check (ratio 1.07), and there the intervals cover the census in 7 of 7 quarters (not too narrow).
+- **What can be said anyway (descriptive, not a validation).** In every case the sample estimate is above the census value (ratio 1.07 to 1.25), and the 90% intervals contain the census value in 7 of 7 quarters for receipts and intents receipts and in 6 of 7 for burn. The upward gap is not explained here: it could be a definition difference (the sampler counts receipt outcomes in each block's shards; `execution_outcomes` is a different table, and for intents it matches on `executor_account_id` where the sampler matches the receipt's receiver) or sampling noise with a small positive bias; the comparison cannot tell which.
+- **Intervals are very wide for intents receipts** (2025Q1: census 1,083 a day, interval 255 to 3,756; 2025Q3: 187,175 against 143,520 to 666,324). The history tests that use them are not sensitive to the gap: U3 passes at a ratio of 175 (lower bound 94 against a threshold of 2), and U5 fails at 0.30 (interval 0.22 to 0.42 against 1.25), so a bias of 7% to 25% in either metric changes neither verdict.

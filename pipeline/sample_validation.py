@@ -14,6 +14,38 @@ def cut(plan, rows, ids):
     return bootstrap(plan, [r for r in rows if ids is None or r["id"] in ids])
 
 
+def other_metrics(plan, rows, final) -> dict:
+    """Addendum of docs/history-sample-validation.md: receipts, intents receipts and burn for 2025Q1..2026Q3 against execution_outcomes and transactions."""
+    oc = {r["day"]: r for r in json.loads((RAW / "validation" / "outcomes_daily_census.json").read_text())}
+    tb = {r["day"]: float(r["tx_burnt_near"] or 0) for r in json.loads((RAW / "validation" / "tx_burn_daily_census.json").read_text())}
+    cens = {"receipts_per_day": lambda d: int(oc[d]["outcomes"]), "intents_per_day": lambda d: int(oc[d]["on_intents"]),
+            "burn_near_per_day": lambda d: float(oc[d]["burnt_near"]) + tb[d]}
+    res = {}
+    for name, ids in (("primary_198", final), ("all_268", None)):
+        boot = cut(plan, rows, ids)
+        res[name] = {}
+        for m, f in cens.items():
+            per = []
+            for s in plan["strata"]:
+                q = s["id"]
+                if not ("2025Q1" <= q <= "2026Q3") or q not in boot or boot[q]["n"] < 5:
+                    continue
+                d0 = datetime.fromtimestamp(s["t0_ns"] / 1e9, timezone.utc).date().isoformat()
+                d1 = datetime.fromtimestamp(s["t1_ns"] / 1e9, timezone.utc).date().isoformat()
+                days = [d for d in oc if d0 <= d <= d1]
+                ref = sum(f(d) for d in days) / len(days)
+                est = boot[q]["point"][m]
+                lo, hi = pct(boot[q]["draws"][m], 0.05), pct(boot[q]["draws"][m], 0.95)
+                per.append({"quarter": q, "census": ref, "estimate": est, "lo90": lo, "hi90": hi, "covered": lo <= ref <= hi, "ratio": est / ref if ref else None})
+            med_ratio = median(p["ratio"] for p in per if p["ratio"] is not None)
+            match = 0.9 <= med_ratio <= 1.1
+            res[name][m] = {"quarters": per, "median_sample_over_census": med_ratio, "definitions_match": match,
+                            "coverage": (sum(p["covered"] for p in per) / len(per)) if match else None, "covered": sum(p["covered"] for p in per), "n": len(per),
+                            "too_narrow_by_rule": (sum(p["covered"] for p in per) / len(per) < 0.8) if match else None,
+                            "median_abs_rel_error": median(abs(p["ratio"] - 1) for p in per)}
+    return res
+
+
 def main() -> int:
     plan = load_plan(ROOT / "data" / "sample")
     rows = [json.loads(x) for x in (ROOT / "data" / "derived" / "sample_clusters.jsonl").read_text().splitlines() if x]
@@ -43,6 +75,7 @@ def main() -> int:
                      "pre_2025": {"n": len(era(lambda q: q < "2025")), "coverage": cov(era(lambda q: q < "2025")), "median_abs_rel_error": mae(era(lambda q: q < "2025"))},
                      "from_2025": {"n": len(era(lambda q: q >= "2025")), "coverage": cov(era(lambda q: q >= "2025")), "median_abs_rel_error": mae(era(lambda q: q >= "2025"))},
                      "quarters": per, "not_covered": [p["quarter"] for p in per if not p["covered"]]}
+    out["other_metrics"] = other_metrics(plan, rows, final)
     dest = ROOT / "data" / "derived" / "history_sample_validation.json"
     dest.write_text(json.dumps(out, indent=1, sort_keys=True) + "\n")
     print("wrote", dest.relative_to(ROOT))

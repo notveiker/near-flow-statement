@@ -85,3 +85,12 @@ class ClassCensus(unittest.TestCase):
         q = r["quarters"]["2025Q3"]
         self.assertAlmostEqual(q["c_per_day"] + q["exc_per_day"], q["tx_per_day"], delta=1.0)
         self.assertEqual(r["decline"]["concentrated"], r["decline"]["signers_for_50pct"] <= 20)
+
+
+class OtherMetrics(unittest.TestCase):
+    def test_definition_check_gates_coverage(self):
+        r = json.load(open(ROOT / "data" / "derived" / "history_sample_validation.json"))["other_metrics"]
+        for cut in r.values():
+            for m in cut.values():
+                self.assertEqual(m["definitions_match"], 0.9 <= m["median_sample_over_census"] <= 1.1)
+                self.assertEqual(m["coverage"] is None, not m["definitions_match"])
