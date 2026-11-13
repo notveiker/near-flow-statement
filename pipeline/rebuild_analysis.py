@@ -603,8 +603,39 @@ def f8() -> dict:
             "funders_with_inflow": sum(1 for r in rows if f(r["inflow"]) > 0)}
 
 
+# ------------------------------------------------------------------ F9
+def f9() -> dict:
+    ds = days(SWAP_START, CUTOFF_DATE)
+    px = {r["day"]: r["usd"] for r in map(json.loads, (OUT / "aux_prices.ndjson").read_text().splitlines()) if r["symbol"] == "NEAR"}
+    pay = defaultdict(lambda: Counter())
+    for r in load("rb_f9_a_solver_payments"):
+        pay[r["payer"]][r["day"]] += int(r["yocto"] or 0) / Y * px[r["day"]]
+    vol = defaultdict(lambda: Counter())
+    for r in load("rb_q3c_solver_daily_top30"):
+        vol[r["solver"]][r["day"]] += float(r["usd"] or 0)
+    weeks = [ds[i:i + 7] for i in range(0, len(ds) - 6, 7)]
+    out = {}
+    for sv in ("blockzen-1-main.near", "crux-solver.near"):
+        tp, tv = sum(pay[sv].values()), sum(vol[sv].values())
+        months = {}
+        for mo in sorted({d[:7] for d in ds}):
+            md = [d for d in ds if d[:7] == mo]
+            if len(md) < 14:
+                continue
+            vv = sum(vol[sv][d] for d in md)
+            months[mo] = {"payments_usd": sum(pay[sv][d] for d in md), "volume_usd": vv, "bp": sum(pay[sv][d] for d in md) / vv * 1e4 if vv else None}
+        base = tp / tv * 1e4 if tv else None
+        dev = {m: v["bp"] / base - 1 for m, v in months.items() if v["bp"] is not None and base}
+        r = pearson([sum(pay[sv][d] for d in w) for w in weeks], [sum(vol[sv][d] for d in w) for w in weeks])
+        out[sv] = {"payments_usd": tp, "volume_usd": tv, "window_bp": base, "months": months, "month_deviation": dev,
+                   "H_F9a_supported": bool(dev) and all(abs(x) <= 0.3 for x in dev.values()), "H_F9a_falsified": any(abs(x) > 0.5 for x in dev.values()),
+                   "weekly_corr": r, "H_F9b_supported": r is not None and r >= 0.5, "H_F9b_falsified": r is not None and r < 0.2}
+    out["solver_priv_liq_payments_usd"] = sum(pay["solver-priv-liq.near"].values())
+    return out
+
+
 def main() -> int:
-    res = {"cutoff_block": 223_088_015, "windows": {"q1_q2": [WINDOW_START, CUTOFF_DATE], "q3_q4": [SWAP_START, CUTOFF_DATE]}, "q1": q1(), "q2": q2(), "q3": q3(), "q4": q4(), "f1": f1(), "f3": f3(), "f2b": f2b(), "f4": f4(), "f5": f5(), "f6": f6(), "f7": f7(), "f8": f8()}
+    res = {"cutoff_block": 223_088_015, "windows": {"q1_q2": [WINDOW_START, CUTOFF_DATE], "q3_q4": [SWAP_START, CUTOFF_DATE]}, "q1": q1(), "q2": q2(), "q3": q3(), "q4": q4(), "f1": f1(), "f3": f3(), "f2b": f2b(), "f4": f4(), "f5": f5(), "f6": f6(), "f7": f7(), "f8": f8(), "f9": f9()}
     jobs = [json.loads(l) for l in (OUT / "jobs.jsonl").read_text().splitlines()]
     res["bytes_billed_total"] = sum(j["bytes_billed"] for j in jobs)
     dest = ROOT / "data" / "derived" / "rebuild_results.json"

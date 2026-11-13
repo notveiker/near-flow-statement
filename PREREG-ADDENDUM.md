@@ -264,3 +264,7 @@ Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. F
 ## 2026-11-13 01:24 UTC: F8 result
 
 Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. F8 ran after its method commit (`a79e6a4`, 01:23:44 UTC). Of the NEAR funded through `bridge-mng.near`, 43.8% is estimated exchange-sourced one hop up (51.5% of the 85% that is covered): H-F8a supported; without the F7 relay it is 5.5% of all funded NEAR (7.4% of the covered part): H-F8b falsified. Proportional estimate, one hop, direct transfers only; the `intents.near` channel is invisible to this table. Jobs: `rb_f8_s_funder_inflow` 166.9 GB, `rb_f8_a_funder_sources` 0.0 GB.
+
+## 2026-11-13 01:26 UTC: F9 result
+
+Post-freeze. Changes no hypothesis, threshold, probability or the rating rule. F9 ran after its method commit (`2bd39cd`, 01:25:27 UTC). Payments by `blockzen-1-main.near` to the persistent fee accounts are 30.0 bp of its simple-swap volume but the monthly ratio drifts from 58.8 to 20.3 bp (H-F9a falsified); weekly r 0.58 (H-F9b supported). `crux-solver.near`: 6.6 bp, monthly 7.4/3.3/11.5, r = -0.03 (both falsified). No fixed share of volume. Job: `rb_f9_a_solver_payments` 17.2 GB.

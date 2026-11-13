@@ -94,3 +94,8 @@ class Results(unittest.TestCase):
         self.assertGreater(r["all"]["coverage"], 0.6)
         self.assertTrue(r["H_F8a_supported"])
         self.assertTrue(r["H_F8b_falsified"])
+
+    def test_f9_rules_applied(self):
+        r = json.load(open(rb.ROOT / "data" / "derived" / "rebuild_results.json"))["f9"]
+        for sv in ("blockzen-1-main.near", "crux-solver.near"):
+            self.assertEqual(r[sv]["H_F9a_falsified"], any(abs(x) > 0.5 for x in r[sv]["month_deviation"].values()))

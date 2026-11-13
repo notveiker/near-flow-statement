@@ -1,5 +1,5 @@
 {
- "bytes_billed_total": 1196207112192,
+ "bytes_billed_total": 1213397467136,
  "cutoff_block": 223088015,
  "f1": {
   "H_F1_falsified": true,
@@ -516,6 +516,73 @@
   },
   "funders": 55037,
   "funders_with_inflow": 54230
+ },
+ "f9": {
+  "blockzen-1-main.near": {
+   "H_F9a_falsified": true,
+   "H_F9a_supported": false,
+   "H_F9b_falsified": false,
+   "H_F9b_supported": true,
+   "month_deviation": {
+    "2026-08": 0.9622321481432268,
+    "2026-09": 0.26709117532071236,
+    "2026-10": -0.3226575879491608
+   },
+   "months": {
+    "2026-08": {
+     "bp": 58.79895470751021,
+     "payments_usd": 225890.30704988295,
+     "volume_usd": 38417401.835381724
+    },
+    "2026-09": {
+     "bp": 37.968818673401074,
+     "payments_usd": 467196.28021562216,
+     "volume_usd": 123047357.42092364
+    },
+    "2026-10": {
+     "bp": 20.296796097923256,
+     "payments_usd": 414626.1033744717,
+     "volume_usd": 204281553.2924902
+    }
+   },
+   "payments_usd": 1124650.8420137966,
+   "volume_usd": 375317222.6638154,
+   "weekly_corr": 0.5822637963212889,
+   "window_bp": 29.965340626566054
+  },
+  "crux-solver.near": {
+   "H_F9a_falsified": true,
+   "H_F9a_supported": false,
+   "H_F9b_falsified": true,
+   "H_F9b_supported": false,
+   "month_deviation": {
+    "2026-08": 0.12185349195067974,
+    "2026-09": -0.5019357747699866,
+    "2026-10": 0.739267395000702
+   },
+   "months": {
+    "2026-08": {
+     "bp": 7.418063751187397,
+     "payments_usd": 93525.7920580798,
+     "volume_usd": 126078442.02351224
+    },
+    "2026-09": {
+     "bp": 3.293364241811734,
+     "payments_usd": 68973.65875412083,
+     "volume_usd": 209432220.94431096
+    },
+    "2026-10": {
+     "bp": 11.500607262043493,
+     "payments_usd": 134347.78389008206,
+     "volume_usd": 116817991.28423622
+    }
+   },
+   "payments_usd": 301429.67647600325,
+   "volume_usd": 455860109.1531995,
+   "weekly_corr": -0.026776105917095033,
+   "window_bp": 6.612328440756432
+  },
+  "solver_priv_liq_payments_usd": 48368.25777612384
  },
  "q1": {
   "attack_test": {
