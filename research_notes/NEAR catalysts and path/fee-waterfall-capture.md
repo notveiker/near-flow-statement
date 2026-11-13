@@ -1,6 +1,6 @@
 # Fee waterfall & token capture — NEAR Intents vs THORChain / Chainflip / Maya
 
-*Prop note for Investment Thesis track. As of November 2026. Window for measured Intents capture: **2026-10-06 → 2026-11-04** unless noted. Figures from committed `/tmp/nfs` metrics, fee docs, DefiLlama adapters, and peer primary docs cited in-repo. **Marketing** = public FAQ / blog policy language. **Measured** = Explorer, wallet inflows, or DefiLlama series reconciled in-repo. Where unsupported: **Gap**.*
+*Prop note for Investment Thesis track. As of November 2026. Window for measured Intents capture: **2026-10-06 → 2026-11-04** unless noted. Figures from committed repo metrics, fee docs, DefiLlama adapters, and peer primary docs cited in-repo. **Marketing** = public FAQ / blog policy language. **Measured** = Explorer, wallet inflows, or DefiLlama series reconciled in-repo. Where unsupported: **Gap**.*
 
 ---
 
@@ -79,7 +79,7 @@ Vault peers (THOR / Maya / Chainflip) push a large share of swap economics to **
 - **Incentive Pendulum** splits system income / liquidity fees between **node operators (bond)** and **LPs**.
 - **Affiliates** may take up to **1,000 bp** user-side; **REVSHARE** can pay affiliates a share of liquidity fees from reserve (**capped 50%**) without raising user fee — explicit fight for SwapKit order flow ([ADR-029](https://blog.thorchain.org/adr-029-affiliate-revenue-share); affiliate guide).
 - Token link: RUNE demand via **bond underwriting** + pendulum, optional burn/dev/TCY/POL dials — not a NEAR-style wallet sweep of affiliate fees.
-- **RUSH:** **Gap** in `/tmp/nfs` primary notes (no committed RUSH fee table). Treat affiliate + REVSHARE as the documented distribution layer; do not invent RUSH bp.
+- **RUSH:** **Gap** in repo primary notes (no committed RUSH fee table). Treat affiliate + REVSHARE as the documented distribution layer; do not invent RUSH bp.
 
 **Chainflip (docs)**
 
@@ -194,7 +194,7 @@ Race-to-zero risk is **asymmetric**: the **NEAR buyback line** is the contestabl
 
 ---
 
-## Q5. Proprietary metrics (from committed `/tmp/nfs` numbers only)
+## Q5. Proprietary metrics (from committed the repository numbers only)
 
 ### Definitions
 
