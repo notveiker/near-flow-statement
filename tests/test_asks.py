@@ -38,3 +38,31 @@ class April(unittest.TestCase):
         c = r["fortnights"]["criteria"]
         self.assertEqual(r["fortnights"]["one_class_ended"], all(c.values()))
         self.assertAlmostEqual(r["fortnights"]["before_total"] - r["fortnights"]["after_total"], -r["fortnights"]["net_change"], places=0)
+
+
+class CrossSection(unittest.TestCase):
+    def test_held_protocols_refused_before_unlock_without_flag_or_scoring(self):
+        from datetime import datetime, timezone
+        from pipeline import fetch_cross_section as f
+        early = datetime(2026, 11, 13, 12, 0, tzinfo=timezone.utc)
+        late = datetime(2026, 11, 14, 1, 0, tzinfo=timezone.utc)
+        for s in f.HELD:
+            with self.assertRaises(PermissionError):
+                f.assert_allowed(s, now=late, held_flag=False)
+            with self.assertRaises(PermissionError):
+                f.assert_allowed(s, now=early, held_flag=True)
+        if not f.scoring_has_run():
+            with self.assertRaises(PermissionError):
+                f.assert_allowed("near-intents", now=late, held_flag=True)
+
+    def test_no_held_slug_in_comparators_and_no_overview_endpoint(self):
+        from pipeline import fetch_cross_section as f
+        self.assertFalse({c["slug"] for c in f.COMPARATORS} & set(f.HELD))
+        import re
+        calls = re.findall(r"http_json\(f?\"([^\"]+)\"", open(f.__file__).read())
+        self.assertTrue(calls and all("overview" not in c for c in calls))
+
+    def test_nothing_fetched_for_held_yet(self):
+        from pipeline import fetch_cross_section as f
+        p = f.ROOT / "data" / "raw" / "cross_section"
+        self.assertFalse((p / "all.json").exists() and not f.scoring_has_run())
