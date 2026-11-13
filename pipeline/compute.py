@@ -673,6 +673,98 @@ def leg_count(m: dict, vol: dict, rev: dict, price: dict, asof: str) -> None:
     m["legcount_reading_gap_peer_share_x"] = r((share(k_hi) / share(kp_hi) + share(k_lo) / share(kp_lo)) / 2, 1)
 
 
+def second_review(m: dict, rev: dict, fees: dict, vol: dict) -> None:
+    """Exploratory (added 2026-11-13): figures docs/second-review.md and THESIS.md had computed by hand, so that
+    `pipeline.check --numbers` can check them. Same inputs and recipes as that file's sections 2, 4, 5, 6, 8 and 9."""
+    import csv
+    from datetime import date
+    from decimal import Decimal
+
+    # Section 9: H1a's gross flows, and the ratio after dropping the k largest net days on each side.
+    rows = read_raw("bq/staking_flows_daily.json")
+    m["sr_staking_inflow_90d_m"] = r(sum(float(x["inflow_near"]) for x in rows) / 1e6, 1)
+    m["sr_staking_outflow_90d_m"] = r(sum(float(x["outflow_near"]) for x in rows) / 1e6, 1)
+    net = sorted(float(x["outflow_near"]) - float(x["inflow_near"]) for x in rows)
+    rewards = m["h1a_staking_rewards_90d_m"] * 1e6
+    for k in (5, 10):
+        m[f"sr_h1a_ratio_trim{k}_x"] = r(sum(net[k:-k]) / rewards, 2)
+
+    # Section 8: H1b's lower bound (level 3, native + wNEAR flows), gross legs, and dropping one day.
+    a, b = read_raw("bq/h1b_a_native_flows.json"), read_raw("bq/h1b_b_wnear_logs.json")
+    fl = [x for x in a if x["leg"] == "flow" and x["lvl"] == "3" and x["note"].startswith("kind=transfer;")
+          and not x["note"].endswith(";cp=wrap")] + [x for x in b if x["leg"] == "flow" and x["lvl"] == "3"]
+    side = lambda d: sum(Decimal(x["near"]) for x in fl if x["direction"] == d)
+    m["sr_h1b_lower_in_m"] = r(float(side("in")) / 1e6, 1)
+    m["sr_h1b_lower_out_m"] = r(float(side("out")) / 1e6, 1)
+    for d in ("2026-10-29", "2026-10-02", "2026-09-18"):
+        v = sum((Decimal(x["near"]) if x["direction"] == "in" else -Decimal(x["near"])) for x in fl if x["day"] != d)
+        m[f"sr_h1b_lower_without_{d[5:7]}{d[8:]}_m"] = r(float(v) / 1e6, 2)
+
+    with open(RAW / "escrow" / "deliveries.csv", newline="", encoding="utf-8") as f:
+        dl = list(csv.DictReader(f))
+
+    # Section 5: dollars and NEAR by 30-day block, and the ladder share at the pre-v81 issuance cap.
+    blocks = (("2026-08-07", "2026-09-05"), ("2026-10-06", "2026-11-04"))
+    usd = [sum(v for k, v in rev.items() if lo <= k <= hi) for lo, hi in blocks]
+    near = [sum(int(x["amount_yocto"]) for x in dl if lo <= x["day"] <= hi) for lo, hi in blocks]
+    m["sr_revenue_usd_first_to_last_block_pct"] = r((usd[1] / usd[0] - 1) * 100, 1)
+    m["sr_near_arrived_fall_first_to_last_block_pct"] = r((1 - near[1] / near[0]) * 100, 1)
+    g, burn = m["h1a_gross_issuance_90d_m"] * 1e6, m["h1a_burn_90d_k"] * 1e3
+    m["sr_ladder_at_old_cap_pct"] = r(m["ladder_all_wallets_pct_of_issuance"] * (g - burn) / (2 * g - burn), 1)
+
+    # Section 6: the two 180-day windows behind G_obs.
+    end = "2026-11-04"
+    prev = add_days(end, -180)
+    m["sr_fees_180d_change_pct"] = r((window_sum(fees, end, 180) / window_sum(fees, prev, 180) - 1) * 100, 1)
+    m["sr_volume_180d_change_pct"] = r((window_sum(vol, end, 180) / window_sum(vol, prev, 180) - 1) * 100, 1)
+
+    # Section 2: the escrow share of the buyback wallet's NEAR by period, and the front-end fund's daily streams.
+    def esc_share(lo: str, hi: str) -> float:
+        w = [x for x in dl if x["wallet"] == "buybacks.multisignature.near" and lo <= x["day"] <= hi]
+        return sum(int(x["amount_yocto"]) for x in w if x["path"] == "escrow_unshield") / sum(int(x["amount_yocto"]) for x in w) * 100
+    m["sr_escrow_share_0713_0828_pct"] = r(esc_share("2026-07-13", "2026-08-28"), 1)
+    m["sr_escrow_share_0903_1026_pct"] = r(esc_share("2026-09-03", "2026-10-26"), 1)
+    m["sr_escrow_share_1027_1104_pct"] = r(esc_share("2026-10-27", "2026-11-04"), 1)
+
+    def per_day(lo: str, hi: str, keep) -> float:
+        n = (date.fromisoformat(hi) - date.fromisoformat(lo)).days + 1
+        return sum(int(x["amount_yocto"]) for x in dl
+                   if x["wallet"] == "fefundsadmin.sputnik-dao.near" and lo <= x["day"] <= hi and keep(x)) / YOCTO / n
+    rec = lambda x: x["path_detail"].startswith("recurring:176121bd")
+    esc = lambda x: x["path"] == "escrow_unshield"
+    for tag, lo, hi in (("before", "2026-07-07", "2026-08-28"), ("after", "2026-08-29", "2026-11-04")):
+        m[f"sr_frontend_public_fee_near_per_day_{tag}"] = round(per_day(lo, hi, rec))
+        m[f"sr_frontend_escrow_near_per_day_{tag}"] = round(per_day(lo, hi, esc))
+
+    # Section 1: the front-end fund at block 223,088,015 (data/raw/rpc/frontend_fund_223088015.json,
+    # python3 -m pipeline.fetch_frontend_fund), with the buyback wallet's committed balance at the same block.
+    if (RAW / "rpc" / "frontend_fund_223088015.json").exists():
+        ff = read_raw("rpc/frontend_fund_223088015.json")
+        bal = {a: int(v["amount"]) / YOCTO for a, v in ff["accounts"].items()}
+        bb = int(read_raw("rpc/buyback_balance_endpoints.json")["blocks"]["223088015"]["amount"]) / YOCTO
+        m["sr_frontend_fund_near"] = round(bal["fefundsadmin.sputnik-dao.near"])
+        m["sr_1cs_fund_near"] = round(bal["1csfundsadmin.sputnik-dao.near"])
+        m["sr_frontend_fund_share_of_three_pct"] = r(bal["fefundsadmin.sputnik-dao.near"] / (sum(bal.values()) + bb) * 100, 1)
+        props = ff["proposals"]
+        tr = [x for x in props if isinstance(x["kind"], dict) and "Transfer" in x["kind"] and x["status"] == "Approved"]
+        m["sr_frontend_fund_proposals_n"] = len(props)
+        m["sr_frontend_fund_transfers_approved_n"] = len(tr)
+        m["sr_frontend_fund_near_transfers_n"] = sum(1 for x in props if isinstance(x["kind"], dict) and "Transfer" in x["kind"]
+                                                     and x["kind"]["Transfer"]["token_id"] == "")
+        usdc = ("17208628f84f5d6ad33f0da3bbbeb27ffcb398eac501a31bd6ad2011e36133a1",
+                "a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48.factory.bridge.near")  # native USDC and bridged USDC.e, 6 decimals
+        if any(x["kind"]["Transfer"]["token_id"] not in usdc for x in tr):
+            raise ValueError("an approved front-end fund transfer is not in USDC; docs/second-review.md section 1 assumes it is")
+        m["sr_frontend_fund_usdc_out"] = round(sum(int(x["kind"]["Transfer"]["amount"]) for x in tr) / 1e6)
+
+    # Section 4: daily transfers into the collectors, before and on the window's last day.
+    ci = read_raw("bq/collector_inflows.json")
+    for c, pre in (("a", "5880ad2b"), ("b", "143f2bb4")):
+        n = lambda lo, hi: sum(int(x["n"]) for x in ci if x["collector"].startswith(pre) and lo <= x["day"] <= hi)
+        m[f"sr_collector_{c}_transfers_per_day_1006_1028"] = round(n("2026-10-06", "2026-10-28") / 23)
+        m[f"sr_collector_{c}_transfers_1104"] = n("2026-11-04", "2026-11-04")
+
+
 def build() -> tuple[dict, dict]:
     # ---------- inputs ----------
     vol = {s: llama_daily(f"llama/volume_{s}.json") for s in PEERS}
@@ -962,6 +1054,10 @@ def build() -> tuple[dict, dict]:
         rating(m)
         if "rating_g_req_pct" in m:  # PREREG's Avoid line: G_obs below half of G_req
             m["rating_g_avoid_line_pct"] = r(m["rating_g_req_pct"] / 2, 1)
+
+    if all((RAW / f).exists() for f in ("bq/staking_flows_daily.json", "bq/h1b_a_native_flows.json", "escrow/deliveries.csv",
+                                         "bq/collector_inflows.json")) and "rating_g_req_pct" in m:
+        second_review(m, rev, fees["near-intents"], vol["near-intents"])
 
     # ---------- Large unstakers -> intents.near (exploratory; data/raw/unstakers/, sql/unstakers/) ----------
     if (RAW / "unstakers" / "results.json").exists():

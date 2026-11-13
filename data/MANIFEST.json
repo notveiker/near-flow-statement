@@ -302,6 +302,12 @@
    "sha256": "7618a460b4a9d493f6a844e5c9129078e383ab4fb523f095120aca71fcc989bf",
    "source": "rpc block {finality: final}"
   },
+  "raw/rpc/frontend_fund_223088015.json": {
+   "bytes": 14672,
+   "fetched_at": "2026-11-13T10:13:55Z",
+   "sha256": "5396657d78dedfa8581f41d0230868a0acdc41fd0f7ecbfed3baecba52ff275b",
+   "source": "archival rpc query at block_id 223088015 (https://archival-rpc.mainnet.fastnear.com): view_account fefundsadmin.sputnik-dao.near, 1csfundsadmin.sputnik-dao.near; call_function fefundsadmin.sputnik-dao.near get_proposals, get_policy"
+  },
   "raw/rpc/pool_endpoints_archival.json": {
    "bytes": 50728,
    "fetched_at": "2026-11-06T23:49:05Z",

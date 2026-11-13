@@ -9,13 +9,14 @@ This page records a second review of the repository and its sources, made on 202
 
 ## 1. Who holds the captured NEAR, and on what terms
 
+- **Snapshot (added 2026-11-13).** Every chain read in this section is committed in `data/raw/rpc/frontend_fund_223088015.json`. `python3 -m pipeline.fetch_frontend_fund` rewrites it, keyless, from archival RPC at that block, and `pipeline/compute.py` (`second_review`) computes the figures below from it.
 - **Balances.** At block 223,088,015, the last block of 2026-11-04, `view_account` gives:
-  - `fefundsadmin.sputnik-dao.near` (the front-end fund): 1,973,571 NEAR;
-  - `1csfundsadmin.sputnik-dao.near`: 271 NEAR.
+  - `fefundsadmin.sputnik-dao.near` (the front-end fund): 1,973,571<!--n:sr_frontend_fund_near--> NEAR;
+  - `1csfundsadmin.sputnik-dao.near`: 271<!--n:sr_1cs_fund_near--> NEAR.
 
-  Neither has any NEAR locked. The buyback wallet's balance at the same block is in `data/raw/rpc/buyback_balance_endpoints.json`. With it, the front-end fund holds 47.6% of the three wallets' NEAR. None of the three wallets burns, stakes or locks its NEAR.
+  Neither has any NEAR locked. The buyback wallet's balance at the same block is in `data/raw/rpc/buyback_balance_endpoints.json`. With it, the front-end fund holds 47.6<!--n:sr_frontend_fund_share_of_three_pct-->% of the three wallets' NEAR. None of the three wallets burns, stakes or locks its NEAR.
 - **Which wallet got the ladder's arrivals.** Of the ladder's 15.81<!--n:ladder_all_wallets_pct_of_issuance-->%, 11.0<!--n:ladder_buyback_only_pct_of_issuance-->% arrived in the buyback wallet. The other 4.81 points arrived in the front-end fund.
-- **The front-end fund has never sent NEAR to the buyback wallet.** Its 17 proposals (ids 0-16; `get_proposals` at the same block) include no NEAR transfer. Its 15 approved transfers moved 2,450,900 USDC:
+- **The front-end fund has never sent NEAR to the buyback wallet.** Its 17<!--n:sr_frontend_fund_proposals_n--> proposals (ids 0-16; `get_proposals` at the same block) include no NEAR transfer (0<!--n:sr_frontend_fund_near_transfers_n-->). Its 15<!--n:sr_frontend_fund_transfers_approved_n--> approved transfers moved 2,450,900<!--n:sr_frontend_fund_usdc_out--> USDC (native USDC and, in one transfer, bridged USDC.e):
   - ten to `auroraliqsupport.near`;
   - four to `aurorafinance.sputnik-dao.near`;
   - one to `aurorasupport.near`.
@@ -41,8 +42,8 @@ All figures in this section come from `data/raw/escrow/deliveries.csv`, summing 
 
 - **The monthly figures are the same step.** The figures in section 5 of `THESIS.md` (28.6<!--n:escrow_share_buyback_2026_08_pct-->%, 53.0<!--n:escrow_share_buyback_2026_09_pct-->%, 57.4<!--n:escrow_share_buyback_2026_10_pct-->%) are this step seen through calendar months. From 09-03 the buyback wallet's weekly share moves between 43% and 73%, with no trend.
 - **The public front-end fee stopped on the same dates.**
-  - near.com's public fee account (`176121bd…`, rows whose `path_detail` starts with `recurring:176121bd`) paid the front-end fund 1,940 NEAR a day over 07-07 to 08-28, and 107 a day over 08-29 to 11-04.
-  - Escrow releases to the fund rose from 1,399 to 4,901 NEAR a day, which is more than the public stream lost.
+  - near.com's public fee account (`176121bd…`, rows whose `path_detail` starts with `recurring:176121bd`) paid the front-end fund 1,940<!--n:sr_frontend_public_fee_near_per_day_before--> NEAR a day over 07-07 to 08-28, and 107<!--n:sr_frontend_public_fee_near_per_day_after--> a day over 08-29 to 11-04.
+  - Escrow releases to the fund rose from 1,399<!--n:sr_frontend_escrow_near_per_day_before--> to 4,901<!--n:sr_frontend_escrow_near_per_day_after--> NEAR a day, which is more than the public stream lost.
   - The dates match near.com making confidential settlement its default at the end of August. The review found this only in secondary reports; NEAR Intents' changelog does not list it.
 - **Reading (inferred).** "The share keeps rising" is not what the data show. There was a drift through July and August, then a step at 08-29, then a flat level. The bottom-of-range test in section 5 of `THESIS.md` ("stops rising") is therefore already met, for a reason that says nothing about whether the releases are fees.
 
@@ -80,8 +81,8 @@ All figures in this section come from `data/raw/escrow/deliveries.csv`, summing 
   | 09-06 to 10-05 | $1,934,392 | 506,616 |
   | 10-06 to 11-04 | $1,992,164 | 418,766 |
 
-  Revenue rose 118.9% in dollars while NEAR arrivals fell 13.8%.
-- **Half the share comes from the inflation cut.** The ladder divides NEAR by net issuance, and protocol v81 (2025-10-29) halved the inflation cap. At the old cap, the same arrivals would be about 7.9% of net issuance, not 15.81<!--n:ladder_all_wallets_pct_of_issuance-->%. The arithmetic is the ladder share × (g − b) ÷ (2g − b), where g is the window's gross issuance (8.0098<!--n:h1a_gross_issuance_90d_m-->M NEAR) and b its burn (76.84<!--n:h1a_burn_90d_k-->K NEAR) over the same 90 days.
+  Revenue rose 118.9<!--n:sr_revenue_usd_first_to_last_block_pct-->% in dollars while NEAR arrivals fell 13.8<!--n:sr_near_arrived_fall_first_to_last_block_pct-->%.
+- **Half the share comes from the inflation cut.** The ladder divides NEAR by net issuance, and protocol v81 (2025-10-29) halved the inflation cap. At the old cap, the same arrivals would be about 7.9<!--n:sr_ladder_at_old_cap_pct-->% of net issuance, not 15.81<!--n:ladder_all_wallets_pct_of_issuance-->%. The arithmetic is the ladder share × (g − b) ÷ (2g − b), where g is the window's gross issuance (8.0098<!--n:h1a_gross_issuance_90d_m-->M NEAR) and b its burn (76.84<!--n:h1a_burn_90d_k-->K NEAR) over the same 90 days.
 - **Reading (inferred).** The capture share, the take rate and G_obs depend partly on NEAR's price and on the issuance cap that governance sets.
 
 ## 6. G_obs measures a step in the capture ratio
@@ -89,7 +90,7 @@ All figures in this section come from `data/raw/escrow/deliveries.csv`, summing 
 These figures compare the 180 days to 2026-11-04 with the 180 days before, using `data/raw/llama/` sums:
 
 - **Revenue grew 2.645-fold**, which annualises to 619<!--n:rating_g_obs_pct-->%, the pipeline's figure.
-- **Over the same windows, fees rose only 3.4% and volume 29.6%.** Revenue went from 9.5% to 24.4% of fees. (Note, 2026-11-13: the later window holds 65 days after 2026-09-01, when DefiLlama's volume began to count confidential-treasury flow, so part of the 29.6% is that change of definition. The revenue-to-fees ratio uses no volume; [`leg-count.md`](leg-count.md).)
+- **Over the same windows, fees rose only 3.4<!--n:sr_fees_180d_change_pct-->% and volume 29.6<!--n:sr_volume_180d_change_pct-->%.** Revenue went from 9.5% to 24.4% of fees. (Note, 2026-11-13: the later window holds 65 days after 2026-09-01, when DefiLlama's volume began to count confidential-treasury flow, so part of the 29.6<!--n:sr_volume_180d_change_pct-->% is that change of definition. The revenue-to-fees ratio uses no volume; [`leg-count.md`](leg-count.md).)
 - **The figure is fragile.** With 182-day windows the same calculation gives 426%.
 - **Reading (inferred).** The growth leg of the frozen rule rests on a rise in the share of fees captured, which sections 2 and 3 date to late August and September. It does not rest on growth in activity. Hold is unchanged.
 
@@ -102,11 +103,11 @@ These figures compare the 180 days to 2026-11-04 with the 180 days before, using
 
 Inputs: `data/raw/bq/h1b_a_native_flows.json` and `h1b_b_wnear_logs.json`, level 3, under the rules in `pipeline/h1b.py`, dropping one day at a time.
 
-- **The bound is a small net of large flows.** The 4.42<!--n:h1b_net_inflow_lower_m-->M NEAR lower bound is the net of 267.2M NEAR in and 262.8M NEAR out.
+- **The bound is a small net of large flows.** The 4.42<!--n:h1b_net_inflow_lower_m-->M NEAR lower bound is the net of 267.2<!--n:sr_h1b_lower_in_m-->M NEAR in and 262.8<!--n:sr_h1b_lower_out_m-->M NEAR out.
 - **Single days move it across the threshold:**
-  - without 2026-10-29: 17.60M;
-  - without 2026-10-02: 8.76M;
-  - without 2026-09-18: −1.35M.
+  - without 2026-10-29: 17.6<!--n:sr_h1b_lower_without_1029_m-->M;
+  - without 2026-10-02: 8.76<!--n:sr_h1b_lower_without_1002_m-->M;
+  - without 2026-09-18: -1.35<!--n:sr_h1b_lower_without_0918_m-->M.
 
   Two single days lift it above gross issuance (8.0098<!--n:h1a_gross_issuance_90d_m-->M), and one turns it negative.
 - **Reading.** "Inconclusive" is right, and the bound is too unstable to be read as close to Buy.
@@ -115,8 +116,8 @@ Inputs: `data/raw/bq/h1b_a_native_flows.json` and `h1b_b_wnear_logs.json`, level
 
 Input: `data/raw/bq/staking_flows_daily.json`.
 
-- **Gross flows dwarf rewards.** Over the 90 days, 188.0M NEAR flowed into staking pools and 235.3M out. That is 26.1 and 32.6 times the 7.2088<!--n:h1a_staking_rewards_90d_m-->M NEAR of rewards. The net, 47.26M, is the 6.56<!--n:h1a_ratio_as_written_x-->× of H1a as written.
-- **The fail survives trimming.** Dropping the 5 largest net-outflow days and the 5 largest net-inflow days leaves 4.67×. Dropping 10 of each leaves 2.79×. H1a still fails either way.
+- **Gross flows dwarf rewards.** Over the 90 days, 188.0<!--n:sr_staking_inflow_90d_m-->M NEAR flowed into staking pools and 235.3<!--n:sr_staking_outflow_90d_m-->M out. That is 26.1 and 32.6 times the 7.2088<!--n:h1a_staking_rewards_90d_m-->M NEAR of rewards. The net, 47.26M, is the 6.56<!--n:h1a_ratio_as_written_x-->× of H1a as written.
+- **The fail survives trimming.** Dropping the 5 largest net-outflow days and the 5 largest net-inflow days leaves 4.67<!--n:sr_h1a_ratio_trim5_x-->×. Dropping 10 of each leaves 2.79<!--n:sr_h1a_ratio_trim10_x-->×. H1a still fails either way.
 - **Reading.** The fail is robust. But the test compares a net of large principal moves with rewards, so it does not show whether the rewards themselves stay staked.
 
 ## 10. The partner-fee floor
