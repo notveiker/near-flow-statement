@@ -3650,7 +3650,8 @@ def thesis_box(ctx: Ctx) -> str:
 
     The words are true of the data as committed: Intents has the largest share of its peer set over 365 days, the ladder's top is between a
     seventh and a fifth of net issuance, and the growth the price assumes is above the peer set's growth over every window computed (one to
-    four years), at the cutoff and at the update. If the data stop saying that, the render stops."""
+    four years), at the cutoff and at the update. If the data stop saying that, the render stops. The sentence is dated to the committed
+    data, so the live Today row under it, which moves with the price, cannot contradict it."""
     M, m = ctx.M, ctx.m
     share = m["intents_share_peerset_365d_pct"]
     grows = [m[f"ic_market_cagr_{k}y_pct"] for k in (1, 2, 3, 4)]
@@ -3663,8 +3664,8 @@ def thesis_box(ctx: Ctx) -> str:
         '<div class="thesis" id="thesis">'
         '<p><strong>NEAR Intents led its market over the past year. NEAR&rsquo;s price asks for much more than that.</strong> '
         'The NEAR that Intents fees deliver to NEAR&rsquo;s revenue wallets equals, at most, about a sixth of net new supply. For those fees alone to '
-        'carry today&rsquo;s price, they would have to grow faster each year to 2031 than cross-chain volume has grown over any period in the data. '
-        'Owning NEAR at this price is a bet on a bigger cut of those fees, or on value beyond them. '
+        f'carry the price NEAR had on {M("upd_asof") if has_update(ctx) else M("asof")}, they would have to grow faster each year to 2031 than '
+        'cross-chain volume grew over any period in the data. Owning NEAR at that price is a bet on a bigger cut of those fees, or on value beyond them. '
         '<a href="#forward-view">Read the case</a> or <a href="story.html">see it as slides</a>.</p>'
         '<p class="tag">Exploratory view, formed after the pre-registration was frozen. Not investment advice.</p></div>')
 
@@ -3677,8 +3678,9 @@ def record_strip(ctx: Ctx) -> str:
     return ('<div class="records"><p class="record"><span><strong>Predictions first, data second.</strong> Three hypotheses, a rating rule and seven dated '
             f'forecasts were frozen on {FREEZE_UTC[:10]}, before the first BigQuery result the repository records. Each is scored as written, and every '
             'result is on this page, including the ones the data went against.</span> <a href="#scorecard">See how they scored</a></p>'
-            '<p class="record"><span><strong>Re-run it.</strong> One command rebuilds every number and chart on this page, offline, from the raw '
-            'snapshots in the repository. No keys, no installs.</span> <a href="#reproduce">See the steps</a></p></div>')
+            '<p class="record"><span><strong>Re-run it.</strong> One command rebuilds every chart and every committed number on this page, offline, '
+            'from the raw snapshots in the repository. No keys, no installs. Only the Today row is fetched live.</span> '
+            '<a href="#reproduce">See the steps</a></p></div>')
 
 
 def all_cards() -> dict[str, tuple[str, object]]:
