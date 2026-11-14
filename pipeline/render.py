@@ -1072,6 +1072,7 @@ h3{font-size:1.0625rem;font-weight:650;line-height:1.35;margin:.5rem 0 .6rem}
 .grid>.card .cv-wide{max-width:900px;margin:0 auto}
 .grid>.gridhead{margin:1.4rem 0 -.2rem;max-width:none;font-size:1.0625rem;font-weight:700;color:var(--ink)}
 .grid>.gridhead:first-child{margin-top:.4rem}
+.grid>.gridlead{grid-column:1 / -1;margin:-.5rem 0 .1rem;max-width:104ch;font-size:.9375rem;line-height:1.55;color:var(--ink2)}
 .card{container-type:inline-size;display:flex;flex-direction:column;min-width:0;margin:0;padding:18px 20px 14px;background:var(--surface);border:1px solid var(--border);border-radius:6px}
 .cardtop{display:flex;align-items:baseline;gap:10px;min-height:1.2rem;font-size:.8125rem}
 .fignum{font-weight:600;color:var(--muted)}
@@ -3544,7 +3545,8 @@ def reproduce(ctx: Ctx) -> str:
     lis = "".join(f'<li><p class="do"><strong>Do:</strong> <code>{esc(c)}</code></p><p class="see"><strong>See:</strong> {s}</p></li>'
                   for c, s in rows)
     return (f'<section id="reproduce" aria-labelledby="repro-h"><h2 id="repro-h">Reproduce</h2>'
-            f'<p class="note">Run the steps in order and compare. <code>make reproduce</code> runs steps 2 to 4, <code>make render-check</code> runs step 6, '
+            f'<p class="note">Every number and chart on this page rebuilds offline from the committed data, and each step says what its command prints. '
+            f'<code>make reproduce</code> runs steps 2 to 4, <code>make render-check</code> runs step 6, '
             f'and <code>make site</code> runs steps 2 to 4 and then step 7, offline.</p><details class="more"><summary>Show the steps</summary><ol class="steps">{lis}</ol></details></section>')
 
 
@@ -3580,8 +3582,11 @@ def limits(ctx: Ctx) -> str:
     ]
     lis = "".join(f"<li><strong>{a}</strong> {b}</li>" for a, b in items)
     return (f'<section id="limits" aria-labelledby="limits-h"><h2 id="limits-h">Limits</h2>'
-            f'<p class="note">These come from the Limits sections of THESIS.md and docs/*.md and from PREREG-ADDENDUM.md. '
-            f'Escrow funding hops are traced per single-use delivery from {traced}, which a test checks against <code>data/raw/escrow/deliveries.csv</code>.</p>'
+            f'<p class="note">Four limits matter most. Too few exchange addresses are labelled to settle the exchange tests: {M("h1b_coverage_count_pct")}% of the '
+            f'top-100 receivers, where a point result needs {ctx.K("h1b_coverage_min_pct")}%. Which fee funds the escrow releases is unattested. Partner numbers rest '
+            f'on one key-gated source. And the investment case rests on two assumptions, shown as a grid. '
+            f'Escrow funding hops are traced per single-use delivery from {traced}, which a test checks against <code>data/raw/escrow/deliveries.csv</code>. '
+            f'The full list comes from the Limits sections of THESIS.md and docs/*.md and from PREREG-ADDENDUM.md.</p>'
             f'<details class="more"><summary>Show the limits</summary><ul class="plain">{lis}</ul></details></section>')
 
 
@@ -3969,6 +3974,76 @@ FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox
            "%3Crect width='16' height='16' rx='3' fill='%2316150f'/%3E%3Cpath fill='%23f1efe7' d='M3.5 9h2v3.5h-2zM7 6h2v6.5H7zM10.5 3.5h2v9h-2z'/%3E%3C/svg%3E")
 
 
+def case_lead(ctx: Ctx) -> str:
+    """The lead of the Investment case tab: its main points, each figure a metric span (the charts in this tab stop at the cutoff)."""
+    M = ctx.M
+    return ('<p class="note">The NEAR that Intents sends to NEAR&rsquo;s revenue wallets is small next to what the price assumes. Over 30 days it equalled '
+            f'{M("ladder_all_wallets_pct_of_issuance", 2)}% of net new supply, and only {M("ladder_public_collectors_pct_of_issuance", 2)} points of that trace to '
+            f'public fee collectors. For those fees alone to carry NEAR&rsquo;s price, they would have to grow {M("ic_implied_cagr_r15_x25_pct")}% a year to 2031. '
+            f'With the market growing at last year&rsquo;s pace and Intents at its best share, that would take {M("ic_take_needed_vs_gross_x")}× Intents&rsquo; whole '
+            f'gross fee. In the base case the fees pay for {M("ic_base_coverage_2031_pct")}% of NEAR&rsquo;s dilution in 2031. All of this is exploratory: we chose it '
+            'after freezing our predictions (the ladder on 2026-11-06, the rest on 2026-11-13 and 2026-11-14), and it changes none of them.</p>')
+
+
+def evidence_lead(ctx: Ctx) -> str:
+    """The lead of the Supporting evidence tab. The figures are in the group leads under it."""
+    return ('<p class="note">Intents leads its market, but most of its fees go to others, NEAR&rsquo;s supply keeps growing and usage is down. This is context for '
+            'the case, also exploratory: picked after the predictions were frozen. None of it is a test, and none of it feeds or changes a hypothesis, '
+            'threshold, probability or the rating rule.</p>')
+
+
+def group_lead(ctx: Ctx, head: str) -> str:
+    """One or two sentences under a group heading of the Supporting evidence tab: what its charts show, each figure a metric span.
+    The words are checked against the data they describe; if the data stop saying it, the render stops."""
+    M, S, m = ctx.M, ctx.S, ctx.m
+    if head == "Market and peers":
+        return (f'Intents had {M("intents_share_peerset_30d_pct")}% of its peer set&rsquo;s reported volume over 30 days and '
+                f'{M("intents_share_peerset_365d_pct")}% over a year. NEAR&rsquo;s market cap is {M("ic_near_mcap_to_intents_fees_x")}× the gross fees Intents charged '
+                f'in a year; THORChain&rsquo;s is {M("ic_peer_thorchain_mcap_to_fees_x")}× its own and Chainflip&rsquo;s {M("ic_peer_chainflip_mcap_to_fees_x")}×.')
+    if head == "Revenue and the take rate":
+        if not (m["escrow_share_buyback_2026_09_pct"] > 50 and m["escrow_share_buyback_2026_10_pct"] > 50
+                and m["take_b3_bb_explicit_bp"] > m["take_b1_bb_explicit_bp"]):
+            raise SystemExit("render: the lead of 'Revenue and the take rate' says the explicit fee rose and the escrow supplied more than half of the "
+                             "buyback wallet's NEAR from September; the data no longer say that, so rewrite group_lead()")
+        return (f'NEAR captured ${S("intents_monthly.2026-10.rev_m")}M in October, {S("intents_monthly.2026-10.captured_bp")} bp of Intents&rsquo; reported volume. '
+                f'Its explicit fee inside 1Click rose from {M("take_b1_bb_explicit_bp")} bp to {M("take_b3_bb_explicit_bp")} bp over the window. From September the '
+                f'escrow supplied more than half of the buyback wallet&rsquo;s NEAR ({M("escrow_share_buyback_2026_09_pct")}% that month).')
+    if head == "Who else gets paid":
+        return (f'Partners&rsquo; listed fees were {M("partners_kept_vs_near_rev_floor_x")}× to {M("partners_kept_vs_near_rev_high_x")}× NEAR&rsquo;s whole captured '
+                f'revenue. SwapKit alone routed {M("swapkit_vol_share_pct")}% of 1Click volume and paid NEAR ${M("swapkit_buyback_fees_usd", 0)} in explicit fees '
+                'over 30 days.')
+    if head == "Supply and dilution":
+        return (f'Supply grew {M("net_supply_growth_365d_pct")}% in a year, about {M("net_issuance_near_per_day_30d_k")}K NEAR a day net. On the rating rule&rsquo;s '
+                f'path it grows {M("fwd_supply_growth_5y_pct")}% more by 2031 if HSP-029&rsquo;s cut takes effect and {M("fwd_supply_growth_5y_no_hsp029_pct")}% if not.')
+    if head == "Network usage":
+        return (f'Daily active accounts averaged {M("active_accounts_30d_k")}K over 30 days, {M("active_accounts_30d_yoy_pct")}% on a year earlier. '
+                f'{M("usage_bq_tg_share_of_signer_drop_pct")}% of that fall is one wallet app&rsquo;s Telegram accounts, and the number of contracts called each '
+                'day did not fall.')
+    raise SystemExit(f"render: no lead is written for the group {head!r}; add one to group_lead()")
+
+
+def track_lead(ctx: Ctx) -> str:
+    """The lead of the Track record tab: what was fixed, and how it came out, in the words the scorecard under it uses."""
+    M, K = ctx.M, ctx.K
+    check_pre_results(ctx)
+    fw = ctx.forward
+    if fw:
+        words = [forward_word(fw, f) for f in FORWARD_IDS]
+        npass, nmiss = words.count("PASS"), words.count("MISS")
+        nns = len(FORWARD_IDS) - npass - nmiss
+        forecasts = (f'Of the four one-week forecasts, <span data-f="@count.PASS" data-scale="1">{npass}</span> came true and '
+                     f'<span data-f="@count.MISS" data-scale="1">{nmiss}</span> did not'
+                     + (f', and <span data-f="@count.not scorable" data-scale="1">{nns}</span> could not be scored.' if nns else '.'))
+    else:
+        forecasts = f'The four one-week forecasts are scored after {esc(sf.SCORE_NOT_BEFORE.strftime("%Y-%m-%d %H:%M UTC"))}.'
+    return (f'<p class="note">We fixed three hypotheses, a rating rule and seven dated forecasts in the <a href="{esc(gh("PREREG.md"))}">pre-registration</a> '
+            'before the first BigQuery result the repository records, so that the numbers could not be bent to fit a story afterwards. One hypothesis went against '
+            f'us: net staking outflow was {M("h1a_ratio_as_written_x")}× staking rewards, where we predicted under {K("h1a_pass_below_x")}×. Two could not be settled, '
+            f'because only {M("h1b_coverage_count_pct")}% of the top-100 receivers carry an exchange label, so the frozen rule gives no signal. {forecasts} '
+            'Everything in this tab is pre-registered except the list headed &ldquo;What the results changed&rdquo;; later method choices are dated in the '
+            f'<a href="{esc(gh("PREREG-ADDENDUM.md"))}">addendum</a>.</p>')
+
+
 def row_classes(ids: tuple[str, ...], cols: int = 3) -> dict[str, str]:
     """For one group of cards on the three-column grid: {card id: extra class} so that no row of the group ends short.
 
@@ -4014,7 +4089,8 @@ def build_page(ctx: Ctx, breaks: bool = True) -> str:
     cards = all_cards()
     pre = with_row_classes(tuple(c for c, _, _ in PRE_CARDS), cards, ctx)
     fwd = with_row_classes(CASE_IDS, cards, ctx)
-    exp = "".join(f'<p class="gridhead">{esc(head)}</p>' + with_row_classes(ids, cards, ctx) for head, ids in EVIDENCE)
+    exp = "".join(f'<p class="gridhead">{esc(head)}</p><p class="gridlead">{group_lead(ctx, head)}</p>' + with_row_classes(ids, cards, ctx)
+                  for head, ids in EVIDENCE)
     body = (
         f'<a class="skip" href="#main">Skip to the content</a><div class="wrap">{header(ctx)}{side_nav()}'
         f'<main id="main">{record_strip(ctx)}'
@@ -4022,19 +4098,13 @@ def build_page(ctx: Ctx, breaks: bool = True) -> str:
         f'<a href="#exploratory" data-tab="exploratory">Supporting evidence</a><a href="#preregistered" data-tab="preregistered">Track record</a>'
         f'<a href="#method" data-tab="method">Method and limits</a></nav>'
         f'<section id="forward-view" class="panel" aria-labelledby="fwd-h"><h2 id="fwd-h">The investment case</h2>'
-        f'<p class="note">Six charts: what reaches NEAR today, what the price assumes, what would have to change, and what to watch to 2031. '
-        f'All of it is exploratory: we chose it after freezing our predictions (the ladder on 2026-11-06, the rest on 2026-11-13 and '
-        f'2026-11-14), and none of it changes a pre-registered hypothesis, threshold, probability or the rating.</p>'
+        f'{case_lead(ctx)}'
         f'<div class="grid">{fwd}</div>{update_table(ctx)}{LADDER_HISTORY}</section>'
         f'<section id="exploratory" class="panel" aria-labelledby="exp-h"><h2 id="exp-h">Supporting evidence</h2>'
-        f'<p class="note">Context for the case, also exploratory: picked after the predictions were frozen. None of it is a test, and none of it feeds or '
-        f'changes a hypothesis, threshold, probability or the rating rule.</p>'
+        f'{evidence_lead(ctx)}'
         f'<div class="grid">{exp}</div></section>'
         f'<section id="preregistered" class="panel" aria-labelledby="pre-h"><h2 id="pre-h">Track record: what we predicted, and what happened</h2>'
-        f'<p class="note">This is the check on the case: predictions we fixed, with odds, in the <a href="{esc(gh("PREREG.md"))}">pre-registration</a> '
-        f'before the first BigQuery result the repository records, so that the numbers could not be bent to fit a story afterwards. Each is scored as written, '
-        f'misses included. Everything in this tab is pre-registered except the list headed &ldquo;What the results changed&rdquo;. Later method choices are '
-        f'dated in the <a href="{esc(gh("PREREG-ADDENDUM.md"))}">addendum</a>.</p>'
+        f'{track_lead(ctx)}'
         f'<details class="readmore"><summary>The questions and the pre-registered answer</summary>{answer_line(ctx)}</details>'
         f'{scorecard(ctx)}{what_changed(ctx)}<div class="grid">{pre}</div></section>'
         f'<div id="method" class="panel">{about_data(ctx)}{not_computed(ctx)}{reproduce(ctx)}{limits(ctx)}</div></div></main>'

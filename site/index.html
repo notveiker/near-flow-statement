@@ -142,6 +142,7 @@ h3{font-size:1.0625rem;font-weight:650;line-height:1.35;margin:.5rem 0 .6rem}
 .grid>.card .cv-wide{max-width:900px;margin:0 auto}
 .grid>.gridhead{margin:1.4rem 0 -.2rem;max-width:none;font-size:1.0625rem;font-weight:700;color:var(--ink)}
 .grid>.gridhead:first-child{margin-top:.4rem}
+.grid>.gridlead{grid-column:1 / -1;margin:-.5rem 0 .1rem;max-width:104ch;font-size:.9375rem;line-height:1.55;color:var(--ink2)}
 .card{container-type:inline-size;display:flex;flex-direction:column;min-width:0;margin:0;padding:18px 20px 14px;background:var(--surface);border:1px solid var(--border);border-radius:6px}
 .cardtop{display:flex;align-items:baseline;gap:10px;min-height:1.2rem;font-size:.8125rem}
 .fignum{font-weight:600;color:var(--muted)}
@@ -327,7 +328,7 @@ footer{margin:3.5rem 0 2.5rem;padding-top:1rem;border-top:1px solid var(--grid);
 <nav class="tabbar" aria-label="Sections"><a href="#forward-view" data-tab="forward-view">Investment case</a><a href="#exploratory" data-tab="exploratory">Supporting evidence</a><a href="#preregistered" data-tab="preregistered">Track record</a><a href="#method" data-tab="method">Method and limits</a></nav>
 <section id="forward-view" class="panel" aria-labelledby="fwd-h">
 <h2 id="fwd-h">The investment case</h2>
-<p class="note">Six charts: what reaches NEAR today, what the price assumes, what would have to change, and what to watch to 2031. All of it is exploratory: we chose it after freezing our predictions (the ladder on 2026-11-06, the rest on 2026-11-13 and 2026-11-14), and none of it changes a pre-registered hypothesis, threshold, probability or the rating.</p>
+<p class="note">The NEAR that Intents sends to NEAR&rsquo;s revenue wallets is small next to what the price assumes. Over 30 days it equalled <span data-m="ladder_all_wallets_pct_of_issuance">15.81</span>% of net new supply, and only <span data-m="ladder_public_collectors_pct_of_issuance">4.53</span> points of that trace to public fee collectors. For those fees alone to carry NEAR&rsquo;s price, they would have to grow <span data-m="ic_implied_cagr_r15_x25_pct">84.9</span>% a year to 2031. With the market growing at last year&rsquo;s pace and Intents at its best share, that would take <span data-m="ic_take_needed_vs_gross_x">2.5</span>× Intents&rsquo; whole gross fee. In the base case the fees pay for <span data-m="ic_base_coverage_2031_pct">44.6</span>% of NEAR&rsquo;s dilution in 2031. All of this is exploratory: we chose it after freezing our predictions (the ladder on 2026-11-06, the rest on 2026-11-13 and 2026-11-14), and it changes none of them.</p>
 <div class="grid">
 <section class="card span2" id="chart-ladder" aria-labelledby="chart-ladder-h">
 <div class="cardtop"><span class="fignum">Figure 1</span><span class="badge badge-exp">Exploratory</span><a href="#chart-ladder" aria-label="Link to this chart">#</a></div>
@@ -2024,9 +2025,10 @@ L187.8,176.7L191.2,176.8L194.5,176.9L197.9,176.6L201.3,176.7L204.6,176.3L208,176
 <p class="note">The headline ladder was developed alongside the pre-registered tests: a first split of the buyback wallet&rsquo;s inflows into two collectors and single-use accounts funded from one account was committed on 2026-11-06 03:00 UTC, the ladder&rsquo;s code and escrow dataset on 2026-11-06 23:19 UTC, before the H1b and H1c results (2026-11-06 23:23 UTC) and the H1a-as-written result (2026-11-06 23:49 UTC) were committed, and it became the thesis headline on 2026-11-07 00:21 UTC (<a href="https://github.com/notveiker/near-flow-statement/blob/main/PREREG-ADDENDUM.md">addendum</a>, 2026-11-08 02:03 UTC entry, item 1).</p></details></section>
 <section id="exploratory" class="panel" aria-labelledby="exp-h">
 <h2 id="exp-h">Supporting evidence</h2>
-<p class="note">Context for the case, also exploratory: picked after the predictions were frozen. None of it is a test, and none of it feeds or changes a hypothesis, threshold, probability or the rating rule.</p>
+<p class="note">Intents leads its market, but most of its fees go to others, NEAR&rsquo;s supply keeps growing and usage is down. This is context for the case, also exploratory: picked after the predictions were frozen. None of it is a test, and none of it feeds or changes a hypothesis, threshold, probability or the rating rule.</p>
 <div class="grid">
 <p class="gridhead">Market and peers</p>
+<p class="gridlead">Intents had <span data-m="intents_share_peerset_30d_pct">55.7</span>% of its peer set&rsquo;s reported volume over 30 days and <span data-m="intents_share_peerset_365d_pct">62.1</span>% over a year. NEAR&rsquo;s market cap is <span data-m="ic_near_mcap_to_intents_fees_x">89.2</span>× the gross fees Intents charged in a year; THORChain&rsquo;s is <span data-m="ic_peer_thorchain_mcap_to_fees_x">9.8</span>× its own and Chainflip&rsquo;s <span data-m="ic_peer_chainflip_mcap_to_fees_x">1.8</span>×.</p>
 <section class="card" id="chart-peers" aria-labelledby="chart-peers-h">
 <div class="cardtop"><span class="fignum">Figure 7</span><span class="badge badge-exp">Exploratory</span><a href="#chart-peers" aria-label="Link to this chart">#</a></div>
 <h3 id="chart-peers-h">Intents&rsquo; share of its peer set: <span data-m="intents_share_peerset_30d_pct">55.7</span>% over 30 days, <span data-m="intents_share_peerset_365d_pct">62.1</span>% over 365 days</h3>
@@ -2447,6 +2449,7 @@ L187.8,176.7L191.2,176.8L194.5,176.9L197.9,176.6L201.3,176.7L204.6,176.3L208,176
 <td><span data-m="ic_peer_chainflip_fees_365d_m">15.39</span></td>
 <td><span data-m="ic_peer_chainflip_mcap_to_fees_x">1.8</span></td></tr></tbody></table></div></details></div></section>
 <p class="gridhead">Revenue and the take rate</p>
+<p class="gridlead">NEAR captured $<span data-s="intents_monthly.2026-10.rev_m">2.19</span>M in October, <span data-s="intents_monthly.2026-10.captured_bp">5.49</span> bp of Intents&rsquo; reported volume. Its explicit fee inside 1Click rose from <span data-m="take_b1_bb_explicit_bp">1.83</span> bp to <span data-m="take_b3_bb_explicit_bp">4.08</span> bp over the window. From September the escrow supplied more than half of the buyback wallet&rsquo;s NEAR (<span data-m="escrow_share_buyback_2026_09_pct">53.0</span>% that month).</p>
 <section class="card one span2" id="chart-revenue" aria-labelledby="chart-revenue-h">
 <div class="cardtop"><span class="fignum">Figure 9</span><span class="badge badge-exp">Exploratory</span><a href="#chart-revenue" aria-label="Link to this chart">#</a></div>
 <h3 id="chart-revenue-h">Captured revenue: $<span data-s="intents_monthly.2026-10.rev_m">2.19</span>M in October, <span data-s="intents_monthly.2026-10.captured_bp">5.49</span> bp of volume</h3>
@@ -3227,6 +3230,7 @@ ORDER BY 1, 2, 3
 <td><span data-m="escrow_share_of_buyback_by_month.4.share_pct">58.5</span></td>
 <td class="t"></td></tr></tbody></table></div></details></div></section>
 <p class="gridhead">Who else gets paid</p>
+<p class="gridlead">Partners&rsquo; listed fees were <span data-m="partners_kept_vs_near_rev_floor_x">1.44</span>× to <span data-m="partners_kept_vs_near_rev_high_x">2.22</span>× NEAR&rsquo;s whole captured revenue. SwapKit alone routed <span data-m="swapkit_vol_share_pct">38.2</span>% of 1Click volume and paid NEAR $<span data-m="swapkit_buyback_fees_usd">159</span> in explicit fees over 30 days.</p>
 <section class="card" id="chart-partners" aria-labelledby="chart-partners-h">
 <div class="cardtop"><span class="fignum">Figure 12</span><span class="badge badge-exp">Exploratory</span><a href="#chart-partners" aria-label="Link to this chart">#</a></div>
 <h3 id="chart-partners-h">SwapKit: <span data-m="swapkit_vol_share_pct">38.2</span>% of 1Click volume, $<span data-m="swapkit_buyback_fees_usd">159</span> in explicit fees to NEAR in 30 days</h3>
@@ -3910,6 +3914,7 @@ ORDER BY 1, 2, 3
 <td><span data-m="explorer_net_near_sold_usd_m">9.4</span></td>
 <td class="t">USD million</td></tr></tbody></table></div></details></div></section>
 <p class="gridhead">Supply and dilution</p>
+<p class="gridlead">Supply grew <span data-m="net_supply_growth_365d_pct">2.48</span>% in a year, about <span data-m="net_issuance_near_per_day_30d_k">88.2</span>K NEAR a day net. On the rating rule&rsquo;s path it grows <span data-m="fwd_supply_growth_5y_pct">9.4</span>% more by 2031 if HSP-029&rsquo;s cut takes effect and <span data-m="fwd_supply_growth_5y_no_hsp029_pct">13.1</span>% if not.</p>
 <section class="card" id="chart-supply" aria-labelledby="chart-supply-h">
 <div class="cardtop"><span class="fignum">Figure 14</span><span class="badge badge-exp">Exploratory</span><a href="#chart-supply" aria-label="Link to this chart">#</a></div>
 <h3 id="chart-supply-h">Supply: up <span data-m="net_supply_growth_365d_pct">2.48</span>% in 365 days; net issuance <span data-m="net_issuance_near_per_day_30d_k">88.2</span>K NEAR a day</h3>
@@ -5050,6 +5055,7 @@ ORDER BY 1, 2, 3
 <td>1,434.09</td>
 <td>1,482.79</td></tr></tbody></table></div></details></div></section>
 <p class="gridhead">Network usage</p>
+<p class="gridlead">Daily active accounts averaged <span data-m="active_accounts_30d_k">61.6</span>K over 30 days, <span data-m="active_accounts_30d_yoy_pct">-77.1</span>% on a year earlier. <span data-m="usage_bq_tg_share_of_signer_drop_pct">98.5</span>% of that fall is one wallet app&rsquo;s Telegram accounts, and the number of contracts called each day did not fall.</p>
 <section class="card fill3 span2" id="chart-usage" aria-labelledby="chart-usage-h">
 <div class="cardtop"><span class="fignum">Figure 16</span><span class="badge badge-exp">Exploratory</span><a href="#chart-usage" aria-label="Link to this chart">#</a></div>
 <h3 id="chart-usage-h">Daily active accounts: <span data-m="active_accounts_30d_k">61.6</span>K, <span data-m="active_accounts_30d_yoy_pct">-77.1</span>% on a year earlier; <span data-m="usage_bq_tg_share_of_signer_drop_pct">98.5</span>% of the fall is one wallet app&rsquo;s Telegram accounts</h3>
@@ -7016,7 +7022,7 @@ ORDER BY day, grp
 <td>79.2</td></tr></tbody></table></div></details></div></section></div></section>
 <section id="preregistered" class="panel" aria-labelledby="pre-h">
 <h2 id="pre-h">Track record: what we predicted, and what happened</h2>
-<p class="note">This is the check on the case: predictions we fixed, with odds, in the <a href="https://github.com/notveiker/near-flow-statement/blob/main/PREREG.md">pre-registration</a> before the first BigQuery result the repository records, so that the numbers could not be bent to fit a story afterwards. Each is scored as written, misses included. Everything in this tab is pre-registered except the list headed &ldquo;What the results changed&rdquo;. Later method choices are dated in the <a href="https://github.com/notveiker/near-flow-statement/blob/main/PREREG-ADDENDUM.md">addendum</a>.</p>
+<p class="note">We fixed three hypotheses, a rating rule and seven dated forecasts in the <a href="https://github.com/notveiker/near-flow-statement/blob/main/PREREG.md">pre-registration</a> before the first BigQuery result the repository records, so that the numbers could not be bent to fit a story afterwards. One hypothesis went against us: net staking outflow was <span data-m="h1a_ratio_as_written_x">6.56</span>× staking rewards, where we predicted under <span data-k="h1a_pass_below_x">0.5</span>×. Two could not be settled, because only <span data-m="h1b_coverage_count_pct">20.0</span>% of the top-100 receivers carry an exchange label, so the frozen rule gives no signal. Of the four one-week forecasts, <span data-f="@count.PASS" data-scale="1">2</span> came true and <span data-f="@count.MISS" data-scale="1">2</span> did not. Everything in this tab is pre-registered except the list headed &ldquo;What the results changed&rdquo;; later method choices are dated in the <a href="https://github.com/notveiker/near-flow-statement/blob/main/PREREG-ADDENDUM.md">addendum</a>.</p>
 <details class="readmore">
 <summary>The questions and the pre-registered answer</summary>
 <p class="questions"><strong>The pre-registered question:</strong> how much NEAR actually flows to exchanges, and how much of that do identified buyers absorb? (It makes no claim about which coins are sold.) <strong>The question the evidence can answer:</strong> how much of NEAR&rsquo;s value capture can you verify?</p>
@@ -9899,7 +9905,7 @@ SELECT &#x27;qa&#x27;, NULL, NULL, NULL, NULL, fmt, ROUND(SUM(near), 6), COUNT(*
 <li><strong>Earlier work.</strong> An earlier analysis of <span data-m="unstakers_a14_n">14</span> accounts that reach one unlabelled hub (THESIS.md, the supply-side section, and docs/supply-side.md) is exploratory and is not reproduced here; the repository does not record when it was done or whether it preceded the freeze (PREREG-ADDENDUM.md, 2026-11-08 02:03 UTC entry, item 5). No card on this page uses it.</li></ul></details></section>
 <section id="reproduce" aria-labelledby="repro-h">
 <h2 id="repro-h">Reproduce</h2>
-<p class="note">Run the steps in order and compare. <code>make reproduce</code> runs steps 2 to 4, <code>make render-check</code> runs step 6, and <code>make site</code> runs steps 2 to 4 and then step 7, offline.</p>
+<p class="note">Every number and chart on this page rebuilds offline from the committed data, and each step says what its command prints. <code>make reproduce</code> runs steps 2 to 4, <code>make render-check</code> runs step 6, and <code>make site</code> runs steps 2 to 4 and then step 7, offline.</p>
 <details class="more">
 <summary>Show the steps</summary>
 <ol class="steps">
@@ -9926,7 +9932,7 @@ SELECT &#x27;qa&#x27;, NULL, NULL, NULL, NULL, fmt, ROUND(SUM(near), 6), COUNT(*
 <p class="see"><strong>See:</strong> Writes site/index.html, this page, from the committed data. It has no timestamp, so the same data gives the same bytes.</p></li></ol></details></section>
 <section id="limits" aria-labelledby="limits-h">
 <h2 id="limits-h">Limits</h2>
-<p class="note">These come from the Limits sections of THESIS.md and docs/*.md and from PREREG-ADDENDUM.md. Escrow funding hops are traced per single-use delivery from 2026-10-06, which a test checks against <code>data/raw/escrow/deliveries.csv</code>.</p>
+<p class="note">Four limits matter most. Too few exchange addresses are labelled to settle the exchange tests: <span data-m="h1b_coverage_count_pct">20.0</span>% of the top-100 receivers, where a point result needs <span data-k="h1b_coverage_min_pct">50</span>%. Which fee funds the escrow releases is unattested. Partner numbers rest on one key-gated source. And the investment case rests on two assumptions, shown as a grid. Escrow funding hops are traced per single-use delivery from 2026-10-06, which a test checks against <code>data/raw/escrow/deliveries.csv</code>. The full list comes from the Limits sections of THESIS.md and docs/*.md and from PREREG-ADDENDUM.md.</p>
 <details class="more">
 <summary>Show the limits</summary>
 <ul class="plain">
