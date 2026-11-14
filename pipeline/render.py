@@ -931,109 +931,164 @@ def dual(ctx: "Ctx", uid: str, title: str, desc: str, build) -> str:
 
 # ------------------------------------------------------------------ style
 DARK_TOKENS = (
-    "color-scheme:dark;--bg:#0d0d0d;--surface:#1a1a19;--ink:#f0efec;--ink2:#c3c2b7;--muted:#a3a299;"
-    "--grid:#2c2c2a;--axis:#4a4a46;--border:rgba(255,255,255,.14);--code:#232321;--s1:#3987e5;--s2:#d95926;"
-    "--ctx:#898781;--link:#86b6ef;--focus:#6da7ec;--ok:#0ca30c;--warn:#fab219;--bad:#d03b3b;--shade:rgba(255,255,255,.22);"
+    "color-scheme:dark;--bg:#0f0f0d;--surface:#171714;--raise:#1e1e1a;--ink:#f1efe7;--ink2:#c6c3b6;--muted:#a19e91;"
+    "--grid:#2b2a25;--axis:#4c4a43;--border:rgba(241,239,231,.13);--code:#22211d;--s1:#3987e5;--s2:#d95926;"
+    "--ctx:#898781;--link:#8ab8ee;--focus:#6da7ec;--live:#2fd39a;--shade:rgba(255,255,255,.22);"
 )
 
 CSS = """
-:root{color-scheme:light;--bg:#f9f9f7;--surface:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--muted:#66655f;--grid:#e1e0d9;
---axis:#b3b1a8;--border:rgba(11,11,11,.14);--code:#f1f0ec;--s1:#2a78d6;--s2:#eb6834;--ctx:#898781;
---link:#1c5cab;--focus:#2a78d6;--ok:#0ca30c;--warn:#fab219;--bad:#d03b3b;--shade:rgba(11,11,11,.2)}
+:root{color-scheme:light;--bg:#f5f3ec;--surface:#fcfbf7;--raise:#ffffff;--ink:#16150f;--ink2:#4b4940;--muted:#67655b;--grid:#e2dfd4;
+--axis:#b4b1a4;--border:rgba(22,21,15,.14);--code:#edeae0;--s1:#2a78d6;--s2:#e8632f;--ctx:#898781;
+--link:#1c5cab;--focus:#2a78d6;--live:#0d8a5c;--shade:rgba(22,21,15,.2);
+--serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
+--sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){/*DARK*/}}
 :root[data-theme="dark"]{/*DARK*/}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-padding-top:12px}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;overflow-wrap:break-word}
-.wrap{max-width:860px;margin:0 auto;padding:0 16px}
-.side{margin:1.2rem 0 0}
-.side .toc,.side .toc-more{display:flex;flex-wrap:wrap;gap:4px 18px;list-style:none;padding:0;margin:.4rem 0}
-.side .sidecap{margin:.9rem 0 .2rem;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.side .sidecap:first-child{margin-top:0}
-@media (min-width:1100px){
-.wrap{max-width:1180px;display:grid;grid-template-columns:220px minmax(0,860px);grid-template-areas:"side top" "side main" "side foot";column-gap:48px;justify-content:center}
-header.top{grid-area:top}main{grid-area:main}footer{grid-area:foot}
-.side{grid-area:side;position:sticky;top:0;align-self:start;max-height:100vh;overflow:auto;margin:0;padding:28px 0 24px;font-size:.875rem}
-.side .toc,.side .toc-more{display:block;margin:.2rem 0 .4rem}
-.side li{margin:0}
-.side a{display:block;padding:3px 8px;margin-left:-8px;border-radius:6px;color:var(--ink2);text-decoration:none;line-height:1.35}
-.side a:hover{background:var(--code);color:var(--ink)}
-.side .sidecap{margin:1.1rem 0 .3rem}
-}
-.kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;list-style:none;padding:0;margin:.4rem 0 1rem}
-@media (min-width:760px){.kpis{grid-template-columns:repeat(4,minmax(0,1fr))}}
-.kpi{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px 14px;max-width:none;display:flex;flex-direction:column;gap:2px}
-.kpi .kv{font-size:1.6rem;font-weight:750;line-height:1.15;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
-.kpi a.kv{color:inherit;text-decoration:none}
-.kpi a.kv:hover{text-decoration:underline}
-.kpi .kl{font-size:.8125rem;color:var(--ink2);line-height:1.3}
-.kpi .kt{font-size:.6875rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-a{color:var(--link);text-underline-offset:2px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--sans);overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+a{color:var(--link);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
 a:focus-visible,summary:focus-visible,.tablewrap:focus-visible,pre:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 .skip{position:absolute;left:-9999px;top:8px;background:var(--ink);color:var(--surface);padding:8px 14px;border-radius:6px;z-index:20}
 .skip:focus{left:8px}
-code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;font-size:.85em}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+code,pre{font-family:var(--mono);font-size:.85em}
 code{overflow-wrap:anywhere}
-p,li{max-width:74ch}
-header.top{padding:28px 0 6px}
-.eyebrow{margin:0;font-size:.8125rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-h1{font-size:clamp(1.65rem,5.2vw,2.3rem);line-height:1.15;margin:.25em 0 .35em;letter-spacing:-.01em}
+p,li{max-width:72ch}
+h1,h2,h3,.thesis p,.tlabel,.kl,.tl,.tw,.big,.kv,summary,figcaption,.gridhead,.badge,.fignum,dt,.tabbar a{text-wrap:balance}
+p,li,dd,.tnote,.note,.finding{text-wrap:pretty}
+[data-m],[data-k],[data-f],[data-d],[data-s]{white-space:nowrap}
+
+/* frame */
+.wrap{max-width:900px;margin:0 auto;padding:0 20px}
+@media (min-width:1100px){.wrap{max-width:1480px;padding:0 32px}}
+@media (min-width:1680px){
+.wrap{max-width:1720px;display:grid;grid-template-columns:196px minmax(0,1fr);grid-template-areas:"top top" "side main" "side foot";column-gap:44px}
+header.top{grid-area:top}main{grid-area:main}footer{grid-area:foot}
+}
+
+/* first screen */
+header.top{padding:34px 0 0}
+.eyebrow{display:flex;align-items:center;gap:9px;margin:0 0 18px;font-size:.8125rem;font-weight:600;letter-spacing:.02em;color:var(--muted)}
+.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--live);flex:none}
+h1{font-family:var(--serif);font-size:clamp(2.1rem,5.6vw,3.7rem);font-weight:500;line-height:1.04;letter-spacing:-.022em;margin:0 0 .5em;max-width:17ch}
+.thesis{margin:0 0 1.6rem;max-width:60ch}
+.thesis p{font-size:1.1875rem;line-height:1.5;color:var(--ink2);margin:0;max-width:none}
+.thesis strong{font-weight:600;color:var(--ink)}
+.thesis .tag{margin-top:.9rem;font-size:.8125rem;line-height:1.45;color:var(--muted)}
+.kcap{margin:0;padding:0 0 8px;max-width:none;font-size:.75rem;line-height:1.4;color:var(--muted)}
+.kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));list-style:none;padding:0;margin:0;border-top:2px solid var(--ink)}
+.kpi{display:flex;flex-direction:column;gap:5px;max-width:none;padding:16px 18px 18px 0;border-bottom:1px solid var(--grid)}
+.kpi:nth-child(even){padding-left:20px;border-left:1px solid var(--grid)}
+.kpi .kv{font-size:clamp(2rem,4.2vw,2.75rem);font-weight:650;line-height:1;letter-spacing:-.03em;font-variant-numeric:lining-nums tabular-nums;color:var(--ink);text-decoration:none}
+.kpi a.kv:hover{color:var(--link)}
+.kpi .kl{font-size:.875rem;line-height:1.35;color:var(--ink2)}
+.kw{font-size:.75rem;color:var(--muted)}
+.today{display:flex;flex-wrap:wrap;align-items:flex-start;gap:12px 28px;margin:1.6rem 0 0;padding:14px 18px;background:var(--surface);border:1px solid var(--border);border-radius:10px}
+.todaycap{display:flex;align-items:center;gap:8px;margin:0;padding-top:2px;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+.todaycap::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--live);box-shadow:0 0 0 0 var(--live)}
+@media (prefers-reduced-motion:no-preference){.todaycap::before{animation:pulse 2.4s ease-out infinite}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--live) 55%,transparent)}70%,100%{box-shadow:0 0 0 7px transparent}}
+.todayrow{flex:1 1 420px;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px 22px;list-style:none;padding:0;margin:0}
+.todayrow li{display:flex;flex-direction:column;gap:1px;max-width:none}
+.todayrow output{font-size:1.0625rem;font-weight:650;line-height:1.3;font-variant-numeric:lining-nums tabular-nums}
+.tl{font-size:.75rem;color:var(--ink2)}
+.tw{font-size:.6875rem;color:var(--muted)}
+details.readmore{margin:1rem 0 0;border:0;padding:0;max-width:900px}
+details.metawrap,details.fz{border:0;padding:0;margin:.6rem 0}
+details.metawrap>summary,details.fz>summary,details.readmore>summary,section>details.more>summary{font-size:.875rem;font-weight:500;color:var(--ink2)}
+.questions{font-size:1rem;margin:.6rem 0 .7rem}
+.answer{margin:.2rem 0 .4rem;padding:2px 18px;background:var(--surface);border:1px solid var(--border);border-radius:10px}
+.answer p{margin:.7rem 0;max-width:none;font-size:.9375rem}
+@media (min-width:1100px){
+header.top{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);column-gap:64px;align-items:start;padding-top:44px;
+grid-template-areas:"eb kcap" "h1 kpis" "th kpis" "today today" "more more"}
+.eyebrow{grid-area:eb}h1{grid-area:h1}.thesis{grid-area:th;margin-bottom:0}.kpis{grid-area:kpis}.kcap{grid-area:kcap;padding:0 0 10px;align-self:end}
+.today{grid-area:today;margin-top:2.2rem}details.readmore{grid-area:more}
+}
+
+/* contents rail */
+.side{margin:1.4rem 0 0}
+.side .toc,.side .toc-more{display:flex;flex-wrap:wrap;gap:4px 18px;list-style:none;padding:0;margin:.4rem 0}
+.side .sidecap{margin:.9rem 0 .2rem;font-size:.6875rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.side .sidecap:first-of-type{margin-top:0}
+@media (max-width:1679px){.side{display:none}}
+@media (min-width:1680px){
+.side{grid-area:side;position:sticky;top:0;align-self:start;max-height:100vh;overflow:auto;margin:0;padding:30px 0 24px;font-size:.8125rem;scrollbar-width:thin}
+.side .toc,.side .toc-more{display:block;margin:.2rem 0 .3rem}
+.side li{margin:0;max-width:none}
+.side a{display:block;padding:4px 10px;margin-left:-10px;border-radius:6px;color:var(--ink2);text-decoration:none;line-height:1.35}
+.side a:hover{background:var(--code);color:var(--ink)}
+.side .sidecap{margin:1.3rem 0 .35rem}
+}
+
+/* sections, tabs */
+main{padding-top:1.6rem}
+h2{font-family:var(--serif);font-size:1.75rem;font-weight:500;line-height:1.2;letter-spacing:-.012em;margin:2.6rem 0 .5rem}
+h3{font-size:1.0625rem;font-weight:650;line-height:1.35;margin:.5rem 0 .6rem}
 .lede{font-size:1.0625rem;margin:0 0 1rem}
-.questions{font-size:1.0625rem;margin:0 0 .7rem}
-.answer{margin:.2rem 0 .9rem;padding:2px 16px;background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--ink);border-radius:10px}
-.answer p{margin:.65rem 0;max-width:none}
-.thesis{margin:.2rem 0 1rem;padding:4px 18px;border-radius:12px;background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--s2);font-size:1.03rem}
-.thesis p{margin:.65rem 0;max-width:none}
-.meta{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:4px 14px;font-size:.9rem;margin:1rem 0;padding:12px 14px;background:var(--surface);border:1px solid var(--border);border-radius:10px}
-.meta dt{color:var(--muted);font-weight:600}
-.meta dd{margin:0;min-width:0}
-@media (max-width:560px){.meta{grid-template-columns:minmax(0,1fr)}.meta dd{margin-bottom:6px}}
-.docs,.toc{display:flex;flex-wrap:wrap;gap:4px 18px;list-style:none;padding:0;margin:.6rem 0}
-h2{font-size:1.45rem;line-height:1.25;margin:2.6rem 0 .5rem}
-h3{font-size:1.15rem;line-height:1.35;margin:.5rem 0 .6rem}
-.note{color:var(--ink2);font-size:.95rem}
-.tiles{display:grid;gap:10px;list-style:none;padding:0;margin:.9rem 0}
-.tile{display:grid;grid-template-columns:minmax(0,1fr);gap:2px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 16px;align-content:start;max-width:none}
+.note{color:var(--ink2);font-size:.9375rem}
+.record{display:flex;align-items:center;justify-content:space-between;gap:10px 28px;max-width:none;margin:0 0 .4rem;padding:14px 18px;border:1px solid var(--border);border-left:3px solid var(--ink);border-radius:10px;background:var(--surface);font-size:.9375rem;color:var(--ink2)}
+.record strong{color:var(--ink);font-weight:650}
+.record a{font-weight:600;white-space:nowrap}
+.record a::after{content:" \\2192"}
+@media (max-width:759px){.record{flex-direction:column;align-items:flex-start}}
+.tabbar{position:sticky;top:0;z-index:3;display:flex;flex-wrap:wrap;gap:0 26px;margin:1.6rem 0 .6rem;padding:0;background:var(--bg);border-bottom:1px solid var(--axis)}
+.tabbar a{padding:13px 0 11px;border-bottom:2px solid transparent;margin-bottom:-1px;color:var(--muted);font-size:.9375rem;font-weight:600;text-decoration:none}
+.tabbar a:hover{color:var(--ink)}
+@media (max-width:759px){.tabbar{flex-wrap:nowrap;overflow-x:auto;gap:0 22px;scrollbar-width:none}.tabbar a{white-space:nowrap}}
+.panel,.card{scroll-margin-top:64px}
+.panel>h2:first-child,.panel>section:first-child>h2{margin-top:1.2rem}
+@supports selector(:has(*)){
+.tabs>.panel{display:none}
+.tabs>.panel:target,.tabs>.panel:has(:target),.tabs:not(:has(.panel:target,.panel :target))>#forward-view{display:block}
+.tabs:not(:has(.panel:target,.panel :target)) .tabbar a[data-tab="forward-view"],.tabs:has(#forward-view:target,#forward-view :target) .tabbar a[data-tab="forward-view"],
+.tabs:has(#preregistered:target,#preregistered :target) .tabbar a[data-tab="preregistered"],.tabs:has(#exploratory:target,#exploratory :target) .tabbar a[data-tab="exploratory"],
+.tabs:has(#method:target,#method :target) .tabbar a[data-tab="method"]{color:var(--ink);border-bottom-color:var(--ink)}
+}
+@media print{.tabs>.panel{display:block!important}.tabbar{display:none}}
+
+/* the frozen predictions */
+#scorecard>h2{margin-top:1.2rem}
+.tiles{display:grid;gap:0;list-style:none;padding:0;margin:1rem 0 2rem;border-top:2px solid var(--ink)}
+.tile{display:grid;grid-template-columns:minmax(0,1fr);gap:4px 28px;align-items:baseline;max-width:none;padding:14px 0 15px;border-bottom:1px solid var(--grid)}
 .tile p{margin:0;max-width:none}
-.tlabel{font-size:.8125rem;font-weight:700;color:var(--ink2)}
+.tlabel{font-size:.875rem;font-weight:600;color:var(--ink2)}
+.big{font-size:1.375rem;font-weight:650;line-height:1.2;letter-spacing:-.015em;font-variant-numeric:lining-nums tabular-nums}
+.tnote{font-size:.875rem;color:var(--ink2)}
+.tile a{font-size:.8125rem;white-space:nowrap}
+@media (min-width:860px){.tile{grid-template-columns:minmax(0,15rem) minmax(0,13rem) minmax(0,1fr) auto}}
 .ico{flex:none}
 .i-line{fill:none;stroke:var(--ink2);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.big{font-size:1.45rem;font-weight:750;line-height:1.2}
-.tnote{font-size:.875rem;color:var(--ink2)}
-.tile a{font-size:.875rem}
-@media (min-width:760px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.tile:last-child:nth-child(odd){grid-column:1 / -1}}
-.badge{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:3px 10px 3px 8px;border-radius:999px;line-height:1.3}
-.badge-pre{background:var(--ink);color:var(--surface)}
-.badge-pre .i-line{stroke:var(--surface)}
-.badge-exp{border:1.5px dashed var(--ink2);color:var(--ink)}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 20px 14px;margin:0 0 22px;min-width:0}
-.cardtop{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.cardtop a{font-size:.875rem;color:var(--muted)}
-.shows,.notshows{margin:.35rem 0}
-.sn{display:grid;gap:8px;margin:.6rem 0 .2rem}
-.sn p{margin:0;padding:9px 12px;border-radius:10px;background:var(--code);font-size:.9375rem;line-height:1.5;max-width:none}
-.sn strong{display:block;font-size:.6875rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
-.sn .shows{border-left:3px solid var(--s1)}.sn .notshows{border-left:3px solid var(--axis)}
-@media (min-width:900px){.sn{grid-template-columns:1fr 1fr}}
-.card h3{font-size:1.15rem;font-weight:700;line-height:1.35}
-.finding{margin:.7rem 0 .4rem;font-weight:600}
-.finding::before{content:"In full";display:block;font-size:.8125rem;font-weight:600;color:var(--muted)}
-.cardfoot{display:flex;flex-wrap:wrap;gap:8px;margin-top:.6rem;padding-top:.6rem;border-top:1px solid var(--grid)}
-.cardfoot details{margin:0;border:0;padding:0;flex:0 0 auto;min-width:0}
-.cardfoot details[open]{flex-basis:100%;order:1}
-.cardfoot summary{display:inline-block;font-size:.8125rem;padding:4px 12px;border:1px solid var(--border);border-radius:999px;background:var(--surface)}
-.cardfoot summary:hover{border-color:var(--ink2)}
-.cardfoot details[open]>summary{background:var(--code)}
-details.metawrap,details.fz,details.readmore{border:0;padding:0;margin:.6rem 0}
-details.metawrap>summary,details.fz>summary,details.readmore>summary,section>details.more>summary{font-size:.875rem;color:var(--ink2)}
-.notshows{color:var(--ink2)}
-figure.chart-fig{margin:1rem 0 .4rem}
+
+/* chart cards */
+.grid{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-items:stretch}
+.grid>.gridhead{grid-column:1 / -1}
+@media (min-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.grid>.card.span2{grid-column:1 / -1}.grid>.card.span2 .cv-wide{max-width:900px;margin:0 auto}}
+@media (min-width:1214px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.grid>.card.span2{grid-column:span 2}}
+.grid>.gridhead{margin:1.4rem 0 -.2rem;max-width:none;font-family:var(--serif);font-size:1.25rem;font-weight:500;color:var(--ink)}
+.grid>.gridhead:first-child{margin-top:.4rem}
+.card{container-type:inline-size;display:flex;flex-direction:column;min-width:0;margin:0;padding:18px 20px 12px;background:var(--surface);border:1px solid var(--border);border-radius:12px}
+.cardtop{display:flex;align-items:baseline;gap:10px;min-height:1.2rem;font-size:.75rem}
+.fignum{font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+.badge{font-weight:600;color:var(--muted)}
+.badge-pre{color:var(--ink)}
+.badge-pre::before,.badge-exp::before{content:"";display:inline-block;width:7px;height:7px;margin-right:6px;border-radius:50%;border:1.5px solid currentColor;vertical-align:.02em}
+.badge-pre::before{background:currentColor}
+.cardtop a{margin-left:auto;font-size:.875rem;color:var(--muted);text-decoration:none;opacity:0}
+.card:hover .cardtop a,.cardtop a:focus-visible{opacity:1}
+.card h3{font-size:1.125rem;font-weight:650;line-height:1.3;letter-spacing:-.008em;margin:.35rem 0 .6rem}
+figure.chart-fig{margin:.9rem 0 .4rem}
 .chart{margin:0}
 .cv{max-width:100%}
 .cv-narrow{display:none;max-width:430px}
-@media (max-width:699px){.cv-wide{display:none}.cv-narrow{display:block}.card{padding:14px 12px 10px}}
-figcaption{font-size:.8125rem;color:var(--muted);margin-top:6px}
+.grid .cv-narrow{max-width:440px;margin:0 auto}
+@media (max-width:699px){.cv-wide{display:none}.cv-narrow{display:block}.card{padding:14px 14px 10px}}
+@container (max-width:640px){.cv-wide{display:none}.cv-narrow{display:block;max-width:none}}
+figcaption{font-size:.8125rem;line-height:1.5;color:var(--muted);margin-top:8px}
 .svg{display:block;width:100%;height:auto}
 .svg text{fill:var(--ink2);font-family:inherit}
 .svg .ttl{fill:var(--ink);font-weight:700}
@@ -1059,6 +1114,27 @@ figcaption{font-size:.8125rem;color:var(--muted);margin-top:6px}
 .svg .wash{opacity:.12}
 .svg .ring{stroke:var(--surface);stroke-width:2}
 .svg .ghost{fill:none;stroke:var(--ctx);stroke-width:1.6}
+.keyfigs{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px 16px;align-items:end;margin:.9rem 0 .2rem;padding-top:.8rem;border-top:1px solid var(--grid)}
+.keyfigs div{min-width:0}
+.keyfigs dt{font-size:.75rem;line-height:1.35;color:var(--muted)}
+.keyfigs dd{margin:0;font-weight:650;font-size:1.0625rem;font-variant-numeric:lining-nums tabular-nums}
+.cardfoot{display:flex;flex-wrap:wrap;gap:6px 8px;margin-top:auto;padding-top:.7rem;border-top:1px solid var(--grid)}
+.keyfigs+.cardfoot,figure+.cardfoot{margin-top:auto}
+.card>.keyfigs,.card>figure{margin-bottom:.9rem}
+.cardfoot details{margin:0;border:0;padding:0;flex:0 0 auto;min-width:0}
+.cardfoot details[open]{flex-basis:100%;order:1}
+.cardfoot summary{display:inline-block;padding:4px 11px;border:1px solid var(--border);border-radius:999px;font-size:.75rem;font-weight:600;color:var(--ink2);list-style:none}
+.cardfoot summary::-webkit-details-marker{display:none}
+.cardfoot summary:hover{border-color:var(--ink2);color:var(--ink)}
+.cardfoot details[open]>summary{background:var(--ink);border-color:var(--ink);color:var(--surface);margin-bottom:.5rem}
+.finding{margin:.7rem 0 .4rem;font-weight:600}
+.finding::before{content:"In full";display:block;font-size:.75rem;font-weight:600;color:var(--muted)}
+.shows,.notshows{margin:.35rem 0}
+.notshows{color:var(--ink2)}
+.sn{display:grid;gap:10px;margin:.6rem 0 .2rem}
+.sn p{margin:0;font-size:.9375rem;line-height:1.5;max-width:none}
+.sn strong{display:block;font-size:.75rem;font-weight:700;color:var(--muted);margin-bottom:2px}
+@media (min-width:900px){.sn{grid-template-columns:1fr 1fr}}
 .source,.qnote{font-size:.875rem;color:var(--ink2);margin:.7rem 0 .3rem}
 .source p{margin:0 0 .2rem}
 .source ul{margin:.1rem 0 .3rem;padding-left:1.1rem}
@@ -1069,6 +1145,15 @@ figcaption{font-size:.8125rem;color:var(--muted);margin-top:6px}
 ul.rule{margin:.8rem 0;padding-left:1.1rem}
 ul.rule li{margin:.35rem 0}
 .sha{color:var(--muted);font-size:.8125rem;white-space:nowrap}
+ol.fwd{list-style:none;padding:0;margin:.9rem 0;display:grid;gap:10px}
+ol.fwd li{border:1px solid var(--border);border-radius:10px;padding:10px 12px;min-width:0;max-width:none;background:var(--raise)}
+ol.fwd p{margin:.2rem 0}
+.fhead{margin:.2rem 0}
+.fhead .st{font-size:.95rem}
+.fword{font-weight:700}
+.verbatim{font-size:.9rem}
+
+/* details, code, tables */
 details{margin:.45rem 0;border-top:1px solid var(--grid);padding-top:.35rem}
 summary{cursor:pointer;font-weight:650;padding:4px 0}
 pre{margin:.5rem 0 .6rem;padding:12px 14px;background:var(--code);border-radius:8px;overflow:auto;max-height:440px;line-height:1.45;tab-size:2}
@@ -1080,128 +1165,33 @@ linear-gradient(to right,var(--shade),transparent) 0 0/14px 100% no-repeat scrol
 linear-gradient(to left,var(--shade),transparent) 100% 0/14px 100% no-repeat scroll}
 .scrollhint{display:none;font-size:.8125rem;color:var(--muted);margin:.4rem 0 0}
 table{border-collapse:collapse;width:100%;font-size:.8125rem}
-caption{text-align:left;font-weight:650;padding:6px 10px;color:var(--ink2)}
-th,td{padding:5px 10px;border-bottom:1px solid var(--grid);white-space:nowrap;vertical-align:top;text-align:right;font-variant-numeric:tabular-nums}
+caption{text-align:left;font-weight:650;padding:8px 12px;color:var(--ink2)}
+th,td{padding:6px 12px;border-bottom:1px solid var(--grid);white-space:nowrap;vertical-align:top;text-align:right;font-variant-numeric:lining-nums tabular-nums}
 th{white-space:normal}
 th.txt,td.t{text-align:left;font-variant-numeric:normal;white-space:normal;min-width:10rem}
 @media (max-width:699px){th.txt,td.t{min-width:6.5rem}th,td{padding:5px 8px}.scrollhint{display:block}}
-thead th{position:sticky;top:0;background:var(--surface);z-index:1;border-bottom:1px solid var(--axis)}
-.keyfigs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px 14px;align-items:end;margin:.7rem 0 .2rem}
-.keyfigs div{min-width:0}
-.keyfigs dt{font-size:.8125rem;color:var(--muted)}
-.keyfigs dd{margin:0;font-weight:700;font-size:1.05rem;font-variant-numeric:tabular-nums}
-ol.fwd{list-style:none;padding:0;margin:.9rem 0;display:grid;gap:10px}
-ol.fwd li{border:1px solid var(--border);border-radius:10px;padding:10px 12px;min-width:0;max-width:none}
-ol.fwd p{margin:.2rem 0}
-.fhead{margin:.2rem 0}
-.fhead .st{font-size:.95rem}
-.fword{font-weight:700}
-.verbatim{font-size:.9rem}
+thead th{position:sticky;top:0;background:var(--surface);z-index:1;border-bottom:1px solid var(--axis);font-size:.75rem;color:var(--muted)}
+tbody tr:last-child td{border-bottom:0}
+.update{margin:2.4rem 0 1.2rem;max-width:860px}
+.update .updh{margin:.2rem 0 .4rem;font-size:1.0625rem}
+.update .tablewrap{max-height:none;background:var(--surface)}
+.update td:nth-child(3){font-weight:650;color:var(--ink)}
+.update td:nth-child(2){color:var(--muted)}
+
+/* method */
+.meta{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:6px 16px;font-size:.9rem;margin:1rem 0;padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-radius:10px}
+.meta dt{color:var(--muted);font-weight:600}
+.meta dd{margin:0;min-width:0}
+@media (max-width:560px){.meta{grid-template-columns:minmax(0,1fr)}.meta dd{margin-bottom:6px}}
+#about .meta{margin:.8rem 0}
+.docs,.toc{display:flex;flex-wrap:wrap;gap:4px 18px;list-style:none;padding:0;margin:.6rem 0}
 ol.steps{padding-left:1.5rem;margin:.6rem 0}
 ol.steps li{margin:.9rem 0;max-width:none;padding-left:.2rem}
 ol.steps p{margin:.2rem 0}
 .do code{display:inline-block;max-width:100%;white-space:pre-wrap;overflow-wrap:anywhere;background:var(--code);padding:3px 9px;border-radius:6px}
 ul.plain{padding:0;list-style:none}
 ul.plain li{margin:0 0 .7rem;line-height:1.55}
-footer{margin:3rem 0 2rem;padding-top:1rem;border-top:1px solid var(--grid);font-size:.9rem;color:var(--ink2)}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-@media (max-width:1099px){.side>:nth-child(n+4){display:none}}
-@media (min-width:1280px){
-.wrap{max-width:1520px;grid-template-columns:200px minmax(0,1fr);column-gap:36px}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start}
-.grid>.card{margin:0}
-.grid>.card.span2{grid-column:1 / -1}
-.tiles{grid-template-columns:repeat(5,minmax(0,1fr))}
-.tiles .tile:last-child:nth-child(odd){grid-column:auto}
-.tiles .big{font-size:1.25rem}
-.kpis{grid-template-columns:repeat(4,minmax(0,1fr))}
-}
-.card{container-type:inline-size}
-@container (max-width:640px){.cv-wide{display:none}.cv-narrow{display:block;max-width:none}}
-.thesis,details.readmore{max-width:860px}
-.tabbar{position:sticky;top:0;z-index:3;display:flex;flex-wrap:wrap;gap:6px;padding:10px 0;margin:1.4rem 0 .6rem;background:var(--bg);border-bottom:1px solid var(--grid)}
-.tabbar a{padding:6px 14px;border:1px solid var(--border);border-radius:999px;background:var(--surface);color:var(--ink);font-size:.875rem;font-weight:650;text-decoration:none}
-.tabbar a:hover{border-color:var(--ink2)}
-.panel,.card{scroll-margin-top:64px}
-.panel>h2:first-child,.panel>section:first-child>h2{margin-top:.8rem}
-@supports selector(:has(*)){
-.tabs>.panel{display:none}
-.tabs>.panel:target,.tabs>.panel:has(:target),.tabs:not(:has(.panel:target,.panel :target))>#forward-view{display:block}
-.tabs:not(:has(.panel:target,.panel :target)) .tabbar a[data-tab="forward-view"],.tabs:has(#forward-view:target,#forward-view :target) .tabbar a[data-tab="forward-view"],
-.tabs:has(#preregistered:target,#preregistered :target) .tabbar a[data-tab="preregistered"],.tabs:has(#exploratory:target,#exploratory :target) .tabbar a[data-tab="exploratory"],
-.tabs:has(#method:target,#method :target) .tabbar a[data-tab="method"]{color:var(--ink);border-bottom-color:var(--ink)}
-}
-@media print{.tabs>.panel{display:block!important}.tabbar{display:none}}
-@media (min-width:420px) and (max-width:1279px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.tile:last-child:nth-child(odd){grid-column:1 / -1}}
-.grid .cv-narrow{max-width:500px;margin:0 auto}
-.grid>.gridhead{margin:.6rem 0 0;font-size:.8125rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-@media (min-width:1280px){.grid>.gridhead{grid-column:1 / -1}.grid>.card.span2 .cv-wide{max-width:900px;margin:0 auto}}
-@media (min-width:1440px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.grid>.card.span2{grid-column:auto}}
-/* editorial pass: type and hairlines carry the structure; no boxes, pills or capitalised micro-labels */
-body{font:16px/1.55 Arial,"Helvetica Neue",Helvetica,sans-serif}
-h1,h2,h3,.thesis p,summary,.tabbar a{font-family:Arial,"Helvetica Neue",Helvetica,sans-serif}
-h1{font-size:clamp(1.9rem,4.6vw,2.75rem);font-weight:600;line-height:1.1;letter-spacing:-.015em;margin:.3em 0 .45em;max-width:26ch}
-h2{font-size:1.6rem;font-weight:600;letter-spacing:-.01em;margin:2.4rem 0 .4rem}
-.eyebrow,.side .sidecap,.kpi .kt,.sn strong,.gridhead,.grid>.gridhead{text-transform:none;letter-spacing:0}
-.eyebrow{font-size:.875rem;font-weight:600;color:var(--muted)}
-.thesis{background:none;border:0;border-radius:0;padding:0;margin:.4rem 0 1.4rem}
-.thesis p{font-size:1.25rem;line-height:1.45;color:var(--ink);margin:0}
-.thesis strong{font-weight:600}
-.kpis{gap:0;margin:.6rem 0 1.2rem;border-top:1px solid var(--axis);border-bottom:1px solid var(--grid)}
-.kpi{background:none;border:0;border-radius:0;padding:12px 18px 14px 0;gap:4px}
-.kpi+.kpi{border-left:1px solid var(--grid);padding-left:18px}
-.kpi .kt{font-size:.75rem;font-weight:500;color:var(--muted)}
-.kpi .kv{font-size:2.25rem;font-weight:600;font-variant-numeric:normal;letter-spacing:-.02em;line-height:1.05}
-.kpi .kl{font-size:.875rem;color:var(--ink2)}
-@media (max-width:759px){.kpi:nth-child(odd){border-left:0;padding-left:0}.kpi:nth-child(n+3){border-top:1px solid var(--grid)}}
-.tiles{gap:0;border-top:1px solid var(--axis)}
-.tile{background:none;border:0;border-radius:0;padding:12px 16px 14px 0;border-bottom:1px solid var(--grid)}
-.tile .big{font-weight:600;font-variant-numeric:normal;letter-spacing:-.01em}
-.tlabel{font-weight:600;color:var(--ink2)}
-@media (min-width:1280px){.tile{border-bottom:0}.tile+.tile{border-left:1px solid var(--grid);padding-left:16px}}
-.card{background:none;border:0;border-radius:0;padding:14px 0 6px;margin:0 0 30px;border-top:1px solid var(--axis)}
-.grid>.card{margin:0 0 12px}
-.cardtop{min-height:1.2rem}
-.badge{display:inline;padding:0;border:0;border-radius:0;background:none;font-size:.8125rem;font-weight:600;letter-spacing:0;text-transform:none}
-.badge-pre{color:var(--ink);background:none}
-.badge-exp{color:var(--muted);border:0}
-.cardtop a{opacity:0;text-decoration:none}
-.card:hover .cardtop a,.cardtop a:focus-visible{opacity:1}
-.card h3{font-size:1.125rem;font-weight:650;letter-spacing:-.005em;margin:.25rem 0 .5rem}
-.cardfoot{gap:18px;border-top:0;padding-top:.2rem}
-.cardfoot summary{display:inline;padding:0;border:0;border-radius:0;background:none;font-size:.8125rem;font-weight:500;color:var(--link);text-decoration:underline;text-underline-offset:2px}
-.cardfoot details[open]>summary{background:none;color:var(--ink)}
-.sn p{background:none;border:0;border-radius:0;padding:0}
-.sn .shows,.sn .notshows{border-left:0}
-.sn strong{font-size:.8125rem;font-weight:600;color:var(--ink2)}
-.side .sidecap{font-size:.8125rem;font-weight:600;color:var(--ink2)}
-.tabbar{gap:0 22px;padding:0;border-bottom:1px solid var(--axis);margin:2rem 0 .4rem}
-.tabbar a{border:0;border-bottom:2px solid transparent;border-radius:0;background:none;padding:12px 0 10px;color:var(--ink2);font-size:.9375rem;font-weight:600}
-.tabbar a:hover{border-color:transparent;color:var(--ink)}
-.grid>.gridhead{font-size:1rem;font-weight:600;color:var(--ink);margin:1.2rem 0 .2rem}
-.tablewrap{border-radius:0}
-.cardtop{display:flex;align-items:baseline;gap:12px}
-.cardtop a{margin-left:auto}
-.fignum{font-size:.8125rem;font-weight:700;color:var(--ink)}
-#about .meta{margin:.8rem 0}
-h1,h2,h3,.thesis p,.tlabel,.kl,.tl,.tw,.big,.kv,summary,figcaption,.gridhead,.badge,.fignum,dt,.tabbar a{text-wrap:balance}
-p,li,dd,.tnote,.note,.finding{text-wrap:pretty}
-.kcap{margin:.2rem 0 0;font-size:.8125rem;color:var(--muted)}
-.today{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 22px;align-items:start;margin:-.7rem 0 1.2rem;padding:10px 0 12px;border-bottom:1px solid var(--grid)}
-.todaycap{margin:0;padding-top:1px;font-size:.875rem;font-weight:700;color:var(--ink)}
-.todayrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px 20px;list-style:none;padding:0;margin:0}
-.todayrow li{display:flex;flex-direction:column;gap:1px;max-width:none}
-.todayrow output{font-size:1.1rem;font-weight:600;line-height:1.25}
-.tl{font-size:.75rem;color:var(--ink2)}
-.tw{font-size:.75rem;color:var(--muted)}
-@media (max-width:640px){.today{grid-template-columns:minmax(0,1fr)}}
-[data-m],[data-k],[data-f],[data-d],[data-s]{white-space:nowrap}
-.kw{font-size:.75rem;color:var(--muted)}
-.update{margin:.6rem 0 1.4rem}
-.update .updh{margin:.2rem 0 .4rem;font-size:1.1rem}
-.update table{max-width:760px}
-.update .tablewrap{max-height:none}
-.update td:nth-child(3){font-weight:600}
+footer{margin:3.5rem 0 2.5rem;padding-top:1rem;border-top:1px solid var(--grid);font-size:.875rem;color:var(--ink2)}
 """
 
 
@@ -3487,13 +3477,13 @@ def scorecard(ctx: Ctx) -> str:
         tiles.append(tile(label="Forward tests F1 to F4", big="F1 to F4",
                           note=f'Four predictions frozen before the window; scored after {esc(opens)}, whatever the result.', href="#chart-forward"))
     freeze_stamp, freeze_gap = freeze_order(ctx)
-    return (f'<section id="scorecard" aria-labelledby="scorecard-h"><h2 id="scorecard-h">Pre-registered scorecard</h2>'
+    return (f'<section id="scorecard" aria-labelledby="scorecard-h"><h3 id="scorecard-h" class="sr">Scorecard</h3>'
+            f'<ul class="tiles">{"".join(tiles)}</ul>'
             f'<details class="fz"><summary>When the tests were frozen</summary><p class="note">Frozen at commit <code>{FREEZE_COMMIT}</code> ({FREEZE_UTC} UTC), {freeze_gap} before the first BigQuery result the repository records '
             f'({freeze_stamp} in <code>data/MANIFEST.json</code>). Commit and manifest times are written by the author&rsquo;s machine; one external record, GitHub&rsquo;s activity log, dates the push of the freeze commit to '
             f'2026-11-05 22:53:33 UTC (<code>PREREG-ADDENDUM.md</code>, 2026-11-12 23:50 UTC entry, item 2). BigQuery job IDs, which embed their creation time, are recorded only for the H1b and H1c runs and one October escrow scan; the H1a queries '
             f'have none. The table <a href="{esc(gh("PREREG.md"))}#{PREREG_ANCHOR}">&ldquo;What we had already '
-            f'seen&rdquo; in PREREG.md</a> lists the data already in hand at the freeze.</p></details>'
-            f'<ul class="tiles">{"".join(tiles)}</ul></section>')
+            f'seen&rdquo; in PREREG.md</a> lists the data already in hand at the freeze.</p></details></section>')
 
 
 def not_computed(ctx: Ctx) -> str:
@@ -3640,25 +3630,48 @@ def kpis(ctx: Ctx) -> str:
         return f'{M("upd_" + key)}{unit}', f'<span class="kw">{M("asof")}: {M(key)}{unit}</span>'
 
     items = [
-        (*fig("ic_implied_cagr_r15_x25_pct", "%"), "a year: the revenue growth NEAR&rsquo;s price assumes, to 2031", "#chart-priced"),
-        (*fig("ic_take_needed_vs_gross_x", "×"), "Intents&rsquo; whole gross fee: the take NEAR would need", "#chart-multiply"),
+        (f'{M("ladder_all_wallets_pct_of_issuance", 2)}%', "", f'of net new supply reaches NEAR&rsquo;s revenue wallets today (30 days to {M("asof")})', "#chart-ladder"),
+        (*fig("ic_implied_cagr_r15_x25_pct", "%"), "a year: the revenue growth the price assumes, to 2031", "#chart-priced"),
+        (*fig("ic_take_needed_vs_gross_x", "×"), "Intents&rsquo; whole gross fee: what NEAR would have to capture", "#chart-multiply"),
         (*fig("ic_base_coverage_2031_pct", "%"), "of NEAR&rsquo;s dilution paid for in 2031, base case", "#chart-scenarios"),
-        (f'{M("ladder_all_wallets_pct_of_issuance", 2)}%', "", f'of net issuance verifiably reaches NEAR, 30 days to {M("asof")}', "#chart-ladder"),
     ]
     lis = "".join(f'<li class="kpi"><a class="kv" href="{h}">{v}</a><span class="kl">{l}</span>{w}</li>' for v, w, l, h in items)
-    cap = (f'Exploratory figures, data to {M("upd_asof")}; under each, the pre-registered cutoff' if up
-           else f'Exploratory figures, data to {M("asof")}')
+    cap = (f'Exploratory figures, data to {M("upd_asof")}. Under each: its value at the pre-registered cutoff.' if up
+           else f'Exploratory figures, data to {M("asof")}.')
     return f'<p class="kcap">{cap}</p><ul class="kpis" aria-label="Headline figures">{lis}</ul>'
 
 
 def thesis_box(ctx: Ctx) -> str:
-    """The long-term view in two sentences, under the title (exploratory). The figures under it carry the numbers."""
-    M = ctx.M
+    """The long-term view in four sentences, under the title (exploratory). The figures beside it carry the numbers.
+
+    The words are true of the data as committed: Intents has the largest share of its peer set over 365 days, the ladder's top is between a
+    seventh and a fifth of net issuance, and the growth the price assumes is above the peer set's growth over every window computed (one to
+    four years), at the cutoff and at the update. If the data stop saying that, the render stops."""
+    M, m = ctx.M, ctx.m
+    share = m["intents_share_peerset_365d_pct"]
+    grows = [m[f"ic_market_cagr_{k}y_pct"] for k in (1, 2, 3, 4)]
+    ok = (share > 50 and (not has_update(ctx) or m["upd_intents_share_peerset_365d_pct"] > 50) and 100 / 7 < m["ladder_all_wallets_pct_of_issuance"] < 100 / 5 and m["ic_implied_cagr_r15_x25_pct"] > max(grows)
+          and (not has_update(ctx) or m["upd_ic_implied_cagr_r15_x25_pct"] > max(m[f"upd_ic_market_cagr_{k}y_pct"] for k in (1, 2, 3, 4))))
+    if not ok:
+        raise SystemExit("render: the view under the title says Intents led its peer set over the year, the ladder's top is about a sixth of net "
+                         "issuance and the price assumes faster growth than any window in the data; the data no longer say that, so rewrite thesis_box()")
     return (
         '<div class="thesis" id="thesis">'
-        '<p><strong>The long-term view (exploratory, chosen after the freeze):</strong> priced as a claim on Intents&rsquo; fees, NEAR needs far more growth '
-        f'than the data show. Intents led its market in the year to {M("asof")}, but the bet only works if NEAR takes a much bigger cut, or is worth something beyond those fees. '
-        '<a href="#forward-view">Read the case</a> or <a href="story.html">see it as slides</a>. Not investment advice.</p></div>')
+        '<p><strong>NEAR Intents led its market over the past year. NEAR&rsquo;s price asks for much more than that.</strong> '
+        'The NEAR that Intents fees deliver to NEAR&rsquo;s revenue wallets equals, at most, about a sixth of net new supply. For those fees alone to '
+        'justify today&rsquo;s price, they would have to grow faster each year to 2031 than cross-chain volume has grown over any period in the data. '
+        'Owning NEAR at this price is a bet on a bigger cut of those fees, or on value beyond them. '
+        '<a href="#forward-view">Read the case</a> or <a href="story.html">see it as slides</a>.</p>'
+        '<p class="tag">Exploratory view, formed after the pre-registration was frozen. Not investment advice.</p></div>')
+
+
+def record_strip(ctx: Ctx) -> str:
+    """One line above the tabs: the predictions came first, and every result is on the page. It carries no number, so it cannot disagree
+    with the scorecard it links to. The order it states is the one freeze_order() checks against the manifest."""
+    freeze_order(ctx)
+    return ('<p class="record"><span><strong>Predictions first, data second.</strong> Three hypotheses, a rating rule and seven dated forecasts were frozen on '
+            f'{FREEZE_UTC[:10]}, before the first BigQuery result the repository records. Each is scored as written, and every result is on this page, '
+            'including the ones the data went against.</span> <a href="#scorecard">See how they scored</a></p>')
 
 
 def all_cards() -> dict[str, tuple[str, object]]:
@@ -3776,11 +3789,11 @@ def update_table(ctx: Ctx) -> str:
     rows = "".join(f'<tr><td class="t">{lab}</td><td>{val(a, u)}</td><td>{val(b, u)}</td></tr>' for lab, a, b, u in UPDATE_ROWS)
     return (
         '<div class="update" id="update"><h3 class="updh">The case carried to the latest full day</h3>'
-        f'<p class="note">The charts below stop at {M("asof")}, the pre-registered cutoff. The same calculations on DefiLlama, CoinGecko and '
-        f'Nearblocks data fetched again on 2026-11-14 run to {M("upd_asof")}. The thesis holds: the price still assumes faster growth than any '
-        f'window in the data, and NEAR would still need more than Intents&rsquo; whole gross fee. The gap narrowed because the price fell and '
-        f'revenue rose, while Intents&rsquo; share of the peer set fell as THORChain&rsquo;s volume rose ({M("upd_thorchain_share_peerset_30d_pct")}% '
-        f'of it over 30 days). Exploratory.</p>'
+        f'<p class="note">The charts above stop at {M("asof")}, the pre-registered cutoff. The same code on DefiLlama, CoinGecko and Nearblocks '
+        f'data fetched on 2026-11-14 runs to {M("upd_asof")}, and the conclusion stands: the price still assumes faster growth than any window in '
+        f'the data, and NEAR would still need more than Intents&rsquo; whole gross fee. The gap narrowed because NEAR&rsquo;s price fell and revenue '
+        f'rose. Intents&rsquo; share of the peer set fell too, as THORChain&rsquo;s volume rose ({M("upd_thorchain_share_peerset_30d_pct")}% of the '
+        f'set over 30 days). Exploratory.</p>'
         f'<div class="tablewrap" role="region" aria-label="The case at the cutoff and at the update" tabindex="0"><table><caption>The case at the cutoff '
         f'and at the update</caption><thead><tr><th class="txt">Figure</th><th>{M("asof")}</th><th>{M("upd_asof")}</th></tr></thead>'
         f'<tbody>{rows}</tbody></table></div></div>')
@@ -3910,20 +3923,20 @@ def build_page(ctx: Ctx, breaks: bool = True) -> str:
     exp = "".join(f'<p class="gridhead">{esc(head)}</p>' + "".join(cards[cid][1](ctx) for cid in ids) for head, ids in EVIDENCE)
     body = (
         f'<a class="skip" href="#main">Skip to the content</a><div class="wrap">{header(ctx)}{side_nav()}'
-        f'<main id="main">{scorecard(ctx)}'
+        f'<main id="main">{record_strip(ctx)}'
         f'<div class="tabs"><nav class="tabbar" aria-label="Sections"><a href="#forward-view" data-tab="forward-view">Investment case</a>'
         f'<a href="#preregistered" data-tab="preregistered">Pre-registered tests</a><a href="#exploratory" data-tab="exploratory">Supporting evidence</a>'
         f'<a href="#method" data-tab="method">Method and limits</a></nav>'
         f'<section id="forward-view" class="panel" aria-labelledby="fwd-h"><h2 id="fwd-h">The investment case</h2>'
-        f'<p class="note">What reaches NEAR today, what the price assumes, what would have to change, and what to watch to 2031. All of it is exploratory: '
-        f'the ladder was chosen on 2026-11-06 and the rest on 2026-11-13 and 2026-11-14, after the freeze. None of it changes a hypothesis, threshold, '
-        f'probability or the rating.</p>'
-        f'{update_table(ctx)}{LADDER_HISTORY}'
-        f'<div class="grid">{fwd}</div></section>'
-        f'<section id="preregistered" class="panel" aria-labelledby="pre-h"><h2 id="pre-h">Pre-registered results</h2>'
-        f'<p class="note">Fixed in the <a href="{esc(gh("PREREG.md"))}">pre-registration</a> before the first BigQuery result the repository records; later '
-        f'method choices are dated in its <a href="{esc(gh("PREREG-ADDENDUM.md"))}">addendum</a>. Every result is shown as it came out, misses included.</p>'
-        f'<div class="grid">{pre}</div></section>'
+        f'<p class="note">Six charts carry the argument: what reaches NEAR today, what the price assumes, what would have to change, and what to watch to 2031. '
+        f'All of it is exploratory, chosen after the freeze (the ladder on 2026-11-06, the rest on 2026-11-13 and 2026-11-14). None of it changes a '
+        f'pre-registered hypothesis, threshold, probability or the rating.</p>'
+        f'<div class="grid">{fwd}</div>{update_table(ctx)}{LADDER_HISTORY}</section>'
+        f'<section id="preregistered" class="panel" aria-labelledby="pre-h"><h2 id="pre-h">What we predicted, and what the data said</h2>'
+        f'<p class="note">These were fixed in the <a href="{esc(gh("PREREG.md"))}">pre-registration</a> before the first BigQuery result the repository records, '
+        f'and each is scored as written. A prediction the data went against is still a finding: it says what happened instead. Later method choices are '
+        f'dated in the <a href="{esc(gh("PREREG-ADDENDUM.md"))}">addendum</a>.</p>'
+        f'{scorecard(ctx)}<div class="grid">{pre}</div></section>'
         f'<section id="exploratory" class="panel" aria-labelledby="exp-h"><h2 id="exp-h">Supporting evidence</h2>'
         f'<p class="note">Picked by the author after the freeze to give context. None of them is a test, and none feeds or changes a hypothesis, threshold, '
         f'probability or the rating rule.</p>'
