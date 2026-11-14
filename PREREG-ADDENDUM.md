@@ -481,3 +481,7 @@ At the owner's request the link under the thesis on the dashboard's first screen
 ## 2026-11-14 23:27 UTC: second dashboard alignment pass (layout only)
 
 At the owner's request, after a read of the page on a wide screen. (1) The forward-tests card is no longer a full-width card: it sits in the two-column rows of the Track record tab, which closes the empty space beside its chart and evens the two columns. (2) In a two-column row, the free height of a card that grows is split above and below its chart; its links stay on the bottom edge. (3) In a full-width card the figures beside the chart share the chart's height as even rows; where the figures are the taller side, the chart sits at mid height. (4) Stacked panels of one figure (captured revenue, supply, network usage) share their left and right plot edges, so their horizontal axes line up. (5) The update block under the investment case has a larger lead and a tighter table. (6) On screens 1680 px and wider the side list's type and spacing follow the window's height, so the whole list fits one screen. No number, result, label or rule changes.
+
+## 2026-11-14 23:28 UTC: the linked paper replaced by its updated version (one file)
+
+At the owner's request `site/NEAR_Long_Thesis.pdf`, the paper the first screen links to, is replaced by the authors' updated version (11 pages, produced 2026-11-14 23:25 UTC). The pipeline does not build or check the paper, and nothing on the dashboard changes.
