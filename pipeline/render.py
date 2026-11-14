@@ -1135,6 +1135,7 @@ figcaption{font-size:.8125rem;line-height:1.5;color:var(--muted);margin-top:8px;
 .svg .grid{stroke:var(--grid);stroke-width:1;shape-rendering:crispEdges}
 .svg .axis{stroke:var(--axis);stroke-width:1;shape-rendering:crispEdges}
 .svg .refline{stroke:var(--ink);stroke-width:1.5}
+.svg .lblbg{fill:var(--surface)}
 .svg .vmark{stroke:var(--ink);stroke-width:1.5;stroke-dasharray:5 4;shape-rendering:crispEdges}
 .svg .bracket{fill:none;stroke:var(--axis);stroke-width:1.2}
 .svg .s1{fill:var(--s1)}.svg .s2{fill:var(--s2)}.svg .sc{fill:var(--ctx)}.svg .sk{fill:var(--ink)}.svg .st2{fill:var(--ink2)}
@@ -1228,6 +1229,32 @@ ul.plain{padding:0;list-style:none}
 ul.plain li{margin:0 0 .7rem;line-height:1.55}
 footer{margin:3.5rem 0 2.5rem;padding-top:1rem;border-top:1px solid var(--grid);font-size:.875rem;color:var(--ink2)}
 footer p{max-width:none}
+/* alignment pass: the Today values as one strip under the thesis, so the two columns above it end together */
+@media (min-width:1100px){
+#brief{grid-template-areas:"h kcap" "th kpis" "today today"}
+.today{margin-top:2.4rem}
+.todayrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));column-gap:36px}
+.todayrow li{grid-template-columns:minmax(0,1fr);row-gap:3px;align-content:start;padding:12px 0;border-bottom:0}
+.todayrow li .tl{grid-row:1}
+.todayrow output{grid-column:1;grid-row:2;align-self:start;text-align:left;font-size:1.375rem;letter-spacing:-.015em}
+.todayrow li .tw{grid-row:3}
+}
+/* wide charts keep the text size of the two-column charts: the chart column stops at 740px and the figures take the rest */
+.grid .card .cv-wide{max-width:760px}
+@supports selector(:has(*)){@media (min-width:1300px){
+.grid>.card.span2:has(>.keyfigs){grid-template-columns:minmax(0,740px) minmax(0,1fr);column-gap:56px}
+}}
+/* two-column rows end on one line: the cards of the shorter column share the difference and their links sit at the bottom.
+   The changed margins reproduce the ones block layout collapsed, so a card that does not grow keeps its height. */
+@media (min-width:900px){
+.cols{align-items:stretch}
+.col{display:flex;flex-direction:column}
+.col>.card{flex:1 0 auto;display:flex;flex-direction:column}
+.col>.card>h3{margin-bottom:0}
+.col>.card>figure.chart-fig{margin-bottom:.9rem}
+.col>.card>.keyfigs{margin-top:0;margin-bottom:.9rem}
+.col>.card>.cardfoot{margin-top:auto}
+}
 """
 
 
@@ -3028,6 +3055,8 @@ def fan_panel(v: Variant, *, title: object, rows: list[dict], refs: list[dict], 
     for rf in refs:
         yy = sy(rf["v"])
         out.append(hline(ml, ml + pw, yy, "refline", f' data-v="{dv(rf["v"])}"'))
+        # a plain patch behind the label, so the dashed "today" marker does not run through its letters
+        out.append(f'<rect class="lblbg" x="{n1(ml + 2)}" y="{n1(yy - 4 - fs)}" width="{n1(len(pl(rf["label"])) * fs * 0.47 + 6)}" height="{n1(fs + 2)}" />')
         out.append(text(ml + 4, yy - 5, mk(rf["label"]), cls="rl", fs=fs))
     if hk:
         out.append(f'<path class="ln lk" d="M{"L".join(f"{n1(sx(k))},{n1(sy(c))}" for k, c in hk)}" />')
@@ -4156,7 +4185,8 @@ _CHART_HEIGHT = re.compile(r'<svg class="svg" viewBox="0 0 [0-9.]+ ([0-9.]+)"')
 
 
 def lay_out(ids: tuple[str, ...], cards: dict[str, tuple[str, object]], ctx: Ctx) -> str:
-    """The cards of one group, in order, arranged so that no card has to be stretched to match a neighbour.
+    """The cards of one group, in order, split so that the two columns come out as close in height as the order allows.
+    (The stylesheet then lets the cards of the shorter column grow by the small difference, so both columns end on one line.)
 
     A wide card (WIDE_CARDS) takes a full row. The cards between two wide ones go into two columns, split where the columns come out
     closest in height; the height of a card is taken from its chart (the first, wide drawing) plus a constant for its title, caption and

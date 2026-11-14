@@ -205,6 +205,7 @@ figcaption{font-size:.8125rem;line-height:1.5;color:var(--muted);margin-top:8px;
 .svg .grid{stroke:var(--grid);stroke-width:1;shape-rendering:crispEdges}
 .svg .axis{stroke:var(--axis);stroke-width:1;shape-rendering:crispEdges}
 .svg .refline{stroke:var(--ink);stroke-width:1.5}
+.svg .lblbg{fill:var(--surface)}
 .svg .vmark{stroke:var(--ink);stroke-width:1.5;stroke-dasharray:5 4;shape-rendering:crispEdges}
 .svg .bracket{fill:none;stroke:var(--axis);stroke-width:1.2}
 .svg .s1{fill:var(--s1)}.svg .s2{fill:var(--s2)}.svg .sc{fill:var(--ctx)}.svg .sk{fill:var(--ink)}.svg .st2{fill:var(--ink2)}
@@ -298,6 +299,32 @@ ul.plain{padding:0;list-style:none}
 ul.plain li{margin:0 0 .7rem;line-height:1.55}
 footer{margin:3.5rem 0 2.5rem;padding-top:1rem;border-top:1px solid var(--grid);font-size:.875rem;color:var(--ink2)}
 footer p{max-width:none}
+/* alignment pass: the Today values as one strip under the thesis, so the two columns above it end together */
+@media (min-width:1100px){
+#brief{grid-template-areas:"h kcap" "th kpis" "today today"}
+.today{margin-top:2.4rem}
+.todayrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));column-gap:36px}
+.todayrow li{grid-template-columns:minmax(0,1fr);row-gap:3px;align-content:start;padding:12px 0;border-bottom:0}
+.todayrow li .tl{grid-row:1}
+.todayrow output{grid-column:1;grid-row:2;align-self:start;text-align:left;font-size:1.375rem;letter-spacing:-.015em}
+.todayrow li .tw{grid-row:3}
+}
+/* wide charts keep the text size of the two-column charts: the chart column stops at 740px and the figures take the rest */
+.grid .card .cv-wide{max-width:760px}
+@supports selector(:has(*)){@media (min-width:1300px){
+.grid>.card.span2:has(>.keyfigs){grid-template-columns:minmax(0,740px) minmax(0,1fr);column-gap:56px}
+}}
+/* two-column rows end on one line: the cards of the shorter column share the difference and their links sit at the bottom.
+   The changed margins reproduce the ones block layout collapsed, so a card that does not grow keeps its height. */
+@media (min-width:900px){
+.cols{align-items:stretch}
+.col{display:flex;flex-direction:column}
+.col>.card{flex:1 0 auto;display:flex;flex-direction:column}
+.col>.card>h3{margin-bottom:0}
+.col>.card>figure.chart-fig{margin-bottom:.9rem}
+.col>.card>.keyfigs{margin-top:0;margin-bottom:.9rem}
+.col>.card>.cardfoot{margin-top:auto}
+}
 </style>
 </head>
 <body>
@@ -1608,8 +1635,10 @@ L392.3,115.1L400.6,114.5L408.8,113.9L417.1,113.3L425.4,113.4L433.7,112.3L441.9,1
 L599.2,178.8L590.9,178.6L582.6,178.2L574.3,178.3L566.1,178.3L557.8,178L549.5,177.6L541.2,177.4L533,177.3L524.7,177L516.4,177.5L508.1,177.5L499.9,177.4L491.6,176.8L483.3,176.3L475,176.2L466.8,175.5L458.5,175.6L450.2,175.4L441.9,175.6L433.7,174.8L425.4,175L417.1,174.3L408.8,174.2L400.6,173.4L392.3,173.3L384,173.4L375.7,173L367.5,173L359.2,173L350.9,173.5L342.6,173.3
 L334.4,173.8L326.1,173.5L317.8,173.5L309.5,174.2L301.3,174.2L293,174.7L284.7,174.4L276.4,174.5L268.2,174.7L259.9,174.7L251.6,174.9L243.3,174.6L235.1,174.5L226.8,173.9L218.5,173.7L210.2,173.6L202,173.5L193.7,173L185.4,172.2L177.1,172L168.9,170.9L160.6,170L152.3,168.3L144,165.7L135.7,163.3L127.5,161.7z" />
 <line class="refline" data-v="100" x1="53.2" x2="624" y1="112.3" y2="112.3" />
+<rect class="lblbg" x="55.2" y="95.8" width="199.9" height="14.5" />
 <text x="57.2" y="107.3" class="rl" font-size="12.5"><tspan data-m="fwd_full_line_pct">100</tspan>%: revenue covers all dilution</text>
 <line class="refline" data-v="25" x1="53.2" x2="624" y1="150.5" y2="150.5" />
+<rect class="lblbg" x="55.2" y="134" width="88.2" height="14.5" />
 <text x="57.2" y="145.5" class="rl" font-size="12.5"><tspan data-m="fwd_p3_line_pct">25</tspan>%: P3&#x27;s line</text>
 <path class="ln lk" d="M53.2,171L55.2,178.1L57.1,175.3L59,178.2L60.9,176.2L62.8,174.5L64.7,171.4L66.6,169.7L68.5,163.4L70.4,161.9L72.3,166.5L74.2,165.4L76.1,163.9L78,168.4L79.9,170.3L81.8,169.7L83.7,169.9L85.6,169.6L87.5,167.4L89.4,168.1L91.3,168.9L93.2,173.7L95.1,173.5L97,173.3L98.9,172.6L100.8,172.6L102.7,173L104.6,172.5L106.5,172L108.4,171.2L110.3,171L112.2,169.5L114.2,168L116.1,162.6
 L118,161.3L119.9,160.9L121.8,160L123.7,159.8L125.6,159.9L127.5,159.8" />
@@ -1725,8 +1754,10 @@ L191.2,153.2L194.5,152.7L197.9,152.2L201.3,152.4L204.6,151.5L208,151.3L211.3,150
 L271.9,204L268.5,203.8L265.2,203.5L261.8,203.5L258.4,203.6L255.1,203.4L251.7,203L248.4,202.9L245,202.8L241.6,202.6L238.3,203L234.9,202.9L231.5,202.9L228.2,202.4L224.8,202L221.4,201.9L218.1,201.4L214.7,201.4L211.3,201.3L208,201.5L204.6,200.8L201.3,201L197.9,200.4L194.5,200.3L191.2,199.7L187.8,199.7L184.4,199.7L181.1,199.4L177.7,199.4L174.3,199.4L171,199.8L167.6,199.7
 L164.2,200L160.9,199.8L157.5,199.8L154.1,200.3L150.8,200.4L147.4,200.8L144.1,200.5L140.7,200.6L137.3,200.8L134,200.7L130.6,200.9L127.2,200.7L123.9,200.6L120.5,200.1L117.1,200L113.8,199.9L110.4,199.8L107,199.4L103.7,198.8L100.3,198.6L97,197.7L93.6,197.1L90.2,195.7L86.9,193.6L83.5,191.8L80.1,190.5z" />
 <line class="refline" data-v="100" x1="50" x2="282" y1="151.5" y2="151.5" />
+<rect class="lblbg" x="52" y="136" width="184.4" height="13.5" />
 <text x="54" y="146.5" class="rl" font-size="11.5"><tspan data-m="fwd_full_line_pct">100</tspan>%: revenue covers all dilution</text>
 <line class="refline" data-v="25" x1="50" x2="282" y1="181.6" y2="181.6" />
+<rect class="lblbg" x="52" y="166.1" width="81.7" height="13.5" />
 <text x="54" y="176.6" class="rl" font-size="11.5"><tspan data-m="fwd_p3_line_pct">25</tspan>%: P3&#x27;s line</text>
 <path class="ln lk" d="M50,197.8L50.7,203.4L51.5,201.2L52.3,203.5L53,201.9L53.8,200.6L54.6,198.1L55.4,196.8L56.1,191.8L56.9,190.6L57.7,194.2L58.5,193.4L59.2,192.2L60,195.8L60.8,197.3L61.6,196.8L62.3,197L63.1,196.7L63.9,195L64.7,195.5L65.4,196.1L66.2,199.9L67,199.8L67.7,199.6L68.5,199.1L69.3,199.1L70.1,199.4L70.8,199L71.6,198.6L72.4,197.9L73.2,197.8L73.9,196.7L74.7,195.5L75.5,191.2
 L76.3,190.1L77,189.9L77.8,189.1L78.6,189L79.4,189L80.1,189" />
