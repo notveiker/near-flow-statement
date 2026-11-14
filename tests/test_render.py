@@ -491,7 +491,7 @@ class NoExternalResources(unittest.TestCase):
                              ["upd_asof", "upd_ic_implied_cagr_r15_x25_pct", "upd_mcap_usd_b", "upd_intents_rev_30d_m",   # the date once, in the caption
                               "upd_take_captured_bp_30d", "buyback_wallet_near_m"], name)
             about = re.sub(r"\s+", " ", section_node(dom, "about").text())
-            self.assertIn("The Today row is exploratory. Your browser fetches it when the page opens", about, name)
+            self.assertIn("The Today row is exploratory. The browser fetches it when the page opens", about, name)
             self.assertNotIn("Fetched", re.sub(r"\s+", " ", dom.find("header").text()), name)
 
     def test_no_remote_or_protocol_relative_urls_in_resources(self):
@@ -3242,7 +3242,7 @@ class FirstScreen(unittest.TestCase):
             self.assertEqual([n for n in head.iter() if n.classes() & {"chips", "chip", "chipword"}], [], f"{name}: no status chips under the answer")
             self.assertEqual(re.sub(r"\s+", " ", readmore.find("p", "questions").text()),
                              "The pre-registered question: how much NEAR actually flows to exchanges, and how much of that do identified buyers absorb? (It makes no claim about "
-                             "which coins are sold.) The question the evidence can answer: how much of NEAR’s value capture can you verify?", name)
+                             "which coins are sold.) The question the evidence can answer: how much of NEAR’s value capture can be verified?", name)
 
     def test_the_answer_is_the_shared_sentence_with_every_number_a_metric_and_both_labels(self):
         m = METRICS
@@ -3315,7 +3315,7 @@ class FirstScreen(unittest.TestCase):
     def test_the_meta_description_names_both_questions(self):
         desc = next(mt.attrs["content"] for mt in DOM.find_all("meta") if mt.attrs.get("name") == "description")
         self.assertIn("The pre-registered question is how much NEAR flows to exchanges and how much of that identified buyers absorb; the question the evidence can answer "
-                      "is how much of NEAR's value capture can you verify.", desc)
+                      "is how much of NEAR's value capture can be verified.", desc)
         self.assertNotIn("who buys", desc.lower())
 
     def test_key_figure_values_share_a_baseline_when_a_label_wraps(self):

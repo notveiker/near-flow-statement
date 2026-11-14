@@ -430,3 +430,7 @@ The page as pushed at 20:16 UTC was read by three reviewers for decorative patte
 ## 2026-11-14 20:54 UTC: the dashboard's section notes rewritten as leads (wording only)
 
 Each tab's opening note, and the note under each group heading of the Supporting evidence tab, now states what the section shows instead of listing its charts: the figures it gives are metrics the section's own charts already print (for example 15.81<!--n:ladder_all_wallets_pct_of_issuance-->% and 4.53<!--n:ladder_public_collectors_pct_of_issuance--> points in the Investment case note), each bound to `data/metrics.json` like the rest of the page. The label is still stated once in each tab's note. The page's text font is Arial throughout. No number, result or rule changes.
+
+## 2026-11-14 21:01 UTC: chart layout in two columns; the page no longer addresses the reader (layout and wording only)
+
+The dashboard's charts are laid out in two columns of cards that end where their content ends, with the widest charts on a row of their own and their key figures beside them; no card is stretched to match its neighbour, and the order of the figures is unchanged. The page no longer says "you" or "your": the Today caption reads "read live in the browser", and the second of the two questions under the Track record tab, which was written after the freeze, now reads "how much of NEAR's value capture can be verified?", the wording the README already used. The pre-registered question, quoted from `PREREG.md`, is unchanged. No number, result or rule changes.

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <title>NEAR flow statement dashboard</title>
-<meta name="description" content="A long-term investment thesis for NEAR: what its price assumes, what the evidence supports, scenarios and signposts, on a pre-registered, re-runnable token flow statement. The pre-registered question is how much NEAR flows to exchanges and how much of that identified buyers absorb; the question the evidence can answer is how much of NEAR&#x27;s value capture can you verify. Every chart shows the query behind it and the exact numbers it plots.">
+<meta name="description" content="A long-term investment thesis for NEAR: what its price assumes, what the evidence supports, scenarios and signposts, on a pre-registered, re-runnable token flow statement. The pre-registered question is how much NEAR flows to exchanges and how much of that identified buyers absorb; the question the evidence can answer is how much of NEAR&#x27;s value capture can be verified. Every chart shows the query behind it and the exact numbers it plots.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%2316150f'/%3E%3Cpath fill='%23f1efe7' d='M3.5 9h2v3.5h-2zM7 6h2v6.5H7zM10.5 3.5h2v9h-2z'/%3E%3C/svg%3E">
 <style>
 :root{color-scheme:light;--bg:#f5f3ec;--surface:#fcfbf7;--raise:#ffffff;--ink:#16150f;--ink2:#4b4940;--muted:#67655b;--grid:#e2dfd4;
@@ -134,16 +134,24 @@ h3{font-size:1.0625rem;font-weight:650;line-height:1.35;margin:.5rem 0 .6rem}
 .i-line{fill:none;stroke:var(--ink2);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 
 /* chart cards */
-.grid{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-items:stretch}
-.grid>.gridhead{grid-column:1 / -1}
-@media (min-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.grid>.card.span2{grid-column:1 / -1}.grid>.card.span2 .cv-wide{max-width:900px;margin:0 auto}}
-@media (min-width:1214px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.grid>.card.span2{grid-column:span 2}}
-@media (min-width:1214px){.grid>.card.fill2{grid-column:span 2}.grid>.card.fill3{grid-column:1 / -1}.grid>.card.one{grid-column:auto}}
-.grid>.card .cv-wide{max-width:900px;margin:0 auto}
+.grid{display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
+.cols{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-items:start;min-width:0}
+.col{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-content:start;min-width:0}
+@media (min-width:900px){.cols{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.grid .card .cv-wide{max-width:900px;margin:0 auto}
 .grid>.gridhead{margin:1.4rem 0 -.2rem;max-width:none;font-size:1.0625rem;font-weight:700;color:var(--ink)}
 .grid>.gridhead:first-child{margin-top:.4rem}
-.grid>.gridlead{grid-column:1 / -1;margin:-.5rem 0 .1rem;max-width:104ch;font-size:.9375rem;line-height:1.55;color:var(--ink2)}
-.card{container-type:inline-size;display:flex;flex-direction:column;min-width:0;margin:0;padding:18px 20px 14px;background:var(--surface);border:1px solid var(--border);border-radius:6px}
+.grid>.gridlead{margin:-.5rem 0 .1rem;max-width:104ch;font-size:.9375rem;line-height:1.55;color:var(--ink2)}
+.card{container-type:inline-size;min-width:0;margin:0;padding:18px 20px 14px;background:var(--surface);border:1px solid var(--border);border-radius:6px}
+/* a card that takes a full row: the chart at the left, its key figures and notes beside it */
+@supports selector(:has(*)){@media (min-width:1100px){
+.grid>.card.span2:has(>.keyfigs){display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);column-gap:40px;align-items:start}
+.grid>.card.span2:has(>.keyfigs)>.cardtop,.grid>.card.span2:has(>.keyfigs)>h3,.grid>.card.span2:has(>.keyfigs)>.cardfoot{grid-column:1 / -1}
+.grid>.card.span2:has(>.keyfigs)>figure{grid-column:1;grid-row:3 / span 8;margin-top:.4rem}
+.grid>.card.span2:has(>.keyfigs)>:not(.cardtop):not(h3):not(figure):not(.cardfoot){grid-column:2}
+.grid>.card.span2:has(>.keyfigs)>.keyfigs{grid-template-columns:minmax(0,1fr);gap:14px;margin-top:.4rem;padding-top:0;border-top:0}
+.grid>.card.span2:has(>.keyfigs)>.keyfigs dd{font-size:1.375rem;letter-spacing:-.015em}
+}}
 .cardtop{display:flex;align-items:baseline;gap:10px;min-height:1.2rem;font-size:.8125rem}
 .fignum{font-weight:600;color:var(--muted)}
 .badge{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -156,7 +164,7 @@ figure.chart-fig{margin:.9rem 0 .4rem}
 .cv-narrow{display:none;max-width:430px}
 .grid .cv-narrow{max-width:440px;margin:0 auto}
 @media (max-width:699px){.cv-wide{display:none}.cv-narrow{display:block}.card{padding:14px 14px 10px}}
-@container (max-width:640px){.cv-wide{display:none}.cv-narrow{display:block;max-width:none}}
+@container (max-width:600px){.cv-wide{display:none}.cv-narrow{display:block;max-width:none}}
 figcaption{font-size:.8125rem;line-height:1.5;color:var(--muted);margin-top:8px}
 .svg{display:block;width:100%;height:auto}
 .svg text{fill:var(--ink2);font-family:inherit}
@@ -187,8 +195,7 @@ figcaption{font-size:.8125rem;line-height:1.5;color:var(--muted);margin-top:8px}
 .keyfigs div{min-width:0}
 .keyfigs dt{font-size:.75rem;line-height:1.35;color:var(--muted)}
 .keyfigs dd{margin:0;font-weight:650;font-size:1.0625rem;font-variant-numeric:lining-nums tabular-nums}
-.cardfoot{display:flex;flex-wrap:wrap;gap:4px 20px;margin-top:auto;padding-top:.7rem;border-top:1px solid var(--grid)}
-.card>.keyfigs,.card>figure{margin-bottom:.9rem}
+.cardfoot{display:flex;flex-wrap:wrap;gap:4px 20px;margin-top:.9rem;padding-top:.7rem;border-top:1px solid var(--grid)}
 .cardfoot details{margin:0;border:0;padding:0;flex:0 0 auto;min-width:0}
 .cardfoot details[open]{flex-basis:100%;order:1}
 .cardfoot summary{display:inline;padding:0;font-size:.8125rem;font-weight:500;color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;list-style:none}
@@ -278,7 +285,7 @@ footer{margin:3.5rem 0 2.5rem;padding-top:1rem;border-top:1px solid var(--grid);
 <li class="kpi"><a class="kv" href="#chart-multiply"><span data-m="upd_ic_take_needed_vs_gross_x">1.6</span>×</a><span class="kl">Take NEAR would need, as a multiple of Intents&rsquo; whole gross fee</span><span class="kw">was <span data-m="ic_take_needed_vs_gross_x">2.5</span>×</span></li>
 <li class="kpi"><a class="kv" href="#chart-scenarios"><span data-m="upd_ic_base_coverage_2031_pct">62.2</span>%</a><span class="kl">NEAR&rsquo;s dilution paid for in 2031, base case</span><span class="kw">was <span data-m="ic_base_coverage_2031_pct">44.6</span>%</span></li></ul>
 <div class="today" id="live">
-<p class="todaycap">Today, read live by your browser. In grey: <span data-m="upd_asof">2026-11-13</span>.</p>
+<p class="todaycap">Today, read live in the browser. In grey: <span data-m="upd_asof">2026-11-13</span>.</p>
 <ul class="todayrow" aria-label="Today&rsquo;s values">
 <li><span class="tl">Growth the price assumes</span><output id="lv-implied">&hellip;</output><span class="tw">was <span data-m="upd_ic_implied_cagr_r15_x25_pct">79.8</span>% a year</span></li>
 <li><span class="tl">NEAR market cap</span><output id="lv-mcap">&hellip;</output><span class="tw">was $<span data-m="upd_mcap_usd_b">4.48</span>B</span></li>
@@ -663,6 +670,8 @@ GROUP BY 1,2,3 ORDER BY 1,2,3
 <td class="t">Net issuance, NEAR a day (denominator)</td>
 <td><span data-m="net_issuance_near_per_day_window">88,295</span></td>
 <td class="t">two archival total_supply reads, matched to the window</td></tr></tbody></table></div></details></div></section>
+<div class="cols">
+<div class="col">
 <section class="card" id="chart-priced" aria-labelledby="chart-priced-h">
 <div class="cardtop"><span class="fignum">Figure 2</span><span class="badge badge-exp">Exploratory</span><a href="#chart-priced" aria-label="Link to this chart">#</a></div>
 <h3 id="chart-priced-h">Growth the price assumes: <span data-m="ic_implied_cagr_r15_x25_pct">84.9</span>% a year to 2031</h3>
@@ -1079,7 +1088,8 @@ GROUP BY 1,2,3 ORDER BY 1,2,3
 <td><span data-m="ic_gross_bp_90d">15.2</span></td></tr>
 <tr>
 <td class="t">Take needed, bp</td>
-<td><span data-m="ic_take_needed_bp">37.4</span></td></tr></tbody></table></div></details></div></section>
+<td><span data-m="ic_take_needed_bp">37.4</span></td></tr></tbody></table></div></details></div></section></div>
+<div class="col">
 <section class="card" id="chart-scenarios" aria-labelledby="chart-scenarios-h">
 <div class="cardtop"><span class="fignum">Figure 4</span><span class="badge badge-exp">Exploratory</span><a href="#chart-scenarios" aria-label="Link to this chart">#</a></div>
 <h3 id="chart-scenarios-h">Dilution paid for in 2031: <span data-m="ic_bear_coverage_2031_pct">3.5</span>% bear, <span data-m="ic_base_coverage_2031_pct">44.6</span>% base, <span data-m="ic_bull_coverage_2031_pct">277.5</span>% bull</h3>
@@ -1514,8 +1524,8 @@ GROUP BY 1,2,3 ORDER BY 1,2,3
 <td class="t">A per-stream attestation of the escrow releases</td>
 <td class="t">none</td>
 <td class="t">published by NEAR (collapses the ladder&rsquo;s range)</td>
-<td class="t">any time</td></tr></tbody></table></div></details></div></section>
-<section class="card fill3 span2" id="chart-fwdcov" aria-labelledby="chart-fwdcov-h">
+<td class="t">any time</td></tr></tbody></table></div></details></div></section></div></div>
+<section class="card span2" id="chart-fwdcov" aria-labelledby="chart-fwdcov-h">
 <div class="cardtop"><span class="fignum">Figure 6</span><span class="badge badge-exp">Exploratory</span><a href="#chart-fwdcov" aria-label="Link to this chart">#</a></div>
 <h3 id="chart-fwdcov-h">Monte Carlo: <span data-m="fwd_p_cov_ge100_2031_pct">31.8</span>% of paths pay for all dilution by 2031, <span data-m="fwd_exsep_p_cov_ge100_2031_pct">3.3</span>% without one month</h3>
 <figure class="chart-fig">
@@ -2029,6 +2039,8 @@ L187.8,176.7L191.2,176.8L194.5,176.9L197.9,176.6L201.3,176.7L204.6,176.3L208,176
 <div class="grid">
 <p class="gridhead">Market and peers</p>
 <p class="gridlead">Intents had <span data-m="intents_share_peerset_30d_pct">55.7</span>% of its peer set&rsquo;s reported volume over 30 days and <span data-m="intents_share_peerset_365d_pct">62.1</span>% over a year. NEAR&rsquo;s market cap is <span data-m="ic_near_mcap_to_intents_fees_x">89.2</span>× the gross fees Intents charged in a year; THORChain&rsquo;s is <span data-m="ic_peer_thorchain_mcap_to_fees_x">9.8</span>× its own and Chainflip&rsquo;s <span data-m="ic_peer_chainflip_mcap_to_fees_x">1.8</span>×.</p>
+<div class="cols">
+<div class="col">
 <section class="card" id="chart-peers" aria-labelledby="chart-peers-h">
 <div class="cardtop"><span class="fignum">Figure 7</span><span class="badge badge-exp">Exploratory</span><a href="#chart-peers" aria-label="Link to this chart">#</a></div>
 <h3 id="chart-peers-h">Intents&rsquo; share of its peer set: <span data-m="intents_share_peerset_30d_pct">55.7</span>% over 30 days, <span data-m="intents_share_peerset_365d_pct">62.1</span>% over 365 days</h3>
@@ -2320,8 +2332,9 @@ L187.8,176.7L191.2,176.8L194.5,176.9L197.9,176.6L201.3,176.7L204.6,176.3L208,176
 <td class="t">Maya</td>
 <td><span data-m="peers.3.vol_30d_b">0.53</span></td>
 <td><span data-m="peers.3.vol_365d_b">1.3</span></td>
-<td><span data-m="peers.3.share_30d_pct">7.3</span></td></tr></tbody></table></div></details></div></section>
-<section class="card fill2" id="chart-peersval" aria-labelledby="chart-peersval-h">
+<td><span data-m="peers.3.share_30d_pct">7.3</span></td></tr></tbody></table></div></details></div></section></div>
+<div class="col">
+<section class="card" id="chart-peersval" aria-labelledby="chart-peersval-h">
 <div class="cardtop"><span class="fignum">Figure 8</span><span class="badge badge-exp">Exploratory</span><a href="#chart-peersval" aria-label="Link to this chart">#</a></div>
 <h3 id="chart-peersval-h">Market cap ÷ gross fees: NEAR <span data-m="ic_near_mcap_to_intents_fees_x">89.2</span>×, THORChain <span data-m="ic_peer_thorchain_mcap_to_fees_x">9.8</span>×, Chainflip <span data-m="ic_peer_chainflip_mcap_to_fees_x">1.8</span>×</h3>
 <figure class="chart-fig">
@@ -2447,10 +2460,10 @@ L187.8,176.7L191.2,176.8L194.5,176.9L197.9,176.6L201.3,176.7L204.6,176.3L208,176
 <td class="t">Chainflip (FLIP)</td>
 <td><span data-m="ic_peer_chainflip_mcap_m">28.3</span></td>
 <td><span data-m="ic_peer_chainflip_fees_365d_m">15.39</span></td>
-<td><span data-m="ic_peer_chainflip_mcap_to_fees_x">1.8</span></td></tr></tbody></table></div></details></div></section>
+<td><span data-m="ic_peer_chainflip_mcap_to_fees_x">1.8</span></td></tr></tbody></table></div></details></div></section></div></div>
 <p class="gridhead">Revenue and the take rate</p>
 <p class="gridlead">NEAR captured $<span data-s="intents_monthly.2026-10.rev_m">2.19</span>M in October, <span data-s="intents_monthly.2026-10.captured_bp">5.49</span> bp of Intents&rsquo; reported volume. Its explicit fee inside 1Click rose from <span data-m="take_b1_bb_explicit_bp">1.83</span> bp to <span data-m="take_b3_bb_explicit_bp">4.08</span> bp over the window. From September the escrow supplied more than half of the buyback wallet&rsquo;s NEAR (<span data-m="escrow_share_buyback_2026_09_pct">53.0</span>% that month).</p>
-<section class="card one span2" id="chart-revenue" aria-labelledby="chart-revenue-h">
+<section class="card span2" id="chart-revenue" aria-labelledby="chart-revenue-h">
 <div class="cardtop"><span class="fignum">Figure 9</span><span class="badge badge-exp">Exploratory</span><a href="#chart-revenue" aria-label="Link to this chart">#</a></div>
 <h3 id="chart-revenue-h">Captured revenue: $<span data-s="intents_monthly.2026-10.rev_m">2.19</span>M in October, <span data-s="intents_monthly.2026-10.captured_bp">5.49</span> bp of volume</h3>
 <figure class="chart-fig">
@@ -2844,6 +2857,8 @@ L187.8,176.7L191.2,176.8L194.5,176.9L197.9,176.6L201.3,176.7L204.6,176.3L208,176
 <td>0.154</td>
 <td>2.96</td>
 <td>14.1</td></tr></tbody></table></div></details></div></section>
+<div class="cols">
+<div class="col">
 <section class="card" id="chart-take" aria-labelledby="chart-take-h">
 <div class="cardtop"><span class="fignum">Figure 10</span><span class="badge badge-exp">Exploratory</span><a href="#chart-take" aria-label="Link to this chart">#</a></div>
 <h3 id="chart-take-h">NEAR&rsquo;s explicit 1Click fee: up from <span data-m="take_b1_bb_explicit_bp">1.83</span> bp to <span data-m="take_b3_bb_explicit_bp">4.08</span> bp of volume</h3>
@@ -3034,7 +3049,8 @@ L187.8,176.7L191.2,176.8L194.5,176.9L197.9,176.6L201.3,176.7L204.6,176.3L208,176
 <td><span data-m="take_b3_vol_with_bb_pct">43.0</span></td>
 <td><span data-m="take_b3_swapkit_vol_pct">38.2</span></td>
 <td><span data-m="take_b3_captured_bp">4.98</span></td>
-<td><span data-m="take_b3_oneclick_usd_m">1,104</span></td></tr></tbody></table></div></details></div></section>
+<td><span data-m="take_b3_oneclick_usd_m">1,104</span></td></tr></tbody></table></div></details></div></section></div>
+<div class="col">
 <section class="card" id="chart-escrow" aria-labelledby="chart-escrow-h">
 <div class="cardtop"><span class="fignum">Figure 11</span><span class="badge badge-exp">Exploratory</span><a href="#chart-escrow" aria-label="Link to this chart">#</a></div>
 <h3 id="chart-escrow-h">Escrow share of the buyback wallet&rsquo;s NEAR: <span data-m="escrow_share_buyback_2026_08_pct">28.6</span>% in August, <span data-m="escrow_share_buyback_2026_09_pct">53.0</span>% in September</h3>
@@ -3228,9 +3244,11 @@ ORDER BY 1, 2, 3
 <tr data-k="2026-11">
 <td class="t">Nov 2026</td>
 <td><span data-m="escrow_share_of_buyback_by_month.4.share_pct">58.5</span></td>
-<td class="t"></td></tr></tbody></table></div></details></div></section>
+<td class="t"></td></tr></tbody></table></div></details></div></section></div></div>
 <p class="gridhead">Who else gets paid</p>
 <p class="gridlead">Partners&rsquo; listed fees were <span data-m="partners_kept_vs_near_rev_floor_x">1.44</span>× to <span data-m="partners_kept_vs_near_rev_high_x">2.22</span>× NEAR&rsquo;s whole captured revenue. SwapKit alone routed <span data-m="swapkit_vol_share_pct">38.2</span>% of 1Click volume and paid NEAR $<span data-m="swapkit_buyback_fees_usd">159</span> in explicit fees over 30 days.</p>
+<div class="cols">
+<div class="col">
 <section class="card" id="chart-partners" aria-labelledby="chart-partners-h">
 <div class="cardtop"><span class="fignum">Figure 12</span><span class="badge badge-exp">Exploratory</span><a href="#chart-partners" aria-label="Link to this chart">#</a></div>
 <h3 id="chart-partners-h">SwapKit: <span data-m="swapkit_vol_share_pct">38.2</span>% of 1Click volume, $<span data-m="swapkit_buyback_fees_usd">159</span> in explicit fees to NEAR in 30 days</h3>
@@ -3663,8 +3681,9 @@ ORDER BY 1, 2, 3
 <td><span data-m="swapkit_exit_ceiling_pct">43.0</span></td></tr>
 <tr>
 <td class="t">Wider ceiling (also the escrow NEAR to fefundsadmin)</td>
-<td><span data-m="swapkit_exit_ceiling_all_escrow_pct">73.7</span></td></tr></tbody></table></div></details></div></section>
-<section class="card fill2" id="chart-paid" aria-labelledby="chart-paid-h">
+<td><span data-m="swapkit_exit_ceiling_all_escrow_pct">73.7</span></td></tr></tbody></table></div></details></div></section></div>
+<div class="col">
+<section class="card" id="chart-paid" aria-labelledby="chart-paid-h">
 <div class="cardtop"><span class="fignum">Figure 13</span><span class="badge badge-exp">Exploratory</span><a href="#chart-paid" aria-label="Link to this chart">#</a></div>
 <h3 id="chart-paid-h">Listed partner fees: <span data-m="partners_kept_vs_near_rev_floor_x">1.44</span>× to <span data-m="partners_kept_vs_near_rev_high_x">2.22</span>× NEAR&rsquo;s captured revenue</h3>
 <figure class="chart-fig">
@@ -3912,9 +3931,11 @@ ORDER BY 1, 2, 3
 <tr>
 <td class="t">Net NEAR sold through 1Click</td>
 <td><span data-m="explorer_net_near_sold_usd_m">9.4</span></td>
-<td class="t">USD million</td></tr></tbody></table></div></details></div></section>
+<td class="t">USD million</td></tr></tbody></table></div></details></div></section></div></div>
 <p class="gridhead">Supply and dilution</p>
 <p class="gridlead">Supply grew <span data-m="net_supply_growth_365d_pct">2.48</span>% in a year, about <span data-m="net_issuance_near_per_day_30d_k">88.2</span>K NEAR a day net. On the rating rule&rsquo;s path it grows <span data-m="fwd_supply_growth_5y_pct">9.4</span>% more by 2031 if HSP-029&rsquo;s cut takes effect and <span data-m="fwd_supply_growth_5y_no_hsp029_pct">13.1</span>% if not.</p>
+<div class="cols">
+<div class="col">
 <section class="card" id="chart-supply" aria-labelledby="chart-supply-h">
 <div class="cardtop"><span class="fignum">Figure 14</span><span class="badge badge-exp">Exploratory</span><a href="#chart-supply" aria-label="Link to this chart">#</a></div>
 <h3 id="chart-supply-h">Supply: up <span data-m="net_supply_growth_365d_pct">2.48</span>% in 365 days; net issuance <span data-m="net_issuance_near_per_day_30d_k">88.2</span>K NEAR a day</h3>
@@ -4867,8 +4888,9 @@ ORDER BY 1, 2, 3
 <tr data-k="2026-11-04">
 <td class="t">2026-11-04</td>
 <td>1,310.833</td>
-<td>78.0</td></tr></tbody></table></div></details></div></section>
-<section class="card fill2" id="chart-fwdsupply" aria-labelledby="chart-fwdsupply-h">
+<td>78.0</td></tr></tbody></table></div></details></div></section></div>
+<div class="col">
+<section class="card" id="chart-fwdsupply" aria-labelledby="chart-fwdsupply-h">
 <div class="cardtop"><span class="fignum">Figure 15</span><span class="badge badge-exp">Exploratory</span><a href="#chart-fwdsupply" aria-label="Link to this chart">#</a></div>
 <h3 id="chart-fwdsupply-h">Supply growth to 2031: <span data-m="fwd_supply_growth_5y_pct">9.4</span>% with HSP-029, <span data-m="fwd_supply_growth_5y_no_hsp029_pct">13.1</span>% without</h3>
 <figure class="chart-fig">
@@ -5053,10 +5075,10 @@ ORDER BY 1, 2, 3
 <tr data-k="2031-11-04">
 <td class="t">2031-11-04</td>
 <td>1,434.09</td>
-<td>1,482.79</td></tr></tbody></table></div></details></div></section>
+<td>1,482.79</td></tr></tbody></table></div></details></div></section></div></div>
 <p class="gridhead">Network usage</p>
 <p class="gridlead">Daily active accounts averaged <span data-m="active_accounts_30d_k">61.6</span>K over 30 days, <span data-m="active_accounts_30d_yoy_pct">-77.1</span>% on a year earlier. <span data-m="usage_bq_tg_share_of_signer_drop_pct">98.5</span>% of that fall is one wallet app&rsquo;s Telegram accounts, and the number of contracts called each day did not fall.</p>
-<section class="card fill3 span2" id="chart-usage" aria-labelledby="chart-usage-h">
+<section class="card span2" id="chart-usage" aria-labelledby="chart-usage-h">
 <div class="cardtop"><span class="fignum">Figure 16</span><span class="badge badge-exp">Exploratory</span><a href="#chart-usage" aria-label="Link to this chart">#</a></div>
 <h3 id="chart-usage-h">Daily active accounts: <span data-m="active_accounts_30d_k">61.6</span>K, <span data-m="active_accounts_30d_yoy_pct">-77.1</span>% on a year earlier; <span data-m="usage_bq_tg_share_of_signer_drop_pct">98.5</span>% of the fall is one wallet app&rsquo;s Telegram accounts</h3>
 <figure class="chart-fig">
@@ -7025,7 +7047,7 @@ ORDER BY day, grp
 <p class="note">We fixed three hypotheses, a rating rule and seven dated forecasts in the <a href="https://github.com/notveiker/near-flow-statement/blob/main/PREREG.md">pre-registration</a> before the first BigQuery result the repository records, so that the numbers could not be bent to fit a story afterwards. One hypothesis went against us: net staking outflow was <span data-m="h1a_ratio_as_written_x">6.56</span>× staking rewards, where we predicted under <span data-k="h1a_pass_below_x">0.5</span>×. Two could not be settled, because only <span data-m="h1b_coverage_count_pct">20.0</span>% of the top-100 receivers carry an exchange label, so the frozen rule gives no signal. Of the four one-week forecasts, <span data-f="@count.PASS" data-scale="1">2</span> came true and <span data-f="@count.MISS" data-scale="1">2</span> did not. Everything in this tab is pre-registered except the list headed &ldquo;What the results changed&rdquo;; later method choices are dated in the <a href="https://github.com/notveiker/near-flow-statement/blob/main/PREREG-ADDENDUM.md">addendum</a>.</p>
 <details class="readmore">
 <summary>The questions and the pre-registered answer</summary>
-<p class="questions"><strong>The pre-registered question:</strong> how much NEAR actually flows to exchanges, and how much of that do identified buyers absorb? (It makes no claim about which coins are sold.) <strong>The question the evidence can answer:</strong> how much of NEAR&rsquo;s value capture can you verify?</p>
+<p class="questions"><strong>The pre-registered question:</strong> how much NEAR actually flows to exchanges, and how much of that do identified buyers absorb? (It makes no claim about which coins are sold.) <strong>The question the evidence can answer:</strong> how much of NEAR&rsquo;s value capture can be verified?</p>
 <div class="answer">
 <p><strong>What the pre-registered tests found:</strong> net staking outflow was <span data-m="h1a_ratio_as_written_x">6.56</span>× staking rewards over 90 days, where H1a (most staking rewards stay staked) predicted under <span data-k="h1a_pass_below_x">0.5</span>×. Only <span data-m="h1b_coverage_count_pct">20.0</span>% of the top-100 NEAR receivers carry an exchange label, so how much NEAR reaches exchanges (H1b: less than is minted) and how much of it identified buyers absorb (H1c: at least <span data-k="h1c_min_pct">25</span>%) come out as ranges too wide to settle either way. So the frozen rating rule gives no buy or avoid signal, which carries no view on NEAR.</p>
 <p><strong>Exploratory, chosen after the freeze:</strong> over 30 days the NEAR that verifiably reached NEAR&rsquo;s three Intents revenue wallets was <span data-m="ladder_all_wallets_pct_of_issuance">15.81</span>% of net issuance, of which <span data-m="ladder_public_collectors_pct_of_issuance">4.53</span> points trace to public fee collectors, <span data-m="ladder_escrow_unshields_pct_of_issuance">11.25</span> arrived as releases from an escrow whose fee stream is unattested, and <span data-m="ladder_other_pct_of_issuance">0.03</span> came from one other source. So, if those three are all of NEAR&rsquo;s Intents revenue wallets, the value capture that can be verified is a range. This is not a valuation and not advice. <a href="#chart-ladder">See the value-capture ladder.</a></p></div></details>
@@ -7066,6 +7088,8 @@ ORDER BY day, grp
 <li><strong>Still open.</strong> Too few exchange addresses are labelled to settle how much NEAR reaches exchanges (H1b, H1c). The frozen rule therefore gives no signal, so the view on this page rests on the investment case.</li>
 <li><strong>Our odds.</strong> We gave the four one-week forecasts odds of <span data-p="F3">0.65</span> to <span data-p="F2">0.75</span>, and two came true. Four is too few to re-fit our odds, so the longer-dated predictions stay as frozen.</li></ul></section>
 <div class="grid">
+<div class="cols">
+<div class="col">
 <section class="card" id="chart-h1a" aria-labelledby="chart-h1a-h">
 <div class="cardtop"><span class="fignum">Figure 17</span><span class="badge badge-pre">Pre-registered</span><a href="#chart-h1a" aria-label="Link to this chart">#</a></div>
 <h3 id="chart-h1a-h">Net staking outflow: <span data-m="h1a_ratio_as_written_x">6.56</span>× staking rewards (H1a predicted under <span data-k="h1a_pass_below_x">0.5</span>×)</h3>
@@ -8871,7 +8895,8 @@ SELECT &#x27;qa&#x27;, &#x27;transfers_total&#x27;, COUNT(*), NULL, NULL, NULL, 
 <tr>
 <td class="t">Coverage required for a point result</td>
 <td><span data-k="h1b_coverage_min_pct">50</span></td>
-<td class="t">%</td></tr></tbody></table></div></details></div></section>
+<td class="t">%</td></tr></tbody></table></div></details></div></section></div>
+<div class="col">
 <section class="card" id="chart-h1c" aria-labelledby="chart-h1c-h">
 <div class="cardtop"><span class="fignum">Figure 19</span><span class="badge badge-pre">Pre-registered</span><a href="#chart-h1c" aria-label="Link to this chart">#</a></div>
 <h3 id="chart-h1c-h">Identified buying: <span data-m="h1c_ratio_lower_pct">33.48</span>% of exchange inflow at one bound, <span data-m="h1c_ratio_upper_pct">0.97</span>% at the other</h3>
@@ -9624,7 +9649,7 @@ SELECT &#x27;qa&#x27;, NULL, NULL, NULL, NULL, fmt, ROUND(SUM(near), 6), COUNT(*
 <tr>
 <td class="t">Captured revenue, last 90 days</td>
 <td><span data-m="rating_r90_usd_m">4.84</span></td>
-<td class="t">USD million</td></tr></tbody></table></div></details></div></section>
+<td class="t">USD million</td></tr></tbody></table></div></details></div></section></div></div>
 <section class="card span2" id="chart-forward" aria-labelledby="chart-forward-h">
 <div class="cardtop"><span class="fignum">Figure 21</span><span class="badge badge-pre">Pre-registered</span><a href="#chart-forward" aria-label="Link to this chart">#</a></div>
 <h3 id="chart-forward-h">Forward tests: <span data-f="@count.PASS" data-scale="1">2</span> of 4 came true</h3>
@@ -9869,7 +9894,7 @@ SELECT &#x27;qa&#x27;, NULL, NULL, NULL, NULL, fmt, ROUND(SUM(near), 6), COUNT(*
 <div id="method" class="panel">
 <section id="about" aria-labelledby="about-h">
 <h2 id="about-h">About the data</h2>
-<p class="lede">A pre-registered token flow statement for NEAR that anyone can re-run. <code>make site</code> runs <code>python3 -m pipeline.compute</code> and <code>python3 -m pipeline.render</code> in one command, rebuilding every number and chart from the raw snapshots in <code>data/raw/</code>, offline. Under each chart you&rsquo;ll find the query behind it and the exact numbers it plots; to check one, open its Data table and follow <a href="#reproduce">Reproduce</a>.</p>
+<p class="lede">A pre-registered token flow statement for NEAR that anyone can re-run. <code>make site</code> runs <code>python3 -m pipeline.compute</code> and <code>python3 -m pipeline.render</code> in one command, rebuilding every number and chart from the raw snapshots in <code>data/raw/</code>, offline. Each chart carries the query behind it and the exact numbers it plots; the steps to check one are under <a href="#reproduce">Reproduce</a>.</p>
 <dl class="meta">
 <dt>Windows</dt>
 <dd>Value capture: the 30 days to <span data-m="asof">2026-11-04</span>. Supply: the 90 days 2026-08-07 to 2026-11-04.</dd>
@@ -9879,7 +9904,7 @@ SELECT &#x27;qa&#x27;, NULL, NULL, NULL, NULL, fmt, ROUND(SUM(near), 6), COUNT(*
 <dd><code data-fingerprint="53a27b8ddbf3c336">53a27b8ddbf3c336</code>, the first 16 hex of the SHA-256 of <code>data/MANIFEST.json</code>, which pins every raw snapshot.</dd>
 <dt>Pre-registration</dt>
 <dd><code>PREREG.md</code> SHA-256 <code data-prereg="19e470be5398f67ce7b6b5a51f007c0c7a0fcc059b61853c52caf7401452e240">19e470be5398f67c…</code>, frozen at git tag <code>prereg-freeze</code> (commit <code>413d776</code>, 2026-11-05 22:53:29 UTC), before the first BigQuery result the repository records (<span data-r="stamp:raw/bq/staking_flows_daily.json">2026-11-05 22:55:37 UTC</span> in <code>data/MANIFEST.json</code>); the order rests on the author&rsquo;s own commit and manifest times, and GitHub&rsquo;s activity log dates the push of the freeze commit to 2026-11-05 22:53:33 UTC. <a href="https://github.com/notveiker/near-flow-statement/blob/main/PREREG.md#what-we-had-already-seen-when-we-froze-this">&ldquo;What we had already seen&rdquo;</a> in that file lists the data already in hand.</dd></dl>
-<p class="note">The Today row is exploratory. Your browser fetches it when the page opens, from CoinGecko, DefiLlama and NEAR&rsquo;s public RPC (no keys). It recomputes the growth the price assumes from today&rsquo;s market cap and the last 90 days of captured revenue, keeping the committed supply path (<span data-m="ic_supply_factor_x">1.094</span>× to 2031), a <span data-m="ic_base_r_pct">15</span>% required return and a <span data-m="ic_base_x">25</span>× multiple. Nothing else on the page changes.</p>
+<p class="note">The Today row is exploratory. The browser fetches it when the page opens, from CoinGecko, DefiLlama and NEAR&rsquo;s public RPC (no keys). It recomputes the growth the price assumes from today&rsquo;s market cap and the last 90 days of captured revenue, keeping the committed supply path (<span data-m="ic_supply_factor_x">1.094</span>× to 2031), a <span data-m="ic_base_r_pct">15</span>% required return and a <span data-m="ic_base_x">25</span>× multiple. Nothing else on the page changes.</p>
 <p class="note">Documents:</p>
 <ul class="docs">
 <li><a href="https://github.com/notveiker/near-flow-statement/blob/main/THESIS.md">The full thesis</a></li>

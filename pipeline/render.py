@@ -1064,16 +1064,24 @@ h3{font-size:1.0625rem;font-weight:650;line-height:1.35;margin:.5rem 0 .6rem}
 .i-line{fill:none;stroke:var(--ink2);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 
 /* chart cards */
-.grid{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-items:stretch}
-.grid>.gridhead{grid-column:1 / -1}
-@media (min-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.grid>.card.span2{grid-column:1 / -1}.grid>.card.span2 .cv-wide{max-width:900px;margin:0 auto}}
-@media (min-width:1214px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.grid>.card.span2{grid-column:span 2}}
-@media (min-width:1214px){.grid>.card.fill2{grid-column:span 2}.grid>.card.fill3{grid-column:1 / -1}.grid>.card.one{grid-column:auto}}
-.grid>.card .cv-wide{max-width:900px;margin:0 auto}
+.grid{display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
+.cols{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-items:start;min-width:0}
+.col{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-content:start;min-width:0}
+@media (min-width:900px){.cols{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.grid .card .cv-wide{max-width:900px;margin:0 auto}
 .grid>.gridhead{margin:1.4rem 0 -.2rem;max-width:none;font-size:1.0625rem;font-weight:700;color:var(--ink)}
 .grid>.gridhead:first-child{margin-top:.4rem}
-.grid>.gridlead{grid-column:1 / -1;margin:-.5rem 0 .1rem;max-width:104ch;font-size:.9375rem;line-height:1.55;color:var(--ink2)}
-.card{container-type:inline-size;display:flex;flex-direction:column;min-width:0;margin:0;padding:18px 20px 14px;background:var(--surface);border:1px solid var(--border);border-radius:6px}
+.grid>.gridlead{margin:-.5rem 0 .1rem;max-width:104ch;font-size:.9375rem;line-height:1.55;color:var(--ink2)}
+.card{container-type:inline-size;min-width:0;margin:0;padding:18px 20px 14px;background:var(--surface);border:1px solid var(--border);border-radius:6px}
+/* a card that takes a full row: the chart at the left, its key figures and notes beside it */
+@supports selector(:has(*)){@media (min-width:1100px){
+.grid>.card.span2:has(>.keyfigs){display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);column-gap:40px;align-items:start}
+.grid>.card.span2:has(>.keyfigs)>.cardtop,.grid>.card.span2:has(>.keyfigs)>h3,.grid>.card.span2:has(>.keyfigs)>.cardfoot{grid-column:1 / -1}
+.grid>.card.span2:has(>.keyfigs)>figure{grid-column:1;grid-row:3 / span 8;margin-top:.4rem}
+.grid>.card.span2:has(>.keyfigs)>:not(.cardtop):not(h3):not(figure):not(.cardfoot){grid-column:2}
+.grid>.card.span2:has(>.keyfigs)>.keyfigs{grid-template-columns:minmax(0,1fr);gap:14px;margin-top:.4rem;padding-top:0;border-top:0}
+.grid>.card.span2:has(>.keyfigs)>.keyfigs dd{font-size:1.375rem;letter-spacing:-.015em}
+}}
 .cardtop{display:flex;align-items:baseline;gap:10px;min-height:1.2rem;font-size:.8125rem}
 .fignum{font-weight:600;color:var(--muted)}
 .badge{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -1086,7 +1094,7 @@ figure.chart-fig{margin:.9rem 0 .4rem}
 .cv-narrow{display:none;max-width:430px}
 .grid .cv-narrow{max-width:440px;margin:0 auto}
 @media (max-width:699px){.cv-wide{display:none}.cv-narrow{display:block}.card{padding:14px 14px 10px}}
-@container (max-width:640px){.cv-wide{display:none}.cv-narrow{display:block;max-width:none}}
+@container (max-width:600px){.cv-wide{display:none}.cv-narrow{display:block;max-width:none}}
 figcaption{font-size:.8125rem;line-height:1.5;color:var(--muted);margin-top:8px}
 .svg{display:block;width:100%;height:auto}
 .svg text{fill:var(--ink2);font-family:inherit}
@@ -1117,8 +1125,7 @@ figcaption{font-size:.8125rem;line-height:1.5;color:var(--muted);margin-top:8px}
 .keyfigs div{min-width:0}
 .keyfigs dt{font-size:.75rem;line-height:1.35;color:var(--muted)}
 .keyfigs dd{margin:0;font-weight:650;font-size:1.0625rem;font-variant-numeric:lining-nums tabular-nums}
-.cardfoot{display:flex;flex-wrap:wrap;gap:4px 20px;margin-top:auto;padding-top:.7rem;border-top:1px solid var(--grid)}
-.card>.keyfigs,.card>figure{margin-bottom:.9rem}
+.cardfoot{display:flex;flex-wrap:wrap;gap:4px 20px;margin-top:.9rem;padding-top:.7rem;border-top:1px solid var(--grid)}
 .cardfoot details{margin:0;border:0;padding:0;flex:0 0 auto;min-width:0}
 .cardfoot details[open]{flex-basis:100%;order:1}
 .cardfoot summary{display:inline;padding:0;font-size:.8125rem;font-weight:500;color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;list-style:none}
@@ -3605,7 +3612,7 @@ def answer_line(ctx: Ctx) -> str:
     return (
         '<p class="questions"><strong>The pre-registered question:</strong> how much NEAR actually flows to exchanges, and how much of that do identified buyers '
         'absorb? (It makes no claim about which coins are sold.) <strong>The question the evidence can answer:</strong> how much of NEAR&rsquo;s value capture '
-        'can you verify?</p>'
+        'can be verified?</p>'
         '<div class="answer">'
         f'<p><strong>What the pre-registered tests found:</strong> net staking outflow was {M("h1a_ratio_as_written_x")}× staking rewards over 90 days, '
         f'where H1a (most staking rewards stay staked) predicted under {K("h1a_pass_below_x")}×. Only {M("h1b_coverage_count_pct")}% of the top-100 NEAR '
@@ -3864,7 +3871,7 @@ def live_panel(ctx: Ctx) -> str:
             ("lv-take", "NEAR&rsquo;s take, 30 days", f'was {M("upd_take_captured_bp_30d")} bp'),
             ("lv-bb", "Buyback wallet", f'{M("buyback_wallet_near_m")}M NEAR at the freeze'),
         )
-        cap = f'Today, read live by your browser. In grey: {d}.'
+        cap = f'Today, read live in the browser. In grey: {d}.'
     else:
         items = (
             ("lv-implied", "Growth the price assumes", f'{M("asof")}: {M("ic_implied_cagr_r15_x25_pct")}% a year'),
@@ -3873,7 +3880,7 @@ def live_panel(ctx: Ctx) -> str:
             ("lv-take", "NEAR&rsquo;s take, 30 days", f'{M("asof")}: {M("take_captured_bp_30d")} bp'),
             ("lv-bb", "Buyback wallet", f'At the freeze: {M("buyback_wallet_near_m")}M NEAR'),
         )
-        cap = 'Today, read live by your browser'
+        cap = 'Today, read live in the browser'
     lis = "".join(f'<li><span class="tl">{lab}</span><output id="{oid}">&hellip;</output><span class="tw">{was}</span></li>' for oid, lab, was in items)
     return f'<div class="today" id="live"><p class="todaycap">{cap}</p><ul class="todayrow" aria-label="Today&rsquo;s values">{lis}</ul></div>'
 
@@ -3898,8 +3905,8 @@ def about_data(ctx: Ctx) -> str:
     return (
         f'<section id="about" aria-labelledby="about-h"><h2 id="about-h">About the data</h2>'
         f'<p class="lede">A pre-registered token flow statement for NEAR that anyone can re-run. <code>make site</code> runs <code>python3 -m pipeline.compute</code> and '
-        f'<code>python3 -m pipeline.render</code> in one command, rebuilding every number and chart from the raw snapshots in <code>data/raw/</code>, offline. Under each chart you&rsquo;ll find the query behind it and the exact numbers it plots; '
-        f'to check one, open its Data table and follow <a href="#reproduce">Reproduce</a>.</p>'
+        f'<code>python3 -m pipeline.render</code> in one command, rebuilding every number and chart from the raw snapshots in <code>data/raw/</code>, offline. Each chart carries the query behind it and the exact numbers it plots; '
+        f'the steps to check one are under <a href="#reproduce">Reproduce</a>.</p>'
         f'<dl class="meta">'
         f'<dt>Windows</dt><dd>Value capture: the 30 days to {M("asof")}. Supply: the 90 days {window_text(ctx, 90)}.</dd>'
         f'<dt>Data as of</dt><dd>{M("asof")} (<code>data/metrics.json</code>). Revenue-wallet window {M("revwallets_window")}. NEAR RPC block {M("rpc_block")}.</dd>'
@@ -3909,7 +3916,7 @@ def about_data(ctx: Ctx) -> str:
         f'<code>{FREEZE_TAG}</code> (commit <code>{FREEZE_COMMIT}</code>, {FREEZE_UTC} UTC), before the first BigQuery result the repository records '
         f'({freeze_stamp} in <code>data/MANIFEST.json</code>); the order rests on the author&rsquo;s own commit and manifest times, and GitHub&rsquo;s activity log dates the push of the freeze commit to 2026-11-05 22:53:33 UTC. '
         f'<a href="{esc(gh("PREREG.md"))}#{PREREG_ANCHOR}">&ldquo;What we had already seen&rdquo;</a> in that file lists the data already in hand.</dd></dl>'
-        f'<p class="note">The Today row is exploratory. Your browser fetches it when the page opens, from CoinGecko, DefiLlama and NEAR&rsquo;s public RPC '
+        f'<p class="note">The Today row is exploratory. The browser fetches it when the page opens, from CoinGecko, DefiLlama and NEAR&rsquo;s public RPC '
         f'(no keys). It recomputes the growth the price assumes from today&rsquo;s market cap and the last 90 days of captured revenue, keeping the committed '
         f'supply path ({M("ic_supply_factor_x")}× to 2031), a {M("ic_base_r_pct")}% required return and a {M("ic_base_x")}× multiple. Nothing else on the page changes.</p>'
         f'<p class="note">Documents:</p><ul class="docs">{docs}</ul></section>')
@@ -4044,52 +4051,48 @@ def track_lead(ctx: Ctx) -> str:
             f'<a href="{esc(gh("PREREG-ADDENDUM.md"))}">addendum</a>.</p>')
 
 
-def row_classes(ids: tuple[str, ...], cols: int = 3) -> dict[str, str]:
-    """For one group of cards on the three-column grid: {card id: extra class} so that no row of the group ends short.
-
-    A card is one column wide, or two if it is in WIDE_CARDS. Cards fill rows in order. Where a row would end short, its last card is
-    widened to the end of the row (fill2, fill3). One case is handled the other way round: a wide card followed by one card and then a
-    lone card (2 + 1, then 1) becomes three cards in one row, the wide one drawn one column wide (class one)."""
-    width = {c: (2 if c in WIDE_CARDS else 1) for c in ids}
-    rows: list[list[str]] = [[]]
-    for c in ids:
-        if sum(width[x] for x in rows[-1]) + width[c] > cols:
-            rows.append([])
-        rows[-1].append(c)
-    out: dict[str, str] = {}
-    if len(rows) >= 2 and len(rows[-1]) == 1 and width[rows[-1][0]] == 1 and len(rows[-2]) == 2 and sum(width[x] for x in rows[-2]) == cols:
-        wide = next(x for x in rows[-2] if width[x] == 2)
-        out[wide] = "one"
-        width[wide] = 1
-        rows[-2:] = [rows[-2] + rows[-1]]
-    for row in rows:
-        short = cols - sum(width[x] for x in row)
-        if row and short > 0:
-            out[row[-1]] = f"fill{width[row[-1]] + short}"
-    return out
+_CHART_HEIGHT = re.compile(r'<svg class="svg" viewBox="0 0 [0-9.]+ ([0-9.]+)"')
 
 
-def with_row_classes(ids: tuple[str, ...], cards: dict[str, tuple[str, object]], ctx: Ctx) -> str:
-    """The cards of one group, in order, each with the class row_classes() gives it."""
-    extra = row_classes(ids)
-    parts = []
+def lay_out(ids: tuple[str, ...], cards: dict[str, tuple[str, object]], ctx: Ctx) -> str:
+    """The cards of one group, in order, arranged so that no card has to be stretched to match a neighbour.
+
+    A wide card (WIDE_CARDS) takes a full row. The cards between two wide ones go into two columns, split where the columns come out
+    closest in height; the height of a card is taken from its chart (the first, wide drawing) plus a constant for its title, caption and
+    key figures. A card left on its own takes a full row. The order in the markup is the figure order, whatever the split."""
+    out: list[str] = []
+    run: list[str] = []
+
+    def height(markup: str) -> float:
+        m = _CHART_HEIGHT.search(markup)
+        return (float(m.group(1)) if m else 300.0) + 260.0
+
+    def flush() -> None:
+        if len(run) == 1:
+            out.append(run[0].replace('<section class="card"', '<section class="card span2"', 1))
+        elif run:
+            hs = [height(x) for x in run]
+            k = min(range(1, len(run)), key=lambda i: abs(sum(hs[:i]) - sum(hs[i:])))
+            out.append(f'<div class="cols"><div class="col">{"".join(run[:k])}</div><div class="col">{"".join(run[k:])}</div></div>')
+        run.clear()
+
     for cid in ids:
         markup = cards[cid][1](ctx)
-        if cid in extra:
-            head = '<section class="card'
-            if not markup.startswith(head):
-                raise SystemExit(f"render: card {cid} does not start with {head!r}")
-            markup = f'{head} {extra[cid]}' + markup[len(head):]
-        parts.append(markup)
-    return "".join(parts)
+        if cid in WIDE_CARDS:
+            flush()
+            out.append(markup)
+        else:
+            run.append(markup)
+    flush()
+    return "".join(out)
 
 
 def build_page(ctx: Ctx, breaks: bool = True) -> str:
     """The whole page. breaks=False leaves the body on a few very long lines (tests/test_render.py compares the two)."""
     cards = all_cards()
-    pre = with_row_classes(tuple(c for c, _, _ in PRE_CARDS), cards, ctx)
-    fwd = with_row_classes(CASE_IDS, cards, ctx)
-    exp = "".join(f'<p class="gridhead">{esc(head)}</p><p class="gridlead">{group_lead(ctx, head)}</p>' + with_row_classes(ids, cards, ctx)
+    pre = lay_out(tuple(c for c, _, _ in PRE_CARDS), cards, ctx)
+    fwd = lay_out(CASE_IDS, cards, ctx)
+    exp = "".join(f'<p class="gridhead">{esc(head)}</p><p class="gridlead">{group_lead(ctx, head)}</p>' + lay_out(ids, cards, ctx)
                   for head, ids in EVIDENCE)
     body = (
         f'<a class="skip" href="#main">Skip to the content</a><div class="wrap">{header(ctx)}{side_nav()}'
@@ -4116,7 +4119,7 @@ def build_page(ctx: Ctx, breaks: bool = True) -> str:
         '<meta name="viewport" content="width=device-width, initial-scale=1">\n<meta name="color-scheme" content="light dark">\n'
         '<title>NEAR flow statement dashboard</title>\n'
         '<meta name="description" content="A long-term investment thesis for NEAR: what its price assumes, what the evidence supports, scenarios and signposts, on a pre-registered, re-runnable token flow statement. The pre-registered question is how much NEAR flows to exchanges and how much of that '
-        'identified buyers absorb; the question the evidence can answer is how much of NEAR&#x27;s value capture can you verify. '
+        'identified buyers absorb; the question the evidence can answer is how much of NEAR&#x27;s value capture can be verified. '
         'Every chart shows the query behind it and the exact numbers it plots.">\n'
         f'<link rel="icon" href="{FAVICON}">\n'
         f"<style>\n{css()}\n</style>\n</head>\n")

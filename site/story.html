@@ -134,16 +134,24 @@ h3{font-size:1.0625rem;font-weight:650;line-height:1.35;margin:.5rem 0 .6rem}
 .i-line{fill:none;stroke:var(--ink2);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 
 /* chart cards */
-.grid{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-items:stretch}
-.grid>.gridhead{grid-column:1 / -1}
-@media (min-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.grid>.card.span2{grid-column:1 / -1}.grid>.card.span2 .cv-wide{max-width:900px;margin:0 auto}}
-@media (min-width:1214px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.grid>.card.span2{grid-column:span 2}}
-@media (min-width:1214px){.grid>.card.fill2{grid-column:span 2}.grid>.card.fill3{grid-column:1 / -1}.grid>.card.one{grid-column:auto}}
-.grid>.card .cv-wide{max-width:900px;margin:0 auto}
+.grid{display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
+.cols{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-items:start;min-width:0}
+.col{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-content:start;min-width:0}
+@media (min-width:900px){.cols{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.grid .card .cv-wide{max-width:900px;margin:0 auto}
 .grid>.gridhead{margin:1.4rem 0 -.2rem;max-width:none;font-size:1.0625rem;font-weight:700;color:var(--ink)}
 .grid>.gridhead:first-child{margin-top:.4rem}
-.grid>.gridlead{grid-column:1 / -1;margin:-.5rem 0 .1rem;max-width:104ch;font-size:.9375rem;line-height:1.55;color:var(--ink2)}
-.card{container-type:inline-size;display:flex;flex-direction:column;min-width:0;margin:0;padding:18px 20px 14px;background:var(--surface);border:1px solid var(--border);border-radius:6px}
+.grid>.gridlead{margin:-.5rem 0 .1rem;max-width:104ch;font-size:.9375rem;line-height:1.55;color:var(--ink2)}
+.card{container-type:inline-size;min-width:0;margin:0;padding:18px 20px 14px;background:var(--surface);border:1px solid var(--border);border-radius:6px}
+/* a card that takes a full row: the chart at the left, its key figures and notes beside it */
+@supports selector(:has(*)){@media (min-width:1100px){
+.grid>.card.span2:has(>.keyfigs){display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);column-gap:40px;align-items:start}
+.grid>.card.span2:has(>.keyfigs)>.cardtop,.grid>.card.span2:has(>.keyfigs)>h3,.grid>.card.span2:has(>.keyfigs)>.cardfoot{grid-column:1 / -1}
+.grid>.card.span2:has(>.keyfigs)>figure{grid-column:1;grid-row:3 / span 8;margin-top:.4rem}
+.grid>.card.span2:has(>.keyfigs)>:not(.cardtop):not(h3):not(figure):not(.cardfoot){grid-column:2}
+.grid>.card.span2:has(>.keyfigs)>.keyfigs{grid-template-columns:minmax(0,1fr);gap:14px;margin-top:.4rem;padding-top:0;border-top:0}
+.grid>.card.span2:has(>.keyfigs)>.keyfigs dd{font-size:1.375rem;letter-spacing:-.015em}
+}}
 .cardtop{display:flex;align-items:baseline;gap:10px;min-height:1.2rem;font-size:.8125rem}
 .fignum{font-weight:600;color:var(--muted)}
 .badge{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -156,7 +164,7 @@ figure.chart-fig{margin:.9rem 0 .4rem}
 .cv-narrow{display:none;max-width:430px}
 .grid .cv-narrow{max-width:440px;margin:0 auto}
 @media (max-width:699px){.cv-wide{display:none}.cv-narrow{display:block}.card{padding:14px 14px 10px}}
-@container (max-width:640px){.cv-wide{display:none}.cv-narrow{display:block;max-width:none}}
+@container (max-width:600px){.cv-wide{display:none}.cv-narrow{display:block;max-width:none}}
 figcaption{font-size:.8125rem;line-height:1.5;color:var(--muted);margin-top:8px}
 .svg{display:block;width:100%;height:auto}
 .svg text{fill:var(--ink2);font-family:inherit}
@@ -187,8 +195,7 @@ figcaption{font-size:.8125rem;line-height:1.5;color:var(--muted);margin-top:8px}
 .keyfigs div{min-width:0}
 .keyfigs dt{font-size:.75rem;line-height:1.35;color:var(--muted)}
 .keyfigs dd{margin:0;font-weight:650;font-size:1.0625rem;font-variant-numeric:lining-nums tabular-nums}
-.cardfoot{display:flex;flex-wrap:wrap;gap:4px 20px;margin-top:auto;padding-top:.7rem;border-top:1px solid var(--grid)}
-.card>.keyfigs,.card>figure{margin-bottom:.9rem}
+.cardfoot{display:flex;flex-wrap:wrap;gap:4px 20px;margin-top:.9rem;padding-top:.7rem;border-top:1px solid var(--grid)}
 .cardfoot details{margin:0;border:0;padding:0;flex:0 0 auto;min-width:0}
 .cardfoot details[open]{flex-basis:100%;order:1}
 .cardfoot summary{display:inline;padding:0;font-size:.8125rem;font-weight:500;color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;list-style:none}
