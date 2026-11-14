@@ -4020,7 +4020,7 @@ def build_story(ctx: Ctx) -> str:
         f'<li>Pre-registered: net staking outflow was {M("h1a_ratio_as_written_x")}× staking rewards, where H1a predicted under {ctx.K("h1a_pass_below_x")}×; '
         'exchange flows come out as ranges the labels cannot settle, so the frozen rating rule gives no signal.</li>'
         f'<li>{forecast_line}</li>{update_line}</ul>'
-        f'<p>Re-run it: <code>git clone {esc(REPO_URL)} &amp;&amp; make site</code>. Research only; nothing here is investment advice.</p></section>')
+        f'<p>Re-run it: <code>git clone {esc(REPO_URL)} &amp;&amp; cd near-flow-statement &amp;&amp; make site</code>. Research only; nothing here is investment advice.</p></section>')
     body = f'<main class="story">{cover}{slides}{end}</main>'
     body = body.replace('href="#', 'href="index.html#')
     head = (
