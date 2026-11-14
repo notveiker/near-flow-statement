@@ -3922,6 +3922,11 @@ LADDER_HISTORY = (
     f'and it became the thesis headline on 2026-11-07 00:21 UTC (<a href="{esc(gh("PREREG-ADDENDUM.md"))}">addendum</a>, 2026-11-08 02:03 UTC entry, item 1).</p></details>')
 
 
+# The tab icon: an inline SVG (a data: URI, so nothing is loaded), the same green dot as the eyebrow.
+FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E"
+           "%3Crect width='16' height='16' rx='4' fill='%2316150f'/%3E%3Ccircle cx='8' cy='8' r='3.5' fill='%232fd39a'/%3E%3C/svg%3E")
+
+
 def build_page(ctx: Ctx, breaks: bool = True) -> str:
     """The whole page. breaks=False leaves the body on a few very long lines (tests/test_render.py compares the two)."""
     cards = all_cards()
@@ -3959,7 +3964,7 @@ def build_page(ctx: Ctx, breaks: bool = True) -> str:
         '<meta name="description" content="A long-term investment thesis for NEAR: what its price assumes, what the evidence supports, scenarios and signposts, on a pre-registered, re-runnable token flow statement. The pre-registered question is how much NEAR flows to exchanges and how much of that '
         'identified buyers absorb; the question the evidence can answer is how much of NEAR&#x27;s value capture can you verify. '
         'Every chart shows the query behind it and the exact numbers it plots.">\n'
-        '<link rel="icon" href="data:,">\n'
+        f'<link rel="icon" href="{FAVICON}">\n'
         f"<style>\n{css()}\n</style>\n</head>\n")
     return f"{head}<body>\n{break_lines(body) if breaks else body}\n</body>\n</html>\n"
 
@@ -4029,7 +4034,7 @@ def build_story(ctx: Ctx) -> str:
         '<title>NEAR investment thesis: the story</title>\n'
         '<meta name="description" content="The NEAR investment case in six charts: what reaches NEAR, what the price assumes, what would have to give, '
         'three futures, the uncertainty and the signposts.">\n'
-        '<link rel="icon" href="data:,">\n'
+        f'<link rel="icon" href="{FAVICON}">\n'
         f"<style>\n{css()}\n{STORY_CSS.strip()}\n</style>\n</head>\n")
     return f"{head}<body class=\"story\">\n{break_lines(body)}\n</body>\n</html>\n"
 
