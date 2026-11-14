@@ -1083,6 +1083,7 @@ h3{font-size:1.0625rem;font-weight:650;line-height:1.35;margin:.5rem 0 .6rem}
 .took li{max-width:none;text-wrap:balance;margin:0;padding:11px 0 12px;border-bottom:1px solid var(--grid);font-size:.9375rem;line-height:1.5;color:var(--ink2)}
 .took strong{color:var(--ink);font-weight:650}
 @media (min-width:1100px){.tail{white-space:nowrap}}
+.nb{white-space:nowrap}
 .card .note{text-wrap:balance}
 @media (min-width:900px){.took{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .ico{flex:none}
@@ -1104,8 +1105,11 @@ h3{font-size:1.0625rem;font-weight:650;line-height:1.35;margin:.5rem 0 .6rem}
 .grid>.card.span2:has(>.keyfigs)>.cardtop,.grid>.card.span2:has(>.keyfigs)>h3,.grid>.card.span2:has(>.keyfigs)>.cardfoot{grid-column:1 / -1}
 .grid>.card.span2:has(>.keyfigs)>figure{grid-column:1;grid-row:3 / span 8;margin-top:.4rem}
 .grid>.card.span2:has(>.keyfigs)>:not(.cardtop):not(h3):not(figure):not(.cardfoot){grid-column:2}
-.grid>.card.span2:has(>.keyfigs)>.keyfigs{grid-template-columns:minmax(0,1fr);gap:14px;margin-top:.4rem;padding-top:0;border-top:0}
-.grid>.card.span2:has(>.keyfigs)>.keyfigs dd{font-size:1.375rem;letter-spacing:-.015em}
+.grid>.card.span2:has(>.keyfigs)>.keyfigs{grid-template-columns:minmax(0,1fr);gap:0;margin-top:.4rem;padding-top:0;border-top:1px solid var(--grid)}
+.grid>.card.span2:has(>.keyfigs)>.keyfigs>div{padding:15px 0 17px;border-bottom:1px solid var(--grid)}
+.grid>.card.span2:has(>.keyfigs)>.keyfigs dt{font-size:.9375rem;line-height:1.4;color:var(--ink2)}
+.grid>.card.span2:has(>.keyfigs)>.keyfigs dd{margin-top:5px;font-size:clamp(1.625rem,2.3vw,2.125rem);line-height:1.15;letter-spacing:-.02em}
+.grid>.card.span2:has(>.keyfigs)>.note{font-size:1rem}
 }}
 .cardtop{display:flex;align-items:baseline;gap:10px;min-height:1.2rem;font-size:.8125rem}
 .fignum{font-weight:600;color:var(--muted)}
@@ -2928,7 +2932,7 @@ def card_usage(ctx: Ctx) -> str:
         caption=f"Panels A and B: plotted values, {first} to {last}", attrs='data-series="l1_daily"')
 
     figs = keyfigs([(label, f'{M(f"l1_step_{tag}_before_k")} → {M(f"l1_step_{tag}_after_k")}') for tag, label in USAGE_COUNTS])
-    lead = f'<p class="note">Four daily counts, in thousands, on {esc(ref)} and then on {esc(step)}, the day of the fall:</p>'
+    lead = f'<p class="note">Four daily counts, in thousands, on <span class="nb">{esc(ref)}</span> and then on <span class="nb">{esc(step)}</span>, the day of the fall:</p>'
     return card(
         cid="usage", kind="exp",
         title=(f'Daily active accounts: {M("active_accounts_30d_k")}K, {M("active_accounts_30d_yoy_pct")}% on a year earlier; '
@@ -4086,8 +4090,7 @@ def case_lead(ctx: Ctx) -> str:
             f'{M("ladder_all_wallets_pct_of_issuance", 2)}% of net new supply, and only {M("ladder_public_collectors_pct_of_issuance", 2)} points of that trace to '
             f'public fee collectors. For those fees alone to carry NEAR&rsquo;s price, they would have to grow {M("ic_implied_cagr_r15_x25_pct")}% a year to 2031. '
             f'With the market growing at last year&rsquo;s pace and Intents at its best share, that would take {M("ic_take_needed_vs_gross_x")}× Intents&rsquo; whole '
-            f'gross fee. In the base case the fees pay for {M("ic_base_coverage_2031_pct")}% of NEAR&rsquo;s dilution in 2031. All of this is exploratory: we chose it '
-            'after freezing our predictions (the ladder on 2026-11-06, the rest on 2026-11-13 and 2026-11-14), and it changes none of them.</p>')
+            f'gross fee. In the base case the fees pay for {M("ic_base_coverage_2031_pct")}% of NEAR&rsquo;s dilution in 2031.</p>')
 
 
 def evidence_lead(ctx: Ctx) -> str:

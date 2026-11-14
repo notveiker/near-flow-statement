@@ -465,3 +465,7 @@ Changes to the dashboard's wording and layout made with it, at the owner's reque
 - The dashboard's footer no longer carries the sentence about NEAR's trademark that the 21:40 UTC entry mentions (the README keeps it), and its text runs the full width.
 
 No number, result or rule changes.
+
+## 2026-11-14 22:25 UTC: the Investment case tab's opening note drops its label sentence; larger figures beside the wide charts (layout and wording only)
+
+At the owner's request the opening note of the dashboard's Investment case tab no longer ends with the sentence that the tab is exploratory and when its parts were chosen (the ladder on 2026-11-06, the rest on 2026-11-13 and 2026-11-14). The line above the tabs still says that the view, the figures above it and the first two tabs are exploratory and were built after the predictions were frozen; the Supporting evidence and Track record tabs keep the label in their opening notes; each chart card keeps its label in the markup; and the dates stay in the entries of this file that record each choice. `AGENTS.md` now states the label rule for the dashboard that way. The figures beside the five full-width charts are set larger, as ledger rows. No number, result or rule changes.

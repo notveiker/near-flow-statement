@@ -153,6 +153,7 @@ h3{font-size:1.0625rem;font-weight:650;line-height:1.35;margin:.5rem 0 .6rem}
 .took li{max-width:none;text-wrap:balance;margin:0;padding:11px 0 12px;border-bottom:1px solid var(--grid);font-size:.9375rem;line-height:1.5;color:var(--ink2)}
 .took strong{color:var(--ink);font-weight:650}
 @media (min-width:1100px){.tail{white-space:nowrap}}
+.nb{white-space:nowrap}
 .card .note{text-wrap:balance}
 @media (min-width:900px){.took{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .ico{flex:none}
@@ -174,8 +175,11 @@ h3{font-size:1.0625rem;font-weight:650;line-height:1.35;margin:.5rem 0 .6rem}
 .grid>.card.span2:has(>.keyfigs)>.cardtop,.grid>.card.span2:has(>.keyfigs)>h3,.grid>.card.span2:has(>.keyfigs)>.cardfoot{grid-column:1 / -1}
 .grid>.card.span2:has(>.keyfigs)>figure{grid-column:1;grid-row:3 / span 8;margin-top:.4rem}
 .grid>.card.span2:has(>.keyfigs)>:not(.cardtop):not(h3):not(figure):not(.cardfoot){grid-column:2}
-.grid>.card.span2:has(>.keyfigs)>.keyfigs{grid-template-columns:minmax(0,1fr);gap:14px;margin-top:.4rem;padding-top:0;border-top:0}
-.grid>.card.span2:has(>.keyfigs)>.keyfigs dd{font-size:1.375rem;letter-spacing:-.015em}
+.grid>.card.span2:has(>.keyfigs)>.keyfigs{grid-template-columns:minmax(0,1fr);gap:0;margin-top:.4rem;padding-top:0;border-top:1px solid var(--grid)}
+.grid>.card.span2:has(>.keyfigs)>.keyfigs>div{padding:15px 0 17px;border-bottom:1px solid var(--grid)}
+.grid>.card.span2:has(>.keyfigs)>.keyfigs dt{font-size:.9375rem;line-height:1.4;color:var(--ink2)}
+.grid>.card.span2:has(>.keyfigs)>.keyfigs dd{margin-top:5px;font-size:clamp(1.625rem,2.3vw,2.125rem);line-height:1.15;letter-spacing:-.02em}
+.grid>.card.span2:has(>.keyfigs)>.note{font-size:1rem}
 }}
 .cardtop{display:flex;align-items:baseline;gap:10px;min-height:1.2rem;font-size:.8125rem}
 .fignum{font-weight:600;color:var(--muted)}

@@ -153,6 +153,7 @@ h3{font-size:1.0625rem;font-weight:650;line-height:1.35;margin:.5rem 0 .6rem}
 .took li{max-width:none;text-wrap:balance;margin:0;padding:11px 0 12px;border-bottom:1px solid var(--grid);font-size:.9375rem;line-height:1.5;color:var(--ink2)}
 .took strong{color:var(--ink);font-weight:650}
 @media (min-width:1100px){.tail{white-space:nowrap}}
+.nb{white-space:nowrap}
 .card .note{text-wrap:balance}
 @media (min-width:900px){.took{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .ico{flex:none}
@@ -174,8 +175,11 @@ h3{font-size:1.0625rem;font-weight:650;line-height:1.35;margin:.5rem 0 .6rem}
 .grid>.card.span2:has(>.keyfigs)>.cardtop,.grid>.card.span2:has(>.keyfigs)>h3,.grid>.card.span2:has(>.keyfigs)>.cardfoot{grid-column:1 / -1}
 .grid>.card.span2:has(>.keyfigs)>figure{grid-column:1;grid-row:3 / span 8;margin-top:.4rem}
 .grid>.card.span2:has(>.keyfigs)>:not(.cardtop):not(h3):not(figure):not(.cardfoot){grid-column:2}
-.grid>.card.span2:has(>.keyfigs)>.keyfigs{grid-template-columns:minmax(0,1fr);gap:14px;margin-top:.4rem;padding-top:0;border-top:0}
-.grid>.card.span2:has(>.keyfigs)>.keyfigs dd{font-size:1.375rem;letter-spacing:-.015em}
+.grid>.card.span2:has(>.keyfigs)>.keyfigs{grid-template-columns:minmax(0,1fr);gap:0;margin-top:.4rem;padding-top:0;border-top:1px solid var(--grid)}
+.grid>.card.span2:has(>.keyfigs)>.keyfigs>div{padding:15px 0 17px;border-bottom:1px solid var(--grid)}
+.grid>.card.span2:has(>.keyfigs)>.keyfigs dt{font-size:.9375rem;line-height:1.4;color:var(--ink2)}
+.grid>.card.span2:has(>.keyfigs)>.keyfigs dd{margin-top:5px;font-size:clamp(1.625rem,2.3vw,2.125rem);line-height:1.15;letter-spacing:-.02em}
+.grid>.card.span2:has(>.keyfigs)>.note{font-size:1rem}
 }}
 .cardtop{display:flex;align-items:baseline;gap:10px;min-height:1.2rem;font-size:.8125rem}
 .fignum{font-weight:600;color:var(--muted)}
@@ -372,7 +376,7 @@ footer p{max-width:none}
 <nav class="tabbar" aria-label="Sections"><a href="#forward-view" data-tab="forward-view">Investment case</a><a href="#exploratory" data-tab="exploratory">Supporting evidence</a><a href="#preregistered" data-tab="preregistered">Track record</a><a href="#method" data-tab="method">Method and limits</a></nav>
 <section id="forward-view" class="panel" aria-labelledby="fwd-h">
 <h2 id="fwd-h">The investment case</h2>
-<p class="note">The NEAR that Intents sends to NEAR&rsquo;s revenue wallets is small next to what the price assumes. Over 30 days it equalled <span data-m="ladder_all_wallets_pct_of_issuance">15.81</span>% of net new supply, and only <span data-m="ladder_public_collectors_pct_of_issuance">4.53</span> points of that trace to public fee collectors. For those fees alone to carry NEAR&rsquo;s price, they would have to grow <span data-m="ic_implied_cagr_r15_x25_pct">84.9</span>% a year to 2031. With the market growing at last year&rsquo;s pace and Intents at its best share, that would take <span data-m="ic_take_needed_vs_gross_x">2.5</span>× Intents&rsquo; whole gross fee. In the base case the fees pay for <span data-m="ic_base_coverage_2031_pct">44.6</span>% of NEAR&rsquo;s dilution in 2031. All of this is exploratory: we chose it after freezing our predictions (the ladder on 2026-11-06, the rest on <span class="tail">2026-11-13 and 2026-11-14), and it changes none of them.</span></p>
+<p class="note">The NEAR that Intents sends to NEAR&rsquo;s revenue wallets is small next to what the price assumes. Over 30 days it equalled <span data-m="ladder_all_wallets_pct_of_issuance">15.81</span>% of net new supply, and only <span data-m="ladder_public_collectors_pct_of_issuance">4.53</span> points of that trace to public fee collectors. For those fees alone to carry NEAR&rsquo;s price, they would have to grow <span data-m="ic_implied_cagr_r15_x25_pct">84.9</span>% a year to 2031. With the market growing at last year&rsquo;s pace and Intents at its best share, that would take <span data-m="ic_take_needed_vs_gross_x">2.5</span>× Intents&rsquo; whole gross fee. In the base case <span class="tail">the fees pay for <span data-m="ic_base_coverage_2031_pct">44.6</span>% of NEAR&rsquo;s dilution in 2031.</span></p>
 <div class="grid">
 <section class="card span2" id="chart-ladder" aria-labelledby="chart-ladder-h">
 <div class="cardtop"><span class="fignum">Figure 1</span><span class="badge badge-exp">Exploratory</span><a href="#chart-ladder" aria-label="Link to this chart">#</a></div>
@@ -5259,7 +5263,7 @@ L281.4,113.9L282,112.8" />
 <text x="152.1" y="41" class="rl" font-size="11.5">step <tspan data-m="l1_step_date">2026-04-02</tspan></text>
 <text x="291" y="116.9" class="val" font-size="11.5"><tspan data-s="l1_daily.2026-11-04.active_accounts_k">79.2</tspan>K</text></g></g></svg></div></div>
 <figcaption>Window: 2025-10-01 to 2026-11-04 (UTC), one point per day. Unit: thousand a day. The dashed line is 2026-04-02.</figcaption></figure>
-<p class="note">Four daily counts, in thousands, on 2026-03-31 and then on 2026-04-02, the day of the fall:</p>
+<p class="note">Four daily counts, in thousands, on <span class="nb">2026-03-31</span> and then on <span class="nb">2026-04-02</span>, the day of the fall:</p>
 <dl class="keyfigs">
 <div>
 <dt>Transactions</dt>
