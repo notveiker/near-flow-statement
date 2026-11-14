@@ -446,3 +446,7 @@ The line under the dashboard's title now says what the long-term case for NEAR r
 ## 2026-11-14 21:28 UTC: the cover's subtitle shortened (wording only)
 
 The line under the dashboard's title now reads only "The long-term case for NEAR rests on Intents." The two clauses the 21:17 UTC entry describes after it were removed before the page was published. Nothing else changes.
+
+## 2026-11-14 21:40 UTC: NEAR's logo behind the cover (layout only)
+
+The dashboard's cover now shows NEAR's logo mark faintly at the right, running off the edge of the window. Its path is the one in NEAR's own app template (`near/create-near-app`, `templates/frontend/next-app/public/near-logo.svg`, read on 2026-11-14), embedded in `pipeline/render.py`, so the page still loads nothing from another host. The mark is NEAR's trademark and is shown to name the subject; the page's footer and the README say so, and say that this is an independent hackathon entry. No published brand guideline of NEAR's was found to check the use against (the brand pages tried returned "not found" on 2026-11-14).

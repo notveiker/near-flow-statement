@@ -967,12 +967,21 @@ p,li,dd,.tnote,.note,.finding{text-wrap:pretty}
 .wrap{max-width:900px;margin:0 auto;padding:0 20px}
 @media (min-width:1100px){.wrap{max-width:1480px;padding:0 32px}}
 @media (min-width:1680px){
-.wrap{max-width:1720px;display:grid;grid-template-columns:196px minmax(0,1fr);grid-template-areas:"top top" "side main" "side foot";column-gap:44px}
-header.top{grid-area:top}main{grid-area:main}footer{grid-area:foot}
+.wrap{max-width:1720px;display:grid;grid-template-columns:196px minmax(0,1fr);grid-template-areas:"side main" "side foot";column-gap:44px}
+main{grid-area:main}footer{grid-area:foot}
 }
 
 /* first screen: the question, a one-line answer, four figures as ledger rows, the live row. No boxes. */
-header.top{display:flex;flex-direction:column;justify-content:center;min-height:min(78vh,720px);padding:56px 0 44px;border-bottom:1px solid var(--grid)}
+header.top{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;min-height:min(78vh,720px);
+padding:56px max(20px,calc((100% - 860px) / 2)) 44px;border-bottom:1px solid var(--grid)}
+@media (min-width:1100px){header.top{padding-left:max(32px,calc((100% - 1416px) / 2));padding-right:max(32px,calc((100% - 1416px) / 2))}}
+@media (min-width:1680px){header.top{padding-left:max(32px,calc((100% - 1656px) / 2));padding-right:max(32px,calc((100% - 1656px) / 2))}}
+header.top>*{position:relative;z-index:1}
+/* NEAR's mark behind the cover, at the right, running off the edge of the window */
+header.top::after{content:"";position:absolute;z-index:0;top:45%;right:-8%;width:clamp(300px,46%,680px);aspect-ratio:1;
+transform:translateY(-50%);background:var(--ink);opacity:.07;pointer-events:none;
+-webkit-mask:var(--mark) center / contain no-repeat;mask:var(--mark) center / contain no-repeat}
+header.top{--mark:url("/*MARK*/")}
 .eyebrow{margin:0 0 22px;font-size:.875rem;color:var(--muted)}
 h1{font-size:clamp(2.4rem,6.6vw,4.75rem);font-weight:700;line-height:1.03;letter-spacing:-.03em;margin:0 0 .42em;max-width:17ch}
 .sub{margin:0 0 1.5rem;max-width:50ch;font-size:clamp(1.125rem,2.1vw,1.5rem);line-height:1.35;color:var(--ink2)}
@@ -1211,8 +1220,22 @@ footer{margin:3.5rem 0 2.5rem;padding-top:1rem;border-top:1px solid var(--grid);
 """
 
 
+# NEAR's logo mark, drawn faintly behind the cover. The path is the one in NEAR's own app template (github.com/near/create-near-app,
+# templates/frontend/next-app/public/near-logo.svg, read on 2026-11-14), with its viewBox and its one transform, unaltered. The mark
+# is NEAR's trademark: it names the subject of the page, and this repository's licence does not cover it.
+NEAR_MARK_VIEWBOX = "0 0 26.707293 26.619026"
+NEAR_MARK_PATH = ("m 24.079,0.690475 c -0.9891,0 -1.9075,0.511145 -2.4256,1.351425 l -5.5825,8.261 c -0.1819,0.2723 -0.1081,0.6393 0.1651,0.8206 0.2214,0.1471 0.5143,0.1289 0.716,-0.044 l 5.495,-4.75049 c 0.0913,-0.0819 0.232,-0.07356 0.3142,0.01744 0.0373,0.04171 0.0571,0.09556 0.0571,0.15092 V 21.3707 c 0,0.1228 -0.0997,0.2214 -0.223,0.2214 -0.0662,0 -0.1285,-0.0288 -0.1704,-0.0796 L 5.81436,1.69457 C 5.27339,1.05829 4.47904,0.691234 3.64284,0.690475 H 3.0623 C 1.4911,0.690475 0.217407,1.96 0.217407,3.52605 V 24.4739 c 0,1.5661 1.273693,2.8356 2.844893,2.8356 0.98913,0 1.9075,-0.5111 2.42565,-1.3514 l 5.58255,-8.261 c 0.1818,-0.2723 0.108,-0.6393 -0.1652,-0.8206 -0.2214,-0.1471 -0.5143,-0.1289 -0.7159,0.044 L 4.69436,21.671 C 4.60306,21.7529 4.4623,21.7445 4.38013,21.6535 4.34284,21.6118 4.32306,21.558 4.32382,21.5026 V 6.62554 c 0,-0.12286 0.09967,-0.22145 0.22293,-0.22145 0.06544,0 0.12859,0.02882 0.17044,0.07963 L 21.3255,26.3054 c 0.5409,0.6363 1.3353,1.0034 2.1715,1.0041 h 0.5805 c 1.5712,8e-4 2.8457,-1.268 2.8472,-2.834 V 3.52605 C 26.9247,1.96 25.651,0.690475 24.0798,0.690475 Z")
+
+
+def near_mark_uri() -> str:
+    """The mark as an inline image (a data: URI, so nothing is loaded), for a CSS mask."""
+    svg = (f"<svg xmlns='http://www.w3.org/2000/svg' viewBox='{NEAR_MARK_VIEWBOX}'>"
+           f"<path transform='translate(-0.217407,-0.690475)' d='{NEAR_MARK_PATH}'/></svg>")
+    return "data:image/svg+xml," + svg.replace("%", "%25").replace("<", "%3C").replace(">", "%3E").replace("#", "%23")
+
+
 def css() -> str:
-    return CSS.replace("/*DARK*/", DARK_TOKENS).strip()
+    return CSS.replace("/*DARK*/", DARK_TOKENS).replace("/*MARK*/", near_mark_uri()).strip()
 
 
 # ------------------------------------------------------------------ icons (shape + label, never colour alone)
@@ -4138,7 +4161,7 @@ def build_page(ctx: Ctx, breaks: bool = True) -> str:
     exp = "".join(f'<p class="gridhead">{esc(head)}</p><p class="gridlead">{group_lead(ctx, head)}</p>' + lay_out(ids, cards, ctx)
                   for head, ids in EVIDENCE)
     body = (
-        f'<a class="skip" href="#main">Skip to the content</a><div class="wrap">{header(ctx)}{side_nav()}'
+        f'<a class="skip" href="#main">Skip to the content</a>{header(ctx)}<div class="wrap">{side_nav()}'
         f'<main id="main">{brief(ctx)}{record_strip(ctx)}'
         f'<div class="tabs"><nav class="tabbar" aria-label="Sections"><a href="#forward-view" data-tab="forward-view">Investment case</a>'
         f'<a href="#exploratory" data-tab="exploratory">Supporting evidence</a><a href="#preregistered" data-tab="preregistered">Track record</a>'
@@ -4155,7 +4178,8 @@ def build_page(ctx: Ctx, breaks: bool = True) -> str:
         f'{scorecard(ctx)}{what_changed(ctx)}<div class="grid">{pre}</div></section>'
         f'<div id="method" class="panel">{about_data(ctx)}{not_computed(ctx)}{reproduce(ctx)}{limits(ctx)}</div></div></main>'
         f'<footer><p><strong>Research only.</strong> Nothing here is investment advice, an offer or a recommendation. '
-        f'MIT licence (<a href="{esc(gh("LICENSE"))}">terms</a>). <a href="{esc(gh("pipeline/render.py"))}">How this page is built</a>.</p></footer></div>'
+        f'MIT licence (<a href="{esc(gh("LICENSE"))}">terms</a>). <a href="{esc(gh("pipeline/render.py"))}">How this page is built</a>. '
+        f'The logo on the cover is NEAR&rsquo;s trademark and is shown to name the subject; this page is an independent hackathon entry.</p></footer></div>'
         f'{live_script(ctx)}')
     head = (
         '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
