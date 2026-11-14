@@ -442,3 +442,7 @@ The first screen is now a cover: the title's question, a one-line answer, the tw
 ## 2026-11-14 21:17 UTC: the cover's subtitle (wording only)
 
 The line under the dashboard's title now says what the long-term case for NEAR rests on (Intents, which led its market over the past year and already sends NEAR to NEAR's revenue wallets) and points at the bar under it, in place of the one-line answer "Not on today's evidence". It makes no claim that the case succeeds. The answer is unchanged and is stated in the section under the cover and in `THESIS.md`: at the price of 2026-11-13 the fees alone would have to grow faster than cross-chain volume has over any period in the data.
+
+## 2026-11-14 21:28 UTC: the cover's subtitle shortened (wording only)
+
+The line under the dashboard's title now reads only "The long-term case for NEAR rests on Intents." The two clauses the 21:17 UTC entry describes after it were removed before the page was published. Nothing else changes.
