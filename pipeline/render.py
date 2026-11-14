@@ -934,13 +934,13 @@ def dual(ctx: "Ctx", uid: str, title: str, desc: str, build) -> str:
 DARK_TOKENS = (
     "color-scheme:dark;--bg:#0f0f0d;--surface:#171714;--raise:#1e1e1a;--ink:#f1efe7;--ink2:#c6c3b6;--muted:#a19e91;"
     "--grid:#2b2a25;--axis:#4c4a43;--border:rgba(241,239,231,.13);--code:#22211d;--s1:#3987e5;--s2:#d95926;"
-    "--ctx:#898781;--link:#8ab8ee;--focus:#6da7ec;--live:#2fd39a;--shade:rgba(255,255,255,.22);"
+    "--ctx:#898781;--link:#8ab8ee;--focus:#6da7ec;--shade:rgba(255,255,255,.22);"
 )
 
 CSS = """
 :root{color-scheme:light;--bg:#f5f3ec;--surface:#fcfbf7;--raise:#ffffff;--ink:#16150f;--ink2:#4b4940;--muted:#67655b;--grid:#e2dfd4;
 --axis:#b4b1a4;--border:rgba(22,21,15,.14);--code:#edeae0;--s1:#2a78d6;--s2:#e8632f;--ctx:#898781;
---link:#1c5cab;--focus:#2a78d6;--live:#0d8a5c;--shade:rgba(22,21,15,.2);
+--link:#1c5cab;--focus:#2a78d6;--shade:rgba(22,21,15,.2);
 --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
 --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
 --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
@@ -959,7 +959,7 @@ a:focus-visible,summary:focus-visible,.tablewrap:focus-visible,pre:focus-visible
 code,pre{font-family:var(--mono);font-size:.85em}
 code{overflow-wrap:anywhere}
 p,li{max-width:72ch}
-h1,h2,h3,.thesis p,.tlabel,.kl,.tl,.tw,.big,.kv,summary,figcaption,.gridhead,.badge,.fignum,dt,.tabbar a{text-wrap:balance}
+h1,h2,h3,.big,.gridhead{text-wrap:balance}
 p,li,dd,.tnote,.note,.finding{text-wrap:pretty}
 [data-m],[data-k],[data-f],[data-d],[data-s]{white-space:nowrap}
 
@@ -971,50 +971,45 @@ p,li,dd,.tnote,.note,.finding{text-wrap:pretty}
 header.top{grid-area:top}main{grid-area:main}footer{grid-area:foot}
 }
 
-/* first screen */
-header.top{padding:34px 0 0}
-.eyebrow{display:flex;align-items:center;gap:9px;margin:0 0 18px;font-size:.8125rem;font-weight:600;letter-spacing:.02em;color:var(--muted)}
-.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--live);flex:none}
-h1{font-family:var(--serif);font-size:clamp(2.1rem,5.6vw,3.7rem);font-weight:500;line-height:1.04;letter-spacing:-.022em;margin:0 0 .5em;max-width:17ch}
-.thesis{margin:0 0 1.6rem;max-width:60ch}
-.thesis p{font-size:1.1875rem;line-height:1.5;color:var(--ink2);margin:0;max-width:none}
-.thesis strong{font-weight:600;color:var(--ink)}
-.thesis .tag{margin-top:.9rem;font-size:.8125rem;line-height:1.45;color:var(--muted)}
-.kcap{margin:0;padding:0 0 8px;max-width:none;font-size:.75rem;line-height:1.4;color:var(--muted)}
-.kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));list-style:none;padding:0;margin:0;border-top:2px solid var(--ink)}
-.kpi{display:flex;flex-direction:column;gap:5px;max-width:none;padding:16px 18px 18px 0;border-bottom:1px solid var(--grid)}
-.kpi:nth-child(even){padding-left:20px;border-left:1px solid var(--grid)}
-.kpi .kv{font-size:clamp(2rem,4.2vw,2.75rem);font-weight:650;line-height:1;letter-spacing:-.03em;font-variant-numeric:lining-nums tabular-nums;color:var(--ink);text-decoration:none}
-.kpi a.kv:hover{color:var(--link)}
-.kpi .kl{font-size:.875rem;line-height:1.35;color:var(--ink2)}
-.kw{font-size:.75rem;color:var(--muted)}
-.today{display:flex;flex-wrap:wrap;align-items:flex-start;gap:12px 28px;margin:1.6rem 0 0;padding:14px 18px;background:var(--surface);border:1px solid var(--border);border-radius:10px}
-.todaycap{display:flex;align-items:center;gap:8px;margin:0;padding-top:2px;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
-.todaycap::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--live);box-shadow:0 0 0 0 var(--live)}
-@media (prefers-reduced-motion:no-preference){.todaycap::before{animation:pulse 2.4s ease-out infinite}}
-@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--live) 55%,transparent)}70%,100%{box-shadow:0 0 0 7px transparent}}
-.todayrow{flex:1 1 420px;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px 22px;list-style:none;padding:0;margin:0}
-.todayrow li{display:flex;flex-direction:column;gap:1px;max-width:none}
-.todayrow output{font-size:1.0625rem;font-weight:650;line-height:1.3;font-variant-numeric:lining-nums tabular-nums}
-.tl{font-size:.75rem;color:var(--ink2)}
-.tw{font-size:.6875rem;color:var(--muted)}
-details.readmore{margin:1rem 0 0;border:0;padding:0;max-width:900px}
+/* first screen: the question, a one-line answer, four figures as ledger rows, the live row. No boxes. */
+header.top{padding:40px 0 0}
+.eyebrow{margin:0 0 20px;font-size:.8125rem;color:var(--muted)}
+h1{font-family:var(--serif);font-size:clamp(2.1rem,5.6vw,3.7rem);font-weight:500;line-height:1.04;letter-spacing:-.022em;margin:0 0 .55em;max-width:17ch}
+.thesis{margin:0 0 1.8rem;max-width:64ch}
+.thesis p{margin:0 0 .75rem;max-width:none;font-size:1.0625rem;line-height:1.55;color:var(--ink2)}
+.thesis .deck{font-family:var(--serif);font-size:1.4375rem;line-height:1.32;letter-spacing:-.005em;color:var(--ink)}
+.thesis .go{margin:0;font-size:1rem}
+.kcap{margin:0;padding:0 0 9px;max-width:none;font-size:.8125rem;line-height:1.4;color:var(--muted)}
+.kpis{list-style:none;padding:0;margin:0;border-top:1px solid var(--ink)}
+.kpi{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:28px;align-items:baseline;max-width:none;padding:13px 0 12px;border-bottom:1px solid var(--grid)}
+.kpi .kl{grid-column:1;grid-row:1;font-size:.9375rem;line-height:1.35;color:var(--ink)}
+.kpi .kw,.kw{grid-column:1;grid-row:2;font-size:.8125rem;line-height:1.4;color:var(--muted)}
+.kpi .kv{grid-column:2;grid-row:1 / span 2;align-self:center;text-align:right;font-size:clamp(1.6rem,3.4vw,2.125rem);font-weight:600;line-height:1.1;letter-spacing:-.025em;font-variant-numeric:lining-nums tabular-nums;color:var(--ink);text-decoration:none}
+.kpi a.kv:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
+.today{margin:1.9rem 0 0}
+.todaycap{margin:0;padding:0 0 9px;font-size:.8125rem;line-height:1.4;color:var(--muted)}
+.todayrow{list-style:none;padding:0;margin:0;border-top:1px solid var(--axis)}
+.todayrow li{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:28px;align-items:baseline;max-width:none;padding:8px 0 7px;border-bottom:1px solid var(--grid)}
+.tl{grid-column:1;grid-row:1;font-size:.875rem;line-height:1.35;color:var(--ink)}
+.tw{grid-column:1;grid-row:2;font-size:.75rem;line-height:1.4;color:var(--muted)}
+.todayrow output{grid-column:2;grid-row:1 / span 2;align-self:center;text-align:right;font-size:1.0625rem;font-weight:600;line-height:1.2;font-variant-numeric:lining-nums tabular-nums}
+details.readmore{margin:.2rem 0 .6rem;border:0;padding:0;max-width:900px}
 details.metawrap,details.fz{border:0;padding:0;margin:.6rem 0}
 details.metawrap>summary,details.fz>summary,details.readmore>summary,section>details.more>summary{font-size:.875rem;font-weight:500;color:var(--ink2)}
 .questions{font-size:1rem;margin:.6rem 0 .7rem}
-.answer{margin:.2rem 0 .4rem;padding:2px 18px;background:var(--surface);border:1px solid var(--border);border-radius:10px}
-.answer p{margin:.7rem 0;max-width:none;font-size:.9375rem}
+.answer{margin:.2rem 0 .4rem;padding:0 0 0 16px;border-left:1px solid var(--axis)}
+.answer p{margin:.7rem 0;max-width:86ch;font-size:.9375rem}
 @media (min-width:1100px){
-header.top{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);column-gap:64px;align-items:start;padding-top:44px;
-grid-template-areas:"eb kcap" "h1 kpis" "th kpis" "today today" "more more"}
-.eyebrow{grid-area:eb}h1{grid-area:h1}.thesis{grid-area:th;margin-bottom:0}.kpis{grid-area:kpis}.kcap{grid-area:kcap;padding:0 0 10px;align-self:end}
-.today{grid-area:today;margin-top:2.2rem}details.readmore{grid-area:more}
+header.top{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);column-gap:72px;align-items:start;padding-top:48px;
+grid-template-areas:"eb kcap" "h1 kpis" "th kpis" "th today"}
+.eyebrow{grid-area:eb}h1{grid-area:h1}.thesis{grid-area:th;margin-bottom:0}.kpis{grid-area:kpis}.kcap{grid-area:kcap;align-self:end}
+.today{grid-area:today}
 }
 
 /* contents rail */
 .side{margin:1.4rem 0 0}
 .side .toc,.side .toc-more{display:flex;flex-wrap:wrap;gap:4px 18px;list-style:none;padding:0;margin:.4rem 0}
-.side .sidecap{margin:.9rem 0 .2rem;font-size:.6875rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.side .sidecap{margin:.9rem 0 .2rem;font-size:.8125rem;font-weight:600;color:var(--ink)}
 .side .sidecap:first-of-type{margin-top:0}
 @media (max-width:1679px){.side{display:none}}
 @media (min-width:1680px){
@@ -1027,18 +1022,14 @@ grid-template-areas:"eb kcap" "h1 kpis" "th kpis" "today today" "more more"}
 }
 
 /* sections, tabs */
-main{padding-top:1.6rem}
+main{padding-top:2rem}
 h2{font-family:var(--serif);font-size:1.75rem;font-weight:500;line-height:1.2;letter-spacing:-.012em;margin:2.6rem 0 .5rem}
 h3{font-size:1.0625rem;font-weight:650;line-height:1.35;margin:.5rem 0 .6rem}
 .lede{font-size:1.0625rem;margin:0 0 1rem}
 .note{color:var(--ink2);font-size:.9375rem}
-.records{display:grid;gap:12px;margin:0 0 .4rem}
-@media (min-width:1100px){.records{grid-template-columns:1.45fr 1fr}}
-.record{display:flex;align-items:center;justify-content:space-between;gap:10px 28px;max-width:none;margin:0;padding:14px 18px;border:1px solid var(--border);border-left:3px solid var(--ink);border-radius:10px;background:var(--surface);font-size:.9375rem;color:var(--ink2)}
-.record strong{color:var(--ink);font-weight:650}
-.record a{font-weight:600;white-space:nowrap}
-.record a::after{content:" \\2192"}
-@media (max-width:759px),(min-width:1100px) and (max-width:1399px){.record{flex-direction:column;align-items:flex-start}}
+.note,.lede{max-width:104ch}
+.fine{margin:0;max-width:128ch;font-size:.8125rem;line-height:1.55;color:var(--muted)}
+.fine a{color:var(--ink2)}
 .tabbar{position:sticky;top:0;z-index:3;display:flex;flex-wrap:wrap;gap:0 26px;margin:1.6rem 0 .6rem;padding:0;background:var(--bg);border-bottom:1px solid var(--axis)}
 .tabbar a{padding:13px 0 11px;border-bottom:2px solid transparent;margin-bottom:-1px;color:var(--muted);font-size:.9375rem;font-weight:600;text-decoration:none}
 .tabbar a:hover{color:var(--ink)}
@@ -1079,13 +1070,10 @@ h3{font-size:1.0625rem;font-weight:650;line-height:1.35;margin:.5rem 0 .6rem}
 @media (min-width:1214px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.grid>.card.span2{grid-column:span 2}}
 .grid>.gridhead{margin:1.4rem 0 -.2rem;max-width:none;font-family:var(--serif);font-size:1.25rem;font-weight:500;color:var(--ink)}
 .grid>.gridhead:first-child{margin-top:.4rem}
-.card{container-type:inline-size;display:flex;flex-direction:column;min-width:0;margin:0;padding:18px 20px 12px;background:var(--surface);border:1px solid var(--border);border-radius:12px}
-.cardtop{display:flex;align-items:baseline;gap:10px;min-height:1.2rem;font-size:.75rem}
-.fignum{font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
-.badge{font-weight:600;color:var(--muted)}
-.badge-pre{color:var(--ink)}
-.badge-pre::before,.badge-exp::before{content:"";display:inline-block;width:7px;height:7px;margin-right:6px;border-radius:50%;border:1.5px solid currentColor;vertical-align:.02em}
-.badge-pre::before{background:currentColor}
+.card{container-type:inline-size;display:flex;flex-direction:column;min-width:0;margin:0;padding:18px 20px 14px;background:var(--surface);border:1px solid var(--border);border-radius:6px}
+.cardtop{display:flex;align-items:baseline;gap:10px;min-height:1.2rem;font-size:.8125rem}
+.fignum{font-weight:600;color:var(--muted)}
+.badge{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .cardtop a{margin-left:auto;font-size:.875rem;color:var(--muted);text-decoration:none;opacity:0}
 .card:hover .cardtop a,.cardtop a:focus-visible{opacity:1}
 .card h3{font-size:1.125rem;font-weight:650;line-height:1.3;letter-spacing:-.008em;margin:.35rem 0 .6rem}
@@ -1126,15 +1114,14 @@ figcaption{font-size:.8125rem;line-height:1.5;color:var(--muted);margin-top:8px}
 .keyfigs div{min-width:0}
 .keyfigs dt{font-size:.75rem;line-height:1.35;color:var(--muted)}
 .keyfigs dd{margin:0;font-weight:650;font-size:1.0625rem;font-variant-numeric:lining-nums tabular-nums}
-.cardfoot{display:flex;flex-wrap:wrap;gap:6px 8px;margin-top:auto;padding-top:.7rem;border-top:1px solid var(--grid)}
-.keyfigs+.cardfoot,figure+.cardfoot{margin-top:auto}
+.cardfoot{display:flex;flex-wrap:wrap;gap:4px 20px;margin-top:auto;padding-top:.7rem;border-top:1px solid var(--grid)}
 .card>.keyfigs,.card>figure{margin-bottom:.9rem}
 .cardfoot details{margin:0;border:0;padding:0;flex:0 0 auto;min-width:0}
 .cardfoot details[open]{flex-basis:100%;order:1}
-.cardfoot summary{display:inline-block;padding:4px 11px;border:1px solid var(--border);border-radius:999px;font-size:.75rem;font-weight:600;color:var(--ink2);list-style:none}
+.cardfoot summary{display:inline;padding:0;font-size:.8125rem;font-weight:500;color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;list-style:none}
 .cardfoot summary::-webkit-details-marker{display:none}
-.cardfoot summary:hover{border-color:var(--ink2);color:var(--ink)}
-.cardfoot details[open]>summary{background:var(--ink);border-color:var(--ink);color:var(--surface);margin-bottom:.5rem}
+.cardfoot summary:hover{text-decoration-thickness:2px}
+.cardfoot details[open]>summary{display:block;margin:.3rem 0 .5rem;color:var(--ink);font-weight:650;text-decoration:none}
 .finding{margin:.7rem 0 .4rem;font-weight:600}
 .finding::before{content:"In full";display:block;font-size:.75rem;font-weight:600;color:var(--muted)}
 .shows,.notshows{margin:.35rem 0}
@@ -1154,7 +1141,7 @@ ul.rule{margin:.8rem 0;padding-left:1.1rem}
 ul.rule li{margin:.35rem 0}
 .sha{color:var(--muted);font-size:.8125rem;white-space:nowrap}
 ol.fwd{list-style:none;padding:0;margin:.9rem 0;display:grid;gap:10px}
-ol.fwd li{border:1px solid var(--border);border-radius:10px;padding:10px 12px;min-width:0;max-width:none;background:var(--raise)}
+ol.fwd li{border:1px solid var(--border);border-radius:4px;padding:10px 12px;min-width:0;max-width:none;background:var(--raise)}
 ol.fwd p{margin:.2rem 0}
 .fhead{margin:.2rem 0}
 .fhead .st{font-size:.95rem}
@@ -1164,9 +1151,9 @@ ol.fwd p{margin:.2rem 0}
 /* details, code, tables */
 details{margin:.45rem 0;border-top:1px solid var(--grid);padding-top:.35rem}
 summary{cursor:pointer;font-weight:650;padding:4px 0}
-pre{margin:.5rem 0 .6rem;padding:12px 14px;background:var(--code);border-radius:8px;overflow:auto;max-height:440px;line-height:1.45;tab-size:2}
+pre{margin:.5rem 0 .6rem;padding:12px 14px;background:var(--code);border-radius:4px;overflow:auto;max-height:440px;line-height:1.45;tab-size:2}
 .qh{margin:.7rem 0 0;font-size:.875rem}
-.tablewrap{overflow:auto;max-height:420px;border:1px solid var(--border);border-radius:8px;margin:.5rem 0 .7rem;
+.tablewrap{overflow:auto;max-height:420px;border:1px solid var(--border);border-radius:4px;margin:.5rem 0 .7rem;
 background:linear-gradient(to right,var(--surface) 30%,transparent) 0 0/34px 100% no-repeat local,
 linear-gradient(to left,var(--surface) 30%,transparent) 100% 0/34px 100% no-repeat local,
 linear-gradient(to right,var(--shade),transparent) 0 0/14px 100% no-repeat scroll,
@@ -1187,7 +1174,7 @@ tbody tr:last-child td{border-bottom:0}
 .update td:nth-child(2){color:var(--muted)}
 
 /* method */
-.meta{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:6px 16px;font-size:.9rem;margin:1rem 0;padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-radius:10px}
+.meta{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:6px 16px;font-size:.9rem;margin:1rem 0;padding:12px 0;border-top:1px solid var(--grid);border-bottom:1px solid var(--grid)}
 .meta dt{color:var(--muted);font-weight:600}
 .meta dd{margin:0;min-width:0}
 @media (max-width:560px){.meta{grid-template-columns:minmax(0,1fr)}.meta dd{margin-bottom:6px}}
@@ -1196,7 +1183,7 @@ tbody tr:last-child td{border-bottom:0}
 ol.steps{padding-left:1.5rem;margin:.6rem 0}
 ol.steps li{margin:.9rem 0;max-width:none;padding-left:.2rem}
 ol.steps p{margin:.2rem 0}
-.do code{display:inline-block;max-width:100%;white-space:pre-wrap;overflow-wrap:anywhere;background:var(--code);padding:3px 9px;border-radius:6px}
+.do code{display:inline-block;max-width:100%;white-space:pre-wrap;overflow-wrap:anywhere;background:var(--code);padding:3px 9px;border-radius:3px}
 ul.plain{padding:0;list-style:none}
 ul.plain li{margin:0 0 .7rem;line-height:1.55}
 footer{margin:3.5rem 0 2.5rem;padding-top:1rem;border-top:1px solid var(--grid);font-size:.875rem;color:var(--ink2)}
@@ -3642,20 +3629,22 @@ def kpis(ctx: Ctx) -> str:
             return f'{M(key)}{unit}', ""
         return f'{M("upd_" + key)}{unit}', f'<span class="kw">{M("asof")}: {M(key)}{unit}</span>'
 
+    # one row each: the label, under it the earlier value (or the window), and the figure at the right
     items = [
-        (f'{M("ladder_all_wallets_pct_of_issuance", 2)}%', "", f'of net new supply reaches NEAR&rsquo;s revenue wallets (30 days to {M("asof")})', "#chart-ladder"),
-        (*fig("ic_implied_cagr_r15_x25_pct", "%"), "a year: the revenue growth the price assumes, to 2031", "#chart-priced"),
-        (*fig("ic_take_needed_vs_gross_x", "×"), "Intents&rsquo; whole gross fee: what NEAR would have to capture", "#chart-multiply"),
-        (*fig("ic_base_coverage_2031_pct", "%"), "of NEAR&rsquo;s dilution paid for in 2031, base case", "#chart-scenarios"),
+        (f'{M("ladder_all_wallets_pct_of_issuance", 2)}%', f'<span class="kw">30 days to {M("asof")}</span>',
+         "NEAR reaching its revenue wallets, as a share of net new supply", "#chart-ladder"),
+        (*fig("ic_implied_cagr_r15_x25_pct", "%"), "Revenue growth the price assumes, a year to 2031", "#chart-priced"),
+        (*fig("ic_take_needed_vs_gross_x", "×"), "Take NEAR would need, as a multiple of Intents&rsquo; whole gross fee", "#chart-multiply"),
+        (*fig("ic_base_coverage_2031_pct", "%"), "NEAR&rsquo;s dilution paid for in 2031, base case", "#chart-scenarios"),
     ]
     lis = "".join(f'<li class="kpi"><a class="kv" href="{h}">{v}</a><span class="kl">{l}</span>{w}</li>' for v, w, l, h in items)
-    cap = (f'Exploratory figures, data to {M("upd_asof")}. Under each: its value at the pre-registered cutoff.' if up
-           else f'Exploratory figures, data to {M("asof")}.')
+    cap = f'Where it stands, on data to {M("upd_asof")}' if up else f'Where it stands, on data to {M("asof")}'
     return f'<p class="kcap">{cap}</p><ul class="kpis" aria-label="Headline figures">{lis}</ul>'
 
 
 def thesis_box(ctx: Ctx) -> str:
-    """The long-term view in four sentences, under the title (exploratory). The figures beside it carry the numbers.
+    """The answer to the title in one line, then the view in three sentences (exploratory; the line above the tabs says so once).
+    The figures beside it carry the numbers.
 
     The words are true of the data as committed: Intents has the largest share of its peer set over 365 days, the ladder's top is between a
     seventh and a fifth of net issuance, and the growth the price assumes is above the peer set's growth over every window computed (one to
@@ -3671,25 +3660,22 @@ def thesis_box(ctx: Ctx) -> str:
                          "issuance and the price assumes faster growth than any window in the data; the data no longer say that, so rewrite thesis_box()")
     return (
         '<div class="thesis" id="thesis">'
-        '<p><strong>NEAR Intents led its market over the past year. NEAR&rsquo;s price asks for much more than that.</strong> '
-        'The NEAR that Intents fees deliver to NEAR&rsquo;s revenue wallets equals, at most, about a sixth of net new supply. For those fees alone to '
+        '<p class="deck">Not on today&rsquo;s evidence. NEAR Intents led its market over the past year, but NEAR&rsquo;s price asks for far more '
+        'than its fees deliver.</p>'
+        '<p>The NEAR those fees send to NEAR&rsquo;s revenue wallets equals, at most, about a sixth of net new supply. For the fees alone to '
         f'carry the price NEAR had on {M("upd_asof") if has_update(ctx) else M("asof")}, they would have to grow faster each year to 2031 than '
-        'cross-chain volume grew over any period in the data. Owning NEAR at that price is a bet on a bigger cut of those fees, or on value beyond them. '
-        '<a href="#forward-view">Read the case</a> or <a href="story.html">see it as slides</a>.</p>'
-        '<p class="tag">Exploratory view, formed after the pre-registration was frozen. Not investment advice.</p></div>')
+        'cross-chain volume grew over any period in the data. Owning NEAR at that price is a bet on a bigger cut of those fees, or on value beyond them.</p>'
+        '<p class="go"><a href="#forward-view">Read the case</a> or <a href="story.html">see it as slides</a>.</p></div>')
 
 
 def record_strip(ctx: Ctx) -> str:
-    """Two lines above the tabs: the predictions came first and every result is on the page; and the page rebuilds offline with one
-    command (the Reproduce section has the steps). Neither carries a number, so neither can disagree with the section it links to. The
-    order the first states is the one freeze_order() checks against the manifest."""
+    """One line of small print above the tabs: what kind of analysis this is, where the predictions are scored, and that the page
+    rebuilds offline. It carries no number, so it cannot disagree with the sections it links to; the order it states is the one
+    freeze_order() checks against the manifest."""
     freeze_order(ctx)
-    return ('<div class="records"><p class="record"><span><strong>Predictions first, data second.</strong> Three hypotheses, a rating rule and seven dated '
-            f'forecasts were frozen on {FREEZE_UTC[:10]}, before the first BigQuery result the repository records. Each is scored as written, and every '
-            'result is on this page, including the ones the data went against.</span> <a href="#preregistered">See the track record</a></p>'
-            '<p class="record"><span><strong>Re-run it.</strong> One command rebuilds every chart and every committed number on this page, offline, '
-            'from the raw snapshots in the repository. No keys, no installs. Only the Today row is fetched live.</span> '
-            '<a href="#reproduce">See the steps</a></p></div>')
+    return ('<p class="fine">The case on this page is exploratory: we built it after freezing our predictions, which are scored as written in the '
+            '<a href="#preregistered">track record</a>. Every chart and every committed number rebuilds offline with one command '
+            '(<a href="#reproduce">the steps</a>); only the Today row is fetched live. Nothing here is investment advice.</p>')
 
 
 def what_changed(ctx: Ctx) -> str:
@@ -3851,7 +3837,7 @@ def update_table(ctx: Ctx) -> str:
         f'data fetched on 2026-11-14 runs to {M("upd_asof")}, and the conclusion stands: the price still assumes faster growth than any window in '
         f'the data, and NEAR would still need more than Intents&rsquo; whole gross fee. The gap narrowed because NEAR&rsquo;s price fell and revenue '
         f'rose. Intents&rsquo; share of the peer set fell too, as THORChain&rsquo;s volume rose ({M("upd_thorchain_share_peerset_30d_pct")}% of the '
-        f'set over 30 days). Exploratory.</p>'
+        f'set over 30 days).</p>'
         f'<div class="tablewrap" role="region" aria-label="The case at the cutoff and at the update" tabindex="0"><table><caption>The case at the cutoff '
         f'and at the update</caption><thead><tr><th class="txt">Figure</th><th>{M("asof")}</th><th>{M("upd_asof")}</th></tr></thead>'
         f'<tbody>{rows}</tbody></table></div></div>')
@@ -3879,15 +3865,15 @@ def live_panel(ctx: Ctx) -> str:
             ("lv-bb", "Buyback wallet", f'At the freeze: {M("buyback_wallet_near_m")}M NEAR'),
         )
     lis = "".join(f'<li><span class="tl">{lab}</span><output id="{oid}">&hellip;</output><span class="tw">{was}</span></li>' for oid, lab, was in items)
-    return f'<div class="today" id="live"><p class="todaycap">Today</p><ul class="todayrow" aria-label="Today&rsquo;s values">{lis}</ul></div>'
+    return f'<div class="today" id="live"><p class="todaycap">Today, read live by your browser</p><ul class="todayrow" aria-label="Today&rsquo;s values">{lis}</ul></div>'
 
 
 def header(ctx: Ctx) -> str:
+    answer_line(ctx)   # drawn in the track record tab; called here so that the first screen is not drawn either once the data stop supporting it
     return (
         f'<header class="top"><p class="eyebrow">NEAR Hackathon 2026, Investment Thesis track</p>'
         f'<h1>Can NEAR&rsquo;s Intents business grow into its dilution?</h1>'
-        f'{thesis_box(ctx)}{kpis(ctx)}{live_panel(ctx)}'
-        f'<details class="readmore"><summary>The questions and the pre-registered answer</summary>{answer_line(ctx)}</details></header>')
+        f'{thesis_box(ctx)}{kpis(ctx)}{live_panel(ctx)}</header>')
 
 
 DOCUMENTS = (("The full thesis", "THESIS.md"), ("Read me", "README.md"), ("Glossary", "docs/glossary.md"), ("Pre-registration", "PREREG.md"),
@@ -3973,9 +3959,9 @@ LADDER_HISTORY = (
     f'and it became the thesis headline on 2026-11-07 00:21 UTC (<a href="{esc(gh("PREREG-ADDENDUM.md"))}">addendum</a>, 2026-11-08 02:03 UTC entry, item 1).</p></details>')
 
 
-# The tab icon: an inline SVG (a data: URI, so nothing is loaded), the same green dot as the eyebrow.
+# The tab icon: an inline SVG (a data: URI, so nothing is loaded): three bars.
 FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E"
-           "%3Crect width='16' height='16' rx='4' fill='%2316150f'/%3E%3Ccircle cx='8' cy='8' r='3.5' fill='%232fd39a'/%3E%3C/svg%3E")
+           "%3Crect width='16' height='16' rx='3' fill='%2316150f'/%3E%3Cpath fill='%23f1efe7' d='M3.5 9h2v3.5h-2zM7 6h2v6.5H7zM10.5 3.5h2v9h-2z'/%3E%3C/svg%3E")
 
 
 def build_page(ctx: Ctx, breaks: bool = True) -> str:
@@ -3992,18 +3978,20 @@ def build_page(ctx: Ctx, breaks: bool = True) -> str:
         f'<a href="#method" data-tab="method">Method and limits</a></nav>'
         f'<section id="forward-view" class="panel" aria-labelledby="fwd-h"><h2 id="fwd-h">The investment case</h2>'
         f'<p class="note">Six charts carry the argument: what reaches NEAR today, what the price assumes, what would have to change, and what to watch to 2031. '
-        f'All of it is exploratory, chosen after the freeze (the ladder on 2026-11-06, the rest on 2026-11-13 and 2026-11-14). None of it changes a '
-        f'pre-registered hypothesis, threshold, probability or the rating.</p>'
+        f'Everything in this tab is exploratory: we chose it after freezing our predictions (the ladder on 2026-11-06, the rest on 2026-11-13 and '
+        f'2026-11-14), and none of it changes a pre-registered hypothesis, threshold, probability or the rating.</p>'
         f'<div class="grid">{fwd}</div>{update_table(ctx)}{LADDER_HISTORY}</section>'
         f'<section id="exploratory" class="panel" aria-labelledby="exp-h"><h2 id="exp-h">Supporting evidence</h2>'
-        f'<p class="note">Picked by the author after the freeze to give context. None of them is a test, and none feeds or changes a hypothesis, threshold, '
-        f'probability or the rating rule.</p>'
+        f'<p class="note">Context for the case. Everything in this tab is exploratory too: picked after the predictions were frozen. None of it is a test, '
+        f'and none of it feeds or changes a hypothesis, threshold, probability or the rating rule.</p>'
         f'<div class="grid">{exp}</div></section>'
         f'<section id="preregistered" class="panel" aria-labelledby="pre-h"><h2 id="pre-h">Track record: what we predicted, and what happened</h2>'
         f'<p class="note">The case in the first tab is built on the data. This tab is the check we set ourselves before running it. We fixed these predictions, '
         f'with odds, in the <a href="{esc(gh("PREREG.md"))}">pre-registration</a> before the first BigQuery result the repository records, so that the numbers '
-        f'could not be bent to fit a story afterwards. Each is scored as written, and a prediction the data went against is shown like the rest. Later method '
-        f'choices are dated in the <a href="{esc(gh("PREREG-ADDENDUM.md"))}">addendum</a>.</p>'
+        f'could not be bent to fit a story afterwards. Each is scored as written, and a prediction the data went against is shown like the rest. Everything in '
+        f'this tab is pre-registered except the list headed &ldquo;What the results changed&rdquo;. Later method choices are dated in the '
+        f'<a href="{esc(gh("PREREG-ADDENDUM.md"))}">addendum</a>.</p>'
+        f'<details class="readmore"><summary>The questions and the pre-registered answer</summary>{answer_line(ctx)}</details>'
         f'{scorecard(ctx)}{what_changed(ctx)}<div class="grid">{pre}</div></section>'
         f'<div id="method" class="panel">{about_data(ctx)}{not_computed(ctx)}{reproduce(ctx)}{limits(ctx)}</div></div></main>'
         f'<footer><p><strong>Research only.</strong> Nothing here is investment advice, an offer or a recommendation. '
@@ -4032,6 +4020,7 @@ STORY_CSS = """
 .story .card h3{font-size:clamp(1.25rem,2.6vw,1.85rem);line-height:1.25;margin:.7rem 0 1.1rem}
 .story .step{margin:0;font-size:.9375rem;font-weight:600;color:var(--muted)}
 .story .fignum{display:none}
+.story .badge{position:static;width:auto;height:auto;overflow:visible;clip:auto;font-size:.875rem;color:var(--muted)}
 .story h1{font-size:clamp(2rem,5.4vw,3.4rem);line-height:1.1;margin:.3em 0 .5em}
 .story .cover p,.story .end p{font-size:clamp(1.05rem,1.9vw,1.3rem);max-width:none;margin:.5rem 0}
 .story .cover .big{font-size:clamp(1.4rem,3vw,2.1rem);font-weight:750;line-height:1.25;margin:.2rem 0 1rem}

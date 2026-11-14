@@ -3233,12 +3233,14 @@ class FirstScreen(unittest.TestCase):
             head = dom.find("header")
             self.assertEqual(dom.find("h1").text(), "Can NEAR’s Intents business grow into its dilution?", name)
             kids = [c.tag + "".join("." + k for k in sorted(c.classes())) for c in head.children if isinstance(c, Node)]
-            self.assertEqual(kids, ["p.eyebrow", "h1", "div.thesis", "p.kcap", "ul.kpis", "div.today", "details.readmore"], name)
-            readmore = [c for c in head.children if isinstance(c, Node) and "readmore" in c.classes()][0]
+            self.assertEqual(kids, ["p.eyebrow", "h1", "div.thesis", "p.kcap", "ul.kpis", "div.today"], name)
+            # the two questions and the pre-registered answer open from one line at the top of the track record tab
+            track = section_node(dom, "preregistered")
+            readmore = [c for c in track.children if isinstance(c, Node) and "readmore" in c.classes()][0]
             inner = [c.tag + "".join("." + k for k in sorted(c.classes())) for c in readmore.children if isinstance(c, Node)]
             self.assertEqual(inner, ["summary", "p.questions", "div.answer"], f"{name}: the questions and the answer open from one line")
             self.assertEqual([n for n in head.iter() if n.classes() & {"chips", "chip", "chipword"}], [], f"{name}: no status chips under the answer")
-            self.assertEqual(re.sub(r"\s+", " ", head.find("p", "questions").text()),
+            self.assertEqual(re.sub(r"\s+", " ", readmore.find("p", "questions").text()),
                              "The pre-registered question: how much NEAR actually flows to exchanges, and how much of that do identified buyers absorb? (It makes no claim about "
                              "which coins are sold.) The question the evidence can answer: how much of NEAR’s value capture can you verify?", name)
 
@@ -3256,7 +3258,7 @@ class FirstScreen(unittest.TestCase):
                 "This is not a valuation and not advice.")
         self.assertEqual((m["h1a_pass_as_written"], m["h1b_verdict"], m["h1c_verdict"], m["rating_output"]), (False, "inconclusive", "inconclusive", "Hold"))
         for name, dom, _, _ in VARIANTS:
-            answer = dom.find("header").find("div", "answer")
+            answer = section_node(dom, "preregistered").find("div", "answer")
             text = re.sub(r"\s+", " ", answer.text()).strip()
             self.assertTrue(text.startswith(want), (name, text))
             self.assertEqual(text[len(want):].strip(), "See the value-capture ladder.", name)
@@ -3305,7 +3307,7 @@ class FirstScreen(unittest.TestCase):
             nodes = list(dom.iter())
             at = lambda n: nodes.index(n)   # noqa: E731
             head = dom.find("header")
-            order = [at(dom.find("a", "skip")), at(dom.find("h1")), at(head.find("div", "answer")), at(section_node(dom, "scorecard")),
+            order = [at(dom.find("a", "skip")), at(dom.find("h1")), at(dom.find("div", "answer")), at(section_node(dom, "scorecard")),
                      at(section_node(dom, "about").find("p", "lede")), at(section_node(dom, "about").find("dl", "meta"))]
             self.assertEqual(order, sorted(order), name)
             self.assertEqual(len(set(order)), len(order), name)
