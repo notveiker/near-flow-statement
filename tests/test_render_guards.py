@@ -461,51 +461,38 @@ class TheAxisWidens(unittest.TestCase):
                     self.assertEqual((float(g.attrs["data-lo"]), float(g.attrs["data-hi"])), (lo, hi))
 
 
-class ScoredStatusIcons(unittest.TestCase):
-    """A scored row carries a shape as well as a word (never colour alone). The fixture has a pass, a miss and a test that is not
-    scorable; the pending card has the clock. This is the card that is published on the day the tests are scored."""
-
-    PATHS = {"pending": "M10 5.4V10l3.2 2", "na": "M4.6 15.4l10.8-10.8"}
+class ScoredRowWords(unittest.TestCase):
+    """Each row of the forward card says in plain words what happened to its prediction (came true, did not come true, could not be
+    scored, or to be scored before a score is committed), with no status icon or stamp. The fixture has a pass, a miss and a test that is
+    not scorable. This is the card that is published on the day the tests are scored."""
 
     @staticmethod
     def rows(dom) -> dict[str, object]:
         return {n.attrs["data-k"]: n for n in card_node(dom, "forward").find_all("li") if n.attrs.get("data-k") in ("F1", "F2", "F3", "F4")}
 
-    @staticmethod
-    def shape(li) -> tuple[set[str], list[str]]:
-        svg = li.find("svg", "ico")
-        return ({c for el in svg.iter() for c in el.classes()} - {"ico"},
-                [el.attrs["d"] for el in svg.iter() if el.tag == "path" and "d" in el.attrs])
-
-    def test_each_row_of_a_scored_card_has_the_icon_of_its_word(self):
+    def test_each_row_of_a_scored_card_says_what_happened_in_plain_words(self):
         with tempfile.TemporaryDirectory() as d:
             write_forward(Path(d), STAMPED, fixture_result())
             dom, _ = forward_dom(Path(d))
         rows = self.rows(dom)
         self.assertEqual(sorted(rows), ["F1", "F2", "F3", "F4"])
         words = {fid: li.find("span", "fword").text().strip() for fid, li in rows.items()}
-        self.assertEqual(words, {"F1": "PASS", "F2": "MISS", "F3": "PASS", "F4": "not scorable"})
-        for fid, good in (("F1", True), ("F2", False), ("F3", True)):
-            classes, _ = self.shape(rows[fid])
-            self.assertIn("i-ok" if good else "i-bad", classes, fid)
-            self.assertNotIn("i-bad" if good else "i-ok", classes, fid)
-        classes, paths = self.shape(rows["F4"])
-        self.assertTrue(classes.isdisjoint({"i-ok", "i-bad"}))
-        self.assertIn(self.PATHS["na"], paths, "not scorable is the struck-through circle, neither a tick nor a cross")
+        self.assertEqual(words, {"F1": "came true", "F2": "did not come true", "F3": "came true", "F4": "could not be scored"})
+        for fid, li in rows.items():
+            self.assertIsNone(li.find("svg", "ico"), fid)
 
-    def test_a_pending_row_has_the_clock(self):
+    def test_a_row_before_scoring_says_to_be_scored(self):
         with tempfile.TemporaryDirectory() as empty:
             dom, _ = forward_dom(Path(empty))
         for fid, li in self.rows(dom).items():
-            classes, paths = self.shape(li)
-            self.assertEqual((classes, paths), ({"i-line"}, [self.PATHS["pending"]]), fid)
+            self.assertEqual(li.find("span", "fword").text().strip(), "to be scored", fid)
+            self.assertIsNone(li.find("svg", "ico"), fid)
 
-    def test_status_kind_maps_every_word_the_page_uses(self):
-        for word, kind in (("PASS", "pass"), ("pass", "pass"), ("Buy", "pass"), ("MISS", "fail"), ("miss", "fail"), ("fail", "fail"),
-                           ("Avoid", "fail"), ("inconclusive", "inconclusive"), ("Hold", "hold"), ("not scorable", "na"),
-                           ("scored", "scored"), ("pending", "pending"), ("", "pending"), ("something else", "pending")):
+    def test_plain_forward_maps_every_word_the_card_uses(self):
+        for word, plain in (("PASS", "came true"), ("MISS", "did not come true"), ("not scorable", "could not be scored"), ("pending", "to be scored")):
             with self.subTest(word):
-                self.assertEqual(R.status_kind(word), kind)
+                self.assertEqual(R.plain_forward(word), plain)
+        self.assertEqual([R.forward_word(None, f) for f in R.FORWARD_IDS], ["pending"] * 4)
 
 
 REALISTIC = realistic_result()      # what the real scorer writes on the committed snapshots: all four tests have numbers
@@ -527,7 +514,6 @@ def parsed(markup: str) -> Node:
     dom, errors = parse(markup)
     assert not errors, errors
     return dom
-
 
 class HandEditedResults(unittest.TestCase):
     """A result.json that a person has edited, or a shape the scorer does not write. The stop over an unusable number said to 'record that
@@ -587,8 +573,8 @@ class HandEditedResults(unittest.TestCase):
                 res["results"][fid].update(result="not scorable", why="recorded by hand")
                 card = card_node(self.page(res), "forward")
                 row = next(li for li in card.find_all("li") if li.attrs.get("data-k") == fid)
-                self.assertEqual(row.find("span", "fword").text().strip(), "not scorable")
-                self.assertIn("Not scorable: recorded by hand. It is never estimated.", re.sub(r"\s+", " ", row.text()))
+                self.assertEqual(row.find("span", "fword").text().strip(), "could not be scored")
+                self.assertIn("Could not be scored: recorded by hand. It is never estimated.", re.sub(r"\s+", " ", row.text()))
                 self.assertEqual(len(card.find_all("circle", "sk")), 2 * 3, "a dot for each of the other three tests, in two drawings")
 
     def test_the_numbers_of_a_test_that_is_not_scorable_draw_nothing_and_widen_nothing(self):
@@ -600,7 +586,7 @@ class HandEditedResults(unittest.TestCase):
         res["results"]["F4"]["intents_share_pct"] = float("nan")
         card = card_node(self.page(res), "forward")
         self.assertEqual([li.find("span", "fword").text().strip() for li in card.find_all("li") if li.attrs.get("data-k")],
-                         ["not scorable", "PASS", "MISS", "not scorable"])
+                         ["could not be scored", "came true", "did not come true", "could not be scored"])
         for svg in card.find_all("svg", "svg"):
             by_id = {g.attrs["data-id"]: g for g in svg.find_all("g", "nl")}
             self.assertEqual((by_id["F1"].find("circle", "sk"), by_id["F4"].find("circle", "sk")), (None, None))
@@ -670,9 +656,9 @@ class HandEditedResults(unittest.TestCase):
         del res["results"]["F3"]
         card = card_node(self.page(res), "forward")
         rows = {li.attrs["data-k"]: re.sub(r"\s+", " ", li.find("p", "tnote").text()).strip() for li in card.find_all("li") if li.attrs.get("data-k")}
-        self.assertEqual(rows["F2"], "Not scorable: no reason recorded. It is never estimated.")
-        self.assertEqual(rows["F3"], "Not scorable: no reason recorded. It is never estimated.")
-        self.assertEqual(re.sub(r"\s+", " ", hl(card).text()), "Forward tests scored: 0 passed, 2 missed and 2 not scorable of 4.")
+        self.assertEqual(rows["F2"], "Could not be scored: no reason recorded. It is never estimated.")
+        self.assertEqual(rows["F3"], "Could not be scored: no reason recorded. It is never estimated.")
+        self.assertEqual(re.sub(r"\s+", " ", hl(card).text()), "Of the four frozen predictions, 0 came true, 2 did not and 2 could not be scored.")
 
     def test_a_value_is_named_in_a_message_as_what_it_is(self):
         kind = R.json_kind
@@ -696,8 +682,8 @@ class HandEditedResults(unittest.TestCase):
         ctx = R.Ctx()
         ctx.forward = {"results": {"F1": {"result": "PASS"}, "F2": "x", "F3": None, "F4": {"result": "MISS"}}, "_path": "p"}
         tile = [n for n in parsed(R.scorecard(ctx)).find_all("li") if "tile" in n.classes()][4]
-        self.assertIn("1 pass, 1 miss", tile.text())
-        self.assertIn("2 not scorable", tile.text())
+        self.assertIn("1 came true, 1 did not", re.sub(r"\s+", " ", tile.text()))
+        self.assertIn("2 could not be scored", re.sub(r"\s+", " ", tile.text()))
 
     def test_keys_and_tests_the_card_does_not_know_are_ignored(self):
         res = base()
@@ -791,21 +777,21 @@ class WhatTheScorerCanWrite(unittest.TestCase):
                 dom, page = parsed(R.card_forward(ctx)), R.build_page(ctx)
                 card = card_node(dom, "forward")
                 listed = [n.text().strip() for n in card.find_all("span") if "data-status" in n.attrs]
-                self.assertEqual(listed, list(words))
+                self.assertEqual(listed, [R.plain_forward(w) for w in words])
                 table = next(t for t in card.find_all("table") if t.find("caption").text() == "Forward tests as frozen")
-                self.assertEqual([tr.find_all("td")[2].text().strip() for tr in table.find_all("tr") if tr.find_all("td")], list(words))
+                self.assertEqual([tr.find_all("td")[2].text().strip() for tr in table.find_all("tr") if tr.find_all("td")], [R.plain_forward(w) for w in words])
                 self.assertGreater(check_forward_numbers(self, dom, res), 3)
                 self.assertLessEqual(max(len(line) for line in page.split("\n")), 2000)
                 counts = {w: words.count(w) for w in ("PASS", "MISS", NS)}
                 self.assertEqual(re.sub(r"\s+", " ", hl(card).text()),
-                                 f"Forward tests scored: {counts['PASS']} passed, {counts['MISS']} missed and {counts[NS]} not scorable of 4.")
+                                 f"Of the four frozen predictions, {counts['PASS']} came true, {counts['MISS']} did not and {counts[NS]} could not be scored.")
                 tile = [n for n in parsed(R.scorecard(ctx)).find_all("li") if "tile" in n.classes()][4]
-                self.assertIn(f"{counts['PASS']} pass, {counts['MISS']} miss", tile.text())
+                self.assertIn(f"{counts['PASS']} came true, {counts['MISS']} did not", re.sub(r"\s+", " ", tile.text()))
                 for li in card.find_all("li"):
                     fid = li.attrs.get("data-k")
                     if fid in R.FORWARD_IDS and res["results"][fid]["result"] == NS:
                         why = " ".join(ascii_words(res["results"][fid]["why"]))
-                        self.assertEqual(" ".join(ascii_words(li.find("p", "tnote").text())), f"Not scorable: {why}. It is never estimated.", fid)
+                        self.assertEqual(" ".join(ascii_words(li.find("p", "tnote").text())), f"Could not be scored: {why}. It is never estimated.", fid)
                 for svg in card.find_all("svg", "svg"):       # a dot for each test that has a number, none for the others
                     self.assertEqual(len(svg.find_all("circle", "sk")), sum(1 for w in words if w != NS), label)
 
@@ -827,7 +813,7 @@ class WhatTheScorerCanWrite(unittest.TestCase):
         dom = parsed(R.card_forward(context(res)))
         self.assertGreater(check_forward_numbers(self, dom, res), 5)
         self.assertEqual([n.text().strip() for n in card_node(dom, "forward").find_all("span") if "data-status" in n.attrs],
-                         ["MISS", "PASS", NS, NS])
+                         [R.plain_forward(w) for w in ("MISS", "PASS", NS, NS)])
 
 
 # ---- a long reason

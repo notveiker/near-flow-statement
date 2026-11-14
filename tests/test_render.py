@@ -8,8 +8,8 @@ What they guarantee, and what they do not:
   * every headline, scorecard tile, key figure, bar row and column is bound to the metric written down below
     (HEADLINE_REFS, TILE_REFS, KEYFIGS, ROWS, COLS), so a label that reads another metric fails;
   * the committed page equals a fresh render, byte for byte;
-  * what a reader sees first (the two questions, the answer and the five status chips under the title) is the shared wording, bound to the
-    same metrics as the scorecard tiles, and the render stops if the data stop supporting it (FirstScreen);
+  * what a reader sees first (the two questions and the answer under the title) is the shared wording, and the render stops if the data
+    stop supporting it (FirstScreen); neither page carries a status stamp such as fail, inconclusive, hold or pending (NoStatusStamps);
   * the line breaks in the page are whitespace added where a browser ignores it, and nothing else (LineBreaks).
 They do not check wording beyond the phrases in CARD_PHRASES and the sentences pinned in Wording, FirstScreen and PageClaims, and they cannot say that a metric itself is right: that is
 what pipeline/compute.py, pipeline/check.py and the raw-data manifest are for.
@@ -51,7 +51,10 @@ PAGE_KEY = f"{R.SITE_DIR}/{R.PAGE_NAME}"
 VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}
 CARD_IDS = ("h1a", "h1b", "h1c", "rating", "forward", "ladder", "escrow", "take", "partners", "paid", "peers", "revenue", "supply", "usage")
 PRE_IDS = ("h1a", "h1b", "h1c", "rating", "forward")
-FWD_IDS = ("priced", "multiply", "scenarios", "peersval", "fwdcov", "fwdsupply", "signposts")   # the investment case (exploratory, 2026-11-13/14), first on the page
+FWD_IDS = ("priced", "multiply", "scenarios", "peersval", "fwdcov", "fwdsupply", "signposts")   # the investment case (exploratory, 2026-11-13/14)
+# Where the page shows them: the case (the argument's six charts) first, the pre-registered tests, then the supporting evidence paired by topic.
+CASE_IDS = ("ladder", "priced", "multiply", "scenarios", "signposts", "fwdcov")
+EVID_IDS = ("peers", "peersval", "revenue", "take", "escrow", "partners", "paid", "supply", "fwdsupply", "usage")
 
 
 # ------------------------------------------------------------------ a small DOM
@@ -458,8 +461,39 @@ class Structure(unittest.TestCase):
 
 
 class NoExternalResources(unittest.TestCase):
-    def test_no_script_at_all(self):
-        self.assertEqual(DOM.find_all("script"), [])
+    def test_the_one_script_is_the_live_check_and_reads_only_four_public_sources(self):
+        """The page has one inline script, the live check. It reads CoinGecko, two DefiLlama summaries and NEAR's public RPC in the
+        reader's browser, and writes text only. It loads nothing else, stores nothing and builds no markup from what it fetches."""
+        scripts = DOM.find_all("script")
+        self.assertEqual(len(scripts), 1)
+        self.assertEqual(scripts[0].attrs, {})
+        js = scripts[0].text()
+        hosts = {re.match(r"https://[^/]+", u).group(0) for u in re.findall(r"https://[^\"'\s]+", js)}
+        self.assertEqual(hosts, {"https://api.coingecko.com", "https://api.llama.fi", "https://rpc.mainnet.fastnear.com"})
+        self.assertEqual(len(re.findall(r"getJSON\(\"https://", js)), 4)
+        for bad in ("innerHTML", "outerHTML", "insertAdjacentHTML", "document.write", "eval(", "Function(", "localStorage", "sessionStorage",
+                    "cookie", "import(", "XMLHttpRequest", "<"):
+            self.assertNotIn(bad, js)
+        self.assertIn("textContent", js)
+        assumptions = json.loads(re.search(r"var A = (\{[^}]*\});", js).group(1))
+        self.assertEqual(assumptions, {"r": METRICS["ic_base_r_pct"], "x": METRICS["ic_base_x"], "supply": METRICS["ic_supply_factor_x"],
+                                       "end": 1951516800000})
+        self.assertEqual(datetime.fromtimestamp(assumptions["end"] / 1000, tz=timezone.utc).date(), date(2031, 11, 4))
+        self.assertEqual(FILES[f"{R.SITE_DIR}/{R.STORY_NAME}"].decode("utf-8").count("<script"), 0, "the slides stay script-free")
+
+    def test_the_today_row_shows_the_committed_figure_beside_each_live_value(self):
+        for name, dom, _, _ in VARIANTS:
+            row = next(n for n in dom.find_all("div") if n.attrs.get("id") == "live")
+            outs = row.find_all("output")
+            self.assertEqual([o.attrs["id"] for o in outs], ["lv-implied", "lv-mcap", "lv-rev30", "lv-take", "lv-bb"], name)
+            self.assertTrue(all(o.text() == "…" for o in outs), name)
+            self.assertEqual([r for _, r in refs_in(row)],
+                             ["asof", "ic_implied_cagr_r15_x25_pct", "mcap_usd_b", "asof", "intents_rev_30d_m", "asof", "take_captured_bp_30d",
+                              "buyback_wallet_near_m"], name)
+            about = re.sub(r"\s+", " ", section_node(dom, "about").text())
+            self.assertIn("The Today row under the headline figures is fetched in your browser as the page opens", about, name)
+            self.assertIn("It is exploratory.", about, name)
+            self.assertNotIn("Fetched", re.sub(r"\s+", " ", dom.find("header").text()), name)
 
     def test_no_remote_or_protocol_relative_urls_in_resources(self):
         for n in DOM.iter():
@@ -478,7 +512,7 @@ class NoExternalResources(unittest.TestCase):
     def test_links_are_anchors_or_repo_urls(self):
         for a in DOM.find_all("a"):
             href = a.attrs["href"]
-            self.assertTrue(href.startswith("#") or href.startswith(R.REPO_URL + "/"), href)
+            self.assertTrue(href.startswith("#") or href.startswith(R.REPO_URL + "/") or href == R.STORY_NAME, href)
             self.assertNotIn("javascript:", href.lower())
         for a in DOM.find_all("a"):
             if a.attrs["href"].startswith("http"):
@@ -568,7 +602,7 @@ class DataAttributes(unittest.TestCase):
 
         collect(METRICS)
         token = re.compile(r"(?<![\w.\-/#$])(\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+\.\d+)(?![\w\-])")
-        skip_tags = {"svg", "table", "pre", "code", "style", "head"}  # a collapsed Query or Data block is skipped below; other <details> are read
+        skip_tags = {"svg", "table", "pre", "code", "style", "head", "script"}  # a collapsed Query or Data block is skipped below; other <details> are read
         skip_classes = {"verbatim", "sha", "docs", "toc", "ver"}  # PREREG's own words, hashes, links, a Python version
         problems: list[str] = []
 
@@ -626,7 +660,7 @@ class DataAttributes(unittest.TestCase):
 
     def test_header_facts(self):
         want = hashlib.sha256(MANIFEST_BYTES).hexdigest()[:16]
-        self.assertIn("first 16 hex", DOM.find("header").text())
+        self.assertIn("first 16 hex", section_node(DOM, "about").text())
         fingerprints = [n for n in DOM.find_all("code") if "data-fingerprint" in n.attrs]
         self.assertEqual([(n.attrs["data-fingerprint"], n.text()) for n in fingerprints], [(want, want)])
         pre = [n for n in DOM.find_all("code") if "data-prereg" in n.attrs][0]
@@ -659,16 +693,17 @@ class Cards(unittest.TestCase):
 
     def test_every_chart_is_present_in_the_right_part(self):
         cards = self.cards()
-        self.assertEqual(tuple(cards), FWD_IDS + PRE_IDS + tuple(c for c in CARD_IDS if c not in PRE_IDS))
+        self.assertEqual(tuple(cards), CASE_IDS + PRE_IDS + EVID_IDS)
+        self.assertEqual(set(cards), set(FWD_IDS) | set(CARD_IDS), "every card is on the page")
         part = {n.attrs["id"]: n for n in DOM.find_all("section") if n.attrs.get("id") in ("forward-view", "preregistered", "exploratory")}
         for cid, node in cards.items():
-            owner = "forward-view" if cid in FWD_IDS else "preregistered" if cid in PRE_IDS else "exploratory"
+            owner = "forward-view" if cid in CASE_IDS else "preregistered" if cid in PRE_IDS else "exploratory"
             self.assertIn(node, list(part[owner].iter()), cid)
             badge = node.find("span", "badge")
             self.assertIsNotNone(badge, cid)
             self.assertIn("badge-pre" if cid in PRE_IDS else "badge-exp", badge.classes(), cid)
             text = badge.text().strip()
-            self.assertEqual(text, "Pre-registered" if cid in PRE_IDS else "Exploratory, chosen after the freeze", cid)
+            self.assertEqual(text, "Pre-registered" if cid in PRE_IDS else "Exploratory", cid)
 
     def test_card_anatomy(self):
         for cid, node in self.cards().items():
@@ -698,7 +733,8 @@ class Cards(unittest.TestCase):
                 self.assertIn("viewbox", svg.attrs)
 
     def test_page_sections_and_scorecard(self):
-        """The four pre-registered tiles are the same in every state; the fifth says pending until a score is committed."""
+        """Five tiles: the four pre-registered results, the same in every state, and the forward tests. A tile states the finding in words and
+        numbers, with no status word or status icon; the forward tile says what came true once a score is committed."""
         for name, dom, _, result in VARIANTS:
             with self.subTest(variant=name):
                 sections = [n.attrs.get("id") for n in dom.find("main").find_all("section")]
@@ -707,24 +743,24 @@ class Cards(unittest.TestCase):
                 tiles = [n for n in dom.find_all("li") if "tile" in n.classes()]
                 self.assertEqual(len(tiles), 5)
                 for t in tiles:
-                    self.assertIsNotNone(t.find("svg", "ico"), "every status carries a shape")
-                    self.assertTrue(t.find("p", "st").text().strip(), "and a word")
-                words = [t.find("p", "st").text().strip() for t in tiles]
-                self.assertEqual(words[:4], ["fail", "inconclusive", "inconclusive", "Hold"])
-                self.assertEqual(words[4], "scored" if result else "pending")
-                icons = [[c for c in t.find("svg", "ico").iter() if c.tag in ("circle", "path")][0].classes() for t in tiles]
-                for got, want in zip(icons[:4], ("i-bad", "i-warn", "i-warn", "i-ink2")):
-                    self.assertIn(want, got)
-                self.assertIn("i-line", icons[4])   # an outline: neither a pass nor a fail
-                shapes = {c for el in tiles[4].find("svg", "ico").iter() for c in el.classes()}
-                self.assertEqual("i-ink2" in shapes, result is not None, "a scored tile has a dot in the circle, a pending one the clock hands")
+                    self.assertIsNone(t.find("svg", "ico"), "no status icon")
+                    self.assertIsNone(t.find("p", "st"), "no status word")
+                    self.assertEqual([(c.tag, c.attrs.get("class")) for c in t.children if isinstance(c, Node)],
+                                     [("p", "tlabel"), ("p", "big"), ("p", "tnote"), ("a", None)])
+                big = re.sub(r"\s+", " ", tiles[4].find("p", "big").text()).strip()
+                if result is None:
+                    self.assertEqual(big, "F1 to F4")
+                else:
+                    self.assertRegex(big, r"^\d came true, \d did not$")
 
     def test_the_pending_state_is_what_an_empty_forward_directory_renders(self):
         """The page as committed is pending exactly when no real score is committed, and scored when one is."""
         tile = [n for n in DOM.find_all("li") if "tile" in n.classes()][4]
-        word = tile.find("p", "st").text().strip()
-        self.assertEqual(word, "scored" if LIVE_SCORE else "pending")
-        if not LIVE_SCORE:
+        big = re.sub(r"\s+", " ", tile.find("p", "big").text()).strip()
+        if LIVE_SCORE:
+            self.assertIn("came true", big)
+        else:
+            self.assertEqual(big, "F1 to F4")
             self.assertEqual(PAGE, PENDING_PAGE)
 
     def test_scorecard_values_come_from_the_metrics(self):
@@ -739,7 +775,7 @@ class Cards(unittest.TestCase):
             self.assertIn(want, cmds)
         self.assertLess(cmds.index("python3 -m pipeline.check --manifest"), cmds.index("python3 -m pipeline.compute"))
         footer = DOM.find("footer").text()
-        self.assertIn("Research, not investment advice", footer)
+        self.assertIn("Nothing here is investment advice", footer)
         self.assertIn("MIT", footer)
 
     def test_every_pre_registered_label_survives(self):
@@ -873,10 +909,10 @@ class ForwardTests(unittest.TestCase):
     def test_pending_without_a_scored_result(self):
         """Built from an empty forward directory, so it does not depend on what is committed under data/forward."""
         card = self.card(PENDING_DOM)
-        self.assertIn("pending", hl(card).text())
+        self.assertIn("to be scored after", hl(card).text())
         self.assertIn("2026-11-14 00:00 UTC", hl(card).text())
         words = [n.text().strip() for n in card.find_all("span") if "data-status" in n.attrs]
-        self.assertEqual(words, ["pending"] * 4)
+        self.assertEqual(words, ["to be scored"] * 4)
         self.assertEqual([n for n in PENDING_DOM.iter() if "data-f" in n.attrs], [])
         probs = {n.attrs["data-p"]: n.text() for n in card.find_all("span") if "data-p" in n.attrs}
         self.assertEqual(probs, {"F1": "0.70", "F2": "0.75", "F3": "0.65", "F4": "0.70"})
@@ -887,32 +923,31 @@ class ForwardTests(unittest.TestCase):
             self.assertIn(want, text)
 
     def test_the_live_page_ties_to_the_committed_score_if_there_is_one(self):
-        """Before 2026-11-14 nothing is committed and the card is pending. After `score_forward --score` and a re-render,
-        every data-f number on the page equals the committed result.json, and the card says it is scored."""
+        """Before the score is committed the card says the tests are to be scored. After `score_forward --score` and a re-render,
+        every data-f number on the page equals the committed result.json, and the card says what came true."""
         card = self.card(DOM)
         if LIVE_SCORE is None:
-            self.assertIn("pending", hl(card).text())
+            self.assertIn("to be scored after", hl(card).text())
             self.assertEqual([n for n in DOM.iter() if "data-f" in n.attrs], [])
             return
         self.assertGreater(check_forward_numbers(self, DOM, LIVE_SCORE), 5)
-        self.assertNotIn("pending", hl(card).text())
+        self.assertNotIn("to be scored", hl(card).text())
         words = [n.text().strip() for n in card.find_all("span") if "data-status" in n.attrs]
-        self.assertEqual(words, [str(LIVE_SCORE["results"][f]["result"]) for f in ("F1", "F2", "F3", "F4")])
+        self.assertEqual(words, [R.plain_forward(R.forward_word(LIVE_SCORE, f)) for f in ("F1", "F2", "F3", "F4")])
 
     def test_scored_fixture(self):
         dom = {n: d for n, d, _, _ in VARIANTS}["scored"]
         card = self.card(dom)
         words = {n.attrs["data-status"]: n.text().strip() for n in card.find_all("span") if "data-status" in n.attrs}
-        self.assertEqual(words, {"F1": "PASS", "F2": "MISS", "F3": "PASS", "F4": "not scorable"})
+        self.assertEqual(words, {"F1": "came true", "F2": "did not come true", "F3": "came true", "F4": "could not be scored"})
         self.assertGreater(check_forward_numbers(self, dom, fixture_result()), 10)
-        self.assertIn("passed", hl(card).text())
-        self.assertIn("not scorable", hl(card).text())
+        self.assertIn("came true", hl(card).text())
+        self.assertIn("could not be scored", hl(card).text())
         self.assertIn("a DefiLlama peer fetch is missing", card.text())
         self.assertIn("score_20261114T010203Z/result.json", card.find("div", "source").text())
-        self.assertNotIn("pending", " ".join(words.values()))
+        self.assertNotIn("to be scored", " ".join(words.values()))
         tile = [n for n in dom.find_all("li") if "tile" in n.classes()][4]
-        self.assertEqual(tile.find("p", "st").text().strip(), "scored")
-        self.assertIn("2 pass, 1 miss", tile.text())
+        self.assertIn("2 came true, 1 did not", re.sub(r"\s+", " ", tile.text()))
 
     def test_dry_run_output_is_never_read_or_shown(self):
         dry = fixture_result(is_score=False, mode="DRY-RUN")
@@ -935,7 +970,7 @@ class ForwardTests(unittest.TestCase):
         self.assertEqual([n for n in dom.iter() if "data-f" in n.attrs], [])
         for needle in ("1,111,111", "9.88", "9.8765", "1111111"):
             self.assertNotIn(needle, page)
-        self.assertIn("pending", hl(self.card(dom)).text())
+        self.assertIn("to be scored after", hl(self.card(dom)).text())
 
     def test_only_the_newest_score_directory_counts(self):
         with tempfile.TemporaryDirectory() as d:
@@ -943,14 +978,14 @@ class ForwardTests(unittest.TestCase):
             write_forward(tmp, "score_20261114T010000Z", fixture_result())
             write_forward(tmp, "score_20261115T010000Z", fixture_result(is_score=False, mode="DRY-RUN"))
             dom, _ = forward_dom(tmp)
-        self.assertIn("pending", hl(self.card(dom)).text())
+        self.assertIn("to be scored after", hl(self.card(dom)).text())
 
     def test_a_score_made_by_the_real_scorer_renders_and_ties_to_its_result(self):
         """The layout comes from pipeline/score_forward.py, not from this file, so a change there cannot slip past."""
         result = realistic_result()
         dom = {n: d for n, d, _, _ in VARIANTS}["scored-real"]
         words = {n.attrs["data-status"]: n.text().strip() for n in self.card(dom).find_all("span") if "data-status" in n.attrs}
-        self.assertEqual(words, {f: result["results"][f]["result"] for f in ("F1", "F2", "F3", "F4")})
+        self.assertEqual(words, {f: R.plain_forward(result["results"][f]["result"]) for f in ("F1", "F2", "F3", "F4")})
         self.assertGreater(check_forward_numbers(self, dom, result), 10)
 
     def test_odd_but_parseable_files_are_ignored(self):
@@ -1007,20 +1042,20 @@ class ForwardTests(unittest.TestCase):
         return found
 
     def test_the_table_of_the_frozen_predictions_says_what_the_list_says(self):
-        """The 'Forward tests as frozen' table has a Status column. It printed the word 'pending' on a scored page and nothing noticed."""
+        """The 'Forward tests as frozen' table has a Result column. It once printed the pre-score word on a scored page and nothing noticed."""
         for name, dom, _, result in VARIANTS:
             card = self.card(dom)
             listed = [n.text().strip() for n in card.find_all("span") if "data-status" in n.attrs]
             table = next(t for t in card.find_all("table") if t.find("caption").text() == "Forward tests as frozen")
             self.assertEqual([th.text() for th in table.find_all("th")],
-                             ["Test", "Prior probability", "Status", "Frozen prediction (PREREG.md, verbatim)"], name)
+                             ["Test", "Prior probability", "Result", "Frozen prediction (PREREG.md, verbatim)"], name)
             rows = [tr for tr in table.find_all("tr") if tr.find_all("td")]
             self.assertEqual([tr.attrs["data-k"] for tr in rows], list(R.FORWARD_IDS), name)
             self.assertEqual([tr.find_all("td")[2].text().strip() for tr in rows], listed, name)
-            self.assertEqual(listed, ["pending"] * 4 if result is None else [result["results"][f]["result"] for f in R.FORWARD_IDS], name)
+            self.assertEqual(listed, ["to be scored"] * 4 if result is None else [R.plain_forward(R.forward_word(result, f)) for f in R.FORWARD_IDS], name)
 
     def test_a_result_word_other_than_pass_or_miss_is_drawn_as_not_scorable_and_its_numbers_are_not_read(self):
-        """The scorer writes PASS, MISS or 'not scorable'. Any other word (a lower-case 'pass', null, 'n/a') is drawn as 'not scorable',
+        """The scorer writes PASS, MISS or 'not scorable'. Any other word (a lower-case 'pass', null, 'n/a') is drawn as not scorable ('could not be scored'),
         everywhere the word appears: the list, the table, the counts in the headline and the scorecard tile. Its numbers draw no dot."""
         res = fixture_result()
         res["results"]["F1"] = {**res["results"]["F1"], "result": "pass"}
@@ -1031,13 +1066,13 @@ class ForwardTests(unittest.TestCase):
             write_forward(Path(d), "score_20261114T010203Z", res)
             dom, _ = forward_dom(Path(d))
         card = self.card(dom)
-        self.assertEqual([n.text().strip() for n in card.find_all("span") if "data-status" in n.attrs], ["not scorable"] * 4)
+        self.assertEqual([n.text().strip() for n in card.find_all("span") if "data-status" in n.attrs], ["could not be scored"] * 4)
         table = next(t for t in card.find_all("table") if t.find("caption").text() == "Forward tests as frozen")
-        self.assertEqual([tr.find_all("td")[2].text().strip() for tr in table.find_all("tr") if tr.find_all("td")], ["not scorable"] * 4)
-        self.assertEqual(re.sub(r"\s+", " ", hl(card).text()), "Forward tests scored: 0 passed, 0 missed and 4 not scorable of 4.")
+        self.assertEqual([tr.find_all("td")[2].text().strip() for tr in table.find_all("tr") if tr.find_all("td")], ["could not be scored"] * 4)
+        self.assertEqual(re.sub(r"\s+", " ", hl(card).text()), "Of the four frozen predictions, 0 came true, 0 did not and 4 could not be scored.")
         tile = [n for n in dom.find_all("li") if "tile" in n.classes()][4]
-        self.assertIn("0 pass, 0 miss", tile.text())
-        self.assertIn("4 not scorable", tile.text())
+        self.assertIn("0 came true, 0 did not", re.sub(r"\s+", " ", tile.text()))
+        self.assertIn("4 could not be scored", re.sub(r"\s+", " ", tile.text()))
         for svg in card.find_all("svg", "svg"):
             self.assertEqual(svg.find_all("circle", "sk"), [], "no dot for a test whose word is not PASS or MISS")
             self.assertEqual([float(g.attrs["data-hi"]) for g in svg.find_all("g", "nl")], [2.6, 94.0, 8.0, 100.0], "and no axis widened for its numbers")
@@ -1099,7 +1134,7 @@ class ForwardTests(unittest.TestCase):
                              f"--score on {result['scored_at']} from data fetched at {result['snapshot_fetched_at']}.", name)
             notes = [re.sub(r"\s+", " ", li.text()).strip() for li in card.find("ul", "notes").find_all("li")]
             self.assertEqual(len(notes), 2, name)
-            self.assertEqual(notes[0], 'Every result is published, misses included. A test with missing data is scored "not scorable" and never estimated.', name)
+            self.assertEqual(notes[0], "Every result is published, whichever way it went. A test with missing data is recorded as not scorable and never estimated.", name)
             self.assertTrue(notes[1].startswith("The bands are the frozen predictions and the dot is the observed value. The predictions were frozen before "
                                                 "the window; the scorer was written on 2026-11-06, after the window opened. "), name)
 
@@ -1110,9 +1145,9 @@ class ForwardTests(unittest.TestCase):
                 r = result["results"][fid]
                 note = re.sub(r"\s+", " ", li.find("p", "tnote").text()).strip()
                 if r["result"] == "not scorable":
-                    self.assertEqual(note, f"Not scorable: {r['why']}. It is never estimated.", f"{name}/{fid}")
+                    self.assertEqual(note, f"Could not be scored: {r['why']}. It is never estimated.", f"{name}/{fid}")
                 else:
-                    self.assertFalse(note.startswith("Not scorable"), f"{name}/{fid}")
+                    self.assertFalse(note.startswith("Could not be scored"), f"{name}/{fid}")
                     self.assertNotIn("never estimated", note, f"{name}/{fid}")
 
     def test_the_caption_says_scoring_opened_once_it_has_and_opens_before(self):
@@ -1209,10 +1244,9 @@ class Helpers(unittest.TestCase):
 # The data references in each card headline, in the order they are printed.
 HEADLINE_REFS = {
     "h1a": [("m", "h1a_ratio_as_written_x"), ("k", "h1a_pass_below_x")],
-    "h1b": [("m", "h1b_verdict"), ("m", "h1b_net_inflow_lower_m"), ("m", "h1b_net_inflow_upper_m"), ("m", "h1a_gross_issuance_90d_m")],
-    "h1c": [("m", "h1c_verdict"), ("m", "h1c_identified_buying_m"), ("m", "h1c_ratio_lower_pct"), ("m", "h1c_ratio_upper_pct"),
-            ("k", "h1c_min_pct")],
-    "rating": [("m", "rating_output"), ("m", "h1b_verdict")],
+    "h1b": [("m", "h1b_net_inflow_lower_m"), ("m", "h1b_net_inflow_upper_m"), ("m", "h1a_gross_issuance_90d_m")],
+    "h1c": [("m", "h1c_identified_buying_m"), ("m", "h1c_ratio_lower_pct"), ("m", "h1c_ratio_upper_pct"), ("k", "h1c_min_pct")],
+    "rating": [],
     "ladder": [("m", "ladder_all_wallets_pct_of_issuance"), ("m", "ladder_public_collectors_pct_of_issuance"),
                ("m", "ladder_escrow_unshields_pct_of_issuance")],
     "escrow": [("m", "escrow_share_buyback_2026_07_pct"), ("m", "escrow_share_buyback_2026_08_pct"), ("m", "escrow_share_buyback_2026_09_pct"),
@@ -1233,25 +1267,24 @@ HEADLINE_REFS = {
 
 # The four pre-registered scorecard tiles: label, then the data references in the tile in the order they are printed.
 TILE_REFS = [
-    ("H1a · most staking rewards stay staked",
-     [("m", "h1a_pass_as_written"), ("m", "h1a_ratio_as_written_x"), ("k", "h1a_pass_below_x")]),
-    ("H1b · less NEAR reaches exchanges than is minted",
-     [("m", "h1b_verdict"), ("m", "h1b_net_inflow_lower_m"), ("m", "h1b_net_inflow_upper_m"), ("m", "h1a_gross_issuance_90d_m"),
+    ("H1a: most staking rewards stay staked",
+     [("m", "h1a_ratio_as_written_x"), ("k", "h1a_pass_below_x")]),
+    ("H1b: less NEAR reaches exchanges than is minted",
+     [("m", "h1b_net_inflow_lower_m"), ("m", "h1b_net_inflow_upper_m"), ("m", "h1a_gross_issuance_90d_m"),
       ("m", "h1b_coverage_count_pct"), ("k", "h1b_coverage_min_pct")]),
-    ("H1c · identified buyers absorb a larger share",
-     [("m", "h1c_verdict"), ("m", "h1c_ratio_lower_pct"), ("m", "h1c_ratio_upper_pct"), ("k", "h1c_min_pct")]),
-    ("Rating · the frozen rule",
-     [("m", "rating_output"), ("m", "rating_g_obs_pct"), ("m", "rating_g_req_pct"), ("m", "h1b_verdict"), ("m", "rating_output")]),
+    ("H1c: identified buyers absorb a larger share",
+     [("m", "h1c_ratio_lower_pct"), ("m", "h1c_ratio_upper_pct"), ("k", "h1c_min_pct")]),
+    ("Rating: the frozen rule",
+     [("m", "rating_g_obs_pct"), ("m", "rating_g_req_pct")]),
 ]
 
 # The key-figure blocks: card -> [(label, references in the value)].
 KEYFIGS = {
-    "h1a": [("Net outflow ÷ staking rewards", [("m", "h1a_ratio_as_written_x")]), ("A pass needed", [("k", "h1a_pass_below_x")]),
+    "h1a": [("Net outflow ÷ staking rewards", [("m", "h1a_ratio_as_written_x")]), ("H1a predicted", [("k", "h1a_pass_below_x")]),
             ("Same ratio, archival pool state", [("m", "h1a_ratio_endpoint_archival_x")])],
     "h1c": [("Identified buying", [("m", "h1c_identified_buying_m")]), ("Lower bound of net inflow", [("m", "h1b_net_inflow_lower_m")]),
             ("Upper bound of net inflow", [("m", "h1b_net_inflow_upper_m")])],
-    "rating": [("Rule output", [("m", "rating_output")]), ("If H1b had passed", [("m", "rating_if_h1b_pass")]),
-               ("If H1b had failed", [("m", "rating_if_h1b_fail")])],
+    "rating": [("Signal from the rule", []), ("If H1b were confirmed", []), ("If H1b were refuted", [])],
     "ladder": [("Three-wallet total", [("m", "revwallets_near_k")]),
                ("Share of DefiLlama's reported Intents revenue, same days", [("m", "revwallets_vs_llama_rev_pct")]),
                ("Net issuance", [("m", "net_issuance_near_per_day_window")])],
@@ -1318,7 +1351,7 @@ ROWS = {
                     ("G_obs in NEAR terms (sensitivity)", ["rating_g_obs_near_pct"])],
     ("ladder", 0): [("NEAR delivered to the three revenue wallets", ["ladder_all_wallets_pct_of_issuance"])],
     ("ladder", 1): [("All three revenue wallets, by how the NEAR arrived", ["ladder_all_wallets_pct_of_issuance"]),
-                    ("Of which the buyback wallet alone (a subset, not an extra rung)", ["ladder_buyback_only_pct_of_issuance"])],
+                    ("Of which the buyback wallet alone (a subset of the three)", ["ladder_buyback_only_pct_of_issuance"])],
     ("partners", 1): [("Traceable streams: explicit fees plus quote-improvement share, pro rata", ["swapkit_exit_traceable_pct"]),
                       ("Ceiling: also all escrow NEAR unshielded to the buyback wallet", ["swapkit_exit_ceiling_pct"]),
                       ("Wider ceiling: also the escrow NEAR that reached fefundsadmin", ["swapkit_exit_ceiling_all_escrow_pct"])],
@@ -1338,7 +1371,7 @@ TABLE_ROWS = {
         ('Deposits into staking pools', ['pool_inflow_90d_m']),
         ('Net staking outflow', ['pool_net_outflow_90d_m']),
         ('Staking rewards (90% of gross issuance)', ['staking_rewards_share_pct', 'h1a_staking_rewards_90d_m']),
-        ('Pass line (0.5 x staking rewards)', ['h1a_pass_below_x', '0.5*h1a_staking_rewards_90d_m']),
+        ('H1a’s line (0.5 x staking rewards)', ['h1a_pass_below_x', '0.5*h1a_staking_rewards_90d_m']),
     ],
     ('h1b', 0): [
         ('Net exchange inflow, lower bound', ['h1b_net_inflow_lower_m']),
@@ -1359,7 +1392,7 @@ TABLE_ROWS = {
         ('Net exchange inflow, upper bound', ['h1b_net_inflow_upper_m']),
         ('Identified buying ÷ lower bound', ['h1c_ratio_lower_pct']),
         ('Identified buying ÷ upper bound', ['h1c_ratio_upper_pct']),
-        ('Pass bar', ['h1c_min_pct']),
+        ('H1c’s bar', ['h1c_min_pct']),
     ],
     ('rating', 0): [
         ('G_req', ['rating_g_req_pct']),
@@ -1467,25 +1500,25 @@ COLS = {
 
 # Phrases each card must keep: the hedges and the labels that say what kind of result it is.
 CARD_PHRASES = {
-    "h1a": ("fungible", "inconclusive", "post hoc"),
-    "h1b": ("inconclusive", "mechanical", "snapshots dated", "biases the lower bound down", "never inside it", "a cited one",
-            "labelled by our sweep rule", "a side measure, not a tighter bound", "passes at both bounds"),
-    "h1c": ("inconclusive", "market-wide balance, not a trace", "held, not burned"),
-    "rating": ("pending resolver", "do not predict it", "never fail", "does not feed the rule", "carries no view on NEAR",
-               "far above the Avoid line", "would also have been", "committed after the freeze", "straddles the 2026-02-23 fee switch",
+    "h1a": ("fungible", "cannot settle", "post hoc"),
+    "h1b": ("cannot settle", "mechanical", "snapshots dated", "biases the lower bound down", "never inside it", "a cited one",
+            "labelled by our sweep rule", "a side measure", "true at both bounds"),
+    "h1c": ("unsettled", "market-wide balance", "none of it has been burned"),
+    "rating": ("open question", "do not predict it", "never refuted", "does not feed the rule", "carries no view on NEAR",
+               "far above the avoid line", "would still have given none", "committed after the freeze", "straddles the 2026-02-23 fee switch",
                "does not separate the switch from other causes"),
     "forward": ("never estimated", "not scorable", "is not a score", "first dry run", "Later dry runs", "2026-11-08 05:04 UTC entry"),
     "ladder": ("unattested", "attestation", "Nothing here alleges misconduct", "consistent with a privacy feature working as documented",
                "No valuation is made here", "The range is the finding", "subset"),
     "escrow": ("unattested", "attributed from samples", "less firmly established"),
     "take": ("like-for-like", "consistent with", "overstated"),
-    "partners": ("ceiling", "unknown, not zero", "its size is not measured", "neither candidate reading", "on the tighter reading"),
-    "paid": ("is not visible", "do not extrapolate", "non-custodial", "wide reading", "tight reading", "inferred, not proven",
+    "partners": ("ceiling", "unknown and may be above zero", "its size is not measured", "neither candidate reading", "on the tighter reading"),
+    "paid": ("is not visible", "do not extrapolate", "non-custodial", "wide reading", "tight reading", "inferred and unproven",
              "cannot exclude a partner settlement", "where the public chain shows no fee", "is not shown, so the sample shows the listed amount "
-             "leaving the swap in one piece, not who keeps it"),
-    "peers": ("context for it, not the test", "reported volume"),
-    "revenue": ("NEAR delivered to the wallets", "context for it, not the test"),
-    "supply": ("HSP-029", "context for it, not the test", "rounding"),
+             "leaving the swap in one piece; it does not show who keeps it"),
+    "peers": ("context for that test", "reported volume"),
+    "revenue": ("NEAR delivered to the wallets", "context for that test"),
+    "supply": ("HSP-029", "context for that test", "rounding"),
     "usage": ("one step", "no sybil or bot filter", "Why they stopped is not in the data", "by an order of magnitude", "exploratory",
               "is not a pre-registered test"),
 }
@@ -1495,15 +1528,16 @@ HEADLINE_PHRASES = {
     "partners": ("about", "The ceiling is", "if the escrow NEAR reaching the front-end fund is counted too"),
     "paid": ("is one reading", "on the tighter one"),
     "h1b": ("on either side of",),
-    "h1c": ("a pass needs",),
-    "rating": ("which carries no view on NEAR", "Buy needs H1b to pass and observed growth at least the required growth, Avoid needs H1b to fail and observed growth under half the required growth"),
+    "h1c": ("needs at least",),
+    "rating": ("which carries no view on NEAR", "a buy signal needs H1b confirmed and observed growth at least the required growth, an avoid signal needs "
+               "H1b refuted and observed growth under half the required growth"),
     "take": ("mostly because more volume carries a buyback fee entry",),
-    "usage": ("most of that is one step", "not a gradual decline", "on the same 30 days a year earlier"),
+    "usage": ("most of that is one step", "a single-day drop", "on the same 30 days a year earlier"),
 }
 # And the sections of the page that carry hedges of their own.
 SECTION_PHRASES = {
-    "limits": ("inferred", "consistent with the docs rather than proven", "sample-attributed", "lower bounds", "mechanical"),
-    "not-computed": ("attestation", "fungible", "pending resolver", "Why the usage step happened", "is not in the data",
+    "limits": ("inferred", "consistent with the docs", "sample-attributed", "lower bounds", "mechanical"),
+    "not-computed": ("attestation", "fungible", "open question", "Why the usage step happened", "is not in the data",
                      "no sybil or bot filter", "on the tighter reading"),
 }
 
@@ -1548,7 +1582,7 @@ class Golden(unittest.TestCase):
 
     def test_headlines_say_what_the_numbers_are_about(self):
         want = {"revenue": ("October 2026", "September"), "escrow": ("July", "October", "November"),
-                "peers": ("30 days", "365 days"), "take": ("bp of volume", "partner fees"), "rating": ("Buy needs", "Avoid needs")}
+                "peers": ("30 days", "365 days"), "take": ("bp of volume", "partner fees"), "rating": ("a buy signal needs", "an avoid signal needs")}
         for cid, phrases in want.items():
             h3 = hl(card_node(DOM, cid)).text()
             for ph in phrases:
@@ -1566,13 +1600,25 @@ class Golden(unittest.TestCase):
                 for ph in phrases:
                     self.assertIn(ph, h3, f"{name}: the {cid} headline lost {ph!r}")
 
-    def test_the_h1a_headline_verdict_word_agrees_with_the_metric(self):
+    def test_the_pre_registered_headlines_state_the_findings_in_words_that_agree_with_the_metrics(self):
+        """Each pre-registered headline says what was found, in plain words (PREREG.md's own outcome word stays in data/metrics.json, and
+        docs/glossary.md maps one to the other): H1a's ratio against its line, H1b and H1c unsettled, no signal from the rule."""
         self.assertIs(METRICS["h1a_pass_as_written"], False)
-        h3 = hl(card_node(DOM, "h1a")).text()
-        self.assertTrue(h3.startswith("H1a fails:"), h3)
-        for cid, key, word in (("h1b", "h1b_verdict", "inconclusive"), ("h1c", "h1c_verdict", "inconclusive"), ("rating", "rating_output", "Hold")):
+        self.assertGreaterEqual(METRICS["h1a_ratio_as_written_x"], R.CONSTS["h1a_pass_below_x"][0])
+        h3 = re.sub(r"\s+", " ", hl(card_node(DOM, "h1a")).text())
+        self.assertEqual(h3, f"Net staking outflow was {METRICS['h1a_ratio_as_written_x']}× staking rewards over 90 days, where H1a predicted under 0.5×.")
+        for cid, key, word, phrase in (("h1b", "h1b_verdict", "inconclusive", "so the exchange labels cannot settle H1b."),
+                                       ("h1c", "h1c_verdict", "inconclusive", "so the labels cannot settle it either."),
+                                       ("rating", "rating_output", "Hold", "gives no buy or avoid signal")):
             self.assertEqual(METRICS[key], word)
-            self.assertIn(word, hl(card_node(DOM, cid)).text())
+            self.assertIn(phrase, re.sub(r"\s+", " ", hl(card_node(DOM, cid)).text()), cid)
+        self.assertEqual({w: R.plain_result(w) for w in ("pass", "fail", "inconclusive")},
+                         {"pass": "confirmed", "fail": "refuted", "inconclusive": "unsettled"})
+        self.assertEqual({w: R.plain_rating(w) for w in ("Buy", "Hold", "Avoid")}, {"Buy": "Buy", "Hold": "None", "Avoid": "Avoid"})
+        kf = {d.find("dt").text(): d.find("dd").text().strip() for d in card_node(DOM, "rating").find("dl", "keyfigs").find_all("div")}
+        self.assertEqual(kf, {"Signal from the rule": R.plain_rating(METRICS["rating_output"]),
+                              "If H1b were confirmed": R.plain_rating(METRICS["rating_if_h1b_pass"]),
+                              "If H1b were refuted": R.plain_rating(METRICS["rating_if_h1b_fail"])})
 
     def test_every_card_has_text_after_what_it_does_not_show(self):
         for name, dom, _, _ in VARIANTS:
@@ -2035,9 +2081,10 @@ TEXT_ALLOWED = DATE_MASKS + NAME_MASKS + [re.compile(p) for p in (
     r"\b(?:30|90|180|365)(?:-day| days?| before)\b",                           # window lengths
     r"\bfirst 16 hex\b", r"\bsteps? \d(?: to \d)?\b", r"\bitems? \d\b", r"÷ 2\b",   # the fingerprint length, step and item numbers, the rule
     r"\bof 4\b", r"(?<![\d.])0%",                                               # "not scorable of 4" (F1 to F4), "0%"
+    r"\bFigure \d{1,2}\b",                                                      # a figure number, the label of a chart
 )]
 TEXT_NUMBER = re.compile(r"\d[\d,]*(?:\.\d+)?")
-SKIP_TAGS = {"style", "head", "pre", "code", "svg"}
+SKIP_TAGS = {"style", "head", "pre", "code", "svg", "script"}
 SKIP_CLASSES = {"verbatim", "sha", "ver"}   # PREREG's own words, a hash and a byte count (data-r), a Python version
 
 
@@ -2234,7 +2281,7 @@ class PageClaims(unittest.TestCase):
                       f"records ({stamp} UTC in data/MANIFEST.json).", note)
         self.assertIn("Commit and manifest times are written by the author’s machine; one external record, GitHub’s activity log, dates the push of the freeze commit to 2026-11-05 22:53:33 UTC", note)
         self.assertNotIn("nothing external attests", note)
-        header = re.sub(r"\s+", " ", next(d for d in DOM.find("header").find_all("dd") if d.text().startswith("PREREG.md SHA-256")).text())
+        header = re.sub(r"\s+", " ", next(d for d in section_node(DOM, "about").find_all("dd") if d.text().startswith("PREREG.md SHA-256")).text())
         self.assertIn(f"(commit {R.FREEZE_COMMIT}, {R.FREEZE_UTC} UTC), before the first BigQuery result the repository records ({stamp} UTC in data/MANIFEST.json); "
                       f"the order rests on the author’s own commit and manifest times", header)
         # the PREREG anchor is still linked from the scorecard note and the header, and only from them
@@ -2263,7 +2310,7 @@ class PageClaims(unittest.TestCase):
         self.assertEqual(len(h1a_entries), 2)
         for e in h1a_entries:
             self.assertNotIn("bqjob_", e)
-        sentence = "recorded only for the H1b and H1c runs and one October escrow scan, not for the H1a queries"
+        sentence = "recorded only for the H1b and H1c runs and one October escrow scan; the H1a queries have none"
         self.assertIn(sentence, re.sub(r"\s+", " ", section_node(DOM, "scorecard").text()))
 
     def test_the_lede_names_the_two_commands_and_the_one_that_runs_both(self):
@@ -2486,22 +2533,22 @@ class Usage(unittest.TestCase):
         return out
 
     # ---- where it sits
-    def test_the_card_is_the_ninth_exploratory_card_and_is_in_the_contents(self):
+    def test_the_card_is_the_last_supporting_card_and_is_in_the_contents(self):
         cards = [n for n in DOM.find_all("section") if n.attrs.get("id", "").startswith("chart-")]
         self.assertEqual([c.attrs["id"] for c in cards].count("chart-usage"), 1)
         pre, expl = list(section_node(DOM, "preregistered").iter()), list(section_node(DOM, "exploratory").iter())
-        self.assertEqual((len([c for c in cards if c in pre]), len([c for c in cards if c in expl])), (5, 9))
+        self.assertEqual((len([c for c in cards if c in pre]), len([c for c in cards if c in expl])), (5, len(EVID_IDS)))
         usage = card_node(DOM, "usage")
         self.assertIn(usage, expl)
         self.assertNotIn(usage, pre)
         badge = usage.find("span", "badge")
         self.assertIn("badge-exp", badge.classes())
-        self.assertEqual(badge.text().strip(), "Exploratory, chosen after the freeze")
+        self.assertEqual(badge.text().strip(), "Exploratory")
         self.assertIs(cards[-1], usage, "it comes after the other exploratory cards")
         nav = next(n for n in DOM.find_all("nav") if n.attrs.get("aria-label") == "Contents")
         toc_pre, toc_exp = nav.find_all("ul", "toc")
         self.assertEqual([a.attrs["href"] for a in toc_pre.find_all("a")], [f"#chart-{c}" for c in PRE_IDS])
-        self.assertEqual([a.attrs["href"] for a in toc_exp.find_all("a")], [f"#chart-{c}" for c in CARD_IDS if c not in PRE_IDS])
+        self.assertEqual([a.attrs["href"] for a in toc_exp.find_all("a")], [f"#chart-{c}" for c in EVID_IDS])
         self.assertEqual(toc_exp.find_all("a")[-1].text(), "Network usage")
 
     # ---- the data
@@ -2642,7 +2689,7 @@ class Usage(unittest.TestCase):
         self.assertEqual(h3, f"Daily active accounts averaged {METRICS['active_accounts_30d_k']}K over the 30 days to {METRICS['asof']}, "
                              f"{METRICS['active_accounts_30d_yoy_pct']}% on the same 30 days a year earlier; daily transactions are "
                              f"{METRICS['tx_per_day_30d_yoy_pct']}% on a year earlier, but most of that is one step on {METRICS['l1_step_date']}, "
-                             f"not a gradual decline.")
+                             f"a single-day drop.")
 
     def test_what_the_card_does_not_show_names_the_gaps_the_brief_asks_about(self):
         text = re.sub(r"\s+", " ", card_node(DOM, "usage").find("p", "notshows").text())
@@ -2770,12 +2817,12 @@ class Wording(unittest.TestCase):
         a, b = METRICS["h1b_coverage_count_pct"], METRICS["h1b_coverage_tier1_count_pct"]
         h1b_note = re.sub(r"\s+", " ", card_node(DOM, "h1b").find("ul", "notes").find_all("li")[0].text())
         self.assertTrue(h1b_note.startswith(f"Only {a}% of the top-100 native-NEAR receivers carry an exchange label ({b}% a cited one; the rest are labelled "
-                                            f"by our sweep rule), below the 50% the pre-registration requires, so the test passes only if it passes at both bounds."), h1b_note)
+                                            f"by our sweep rule), below the 50% the pre-registration requires, so H1b is confirmed only if it is true at both bounds."), h1b_note)
         self.assertEqual([r for _, r in refs_in(card_node(DOM, "h1b").find("ul", "notes").find_all("li")[0])][:3],
                          ["h1b_coverage_count_pct", "h1b_coverage_tier1_count_pct", "h1b_coverage_min_pct"])
         first = re.sub(r"\s+", " ", section_node(DOM, "not-computed").find_all("li")[0].text())
         self.assertIn(f"Only {a}% of the top-100 receivers carry an exchange label ({b}% a cited one; the rest are labelled by our sweep rule). The binding gap is "
-                      f"labelling, not data: no citable NEAR address was found for OKX, Coinbase, Kraken, Bybit, HTX, Crypto.com, Upbit or Bithumb", first)
+                      f"labelling: the flows are in the data, but no citable NEAR address was found for OKX, Coinbase, Kraken, Bybit, HTX, Crypto.com, Upbit or Bithumb", first)
         self.assertIn("No citable NEAR address was found for OKX, Coinbase, Kraken, Bybit, HTX, Crypto.com, Upbit or Bithumb.", h1b_note + " " + re.sub(
             r"\s+", " ", card_node(DOM, "h1b").find("ul", "notes").text()))
 
@@ -2799,13 +2846,13 @@ class Wording(unittest.TestCase):
         self.assertRegex(entry, r"(?m)^6\. \*\*Reading of the range rule, recorded before results\.\*\*.*never fail")
         # the page says exactly that, with each number bound to its metric
         notshows = card_node(DOM, "rating").find("p", "notshows")
-        self.assertEqual([r for _, r in refs_in(notshows)], ["rating_output", "h1b_coverage_min_pct", "rating_g_obs_pct", "rating_g_obs_near_pct",
-                                                              "rating_g_avoid_line_pct", "rating_g_req_pct", "rating_if_h1b_fail"])
+        self.assertEqual([r for _, r in refs_in(notshows)], ["h1b_coverage_min_pct", "rating_g_obs_pct", "rating_g_obs_near_pct",
+                                                              "rating_g_avoid_line_pct", "rating_g_req_pct"])
         text = re.sub(r"\s+", " ", notshows.text())
-        self.assertIn(f"The frozen rule outputs Hold, and that carries no view on NEAR. Below 50% label coverage H1b can come out pass or inconclusive but never fail "
+        self.assertIn(f"The rule gives no signal, and that carries no view on NEAR. Below 50% label coverage H1b can come out confirmed or unsettled but never refuted "
                       f"(the range rule as read before the results; PREREG-ADDENDUM.md, 2026-11-06 23:11 UTC entry, item 6), and observed revenue growth "
-                      f"({go}% a year; {METRICS['rating_g_obs_near_pct']}% in NEAR terms) is far above the Avoid line ({METRICS['rating_g_avoid_line_pct']}% a year, half of "
-                      f"G_req {gr}%), so the rule could only ever have output Buy or Hold; had H1b failed it would also have been Hold.", text)
+                      f"({go}% a year; {METRICS['rating_g_obs_near_pct']}% in NEAR terms) is far above the avoid line ({METRICS['rating_g_avoid_line_pct']}% a year, half of "
+                      f"G_req {gr}%), so the rule could only ever have given a buy signal or none; had H1b been refuted it would still have given none.", text)
         # G_req rests on constants committed after the freeze, with the as-written H1a result
         ra = json.loads((ROOT / "data/raw/rpc/rating_assumptions.json").read_text(encoding="utf-8"))
         fetched = MANIFEST["raw/rpc/rating_assumptions.json"]["fetched_at"]
@@ -2833,16 +2880,18 @@ class Wording(unittest.TestCase):
 
     def test_the_headline_and_the_tile_say_the_whole_rule_and_that_hold_is_no_view(self):
         h3 = re.sub(r"\s+", " ", hl(card_node(DOM, "rating")).text())
-        self.assertEqual(h3, "The frozen rule outputs Hold, which carries no view on NEAR: Buy needs H1b to pass and observed growth at least the required growth, Avoid needs H1b to fail and observed growth under "
-                             "half the required growth, and H1b is inconclusive.")
+        self.assertEqual(h3, "The frozen rating rule gives no buy or avoid signal, which carries no view on NEAR: a buy signal needs H1b confirmed and observed growth "
+                             "at least the required growth, an avoid signal needs H1b refuted and observed growth under half the required growth, and the exchange "
+                             "labels cannot settle H1b.")
         tile = [n for n in DOM.find_all("li") if "tile" in n.classes()][3]
+        self.assertEqual(tile.find("p", "big").text(), "No signal")
         self.assertEqual(re.sub(r"\s+", " ", tile.find("p", "tnote").text()),
-                         "Observed against required growth in captured revenue, a year. Buy needs H1b to pass and observed growth at least the required; Avoid needs H1b to fail and observed growth under "
-                         "half the required. H1b is inconclusive, so the rule outputs Hold, which carries no view on NEAR.")
+                         f"Revenue growth {METRICS['rating_g_obs_pct']}% a year against {METRICS['rating_g_req_pct']}% required, but a buy also needs H1b "
+                         "confirmed, which the labels cannot settle. No view on NEAR.")
 
     def test_the_hold_explanation_refuses_to_render_when_the_data_stop_supporting_it(self):
         ctx = R.Ctx()
-        self.assertIn("could only ever have output Buy or Hold", R.hold_explanation(ctx))
+        self.assertIn("could only ever have given a buy signal or none", R.hold_explanation(ctx))
         avoid = ctx.m["rating_g_avoid_line_pct"]
         for key, value in (("rating_g_obs_pct", 10.0), ("rating_g_obs_near_pct", 10.0), ("rating_g_obs_near_pct", avoid + 0.1),
                            ("rating_g_obs_pct", 2 * avoid - 0.1), ("rating_if_h1b_fail", "Avoid"), ("rating_output", "Buy"),
@@ -2897,7 +2946,7 @@ class Wording(unittest.TestCase):
         self.assertIn(f"the listed partner fees left after that are at least {m['partners_kept_vs_near_rev_low_x']}× NEAR’s revenue, and at most {m['near_share_of_partner_fees_max_pct']}% of the fees on partner swaps "
                       f"with no buyback fee entry reached NEAR", notes)
         self.assertIn(f"{m['partners_kept_vs_near_rev_low_tight_x']}× and {m['near_share_of_partner_fees_max_tight_pct']}%", notes)
-        self.assertIn("a role that is inferred, not proven", notes)
+        self.assertIn("a role that is inferred and unproven", notes)
         self.assertIn("Both leave out the escrow NEAR that reached the front-end fund, where the ledger cannot exclude a partner settlement", notes)
         shows_not = re.sub(r"\s+", " ", card_node(DOM, "partners").find("p", "notshows").text())
         self.assertIn(f"cannot tell 0% from about {m['near_share_of_partner_fees_max_pct']}% for SwapKit ({m['near_share_of_partner_fees_max_tight_pct']}% on the tighter reading)",
@@ -2924,7 +2973,7 @@ class Wording(unittest.TestCase):
                          f"went into the Confidential Intents escrow, where the public chain shows no fee on that route. A further {m['fee_ev_swapkit_fees_zero_rate_n']} "
                          f"SwapKit entries and {m['fee_ev_other_partner_fees_zero_rate_n'] + m['fee_ev_zodl_fees_zero_rate_n']} others list a zero rate, so nothing is owed "
                          f"on them and no amount can match. Who owns those receiving accounts is not shown, so the sample shows the listed amount leaving the swap in "
-                         f"one piece, not who keeps it. So no split comes out of a listed fee in that sample; whatever 1Click charges on top, and whether it forwards "
+                         f"one piece; it does not show who keeps it. So no split comes out of a listed fee in that sample; whatever 1Click charges on top, and whether it forwards "
                          f"any of it to NEAR, is not visible.")
         self.assertNotIn("Partners are paid their full listed fee", card_node(DOM, "paid").text())
         bad = R.Ctx()
@@ -2988,7 +3037,7 @@ class Wording(unittest.TestCase):
             text = re.sub(r"\s+", " ", prose(card))
             self.assertNotRegex(text, r"(?i)\bkept\b", name)
             self.assertEqual(re.findall(r"(?i)\bkeeps?\b", text), ["keeps"], name)
-            self.assertIn("is not shown, so the sample shows the listed amount leaving the swap in one piece, not who keeps it.", text, name)
+            self.assertIn("is not shown, so the sample shows the listed amount leaving the swap in one piece; it does not show who keeps it.", text, name)
             self.assertNotIn("Who keeps", page, name)
             self.assertNotIn("Partners kept", page, name)
         nav = next(n for n in DOM.find_all("nav") if n.attrs.get("aria-label") == "Contents")
@@ -3010,9 +3059,9 @@ class Wording(unittest.TestCase):
         self.assertEqual([r for _, r in refs_in(li)], ["h1b_net_inflow_upper_ex_nonexchange_m", "h1b_net_inflow_upper_m"])
         self.assertEqual(re.sub(r"\s+", " ", li.text()),
                          f"The fourth bar of Panel A ({m['h1b_net_inflow_upper_ex_nonexchange_m']}M) is longer than the upper bound ({m['h1b_net_inflow_upper_m']}M) although it leaves two "
-                         f"accounts out: it is a side measure, not a tighter bound. It drops the transfers between the sourced non-exchange accounts among the unlabelled top-100 receivers (here "
+                         f"accounts out: it is a side measure and does not tighten the bound. It drops the transfers between the sourced non-exchange accounts among the unlabelled top-100 receivers (here "
                          f"intents.near and a DAO account) and accounts outside the set, which is how pipeline/h1b.py approximates taking them out of the set counted as "
-                         f"exchange-bound. More NEAR left the set through those transfers than entered it, so dropping them raises the total. The verdict uses only the "
+                         f"exchange-bound. More NEAR left the set through those transfers than entered it, so dropping them raises the total. The test uses only the "
                          f"lower and upper bounds.")
         self.assertEqual(ROWS[("h1b", 0)][3], ("Side measure: upper bound without sourced non-exchange accounts", ["h1b_net_inflow_upper_ex_nonexchange_m"]))
         self.assertGreater(m["h1b_net_inflow_upper_ex_nonexchange_m"], m["h1b_net_inflow_upper_m"])
@@ -3121,23 +3170,23 @@ class Wording(unittest.TestCase):
 
     # ---- "under both" read as a ceiling
     def test_a_pass_needs_at_least_25_percent_at_both_bounds_and_the_page_never_says_under_both(self):
-        """H1a's pass is a ceiling ('under 0.5x'); H1c's is a floor. 'A pass needs 25% under both' read the other way round, so every place says
-        'at least 25% at both bounds', and H1b's 'passes at both bounds' no longer uses 'under' for 'at'."""
+        """H1a's line is a ceiling ('under 0.5x'); H1c's is a floor. 'A pass needs 25% under both' read the other way round, so every place says
+        'at least 25% at both bounds', and H1b's 'true at both bounds' does not use 'under' for 'at'."""
         for name, dom, page, _ in VARIANTS:
             self.assertEqual(page.count("under both"), 0, name)
             tile = [n for n in dom.find_all("li") if "tile" in n.classes()][2]
-            self.assertTrue(re.sub(r"\s+", " ", tile.find("p", "tnote").text()).endswith("A pass needs at least 25% at both bounds."), name)
+            self.assertTrue(re.sub(r"\s+", " ", tile.find("p", "tnote").text()).endswith("H1c needs at least 25% at both bounds."), name)
             h3 = re.sub(r"\s+", " ", hl(card_node(dom, "h1c")).text())
-            self.assertTrue(h3.endswith("; a pass needs at least 25% at both bounds."), name)
+            self.assertTrue(h3.endswith("; H1c needs at least 25% at both bounds, so the labels cannot settle it either."), name)
             notes = re.sub(r"\s+", " ", card_node(dom, "h1c").find("ul", "notes").find_all("li")[0].text())
-            self.assertTrue(notes.startswith("With label coverage below 50%, H1c passes only if it reaches at least 25% at both bounds."), name)
+            self.assertTrue(notes.startswith("With label coverage below 50%, H1c is confirmed only if it reaches at least 25% at both bounds."), name)
             for sv in card_node(dom, "h1c").find_all("svg", "svg"):
-                labels = [re.sub(r"\s+", " ", t.text()) for t in sv.find_all("text", "rl") if "pass bar" in t.text()]
-                self.assertEqual(labels, ["pass bar: at least 25% at both bounds"], name)
+                labels = [re.sub(r"\s+", " ", t.text()) for t in sv.find_all("text", "rl") if "H1c’s bar" in t.text()]
+                self.assertEqual(labels, ["H1c’s bar: at least 25% at both bounds"], name)
             h1b_note = re.sub(r"\s+", " ", card_node(dom, "h1b").find("ul", "notes").find_all("li")[0].text())
-            self.assertIn("so the test passes only if it passes at both bounds.", h1b_note, name)
+            self.assertIn("so H1b is confirmed only if it is true at both bounds.", h1b_note, name)
             tile_a = [n for n in dom.find_all("li") if "tile" in n.classes()][0]
-            self.assertTrue(re.sub(r"\s+", " ", tile_a.find("p", "tnote").text()).endswith("A pass needed under 0.5×."), name)   # a ceiling, and it says so
+            self.assertTrue(re.sub(r"\s+", " ", tile_a.find("p", "tnote").text()).endswith("H1a predicted under 0.5×."), name)   # a ceiling, and it says so
             self.assertIn("under 0.5×", re.sub(r"\s+", " ", hl(card_node(dom, "h1a")).text()), name)
         # the rule behind the sentence: below 50% label coverage a test passes only if it passes at both bounds
         from pipeline import h1b as H
@@ -3169,17 +3218,10 @@ class Wording(unittest.TestCase):
 
 # ------------------------------------------------------------------ what a reader sees first
 class FirstScreen(unittest.TestCase):
-    """Under the title: the two questions, the answer, and five status chips that link to the five pre-registered cards. A reader who stops
-    there has the pre-registered result, the exploratory range and the labels that say which is which. Also the key-figure rows, whose values
-    share a baseline however many lines a label takes. (How the screen looks, and that it fits at 1280x800 and 390x844, is checked with a browser
+    """Under the title: the long-term view, the two questions and the answer. A reader who stops there has what the pre-registered tests
+    found, in plain words, the exploratory range and the labels that say which is which. Also the key-figure rows, whose values share a
+    baseline however many lines a label takes. (How the screen looks, and that it fits at 1280x800 and 390x844, is checked with a browser
     outside this suite: the suite is standard library only.)"""
-
-    CHIPS = (("h1a", "H1a"), ("h1b", "H1b"), ("h1c", "H1c"), ("rating", "Rating rule"), ("forward", "Forward tests"))
-    NAV = "Pre-registered results at a glance"
-
-    @staticmethod
-    def chips_nav(dom: Node) -> Node:
-        return next(n for n in dom.find("header").find_all("nav") if n.attrs.get("aria-label") == FirstScreen.NAV)
 
     def test_the_title_is_the_headline_and_the_two_questions_follow_it_with_the_frozen_one_quoted_from_prereg(self):
         """The page calls a question "pre-registered" only if PREREG.md says it. PREREG.md's question is the market-wide one; the title
@@ -3192,20 +3234,26 @@ class FirstScreen(unittest.TestCase):
             head = dom.find("header")
             self.assertEqual(dom.find("h1").text(), "Can NEAR’s Intents business grow into its dilution?", name)
             kids = [c.tag + "".join("." + k for k in sorted(c.classes())) for c in head.children if isinstance(c, Node)]
-            self.assertEqual(kids[:7], ["p.eyebrow", "h1", "div.thesis", "p.questions", "div.answer", "nav", "p.lede"], name)
+            self.assertEqual(kids, ["p.eyebrow", "h1", "div.thesis", "p.kcap", "ul.kpis", "div.today", "details.readmore"], name)
+            readmore = [c for c in head.children if isinstance(c, Node) and "readmore" in c.classes()][0]
+            inner = [c.tag + "".join("." + k for k in sorted(c.classes())) for c in readmore.children if isinstance(c, Node)]
+            self.assertEqual(inner, ["summary", "p.questions", "div.answer"], f"{name}: the questions and the answer open from one line")
+            self.assertEqual([n for n in head.iter() if n.classes() & {"chips", "chip", "chipword"}], [], f"{name}: no status chips under the answer")
             self.assertEqual(re.sub(r"\s+", " ", head.find("p", "questions").text()),
                              "The pre-registered question: how much NEAR actually flows to exchanges, and how much of that do identified buyers absorb? (It makes no claim about "
                              "which coins are sold.) The question the evidence can answer: how much of NEAR’s value capture can you verify?", name)
 
     def test_the_answer_is_the_shared_sentence_with_every_number_a_metric_and_both_labels(self):
         m = METRICS
-        want = ("Pre-registered result: H1a (most staking rewards stay staked) fails; H1b (less NEAR reaches exchanges than is minted) and H1c "
-                "(identified buying is at least 25% of net exchange inflow) are inconclusive; and the frozen rating rule outputs Hold, which carries no view on NEAR. "
+        want = (f"What the pre-registered tests found: net staking outflow was {m['h1a_ratio_as_written_x']}× staking rewards over 90 days, where H1a (most staking "
+                f"rewards stay staked) predicted under 0.5×. Only {m['h1b_coverage_count_pct']}% of the top-100 NEAR receivers carry an exchange label, so how much "
+                "NEAR reaches exchanges (H1b: less than is minted) and how much of it identified buyers absorb (H1c: at least 25%) come out as ranges too wide to "
+                "settle either way. So the frozen rating rule gives no buy or avoid signal, which carries no view on NEAR. "
                 "Exploratory, chosen after the freeze: over 30 days the NEAR that verifiably reached NEAR’s three Intents revenue wallets was "
                 f"{m['ladder_all_wallets_pct_of_issuance']:.2f}% of net issuance, of which {m['ladder_public_collectors_pct_of_issuance']:.2f} points trace to public fee "
                 f"collectors, {m['ladder_escrow_unshields_pct_of_issuance']:.2f} arrived as releases from an escrow whose fee stream is unattested, and "
                 f"{m['ladder_other_pct_of_issuance']:.2f} came from one other source. So, if those three are all of NEAR’s Intents revenue wallets, the value capture that can be "
-                "verified is a range, not a number. "
+                "verified is a range. "
                 "This is not a valuation and not advice.")
         self.assertEqual((m["h1a_pass_as_written"], m["h1b_verdict"], m["h1c_verdict"], m["rating_output"]), (False, "inconclusive", "inconclusive", "Hold"))
         for name, dom, _, _ in VARIANTS:
@@ -3213,9 +3261,10 @@ class FirstScreen(unittest.TestCase):
             text = re.sub(r"\s+", " ", answer.text()).strip()
             self.assertTrue(text.startswith(want), (name, text))
             self.assertEqual(text[len(want):].strip(), "See the value-capture ladder.", name)
-            self.assertEqual([r for _, r in refs_in(answer)], ["h1c_min_pct", "rating_output", "ladder_all_wallets_pct_of_issuance", "ladder_public_collectors_pct_of_issuance",
+            self.assertEqual([r for _, r in refs_in(answer)], ["h1a_ratio_as_written_x", "h1a_pass_below_x", "h1b_coverage_count_pct", "h1c_min_pct",
+                                                                 "ladder_all_wallets_pct_of_issuance", "ladder_public_collectors_pct_of_issuance",
                                                                  "ladder_escrow_unshields_pct_of_issuance", "ladder_other_pct_of_issuance"], name)
-            self.assertEqual([b.text() for b in answer.find_all("strong")], ["Pre-registered result:", "Exploratory, chosen after the freeze:"], name)
+            self.assertEqual([b.text() for b in answer.find_all("strong")], ["What the pre-registered tests found:", "Exploratory, chosen after the freeze:"], name)
             self.assertEqual([a.attrs["href"] for a in answer.find_all("a")], ["#chart-ladder"], name)
         self.assertAlmostEqual(m["ladder_public_collectors_pct_of_issuance"] + m["ladder_escrow_unshields_pct_of_issuance"] + m["ladder_other_pct_of_issuance"],
                                m["ladder_all_wallets_pct_of_issuance"], delta=0.02, msg="the three sources add up to the total")
@@ -3223,7 +3272,9 @@ class FirstScreen(unittest.TestCase):
     def test_the_answer_stops_the_render_when_the_data_stop_supporting_it(self):
         R.answer_line(R.Ctx())
         for key, value in (("h1a_pass_as_written", True), ("h1b_verdict", "pass"), ("h1b_verdict", "pending"), ("h1c_verdict", "fail"),
-                           ("rating_output", "Buy"), ("rating_output", "Avoid"), ("ladder_other_pct_of_issuance", 0.5), ("ladder_all_wallets_pct_of_issuance", 20.0)):
+                           ("rating_output", "Buy"), ("rating_output", "Avoid"), ("ladder_other_pct_of_issuance", 0.5), ("ladder_all_wallets_pct_of_issuance", 20.0),
+                           ("h1a_ratio_as_written_x", 0.4), ("h1b_coverage_count_pct", 60.0), ("h1b_net_inflow_upper_m", 5.0),
+                           ("h1c_ratio_lower_pct", 20.0), ("h1c_ratio_upper_pct", 30.0)):
             bad = R.Ctx()
             bad.m = dict(bad.m, **{key: value})
             with self.assertRaises(SystemExit, msg=f"{key}={value}"):
@@ -3238,95 +3289,33 @@ class FirstScreen(unittest.TestCase):
         with self.assertRaises(SystemExit):
             R.answer_line(far)
 
-    def test_five_chips_link_to_the_five_cards_and_say_what_the_scorecard_tiles_say(self):
-        for name, dom, _, result in VARIANTS:
-            nav = self.chips_nav(dom)
-            chips = nav.find("ul", "chips").find_all("li")
-            tiles = [n for n in dom.find_all("li") if "tile" in n.classes()]
-            self.assertEqual((len(chips), len(tiles)), (5, 5), name)
-            for li, tile, (cid, label), refs in zip(chips, tiles, self.CHIPS, ([("m", "h1a_pass_as_written")], [("m", "h1b_verdict")],
-                                                                              [("m", "h1c_verdict")], [("m", "rating_output")], [])):
-                at = f"{name}/{cid}"
-                a = li.find("a", "chip")
-                self.assertEqual(a.attrs["href"], f"#chart-{cid}", at)
-                self.assertEqual(tile.find("a").attrs["href"], f"#chart-{cid}", at)                   # the card the tile of the scorecard opens
-                self.assertEqual(a.find("span", "chiplab").text(), label, at)
-                word = a.find("span", "chipword")
-                self.assertEqual(word.text().strip(), tile.find("p", "st").text().strip(), at)         # the very word the tile shows
-                self.assertEqual(refs_in(word), refs, at)                                              # from the same metric
-                icon_c, icon_t = a.find("svg", "ico"), tile.find("svg", "ico")
-                self.assertIsNotNone(icon_c, f"{at}: a shape as well as a word")
-                drawing = lambda n: [(c.tag, tuple(sorted(c.attrs.items()))) for c in n.iter() if c is not n]   # noqa: E731
-                self.assertEqual(drawing(icon_c), drawing(icon_t), f"{at}: the shape is the tile's")
-                self.assertEqual(icon_c.attrs.get("aria-hidden"), "true", at)
-            self.assertEqual(chips[4].find("span", "chipword").text().strip(), "scored" if result else "pending", name)
-
-    def test_the_header_links_the_glossary_with_the_other_documents(self):
-        """A reader who opens only the dashboard needs a route to the definitions of H1a, escrow, unshield and the rest."""
+    def test_the_method_tab_links_the_glossary_with_the_other_documents_by_name(self):
+        """A reader who opens only the dashboard needs a route to the definitions of H1a, escrow, unshield and the rest. The links sit in the
+        Method tab under plain names; the front of the page shows no file names."""
         self.assertTrue((ROOT / "docs" / "glossary.md").is_file())
         for name, dom, _, _ in VARIANTS:
-            links = dom.find("header").find("ul", "docs").find_all("a")
-            self.assertEqual([a.text() for a in links], ["THESIS.md", "README.md", "docs/glossary.md", "PREREG.md", "PREREG-ADDENDUM.md"], name)
+            links = section_node(dom, "about").find("ul", "docs").find_all("a")
+            self.assertEqual([a.text() for a in links], ["The full thesis", "Read me", "Glossary", "Pre-registration", "Addendum to the pre-registration"], name)
             self.assertTrue(links[2].attrs["href"].endswith("/blob/" + R.BRANCH + "/docs/glossary.md"), name)
+            front = re.sub(r"\s+", " ", dom.find("header").text())
+            for file_name in ("THESIS.md", "README.md", "glossary.md", "PREREG.md", "PREREG-ADDENDUM.md", "MANIFEST", "python3"):
+                self.assertNotIn(file_name, front, name)
 
-    def test_the_chips_carry_a_visible_pre_registered_label_before_them(self):
-        """The chips are results, and every result on the page says whether it is pre-registered: the label is text on the screen, not only an aria-label."""
-        for name, dom, _, _ in VARIANTS:
-            nav = self.chips_nav(dom)
-            kids = [c for c in nav.children if isinstance(c, Node)]
-            self.assertEqual([k.tag for k in kids], ["p", "ul"], name)
-            self.assertEqual(kids[0].classes(), {"chipcap"}, name)
-            self.assertEqual(kids[0].text().strip(), "Pre-registered results", name)
-
-    def test_the_chips_come_after_the_answer_and_before_everything_else_in_reading_order(self):
+    def test_the_answer_comes_after_the_title_and_before_everything_else_in_reading_order(self):
         for name, dom, _, _ in VARIANTS:
             nodes = list(dom.iter())
             at = lambda n: nodes.index(n)   # noqa: E731
             head = dom.find("header")
-            order = [at(dom.find("a", "skip")), at(dom.find("h1")), at(head.find("div", "answer")), at(self.chips_nav(dom)), at(head.find("p", "lede")),
-                     at(head.find("dl", "meta")), at(section_node(dom, "scorecard"))]
+            order = [at(dom.find("a", "skip")), at(dom.find("h1")), at(head.find("div", "answer")), at(section_node(dom, "scorecard")),
+                     at(section_node(dom, "about").find("p", "lede")), at(section_node(dom, "about").find("dl", "meta"))]
             self.assertEqual(order, sorted(order), name)
             self.assertEqual(len(set(order)), len(order), name)
-            self.assertEqual(sum(1 for n in dom.find_all("nav") if n.attrs.get("aria-label") == self.NAV), 1, name)
-            self.assertEqual(self.chips_nav(dom).find_all("ul"), [self.chips_nav(dom).find("ul")], name)
-
-    def test_the_chips_wrap_are_touch_sized_take_the_focus_ring_and_do_not_move(self):
-        css = DOM.find("style").text()
-        self.assertRegex(css, r"\.chips\{[^}]*display:flex;flex-wrap:wrap")
-        self.assertRegex(css, r"\.chip\{[^}]*min-height:44px")
-        self.assertNotRegex(css, r"\.chip\{[^}]*(?<![-a-z])(?:width|height):")           # nothing fixed: a chip is as wide as its words
-        self.assertNotRegex(css, r"\.chips?[^{]*\{[^}]*(?:animation|transition)")
-        self.assertRegex(css, r"a:focus-visible,summary:focus-visible[^{]*\{outline:2px solid var\(--focus\)")   # a chip is an <a>
-        for token in ("--ink", "--surface", "--border"):                                    # only theme tokens, so dark mode follows
-            self.assertIn(f"var({token})", re.search(r"\.chip\{[^}]*\}", css).group(0))
-        self.assertNotRegex(re.search(r"\.chip\{[^}]*\}", css).group(0), r"#[0-9a-fA-F]{3,6}")
 
     def test_the_meta_description_names_both_questions(self):
         desc = next(mt.attrs["content"] for mt in DOM.find_all("meta") if mt.attrs.get("name") == "description")
         self.assertIn("The pre-registered question is how much NEAR flows to exchanges and how much of that identified buyers absorb; the question the evidence can answer "
                       "is how much of NEAR's value capture can you verify.", desc)
         self.assertNotIn("who buys", desc.lower())
-
-    def test_the_dash_of_the_hold_icon_follows_the_theme_so_it_shows_in_both(self):
-        """The Hold icon is a grey circle with a dash. The dash was white, on the light grey of the dark theme; it is now drawn in the surface colour."""
-        css = DOM.find("style").text()
-        self.assertIn(".i-dash{stroke:var(--surface)}", css)
-        holds = [i for i in DOM.find_all("svg", "ico") if any("i-dash" in n.classes() for n in i.iter())]
-        self.assertEqual(len(holds), 2, "the scorecard tile and the chip")
-
-        def lum(h: str) -> float:
-            r, g, b = (int(h.lstrip("#")[i:i + 2], 16) / 255 for i in (0, 2, 4))
-            f = lambda c: c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4  # noqa: E731
-            return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b)
-
-        def ratio(a: str, b: str) -> float:
-            la, lb = sorted((lum(a), lum(b)), reverse=True)
-            return (la + 0.05) / (lb + 0.05)
-
-        light = dict(re.findall(r"--([a-z0-9]+):(#[0-9a-fA-F]{6})", re.search(r":root\{(.*?)\}", css, re.S).group(1)))
-        dark = dict(re.findall(r"--([a-z0-9]+):(#[0-9a-fA-F]{6})", re.search(r':root\[data-theme="dark"\]\{(.*?)\}', css, re.S).group(1)))
-        for theme, t in (("light", light), ("dark", dark)):
-            self.assertGreaterEqual(ratio(t["surface"], t["ink2"]), 3.0, f"{theme}: the dash against the circle (a graphic needs 3:1)")
 
     def test_key_figure_values_share_a_baseline_when_a_label_wraps(self):
         """In a row of key figures one label may take two or three lines where its neighbours take one; the values were then on different baselines. They
@@ -3344,6 +3333,72 @@ class FirstScreen(unittest.TestCase):
 
 
 # ------------------------------------------------------------------ data the page cannot be drawn from
+class NoStatusStamps(unittest.TestCase):
+    """Both pages are shown to judges and the public, so they say what each test found in plain words and carry no status stamp. PREREG.md's
+    own outcome words (pass, fail, inconclusive; Buy, Hold, Avoid; PASS, MISS, not scorable) stay in data/metrics.json, the score files and
+    THESIS.md, and docs/glossary.md maps them to the words on the page. Text quoted verbatim (code, pre: commands, SQL) is exempt, and so are
+    the escaped commands of the Reproduce section."""
+    STAMP = re.compile(r"\b(?:fail(?:s|ed|ing|ure)?|inconclusive|hold|pending|verdicts?)\b", re.I)
+    EXEMPT = {"style", "head", "pre", "code", "script", "title"}
+
+    def visible(self, node: Node) -> str:
+        if node.tag in self.EXEMPT:
+            return ""
+        return "".join(c if isinstance(c, str) else self.visible(c) for c in node.children)
+
+    def pages(self):
+        for name, dom, _, _ in VARIANTS:
+            yield name, dom
+        story, errors = parse(FILES[f"{R.SITE_DIR}/{R.STORY_NAME}"].decode("utf-8"))
+        self.assertEqual(errors, [])
+        yield "story", story
+
+    def test_no_page_says_fail_inconclusive_hold_or_pending(self):
+        for name, dom in self.pages():
+            text = re.sub(r"\s+", " ", self.visible(dom))
+            hits = sorted({text[max(0, m.start() - 50): m.end() + 30] for m in self.STAMP.finditer(text)})
+            self.assertEqual(hits, [], name)
+
+    def test_no_sentence_says_x_not_y(self):
+        """The owner asked for no 'X, not Y' sentences. PREREG.md's own words, quoted verbatim, are the one exception: they cannot be edited."""
+        rx = re.compile(r"[,;]\s*not\s+(?!scorable|estimated|yet\b)|\brather than\b", re.I)
+        for name, dom in self.pages():
+            for n in dom.iter():
+                if n.tag in self.EXEMPT or "verbatim" in n.classes() or any("verbatim" in a.classes() for a in n.ancestors()):
+                    continue
+                own = "".join(c for c in n.children if isinstance(c, str))
+                hits = [own[max(0, m.start() - 60): m.end() + 30] for m in rx.finditer(re.sub(r"\s+", " ", own))]
+                self.assertEqual(hits, [], f"{name}: <{n.tag} class={n.attrs.get('class')}>")
+
+    def test_every_tile_names_its_figure(self):
+        for name, dom, _, _ in VARIANTS:
+            numbers = {c.attrs["id"]: c.find("span", "fignum").text() for c in dom.find_all("section") if c.attrs.get("id", "").startswith("chart-")}
+            self.assertEqual(list(numbers.values()), [f"Figure {i}" for i in range(1, len(numbers) + 1)], name)
+            for tile in [n for n in dom.find_all("li") if "tile" in n.classes()]:
+                a = tile.find("a")
+                self.assertEqual(a.text(), numbers[a.attrs["href"][1:]], name)
+
+    def test_no_page_uses_a_middle_dot(self):
+        """The owner asked for no middle dot (·) as a separator on either page: a colon, a comma or a full stop does the job."""
+        for name, page in [(n, p) for n, _, p, _ in VARIANTS] + [("story", FILES[f"{R.SITE_DIR}/{R.STORY_NAME}"].decode("utf-8"))]:
+            self.assertNotIn("·", page, name)
+            self.assertNotIn("&middot;", page, name)
+
+    def test_the_scan_catches_a_stamp(self):
+        dom, _ = parse('<main><p class="x">H1b <span>Inconclusive</span></p><pre>FAIL</pre></main>')
+        self.assertEqual([m.group(0) for m in self.STAMP.finditer(self.visible(dom))], ["Inconclusive"])
+
+    def test_the_plain_words_cover_every_word_the_files_use(self):
+        self.assertEqual(set(R.PLAIN_RESULT), {"pass", "fail", "inconclusive"})
+        self.assertEqual(set(R.PLAIN_RATING), {"Buy", "Hold", "Avoid"})
+        self.assertEqual(set(R.PLAIN_FORWARD), {"pending", "PASS", "MISS", "not scorable"})
+        for word in [*R.PLAIN_RESULT.values(), *R.PLAIN_RATING.values(), *R.PLAIN_FORWARD.values()]:
+            self.assertIsNone(self.STAMP.search(word), word)
+        glossary = (ROOT / "docs" / "glossary.md").read_text(encoding="utf-8")
+        for word in ("confirmed", "refuted", "unsettled", "no signal", "came true", "did not come true", "could not be scored"):
+            self.assertIn(word, glossary.lower(), f"docs/glossary.md maps {word!r} to PREREG.md's word")
+
+
 class StopsOnDataItCannotDrawFrom(unittest.TestCase):
     """render stops with a message, never with a page, when the data under a sentence or a chart no longer support it. Each of
     these was a guard added after review; the committed data pass them, so only an edited copy shows that they bite."""

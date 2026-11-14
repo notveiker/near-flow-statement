@@ -32,7 +32,8 @@ header.top{grid-area:top}main{grid-area:main}footer{grid-area:foot}
 .side a:hover{background:var(--code);color:var(--ink)}
 .side .sidecap{margin:1.1rem 0 .3rem}
 }
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;list-style:none;padding:0;margin:.4rem 0 1rem}
+.kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;list-style:none;padding:0;margin:.4rem 0 1rem}
+@media (min-width:760px){.kpis{grid-template-columns:repeat(4,minmax(0,1fr))}}
 .kpi{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px 14px;max-width:none;display:flex;flex-direction:column;gap:2px}
 .kpi .kv{font-size:1.6rem;font-weight:750;line-height:1.15;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
 .kpi a.kv{color:inherit;text-decoration:none}
@@ -55,13 +56,6 @@ h1{font-size:clamp(1.65rem,5.2vw,2.3rem);line-height:1.15;margin:.25em 0 .35em;l
 .answer p{margin:.65rem 0;max-width:none}
 .thesis{margin:.2rem 0 1rem;padding:4px 18px;border-radius:12px;background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--s2);font-size:1.03rem}
 .thesis p{margin:.65rem 0;max-width:none}
-.chipcap{margin:.9rem 0 .35rem;font-size:.8125rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0 0 1.1rem}
-.chips li{max-width:none}
-.chip{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:6px 14px 6px 10px;background:var(--surface);border:1px solid var(--border);border-radius:999px;color:var(--ink);text-decoration:none;line-height:1.25}
-.chip:hover{border-color:var(--ink2)}
-.chiplab{font-weight:700}
-.chipword{font-size:.8125rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
 .meta{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:4px 14px;font-size:.9rem;margin:1rem 0;padding:12px 14px;background:var(--surface);border:1px solid var(--border);border-radius:10px}
 .meta dt{color:var(--muted);font-weight:600}
 .meta dd{margin:0;min-width:0}
@@ -71,21 +65,15 @@ h2{font-size:1.45rem;line-height:1.25;margin:2.6rem 0 .5rem}
 h3{font-size:1.15rem;line-height:1.35;margin:.5rem 0 .6rem}
 .note{color:var(--ink2);font-size:.95rem}
 .tiles{display:grid;gap:10px;list-style:none;padding:0;margin:.9rem 0}
-.tile{display:grid;grid-template-columns:12.5rem minmax(0,1fr);gap:2px 18px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 16px;align-items:start;max-width:none}
+.tile{display:grid;grid-template-columns:minmax(0,1fr);gap:2px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 16px;align-content:start;max-width:none}
 .tile p{margin:0;max-width:none}
 .tlabel{font-size:.8125rem;font-weight:700;color:var(--ink2)}
-.st{display:flex;align-items:center;gap:8px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;font-size:1.05rem}
-.tile .st{grid-row:1 / span 4;align-self:center}
-.tile>:not(.st){grid-column:2}
 .ico{flex:none}
-.i-bad{fill:var(--bad)}.i-ok{fill:var(--ok)}.i-warn{fill:var(--warn)}.i-ink2{fill:var(--ink2)}.i-dash{stroke:var(--surface)}
 .i-line{fill:none;stroke:var(--ink2);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .big{font-size:1.45rem;font-weight:750;line-height:1.2}
 .tnote{font-size:.875rem;color:var(--ink2)}
 .tile a{font-size:.875rem}
-@media (max-width:640px){.tile{grid-template-columns:minmax(0,1fr)}.tile .st{grid-row:auto}.tile>:not(.st){grid-column:1}}
-@media (min-width:760px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.tile{grid-template-columns:minmax(0,1fr);align-content:start}
-.tile .st{grid-row:auto;align-self:start;font-size:.95rem}.tile>:not(.st){grid-column:1}.tile:last-child:nth-child(odd){grid-column:1 / -1}}
+@media (min-width:760px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.tile:last-child:nth-child(odd){grid-column:1 / -1}}
 .badge{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:3px 10px 3px 8px;border-radius:999px;line-height:1.3}
 .badge-pre{background:var(--ink);color:var(--surface)}
 .badge-pre .i-line{stroke:var(--surface)}
@@ -99,17 +87,17 @@ h3{font-size:1.15rem;line-height:1.35;margin:.5rem 0 .6rem}
 .sn strong{display:block;font-size:.6875rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
 .sn .shows{border-left:3px solid var(--s1)}.sn .notshows{border-left:3px solid var(--axis)}
 @media (min-width:900px){.sn{grid-template-columns:1fr 1fr}}
-.card h3{font-size:1.0625rem;font-weight:650;line-height:1.4}
+.card h3{font-size:1.15rem;font-weight:700;line-height:1.35}
 .finding{margin:.7rem 0 .4rem;font-weight:600}
-.finding::before{content:"The finding in full";display:block;font-size:.6875rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.finding::before{content:"In full";display:block;font-size:.8125rem;font-weight:600;color:var(--muted)}
 .cardfoot{display:flex;flex-wrap:wrap;gap:8px;margin-top:.6rem;padding-top:.6rem;border-top:1px solid var(--grid)}
 .cardfoot details{margin:0;border:0;padding:0;flex:0 0 auto;min-width:0}
 .cardfoot details[open]{flex-basis:100%;order:1}
 .cardfoot summary{display:inline-block;font-size:.8125rem;padding:4px 12px;border:1px solid var(--border);border-radius:999px;background:var(--surface)}
 .cardfoot summary:hover{border-color:var(--ink2)}
 .cardfoot details[open]>summary{background:var(--code)}
-details.metawrap,details.fz{border:0;padding:0;margin:.6rem 0}
-details.metawrap>summary,details.fz>summary,section>details.more>summary{font-size:.875rem;color:var(--ink2)}
+details.metawrap,details.fz,details.readmore{border:0;padding:0;margin:.6rem 0}
+details.metawrap>summary,details.fz>summary,details.readmore>summary,section>details.more>summary{font-size:.875rem;color:var(--ink2)}
 .notshows{color:var(--ink2)}
 figure.chart-fig{margin:1rem 0 .4rem}
 .chart{margin:0}
@@ -176,9 +164,9 @@ thead th{position:sticky;top:0;background:var(--surface);z-index:1;border-bottom
 ol.fwd{list-style:none;padding:0;margin:.9rem 0;display:grid;gap:10px}
 ol.fwd li{border:1px solid var(--border);border-radius:10px;padding:10px 12px;min-width:0;max-width:none}
 ol.fwd p{margin:.2rem 0}
-.fhead{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center}
-.fhead .st{display:inline-flex;font-size:.9rem}
-.fword{text-transform:uppercase}
+.fhead{margin:.2rem 0}
+.fhead .st{font-size:.95rem}
+.fword{font-weight:700}
 .verbatim{font-size:.9rem}
 ol.steps{padding-left:1.5rem;margin:.6rem 0}
 ol.steps li{margin:.9rem 0;max-width:none;padding-left:.2rem}
@@ -188,12 +176,104 @@ ul.plain{padding-left:1.2rem}
 ul.plain li{margin:.35rem 0}
 footer{margin:3rem 0 2rem;padding-top:1rem;border-top:1px solid var(--grid);font-size:.9rem;color:var(--ink2)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:1099px){.side>:nth-child(n+4){display:none}}
+@media (min-width:1280px){
+.wrap{max-width:1520px;grid-template-columns:200px minmax(0,1fr);column-gap:36px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start}
+.grid>.card{margin:0}
+.grid>.card.span2{grid-column:1 / -1}
+.tiles{grid-template-columns:repeat(5,minmax(0,1fr))}
+.tiles .tile:last-child:nth-child(odd){grid-column:auto}
+.tiles .big{font-size:1.25rem}
+.kpis{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+.card{container-type:inline-size}
+@container (max-width:640px){.cv-wide{display:none}.cv-narrow{display:block;max-width:none}}
+.thesis,details.readmore{max-width:860px}
+.tabbar{position:sticky;top:0;z-index:3;display:flex;flex-wrap:wrap;gap:6px;padding:10px 0;margin:1.4rem 0 .6rem;background:var(--bg);border-bottom:1px solid var(--grid)}
+.tabbar a{padding:6px 14px;border:1px solid var(--border);border-radius:999px;background:var(--surface);color:var(--ink);font-size:.875rem;font-weight:650;text-decoration:none}
+.tabbar a:hover{border-color:var(--ink2)}
+.panel,.card{scroll-margin-top:64px}
+.panel>h2:first-child,.panel>section:first-child>h2{margin-top:.8rem}
+@supports selector(:has(*)){
+.tabs>.panel{display:none}
+.tabs>.panel:target,.tabs>.panel:has(:target),.tabs:not(:has(.panel:target,.panel :target))>#forward-view{display:block}
+.tabs:not(:has(.panel:target,.panel :target)) .tabbar a[data-tab="forward-view"],.tabs:has(#forward-view:target,#forward-view :target) .tabbar a[data-tab="forward-view"],
+.tabs:has(#preregistered:target,#preregistered :target) .tabbar a[data-tab="preregistered"],.tabs:has(#exploratory:target,#exploratory :target) .tabbar a[data-tab="exploratory"],
+.tabs:has(#method:target,#method :target) .tabbar a[data-tab="method"]{color:var(--ink);border-bottom-color:var(--ink)}
+}
+@media print{.tabs>.panel{display:block!important}.tabbar{display:none}}
+@media (min-width:420px) and (max-width:1279px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.tile:last-child:nth-child(odd){grid-column:1 / -1}}
+.grid .cv-narrow{max-width:500px;margin:0 auto}
+.grid>.gridhead{margin:.6rem 0 0;font-size:.8125rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+@media (min-width:1280px){.grid>.gridhead{grid-column:1 / -1}.grid>.card.span2 .cv-wide{max-width:900px;margin:0 auto}}
+@media (min-width:1440px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.grid>.card.span2{grid-column:auto}}
+/* editorial pass: type and hairlines carry the structure; no boxes, pills or capitalised micro-labels */
+body{font:16px/1.55 Arial,"Helvetica Neue",Helvetica,sans-serif}
+h1,h2,h3,.thesis p,summary,.tabbar a{font-family:Arial,"Helvetica Neue",Helvetica,sans-serif}
+h1{font-size:clamp(1.9rem,4.6vw,2.75rem);font-weight:600;line-height:1.1;letter-spacing:-.015em;margin:.3em 0 .45em;max-width:26ch}
+h2{font-size:1.6rem;font-weight:600;letter-spacing:-.01em;margin:2.4rem 0 .4rem}
+.eyebrow,.side .sidecap,.kpi .kt,.sn strong,.gridhead,.grid>.gridhead{text-transform:none;letter-spacing:0}
+.eyebrow{font-size:.875rem;font-weight:600;color:var(--muted)}
+.thesis{background:none;border:0;border-radius:0;padding:0;margin:.4rem 0 1.4rem}
+.thesis p{font-size:1.25rem;line-height:1.45;color:var(--ink);margin:0}
+.thesis strong{font-weight:600}
+.kpis{gap:0;margin:.6rem 0 1.2rem;border-top:1px solid var(--axis);border-bottom:1px solid var(--grid)}
+.kpi{background:none;border:0;border-radius:0;padding:12px 18px 14px 0;gap:4px}
+.kpi+.kpi{border-left:1px solid var(--grid);padding-left:18px}
+.kpi .kt{font-size:.75rem;font-weight:500;color:var(--muted)}
+.kpi .kv{font-size:2.25rem;font-weight:600;font-variant-numeric:normal;letter-spacing:-.02em;line-height:1.05}
+.kpi .kl{font-size:.875rem;color:var(--ink2)}
+@media (max-width:759px){.kpi:nth-child(odd){border-left:0;padding-left:0}.kpi:nth-child(n+3){border-top:1px solid var(--grid)}}
+.tiles{gap:0;border-top:1px solid var(--axis)}
+.tile{background:none;border:0;border-radius:0;padding:12px 16px 14px 0;border-bottom:1px solid var(--grid)}
+.tile .big{font-weight:600;font-variant-numeric:normal;letter-spacing:-.01em}
+.tlabel{font-weight:600;color:var(--ink2)}
+@media (min-width:1280px){.tile{border-bottom:0}.tile+.tile{border-left:1px solid var(--grid);padding-left:16px}}
+.card{background:none;border:0;border-radius:0;padding:14px 0 6px;margin:0 0 30px;border-top:1px solid var(--axis)}
+.grid>.card{margin:0 0 12px}
+.cardtop{min-height:1.2rem}
+.badge{display:inline;padding:0;border:0;border-radius:0;background:none;font-size:.8125rem;font-weight:600;letter-spacing:0;text-transform:none}
+.badge-pre{color:var(--ink);background:none}
+.badge-exp{color:var(--muted);border:0}
+.cardtop a{opacity:0;text-decoration:none}
+.card:hover .cardtop a,.cardtop a:focus-visible{opacity:1}
+.card h3{font-size:1.125rem;font-weight:650;letter-spacing:-.005em;margin:.25rem 0 .5rem}
+.cardfoot{gap:18px;border-top:0;padding-top:.2rem}
+.cardfoot summary{display:inline;padding:0;border:0;border-radius:0;background:none;font-size:.8125rem;font-weight:500;color:var(--link);text-decoration:underline;text-underline-offset:2px}
+.cardfoot details[open]>summary{background:none;color:var(--ink)}
+.sn p{background:none;border:0;border-radius:0;padding:0}
+.sn .shows,.sn .notshows{border-left:0}
+.sn strong{font-size:.8125rem;font-weight:600;color:var(--ink2)}
+.side .sidecap{font-size:.8125rem;font-weight:600;color:var(--ink2)}
+.tabbar{gap:0 22px;padding:0;border-bottom:1px solid var(--axis);margin:2rem 0 .4rem}
+.tabbar a{border:0;border-bottom:2px solid transparent;border-radius:0;background:none;padding:12px 0 10px;color:var(--ink2);font-size:.9375rem;font-weight:600}
+.tabbar a:hover{border-color:transparent;color:var(--ink)}
+.grid>.gridhead{font-size:1rem;font-weight:600;color:var(--ink);margin:1.2rem 0 .2rem}
+.tablewrap{border-radius:0}
+.cardtop{display:flex;align-items:baseline;gap:12px}
+.cardtop a{margin-left:auto}
+.fignum{font-size:.8125rem;font-weight:700;color:var(--ink)}
+#about .meta{margin:.8rem 0}
+h1,h2,h3,.thesis p,.tlabel,.kl,.tl,.tw,.big,.kv,summary,figcaption,.gridhead,.badge,.fignum,dt,.tabbar a{text-wrap:balance}
+p,li,dd,.tnote,.note,.finding{text-wrap:pretty}
+.kcap{margin:.2rem 0 0;font-size:.8125rem;color:var(--muted)}
+.today{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 22px;align-items:start;margin:-.7rem 0 1.2rem;padding:10px 0 12px;border-bottom:1px solid var(--grid)}
+.todaycap{margin:0;padding-top:1px;font-size:.875rem;font-weight:700;color:var(--ink)}
+.todayrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px 20px;list-style:none;padding:0;margin:0}
+.todayrow li{display:flex;flex-direction:column;gap:1px;max-width:none}
+.todayrow output{font-size:1.1rem;font-weight:600;line-height:1.25}
+.tl{font-size:.75rem;color:var(--ink2)}
+.tw{font-size:.75rem;color:var(--muted)}
+@media (max-width:640px){.today{grid-template-columns:minmax(0,1fr)}}
+[data-m],[data-k],[data-f],[data-d],[data-s]{white-space:nowrap}
 .story main{max-width:980px;margin:0 auto;padding:0 20px}
 .story .slide{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:36px 0;border-bottom:1px solid var(--grid)}
 .story .card{border:0;background:transparent;padding:0;margin:0}
 .story .sn,.story .cardfoot,.story .keyfigs,.story .tablewrap,.story figcaption,.story .cardtop a,.story .notes{display:none}
 .story .card h3{font-size:clamp(1.25rem,2.6vw,1.85rem);line-height:1.25;margin:.7rem 0 1.1rem}
-.story .step{margin:0;font-size:.8125rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.story .step{margin:0;font-size:.9375rem;font-weight:600;color:var(--muted)}
+.story .fignum{display:none}
 .story h1{font-size:clamp(2rem,5.4vw,3.4rem);line-height:1.1;margin:.3em 0 .5em}
 .story .cover p,.story .end p{font-size:clamp(1.05rem,1.9vw,1.3rem);max-width:none;margin:.5rem 0}
 .story .cover .big{font-size:clamp(1.4rem,3vw,2.1rem);font-weight:750;line-height:1.25;margin:.2rem 0 1rem}
@@ -204,21 +284,17 @@ footer{margin:3rem 0 2rem;padding-top:1rem;border-top:1px solid var(--grid);font
 <body class="story">
 <main class="story">
 <section class="slide cover">
-<p class="eyebrow">Built at NEAR HACKATHON 2026 · Investment Thesis track</p>
+<p class="eyebrow">Built at NEAR HACKATHON 2026, Investment Thesis track</p>
 <h1>Can NEAR&rsquo;s Intents business grow into its dilution?</h1>
-<p class="big">If Intents carried NEAR&rsquo;s price alone, the price would assume captured revenue grows <span data-m="ic_implied_cagr_r15_x25_pct">84.9</span>% a year to 2031. At today&rsquo;s fees, that would take NEAR capturing <span data-m="ic_take_needed_vs_gross_x">2.5</span>× Intents&rsquo; whole gross fee.</p>
-<p>A long-term thesis built on a pre-registered, re-runnable token flow statement: every number on the next screens rebuilds offline from committed data with one command. Exploratory results are labelled; the pre-registered ones are published, misses included.</p></section>
+<p class="big">If Intents carried NEAR&rsquo;s price alone, the price would assume captured revenue grows <span data-m="ic_implied_cagr_r15_x25_pct">84.9</span>% a year to 2031. At today&rsquo;s fees, that would take NEAR capturing <span data-m="ic_take_needed_vs_gross_x">2.5</span>× Intents&rsquo; whole gross fee.</p></section>
 <section class="slide">
-<p class="step">1 · What reaches NEAR today</p>
-<section class="card" id="chart-ladder" aria-labelledby="chart-ladder-h">
-<div class="cardtop"><span class="badge badge-exp"><svg class="ico" viewBox="0 0 20 20" width="14" height="14" aria-hidden="true" focusable="false"><circle class="i-line" cx="10" cy="10" r="8" /><path class="i-line" d="M12.9 7.1l-1.7 4.1-4.1 1.7 1.7-4.1z" /></svg> Exploratory, chosen after the freeze</span><a href="index.html#chart-ladder" aria-label="Link to this chart">#</a></div>
-<h3 id="chart-ladder-h"><span data-m="ladder_all_wallets_pct_of_issuance">15.81</span>% of net issuance reached NEAR&rsquo;s three Intents revenue wallets; <span data-m="ladder_public_collectors_pct_of_issuance">4.53</span> points trace to public fee collectors</h3>
-<div class="sn">
-<p class="shows"><strong>What it shows:</strong> How much of NEAR&rsquo;s net issuance (<span data-m="net_issuance_near_per_day_window">88,295</span> NEAR a day over the 30 days 2026-10-06 to 2026-11-04) was matched by NEAR delivered to the three revenue wallets, split by how it arrived: <span data-m="ladder_public_collectors_pct_of_issuance">4.53</span>% from two recurring public fee collectors and <span data-m="ladder_escrow_unshields_pct_of_issuance">11.25</span>% released from the Confidential Intents escrow, plus <span data-m="ladder_other_pct_of_issuance">0.03</span>% from one other source.</p>
-<p class="notshows"><strong>What it does not show:</strong> Which fee stream pays for the escrow releases: the NEAR verifiably arrived, but the public chain cannot split the <span data-m="ladder_escrow_unshields_pct_of_issuance">11.25</span> points between the two candidate NEAR-side streams that fit, so, if those three are all of NEAR&rsquo;s Intents revenue wallets, measured value capture is a range, <span data-m="ladder_public_collectors_pct_of_issuance">4.53</span>% to <span data-m="ladder_all_wallets_pct_of_issuance">15.81</span>% of issuance.</p></div>
+<p class="step">1. What reaches NEAR today</p>
+<section class="card span2" id="chart-ladder" aria-labelledby="chart-ladder-h">
+<div class="cardtop"><span class="fignum">Figure 1</span><span class="badge badge-exp">Exploratory</span><a href="index.html#chart-ladder" aria-label="Link to this chart">#</a></div>
+<h3 id="chart-ladder-h">Verifiable value capture: <span data-m="ladder_public_collectors_pct_of_issuance">4.53</span>% to <span data-m="ladder_all_wallets_pct_of_issuance">15.81</span>% of net issuance</h3>
 <figure class="chart-fig">
 <div class="chart">
-<div class="cv cv-wide"><svg class="svg" viewBox="0 0 720 291" role="img" aria-labelledby="chart-ladder-w-t chart-ladder-w-d" focusable="false">
+<div class="cv cv-wide"><svg class="svg" viewBox="0 0 720 275.5" role="img" aria-labelledby="chart-ladder-w-t chart-ladder-w-d" focusable="false">
 <title id="chart-ladder-w-t">The value-capture ladder: NEAR delivered to the revenue wallets as a share of net issuance</title>
 <desc id="chart-ladder-w-d">Panel A: one bar on a 0 to 100 percent axis, filled to 15.81 percent. Panel B, zoomed to 0 to 20 percent: a stacked bar of the same total split into public fee collectors 4.53, escrow unshields 11.25 and one other source 0.03, and the buyback wallet alone at 11.00, a subset.</desc>
 <g transform="translate(0,0)">
@@ -235,8 +311,8 @@ footer{margin:3rem 0 2rem;padding-top:1rem;border-top:1px solid var(--grid);font
 <line class="grid" x1="640" x2="640" y1="22.5" y2="65.5" />
 <text x="640" y="81" class="tk" text-anchor="middle" font-size="12.5">100%</text>
 <g class="row" data-row="NEAR delivered to the three revenue wallets">
-<text x="0" y="43" class="rl" font-size="12.5">NEAR delivered to the three</text>
-<text x="0" y="58.5" class="rl" font-size="12.5">revenue wallets</text>
+<text x="0" y="43" class="rl" font-size="12.5">NEAR delivered to the</text>
+<text x="0" y="58.5" class="rl" font-size="12.5">three revenue wallets</text>
 <rect class="track" x="220" y="38" width="420" height="16" rx="4" />
 <path class="st2" data-v="15.81" d="M220,38h62.4a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-62.4z">
 <title>Three revenue wallets: 15.81% of net issuance</title></path>
@@ -250,19 +326,19 @@ footer{margin:3rem 0 2rem;padding-top:1rem;border-top:1px solid var(--grid);font
 <text x="242.5" y="33" font-size="12.5">Escrow unshields, fee stream unattested: <tspan data-m="ladder_escrow_unshields_pct_of_issuance">11.25</tspan>%</text>
 <rect class="sc" x="0" y="44.5" width="10" height="10" rx="2" />
 <text x="16" y="53.5" font-size="12.5">One other recurring source: <tspan data-m="ladder_other_pct_of_issuance">0.03</tspan>%</text>
-<line class="axis" x1="220" x2="220" y1="53" y2="150.5" />
-<text x="220" y="166" class="tk" text-anchor="middle" font-size="12.5">0%</text>
-<line class="grid" x1="325" x2="325" y1="53" y2="150.5" />
-<text x="325" y="166" class="tk" text-anchor="middle" font-size="12.5">5%</text>
-<line class="grid" x1="430" x2="430" y1="53" y2="150.5" />
-<text x="430" y="166" class="tk" text-anchor="middle" font-size="12.5">10%</text>
-<line class="grid" x1="535" x2="535" y1="53" y2="150.5" />
-<text x="535" y="166" class="tk" text-anchor="middle" font-size="12.5">15%</text>
-<line class="grid" x1="640" x2="640" y1="53" y2="150.5" />
-<text x="640" y="166" class="tk" text-anchor="middle" font-size="12.5">20%</text>
+<line class="axis" x1="220" x2="220" y1="53" y2="135" />
+<text x="220" y="150.5" class="tk" text-anchor="middle" font-size="12.5">0%</text>
+<line class="grid" x1="325" x2="325" y1="53" y2="135" />
+<text x="325" y="150.5" class="tk" text-anchor="middle" font-size="12.5">5%</text>
+<line class="grid" x1="430" x2="430" y1="53" y2="135" />
+<text x="430" y="150.5" class="tk" text-anchor="middle" font-size="12.5">10%</text>
+<line class="grid" x1="535" x2="535" y1="53" y2="135" />
+<text x="535" y="150.5" class="tk" text-anchor="middle" font-size="12.5">15%</text>
+<line class="grid" x1="640" x2="640" y1="53" y2="135" />
+<text x="640" y="150.5" class="tk" text-anchor="middle" font-size="12.5">20%</text>
 <g class="row" data-row="All three revenue wallets, by how the NEAR arrived">
-<text x="0" y="73.5" class="rl" font-size="12.5">All three revenue wallets, by</text>
-<text x="0" y="89" class="rl" font-size="12.5">how the NEAR arrived</text>
+<text x="0" y="73.5" class="rl" font-size="12.5">All three revenue wallets,</text>
+<text x="0" y="89" class="rl" font-size="12.5">by how the NEAR arrived</text>
 <path class="s1" data-v="4.53" d="M220,68.5h93.1v16h-93.1z">
 <title>Public fee collectors: 4.53%</title></path>
 <path class="s2" data-v="11.25" d="M315.1,68.5h234.2v16h-234.2z">
@@ -270,13 +346,12 @@ footer{margin:3rem 0 2rem;padding-top:1rem;border-top:1px solid var(--grid);font
 <path class="sc" data-v="0.03" d="M551.4,68.5h1v16h-1z">
 <title>One other recurring source: 0.03%</title></path>
 <text x="558" y="80.9" class="val" font-size="12.5"><tspan data-m="ladder_all_wallets_pct_of_issuance">15.81</tspan>%</text></g>
-<g class="row" data-row="Of which the buyback wallet alone (a subset, not an extra rung)">
+<g class="row" data-row="Of which the buyback wallet alone (a subset of the three)">
 <text x="0" y="112.5" class="rl" font-size="12.5">Of which the buyback wallet</text>
-<text x="0" y="128" class="rl" font-size="12.5">alone (a subset, not an extra</text>
-<text x="0" y="143.5" class="rl" font-size="12.5">rung)</text>
-<path class="st2" data-v="11" d="M220,115.2h227a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-227z">
+<text x="0" y="128" class="rl" font-size="12.5">alone (a subset of the three)</text>
+<path class="st2" data-v="11" d="M220,107.5h227a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-227z">
 <title>Buyback wallet alone: 11.00%</title></path>
-<text x="457" y="127.6" class="val" font-size="12.5"><tspan data-m="ladder_buyback_only_pct_of_issuance">11.00</tspan>%</text></g></g></g></svg></div>
+<text x="457" y="119.9" class="val" font-size="12.5"><tspan data-m="ladder_buyback_only_pct_of_issuance">11.00</tspan>%</text></g></g></g></svg></div>
 <div class="cv cv-narrow"><svg class="svg" viewBox="0 0 340 334.5" role="img" aria-labelledby="chart-ladder-n-t chart-ladder-n-d" focusable="false">
 <title id="chart-ladder-n-t">The value-capture ladder: NEAR delivered to the revenue wallets as a share of net issuance</title>
 <desc id="chart-ladder-n-d">Panel A: one bar on a 0 to 100 percent axis, filled to 15.81 percent. Panel B, zoomed to 0 to 20 percent: a stacked bar of the same total split into public fee collectors 4.53, escrow unshields 11.25 and one other source 0.03, and the buyback wallet alone at 11.00, a subset.</desc>
@@ -328,9 +403,9 @@ footer{margin:3rem 0 2rem;padding-top:1rem;border-top:1px solid var(--grid);font
 <path class="sc" data-v="0.03" d="M218.4,97h1v14h-1z">
 <title>One other recurring source: 0.03%</title></path>
 <text x="224.8" y="108" class="val" font-size="11.5"><tspan data-m="ladder_all_wallets_pct_of_issuance">15.81</tspan>%</text></g>
-<g class="row" data-row="Of which the buyback wallet alone (a subset, not an extra rung)">
-<text x="0" y="131.5" class="rl" font-size="11.5">Of which the buyback wallet alone (a subset, not an</text>
-<text x="0" y="146" class="rl" font-size="11.5">extra rung)</text>
+<g class="row" data-row="Of which the buyback wallet alone (a subset of the three)">
+<text x="0" y="131.5" class="rl" font-size="11.5">Of which the buyback wallet</text>
+<text x="0" y="146" class="rl" font-size="11.5">alone (a subset of the three)</text>
 <path class="st2" data-v="11" d="M3,152h146.2a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h-146.2z">
 <title>Buyback wallet alone: 11.00%</title></path>
 <text x="159.2" y="163" class="val" font-size="11.5"><tspan data-m="ladder_buyback_only_pct_of_issuance">11.00</tspan>%</text></g></g></g></svg></div></div>
@@ -349,11 +424,14 @@ footer{margin:3rem 0 2rem;padding-top:1rem;border-top:1px solid var(--grid);font
 <details class="more">
 <summary>Notes and sources</summary>
 <p class="finding">NEAR delivered to NEAR&rsquo;s three Intents revenue wallets equalled <span data-m="ladder_all_wallets_pct_of_issuance">15.81</span>% of net issuance; only <span data-m="ladder_public_collectors_pct_of_issuance">4.53</span> points trace to public fee collectors and <span data-m="ladder_escrow_unshields_pct_of_issuance">11.25</span> arrive as unshields from the Confidential Intents escrow, fee stream unattested.</p>
+<div class="sn">
+<p class="shows"><strong>What it shows:</strong> How much of NEAR&rsquo;s net issuance (<span data-m="net_issuance_near_per_day_window">88,295</span> NEAR a day over the 30 days 2026-10-06 to 2026-11-04) was matched by NEAR delivered to the three revenue wallets, split by how it arrived: <span data-m="ladder_public_collectors_pct_of_issuance">4.53</span>% from two recurring public fee collectors and <span data-m="ladder_escrow_unshields_pct_of_issuance">11.25</span>% released from the Confidential Intents escrow, plus <span data-m="ladder_other_pct_of_issuance">0.03</span>% from one other source.</p>
+<p class="notshows"><strong>What it does not show:</strong> Which fee stream pays for the escrow releases: the NEAR verifiably arrived, but the public chain cannot split the <span data-m="ladder_escrow_unshields_pct_of_issuance">11.25</span> points between the two candidate NEAR-side streams that fit, so, if those three are all of NEAR&rsquo;s Intents revenue wallets, measured value capture is a range, <span data-m="ladder_public_collectors_pct_of_issuance">4.53</span>% to <span data-m="ladder_all_wallets_pct_of_issuance">15.81</span>% of issuance.</p></div>
 <ul class="notes">
 <li>The two candidate readings are near.com&rsquo;s fees and the Confidential Infrastructure Fee. A per-stream attestation by NEAR would turn the range into one number. Nothing here alleges misconduct. This is consistent with a privacy feature working as documented, and the question is auditability.</li>
 <li>The rungs are not nested: collectors, escrow and one other source add up to all three wallets, and the buyback-wallet rung is a subset of the total.</li>
 <li>Not all of the collector rung is public settlement. Of its <span data-m="ladder_public_collectors_pct_of_issuance">4.53</span> points, <span data-m="ladder_collectors_escrow_funded_pct_of_issuance">0.56</span> were fees paid by single-use accounts the escrow had funded (exploratory, every transfer into the collectors classified by sender), so <span data-m="ladder_escrow_all_pct_of_issuance">11.81</span> points passed through the escrow in all, and counting only publicly settled swaps the floor is <span data-m="ladder_collectors_public_swap_pct_of_issuance">3.97</span>%. By the last day, <span data-m="collector_a_escrow_usd_share_last_day_pct">96.0</span>% of collector A&rsquo;s fee value came from escrow-funded accounts.</li>
-<li>The total matches DefiLlama: <span data-m="revwallets_near_k">418.8</span>K NEAR is <span data-m="revwallets_vs_llama_rev_pct">100.9</span>% of its reported Intents revenue for the same days. DefiLlama&rsquo;s adapter takes the same three wallets from NEAR&rsquo;s own Dune query, so this is the same count, not an independent check: it checks our pricing and wallet list. Even the top of the range covers about a sixth of issuance, and the buyback wallet&rsquo;s NEAR is held, not burned.</li>
+<li>The total matches DefiLlama: <span data-m="revwallets_near_k">418.8</span>K NEAR is <span data-m="revwallets_vs_llama_rev_pct">100.9</span>% of its reported Intents revenue for the same days. DefiLlama&rsquo;s adapter takes the same three wallets from NEAR&rsquo;s own Dune query, so it is the same count: it checks our pricing and wallet list and gives no independent check of the wallets. Even the top of the range covers about a sixth of issuance, and the buyback wallet holds its NEAR: none of it has been burned.</li>
 <li>No valuation is made here. The range is the finding: <span data-m="ladder_all_wallets_pct_of_issuance">15.81</span>% is what reached the three wallets and <span data-m="ladder_public_collectors_pct_of_issuance">4.53</span>% is what is traced to public fee collectors. None of this feeds the rating rule.</li></ul>
 <div class="source">
 <p><strong>Source:</strong></p>
@@ -519,7 +597,7 @@ GROUP BY 1,2,3 ORDER BY 1,2,3
 <tr>
 <td class="t">Of which the buyback wallet alone</td>
 <td><span data-m="ladder_buyback_only_pct_of_issuance">11.00</span></td>
-<td class="t">a subset of the total, not nested with the rows below</td></tr>
+<td class="t">a subset of the total, overlapping the rows below</td></tr>
 <tr>
 <td class="t">Traceable to two recurring public fee collectors</td>
 <td><span data-m="ladder_public_collectors_pct_of_issuance">4.53</span></td>
@@ -545,13 +623,10 @@ GROUP BY 1,2,3 ORDER BY 1,2,3
 <td><span data-m="net_issuance_near_per_day_window">88,295</span></td>
 <td class="t">two archival total_supply reads, matched to the window</td></tr></tbody></table></div></details></div></section></section>
 <section class="slide">
-<p class="step">2 · What the price assumes</p>
+<p class="step">2. What the price assumes</p>
 <section class="card" id="chart-priced" aria-labelledby="chart-priced-h">
-<div class="cardtop"><span class="badge badge-exp"><svg class="ico" viewBox="0 0 20 20" width="14" height="14" aria-hidden="true" focusable="false"><circle class="i-line" cx="10" cy="10" r="8" /><path class="i-line" d="M12.9 7.1l-1.7 4.1-4.1 1.7 1.7-4.1z" /></svg> Exploratory, chosen after the freeze</span><a href="index.html#chart-priced" aria-label="Link to this chart">#</a></div>
-<h3 id="chart-priced-h">If Intents carried NEAR&rsquo;s price alone, the price would assume captured revenue grows <span data-m="ic_implied_cagr_r15_x25_pct">84.9</span>% a year to 2031; the venues grew <span data-m="ic_market_cagr_1y_pct">13.4</span>% last year, all of it Intents</h3>
-<div class="sn">
-<p class="shows"><strong>What it shows:</strong> A reverse DCF: the growth in captured Intents revenue that today&rsquo;s market cap implies, for a required return and a revenue multiple in 2031 (both assumptions, shown as a grid), with supply growth on the rating rule&rsquo;s own path, against what the cross-chain swap market has done.</p>
-<p class="notshows"><strong>What it does not show:</strong> A valuation of NEAR as a whole. NEAR&rsquo;s market cap also prices the L1 (its fees, which burn, staking and any monetary premium); here all of it is set against Intents&rsquo; captured revenue, so the growth shown is what Intents would need if it carried the price alone.</p></div>
+<div class="cardtop"><span class="fignum">Figure 2</span><span class="badge badge-exp">Exploratory</span><a href="index.html#chart-priced" aria-label="Link to this chart">#</a></div>
+<h3 id="chart-priced-h">Growth the price assumes: <span data-m="ic_implied_cagr_r15_x25_pct">84.9</span>% a year to 2031</h3>
 <figure class="chart-fig">
 <div class="chart">
 <div class="cv cv-wide"><svg class="svg" viewBox="0 0 720 373.5" role="img" aria-labelledby="chart-priced-w-t chart-priced-w-d" focusable="false">
@@ -576,38 +651,38 @@ GROUP BY 1,2,3 ORDER BY 1,2,3
 <line class="grid" x1="640" x2="640" y1="32.5" y2="351" />
 <text x="640" y="366.5" class="tk" text-anchor="middle" font-size="12.5">100</text>
 <g class="row" data-row="What the price assumes: base assumptions">
-<text x="0" y="53" class="rl" font-size="12.5">What the price assumes: base</text>
-<text x="0" y="68.5" class="rl" font-size="12.5">assumptions</text>
+<text x="0" y="53" class="rl" font-size="12.5">What the price assumes:</text>
+<text x="0" y="68.5" class="rl" font-size="12.5">base assumptions</text>
 <path class="s2" data-v="84.9" d="M220,48h352.6a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-352.6z"></path>
 <text x="582.6" y="60.4" class="val" font-size="12.5"><tspan data-m="ic_implied_cagr_r15_x25_pct">84.9</tspan>% a year</text></g>
 <g class="row" data-row="What the price assumes: the most generous assumptions in the grid">
-<text x="0" y="92" class="rl" font-size="12.5">What the price assumes: the</text>
-<text x="0" y="107.5" class="rl" font-size="12.5">most generous assumptions in</text>
-<text x="0" y="123" class="rl" font-size="12.5">the grid</text>
+<text x="0" y="92" class="rl" font-size="12.5">What the price assumes:</text>
+<text x="0" y="107.5" class="rl" font-size="12.5">the most generous</text>
+<text x="0" y="123" class="rl" font-size="12.5">assumptions in the grid</text>
 <path class="s2" data-v="54" d="M220,94.8h222.8a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-222.8z"></path>
 <text x="452.8" y="107.1" class="val" font-size="12.5"><tspan data-m="ic_implied_cagr_r10_x50_pct">54.0</tspan>% a year</text></g>
 <g class="row" data-row="What the rating rule needs to cover dilution (G_req)">
-<text x="0" y="146.5" class="rl" font-size="12.5">What the rating rule needs to</text>
-<text x="0" y="162" class="rl" font-size="12.5">cover dilution (G_req)</text>
+<text x="0" y="146.5" class="rl" font-size="12.5">What the rating rule needs</text>
+<text x="0" y="162" class="rl" font-size="12.5">to cover dilution (G_req)</text>
 <path class="sc" data-v="33.2" d="M220,141.5h135.4a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-135.4z"></path>
 <text x="365.4" y="153.9" class="val" font-size="12.5"><tspan data-m="rating_g_req_pct">33.2</tspan>% a year</text></g>
 <g class="row" data-row="Peer set, with Intents: a year over four years">
-<text x="0" y="185.5" class="rl" font-size="12.5">Peer set, with Intents: a year</text>
-<text x="0" y="201" class="rl" font-size="12.5">over four years</text>
+<text x="0" y="185.5" class="rl" font-size="12.5">Peer set, with Intents:</text>
+<text x="0" y="201" class="rl" font-size="12.5">a year over four years</text>
 <path class="s1" data-v="47.1" d="M220,180.5h193.8a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-193.8z"></path>
 <text x="423.8" y="192.9" class="val" font-size="12.5"><tspan data-m="ic_market_cagr_4y_pct">47.1</tspan>% a year</text></g>
 <g class="row" data-row="Peer set, with Intents: last year">
-<text x="0" y="224.5" class="rl" font-size="12.5">Peer set, with Intents: last</text>
-<text x="0" y="240" class="rl" font-size="12.5">year</text>
+<text x="0" y="224.5" class="rl" font-size="12.5">Peer set, with</text>
+<text x="0" y="240" class="rl" font-size="12.5">Intents: last year</text>
 <path class="s1" data-v="13.4" d="M220,219.5h52.3a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-52.3z"></path>
 <text x="282.3" y="231.9" class="val" font-size="12.5"><tspan data-m="ic_market_cagr_1y_pct">13.4</tspan>% a year</text></g>
 <g class="row" data-row="Peer set, with Intents: a year over two years">
-<text x="0" y="263.5" class="rl" font-size="12.5">Peer set, with Intents: a year</text>
-<text x="0" y="279" class="rl" font-size="12.5">over two years</text>
+<text x="0" y="263.5" class="rl" font-size="12.5">Peer set, with Intents:</text>
+<text x="0" y="279" class="rl" font-size="12.5">a year over two years</text>
 <text x="227.5" y="270.9" class="val" font-size="12.5"><tspan data-m="ic_market_cagr_2y_pct">-1.9</tspan>% a year</text></g>
 <g class="row" data-row="The other venues: a year over four years">
-<text x="0" y="302.5" class="rl" font-size="12.5">The other venues: a year over</text>
-<text x="0" y="318" class="rl" font-size="12.5">four years</text>
+<text x="0" y="302.5" class="rl" font-size="12.5">The other venues: a</text>
+<text x="0" y="318" class="rl" font-size="12.5">year over four years</text>
 <path class="s1" data-v="15.4" d="M220,297.5h60.7a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-60.7z"></path>
 <text x="290.7" y="309.9" class="val" font-size="12.5"><tspan data-m="ic_market_ex_intents_cagr_4y_pct">15.4</tspan>% a year</text></g>
 <g class="row" data-row="The other venues: last year">
@@ -639,8 +714,8 @@ GROUP BY 1,2,3 ORDER BY 1,2,3
 <path class="s2" data-v="84.9" d="M3,97h227.8a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h-227.8z"></path>
 <text x="240.8" y="108" class="val" font-size="11.5"><tspan data-m="ic_implied_cagr_r15_x25_pct">84.9</tspan>% a year</text></g>
 <g class="row" data-row="What the price assumes: the most generous assumptions in the grid">
-<text x="0" y="131.5" class="rl" font-size="11.5">What the price assumes: the most generous</text>
-<text x="0" y="146" class="rl" font-size="11.5">assumptions in the grid</text>
+<text x="0" y="131.5" class="rl" font-size="11.5">What the price assumes: the most</text>
+<text x="0" y="146" class="rl" font-size="11.5">generous assumptions in the grid</text>
 <path class="s2" data-v="54" d="M3,152h143.4a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h-143.4z"></path>
 <text x="156.4" y="163" class="val" font-size="11.5"><tspan data-m="ic_implied_cagr_r10_x50_pct">54.0</tspan>% a year</text></g>
 <g class="row" data-row="What the rating rule needs to cover dilution (G_req)">
@@ -666,6 +741,26 @@ GROUP BY 1,2,3 ORDER BY 1,2,3
 <text x="0" y="389" class="rl" font-size="11.5">The other venues: last year</text>
 <text x="10.5" y="406" class="val" font-size="11.5"><tspan data-m="ic_market_ex_intents_cagr_1y_pct">-53.4</tspan>% a year</text></g></g></svg></div></div>
 <figcaption>Market cap $<span data-m="mcap_usd_b">4.82</span>B (CoinGecko snapshot, 2026-11-05). Captured revenue: the 90 days to 2026-11-04 at an annual rate. Supply grows <span data-m="ic_supply_factor_x">1.094</span>× to 2031-11-04 with HSP-029. Market: THORChain, Chainflip, Maya and NEAR Intents (DefiLlama, reported basis), full years to the as-of date. Exploratory, chosen 2026-11-14, after the freeze.</figcaption></figure>
+<dl class="keyfigs">
+<div>
+<dt>Captured revenue now, a year</dt>
+<dd>$<span data-m="ic_rev_90d_ann_m">19.6</span>M</dd></div>
+<div>
+<dt>Needed by 2031 (base)</dt>
+<dd>$<span data-m="ic_required_rev_2031_m">424.0</span>M</dd></div>
+<div>
+<dt>That is</dt>
+<dd><span data-m="ic_required_multiple_x">21.6</span>× today</dd></div>
+<div>
+<dt>Market cap ÷ revenue now</dt>
+<dd><span data-m="ic_near_mcap_to_rev_90d_ann_x">245.0</span>×</dd></div></dl>
+<div class="cardfoot">
+<details class="more">
+<summary>Notes and sources</summary>
+<p class="finding">For NEAR&rsquo;s price to rise <span data-m="ic_base_r_pct">15</span>% a year to 2031-11-04 and its market cap then to be <span data-m="ic_base_x">25</span> times its captured revenue, captured revenue must grow from $<span data-m="ic_rev_90d_ann_m">19.6</span>M a year to $<span data-m="ic_required_rev_2031_m">424.0</span>M, <span data-m="ic_implied_cagr_r15_x25_pct">84.9</span>% a year (<span data-m="ic_implied_cagr_r10_x50_pct">54.0</span>% to <span data-m="ic_implied_cagr_r20_x10_pct">131.7</span>% across the grid), if Intents carried the price alone. The cross-chain venues tracked here grew <span data-m="ic_market_cagr_1y_pct">13.4</span>% last year, all of it Intents&rsquo; own growth (×<span data-m="ic_intents_vol_1y_x">9.0</span>): without Intents the venues&rsquo; volume changed by <span data-m="ic_market_ex_intents_cagr_1y_pct">-53.4</span>%. Over four years the set grew <span data-m="ic_market_cagr_4y_pct">47.1</span>% a year, <span data-m="ic_market_ex_intents_cagr_4y_pct">15.4</span>% without Intents.</p>
+<div class="sn">
+<p class="shows"><strong>What it shows:</strong> A reverse DCF: the growth in captured Intents revenue that today&rsquo;s market cap implies, for a required return and a revenue multiple in 2031 (both assumptions, shown as a grid), with supply growth on the rating rule&rsquo;s own path, against what the cross-chain swap market has done.</p>
+<p class="notshows"><strong>What it does not show:</strong> A valuation of NEAR as a whole. NEAR&rsquo;s market cap also prices the L1 (its fees, which burn, staking and any monetary premium); here all of it is set against Intents&rsquo; captured revenue, so the growth shown is what Intents would need if it carried the price alone.</p></div>
 <div class="tablewrap" role="region" aria-label="Growth the market cap assumes" tabindex="0">
 <table>
 <caption>Growth in captured revenue a year to 2031 that today&rsquo;s market cap assumes, %</caption>
@@ -691,29 +786,12 @@ GROUP BY 1,2,3 ORDER BY 1,2,3
 <td><span data-m="ic_implied_cagr_r20_x10_pct">131.7</span>%</td>
 <td><span data-m="ic_implied_cagr_r20_x25_pct">92.9</span>%</td>
 <td><span data-m="ic_implied_cagr_r20_x50_pct">68.0</span>%</td></tr></tbody></table></div>
-<dl class="keyfigs">
-<div>
-<dt>Captured revenue now, a year</dt>
-<dd>$<span data-m="ic_rev_90d_ann_m">19.6</span>M</dd></div>
-<div>
-<dt>Needed by 2031 (base)</dt>
-<dd>$<span data-m="ic_required_rev_2031_m">424.0</span>M</dd></div>
-<div>
-<dt>That is</dt>
-<dd><span data-m="ic_required_multiple_x">21.6</span>× today</dd></div>
-<div>
-<dt>Market cap ÷ revenue now</dt>
-<dd><span data-m="ic_near_mcap_to_rev_90d_ann_x">245.0</span>×</dd></div></dl>
-<div class="cardfoot">
-<details class="more">
-<summary>Notes and sources</summary>
-<p class="finding">For NEAR&rsquo;s price to rise <span data-m="ic_base_r_pct">15</span>% a year to 2031-11-04 and its market cap then to be <span data-m="ic_base_x">25</span> times its captured revenue, captured revenue must grow from $<span data-m="ic_rev_90d_ann_m">19.6</span>M a year to $<span data-m="ic_required_rev_2031_m">424.0</span>M, <span data-m="ic_implied_cagr_r15_x25_pct">84.9</span>% a year (<span data-m="ic_implied_cagr_r10_x50_pct">54.0</span>% to <span data-m="ic_implied_cagr_r20_x10_pct">131.7</span>% across the grid), if Intents carried the price alone. The cross-chain venues tracked here grew <span data-m="ic_market_cagr_1y_pct">13.4</span>% last year, all of it Intents&rsquo; own growth (×<span data-m="ic_intents_vol_1y_x">9.0</span>): without Intents the venues&rsquo; volume changed by <span data-m="ic_market_ex_intents_cagr_1y_pct">-53.4</span>%. Over four years the set grew <span data-m="ic_market_cagr_4y_pct">47.1</span>% a year, <span data-m="ic_market_ex_intents_cagr_4y_pct">15.4</span>% without Intents.</p>
 <ul class="notes">
 <li>The required return is on NEAR&rsquo;s price. Supply grows and the buybacks burn nothing, so for the price to rise at that rate the market cap must grow faster by the supply factor, <span data-m="ic_supply_factor_x">1.094</span>× by 2031; a holder who stakes also receives part of the new supply.</li>
 <li>For comparison, THORChain&rsquo;s market cap is <span data-m="ic_peer_thorchain_mcap_to_fees_x">9.8</span>× its gross fees and Chainflip&rsquo;s <span data-m="ic_peer_chainflip_mcap_to_fees_x">1.8</span>× (see the peer card). The grid&rsquo;s multiples are on captured revenue; the peers&rsquo; multiples on what reaches their token holders would be higher and are not computed here.</li>
 <li>Last year&rsquo;s growth of the set is all Intents&rsquo; growth, and part of it is DefiLlama&rsquo;s change on 2026-09-01 in what it counts as Intents volume (docs/leg-count.md): as a measure of the market it is generous to NEAR.</li>
 <li>The market&rsquo;s growth depends on the window: <span data-m="ic_market_cagr_3y_pct">76.9</span>% a year over three years starts at the low of $<span data-m="ic_market_y3_b">9.6</span>B; the annual volumes were $<span data-m="ic_market_y4_b">11.3</span>B, $<span data-m="ic_market_y3_b">9.6</span>B, $<span data-m="ic_market_y2_b">55.1</span>B, $<span data-m="ic_market_y1_b">46.7</span>B and $<span data-m="ic_market_y0_b">53.0</span>B (oldest first). The two-year rate is negative and is drawn at zero.</li>
-<li>G_obs, the rule&rsquo;s observed growth in captured revenue (<span data-m="rating_g_obs_pct">619.0</span>% a year), is left off the axis: it comes from a step in the share of fees captured, not from growth in activity.</li></ul>
+<li>G_obs, the rule&rsquo;s observed growth in captured revenue (<span data-m="rating_g_obs_pct">619.0</span>% a year), is left off the axis: it comes from a step in the share of fees captured, while gross fees and volume grew far less.</li></ul>
 <div class="source">
 <p><strong>Source:</strong></p>
 <ul>
@@ -763,13 +841,10 @@ GROUP BY 1,2,3 ORDER BY 1,2,3
 <td><span data-m="ic_implied_cagr_r20_x25_pct">92.9</span>%</td>
 <td><span data-m="ic_implied_cagr_r20_x50_pct">68.0</span>%</td></tr></tbody></table></div></details></div></section></section>
 <section class="slide">
-<p class="step">3 · What would have to give</p>
+<p class="step">3. What would have to give</p>
 <section class="card" id="chart-multiply" aria-labelledby="chart-multiply-h">
-<div class="cardtop"><span class="badge badge-exp"><svg class="ico" viewBox="0 0 20 20" width="14" height="14" aria-hidden="true" focusable="false"><circle class="i-line" cx="10" cy="10" r="8" /><path class="i-line" d="M12.9 7.1l-1.7 4.1-4.1 1.7 1.7-4.1z" /></svg> Exploratory, chosen after the freeze</span><a href="index.html#chart-multiply" aria-label="Link to this chart">#</a></div>
-<h3 id="chart-multiply-h">To get there in today&rsquo;s market, NEAR would have to capture <span data-m="ic_take_needed_vs_gross_x">2.5</span>× Intents&rsquo; whole gross fee</h3>
-<div class="sn">
-<p class="shows"><strong>What it shows:</strong> The required multiple from the reverse DCF (base assumptions), split into its three factors: the growth of the cross-chain swap market, Intents&rsquo; share of it, and the share of volume NEAR captures as revenue, each at a value from the data, and what is left for the take rate.</p>
-<p class="notshows"><strong>What it does not show:</strong> That the take rate cannot rise: fees are a policy choice. It shows how far the current fee structure is from what the price implies, if the market grows as it has.</p></div>
+<div class="cardtop"><span class="fignum">Figure 3</span><span class="badge badge-exp">Exploratory</span><a href="index.html#chart-multiply" aria-label="Link to this chart">#</a></div>
+<h3 id="chart-multiply-h">Take NEAR would need: <span data-m="ic_take_needed_vs_gross_x">2.5</span>× Intents&rsquo; whole gross fee</h3>
 <figure class="chart-fig">
 <div class="chart">
 <div class="cv cv-wide"><svg class="svg" viewBox="0 0 720 349" role="img" aria-labelledby="chart-multiply-w-t chart-multiply-w-d" focusable="false">
@@ -791,18 +866,18 @@ GROUP BY 1,2,3 ORDER BY 1,2,3
 <line class="grid" x1="640" x2="640" y1="22.5" y2="169.5" />
 <text x="640" y="185" class="tk" text-anchor="middle" font-size="12.5">25</text>
 <g class="row" data-row="Captured revenue must multiply by">
-<text x="0" y="43" class="rl" font-size="12.5">Captured revenue must multiply</text>
-<text x="0" y="58.5" class="rl" font-size="12.5">by</text>
+<text x="0" y="43" class="rl" font-size="12.5">Captured revenue</text>
+<text x="0" y="58.5" class="rl" font-size="12.5">must multiply by</text>
 <path class="s2" data-v="21.6" d="M220,38h358.9a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-358.9z"></path>
 <text x="588.9" y="50.4" class="val" font-size="12.5"><tspan data-m="ic_required_multiple_x">21.6</tspan>×</text></g>
 <g class="row" data-row="The market, at its last-year pace">
-<text x="0" y="82" class="rl" font-size="12.5">The market, at its last-year</text>
-<text x="0" y="97.5" class="rl" font-size="12.5">pace</text>
+<text x="0" y="82" class="rl" font-size="12.5">The market, at its</text>
+<text x="0" y="97.5" class="rl" font-size="12.5">last-year pace</text>
 <path class="s1" data-v="1.87" d="M220,77h27.4a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-27.4z"></path>
 <text x="257.4" y="89.4" class="val" font-size="12.5"><tspan data-m="ic_mult_market_x">1.87</tspan>×</text></g>
 <g class="row" data-row="Intents&#x27; share, at its twelve-month high">
-<text x="0" y="121" class="rl" font-size="12.5">Intents&#x27; share, at its</text>
-<text x="0" y="136.5" class="rl" font-size="12.5">twelve-month high</text>
+<text x="0" y="121" class="rl" font-size="12.5">Intents&#x27; share, at</text>
+<text x="0" y="136.5" class="rl" font-size="12.5">its twelve-month high</text>
 <path class="s1" data-v="1.27" d="M220,116h17.3a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-17.3z"></path>
 <text x="247.3" y="128.4" class="val" font-size="12.5"><tspan data-m="ic_mult_share_x">1.27</tspan>×</text></g>
 <g class="row" data-row="Left for NEAR&#x27;s take rate">
@@ -870,8 +945,8 @@ GROUP BY 1,2,3 ORDER BY 1,2,3
 <text x="108.4" y="180.5" class="val" font-size="11.5"><tspan data-m="ic_mult_take_x">9.1</tspan>×</text></g></g></g>
 <g transform="translate(0,244)">
 <g class="panel" data-kind="hbar" data-lo="0" data-hi="40" data-x0="3" data-pw="273">
-<text x="0" y="12.5" class="ttl" font-size="12.5">B. Take rate, basis points of volume (bars</text>
-<text x="0" y="28" class="ttl" font-size="12.5">start at zero)</text>
+<text x="0" y="12.5" class="ttl" font-size="12.5">B. Take rate, basis points of</text>
+<text x="0" y="28" class="ttl" font-size="12.5">volume (bars start at zero)</text>
 <line class="axis" x1="3" x2="3" y1="37" y2="167.5" />
 <text x="0" y="182" class="tk" font-size="11.5">0</text>
 <line class="grid" x1="71.2" x2="71.2" y1="37" y2="167.5" />
@@ -909,6 +984,9 @@ GROUP BY 1,2,3 ORDER BY 1,2,3
 <details class="more">
 <summary>Notes and sources</summary>
 <p class="finding">Captured revenue = cross-chain swap volume × Intents&rsquo; share × NEAR&rsquo;s take. To multiply by <span data-m="ic_required_multiple_x">21.6</span> by 2031, with the market growing at its last-year pace (×<span data-m="ic_mult_market_x">1.87</span>) and Intents&rsquo; share at its twelve-month high (×<span data-m="ic_mult_share_x">1.27</span>), NEAR&rsquo;s take would have to rise ×<span data-m="ic_mult_take_x">9.1</span>, from <span data-m="ic_take_90d_bp">4.13</span> bp to <span data-m="ic_take_needed_bp">37.4</span> bp of volume: <span data-m="ic_take_needed_vs_gross_x">2.5</span> times the whole <span data-m="ic_gross_bp_90d">15.2</span> bp gross fee Intents charges today. Even if NEAR kept the whole gross fee, the market would have to grow <span data-m="ic_market_cagr_needed_full_fee_pct">35.7</span>% a year.</p>
+<div class="sn">
+<p class="shows"><strong>What it shows:</strong> The required multiple from the reverse DCF (base assumptions), split into its three factors: the growth of the cross-chain swap market, Intents&rsquo; share of it, and the share of volume NEAR captures as revenue, each at a value from the data, and what is left for the take rate.</p>
+<p class="notshows"><strong>What it does not show:</strong> That the take rate cannot rise: fees are a policy choice. It shows how far the current fee structure is from what the price implies, if the market grows as it has.</p></div>
 <ul class="notes">
 <li>Intents&rsquo; share of the peer set over the 90 days was <span data-m="ic_share_90d_pct">61.7</span>%; its twelve-month high was <span data-m="ic_share_max_pct">78.6</span>% (2026-06) and its low <span data-m="ic_share_min_pct">48.5</span>% (2026-04).</li>
 <li>Each factor is on DefiLlama&rsquo;s reported volume, which counts both legs of some swaps and, from 2026-09-01, more of Intents&rsquo; volume (docs/leg-count.md). Only the full product, the revenue, is unaffected. Last year&rsquo;s market growth is all Intents&rsquo; and partly that change, so it is generous to NEAR, and the take needed is, if anything, understated.</li></ul>
@@ -966,13 +1044,10 @@ GROUP BY 1,2,3 ORDER BY 1,2,3
 <td class="t">Take needed, bp</td>
 <td><span data-m="ic_take_needed_bp">37.4</span></td></tr></tbody></table></div></details></div></section></section>
 <section class="slide">
-<p class="step">4 · Three futures from the data</p>
+<p class="step">4. Three futures from the data</p>
 <section class="card" id="chart-scenarios" aria-labelledby="chart-scenarios-h">
-<div class="cardtop"><span class="badge badge-exp"><svg class="ico" viewBox="0 0 20 20" width="14" height="14" aria-hidden="true" focusable="false"><circle class="i-line" cx="10" cy="10" r="8" /><path class="i-line" d="M12.9 7.1l-1.7 4.1-4.1 1.7 1.7-4.1z" /></svg> Exploratory, chosen after the freeze</span><a href="index.html#chart-scenarios" aria-label="Link to this chart">#</a></div>
-<h3 id="chart-scenarios-h">Base case: captured revenue would pay for <span data-m="ic_base_coverage_2031_pct">44.6</span>% of NEAR&rsquo;s dilution in 2031; the bull case pays for all of it but reaches <span data-m="ic_bull_vs_required_pct">53.9</span>% of the revenue the price would assume</h3>
-<div class="sn">
-<p class="shows"><strong>What it shows:</strong> Three futures for captured revenue (market growth × Intents&rsquo; share × NEAR&rsquo;s take), each input at a value from the data, run against the rating rule&rsquo;s supply path at its constant (flat) price; then the base case with one input at a time at its low and high value. Coverage is what captured revenue would pay for: not all of it reaches the buyback wallet, and none of it is burned.</p>
-<p class="notshows"><strong>What it does not show:</strong> Probabilities: the scenarios are not weighted (the Monte Carlo card gives a distribution). Nor a new fee stream, a partner change or a regime the data have not seen.</p></div>
+<div class="cardtop"><span class="fignum">Figure 4</span><span class="badge badge-exp">Exploratory</span><a href="index.html#chart-scenarios" aria-label="Link to this chart">#</a></div>
+<h3 id="chart-scenarios-h">Dilution paid for in 2031: <span data-m="ic_bear_coverage_2031_pct">3.5</span>% bear, <span data-m="ic_base_coverage_2031_pct">44.6</span>% base, <span data-m="ic_bull_coverage_2031_pct">277.5</span>% bull</h3>
 <figure class="chart-fig">
 <div class="chart">
 <div class="cv cv-wide"><svg class="svg" viewBox="0 0 720 431" role="img" aria-labelledby="chart-scenarios-w-t chart-scenarios-w-d" focusable="false">
@@ -1017,32 +1092,32 @@ GROUP BY 1,2,3 ORDER BY 1,2,3
 <line class="grid" x1="640" x2="640" y1="37.5" y2="236.5" />
 <text x="640" y="252" class="tk" text-anchor="middle" font-size="12.5">200</text>
 <g class="row" data-row="Market growth: two-year to four-year pace">
-<text x="0" y="58" class="rl" font-size="12.5">Market growth: two-year to</text>
-<text x="0" y="73.5" class="rl" font-size="12.5">four-year pace</text>
+<text x="0" y="58" class="rl" font-size="12.5">Market growth: two-year</text>
+<text x="0" y="73.5" class="rl" font-size="12.5">to four-year pace</text>
 <path class="gap" data-v="21.6" d="M220,53h43.4v16h-43.4z"></path>
 <path class="s1" data-v="142.2" d="M265.4,53h294.6a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-294.6z"></path>
 <text x="570" y="65.4" class="val" font-size="12.5"><tspan data-m="ic_tor_market_lo_pct">21.6</tspan>% to <tspan data-m="ic_tor_market_hi_pct">163.8</tspan>%</text></g>
 <g class="row" data-row="NEAR&#x27;s price: 365-day high to low">
-<text x="0" y="97" class="rl" font-size="12.5">NEAR&#x27;s price: 365-day high to</text>
-<text x="0" y="112.5" class="rl" font-size="12.5">low</text>
+<text x="0" y="97" class="rl" font-size="12.5">NEAR&#x27;s price:</text>
+<text x="0" y="112.5" class="rl" font-size="12.5">365-day high to low</text>
 <path class="gap" data-v="27.8" d="M220,92h56.4v16h-56.4z"></path>
 <path class="s1" data-v="142" d="M278.4,92h294.2a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-294.2z"></path>
 <text x="582.6" y="104.4" class="val" font-size="12.5"><tspan data-m="ic_tor_price_lo_pct">27.8</tspan>% to <tspan data-m="ic_tor_price_hi_pct">169.8</tspan>%</text></g>
 <g class="row" data-row="Take rate: lowest to highest month">
-<text x="0" y="136" class="rl" font-size="12.5">Take rate: lowest to highest</text>
-<text x="0" y="151.5" class="rl" font-size="12.5">month</text>
+<text x="0" y="136" class="rl" font-size="12.5">Take rate: lowest</text>
+<text x="0" y="151.5" class="rl" font-size="12.5">to highest month</text>
 <path class="gap" data-v="14.7" d="M220,131h28.9v16h-28.9z"></path>
 <path class="s1" data-v="44.6" d="M250.9,131h89.7a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-89.7z"></path>
 <text x="350.5" y="143.4" class="val" font-size="12.5"><tspan data-m="ic_tor_take_lo_pct">14.7</tspan>% to <tspan data-m="ic_tor_take_hi_pct">59.3</tspan>%</text></g>
 <g class="row" data-row="Intents&#x27; share: twelve-month low to high">
-<text x="0" y="175" class="rl" font-size="12.5">Intents&#x27; share: twelve-month</text>
-<text x="0" y="190.5" class="rl" font-size="12.5">low to high</text>
+<text x="0" y="175" class="rl" font-size="12.5">Intents&#x27; share:</text>
+<text x="0" y="190.5" class="rl" font-size="12.5">twelve-month low to high</text>
 <path class="gap" data-v="35.1" d="M220,170h71.7v16h-71.7z"></path>
 <path class="s1" data-v="21.7" d="M293.7,170h41.6a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-41.6z"></path>
 <text x="345.3" y="182.4" class="val" font-size="12.5"><tspan data-m="ic_tor_share_lo_pct">35.1</tspan>% to <tspan data-m="ic_tor_share_hi_pct">56.8</tspan>%</text></g>
 <g class="row" data-row="HSP-029: not in force to in force">
-<text x="0" y="214" class="rl" font-size="12.5">HSP-029: not in force to in</text>
-<text x="0" y="229.5" class="rl" font-size="12.5">force</text>
+<text x="0" y="214" class="rl" font-size="12.5">HSP-029: not in</text>
+<text x="0" y="229.5" class="rl" font-size="12.5">force to in force</text>
 <path class="gap" data-v="27.5" d="M220,209h55.8v16h-55.8z"></path>
 <path class="s1" data-v="17.1" d="M277.8,209h31.9a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-31.9z"></path>
 <text x="319.7" y="221.4" class="val" font-size="12.5"><tspan data-m="ic_tor_hsp029_lo_pct">27.5</tspan>% to <tspan data-m="ic_tor_hsp029_hi_pct">44.6</tspan>%</text></g>
@@ -1053,8 +1128,8 @@ GROUP BY 1,2,3 ORDER BY 1,2,3
 <desc id="chart-scenarios-n-d">Panel A: bars from zero, percent: coverage on 2031-11-04 is 3.5 in the bear case, 44.6 in the base case and 277.5 in the bull case, against a line at 100. Panel B: for each input, the base coverage with that input at its low and high value.</desc>
 <g transform="translate(0,0)">
 <g class="panel" data-kind="hbar" data-lo="0" data-hi="300" data-x0="3" data-pw="273">
-<text x="0" y="12.5" class="ttl" font-size="12.5">A. Coverage on 2031-11-04, % (bars start at</text>
-<text x="0" y="28" class="ttl" font-size="12.5">zero)</text>
+<text x="0" y="12.5" class="ttl" font-size="12.5">A. Coverage on 2031-11-04,</text>
+<text x="0" y="28" class="ttl" font-size="12.5">% (bars start at zero)</text>
 <line class="axis" x1="3" x2="3" y1="52" y2="182.5" />
 <text x="0" y="197" class="tk" font-size="11.5">0</text>
 <line class="grid" x1="94" x2="94" y1="52" y2="182.5" />
@@ -1081,8 +1156,8 @@ GROUP BY 1,2,3 ORDER BY 1,2,3
 <text x="100" y="52" class="rl" font-size="11.5"><tspan data-m="fwd_full_line_pct">100</tspan>%: covers all dilution</text></g></g>
 <g transform="translate(0,234)">
 <g class="panel" data-kind="hbar" data-lo="0" data-hi="200" data-x0="3" data-pw="273">
-<text x="0" y="12.5" class="ttl" font-size="12.5">B. Base coverage with one input moved, %</text>
-<text x="0" y="28" class="ttl" font-size="12.5">(each bar spans low to high)</text>
+<text x="0" y="12.5" class="ttl" font-size="12.5">B. Base coverage with one input</text>
+<text x="0" y="28" class="ttl" font-size="12.5">moved, % (each bar spans low to high)</text>
 <line class="axis" x1="3" x2="3" y1="52" y2="263.5" />
 <text x="0" y="278" class="tk" font-size="11.5">0</text>
 <line class="grid" x1="71.2" x2="71.2" y1="52" y2="263.5" />
@@ -1125,65 +1200,13 @@ GROUP BY 1,2,3 ORDER BY 1,2,3
 <line class="refline" data-v="44.6" x1="63.9" x2="63.9" y1="237.5" y2="257.5" />
 <text x="69.9" y="52" class="rl" font-size="11.5">base <tspan data-m="ic_base_coverage_2031_pct">44.6</tspan>%</text></g></g></svg></div></div>
 <figcaption>Bear: market at its two-year pace, share at its twelve-month low (2026-04), take at its lowest month since the fee switch (2026-04), no HSP-029. Base: last-year market growth and the last 90 days&rsquo; share and take, with HSP-029. Bull: four-year market pace, twelve-month-high share (2026-06), highest month&rsquo;s take (2026-10), with HSP-029. Price $<span data-m="price_usd">3.67</span> (the rule&rsquo;s). Exploratory, chosen 2026-11-14, after the freeze.</figcaption></figure>
-<div class="tablewrap" role="region" aria-label="The three scenarios, from the data" tabindex="0">
-<table>
-<caption>The three scenarios, from the data</caption>
-<thead>
-<tr>
-<th scope="col" class="txt"></th>
-<th scope="col">Bear</th>
-<th scope="col">Base</th>
-<th scope="col">Bull</th></tr></thead>
-<tbody>
-<tr>
-<td class="t">Market growth a year, %</td>
-<td><span data-m="ic_bear_market_cagr_pct">-1.9</span></td>
-<td><span data-m="ic_base_market_cagr_pct">13.4</span></td>
-<td><span data-m="ic_bull_market_cagr_pct">47.1</span></td></tr>
-<tr>
-<td class="t">Intents' share, %</td>
-<td><span data-m="ic_bear_share_pct">48.5</span></td>
-<td><span data-m="ic_base_share_pct">61.7</span></td>
-<td><span data-m="ic_bull_share_pct">78.6</span></td></tr>
-<tr>
-<td class="t">NEAR's take, bp</td>
-<td><span data-m="ic_bear_take_bp">1.36</span></td>
-<td><span data-m="ic_base_take_bp">4.13</span></td>
-<td><span data-m="ic_bull_take_bp">5.49</span></td></tr>
-<tr>
-<td class="t">HSP-029 in force</td>
-<td><span data-m="ic_bear_hsp029">no</span></td>
-<td><span data-m="ic_base_hsp029">yes</span></td>
-<td><span data-m="ic_bull_hsp029">yes</span></td></tr>
-<tr>
-<td class="t">Captured revenue in 2031, $M a year</td>
-<td><span data-m="ic_bear_rev_2031_m">4.6</span></td>
-<td><span data-m="ic_base_rev_2031_m">36.7</span></td>
-<td><span data-m="ic_bull_rev_2031_m">228.6</span></td></tr>
-<tr>
-<td class="t">Captured revenue growth a year, %</td>
-<td><span data-m="ic_bear_rev_cagr_pct">-25.1</span></td>
-<td><span data-m="ic_base_rev_cagr_pct">13.4</span></td>
-<td><span data-m="ic_bull_rev_cagr_pct">63.4</span></td></tr>
-<tr>
-<td class="t">Coverage of dilution on 2031-11-04, %</td>
-<td><span data-m="ic_bear_coverage_2031_pct">3.5</span></td>
-<td><span data-m="ic_base_coverage_2031_pct">44.6</span></td>
-<td><span data-m="ic_bull_coverage_2031_pct">277.5</span></td></tr>
-<tr>
-<td class="t">Today's market cap ÷ 2031 revenue, ×</td>
-<td><span data-m="ic_bear_mcap_to_rev_2031_x">1,041.1</span></td>
-<td><span data-m="ic_base_mcap_to_rev_2031_x">131.1</span></td>
-<td><span data-m="ic_bull_mcap_to_rev_2031_x">21.1</span></td></tr>
-<tr>
-<td class="t">Share of the revenue the price assumes, %</td>
-<td><span data-m="ic_bear_vs_required_pct">1.1</span></td>
-<td><span data-m="ic_base_vs_required_pct">8.7</span></td>
-<td><span data-m="ic_bull_vs_required_pct">53.9</span></td></tr></tbody></table></div>
 <div class="cardfoot">
 <details class="more">
 <summary>Notes and sources</summary>
 <p class="finding">With every input at a value from the data and the price held flat, captured revenue on 2031-11-04 would pay for <span data-m="ic_bear_coverage_2031_pct">3.5</span>% (bear), <span data-m="ic_base_coverage_2031_pct">44.6</span>% (base) or <span data-m="ic_bull_coverage_2031_pct">277.5</span>% (bull) of the dollar value of NEAR&rsquo;s dilution. The bull case&rsquo;s $<span data-m="ic_bull_rev_2031_m">228.6</span>M a year is <span data-m="ic_bull_vs_required_pct">53.9</span>% of the $<span data-m="ic_required_rev_2031_m">424.0</span>M the price would assume at <span data-m="ic_base_r_pct">15</span>% and <span data-m="ic_base_x">25</span>×; at the three-year market pace it would be <span data-m="ic_bull3y_vs_required_pct">136.0</span>%. Market growth and NEAR&rsquo;s price move coverage most: from <span data-m="ic_tor_market_lo_pct">21.6</span>% to <span data-m="ic_tor_market_hi_pct">163.8</span>% and from <span data-m="ic_tor_price_lo_pct">27.8</span>% to <span data-m="ic_tor_price_hi_pct">169.8</span>%.</p>
+<div class="sn">
+<p class="shows"><strong>What it shows:</strong> Three futures for captured revenue (market growth × Intents&rsquo; share × NEAR&rsquo;s take), each input at a value from the data, run against the rating rule&rsquo;s supply path at its constant (flat) price; then the base case with one input at a time at its low and high value. Coverage is what captured revenue would pay for: not all of it reaches the buyback wallet, and none of it is burned.</p>
+<p class="notshows"><strong>What it does not show:</strong> Probabilities: the scenarios are not weighted (the Monte Carlo card gives a distribution). Nor a new fee stream, a partner change or a regime the data have not seen.</p></div>
 <ul class="notes">
 <li>Coverage moves in inverse proportion to NEAR&rsquo;s price, because each dollar of revenue buys back less NEAR at a higher price: the 365-day range, $<span data-m="ic_price_365d_low_usd">0.96</span> to $<span data-m="ic_price_365d_high_usd">5.89</span>, moves the base case from <span data-m="ic_tor_price_lo_pct">27.8</span>% to <span data-m="ic_tor_price_hi_pct">169.8</span>%.</li>
 <li>Which window anchors each case was chosen after the annual volumes, monthly shares and monthly take rates were computed (PREREG-ADDENDUM.md, 2026-11-14 entries); the card on what the price assumes lists every window, so a reader can substitute another.</li>
@@ -1269,13 +1292,10 @@ GROUP BY 1,2,3 ORDER BY 1,2,3
 <td><span data-m="ic_base_vs_required_pct">8.7</span></td>
 <td><span data-m="ic_bull_vs_required_pct">53.9</span></td></tr></tbody></table></div></details></div></section></section>
 <section class="slide">
-<p class="step">5 · How uncertain it is</p>
-<section class="card" id="chart-fwdcov" aria-labelledby="chart-fwdcov-h">
-<div class="cardtop"><span class="badge badge-exp"><svg class="ico" viewBox="0 0 20 20" width="14" height="14" aria-hidden="true" focusable="false"><circle class="i-line" cx="10" cy="10" r="8" /><path class="i-line" d="M12.9 7.1l-1.7 4.1-4.1 1.7 1.7-4.1z" /></svg> Exploratory, chosen after the freeze</span><a href="index.html#chart-fwdcov" aria-label="Link to this chart">#</a></div>
-<h3 id="chart-fwdcov-h">Uncertainty: <span data-m="fwd_p_cov_ge100_2031_pct">31.8</span>% of simulated paths pay for all of NEAR&rsquo;s dilution by 2031, but <span data-m="fwd_exsep_p_cov_ge100_2031_pct">3.3</span>% without the one month that spans DefiLlama&rsquo;s counting change</h3>
-<div class="sn">
-<p class="shows"><strong>What it shows:</strong> The frozen rating rule&rsquo;s question (does captured revenue reach the USD value of net new supply by 2031-11-04?) with a distribution in place of one price and one growth rate: <span data-m="fwd_paths_n">10,000</span> paths, each month drawing one of the <span data-m="fwd_boot_months_n">11</span> monthly changes in Intents volume and NEAR&rsquo;s mean price (2025-12 to 2026-10) together, against the rule&rsquo;s own supply path.</p>
-<p class="notshows"><strong>What it does not show:</strong> A forecast of NEAR&rsquo;s price or a valuation. Eleven months of data cannot pin a five-year trend: the bands are as wide as the data make them, the take rate is held where it is, and no new fee stream, partner change or regime is modelled.</p></div>
+<p class="step">5. How uncertain it is</p>
+<section class="card span2" id="chart-fwdcov" aria-labelledby="chart-fwdcov-h">
+<div class="cardtop"><span class="fignum">Figure 6</span><span class="badge badge-exp">Exploratory</span><a href="index.html#chart-fwdcov" aria-label="Link to this chart">#</a></div>
+<h3 id="chart-fwdcov-h">Monte Carlo: <span data-m="fwd_p_cov_ge100_2031_pct">31.8</span>% of paths pay for all dilution by 2031, <span data-m="fwd_exsep_p_cov_ge100_2031_pct">3.3</span>% without one month</h3>
 <figure class="chart-fig">
 <div class="chart">
 <div class="cv cv-wide"><svg class="svg" viewBox="0 0 720 715" role="img" aria-labelledby="chart-fwdcov-w-t chart-fwdcov-w-d" focusable="false">
@@ -1350,8 +1370,8 @@ L392.3,144.3L400.6,144.3L408.8,144.5L417.1,144.1L425.4,144.2L433.7,143.7L441.9,1
 <text x="640" y="410.5" class="tk" text-anchor="middle" font-size="12.5">100</text>
 <g class="row" data-row="Reaches P3&#x27;s line by 2027-11-04: model, and P3 as frozen">
 <text x="0" y="53" class="rl" font-size="12.5">Reaches P3&#x27;s line by</text>
-<text x="0" y="68.5" class="rl" font-size="12.5">2027-11-04: model, and P3 as</text>
-<text x="0" y="84" class="rl" font-size="12.5">frozen</text>
+<text x="0" y="68.5" class="rl" font-size="12.5">2027-11-04: model,</text>
+<text x="0" y="84" class="rl" font-size="12.5">and P3 as frozen</text>
 <path class="s1" data-v="39.6" d="M220,46.2h162.3a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-162.3z">
 <title>model</title></path>
 <text x="392.3" y="58.6" class="val" font-size="12.5"><tspan data-m="fwd_p_cov_ge25_2027_pct">39.6</tspan>%</text>
@@ -1367,9 +1387,9 @@ L392.3,144.3L400.6,144.3L408.8,144.5L417.1,144.1L425.4,144.2L433.7,143.7L441.9,1
 <path class="s1" data-v="15.9" d="M220,122h62.8a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-62.8z"></path>
 <text x="292.8" y="134.4" class="val" font-size="12.5"><tspan data-m="fwd_p_cov_ge100_2028_pct">15.9</tspan>%</text></g>
 <g class="row" data-row="Covers all dilution by 2031-11-04 (the rating rule&#x27;s date)">
-<text x="0" y="159.5" class="rl" font-size="12.5">Covers all dilution by</text>
-<text x="0" y="175" class="rl" font-size="12.5">2031-11-04 (the rating rule&#x27;s</text>
-<text x="0" y="190.5" class="rl" font-size="12.5">date)</text>
+<text x="0" y="159.5" class="rl" font-size="12.5">Covers all dilution</text>
+<text x="0" y="175" class="rl" font-size="12.5">by 2031-11-04 (the</text>
+<text x="0" y="190.5" class="rl" font-size="12.5">rating rule&#x27;s date)</text>
 <path class="s1" data-v="31.8" d="M220,162.2h129.6a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-129.6z"></path>
 <text x="359.6" y="174.6" class="val" font-size="12.5"><tspan data-m="fwd_p_cov_ge100_2031_pct">31.8</tspan>%</text></g>
 <g class="row" data-row="Same, without HSP-029&#x27;s cut">
@@ -1377,24 +1397,24 @@ L392.3,144.3L400.6,144.3L408.8,144.5L417.1,144.1L425.4,144.2L433.7,143.7L441.9,1
 <path class="s2" data-v="24.5" d="M220,202.5h98.9a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-98.9z"></path>
 <text x="328.9" y="214.9" class="val" font-size="12.5"><tspan data-m="fwd_p_cov_ge100_2031_no_hsp029_pct">24.5</tspan>%</text></g>
 <g class="row" data-row="Same, at half today&#x27;s take rate">
-<text x="0" y="240" class="rl" font-size="12.5">Same, at half today&#x27;s take</text>
-<text x="0" y="255.5" class="rl" font-size="12.5">rate</text>
+<text x="0" y="240" class="rl" font-size="12.5">Same, at half</text>
+<text x="0" y="255.5" class="rl" font-size="12.5">today&#x27;s take rate</text>
 <path class="s2" data-v="21.7" d="M220,235h87.1a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-87.1z"></path>
 <text x="317.1" y="247.4" class="val" font-size="12.5"><tspan data-m="fwd_p_cov_ge100_2031_take_x0_5_pct">21.7</tspan>%</text></g>
 <g class="row" data-row="Same, at twice today&#x27;s take rate">
-<text x="0" y="279" class="rl" font-size="12.5">Same, at twice today&#x27;s take</text>
-<text x="0" y="294.5" class="rl" font-size="12.5">rate</text>
+<text x="0" y="279" class="rl" font-size="12.5">Same, at twice</text>
+<text x="0" y="294.5" class="rl" font-size="12.5">today&#x27;s take rate</text>
 <path class="s2" data-v="44.3" d="M220,274h182.1a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-182.1z"></path>
 <text x="412.1" y="286.4" class="val" font-size="12.5"><tspan data-m="fwd_p_cov_ge100_2031_take_x2_0_pct">44.3</tspan>%</text></g>
 <g class="row" data-row="Same, if NEAR&#x27;s price keeps its last-year trend">
-<text x="0" y="318" class="rl" font-size="12.5">Same, if NEAR&#x27;s price keeps</text>
-<text x="0" y="333.5" class="rl" font-size="12.5">its last-year trend</text>
+<text x="0" y="318" class="rl" font-size="12.5">Same, if NEAR&#x27;s price</text>
+<text x="0" y="333.5" class="rl" font-size="12.5">keeps its last-year trend</text>
 <path class="s2" data-v="0.9" d="M220,313h3.8v16h-3.8z"></path>
 <text x="229.8" y="325.4" class="val" font-size="12.5"><tspan data-m="fwd_p_cov_ge100_2031_price_drift_pct">0.9</tspan>%</text></g>
 <g class="row" data-row="Same, without the month that spans DefiLlama&#x27;s counting change">
-<text x="0" y="357" class="rl" font-size="12.5">Same, without the month that</text>
-<text x="0" y="372.5" class="rl" font-size="12.5">spans DefiLlama&#x27;s counting</text>
-<text x="0" y="388" class="rl" font-size="12.5">change</text>
+<text x="0" y="357" class="rl" font-size="12.5">Same, without the month</text>
+<text x="0" y="372.5" class="rl" font-size="12.5">that spans DefiLlama&#x27;s</text>
+<text x="0" y="388" class="rl" font-size="12.5">counting change</text>
 <path class="s2" data-v="3.3" d="M220,359.8h9.9a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-9.9z"></path>
 <text x="239.9" y="372.1" class="val" font-size="12.5"><tspan data-m="fwd_exsep_p_cov_ge100_2031_pct">3.3</tspan>%</text></g></g></g></svg></div>
 <div class="cv cv-narrow"><svg class="svg" viewBox="0 0 340 831" role="img" aria-labelledby="chart-fwdcov-n-t chart-fwdcov-n-d" focusable="false">
@@ -1402,8 +1422,8 @@ L392.3,144.3L400.6,144.3L408.8,144.5L417.1,144.1L425.4,144.2L433.7,143.7L441.9,1
 <desc id="chart-fwdcov-n-d">Panel A: on a logarithmic axis, shaded percentile bands of coverage over 10,000 simulated paths, starting at 16.6% and ending with a median of 38.2% on 2031-11-04; reference lines at 100% and 25%. Panel B: bars from zero, the share of paths that reach each line.</desc>
 <g transform="translate(0,0)">
 <g class="panel" data-kind="fan" data-scale="log10" data-lo="1" data-hi="1000" data-base="251.5" data-ph="150" data-x0="50" data-pw="232.1">
-<text x="0" y="12.5" class="ttl" font-size="12.5">A. Coverage: 90-day captured revenue ÷ USD</text>
-<text x="0" y="28" class="ttl" font-size="12.5">value of net new NEAR (log axis)</text>
+<text x="0" y="12.5" class="ttl" font-size="12.5">A. Coverage: 90-day captured revenue ÷</text>
+<text x="0" y="28" class="ttl" font-size="12.5">USD value of net new NEAR (log axis)</text>
 <line class="lg lk" x1="0" x2="16" y1="42.5" y2="42.5" />
 <text x="22" y="46.5" font-size="11.5">Measured (P3&#x27;s quantity)</text>
 <rect class="band2" x="0" y="57" width="10" height="10" rx="2" />
@@ -1446,8 +1466,8 @@ L187.8,176.7L191.2,176.8L194.5,176.9L197.9,176.6L201.3,176.7L204.6,176.3L208,176
 <text x="85.1" y="113" class="tk" font-size="11">today</text></g></g>
 <g transform="translate(0,309)">
 <g class="panel" data-kind="hbar" data-lo="0" data-hi="100" data-x0="3" data-pw="273">
-<text x="0" y="12.5" class="ttl" font-size="12.5">B. Share of simulated paths that reach the</text>
-<text x="0" y="28" class="ttl" font-size="12.5">line, % (bars start at zero)</text>
+<text x="0" y="12.5" class="ttl" font-size="12.5">B. Share of simulated paths that reach</text>
+<text x="0" y="28" class="ttl" font-size="12.5">the line, % (bars start at zero)</text>
 <rect class="s1" x="0" y="37.5" width="10" height="10" rx="2" />
 <text x="16" y="46.5" font-size="11.5">Main run</text>
 <rect class="s2" x="84.6" y="37.5" width="10" height="10" rx="2" />
@@ -1465,8 +1485,8 @@ L187.8,176.7L191.2,176.8L194.5,176.9L197.9,176.6L201.3,176.7L204.6,176.3L208,176
 <line class="grid" x1="276" x2="276" y1="66.5" y2="500.5" />
 <text x="276" y="515" class="tk" text-anchor="middle" font-size="11.5">100</text>
 <g class="row" data-row="Reaches P3&#x27;s line by 2027-11-04: model, and P3 as frozen">
-<text x="0" y="87" class="rl" font-size="11.5">Reaches P3&#x27;s line by 2027-11-04: model, and P3 as</text>
-<text x="0" y="101.5" class="rl" font-size="11.5">frozen</text>
+<text x="0" y="87" class="rl" font-size="11.5">Reaches P3&#x27;s line by 2027-11-04:</text>
+<text x="0" y="101.5" class="rl" font-size="11.5">model, and P3 as frozen</text>
 <path class="s1" data-v="39.6" d="M3,107.5h104.1a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h-104.1z">
 <title>model</title></path>
 <text x="117.1" y="118.5" class="val" font-size="11.5"><tspan data-m="fwd_p_cov_ge25_2027_pct">39.6</tspan>%</text>
@@ -1482,8 +1502,8 @@ L187.8,176.7L191.2,176.8L194.5,176.9L197.9,176.6L201.3,176.7L204.6,176.3L208,176
 <path class="s1" data-v="15.9" d="M3,205.5h39.4a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h-39.4z"></path>
 <text x="52.4" y="216.5" class="val" font-size="11.5"><tspan data-m="fwd_p_cov_ge100_2028_pct">15.9</tspan>%</text></g>
 <g class="row" data-row="Covers all dilution by 2031-11-04 (the rating rule&#x27;s date)">
-<text x="0" y="240" class="rl" font-size="11.5">Covers all dilution by 2031-11-04 (the rating rule&#x27;s</text>
-<text x="0" y="254.5" class="rl" font-size="11.5">date)</text>
+<text x="0" y="240" class="rl" font-size="11.5">Covers all dilution by 2031-11-04</text>
+<text x="0" y="254.5" class="rl" font-size="11.5">(the rating rule&#x27;s date)</text>
 <path class="s1" data-v="31.8" d="M3,260.5h82.8a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h-82.8z"></path>
 <text x="95.8" y="271.5" class="val" font-size="11.5"><tspan data-m="fwd_p_cov_ge100_2031_pct">31.8</tspan>%</text></g>
 <g class="row" data-row="Same, without HSP-029&#x27;s cut">
@@ -1503,8 +1523,8 @@ L187.8,176.7L191.2,176.8L194.5,176.9L197.9,176.6L201.3,176.7L204.6,176.3L208,176
 <path class="s2" data-v="0.9" d="M3,422.5h2.5v14h-2.5z"></path>
 <text x="11.5" y="433.5" class="val" font-size="11.5"><tspan data-m="fwd_p_cov_ge100_2031_price_drift_pct">0.9</tspan>%</text></g>
 <g class="row" data-row="Same, without the month that spans DefiLlama&#x27;s counting change">
-<text x="0" y="457" class="rl" font-size="11.5">Same, without the month that spans DefiLlama&#x27;s</text>
-<text x="0" y="471.5" class="rl" font-size="11.5">counting change</text>
+<text x="0" y="457" class="rl" font-size="11.5">Same, without the month that</text>
+<text x="0" y="471.5" class="rl" font-size="11.5">spans DefiLlama&#x27;s counting change</text>
 <path class="s2" data-v="3.3" d="M3,477.5h5a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h-5z"></path>
 <text x="18" y="488.5" class="val" font-size="11.5"><tspan data-m="fwd_exsep_p_cov_ge100_2031_pct">3.3</tspan>%</text></g></g></g></svg></div></div>
 <figcaption>Model: <code>pipeline/model.py</code>, a fixed seed, <span data-m="fwd_months_n">60</span> model months from 2026-11-04. Units: percent. Panel A&rsquo;s axis is logarithmic; values below its floor are drawn at the floor. Exploratory, chosen 2026-11-13, after the freeze; it feeds nothing the rating rule computes.</figcaption></figure>
@@ -1525,12 +1545,15 @@ L187.8,176.7L191.2,176.8L194.5,176.9L197.9,176.6L201.3,176.7L204.6,176.3L208,176
 <details class="more">
 <summary>Notes and sources</summary>
 <p class="finding">Captured Intents revenue covers <span data-m="fwd_coverage_now_pct">16.6</span>% of the USD value of NEAR&rsquo;s net new supply today. Over <span data-m="fwd_paths_n">10,000</span> paths that replay the volume and price changes of <span data-m="fwd_boot_months_n">11</span> months of data (price drift removed), the median reaches <span data-m="fwd_cov_2027_p50_pct">19.9</span>% by 2027-11, <span data-m="fwd_cov_2028_p50_pct">26.6</span>% by 2028-11 and <span data-m="fwd_cov_2031_p50_pct">38.2</span>% by 2031-11-04, and <span data-m="fwd_p_cov_ge100_2031_pct">31.8</span>% of paths cover all of it by then (<span data-m="fwd_p_cov_ge100_2031_no_hsp029_pct">24.5</span>% without HSP-029). If the price keeps its last-year trend, that falls to <span data-m="fwd_p_cov_ge100_2031_price_drift_pct">0.9</span>%; without the 2026-08 to 2026-09 month, which spans DefiLlama&rsquo;s change in what it counts, to <span data-m="fwd_exsep_p_cov_ge100_2031_pct">3.3</span>%. The bands are as wide as the data make them, so the thesis does not rest on these probabilities.</p>
+<div class="sn">
+<p class="shows"><strong>What it shows:</strong> The frozen rating rule&rsquo;s question (does captured revenue reach the USD value of net new supply by 2031-11-04?) with a distribution in place of one price and one growth rate: <span data-m="fwd_paths_n">10,000</span> paths, each month drawing one of the <span data-m="fwd_boot_months_n">11</span> monthly changes in Intents volume and NEAR&rsquo;s mean price (2025-12 to 2026-10) together, against the rule&rsquo;s own supply path.</p>
+<p class="notshows"><strong>What it does not show:</strong> A forecast of NEAR&rsquo;s price or a valuation. Eleven months of data cannot pin a five-year trend: the bands are as wide as the data make them, the take rate is held where it is, and no new fee stream, partner change or regime is modelled.</p></div>
 <ul class="notes">
 <li>The volume drift comes from one month: the 2026-08 to 2026-09 change spans DefiLlama&rsquo;s 2026-09-01 change in what it counts as Intents volume. Without that month volume changed by <span data-m="fwd_exsep_vol_monthly_mean_pct">-4.5</span>% a month, the 2031 median is <span data-m="fwd_exsep_cov_2031_p50_pct">1.5</span>% and <span data-m="fwd_exsep_p_cov_ge100_2031_pct">3.3</span>% of paths cover all dilution. The forecasts M1 to M4 were dated with the month in and are scored as dated; the thesis does not rest on them (PREREG-ADDENDUM.md, 2026-11-14 entries).</li>
-<li>Volume and price move together in the data: the correlation of their monthly log changes is <span data-m="fwd_vol_price_corr">0.54</span>, so they are drawn as pairs, not separately.</li>
+<li>Volume and price move together in the data: the correlation of their monthly log changes is <span data-m="fwd_vol_price_corr">0.54</span>, so each month&rsquo;s two changes are drawn together.</li>
 <li>The price drift is removed because NEAR&rsquo;s mean price rose <span data-m="fwd_price_monthly_mean_pct">7.4</span>% a month on average over those months; replaying that for five years would assume the trend continues. With it, the 2031 median is <span data-m="fwd_cov_2031_p50_price_drift_pct">0.6</span>%: a higher price means each dollar of revenue buys back less NEAR.</li>
 <li>Volume keeps its sample drift, <span data-m="fwd_vol_monthly_mean_pct">0.8</span>% a month. The take rate is captured revenue ÷ volume over the last 90 days, <span data-m="fwd_take_bp">4.13</span> bp, held fixed; coverage moves in proportion to it.</li>
-<li>P3 (frozen in PREREG.md with probability <span data-m="fwd_p3_frozen_prob_pct">35.0</span>%) asks whether coverage is at least <span data-m="fwd_p3_line_pct">25</span>% on 2027-11-04. The model, built after the freeze, gives <span data-m="fwd_p_cov_ge25_2027_pct">39.6</span>%; P3 is scored on the data, not on this model.</li>
+<li>P3 (frozen in PREREG.md with probability <span data-m="fwd_p3_frozen_prob_pct">35.0</span>%) asks whether coverage is at least <span data-m="fwd_p3_line_pct">25</span>% on 2027-11-04. The model, built after the freeze, gives <span data-m="fwd_p_cov_ge25_2027_pct">39.6</span>%; P3 is scored on the data alone.</li>
 <li>Coverage today here is computed in USD at one price, as the rating rule does; the ladder&rsquo;s <span data-m="ladder_all_wallets_pct_of_issuance">15.81</span>%-of-issuance figure counts NEAR as it arrived, so the two differ slightly.</li></ul>
 <div class="source">
 <p><strong>Source:</strong></p>
@@ -1712,13 +1735,10 @@ L187.8,176.7L191.2,176.8L194.5,176.9L197.9,176.6L201.3,176.7L204.6,176.3L208,176
 <td>156.16</td>
 <td>590.35</td></tr></tbody></table></div></details></div></section></section>
 <section class="slide">
-<p class="step">6 · What to watch</p>
+<p class="step">6. What to watch</p>
 <section class="card" id="chart-signposts" aria-labelledby="chart-signposts-h">
-<div class="cardtop"><span class="badge badge-exp"><svg class="ico" viewBox="0 0 20 20" width="14" height="14" aria-hidden="true" focusable="false"><circle class="i-line" cx="10" cy="10" r="8" /><path class="i-line" d="M12.9 7.1l-1.7 4.1-4.1 1.7 1.7-4.1z" /></svg> Exploratory, chosen after the freeze</span><a href="index.html#chart-signposts" aria-label="Link to this chart">#</a></div>
-<h3 id="chart-signposts-h">Signposts: share is past its line; coverage and revenue are close; the take rate and market growth are far from what the price needs</h3>
-<div class="sn">
-<p class="shows"><strong>What it shows:</strong> The values a reader should watch, each against the line that would favour the upside: the pre-registered P1 to P3, the model&rsquo;s M1, the rating rule&rsquo;s G_req, the take the price needs, and H1a&rsquo;s pass line.</p>
-<p class="notshows"><strong>What it does not show:</strong> A score: P1 to P3 and M1 to M4 resolve on their own dates, from the data, and are scored as written.</p></div>
+<div class="cardtop"><span class="fignum">Figure 5</span><span class="badge badge-exp">Exploratory</span><a href="index.html#chart-signposts" aria-label="Link to this chart">#</a></div>
+<h3 id="chart-signposts-h">Signposts: the take rate and market growth are far from what the price needs</h3>
 <figure class="chart-fig">
 <div class="chart">
 <div class="cv cv-wide"><svg class="svg" viewBox="0 0 720 259" role="img" aria-labelledby="chart-signposts-w-t chart-signposts-w-d" focusable="false">
@@ -1747,8 +1767,8 @@ L187.8,176.7L191.2,176.8L194.5,176.9L197.9,176.6L201.3,176.7L204.6,176.3L208,176
 <path class="sc" data-v="81" d="M220,72.5h268.2a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-268.2z"></path>
 <text x="498.2" y="84.9" class="val" font-size="12.5"><tspan data-m="ic_sp_revenue_pct">81.0</tspan>%</text></g>
 <g class="row" data-row="Intents&#x27; share of the peer set (P1)">
-<text x="0" y="110" class="rl" font-size="12.5">Intents&#x27; share of the peer set</text>
-<text x="0" y="125.5" class="rl" font-size="12.5">(P1)</text>
+<text x="0" y="110" class="rl" font-size="12.5">Intents&#x27; share of</text>
+<text x="0" y="125.5" class="rl" font-size="12.5">the peer set (P1)</text>
 <path class="s1" data-v="113" d="M220,105h375.7a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-375.7z"></path>
 <text x="605.7" y="117.4" class="val" font-size="12.5"><tspan data-m="ic_sp_share_pct">113.0</tspan>%</text></g>
 <g class="row" data-row="Market growth against G_req">
@@ -1756,13 +1776,13 @@ L187.8,176.7L191.2,176.8L194.5,176.9L197.9,176.6L201.3,176.7L204.6,176.3L208,176
 <path class="sc" data-v="40" d="M220,137.5h130.4a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-130.4z"></path>
 <text x="360.4" y="149.9" class="val" font-size="12.5"><tspan data-m="ic_sp_market_pct">40.0</tspan>%</text></g>
 <g class="row" data-row="NEAR&#x27;s take against what the price needs">
-<text x="0" y="175" class="rl" font-size="12.5">NEAR&#x27;s take against what the</text>
-<text x="0" y="190.5" class="rl" font-size="12.5">price needs</text>
+<text x="0" y="175" class="rl" font-size="12.5">NEAR&#x27;s take against</text>
+<text x="0" y="190.5" class="rl" font-size="12.5">what the price needs</text>
 <path class="sc" data-v="11" d="M220,170h33a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-33z"></path>
 <text x="263" y="182.4" class="val" font-size="12.5"><tspan data-m="ic_sp_take_pct">11.0</tspan>%</text></g>
 <g class="row" data-row="Staking outflow against H1a&#x27;s line">
-<text x="0" y="214" class="rl" font-size="12.5">Staking outflow against H1a&#x27;s</text>
-<text x="0" y="229.5" class="rl" font-size="12.5">line</text>
+<text x="0" y="214" class="rl" font-size="12.5">Staking outflow</text>
+<text x="0" y="229.5" class="rl" font-size="12.5">against H1a&#x27;s line</text>
 <path class="sc" data-v="8" d="M220,209h22.9a4,4 0 0 1 4,4v8a4,4 0 0 1 -4,4h-22.9z"></path>
 <text x="252.9" y="221.4" class="val" font-size="12.5"><tspan data-m="ic_sp_staking_pct">8.0</tspan>%</text></g>
 <line class="refline" data-v="100" x1="556" x2="556" y1="40.5" y2="236.5" />
@@ -1771,8 +1791,8 @@ L187.8,176.7L191.2,176.8L194.5,176.9L197.9,176.6L201.3,176.7L204.6,176.3L208,176
 <title id="chart-signposts-n-t">Signposts: how far today&#x27;s values are from the lines that would favour the upside</title>
 <desc id="chart-signposts-n-d">Bars from zero, percent of each line: 100 means today&#x27;s value is at the line.</desc>
 <g class="panel" data-kind="hbar" data-lo="0" data-hi="125" data-x0="3" data-pw="273">
-<text x="0" y="12.5" class="ttl" font-size="12.5">Today as a share of the line, % (bars start</text>
-<text x="0" y="28" class="ttl" font-size="12.5">at zero)</text>
+<text x="0" y="12.5" class="ttl" font-size="12.5">Today as a share of the</text>
+<text x="0" y="28" class="ttl" font-size="12.5">line, % (bars start at zero)</text>
 <line class="axis" x1="3" x2="3" y1="52" y2="304" />
 <text x="0" y="318.5" class="tk" font-size="11.5">0</text>
 <line class="grid" x1="57.6" x2="57.6" y1="52" y2="304" />
@@ -1817,62 +1837,15 @@ L187.8,176.7L191.2,176.8L194.5,176.9L197.9,176.6L201.3,176.7L204.6,176.3L208,176
 <line class="refline" data-v="100" x1="221.4" x2="221.4" y1="278" y2="298" />
 <text x="227.4" y="52" class="rl" font-size="11.5">at the line</text></g></svg></div></div>
 <figcaption>Today: the data to 2026-11-04. Exploratory, chosen 2026-11-14, after the freeze; the lines come from PREREG.md, the addendum and the cards above.</figcaption></figure>
-<div class="tablewrap" role="region" aria-label="Signposts, with today&#x27;s values and the lines" tabindex="0">
-<table>
-<caption>Signposts, with today&#x27;s values and the lines</caption>
-<thead>
-<tr>
-<th scope="col" class="txt">Signpost</th>
-<th scope="col" class="txt">Today</th>
-<th scope="col" class="txt">Line that favours the upside</th>
-<th scope="col" class="txt">When</th></tr></thead>
-<tbody>
-<tr>
-<td class="t">Coverage of dilution (P3&rsquo;s quantity, 90 days)</td>
-<td class="t"><span data-m="p3_quantity_90d_asof_pct">17.8</span>%</td>
-<td class="t">at least <span data-m="ic_p3_line_pct">25</span>% (P3, frozen; M1, exploratory, dated after the freeze)</td>
-<td class="t">2027-11-04</td></tr>
-<tr>
-<td class="t">Captured revenue, 90 days</td>
-<td class="t">$<span data-m="rating_r90_usd_m">4.84</span>M</td>
-<td class="t">at least $<span data-m="ic_p2_line_usd_m">6.0</span>M (P2, frozen)</td>
-<td class="t">2027-05-04</td></tr>
-<tr>
-<td class="t">Intents&rsquo; share of the peer set, 365 days</td>
-<td class="t"><span data-m="intents_share_peerset_365d_pct">62.1</span>%</td>
-<td class="t">at least <span data-m="ic_p1_line_pct">55</span>% (P1, frozen)</td>
-<td class="t">2027-05-04</td></tr>
-<tr>
-<td class="t">Cross-chain swap volume, growth a year</td>
-<td class="t"><span data-m="ic_market_cagr_1y_pct">13.4</span>%</td>
-<td class="t"><span data-m="rating_g_req_pct">33.2</span>% (G_req, if share and take hold)</td>
-<td class="t">each year</td></tr>
-<tr>
-<td class="t">NEAR&rsquo;s captured take, 90 days</td>
-<td class="t"><span data-m="ic_take_90d_bp">4.13</span> bp</td>
-<td class="t"><span data-m="ic_take_needed_bp">37.4</span> bp (what the price would need, at last year&rsquo;s market pace and Intents&rsquo; twelve-month-high share)</td>
-<td class="t">each month</td></tr>
-<tr>
-<td class="t">Net staking outflow ÷ staking rewards (H1a)</td>
-<td class="t"><span data-m="h1a_ratio_as_written_x">6.56</span>×</td>
-<td class="t">under <span data-k="h1a_pass_below_x">0.5</span>× (H1a&rsquo;s pass line)</td>
-<td class="t">each quarter</td></tr>
-<tr>
-<td class="t">HSP-029&rsquo;s issuance cut</td>
-<td class="t">pending</td>
-<td class="t">in force (a lower inflation cap)</td>
-<td class="t">timelock ends 2026-11-16</td></tr>
-<tr>
-<td class="t">A per-stream attestation of the escrow releases</td>
-<td class="t">none</td>
-<td class="t">published by NEAR (collapses the ladder&rsquo;s range)</td>
-<td class="t">any time</td></tr></tbody></table></div>
 <div class="cardfoot">
 <details class="more">
 <summary>Notes and sources</summary>
-<p class="finding">Of the lines that would favour the upside, Intents&rsquo; share is past its own (<span data-m="ic_sp_share_pct">113.0</span>% of P1&rsquo;s line), revenue and coverage are close (<span data-m="ic_sp_revenue_pct">81.0</span>% and <span data-m="ic_sp_coverage_pct">71.0</span>%), and the two that carry the price are far: market growth is <span data-m="ic_sp_market_pct">40.0</span>% of G_req and NEAR&rsquo;s take <span data-m="ic_sp_take_pct">11.0</span>% of what the price needs.</p>
+<p class="finding">Of the lines that would favour the upside, Intents&rsquo; share is past its own (<span data-m="ic_sp_share_pct">113.0</span>% of P1&rsquo;s line), revenue and coverage are close (<span data-m="ic_sp_revenue_pct">81.0</span>% and <span data-m="ic_sp_coverage_pct">71.0</span>%), and the two that carry the price are far: market growth is <span data-m="ic_sp_market_pct">40.0</span>% of G_req and NEAR&rsquo;s take <span data-m="ic_sp_take_pct">11.0</span>% of what the price needs. In the scoring week, though, Intents was <span data-f="F4.intents_share_pct" data-scale="1">37.2</span>% of the peer set&rsquo;s volume (F4).</p>
+<div class="sn">
+<p class="shows"><strong>What it shows:</strong> The values a reader should watch, each against the line that would favour the upside: the pre-registered P1 to P3, the model&rsquo;s M1, the rating rule&rsquo;s G_req, the take the price needs, and H1a&rsquo;s line.</p>
+<p class="notshows"><strong>What it does not show:</strong> A score: P1 to P3 and M1 to M4 resolve on their own dates, from the data, and are scored as written.</p></div>
 <ul class="notes">
-<li>For staking the line is H1a&rsquo;s pass line (net staking outflow under half of staking rewards) divided by today&rsquo;s ratio, so a full bar would mean stakers are no longer net sellers of their rewards.</li></ul>
+<li>For staking the line is H1a&rsquo;s line (net staking outflow under half of staking rewards) divided by today&rsquo;s ratio, so a full bar would mean stakers are no longer net sellers of their rewards.</li></ul>
 <div class="source">
 <p><strong>Source:</strong></p>
 <ul>
@@ -1922,9 +1895,14 @@ L187.8,176.7L191.2,176.8L194.5,176.9L197.9,176.6L201.3,176.7L204.6,176.3L208,176
 <td class="t">at least <span data-m="ic_p1_line_pct">55</span>% (P1, frozen)</td>
 <td class="t">2027-05-04</td></tr>
 <tr>
+<td class="t">Intents&rsquo; share of the peer set, scoring week 2026-11-06 to 2026-11-13</td>
+<td class="t"><span data-f="F4.intents_share_pct" data-scale="1">37.2</span>%</td>
+<td class="t">at least <span data-k="f4_min_pct">50</span>% (F4, frozen)</td>
+<td class="t">scored: did not come true</td></tr>
+<tr>
 <td class="t">Cross-chain swap volume, growth a year</td>
 <td class="t"><span data-m="ic_market_cagr_1y_pct">13.4</span>%</td>
-<td class="t"><span data-m="rating_g_req_pct">33.2</span>% (G_req, if share and take hold)</td>
+<td class="t"><span data-m="rating_g_req_pct">33.2</span>% (G_req, if share and take stay where they are)</td>
 <td class="t">each year</td></tr>
 <tr>
 <td class="t">NEAR&rsquo;s captured take, 90 days</td>
@@ -1934,11 +1912,11 @@ L187.8,176.7L191.2,176.8L194.5,176.9L197.9,176.6L201.3,176.7L204.6,176.3L208,176
 <tr>
 <td class="t">Net staking outflow ÷ staking rewards (H1a)</td>
 <td class="t"><span data-m="h1a_ratio_as_written_x">6.56</span>×</td>
-<td class="t">under <span data-k="h1a_pass_below_x">0.5</span>× (H1a&rsquo;s pass line)</td>
+<td class="t">under <span data-k="h1a_pass_below_x">0.5</span>× (H1a&rsquo;s line)</td>
 <td class="t">each quarter</td></tr>
 <tr>
 <td class="t">HSP-029&rsquo;s issuance cut</td>
-<td class="t">pending</td>
+<td class="t">not yet in force</td>
 <td class="t">in force (a lower inflation cap)</td>
 <td class="t">timelock ends 2026-11-16</td></tr>
 <tr>
@@ -1948,12 +1926,12 @@ L187.8,176.7L191.2,176.8L194.5,176.9L197.9,176.6L201.3,176.7L204.6,176.3L208,176
 <td class="t">any time</td></tr></tbody></table></div></details></div></section></section>
 <section class="slide end">
 <p class="step">The view</p>
-<p class="big" style="font-size:clamp(1.3rem,2.6vw,1.8rem);font-weight:750">Intents has the largest share of its market, but as a claim on Intents&rsquo; fees NEAR is priced for more growth than the data show at today&rsquo;s fees: the bull case reaches <span data-m="ic_bull_vs_required_pct">53.9</span>% of the revenue the price would assume.</p>
+<p class="big" style="font-size:clamp(1.3rem,2.6vw,1.8rem);font-weight:750">Intents led its market over the year to <span data-m="asof">2026-11-04</span>, but as a claim on Intents&rsquo; fees NEAR is priced for more growth than the data show at today&rsquo;s fees: the bull case reaches <span data-m="ic_bull_vs_required_pct">53.9</span>% of the revenue the price would assume.</p>
 <ul>
 <li>Base case: captured revenue would pay for <span data-m="ic_base_coverage_2031_pct">44.6</span>% of NEAR&rsquo;s dilution in 2031.</li>
 <li>To close the gap in today&rsquo;s market, NEAR would have to capture <span data-m="ic_take_needed_vs_gross_x">2.5</span>× Intents&rsquo; whole gross fee.</li>
-<li>Pre-registered: H1a fails; H1b and H1c are inconclusive; the frozen rule outputs <span data-m="rating_output">Hold</span>.</li>
-<li>Forecasts are dated in the addendum and scored as written, misses included.</li></ul>
-<p>Re-run it: <code>git clone https://github.com/notveiker/near-flow-statement &amp;&amp; make site</code>. Research, not investment advice.</p></section></main>
+<li>Pre-registered: net staking outflow was <span data-m="h1a_ratio_as_written_x">6.56</span>× staking rewards, where H1a predicted under <span data-k="h1a_pass_below_x">0.5</span>×; exchange flows come out as ranges the labels cannot settle, so the frozen rating rule gives no signal.</li>
+<li>Forward tests, scored 2026-11-14: 2 of the four frozen predictions came true and 2 did not; the Monte Carlo&rsquo;s forecasts are dated in the addendum and resolve from 2027.</li></ul>
+<p>Re-run it: <code>git clone https://github.com/notveiker/near-flow-statement &amp;&amp; make site</code>. Research only; nothing here is investment advice.</p></section></main>
 </body>
 </html>

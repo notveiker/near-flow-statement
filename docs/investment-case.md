@@ -53,6 +53,8 @@ The NEAR in staking pools (`data/raw/rpc/pool_endpoints_archival.json`, delegato
 
 Today as a share of the line that would favour the upside: coverage against P3's and M1's 25%, 71<!--n:ic_sp_coverage_pct-->%; 90-day revenue against P2's $6M, 81<!--n:ic_sp_revenue_pct-->%; 365-day share against P1's 55%, 113<!--n:ic_sp_share_pct-->%; market growth against G_req, 40<!--n:ic_sp_market_pct-->%; take against what the price would need at the market's last-year pace and Intents' twelve-month-high share, 11<!--n:ic_sp_take_pct-->%; H1a's pass line (0.5×) against today's 6.56<!--n:h1a_ratio_as_written_x-->×, 8<!--n:ic_sp_staking_pct-->%.
 
+The forward tests were scored on 2026-11-14 (`data/forward/score_20261114T070207Z/result.json`). F4 missed: in the scoring week, 2026-11-06 to 2026-11-13, NEAR Intents was 37.2% of the peer set's reported volume and THORChain led it, so the share signpost above (365 days to 2026-11-04) and the latest week point different ways. F3 missed at 4.22 bp, above its 4.0 bp line, which is the direction the price needs. The dashboard's signposts table carries the scoring week as its own row.
+
 ## What this does not do
 
 It does not value the L1, forecast NEAR's price, weight the scenarios, or model a new fee stream, a partner change or a regime the data have not seen. It does not compare NEAR with other fee-switch or buyback tokens, which would need hand-picked external data.
