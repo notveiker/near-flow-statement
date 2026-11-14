@@ -740,7 +740,7 @@ def hbar_panel(v: Variant, *, title: object, rows: list[dict], vmax: float, tick
 def vcol_panel(v: Variant, *, title: object, cats: list[dict], series: list[dict], ymax: float, yticks: list[float],
                h_plot: float, tick_fmt=lambda t: f"{t:g}", label_step: int = 1, refs: list[dict] | None = None,
                brackets: list[dict] | None = None, val_labels: bool = True,
-               footnote: str | None = None, tag: str = "") -> tuple[str, float]:
+               footnote: str | None = None, tag: str = "", ml_min: float = 0, mr_min: float = 0) -> tuple[str, float]:
     """Columns from zero. cats: {"label": str, "vals": [..], "txts": [Txt|None], "tips": [str], "cls": [str]}.
 
     series: {"cls": "s1", "name": str}; a legend is drawn when there is more than one series.
@@ -753,8 +753,8 @@ def vcol_panel(v: Variant, *, title: object, cats: list[dict], series: list[dict
     refs = refs or []
     brackets = brackets or []
     fs = v.fs
-    ml = max(tw(tick_fmt(t), fs) for t in yticks) + 12
-    mr = 8
+    ml = max(max(tw(tick_fmt(t), fs) for t in yticks) + 12, ml_min)   # ml_min, mr_min: the other panel's margins, so two stacked plots share their edges
+    mr = max(8, mr_min)
     pw = v.w - ml - mr
     tb, th = title_block(v, title, tag)
     out: list[str] = [tb]
@@ -833,7 +833,8 @@ def vcol_panel(v: Variant, *, title: object, cats: list[dict], series: list[dict
 def line_panel(v: Variant, *, title: object, xlabels: list[str], xtick_idx: list[int], series: list[dict],
                ymin: float, ymax: float, yticks: list[float], h_plot: float, tick_fmt=lambda t: f"{t:g}",
                refs: list[dict] | None = None, area_first: bool = False, ynote: str | None = None,
-               annots: list[dict] | None = None, vmarks: list[dict] | None = None, tag: str = "") -> tuple[str, float]:
+               annots: list[dict] | None = None, vmarks: list[dict] | None = None, tag: str = "",
+               ml_min: float = 0, mr_min: float = 0) -> tuple[str, float]:
     """Lines on one axis. series: {"cls": "l1", "dot": "s1", "ys": [..], "end": Txt, "name": str}.
     annots: {"i": point index, "y": value, "txt": Txt}, a labelled dot (a peak or another point worth naming).
     vmarks: {"i": point index, "date": str, "label": Txt}, a labelled vertical line from the top of the plot to the axis
@@ -847,8 +848,8 @@ def line_panel(v: Variant, *, title: object, xlabels: list[str], xtick_idx: list
     carries data-i and data-date, which it checks the drawn position against."""
     refs = refs or []
     fs = v.fs
-    ml = max(tw(tick_fmt(t), fs) for t in yticks) + 12
-    mr = max(58 if v.narrow else 76, max([tw(pl(s["end"]), fs, True) for s in series if s.get("end")] or [0]) + 14)
+    ml = max(max(tw(tick_fmt(t), fs) for t in yticks) + 12, ml_min)
+    mr = max(58 if v.narrow else 76, max([tw(pl(s["end"]), fs, True) for s in series if s.get("end")] or [0]) + 14, mr_min)
     pw = v.w - ml - mr
     tb, th = title_block(v, title, tag)
     out: list[str] = [tb]
@@ -1255,6 +1256,30 @@ footer p{max-width:none}
 .col>.card>.keyfigs{margin-top:0;margin-bottom:.9rem}
 .col>.card>.cardfoot{margin-top:auto}
 }
+/* free height in a card that grows goes above and below its chart, not into a gap over the links */
+@media (min-width:900px){
+.col>.card>figure.chart-fig{margin:auto 0;padding:.9rem 0}
+.col>.card>.cardfoot{margin-top:0}
+}
+/* a full-width card whose chart is shorter than its figures: the chart sits at mid height */
+@supports selector(:has(*)){@media (min-width:1100px){.grid>.card.span2:has(>.keyfigs)>figure{align-self:center}}}
+/* and one whose figures are shorter than its chart: the figures share the chart's height as even rows */
+@supports selector(:has(*)){@media (min-width:1100px){
+.grid>.card.span2:has(>.keyfigs):not(:has(>.note))>.keyfigs{grid-row:3 / span 8;align-self:stretch;align-items:stretch;grid-auto-rows:1fr}
+.grid>.card.span2:has(>.keyfigs):not(:has(>.note))>.keyfigs>div{display:flex;flex-direction:column;justify-content:center}
+}}
+/* the side list fits one screen: its type and spacing follow the window's height */
+@media (min-width:1680px){
+.side{padding:clamp(10px,2.2vh,30px) 0 clamp(8px,1.8vh,24px);font-size:clamp(.7rem,1.5vh,.8125rem)}
+.side a{padding:clamp(1px,.34vh,4px) 10px;line-height:1.3}
+.side .sidecap{margin:clamp(.45rem,1.5vh,1.3rem) 0 clamp(.1rem,.4vh,.35rem);font-size:1em}
+}
+/* the update: a larger lead beside a tighter table, so the two columns are closer in height */
+@media (min-width:1100px){
+.update{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);column-gap:56px}
+.update>p{font-size:1.125rem;line-height:1.6;color:var(--ink)}
+.update th,.update td{padding-top:5px;padding-bottom:5px}
+}
 """
 
 
@@ -1427,7 +1452,7 @@ def data_details(*tables: str) -> str:
             f'{"".join(tables)}</details>')
 
 
-WIDE_CARDS = {"fwdcov", "forward", "ladder", "revenue", "usage"}   # span both columns of the wide grid
+WIDE_CARDS = {"fwdcov", "ladder", "revenue", "usage"}   # span both columns of the wide grid
 
 
 def fig_no(cid: str) -> int:
@@ -2771,7 +2796,7 @@ def card_revenue(ctx: Ctx) -> str:
                          "tips": [f"{r['month']}: ${fmt_value(r['rev_m'])}M captured revenue"]})
         a, ha = vcol_panel(v, title="Captured revenue per month, USD million", tag="A", cats=cats,
                            series=[{"cls": "s1", "name": "Captured revenue"}], ymax=top, yticks=ticks,
-                           h_plot=96 if not v.narrow else 90, label_step=6 if v.narrow else 3)
+                           h_plot=96 if not v.narrow else 90, label_step=6 if v.narrow else 3, mr_min=58 if v.narrow else 76)
         bticks, btop = nice_axis(max(r["captured_bp"] for r in rows), 4)
         b, hb = line_panel(
             v, title="Captured revenue ÷ DefiLlama reported volume, basis points", tag="B",
@@ -2843,6 +2868,9 @@ def card_supply(ctx: Ctx) -> str:
 
     def build(v: Variant) -> tuple[str, float]:
         lo, hi = 1200.0, 1320.0
+        end_a = T(St(f"supply_daily.{me_dates[-1]}.supply_m"), "M")
+        ml_ab = tw("1320", v.fs) + 12
+        mr_ab = max(58 if v.narrow else 76, tw(pl(end_a), v.fs, True) + 14)
         a, ha = line_panel(
             v, title="Total supply at each month end, million NEAR", tag="A", xlabels=[d[:7] for d in me_dates],
             xtick_idx=tick_every(len(me_dates), 6 if v.narrow else 3),
@@ -2853,7 +2881,7 @@ def card_supply(ctx: Ctx) -> str:
         cats = [{"label": date_short(r["date"]), "vals": [r["change_k"]], "txts": [None]} for r in daily]
         b, hb = vcol_panel(v, title="Net issuance per day, thousand NEAR", tag="B", cats=cats,
                            series=[{"cls": "s1", "name": "Net issuance"}], ymax=120, yticks=[0, 40, 80, 120],
-                           h_plot=96 if not v.narrow else 90, label_step=30 if v.narrow else 15,
+                           h_plot=96 if not v.narrow else 90, label_step=30 if v.narrow else 15, ml_min=ml_ab, mr_min=mr_ab,
                            refs=[{"v": m["net_issuance_near_per_day_30d_k"], "label": T("30-day mean ", Mt("net_issuance_near_per_day_30d_k"), "K")}])
         return stack([(a, ha), (b, hb)])
 
@@ -2925,6 +2953,7 @@ def card_usage(ctx: Ctx) -> str:
         months = (4, 10) if v.narrow else (1, 4, 7, 10)
         ticks_x = [i for i, d in enumerate(dates) if d[8:] == "01" and int(d[5:7]) in months]
         panels = []
+        ml_ab = max(tw(f"{t:,.0f}", v.fs) for key in ("tx_k", "active_accounts_k") for t in nice_axis(max(r[key] for r in rows), 5)[0]) + 12
         for key, name, tag in (("tx_k", "Transactions per day, thousand", "A"),
                                ("active_accounts_k", "Active accounts per day, thousand", "B")):
             ys = [r[key] for r in rows]
@@ -2933,7 +2962,7 @@ def card_usage(ctx: Ctx) -> str:
                 v, title=name, tag=tag, xlabels=labels, xtick_idx=ticks_x,
                 series=[{"cls": "l1", "dot": "s1", "ys": ys, "end": T(St(f"l1_daily.{last}.{key}"), "K")}],
                 ymin=0, ymax=top, yticks=yt, tick_fmt=lambda t: f"{t:,.0f}", h_plot=96 if v.narrow else 104,
-                vmarks=[{"i": si, "date": step, "label": T("step ", Mt("l1_step_date"))}]))
+                vmarks=[{"i": si, "date": step, "label": T("step ", Mt("l1_step_date"))}], ml_min=ml_ab))
         return stack(panels)
 
     fig = dual(ctx, "chart-usage", title, desc, build)
