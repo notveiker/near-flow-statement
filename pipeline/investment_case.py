@@ -60,8 +60,11 @@ def _month_sums(series: dict[str, float]) -> dict[str, float]:
 
 
 def investment_case(m: dict, rev: dict[str, float], vol: dict[str, dict[str, float]], fees: dict[str, dict[str, float]],
-                    supply: dict[str, float], price: dict[str, float]) -> dict:
-    """Write the ic_* metrics into m; return the chart series {"cov_hist": [...]}."""
+                    supply: dict[str, float], price: dict[str, float], ov: dict | None = None) -> dict:
+    """Write the ic_* metrics into m; return the chart series {"cov_hist": [...]}.
+
+    ov, for the update to 2026-11-13 (pipeline/update.py), replaces the as-of date, the horizon, the price and market cap at the
+    as-of date, the time the peers' market caps are read at and the file they are read from. Everything else is the same code."""
     ra = read_raw("rpc/rating_assumptions.json")
     asof = ra["asof"]
     a0 = date.fromisoformat(asof)
@@ -70,6 +73,9 @@ def investment_case(m: dict, rev: dict[str, float], vol: dict[str, dict[str, flo
     p0 = float(ra["price_usd"])
     snap = read_raw("coingecko/near_snapshot.json")
     mcap0 = float(snap["market_cap_usd"])
+    if ov:
+        asof, n_years, p0, mcap0 = ov["asof"], ov["n_years"], ov["p0"], ov["mcap0"]
+        a0 = date.fromisoformat(asof)
 
     # ---------- today ----------
     r90 = _wsum(rev, asof, 90)
@@ -189,8 +195,8 @@ def investment_case(m: dict, rev: dict[str, float], vol: dict[str, dict[str, flo
         m[f"ic_tor_{k}_lo_pct"], m[f"ic_tor_{k}_hi_pct"] = _r(lo * 100, 1), _r(hi * 100, 1)
 
     # ---------- 5. peer valuation ----------
-    caps = read_raw("coingecko/peer_caps_30d.json")
-    t_snap = datetime.fromisoformat(snap["last_updated"].replace("Z", "+00:00")).timestamp() * 1000
+    caps = read_raw(ov["caps"] if ov else "coingecko/peer_caps_30d.json")
+    t_snap = ov["t_ms"] if ov else datetime.fromisoformat(snap["last_updated"].replace("Z", "+00:00")).timestamp() * 1000
     for slug, key in (("thorchain-dex", "thorchain"), ("chainflip-amm", "chainflip")):
         ts, cap = min(caps[slug]["market_caps"], key=lambda p: abs(p[0] - t_snap))
         f365 = _wsum(fees[slug], asof, 365)

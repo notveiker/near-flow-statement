@@ -1395,6 +1395,11 @@ def build() -> tuple[dict, dict]:
         from .investment_case import investment_case
         ic_series = investment_case(m, rev, vol, fees, supply, price)
 
+    # ---------- the update to 2026-11-13 (exploratory, 2026-11-14, after F1-F4 were scored; pipeline/update.py) ----------
+    from .update import available as update_available, update
+    if ic_series and update_available():
+        update(m)
+
     # ---------- series for charts ----------
     months = sorted(set(monthly(vol["near-intents"])))
     mv = {s: monthly(vol[s]) for s in PEERS}

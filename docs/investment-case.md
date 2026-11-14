@@ -55,6 +55,10 @@ Today as a share of the line that would favour the upside: coverage against P3's
 
 The forward tests were scored on 2026-11-14 (`data/forward/score_20261114T070207Z/result.json`). F4 missed: in the scoring week, 2026-11-06 to 2026-11-13, NEAR Intents was 37.2% of the peer set's reported volume and THORChain led it, so the share signpost above (365 days to 2026-11-04) and the latest week point different ways. F3 missed at 4.22 bp, above its 4.0 bp line, which is the direction the price needs. The dashboard's signposts table carries the scoring week as its own row.
 
+## 9. Update to 2026-11-13
+
+Exploratory, chosen 2026-11-14 after F1-F4 were scored. The analysis above stops at 2026-11-04, the pre-registered cutoff. The same calculations on DefiLlama, CoinGecko and Nearblocks data fetched again on 2026-11-14 run to 2026-11-13 (`pipeline/update.py`). NEAR's price would now assume captured revenue grows 79.8<!--n:upd_ic_implied_cagr_r15_x25_pct-->% a year to 2031, still faster than any window in the data; NEAR would need 1.6<!--n:upd_ic_take_needed_vs_gross_x-->× Intents' whole gross fee; and in the base case captured revenue would pay for 62.2<!--n:upd_ic_base_coverage_2031_pct-->% of NEAR's dilution in 2031. The gap narrowed because NEAR's market cap fell to $4.48<!--n:upd_mcap_usd_b-->B and 90-day captured revenue rose to $21.2<!--n:upd_ic_rev_90d_ann_m-->M at an annual rate. Intents' share of the peer set fell to 45.8<!--n:upd_intents_share_peerset_30d_pct-->% over 30 days as THORChain's volume rose (THORChain 37.6<!--n:upd_thorchain_share_peerset_30d_pct-->%); Intents still leads over 30, 90 and 365 days. The pre-registered tests, the value-capture ladder and the 1Click charts stay at 2026-11-04: their inputs need a BigQuery scan or the Explorer API key.
+
 ## What this does not do
 
 It does not value the L1, forecast NEAR's price, weight the scenarios, or model a new fee stream, a partner change or a regime the data have not seen. It does not compare NEAR with other fee-switch or buyback tokens, which would need hand-picked external data.

@@ -1064,8 +1064,8 @@ figcaption{font-size:.8125rem;color:var(--muted);margin-top:6px}
 .source ul{margin:.1rem 0 .3rem;padding-left:1.1rem}
 .source li{margin:.15rem 0;max-width:none}
 .source ul ul{padding-left:.9rem}
-.notes{font-size:.9rem;color:var(--ink2);margin:.8rem 0 .4rem;padding-left:1.1rem}
-.notes li{margin:.3rem 0}
+.notes{font-size:.9375rem;color:var(--ink2);margin:.8rem 0 .4rem;padding:0;list-style:none}
+.notes li{margin:0 0 .6rem;line-height:1.55}
 ul.rule{margin:.8rem 0;padding-left:1.1rem}
 ul.rule li{margin:.35rem 0}
 .sha{color:var(--muted);font-size:.8125rem;white-space:nowrap}
@@ -1101,8 +1101,8 @@ ol.steps{padding-left:1.5rem;margin:.6rem 0}
 ol.steps li{margin:.9rem 0;max-width:none;padding-left:.2rem}
 ol.steps p{margin:.2rem 0}
 .do code{display:inline-block;max-width:100%;white-space:pre-wrap;overflow-wrap:anywhere;background:var(--code);padding:3px 9px;border-radius:6px}
-ul.plain{padding-left:1.2rem}
-ul.plain li{margin:.35rem 0}
+ul.plain{padding:0;list-style:none}
+ul.plain li{margin:0 0 .7rem;line-height:1.55}
 footer{margin:3rem 0 2rem;padding-top:1rem;border-top:1px solid var(--grid);font-size:.9rem;color:var(--ink2)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 @media (max-width:1099px){.side>:nth-child(n+4){display:none}}
@@ -1196,6 +1196,12 @@ p,li,dd,.tnote,.note,.finding{text-wrap:pretty}
 .tw{font-size:.75rem;color:var(--muted)}
 @media (max-width:640px){.today{grid-template-columns:minmax(0,1fr)}}
 [data-m],[data-k],[data-f],[data-d],[data-s]{white-space:nowrap}
+.kw{font-size:.75rem;color:var(--muted)}
+.update{margin:.6rem 0 1.4rem}
+.update .updh{margin:.2rem 0 .4rem;font-size:1.1rem}
+.update table{max-width:760px}
+.update .tablewrap{max-height:none}
+.update td:nth-child(3){font-weight:600}
 """
 
 
@@ -1825,7 +1831,7 @@ def card_rating(ctx: Ctx) -> str:
                   f'and most of the USD growth is the NEAR price. The NEAR-terms growth measures a step in the share of fees NEAR captures: over the same '
                   f'windows gross fees and volume grew far less (<code>docs/second-review.md</code>).'),
         figure=fig,
-        caption=f'Unit: percent a year. The axis starts at zero, so the observed USD growth dwarfs the other bars. Observed growth compares the last 180 days with the 180 before, to {ctx.m["asof"]}.',
+        caption=f'Unit: percent a year, from zero, which is why observed USD growth dwarfs the rest. Observed growth compares the last 180 days with the 180 before, to {ctx.m["asof"]}.',
         extra=figs,
         notes=(f'The frozen rule, branch by branch: {rule}',
                f'G_req is the annual growth in captured Intents revenue ({ctx.M("rating_r90_usd_m")}M USD over the last 90 days, DefiLlama) needed for it to equal '
@@ -2068,8 +2074,8 @@ def card_forward(ctx: Ctx) -> str:
         title=(f'Forward tests: <span data-f="@count.PASS" data-scale="1">{sum(1 for f_ in FORWARD_IDS if word_of(f_) == "PASS")}</span> of 4 came true'
                if fw else "Forward tests F1 to F4: scored after the window"),
         headline=headline, shows=shows, notshows=notshows, figure=fig,
-        caption=(f'Window: {esc(w0)} to {esc(w1)} (UTC). Scoring {"opened" if fw else "opens"} {esc(opens)}. Units differ by line and are named in each title; '
-                 f'axes do not start at zero because each shows a band around a prediction.'),
+        caption=(f'Window: {esc(w0)} to {esc(w1)} (UTC). Scoring {"opened" if fw else "opens"} {esc(opens)}. Each line has its own unit, named in its title, '
+                 f'and its axis is a band around the prediction, so it does not start at zero.'),
         more=lst, notes=notes,
         source=source_p(ctx, code=("pipeline/score_forward.py",),
                         upstream=("DefiLlama dailyVolume and dailyRevenue (api.llama.fi)", "Nearblocks /v1/charts total_supply",
@@ -2472,8 +2478,8 @@ def card_partners(ctx: Ctx) -> str:
                   f'the ceilings count every escrow unshield as if it came from SwapKit, which neither candidate reading of that stream supports, and the ledger '
                   f'cannot tell 0% from about {ctx.M("near_share_of_partner_fees_max_pct")}% for SwapKit ({ctx.M("near_share_of_partner_fees_max_tight_pct")}% on the tighter reading).'),
         figure=fig,
-        caption=(f'Window: the 30 days {window_text(ctx, 30)} (UTC). Unit: percent. Both panels start at zero. SwapKit&rsquo;s fee bar is drawn to scale and is too short to see. '
-                 f'Blue and orange mean volume share and fee share in Panel A only; Panel B uses one colour.'),
+        caption=(f'Window: the 30 days {window_text(ctx, 30)} (UTC). Unit: percent. Both panels start at zero. SwapKit&rsquo;s fee bar is to scale, just too short to see. '
+                 f'In Panel A blue is volume share and orange is fee share.'),
         extra=figs,
         notes=(f'{ctx.M("buyback_fee_unreferred_share_pct")}% of NEAR&rsquo;s explicit fees come from swaps with no referral, meaning integrators on the default fee; '
                f'the top three channels account for {ctx.M("buyback_fee_top3_share_pct")}%.',
@@ -2557,7 +2563,7 @@ def card_paid(ctx: Ctx) -> str:
                   f'and other integrations have a fee structure the Explorer API does not show, so we do not extrapolate.'),
         figure=fig,
         caption=(f'Window: the 30 days {window_text(ctx, 30)} (UTC). Units: a multiple of NEAR&rsquo;s revenue (Panel A) and USD million (Panel B). Both axes start at zero. '
-                 f'In Panel A the blue bar is the wide lower bound the headline quotes and the grey bars are the tight reading and the upper bound; Panel B uses one colour for both bars.'),
+                 f'In Panel A blue is the wide lower bound the headline quotes; grey is the tight reading and the upper bound.'),
         extra=figs,
         notes=(f'The wide reading counts all the NEAR in the buyback wallet that the explicit fee entries do not explain as partner fees passed on to NEAR: the listed '
                f'partner fees left after that are at least {ctx.M("partners_kept_vs_near_rev_low_x")}× NEAR&rsquo;s revenue, and at most {ctx.M("near_share_of_partner_fees_max_pct")}% of the fees on '
@@ -2880,7 +2886,7 @@ def card_usage(ctx: Ctx) -> str:
                   f'{M("usage_bq_contracts_called_median_yago_n")} a year earlier.'),
         figure=fig,
         caption=(f'Window: {esc(first)} to {esc(last)} (UTC), one point per day. Unit: thousand a day. Both axes start at zero. The dashed line is {esc(step)}. '
-                 f'The headline figures are 30-day averages; each line shows single days, so its last point, the as-of date, differs from them.'),
+                 f'The lines are single days and the headline figures 30-day averages, so their last points differ.'),
         extra=f'{lead}{figs}',
         notes=(f'The transactions series falls in one step, from {M("l1_step_tx_before_k")}K to {M("l1_step_tx_after_k")}K between {esc(ref)} and {esc(step)}. '
                f'Active contracts and new accounts fall with it, but active accounts barely move ({M("l1_step_active_accounts_before_k")}K to '
@@ -3029,7 +3035,7 @@ def card_fwdcov(ctx: Ctx) -> str:
                   'the take rate is held where it is, and no new fee stream, partner change or regime is modelled.'),
         figure=fig,
         caption=(f'Model: <code>pipeline/model.py</code>, a fixed seed, {M("fwd_months_n")} model months from {esc(m["asof"])}. Units: percent. Panel A&rsquo;s axis is '
-                 f'logarithmic; values below its floor are drawn at the floor. Exploratory, chosen 2026-11-13, after the freeze; it feeds nothing the rating rule computes.'),
+                 f'logarithmic; values below its floor are drawn at the floor. It feeds nothing the rating rule computes.'),
         extra=figs,
         notes=(f'The volume drift comes from one month: the 2026-08 to 2026-09 change spans DefiLlama&rsquo;s 2026-09-01 change in what it counts as Intents volume. '
                f'Without that month volume changed by {M("fwd_exsep_vol_monthly_mean_pct")}% a month, the 2031 median is {M("fwd_exsep_cov_2031_p50_pct")}% and '
@@ -3152,7 +3158,7 @@ def card_priced(ctx: Ctx) -> str:
         figure=fig,
         caption=(f'Market cap ${M("mcap_usd_b")}B (CoinGecko snapshot, 2026-11-05). Captured revenue: the 90 days to {esc(m["asof"])} at an annual rate. '
                  f'Supply grows {M("ic_supply_factor_x")}× to 2031-11-04 with HSP-029. Market: THORChain, Chainflip, Maya and NEAR Intents (DefiLlama, reported basis), '
-                 'full years to the as-of date. Exploratory, chosen 2026-11-14, after the freeze.'),
+                 'full years to the as-of date.'),
         extra=figs, more=grid,
         notes=(f'The required return is on NEAR&rsquo;s price. Supply grows and the buybacks burn nothing, so for the price to rise at that rate the market cap must grow '
                f'faster by the supply factor, {M("ic_supply_factor_x")}× by 2031; a holder who stakes also receives part of the new supply.',
@@ -3208,7 +3214,7 @@ def card_multiply(ctx: Ctx) -> str:
                   'grows as it has.'),
         figure=fig,
         caption=(f'Base assumptions: a required return of {M("ic_base_r_pct")}% and {M("ic_base_x")}× revenue in 2031. Take and gross fee: the 90 days to {esc(m["asof"])} '
-                 '(DefiLlama revenue and fees ÷ volume, reported basis). Exploratory, chosen 2026-11-14, after the freeze.'),
+                 '(DefiLlama revenue and fees ÷ volume, reported basis).'),
         extra=figs,
         notes=(f'Intents&rsquo; share of the peer set over the 90 days was {M("ic_share_90d_pct")}%; its twelve-month high was {M("ic_share_max_pct")}% '
                f'({esc(m["ic_share_max_month"])}) and its low {M("ic_share_min_pct")}% ({esc(m["ic_share_min_month"])}).',
@@ -3271,11 +3277,11 @@ def card_scenarios(ctx: Ctx) -> str:
         notshows=('Probabilities: the scenarios are not weighted (the Monte Carlo card gives a distribution). Nor a new fee stream, a partner change or a regime the '
                   'data have not seen.'),
         figure=fig,
-        caption=(f'Bear: market at its two-year pace, share at its twelve-month low ({esc(m["ic_share_min_month"])}), take at its lowest month since the fee switch '
-                 f'({esc(m["ic_take_min_month"])}), no HSP-029. Base: last-year market growth and the last 90 days&rsquo; share and take, with HSP-029. Bull: four-year '
-                 f'market pace, twelve-month-high share ({esc(m["ic_share_max_month"])}), highest month&rsquo;s take ({esc(m["ic_take_max_month"])}), with HSP-029. '
-                 f'Price ${M("price_usd")} (the rule&rsquo;s). Exploratory, chosen 2026-11-14, after the freeze.'),
-        notes=(f'Coverage moves in inverse proportion to NEAR&rsquo;s price, because each dollar of revenue buys back less NEAR at a higher price: the 365-day range, '
+        caption=(f'Price held at ${M("price_usd")}, the rule&rsquo;s. Where each case&rsquo;s inputs come from is under Notes and sources.'),
+        notes=(f'Bear: market at its two-year pace, share at its twelve-month low ({esc(m["ic_share_min_month"])}), take at its lowest month since the fee switch '
+               f'({esc(m["ic_take_min_month"])}), no HSP-029. Base: last-year market growth and the last 90 days&rsquo; share and take, with HSP-029. Bull: four-year '
+               f'market pace, twelve-month-high share ({esc(m["ic_share_max_month"])}), highest month&rsquo;s take ({esc(m["ic_take_max_month"])}), with HSP-029.',
+               f'Coverage moves in inverse proportion to NEAR&rsquo;s price, because each dollar of revenue buys back less NEAR at a higher price: the 365-day range, '
                f'${M("ic_price_365d_low_usd")} to ${M("ic_price_365d_high_usd")}, moves the base case from {M("ic_tor_price_lo_pct")}% to {M("ic_tor_price_hi_pct")}%.',
                'Which window anchors each case was chosen after the annual volumes, monthly shares and monthly take rates were computed (PREREG-ADDENDUM.md, '
                '2026-11-14 entries); the card on what the price assumes lists every window, so a reader can substitute another.',
@@ -3324,7 +3330,7 @@ def card_peersval(ctx: Ctx) -> str:
                   'left out: its token (CACAO) is not listed on CoinGecko.'),
         figure=fig,
         caption=(f'Market caps at {esc(m["ic_peer_caps_at_utc"])} UTC (NEAR: the committed snapshot at 22:50 UTC, ${M("mcap_usd_b")}B). Fees: DefiLlama, the 365 days '
-                 f'to {esc(m["asof"])}. Exploratory, chosen 2026-11-14, after the freeze.'),
+                 f'to {esc(m["asof"])}.'),
         notes=('The peer market caps come from a fetch made on 2026-11-14 (python3 -m pipeline.fetch_peer_caps); only the hourly point nearest NEAR&rsquo;s committed '
                'snapshot is used.',),
         source=source_p(ctx, raw=("raw/coingecko/peer_caps_30d.json", "raw/coingecko/near_snapshot.json", "raw/llama/fees_near-intents.json",
@@ -3379,7 +3385,7 @@ def card_signposts(ctx: Ctx) -> str:
                'rule&rsquo;s G_req, the take the price needs, and H1a&rsquo;s line.'),
         notshows='A score: P1 to P3 and M1 to M4 resolve on their own dates, from the data, and are scored as written.',
         figure=fig,
-        caption=f'Today: the data to {esc(m["asof"])}. Exploratory, chosen 2026-11-14, after the freeze; the lines come from PREREG.md, the addendum and the cards above.',
+        caption=f'Today means the data to {esc(m["asof"])}. The lines come from PREREG.md, the addendum and the cards above.',
         notes=('For staking the line is H1a&rsquo;s line (net staking outflow under half of staking rewards) divided by today&rsquo;s ratio, so a full bar would mean '
                'stakers are no longer net sellers of their rewards.',),
         source=source_p(ctx, raw=IC_SOURCE_RAW, code=("pipeline/investment_case.py", "pipeline/compute.py")),
@@ -3521,8 +3527,7 @@ def not_computed(ctx: Ctx) -> str:
     ]
     lis = "".join(f"<li><strong>{a}</strong> {b}</li>" for a, b in items)
     return (f'<section id="not-computed" aria-labelledby="nc-h"><h2 id="nc-h">Not computed here</h2>'
-            f'<p class="note">The page shows no finding for these: some cannot be computed from the committed sources, and for the others a number would claim more '
-            f'than the data support.</p>'
+            f'<p class="note">Questions the page leaves open, either because the committed data cannot answer them or because a number would claim more than the data support.</p>'
             f'<details class="more"><summary>Show what is not computed</summary><ul class="plain">{lis}</ul></details></section>')
 
 
@@ -3547,9 +3552,8 @@ def reproduce(ctx: Ctx) -> str:
     lis = "".join(f'<li><p class="do"><strong>Do:</strong> <code>{esc(c)}</code></p><p class="see"><strong>See:</strong> {s}</p></li>'
                   for c, s in rows)
     return (f'<section id="reproduce" aria-labelledby="repro-h"><h2 id="repro-h">Reproduce</h2>'
-            f'<p class="note">Do each step in order and compare with what you should see. <code>make reproduce</code> runs steps 2 to 4; '
-            f'<code>make render-check</code> runs step 6; <code>make site</code> runs steps 2 to 4 and then step 7, from the raw data to every chart in '
-            f'one offline command.</p><details class="more"><summary>Show the steps</summary><ol class="steps">{lis}</ol></details></section>')
+            f'<p class="note">Run the steps in order and compare. <code>make reproduce</code> runs steps 2 to 4, <code>make render-check</code> runs step 6, '
+            f'and <code>make site</code> runs steps 2 to 4 and then step 7, offline.</p><details class="more"><summary>Show the steps</summary><ol class="steps">{lis}</ol></details></section>')
 
 
 def limits(ctx: Ctx) -> str:
@@ -3619,18 +3623,32 @@ def answer_line(ctx: Ctx) -> str:
         f'This is not a valuation and not advice. <a href="#chart-ladder">See the value-capture ladder.</a></p></div>')
 
 
+def has_update(ctx: Ctx) -> bool:
+    return "upd_asof" in ctx.m
+
+
 def kpis(ctx: Ctx) -> str:
-    """Four headline figures under the lede, each labelled and linked to its card. Every number is a metric span."""
+    """Four headline figures under the lede, each labelled and linked to its card. Every number is a metric span. With the update to
+    2026-11-13 committed, the first three show it and the value at the pre-registered cutoff (2026-11-04) under it; the ladder needs a
+    BigQuery scan and stays at the cutoff."""
     M = ctx.M
+    up = has_update(ctx)
+
+    def fig(key: str, unit: str) -> tuple[str, str]:
+        if not up:
+            return f'{M(key)}{unit}', ""
+        return f'{M("upd_" + key)}{unit}', f'<span class="kw">{M("asof")}: {M(key)}{unit}</span>'
+
     items = [
-        ("Exploratory", f'{M("ic_implied_cagr_r15_x25_pct")}%', "a year: the revenue growth NEAR&rsquo;s price assumes, to 2031", "#chart-priced"),
-        ("Exploratory", f'{M("ic_take_needed_vs_gross_x")}×', "Intents&rsquo; whole gross fee: the take NEAR would need", "#chart-multiply"),
-        ("Exploratory", f'{M("ic_base_coverage_2031_pct")}%', "of NEAR&rsquo;s dilution paid for in 2031, base case", "#chart-scenarios"),
-        ("Exploratory", f'{M("ladder_all_wallets_pct_of_issuance", 2)}%', "of net issuance verifiably reaches NEAR, 30 days", "#chart-ladder"),
+        (*fig("ic_implied_cagr_r15_x25_pct", "%"), "a year: the revenue growth NEAR&rsquo;s price assumes, to 2031", "#chart-priced"),
+        (*fig("ic_take_needed_vs_gross_x", "×"), "Intents&rsquo; whole gross fee: the take NEAR would need", "#chart-multiply"),
+        (*fig("ic_base_coverage_2031_pct", "%"), "of NEAR&rsquo;s dilution paid for in 2031, base case", "#chart-scenarios"),
+        (f'{M("ladder_all_wallets_pct_of_issuance", 2)}%', "", f'of net issuance verifiably reaches NEAR, 30 days to {M("asof")}', "#chart-ladder"),
     ]
-    lis = "".join(f'<li class="kpi"><a class="kv" href="{h}">{v}</a><span class="kl">{l}</span></li>' for _, v, l, h in items)
-    return (f'<p class="kcap">Exploratory figures, data to {M("asof")}</p>'
-            f'<ul class="kpis" aria-label="Headline figures">{lis}</ul>')
+    lis = "".join(f'<li class="kpi"><a class="kv" href="{h}">{v}</a><span class="kl">{l}</span>{w}</li>' for v, w, l, h in items)
+    cap = (f'Exploratory figures, data to {M("upd_asof")}; under each, the pre-registered cutoff' if up
+           else f'Exploratory figures, data to {M("asof")}')
+    return f'<p class="kcap">{cap}</p><ul class="kpis" aria-label="Headline figures">{lis}</ul>'
 
 
 def thesis_box(ctx: Ctx) -> str:
@@ -3638,9 +3656,9 @@ def thesis_box(ctx: Ctx) -> str:
     M = ctx.M
     return (
         '<div class="thesis" id="thesis">'
-        '<p><strong>The long-term view (exploratory, chosen after the freeze):</strong> as a claim on Intents&rsquo; fees, NEAR is priced for more growth '
-        f'than the data show. Intents led its market over the year to {M("asof")}, so owning NEAR rests on more than today&rsquo;s fee capture, or on a much higher take. '
-        '<a href="#forward-view">The investment case.</a> <a href="story.html">The same case as slides.</a> No valuation or investment advice is given here.</p></div>')
+        '<p><strong>The long-term view (exploratory, chosen after the freeze):</strong> priced as a claim on Intents&rsquo; fees, NEAR needs far more growth '
+        f'than the data show. Intents led its market in the year to {M("asof")}, but the bet only works if NEAR takes a much bigger cut, or is worth something beyond those fees. '
+        '<a href="#forward-view">Read the case</a> or <a href="story.html">see it as slides</a>. Not investment advice.</p></div>')
 
 
 def all_cards() -> dict[str, tuple[str, object]]:
@@ -3719,17 +3737,76 @@ def live_script(ctx: Ctx) -> str:
     return "<script>" + LIVE_JS.replace("__ASSUMPTIONS__", assumptions) + "</script>"
 
 
+UPDATE_ROWS = (   # (label, committed key, update key, unit, decimals or None for the metric's own)
+    ("Growth the price assumes, a year to 2031", "ic_implied_cagr_r15_x25_pct", "upd_ic_implied_cagr_r15_x25_pct", "%"),
+    ("Take NEAR would need, as a multiple of Intents&rsquo; whole gross fee", "ic_take_needed_vs_gross_x", "upd_ic_take_needed_vs_gross_x", "×"),
+    ("Base case: NEAR&rsquo;s dilution paid for in 2031", "ic_base_coverage_2031_pct", "upd_ic_base_coverage_2031_pct", "%"),
+    ("Bull case: share of the revenue the price assumes", "ic_bull_vs_required_pct", "upd_ic_bull_vs_required_pct", "%"),
+    ("Coverage of dilution today (P3&rsquo;s quantity, 90 days)", "p3_quantity_90d_asof_pct", "upd_p3_quantity_90d_pct", "%"),
+    ("Captured revenue, 90 days at an annual rate", "ic_rev_90d_ann_m", "upd_ic_rev_90d_ann_m", "$M"),
+    ("NEAR&rsquo;s captured take, 90 days", "ic_take_90d_bp", "upd_ic_take_90d_bp", " bp"),
+    ("Intents&rsquo; share of the peer set, 30 days", "intents_share_peerset_30d_pct", "upd_intents_share_peerset_30d_pct", "%"),
+    ("Intents&rsquo; share of the peer set, 90 days", "ic_share_90d_pct", "upd_ic_share_90d_pct", "%"),
+    ("Intents&rsquo; share of the peer set, 365 days", "intents_share_peerset_365d_pct", "upd_intents_share_peerset_365d_pct", "%"),
+    ("Peer-set volume, growth over the last year", "ic_market_cagr_1y_pct", "upd_ic_market_cagr_1y_pct", "%"),
+    ("NEAR market cap", "mcap_usd_b", "upd_mcap_usd_b", "$B"),
+    ("NEAR&rsquo;s market cap ÷ Intents&rsquo; gross fees, 365 days", "ic_near_mcap_to_intents_fees_x", "upd_ic_near_mcap_to_intents_fees_x", "×"),
+)
+
+
+def update_table(ctx: Ctx) -> str:
+    """The case carried to 2026-11-13 (exploratory): each figure at the pre-registered cutoff and at the update, from the same code."""
+    if not has_update(ctx):
+        return ""
+    M, m = ctx.M, ctx.m
+    thor_before = next(p["vol_30d_b"] for p in m["peers"] if p["slug"] == "thorchain-dex")
+    holds = (m["upd_ic_implied_cagr_r15_x25_pct"] > max(m[f"upd_ic_market_cagr_{k}y_pct"] for k in (1, 2, 3, 4))
+             and m["upd_ic_take_needed_vs_gross_x"] > 1 and m["upd_mcap_usd_b"] < m["mcap_usd_b"]
+             and m["upd_ic_rev_90d_ann_m"] > m["ic_rev_90d_ann_m"] and m["upd_intents_share_peerset_30d_pct"] < m["intents_share_peerset_30d_pct"]
+             and m["upd_thorchain_volume_30d_b"] > thor_before)
+    if not holds:
+        raise SystemExit("render: the update note says the thesis holds, the price fell, revenue rose and Intents' share fell as THORChain's "
+                         "volume rose; the update no longer says that, so rewrite update_table()")
+
+    def val(key: str, unit: str) -> str:
+        if unit.startswith("$"):
+            return f'${M(key)}{unit[1:]}'
+        return f'{M(key)}{unit}'
+
+    rows = "".join(f'<tr><td class="t">{lab}</td><td>{val(a, u)}</td><td>{val(b, u)}</td></tr>' for lab, a, b, u in UPDATE_ROWS)
+    return (
+        '<div class="update" id="update"><h3 class="updh">The case carried to the latest full day</h3>'
+        f'<p class="note">The charts below stop at {M("asof")}, the pre-registered cutoff. The same calculations on DefiLlama, CoinGecko and '
+        f'Nearblocks data fetched again on 2026-11-14 run to {M("upd_asof")}. The thesis holds: the price still assumes faster growth than any '
+        f'window in the data, and NEAR would still need more than Intents&rsquo; whole gross fee. The gap narrowed because the price fell and '
+        f'revenue rose, while Intents&rsquo; share of the peer set fell as THORChain&rsquo;s volume rose ({M("upd_thorchain_share_peerset_30d_pct")}% '
+        f'of it over 30 days). Exploratory.</p>'
+        f'<div class="tablewrap" role="region" aria-label="The case at the cutoff and at the update" tabindex="0"><table><caption>The case at the cutoff '
+        f'and at the update</caption><thead><tr><th class="txt">Figure</th><th>{M("asof")}</th><th>{M("upd_asof")}</th></tr></thead>'
+        f'<tbody>{rows}</tbody></table></div></div>')
+
+
 def live_panel(ctx: Ctx) -> str:
     """The Today row under the headline figures: values fetched in the reader's browser, each beside the committed figure.
     How it is fetched, and that it is exploratory, is said once in the Method tab (about_data)."""
     M = ctx.M
-    items = (
-        ("lv-implied", "Growth the price assumes", f'{M("asof")}: {M("ic_implied_cagr_r15_x25_pct")}% a year'),
-        ("lv-mcap", "NEAR market cap", f'2026-11-05: ${M("mcap_usd_b")}B'),
-        ("lv-rev30", "Intents revenue, 30 days", f'{M("asof")}: ${M("intents_rev_30d_m")}M'),
-        ("lv-take", "NEAR&rsquo;s take, 30 days", f'{M("asof")}: {M("take_captured_bp_30d")} bp'),
-        ("lv-bb", "Buyback wallet", f'At the freeze: {M("buyback_wallet_near_m")}M NEAR'),
-    )
+    if has_update(ctx):
+        d = M("upd_asof")
+        items = (
+            ("lv-implied", "Growth the price assumes", f'{d}: {M("upd_ic_implied_cagr_r15_x25_pct")}% a year'),
+            ("lv-mcap", "NEAR market cap", f'{d}: ${M("upd_mcap_usd_b")}B'),
+            ("lv-rev30", "Intents revenue, 30 days", f'{d}: ${M("upd_intents_rev_30d_m")}M'),
+            ("lv-take", "NEAR&rsquo;s take, 30 days", f'{d}: {M("upd_take_captured_bp_30d")} bp'),
+            ("lv-bb", "Buyback wallet", f'At the freeze: {M("buyback_wallet_near_m")}M NEAR'),
+        )
+    else:
+        items = (
+            ("lv-implied", "Growth the price assumes", f'{M("asof")}: {M("ic_implied_cagr_r15_x25_pct")}% a year'),
+            ("lv-mcap", "NEAR market cap", f'2026-11-05: ${M("mcap_usd_b")}B'),
+            ("lv-rev30", "Intents revenue, 30 days", f'{M("asof")}: ${M("intents_rev_30d_m")}M'),
+            ("lv-take", "NEAR&rsquo;s take, 30 days", f'{M("asof")}: {M("take_captured_bp_30d")} bp'),
+            ("lv-bb", "Buyback wallet", f'At the freeze: {M("buyback_wallet_near_m")}M NEAR'),
+        )
     lis = "".join(f'<li><span class="tl">{lab}</span><output id="{oid}">&hellip;</output><span class="tw">{was}</span></li>' for oid, lab, was in items)
     return f'<div class="today" id="live"><p class="todaycap">Today</p><ul class="todayrow" aria-label="Today&rsquo;s values">{lis}</ul></div>'
 
@@ -3753,10 +3830,9 @@ def about_data(ctx: Ctx) -> str:
     docs = "".join(f'<li><a href="{esc(gh(p))}">{esc(lab)}</a></li>' for lab, p in DOCUMENTS)
     return (
         f'<section id="about" aria-labelledby="about-h"><h2 id="about-h">About the data</h2>'
-        f'<p class="lede">A pre-registered, re-runnable token flow statement for NEAR. <code>python3 -m pipeline.compute</code> recomputes every number from the raw '
-        f'snapshots in <code>data/raw/</code>, <code>python3 -m pipeline.render</code> redraws every chart from the committed metrics and snapshots, and <code>make site</code> runs both '
-        f'offline in one command. Each chart shows the query behind it, the exact numbers it plots, and one plain sentence on what it shows and what it does not.</p>'
-        f'<p class="note">To check any number, open the Data table under its chart, then follow the steps under <a href="#reproduce">Reproduce</a>.</p>'
+        f'<p class="lede">A pre-registered token flow statement for NEAR that anyone can re-run. <code>make site</code> runs <code>python3 -m pipeline.compute</code> and '
+        f'<code>python3 -m pipeline.render</code> in one command, rebuilding every number and chart from the raw snapshots in <code>data/raw/</code>, offline. Under each chart you&rsquo;ll find the query behind it and the exact numbers it plots; '
+        f'to check one, open its Data table and follow <a href="#reproduce">Reproduce</a>.</p>'
         f'<dl class="meta">'
         f'<dt>Windows</dt><dd>Value capture: the 30 days to {M("asof")}. Supply: the 90 days {window_text(ctx, 90)}.</dd>'
         f'<dt>Data as of</dt><dd>{M("asof")} (<code>data/metrics.json</code>). Revenue-wallet window {M("revwallets_window")}. NEAR RPC block {M("rpc_block")}.</dd>'
@@ -3766,10 +3842,9 @@ def about_data(ctx: Ctx) -> str:
         f'<code>{FREEZE_TAG}</code> (commit <code>{FREEZE_COMMIT}</code>, {FREEZE_UTC} UTC), before the first BigQuery result the repository records '
         f'({freeze_stamp} in <code>data/MANIFEST.json</code>); the order rests on the author&rsquo;s own commit and manifest times, and GitHub&rsquo;s activity log dates the push of the freeze commit to 2026-11-05 22:53:33 UTC. '
         f'<a href="{esc(gh("PREREG.md"))}#{PREREG_ANCHOR}">&ldquo;What we had already seen&rdquo;</a> in that file lists the data already in hand.</dd></dl>'
-        f'<p class="note">The Today row under the headline figures is fetched in your browser as the page opens, from CoinGecko, DefiLlama and '
-        f'NEAR&rsquo;s public RPC (no keys), and shown beside the committed figures. It is exploratory. The growth the price assumes is recomputed with '
-        f'today&rsquo;s market cap and the last 90 days of captured revenue, with the committed supply path ({M("ic_supply_factor_x")}× to 2031), a '
-        f'{M("ic_base_r_pct")}% required return and a {M("ic_base_x")}× multiple. Nothing else on the page changes.</p>'
+        f'<p class="note">The Today row is exploratory. Your browser fetches it when the page opens, from CoinGecko, DefiLlama and NEAR&rsquo;s public RPC '
+        f'(no keys). It recomputes the growth the price assumes from today&rsquo;s market cap and the last 90 days of captured revenue, keeping the committed '
+        f'supply path ({M("ic_supply_factor_x")}× to 2031), a {M("ic_base_r_pct")}% required return and a {M("ic_base_x")}× multiple. Nothing else on the page changes.</p>'
         f'<p class="note">Documents:</p><ul class="docs">{docs}</ul></section>')
 
 
@@ -3840,18 +3915,18 @@ def build_page(ctx: Ctx, breaks: bool = True) -> str:
         f'<a href="#preregistered" data-tab="preregistered">Pre-registered tests</a><a href="#exploratory" data-tab="exploratory">Supporting evidence</a>'
         f'<a href="#method" data-tab="method">Method and limits</a></nav>'
         f'<section id="forward-view" class="panel" aria-labelledby="fwd-h"><h2 id="fwd-h">The investment case</h2>'
-        f'<p class="note">What reaches NEAR today, what the price assumes, what would have to give, the outcomes to 2031 and what to watch. Exploratory: the '
-        f'investment case was chosen on 2026-11-13 and 2026-11-14 and the ladder on 2026-11-06, after the freeze; none changes a hypothesis, threshold, '
+        f'<p class="note">What reaches NEAR today, what the price assumes, what would have to change, and what to watch to 2031. All of it is exploratory: '
+        f'the ladder was chosen on 2026-11-06 and the rest on 2026-11-13 and 2026-11-14, after the freeze. None of it changes a hypothesis, threshold, '
         f'probability or the rating.</p>'
-        f'{LADDER_HISTORY}'
+        f'{update_table(ctx)}{LADDER_HISTORY}'
         f'<div class="grid">{fwd}</div></section>'
         f'<section id="preregistered" class="panel" aria-labelledby="pre-h"><h2 id="pre-h">Pre-registered results</h2>'
         f'<p class="note">Fixed in the <a href="{esc(gh("PREREG.md"))}">pre-registration</a> before the first BigQuery result the repository records; later '
-        f'method choices are dated in its <a href="{esc(gh("PREREG-ADDENDUM.md"))}">addendum</a>. Every result is published as it came out.</p>'
+        f'method choices are dated in its <a href="{esc(gh("PREREG-ADDENDUM.md"))}">addendum</a>. Every result is shown as it came out, misses included.</p>'
         f'<div class="grid">{pre}</div></section>'
         f'<section id="exploratory" class="panel" aria-labelledby="exp-h"><h2 id="exp-h">Supporting evidence</h2>'
-        f'<p class="note">Chosen by the author after the freeze. None changes a hypothesis, threshold, probability or the rating rule, and none feeds it: '
-        f'treat them as evidence the author chose to show; none of them is a test.</p>'
+        f'<p class="note">Picked by the author after the freeze to give context. None of them is a test, and none feeds or changes a hypothesis, threshold, '
+        f'probability or the rating rule.</p>'
         f'<div class="grid">{exp}</div></section>'
         f'<div id="method" class="panel">{about_data(ctx)}{not_computed(ctx)}{reproduce(ctx)}{limits(ctx)}</div></div></main>'
         f'<footer><p><strong>Research only.</strong> Nothing here is investment advice, an offer or a recommendation. '

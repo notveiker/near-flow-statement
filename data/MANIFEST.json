@@ -383,6 +383,78 @@
    "fetched_at": "2026-11-06T23:50:01Z",
    "sha256": "0d2782ddce85bbe2e1fbce662c0c894108a636c18b2d354966ca75979e86f968",
    "source": "event-level NEAR moved into intents.near by large unstakers, 2026-08-07..11-04 (BigQuery q1-q6 + FastNEAR; lane unstakers-intents, 63.9 GB)"
+  },
+  "raw/update/coingecko/near_market_chart_365d.json": {
+   "bytes": 37944,
+   "fetched_at": "2026-11-14T18:43:44Z",
+   "sha256": "166b6a4c75197a6a1e036d9d0a18aa85692784cbf6c916c05dee6842a7b9bcc5",
+   "source": "https://api.coingecko.com/api/v3/coins/near/market_chart?vs_currency=usd&days=365&interval=daily"
+  },
+  "raw/update/coingecko/peer_caps_30d.json": {
+   "bytes": 149929,
+   "fetched_at": "2026-11-14T18:44:32Z",
+   "sha256": "17de27296ce293434f9fc138d29d0e8345ca7c8556b477c656dd7939a20e7422",
+   "source": "https://api.coingecko.com/api/v3/coins/<id>/market_chart?vs_currency=usd&days=30 for near, thorchain, chainflip"
+  },
+  "raw/update/llama/dailyRevenue_near-intents.json": {
+   "bytes": 10433,
+   "fetched_at": "2026-11-14T18:43:39Z",
+   "sha256": "1e764024742bc01376a29b7bc239b66770f8baadc1d46a63bbe532af1ef9bd64",
+   "source": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyRevenue"
+  },
+  "raw/update/llama/fees_chainflip-amm.json": {
+   "bytes": 20142,
+   "fetched_at": "2026-11-14T18:43:37Z",
+   "sha256": "5c0d558b3e25864d2dbd6f4ca7d18bdf2ae472b0a948ac0fceeacbeb514237de",
+   "source": "https://api.llama.fi/summary/fees/chainflip-amm?dataType=dailyFees"
+  },
+  "raw/update/llama/fees_maya-protocol.json": {
+   "bytes": 8859,
+   "fetched_at": "2026-11-14T18:43:38Z",
+   "sha256": "db7b5916287f17bc1c21c5904b14fbcfad09001407e09030e48946680a1486fa",
+   "source": "https://api.llama.fi/summary/fees/maya-protocol?dataType=dailyFees"
+  },
+  "raw/update/llama/fees_near-intents.json": {
+   "bytes": 11647,
+   "fetched_at": "2026-11-14T18:43:34Z",
+   "sha256": "12958d42343fc9c5d7e12dee40539ad64698d23f598c9d5a8869204d768b76fa",
+   "source": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyFees"
+  },
+  "raw/update/llama/fees_thorchain-dex.json": {
+   "bytes": 40947,
+   "fetched_at": "2026-11-14T18:43:36Z",
+   "sha256": "3534e38a048260619295fbd9080594a9e0cb00a9974eadde165a305adbec5b98",
+   "source": "https://api.llama.fi/summary/fees/thorchain-dex?dataType=dailyFees"
+  },
+  "raw/update/llama/volume_chainflip-amm.json": {
+   "bytes": 19800,
+   "fetched_at": "2026-11-14T18:43:37Z",
+   "sha256": "a30ff3911bee6a3c990bf6e838094fd47a06f3d3415250ab6095e1a08c2be8c9",
+   "source": "https://api.llama.fi/summary/dexs/chainflip-amm?dataType=dailyVolume"
+  },
+  "raw/update/llama/volume_maya-protocol.json": {
+   "bytes": 10150,
+   "fetched_at": "2026-11-14T18:43:38Z",
+   "sha256": "72628990ebba0387ab5d17ebc11820bba8db3eb14b014b1d17b372831424c1a0",
+   "source": "https://api.llama.fi/summary/dexs/maya-protocol?dataType=dailyVolume"
+  },
+  "raw/update/llama/volume_near-intents.json": {
+   "bytes": 15420,
+   "fetched_at": "2026-11-14T18:43:33Z",
+   "sha256": "902fc262859e66c6c5b4c0cf35eea49149d0a4fb9635bab011f5c2245d7b4b89",
+   "source": "https://api.llama.fi/summary/dexs/near-intents?dataType=dailyVolume"
+  },
+  "raw/update/llama/volume_thorchain-dex.json": {
+   "bytes": 45151,
+   "fetched_at": "2026-11-14T18:43:35Z",
+   "sha256": "b91106d2f943a3fa33ac985e1a446f3cb869e5227a2a40887af23a87dd39b4d3",
+   "source": "https://api.llama.fi/summary/dexs/thorchain-dex?dataType=dailyVolume"
+  },
+  "raw/update/nearblocks/charts.json": {
+   "bytes": 1544700,
+   "fetched_at": "2026-11-14T18:43:41Z",
+   "sha256": "95b345b958e8da94dea149fac9b2c347892bf82fb1a794e1ddf89d2c0d759af2",
+   "source": "https://api.nearblocks.io/v1/charts"
   }
  }
 }

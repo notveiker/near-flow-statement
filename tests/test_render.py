@@ -488,11 +488,10 @@ class NoExternalResources(unittest.TestCase):
             self.assertEqual([o.attrs["id"] for o in outs], ["lv-implied", "lv-mcap", "lv-rev30", "lv-take", "lv-bb"], name)
             self.assertTrue(all(o.text() == "…" for o in outs), name)
             self.assertEqual([r for _, r in refs_in(row)],
-                             ["asof", "ic_implied_cagr_r15_x25_pct", "mcap_usd_b", "asof", "intents_rev_30d_m", "asof", "take_captured_bp_30d",
-                              "buyback_wallet_near_m"], name)
+                             ["upd_asof", "upd_ic_implied_cagr_r15_x25_pct", "upd_asof", "upd_mcap_usd_b", "upd_asof", "upd_intents_rev_30d_m",
+                              "upd_asof", "upd_take_captured_bp_30d", "buyback_wallet_near_m"], name)
             about = re.sub(r"\s+", " ", section_node(dom, "about").text())
-            self.assertIn("The Today row under the headline figures is fetched in your browser as the page opens", about, name)
-            self.assertIn("It is exploratory.", about, name)
+            self.assertIn("The Today row is exploratory. Your browser fetches it when the page opens", about, name)
             self.assertNotIn("Fetched", re.sub(r"\s+", " ", dom.find("header").text()), name)
 
     def test_no_remote_or_protocol_relative_urls_in_resources(self):
@@ -2736,7 +2735,7 @@ class Usage(unittest.TestCase):
         self.assertIn("Why either happened is not in the data", text)
         lead = sec.find("p", "note").text()
         self.assertNotIn("cannot be computed from the committed sources, so the page does not show a number", lead)
-        self.assertIn("The page shows no finding for these", lead)
+        self.assertIn("Questions the page leaves open", lead)
 
 
 # ------------------------------------------------------------------ panel letters, in every figure
@@ -2941,7 +2940,7 @@ class Wording(unittest.TestCase):
                 blue = [pt for pt in panels[0].find_all("path") if "data-v" in pt.attrs and "s1" in pt.classes()]
                 self.assertEqual([float(pt.attrs["data-v"]) for pt in blue], [m["partners_kept_vs_near_rev_low_x"]], name)
         caption = card_node(DOM, "paid").find("figcaption").text()
-        self.assertIn("the blue bar is the wide lower bound the headline quotes", caption)
+        self.assertIn("blue is the wide lower bound the headline quotes", caption)
         notes = re.sub(r"\s+", " ", card_node(DOM, "paid").find("ul", "notes").find_all("li")[0].text())
         self.assertIn(f"the listed partner fees left after that are at least {m['partners_kept_vs_near_rev_low_x']}× NEAR’s revenue, and at most {m['near_share_of_partner_fees_max_pct']}% of the fees on partner swaps "
                       f"with no buyback fee entry reached NEAR", notes)
