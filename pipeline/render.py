@@ -2960,7 +2960,8 @@ def fan_panel(v: Variant, *, title: object, rows: list[dict], refs: list[dict], 
     if hk:
         out.append(f'<path class="ln lk" d="M{"L".join(f"{n1(sx(k))},{n1(sy(c))}" for k, c in hk)}" />')
         out.append(f'<circle class="sk ring" data-v="{dv(hk[-1][1])}" cx="{n1(sx(hk[-1][0]))}" cy="{n1(sy(hk[-1][1]))}" r="4" />')
-    out.append(f'<path class="ln l1" d="M{"L".join(f"{n1(sx(r['k']))},{n1(sy(r['p50']))}" for r in rows)}" />')
+    median = "L".join(f'{n1(sx(r["k"]))},{n1(sy(r["p50"]))}' for r in rows)   # built first: before Python 3.12 an f-string cannot reuse its own quote inside {}
+    out.append(f'<path class="ln l1" d="M{median}" />')
     last = rows[-1]
     out.append(f'<circle class="s1 ring" data-v="{dv(last["p50"])}" cx="{n1(sx(last["k"]))}" cy="{n1(sy(last["p50"]))}" r="4" />')
     out.append(text(sx(last["k"]) + 9, sy(last["p50"]) + fs * 0.35, mk(end), cls="val", fs=fs))
