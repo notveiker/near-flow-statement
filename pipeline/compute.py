@@ -1389,6 +1389,12 @@ def build() -> tuple[dict, dict]:
     m["mcap_to_rev_30d_annualized_x"] = r(mcap / (rv30 * 365 / 30), 0)
     m["mcap_to_rev_365d_x"] = r(mcap / window_sum(rev, asof, 365), 0)
 
+    # ---------- the investment case (exploratory, 2026-11-14, after the freeze; pipeline/investment_case.py) ----------
+    ic_series: dict = {}
+    if fwd_series and (RAW / "coingecko" / "peer_caps_30d.json").exists():
+        from .investment_case import investment_case
+        ic_series = investment_case(m, rev, vol, fees, supply, price)
+
     # ---------- series for charts ----------
     months = sorted(set(monthly(vol["near-intents"])))
     mv = {s: monthly(vol[s]) for s in PEERS}
@@ -1407,6 +1413,7 @@ def build() -> tuple[dict, dict]:
         "supply_daily": [{"date": k, "supply_m": r(supply[k] / 1e6, 3)} for k in sorted(supply) if k >= "2024-11-01"],
         "l1_daily": l1_daily,
         **fwd_series,
+        **ic_series,
     }
     return m, series
 

@@ -1029,8 +1029,8 @@ class WhatMainReports(unittest.TestCase):
             code, out, err = self.run_main()
         self.assertEqual((code, err), (0, ""))
         self.assertRegex(out, r"^render: wrote site/index\.html " + self.SUMMARY + "\n$")
-        write.assert_called_once()
-        self.assertEqual(write.call_args.args[0], ROOT / R.SITE_DIR / R.PAGE_NAME)
+        # Two files since 2026-11-14: the dashboard and the story page (site/story.html), in that order; the message names the dashboard.
+        self.assertEqual([c.args[0] for c in write.call_args_list], [ROOT / R.SITE_DIR / R.PAGE_NAME, ROOT / R.SITE_DIR / R.STORY_NAME])
 
     def test_the_byte_count_fingerprint_and_date_the_readme_quotes_are_the_pages(self):
         """README.md step 6 prints what `render --check` and `render` print: the size of the page, the data fingerprint and the data date. Nothing

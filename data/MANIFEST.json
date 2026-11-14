@@ -168,6 +168,12 @@
    "sha256": "199d54d4131b432f73fa7f8aa81a2cf168ac4dec7791aac7629d8f1674bef4c2",
    "source": "https://api.coingecko.com/api/v3/coins/near"
   },
+  "raw/coingecko/peer_caps_30d.json": {
+   "bytes": 149870,
+   "fetched_at": "2026-11-14T00:26:33Z",
+   "sha256": "9527a6ce737b14151d17089a3deb9986bab85ce55c1eb6b0afe81286848cb5ba",
+   "source": "https://api.coingecko.com/api/v3/coins/<id>/market_chart?vs_currency=usd&days=30 for near, thorchain, chainflip"
+  },
   "raw/escrow/deliveries.csv": {
    "bytes": 895289,
    "fetched_at": "2026-11-06T23:19:12Z",

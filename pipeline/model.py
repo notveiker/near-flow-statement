@@ -39,6 +39,8 @@ BOOT_FIRST, BOOT_LAST = "2025-11", "2026-10"   # full calendar months with captu
 CHECKPOINTS = {"2027": 12, "2028": 24, "2031": 60}
 TAKE_SENS = (0.5, 2.0)            # take-rate multipliers for the sensitivity
 PCTS = (10, 25, 50, 75, 90)
+BLOCK_MEAN = 3                   # mean block length, months, of the block-bootstrap robustness check
+EXSEP_MONTH = "2026-09"          # the pair that spans DefiLlama's 2026-09-01 counting change
 
 
 def _month_key(d: str) -> str:
@@ -129,6 +131,36 @@ def forward(m: dict, rev: dict[str, float], vol: dict[str, float], price: dict[s
     srt = simulate(flat)
     drift = simulate(pairs)
 
+    def simulate_blocks(boot: list[tuple[str, float, float]]) -> list[float]:
+        """Robustness check (added 2026-11-14): a stationary block bootstrap (mean block BLOCK_MEAN months, wrapping) keeps runs of
+        consecutive months together instead of drawing every month independently. Main settings otherwise; its own seed, so the
+        main run's draws are unchanged. Returns the sorted coverage at MONTHS, with HSP-029."""
+        rng = random.Random(SEED + 1)
+        out = []
+        for _ in range(N_PATHS):
+            v, p = v90 / 3, p0
+            revs, dil = [r90 / 3] * 3, [n90_now / 3 * p0] * 3
+            j = rng.randrange(len(boot))
+            for k in range(1, MONTHS + 1):
+                if k > 1:
+                    j = rng.randrange(len(boot)) if rng.random() < 1 / BLOCK_MEAN else (j + 1) % len(boot)
+                _, dv, dp = boot[j]
+                v *= math.exp(dv)
+                p *= math.exp(dp)
+                revs.append(v * take)
+                dil.append(new_near[True][k - 1] * p)
+            out.append(sum(revs[-3:]) / sum(dil[-3:]))
+        return sorted(out)
+
+    blk = simulate_blocks(flat)
+
+    # Sensitivity added 2026-11-14 (PREREG-ADDENDUM.md, 2026-11-14 entry on corrections): the main run's whole volume drift comes from
+    # one pair, 2026-08 to 2026-09, which spans DefiLlama's 2026-09-01 change in what it counts as Intents volume (docs/leg-count.md).
+    # The same run without that pair, price drift removed over the remaining pairs. The main run's draws are unchanged.
+    rest = [x for x in pairs if x[0] != EXSEP_MONTH]
+    mdp_rest = sum(x[2] for x in rest) / len(rest)
+    exsep = simulate([(mo, dv, dp - mdp_rest) for mo, dv, dp in rest])
+
     def prob(h: bool, k: int, line: float) -> float:
         col = srt[h][k]
         return sum(1 for x in col if x >= line) / len(col)
@@ -157,6 +189,14 @@ def forward(m: dict, rev: dict[str, float], vol: dict[str, float], price: dict[s
         k = CHECKPOINTS[tag]
         m[f"fwd_cov_{tag}_p50_price_drift_pct"] = round(_pct(drift[True][k], 50) * 100, 1)
         m[f"fwd_p_cov_ge100_{tag}_price_drift_pct"] = round(sum(1 for x in drift[True][k] if x >= 1.0) / N_PATHS * 100, 1)
+    m["fwd_block_mean_months"] = BLOCK_MEAN
+    m["fwd_block_cov_2031_p50_pct"] = round(_pct(blk, 50) * 100, 1)
+    m["fwd_block_p_cov_ge100_2031_pct"] = round(sum(1 for x in blk if x >= 1.0) / N_PATHS * 100, 1)
+    rest_dv = [x[1] for x in pairs if x[0] != EXSEP_MONTH]
+    m["fwd_exsep_vol_monthly_mean_pct"] = round((math.exp(sum(rest_dv) / len(rest_dv)) - 1) * 100, 1)
+    m["fwd_exsep_cov_2031_p50_pct"] = round(_pct(exsep[True][MONTHS], 50) * 100, 1)
+    m["fwd_exsep_p_cov_ge100_2031_pct"] = round(sum(1 for x in exsep[True][MONTHS] if x >= 1.0) / N_PATHS * 100, 1)
+    m["fwd_exsep_p_cov_ge25_2027_pct"] = round(sum(1 for x in exsep[True][12] if x >= 0.25) / N_PATHS * 100, 1)
     m["fwd_p3_line_pct"] = 25             # PREREG.md, P3: the line it sets
     m["fwd_full_line_pct"] = 100           # revenue equal to the USD value of net new supply, the rating rule's G_req target
     m["fwd_p3_frozen_prob_pct"] = 35.0      # PREREG.md, P3: 0.35 (90-day captured revenue / USD value of net new supply >= 25% at 2027-11-04)

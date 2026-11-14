@@ -51,7 +51,7 @@ PAGE_KEY = f"{R.SITE_DIR}/{R.PAGE_NAME}"
 VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}
 CARD_IDS = ("h1a", "h1b", "h1c", "rating", "forward", "ladder", "escrow", "take", "partners", "paid", "peers", "revenue", "supply", "usage")
 PRE_IDS = ("h1a", "h1b", "h1c", "rating", "forward")
-FWD_IDS = ("fwdcov", "fwdsupply")   # the forward view (exploratory, 2026-11-13), first on the page
+FWD_IDS = ("priced", "multiply", "scenarios", "peersval", "fwdcov", "fwdsupply", "signposts")   # the investment case (exploratory, 2026-11-13/14), first on the page
 
 
 # ------------------------------------------------------------------ a small DOM
@@ -378,8 +378,9 @@ class Determinism(unittest.TestCase):
     def test_size_budget(self):
         # One self-contained file: the SQL text, the data tables and every chart drawn twice (wide and phone) are the bulk.
         # The usage card adds its two charts of 400 points each, drawn twice, and the 400-row table of what they plot.
-        # The forward view (2026-11-13) adds two cards: a fan chart and its probabilities, and the supply projection.
-        self.assertLess(len(FILES[PAGE_KEY]), 600 * 1024)
+        # The investment case (2026-11-13/14) adds seven cards: what the price assumes, the multiples, the scenarios, peer valuation,
+        # the Monte Carlo fan, the supply projection and the signposts.
+        self.assertLess(len(FILES[PAGE_KEY]), 800 * 1024)
 
     def test_committed_site_is_current(self):
         committed = ROOT / R.SITE_DIR / R.PAGE_NAME
@@ -2680,7 +2681,7 @@ class Usage(unittest.TestCase):
         heads = [li.find("strong").text().strip() for li in sec.find_all("li")]
         old = ["Net exchange inflow as one number (H1b, H1c).", "Which fee stream pays the escrow releases.", "NEAR’s share of partner fees.",
                "The other half of Intents.", "Who the sellers were.", "Longer-dated predictions P1 to P3.", "HSP-029’s issuance cut.", "Earlier work."]
-        self.assertEqual(heads, old[:4] + ["Why the usage step happened."] + old[4:])
+        self.assertEqual(heads, old[:4] + ["Why the usage step happened."] + old[4:5] + ["What NEAR is worth as an L1."] + old[5:])   # the L1 entry: 2026-11-14
         items = {li.find("strong").text().strip(): li for li in sec.find_all("li")}
         why = items["Why the usage step happened."]
         self.assertEqual([r for _, r in refs_in(why)], ["usage_bq_step_kaiching_share_pct", "usage_bq_tg_share_of_signer_drop_pct"])
@@ -3189,9 +3190,9 @@ class FirstScreen(unittest.TestCase):
         self.assertNotIn("who buys", frozen.lower())
         for name, dom, _, _ in VARIANTS:
             head = dom.find("header")
-            self.assertEqual(dom.find("h1").text(), "Who buys and who sells NEAR?", name)
+            self.assertEqual(dom.find("h1").text(), "Can NEAR’s Intents business grow into its dilution?", name)
             kids = [c.tag + "".join("." + k for k in sorted(c.classes())) for c in head.children if isinstance(c, Node)]
-            self.assertEqual(kids[:6], ["p.eyebrow", "h1", "p.questions", "div.answer", "nav", "p.lede"], name)
+            self.assertEqual(kids[:7], ["p.eyebrow", "h1", "div.thesis", "p.questions", "div.answer", "nav", "p.lede"], name)
             self.assertEqual(re.sub(r"\s+", " ", head.find("p", "questions").text()),
                              "The pre-registered question: how much NEAR actually flows to exchanges, and how much of that do identified buyers absorb? (It makes no claim about "
                              "which coins are sold.) The question the evidence can answer: how much of NEAR’s value capture can you verify?", name)

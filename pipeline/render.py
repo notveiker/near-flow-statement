@@ -956,6 +956,8 @@ h1{font-size:clamp(1.65rem,5.2vw,2.3rem);line-height:1.15;margin:.25em 0 .35em;l
 .questions{font-size:1.0625rem;margin:0 0 .7rem}
 .answer{margin:.2rem 0 .9rem;padding:2px 16px;background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--ink);border-radius:10px}
 .answer p{margin:.65rem 0;max-width:none}
+.thesis{margin:.2rem 0 1rem;padding:4px 18px;border-radius:12px;background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--s2);font-size:1.03rem}
+.thesis p{margin:.65rem 0;max-width:none}
 .chipcap{margin:.9rem 0 .35rem;font-size:.8125rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0 0 1.1rem}
 .chips li{max-width:none}
@@ -1032,11 +1034,12 @@ figcaption{font-size:.8125rem;color:var(--muted);margin-top:6px}
 .svg .bracket{fill:none;stroke:var(--axis);stroke-width:1.2}
 .svg .s1{fill:var(--s1)}.svg .s2{fill:var(--s2)}.svg .sc{fill:var(--ctx)}.svg .sk{fill:var(--ink)}.svg .st2{fill:var(--ink2)}
 .svg .track{fill:var(--grid)}
+.svg .gap{fill:none}
 .svg .band{fill:var(--s1);opacity:.22}
 .svg .band2{fill:var(--s1);opacity:.38}
 .svg .bandedge{stroke:var(--s1);stroke-width:2}
 .svg .ln{fill:none;stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round}
-.svg .l1{stroke:var(--s1)}.svg .l2{stroke:var(--s2)}.svg .lc{stroke:var(--ctx)}
+.svg .l1{stroke:var(--s1)}.svg .lk{stroke:var(--ink)}.svg .l2{stroke:var(--s2)}.svg .lc{stroke:var(--ctx)}
 .svg .lg{stroke-width:2.2;stroke-linecap:round}
 .svg .lg.refline{stroke-width:1.5}
 .svg .wash{opacity:.12}
@@ -2767,11 +2770,13 @@ def card_usage(ctx: Ctx) -> str:
 FAN_TICKS = (1.0, 10.0, 100.0, 1000.0)
 
 
-def fan_panel(v: Variant, *, title: object, rows: list[dict], refs: list[dict], end: Txt, tag: str = "") -> tuple[str, float]:
-    """Percentile bands on a log axis (1% to 1,000%): p10-p90 light, p25-p75 darker, the median as a line.
+def fan_panel(v: Variant, *, title: object, rows: list[dict], refs: list[dict], end: Txt, hist: list[dict], asof: str,
+              tag: str = "") -> tuple[str, float]:
+    """Measured coverage, then percentile bands on a log axis (1% to 1,000%): p10-p90 light, p25-p75 darker, the median as a line.
 
-    rows: the fwd_fan series ({"k", "date", "p10".."p90"}). Values outside the axis are drawn at its edge.
-    The panel is one <g class="panel" data-kind="fan" data-scale="log10">; the median's last dot carries data-v."""
+    rows: the fwd_fan series ({"k", "date", "p10".."p90"}), k in model months from the as-of date. hist: the cov_hist series
+    ({"date", "cov_pct"}, P3's quantity, priced daily), drawn before the as-of date. Values outside the axis are drawn at its edge.
+    The panel is one <g class="panel" data-kind="fan" data-scale="log10">; the median's last dot and the last measured dot carry data-v."""
     fs = v.fs
     lo, hi = FAN_TICKS[0], FAN_TICKS[-1]
     ml = tw("1,000%", fs) + 12
@@ -2780,44 +2785,50 @@ def fan_panel(v: Variant, *, title: object, rows: list[dict], refs: list[dict], 
     h_plot = 150 if v.narrow else 190
     tb, th = title_block(v, title, tag)
     out: list[str] = [tb]
-    lg, lh = legend(v, [("band2", "Middle half of paths", "box"),
+    lg, lh = legend(v, [("lk", "Measured (P3's quantity)", "line"), ("band2", "Middle half of paths", "box"),
                         ("band", "Eight paths in ten", "box"), ("l1", "Median path", "line")], th + 4 + fs)
     out.append(lg)
     top = th + 4 + lh + fs + 10
     base = top + h_plot
+    a0 = date.fromisoformat(asof)
+    month = 365.25 / 12
+    hk = [((date.fromisoformat(h["date"]) - a0).days / month, h["cov_pct"]) for h in hist]
+    kmin, kmax = min([k for k, _ in hk] + [0.0]), float(rows[-1]["k"])
 
     def sy(val: float) -> float:
         c = min(max(val, lo), hi)
         return base - h_plot * (math.log10(c) - math.log10(lo)) / (math.log10(hi) - math.log10(lo))
 
-    n = len(rows)
-
-    def sx(i: int) -> float:
-        return ml + pw * i / (n - 1)
+    def sx(k: float) -> float:
+        return ml + pw * (k - kmin) / (kmax - kmin)
 
     for t in FAN_TICKS:
         out.append(hline(ml, ml + pw, sy(t), "axis" if t == lo else "grid"))
         out.append(text(ml - 6, sy(t) + fs * 0.35, f"{t:,.0f}%", cls="tk", anchor="end", fs=fs))
-    for i, r in enumerate(rows):
+    for r in rows:
         if r["k"] % (24 if v.narrow else 12) == 0:
-            lx, an = clamp_anchor(sx(i), tw(r["date"][:7], fs), v.w)
+            lx, an = clamp_anchor(sx(r["k"]), tw(r["date"][:7], fs), v.w)
             out.append(text(lx, base + fs + 7, esc(r["date"][:7]), cls="tk", anchor=an, fs=fs))
+    out.append(vline(sx(0), top, base, "vmark"))
     for a, b, cls in (("p10", "p90", "band"), ("p25", "p75", "band2")):
-        up = [f"{n1(sx(i))},{n1(sy(r[b]))}" for i, r in enumerate(rows)]
-        dn = [f"{n1(sx(i))},{n1(sy(r[a]))}" for i, r in reversed(list(enumerate(rows)))]
+        up = [f"{n1(sx(r['k']))},{n1(sy(r[b]))}" for r in rows]
+        dn = [f"{n1(sx(r['k']))},{n1(sy(r[a]))}" for r in reversed(rows)]
         out.append(f'<path class="{cls}" d="M{"L".join(up + dn)}z" />')
     for rf in refs:
         yy = sy(rf["v"])
         out.append(hline(ml, ml + pw, yy, "refline", f' data-v="{dv(rf["v"])}"'))
         out.append(text(ml + 4, yy - 5, mk(rf["label"]), cls="rl", fs=fs))
-    out.append(f'<path class="ln l1" d="M{"L".join(f"{n1(sx(i))},{n1(sy(r["p50"]))}" for i, r in enumerate(rows))}" />')
-    out.append(f'<circle class="sk ring" data-v="{dv(rows[0]["p50"])}" cx="{n1(sx(0))}" cy="{n1(sy(rows[0]["p50"]))}" r="4" />')
+    if hk:
+        out.append(f'<path class="ln lk" d="M{"L".join(f"{n1(sx(k))},{n1(sy(c))}" for k, c in hk)}" />')
+        out.append(f'<circle class="sk ring" data-v="{dv(hk[-1][1])}" cx="{n1(sx(hk[-1][0]))}" cy="{n1(sy(hk[-1][1]))}" r="4" />')
+    out.append(f'<path class="ln l1" d="M{"L".join(f"{n1(sx(r['k']))},{n1(sy(r['p50']))}" for r in rows)}" />')
     last = rows[-1]
-    out.append(f'<circle class="s1 ring" data-v="{dv(last["p50"])}" cx="{n1(sx(n - 1))}" cy="{n1(sy(last["p50"]))}" r="4" />')
-    out.append(text(sx(n - 1) + 9, sy(last["p50"]) + fs * 0.35, mk(end), cls="val", fs=fs))
+    out.append(f'<circle class="s1 ring" data-v="{dv(last["p50"])}" cx="{n1(sx(last["k"]))}" cy="{n1(sy(last["p50"]))}" r="4" />')
+    out.append(text(sx(last["k"]) + 9, sy(last["p50"]) + fs * 0.35, mk(end), cls="val", fs=fs))
     if not v.narrow:
-        out.append(text(sx(n - 1) + 9, sy(last["p90"]) + fs * 0.35, f'p90 {fmt_value(last["p90"], 0)}%', cls="tk", fs=fs - 0.5))
-        out.append(text(sx(n - 1) + 9, sy(last["p10"]) + fs * 0.35, f'p10 {fmt_value(last["p10"], 1)}%', cls="tk", fs=fs - 0.5))
+        out.append(text(sx(last["k"]) + 9, sy(last["p90"]) + fs * 0.35, f'p90 {fmt_value(last["p90"], 0)}%', cls="tk", fs=fs - 0.5))
+        out.append(text(sx(last["k"]) + 9, sy(last["p10"]) + fs * 0.35, f'p10 {fmt_value(last["p10"], 1)}%', cls="tk", fs=fs - 0.5))
+    out.append(text(sx(0) + 5, top + fs, "today", cls="tk", fs=fs - 0.5))
     panel = (f'<g class="panel" data-kind="fan" data-scale="log10" data-lo="{dv(lo)}" data-hi="{dv(hi)}" data-base="{n1(base)}" '
              f'data-ph="{n1(h_plot)}" data-x0="{n1(ml)}" data-pw="{n1(pw)}">{"".join(out)}</g>')
     return panel, base + fs + 16
@@ -2835,7 +2846,7 @@ def card_fwdcov(ctx: Ctx) -> str:
         return T(Mt(key), "%")
 
     def build(v: Variant) -> tuple[str, float]:
-        a, ha = fan_panel(v, tag="A", end=T(Mt("fwd_cov_2031_p50_pct"), "%"), title="Coverage: 90-day captured revenue ÷ USD value of net new NEAR (log axis)", rows=fan,
+        a, ha = fan_panel(v, tag="A", end=T(Mt("fwd_cov_2031_p50_pct"), "%"), hist=ctx.s["cov_hist"], asof=m["asof"], title="Coverage: 90-day captured revenue ÷ USD value of net new NEAR (log axis)", rows=fan,
                           refs=[{"v": m["fwd_full_line_pct"], "label": T(Mt("fwd_full_line_pct"), "%: revenue covers all dilution")},
                                 {"v": m["fwd_p3_line_pct"], "label": T(Mt("fwd_p3_line_pct"), "%: P3's line")}])
         rows = [
@@ -2849,6 +2860,7 @@ def card_fwdcov(ctx: Ctx) -> str:
             {"label": "Same, at half today's take rate", "bars": [bar(m["fwd_p_cov_ge100_2031_take_x0_5_pct"], "s2", P("fwd_p_cov_ge100_2031_take_x0_5_pct"))]},
             {"label": "Same, at twice today's take rate", "bars": [bar(m["fwd_p_cov_ge100_2031_take_x2_0_pct"], "s2", P("fwd_p_cov_ge100_2031_take_x2_0_pct"))]},
             {"label": "Same, if NEAR's price keeps its last-year trend", "bars": [bar(m["fwd_p_cov_ge100_2031_price_drift_pct"], "s2", P("fwd_p_cov_ge100_2031_price_drift_pct"))]},
+            {"label": "Same, without the month that spans DefiLlama's counting change", "bars": [bar(m["fwd_exsep_p_cov_ge100_2031_pct"], "s2", P("fwd_exsep_p_cov_ge100_2031_pct"))]},
         ]
         b, hb = hbar_panel(v, title="Share of simulated paths that reach the line, % (bars start at zero)", tag="B", rows=rows, vmax=100,
                            ticks=[0, 25, 50, 75, 100],
@@ -2865,13 +2877,15 @@ def card_fwdcov(ctx: Ctx) -> str:
                     ("Take rate held at", f'{M("fwd_take_bp")} bp')])
     return card(
         cid="fwdcov", kind="exp",
-        title=(f'On today&rsquo;s take rate, captured revenue covers all of NEAR&rsquo;s dilution by 2031 in {M("fwd_p_cov_ge100_2031_pct")}% of '
-               f'simulated paths; the median path covers {M("fwd_cov_2031_p50_pct")}%'),
+        title=(f'Uncertainty: {M("fwd_p_cov_ge100_2031_pct")}% of simulated paths pay for all of NEAR&rsquo;s dilution by 2031, but {M("fwd_exsep_p_cov_ge100_2031_pct")}% '
+               f'without the one month that spans DefiLlama&rsquo;s counting change'),
         headline=(f'Captured Intents revenue covers {M("fwd_coverage_now_pct")}% of the USD value of NEAR&rsquo;s net new supply today. Over '
                   f'{M("fwd_paths_n")} paths that replay the volume and price changes of {M("fwd_boot_months_n")} months of data (price drift removed), the median reaches '
                   f'{M("fwd_cov_2027_p50_pct")}% by 2027-11, {M("fwd_cov_2028_p50_pct")}% by 2028-11 and {M("fwd_cov_2031_p50_pct")}% by 2031-11-04, and '
                   f'{M("fwd_p_cov_ge100_2031_pct")}% of paths cover all of it by then ({M("fwd_p_cov_ge100_2031_no_hsp029_pct")}% without HSP-029). If the price '
-                  f'keeps its last-year trend, that falls to {M("fwd_p_cov_ge100_2031_price_drift_pct")}%.'),
+                  f'keeps its last-year trend, that falls to {M("fwd_p_cov_ge100_2031_price_drift_pct")}%; without the 2026-08 to 2026-09 month, which spans DefiLlama&rsquo;s '
+                  f'change in what it counts, to {M("fwd_exsep_p_cov_ge100_2031_pct")}%. The bands are as wide as the data make them, so the thesis does not rest on these '
+                  'probabilities.'),
         shows=(f'The frozen rating rule&rsquo;s question (does captured revenue reach the USD value of net new supply by 2031-11-04?) with a distribution in place of '
                f'one price and one growth rate: {M("fwd_paths_n")} paths, each month drawing one of the {M("fwd_boot_months_n")} monthly changes in Intents volume and NEAR&rsquo;s '
                f'mean price ({esc(m["fwd_boot_first"])} to {esc(m["fwd_boot_last"])}) together, against the rule&rsquo;s own supply path.'),
@@ -2881,7 +2895,11 @@ def card_fwdcov(ctx: Ctx) -> str:
         caption=(f'Model: <code>pipeline/model.py</code>, a fixed seed, {M("fwd_months_n")} model months from {esc(m["asof"])}. Units: percent. Panel A&rsquo;s axis is '
                  f'logarithmic; values below its floor are drawn at the floor. Exploratory, chosen 2026-11-13, after the freeze; it feeds nothing the rating rule computes.'),
         extra=figs,
-        notes=(f'Volume and price move together in the data: the correlation of their monthly log changes is {M("fwd_vol_price_corr")}, so they are drawn as pairs, not separately.',
+        notes=(f'The volume drift comes from one month: the 2026-08 to 2026-09 change spans DefiLlama&rsquo;s 2026-09-01 change in what it counts as Intents volume. '
+               f'Without that month volume changed by {M("fwd_exsep_vol_monthly_mean_pct")}% a month, the 2031 median is {M("fwd_exsep_cov_2031_p50_pct")}% and '
+               f'{M("fwd_exsep_p_cov_ge100_2031_pct")}% of paths cover all dilution. The forecasts M1 to M4 were dated with the month in and are scored as dated; the '
+               'thesis does not rest on them (PREREG-ADDENDUM.md, 2026-11-14 entries).',
+               f'Volume and price move together in the data: the correlation of their monthly log changes is {M("fwd_vol_price_corr")}, so they are drawn as pairs, not separately.',
                f'The price drift is removed because NEAR&rsquo;s mean price rose {M("fwd_price_monthly_mean_pct")}% a month on average over those months; replaying that for five '
                f'years would assume the trend continues. With it, the 2031 median is {M("fwd_cov_2031_p50_price_drift_pct")}%: a higher price means each dollar of revenue '
                'buys back less NEAR.',
@@ -2934,7 +2952,304 @@ def card_fwdsupply(ctx: Ctx) -> str:
         data=data_details(tab))
 
 
-FWD_CARDS = (("fwdcov", "Coverage of dilution, to 2031", card_fwdcov), ("fwdsupply", "Supply projection", card_fwdsupply))
+# ------------------------------------------------------------------ the investment case (exploratory, 2026-11-14; pipeline/investment_case.py)
+IC_SOURCE_RAW = ("raw/llama/dailyRevenue_near-intents.json", "raw/llama/volume_near-intents.json", "raw/llama/volume_thorchain-dex.json",
+                 "raw/llama/volume_chainflip-amm.json", "raw/llama/volume_maya-protocol.json", "raw/coingecko/near_snapshot.json",
+                 "raw/rpc/epoch_issuance.json", "raw/rpc/rating_assumptions.json")
+
+
+def ic_query(ctx: Ctx) -> str:
+    return query_details(ctx, endpoints=(("Model", "python3 -m pipeline.compute (calls pipeline.investment_case.investment_case); offline, standard library"),
+                                         ("Metrics", "ic_* in data/metrics.json")))
+
+
+def card_priced(ctx: Ctx) -> str:
+    m, M, Mt = ctx.m, ctx.M, ctx.Mt
+    title = "Growth in captured revenue that NEAR's price assumes, against the growth the market and the rating rule show"
+    desc = (f"Bars from zero, percent a year: the price assumes {ctx.plain('ic_implied_cagr_r15_x25_pct')} at the base assumptions and "
+            f"{ctx.plain('ic_implied_cagr_r10_x50_pct')} at the most generous in the grid; the rating rule needs {ctx.plain('rating_g_req_pct')}; "
+            f"the peer set's volume grew {ctx.plain('ic_market_cagr_1y_pct')} last year and {ctx.plain('ic_market_cagr_4y_pct')} a year over four, and fell a "
+            f"little a year over two; without NEAR Intents it fell last year and grew {ctx.plain('ic_market_ex_intents_cagr_4y_pct')} a year over four.")
+
+    def P(key: str) -> Txt:
+        return T(Mt(key), "% a year")
+
+    def build(v: Variant) -> tuple[str, float]:
+        rows = [
+            {"label": "What the price assumes: base assumptions", "bars": [bar(m["ic_implied_cagr_r15_x25_pct"], "s2", P("ic_implied_cagr_r15_x25_pct"))]},
+            {"label": "What the price assumes: the most generous assumptions in the grid", "bars": [bar(m["ic_implied_cagr_r10_x50_pct"], "s2", P("ic_implied_cagr_r10_x50_pct"))]},
+            {"label": "What the rating rule needs to cover dilution (G_req)", "bars": [bar(m["rating_g_req_pct"], "sc", P("rating_g_req_pct"))]},
+            {"label": "Peer set, with Intents: a year over four years", "bars": [bar(m["ic_market_cagr_4y_pct"], "s1", P("ic_market_cagr_4y_pct"))]},
+            {"label": "Peer set, with Intents: last year", "bars": [bar(m["ic_market_cagr_1y_pct"], "s1", P("ic_market_cagr_1y_pct"))]},
+            {"label": "Peer set, with Intents: a year over two years", "bars": [bar(max(m["ic_market_cagr_2y_pct"], 0.0), "s1", P("ic_market_cagr_2y_pct"))]},
+            {"label": "The other venues: a year over four years", "bars": [bar(m["ic_market_ex_intents_cagr_4y_pct"], "s1", P("ic_market_ex_intents_cagr_4y_pct"))]},
+            {"label": "The other venues: last year", "bars": [bar(max(m["ic_market_ex_intents_cagr_1y_pct"], 0.0), "s1", P("ic_market_ex_intents_cagr_1y_pct"))]},
+        ]
+        return hbar_panel(v, title="Growth a year to 2031, % (bars start at zero)", rows=rows, vmax=100, ticks=[0, 25, 50, 75, 100],
+                          legend_items=[("s2", "What the price assumes", "box"), ("sc", "What the rating rule needs", "box"),
+                                        ("s1", "What the venues did", "box")])
+
+    fig = dual(ctx, "chart-priced", title, desc, build)
+    rg, xg = (10, 15, 20), (10, 25, 50)   # pipeline.investment_case.R_GRID and X_GRID, printed from ic_grid_* below
+    head = "".join(f'<th scope="col">{M(f"ic_grid_x{i}")}× revenue in 2031</th>' for i in range(3))
+    body = "".join(f'<tr><td class="t">{M(f"ic_grid_r{i}_pct")}% a year</td>' + "".join(f'<td>{M(f"ic_implied_cagr_r{r}_x{x}_pct")}%</td>' for x in xg) + '</tr>'
+                   for i, r in enumerate(rg))
+    grid = (f'<div class="tablewrap" role="region" aria-label="Growth the market cap assumes" tabindex="0"><table><caption>Growth in captured revenue a year to '
+            f'2031 that today&rsquo;s market cap assumes, %</caption><thead><tr><th scope="col" class="txt">Required return</th>{head}</tr></thead>'
+            f'<tbody>{body}</tbody></table></div>')
+    figs = keyfigs([("Captured revenue now, a year", f'${M("ic_rev_90d_ann_m")}M'), ("Needed by 2031 (base)", f'${M("ic_required_rev_2031_m")}M'),
+                    ("That is", f'{M("ic_required_multiple_x")}× today'), ("Market cap ÷ revenue now", f'{M("ic_near_mcap_to_rev_90d_ann_x")}×')])
+    return card(
+        cid="priced", kind="exp",
+        title=(f'If Intents carried NEAR&rsquo;s price alone, the price would assume captured revenue grows {M("ic_implied_cagr_r15_x25_pct")}% a year to 2031; '
+               f'the venues grew {M("ic_market_cagr_1y_pct")}% last year, all of it Intents'),
+        headline=(f'For NEAR&rsquo;s price to rise {M("ic_base_r_pct")}% a year to 2031-11-04 and its market cap then to be {M("ic_base_x")} times its captured revenue, '
+                  f'captured revenue must grow from ${M("ic_rev_90d_ann_m")}M a year to ${M("ic_required_rev_2031_m")}M, {M("ic_implied_cagr_r15_x25_pct")}% a year '
+                  f'({M("ic_implied_cagr_r10_x50_pct")}% to {M("ic_implied_cagr_r20_x10_pct")}% across the grid), if Intents carried the price alone. The cross-chain '
+                  f'venues tracked here grew {M("ic_market_cagr_1y_pct")}% last year, all of it Intents&rsquo; own growth (×{M("ic_intents_vol_1y_x")}): without Intents the venues&rsquo; volume '
+                  f'changed by {M("ic_market_ex_intents_cagr_1y_pct")}%. Over four years the set grew {M("ic_market_cagr_4y_pct")}% a year, {M("ic_market_ex_intents_cagr_4y_pct")}% '
+                  f'without Intents.'),
+        shows=('A reverse DCF: the growth in captured Intents revenue that today&rsquo;s market cap implies, for a required return and a revenue multiple in 2031 '
+               '(both assumptions, shown as a grid), with supply growth on the rating rule&rsquo;s own path, against what the cross-chain swap market has done.'),
+        notshows=('A valuation of NEAR as a whole. NEAR&rsquo;s market cap also prices the L1 (its fees, which burn, staking and any monetary premium); here all of it '
+                  'is set against Intents&rsquo; captured revenue, so the growth shown is what Intents would need if it carried the price alone.'),
+        figure=fig,
+        caption=(f'Market cap ${M("mcap_usd_b")}B (CoinGecko snapshot, 2026-11-05). Captured revenue: the 90 days to {esc(m["asof"])} at an annual rate. '
+                 f'Supply grows {M("ic_supply_factor_x")}× to 2031-11-04 with HSP-029. Market: THORChain, Chainflip, Maya and NEAR Intents (DefiLlama, reported basis), '
+                 'full years to the as-of date. Exploratory, chosen 2026-11-14, after the freeze.'),
+        extra=grid + figs,
+        notes=(f'The required return is on NEAR&rsquo;s price. Supply grows and the buybacks burn nothing, so for the price to rise at that rate the market cap must grow '
+               f'faster by the supply factor, {M("ic_supply_factor_x")}× by 2031; a holder who stakes also receives part of the new supply.',
+               f'For comparison, THORChain&rsquo;s market cap is {M("ic_peer_thorchain_mcap_to_fees_x")}× its gross fees and Chainflip&rsquo;s '
+               f'{M("ic_peer_chainflip_mcap_to_fees_x")}× (see the peer card). The grid&rsquo;s multiples are on captured revenue; the peers&rsquo; multiples on what '
+               'reaches their token holders would be higher and are not computed here.',
+               'Last year&rsquo;s growth of the set is all Intents&rsquo; growth, and part of it is DefiLlama&rsquo;s change on 2026-09-01 in what it counts as Intents '
+               'volume (docs/leg-count.md): as a measure of the market it is generous to NEAR.',
+               f'The market&rsquo;s growth depends on the window: {M("ic_market_cagr_3y_pct")}% a year over three years starts at the low of '
+               f'${M("ic_market_y3_b")}B; the annual volumes were ${M("ic_market_y4_b")}B, ${M("ic_market_y3_b")}B, ${M("ic_market_y2_b")}B, '
+               f'${M("ic_market_y1_b")}B and ${M("ic_market_y0_b")}B (oldest first). The two-year rate is negative and is drawn at zero.',
+               f'G_obs, the rule&rsquo;s observed growth in captured revenue ({M("rating_g_obs_pct")}% a year), is left off the axis: it comes from a step in the share of '
+               'fees captured, not from growth in activity.'),
+        source=source_p(ctx, raw=IC_SOURCE_RAW, code=("pipeline/investment_case.py", "pipeline/model.py", "pipeline/h1a.py")),
+        query=ic_query(ctx), data=data_details(grid))
+
+
+def card_multiply(ctx: Ctx) -> str:
+    m, M, Mt = ctx.m, ctx.M, ctx.Mt
+    title = "What would have to multiply by 2031 for captured revenue to reach what the price assumes"
+    desc = (f"Panel A: bars from zero, multiples: captured revenue must multiply by {ctx.plain('ic_required_multiple_x')}; the market at its last-year pace gives "
+            f"{ctx.plain('ic_mult_market_x')}, Intents' share at its twelve-month high {ctx.plain('ic_mult_share_x')}, leaving {ctx.plain('ic_mult_take_x')} for the take rate. "
+            f"Panel B: bars from zero, basis points: NEAR's take today {ctx.plain('ic_take_90d_bp')}, Intents' gross fee {ctx.plain('ic_gross_bp_90d')}, "
+            f"the take the price needs {ctx.plain('ic_take_needed_bp')}.")
+
+    def build(v: Variant) -> tuple[str, float]:
+        a, ha = hbar_panel(v, tag="A", title="Multiples by 2031 (bars start at zero)", vmax=25, ticks=[0, 5, 10, 15, 20, 25], rows=[
+            {"label": "Captured revenue must multiply by", "bars": [bar(m["ic_required_multiple_x"], "s2", T(Mt("ic_required_multiple_x"), "×"))]},
+            {"label": "The market, at its last-year pace", "bars": [bar(m["ic_mult_market_x"], "s1", T(Mt("ic_mult_market_x"), "×"))]},
+            {"label": "Intents' share, at its twelve-month high", "bars": [bar(m["ic_mult_share_x"], "s1", T(Mt("ic_mult_share_x"), "×"))]},
+            {"label": "Left for NEAR's take rate", "bars": [bar(m["ic_mult_take_x"], "sc", T(Mt("ic_mult_take_x"), "×"))]}])
+        b, hb = hbar_panel(v, tag="B", title="Take rate, basis points of volume (bars start at zero)", vmax=40, ticks=[0, 10, 20, 30, 40], rows=[
+            {"label": "NEAR's captured take today", "bars": [bar(m["ic_take_90d_bp"], "s1", T(Mt("ic_take_90d_bp"), " bp"))]},
+            {"label": "Intents' whole gross fee today", "bars": [bar(m["ic_gross_bp_90d"], "sc", T(Mt("ic_gross_bp_90d"), " bp"))]},
+            {"label": "Take the price needs", "bars": [bar(m["ic_take_needed_bp"], "s2", T(Mt("ic_take_needed_bp"), " bp"))]}])
+        return stack([(a, ha), (b, hb)])
+
+    fig = dual(ctx, "chart-multiply", title, desc, build)
+    figs = keyfigs([("Take needed ÷ whole gross fee", f'{M("ic_take_needed_vs_gross_x")}×'),
+                    ("Market growth needed at the whole fee", f'{M("ic_market_cagr_needed_full_fee_pct")}% a year'),
+                    ("Market growth, last year", f'{M("ic_market_cagr_1y_pct")}%')])
+    return card(
+        cid="multiply", kind="exp",
+        title=(f'To get there in today&rsquo;s market, NEAR would have to capture {M("ic_take_needed_vs_gross_x")}× Intents&rsquo; whole gross fee'),
+        headline=(f'Captured revenue = cross-chain swap volume × Intents&rsquo; share × NEAR&rsquo;s take. To multiply by {M("ic_required_multiple_x")} by 2031, with the market growing '
+                  f'at its last-year pace (×{M("ic_mult_market_x")}) and Intents&rsquo; share at its twelve-month high (×{M("ic_mult_share_x")}), NEAR&rsquo;s take would have to rise '
+                  f'×{M("ic_mult_take_x")}, from {M("ic_take_90d_bp")} bp to {M("ic_take_needed_bp")} bp of volume: {M("ic_take_needed_vs_gross_x")} times the whole '
+                  f'{M("ic_gross_bp_90d")} bp gross fee Intents charges today. Even if NEAR kept the whole gross fee, the market would have to grow '
+                  f'{M("ic_market_cagr_needed_full_fee_pct")}% a year.'),
+        shows=('The required multiple from the reverse DCF (base assumptions), split into its three factors: the growth of the cross-chain swap market, Intents&rsquo; share '
+               'of it, and the share of volume NEAR captures as revenue, each at a value from the data, and what is left for the take rate.'),
+        notshows=('That the take rate cannot rise: fees are a policy choice. It shows how far the current fee structure is from what the price implies, if the market '
+                  'grows as it has.'),
+        figure=fig,
+        caption=(f'Base assumptions: a required return of {M("ic_base_r_pct")}% and {M("ic_base_x")}× revenue in 2031. Take and gross fee: the 90 days to {esc(m["asof"])} '
+                 '(DefiLlama revenue and fees ÷ volume, reported basis). Exploratory, chosen 2026-11-14, after the freeze.'),
+        extra=figs,
+        notes=(f'Intents&rsquo; share of the peer set over the 90 days was {M("ic_share_90d_pct")}%; its twelve-month high was {M("ic_share_max_pct")}% '
+               f'({esc(m["ic_share_max_month"])}) and its low {M("ic_share_min_pct")}% ({esc(m["ic_share_min_month"])}).',
+               'Each factor is on DefiLlama&rsquo;s reported volume, which counts both legs of some swaps and, from 2026-09-01, more of Intents&rsquo; volume '
+               '(docs/leg-count.md). Only the full product, the revenue, is unaffected. Last year&rsquo;s market growth is all Intents&rsquo; and partly that change, '
+               'so it is generous to NEAR, and the take needed is, if anything, understated.'),
+        source=source_p(ctx, raw=IC_SOURCE_RAW + ("raw/llama/fees_near-intents.json",), code=("pipeline/investment_case.py",)),
+        query=ic_query(ctx), data=data_details(table_html(
+            [{"h": "Factor", "num": False}, {"h": "Value"}],
+            [{"k": None, "cells": [a, b]} for a, b in (
+                ("Required multiple of captured revenue", f'{M("ic_required_multiple_x")}×'), ("Market, last-year pace for five years", f'{M("ic_mult_market_x")}×'),
+                ("Share, twelve-month high ÷ 90 days", f'{M("ic_mult_share_x")}×'), ("Left for the take rate", f'{M("ic_mult_take_x")}×'),
+                ("Take today, bp", M("ic_take_90d_bp")), ("Gross fee today, bp", M("ic_gross_bp_90d")), ("Take needed, bp", M("ic_take_needed_bp")))],
+            caption="Plotted values")))
+
+
+def card_scenarios(ctx: Ctx) -> str:
+    m, M, Mt = ctx.m, ctx.M, ctx.Mt
+    title = "Bear, base and bull: coverage of NEAR's dilution on 2031-11-04, and which input moves it most"
+    desc = (f"Panel A: bars from zero, percent: coverage on 2031-11-04 is {ctx.plain('ic_bear_coverage_2031_pct')} in the bear case, "
+            f"{ctx.plain('ic_base_coverage_2031_pct')} in the base case and {ctx.plain('ic_bull_coverage_2031_pct')} in the bull case, against a line at "
+            f"{ctx.plain('fwd_full_line_pct')}. Panel B: for each input, the base coverage with that input at its low and high value.")
+    tor = (("market", "Market growth: two-year to four-year pace"), ("price", "NEAR's price: 365-day high to low"),
+           ("take", "Take rate: lowest to highest month"), ("share", "Intents' share: twelve-month low to high"), ("hsp029", "HSP-029: not in force to in force"))
+
+    def build(v: Variant) -> tuple[str, float]:
+        a, ha = hbar_panel(v, tag="A", title="Coverage on 2031-11-04, % (bars start at zero)", vmax=300, ticks=[0, 100, 200, 300],
+                           refs=[{"v": m["fwd_full_line_pct"], "label": T(Mt("fwd_full_line_pct"), "%: covers all dilution")}], rows=[
+            {"label": f"{nm} case", "bars": [bar(m[f"ic_{k}_coverage_2031_pct"], c, T(Mt(f"ic_{k}_coverage_2031_pct"), "%"))]}
+            for k, nm, c in (("bear", "Bear", "sc"), ("base", "Base", "s1"), ("bull", "Bull", "s2"))])
+        rows = [{"label": lab, "bars": [{"v": m[f"ic_tor_{k}_hi_pct"], "cls": "s1",
+                                         "txt": T(Mt(f"ic_tor_{k}_lo_pct"), "% to ", Mt(f"ic_tor_{k}_hi_pct"), "%"),
+                                         "segs": [{"v": m[f"ic_tor_{k}_lo_pct"], "cls": "gap"},
+                                                  {"v": round(m[f"ic_tor_{k}_hi_pct"] - m[f"ic_tor_{k}_lo_pct"], 1), "cls": "s1"}]}]}
+                for k, lab in tor]
+        b, hb = hbar_panel(v, tag="B", title="Base coverage with one input moved, % (each bar spans low to high)", vmax=200, ticks=[0, 50, 100, 150, 200],
+                           refs=[{"v": m["ic_base_coverage_2031_pct"], "label": T("base ", Mt("ic_base_coverage_2031_pct"), "%")}], rows=rows)
+        return stack([(a, ha), (b, hb)])
+
+    fig = dual(ctx, "chart-scenarios", title, desc, build)
+    cols = [{"h": "", "num": False}, {"h": "Bear"}, {"h": "Base"}, {"h": "Bull"}]
+    spec = (("Market growth a year, %", "market_cagr_pct"), ("Intents' share, %", "share_pct"), ("NEAR's take, bp", "take_bp"),
+            ("HSP-029 in force", "hsp029"), ("Captured revenue in 2031, $M a year", "rev_2031_m"), ("Captured revenue growth a year, %", "rev_cagr_pct"),
+            ("Coverage of dilution on 2031-11-04, %", "coverage_2031_pct"), ("Today's market cap ÷ 2031 revenue, ×", "mcap_to_rev_2031_x"),
+            ("Share of the revenue the price assumes, %", "vs_required_pct"))
+    tab = table_html(cols, [{"k": None, "cells": [lab] + [M(f"ic_{s}_{key}") for s in ("bear", "base", "bull")]} for lab, key in spec],
+                     caption="The three scenarios, from the data")
+    return card(
+        cid="scenarios", kind="exp",
+        title=(f'Base case: captured revenue would pay for {M("ic_base_coverage_2031_pct")}% of NEAR&rsquo;s dilution in 2031; the bull case pays for all of it '
+               f'but reaches {M("ic_bull_vs_required_pct")}% of the revenue the price would assume'),
+        headline=(f'With every input at a value from the data and the price held flat, captured revenue on 2031-11-04 would pay for {M("ic_bear_coverage_2031_pct")}% '
+                  f'(bear), {M("ic_base_coverage_2031_pct")}% (base) or {M("ic_bull_coverage_2031_pct")}% (bull) of the dollar value of NEAR&rsquo;s dilution. The bull '
+                  f'case&rsquo;s ${M("ic_bull_rev_2031_m")}M a year is {M("ic_bull_vs_required_pct")}% of the ${M("ic_required_rev_2031_m")}M the price would assume at '
+                  f'{M("ic_base_r_pct")}% and {M("ic_base_x")}×; at the three-year market pace it would be {M("ic_bull3y_vs_required_pct")}%. Market growth and NEAR&rsquo;s '
+                  f'price move coverage most: from {M("ic_tor_market_lo_pct")}% to {M("ic_tor_market_hi_pct")}% and from {M("ic_tor_price_lo_pct")}% to '
+                  f'{M("ic_tor_price_hi_pct")}%.'),
+        shows=('Three futures for captured revenue (market growth × Intents&rsquo; share × NEAR&rsquo;s take), each input at a value from the data, run against the rating '
+               'rule&rsquo;s supply path at its constant (flat) price; then the base case with one input at a time at its low and high value. Coverage is what '
+               'captured revenue would pay for: not all of it reaches the buyback wallet, and none of it is burned.'),
+        notshows=('Probabilities: the scenarios are not weighted (the Monte Carlo card gives a distribution). Nor a new fee stream, a partner change or a regime the '
+                  'data have not seen.'),
+        figure=fig,
+        caption=(f'Bear: market at its two-year pace, share at its twelve-month low ({esc(m["ic_share_min_month"])}), take at its lowest month since the fee switch '
+                 f'({esc(m["ic_take_min_month"])}), no HSP-029. Base: last-year market growth and the last 90 days&rsquo; share and take, with HSP-029. Bull: four-year '
+                 f'market pace, twelve-month-high share ({esc(m["ic_share_max_month"])}), highest month&rsquo;s take ({esc(m["ic_take_max_month"])}), with HSP-029. '
+                 f'Price ${M("price_usd")} (the rule&rsquo;s). Exploratory, chosen 2026-11-14, after the freeze.'),
+        extra=tab,
+        notes=(f'Coverage moves in inverse proportion to NEAR&rsquo;s price, because each dollar of revenue buys back less NEAR at a higher price: the 365-day range, '
+               f'${M("ic_price_365d_low_usd")} to ${M("ic_price_365d_high_usd")}, moves the base case from {M("ic_tor_price_lo_pct")}% to {M("ic_tor_price_hi_pct")}%.',
+               'Which window anchors each case was chosen after the annual volumes, monthly shares and monthly take rates were computed (PREREG-ADDENDUM.md, '
+               '2026-11-14 entries); the card on what the price assumes lists every window, so a reader can substitute another.',
+               f'The bull case grows the whole peer set at its four-year pace and also lifts Intents&rsquo; share, so it counts some of Intents&rsquo; share gains twice. '
+               f'Its revenue growth, {M("ic_bull_rev_cagr_pct")}% a year, falls short of what the price would assume at {M("ic_base_x")}× and exceeds it only at '
+               f'{M("ic_grid_x2")}× ({M("ic_implied_cagr_r10_x50_pct")}% at {M("ic_grid_r0_pct")}% a year, {M("ic_implied_cagr_r15_x50_pct")}% at {M("ic_grid_r1_pct")}%).',
+               f'At today&rsquo;s market cap, NEAR would trade at {M("ic_base_mcap_to_rev_2031_x")}× its 2031 captured revenue in the base case and '
+               f'{M("ic_bull_mcap_to_rev_2031_x")}× in the bull case.'),
+        source=source_p(ctx, raw=IC_SOURCE_RAW + ("raw/coingecko/near_market_chart_365d.json",), code=("pipeline/investment_case.py", "pipeline/model.py")),
+        query=ic_query(ctx), data=data_details(tab))
+
+
+def card_peersval(ctx: Ctx) -> str:
+    m, M, Mt = ctx.m, ctx.M, ctx.Mt
+    title = "Market cap per dollar of fees: NEAR against the cross-chain swap venues with a listed token"
+    desc = (f"Bars from zero, multiples: NEAR's market cap is {ctx.plain('ic_near_mcap_to_intents_fees_x')} times Intents' gross fees over 365 days and "
+            f"{ctx.plain('ic_near_mcap_to_rev_90d_ann_x')} times its captured revenue at the last 90 days' rate; THORChain's is "
+            f"{ctx.plain('ic_peer_thorchain_mcap_to_fees_x')} times its fees and Chainflip's {ctx.plain('ic_peer_chainflip_mcap_to_fees_x')}.")
+
+    def build(v: Variant) -> tuple[str, float]:
+        return hbar_panel(v, title="Market cap ÷ annual fees or revenue, × (bars start at zero)", vmax=250, ticks=[0, 50, 100, 150, 200, 250], rows=[
+            {"label": "NEAR ÷ captured revenue", "bars": [bar(m["ic_near_mcap_to_rev_90d_ann_x"], "s2", T(Mt("ic_near_mcap_to_rev_90d_ann_x"), "×"))]},
+            {"label": "NEAR ÷ Intents' gross fees", "bars": [bar(m["ic_near_mcap_to_intents_fees_x"], "s2", T(Mt("ic_near_mcap_to_intents_fees_x"), "×"))]},
+            {"label": "THORChain (RUNE) ÷ fees", "bars": [bar(m["ic_peer_thorchain_mcap_to_fees_x"], "s1", T(Mt("ic_peer_thorchain_mcap_to_fees_x"), "×"))]},
+            {"label": "Chainflip (FLIP) ÷ fees", "bars": [bar(m["ic_peer_chainflip_mcap_to_fees_x"], "s1", T(Mt("ic_peer_chainflip_mcap_to_fees_x"), "×"))]}])
+
+    fig = dual(ctx, "chart-peersval", title, desc, build)
+    tab = table_html([{"h": "Token", "num": False}, {"h": "Market cap, $M"}, {"h": "Fees, 365 days, $M"}, {"h": "Market cap ÷ fees, ×"}], [
+        {"k": None, "cells": ["NEAR (Intents' gross fees)", M("ic_near_intents_fees_365d_m"), M("ic_near_intents_fees_365d_m"), M("ic_near_mcap_to_intents_fees_x")]},
+        {"k": None, "cells": ["THORChain (RUNE)", M("ic_peer_thorchain_mcap_m"), M("ic_peer_thorchain_fees_365d_m"), M("ic_peer_thorchain_mcap_to_fees_x")]},
+        {"k": None, "cells": ["Chainflip (FLIP)", M("ic_peer_chainflip_mcap_m"), M("ic_peer_chainflip_fees_365d_m"), M("ic_peer_chainflip_mcap_to_fees_x")]}],
+        caption="Plotted values (NEAR's market cap is in the caption)")
+    tab = tab.replace(f'<td>{M("ic_near_intents_fees_365d_m")}</td><td>{M("ic_near_intents_fees_365d_m")}</td>',
+                      f'<td>{M("mcap_usd_b")}B</td><td>{M("ic_near_intents_fees_365d_m")}</td>', 1)
+    return card(
+        cid="peersval", kind="exp",
+        title=(f'NEAR trades at {M("ic_near_mcap_to_intents_fees_x")}× Intents&rsquo; gross fees; THORChain at {M("ic_peer_thorchain_mcap_to_fees_x")}× its fees, '
+               f'Chainflip at {M("ic_peer_chainflip_mcap_to_fees_x")}×'),
+        headline=(f'At the same hour, NEAR&rsquo;s market cap was {M("ic_near_mcap_to_intents_fees_x")} times the gross fees NEAR Intents charged over 365 days and '
+                  f'{M("ic_near_mcap_to_rev_90d_ann_x")} times its captured revenue at the last 90 days&rsquo; rate; THORChain&rsquo;s (RUNE) was '
+                  f'{M("ic_peer_thorchain_mcap_to_fees_x")} times its fees and Chainflip&rsquo;s (FLIP) {M("ic_peer_chainflip_mcap_to_fees_x")} times.'),
+        shows=('What the market pays per dollar of fees for the cross-chain swap venues in the peer set that have a listed token, against NEAR, on DefiLlama&rsquo;s '
+               'fee series and CoinGecko&rsquo;s market caps at one hour.'),
+        notshows=('Like-for-like value. NEAR&rsquo;s market cap prices the whole L1, not only Intents; the peers&rsquo; multiples are on gross fees, most of which do not '
+                  'reach their tokens (DefiLlama counts only the small share of THORChain&rsquo;s swap fees burned as RUNE as holders&rsquo; revenue). Maya Protocol is '
+                  'left out: its token (CACAO) is not listed on CoinGecko.'),
+        figure=fig,
+        caption=(f'Market caps at {esc(m["ic_peer_caps_at_utc"])} UTC (NEAR: the committed snapshot at 22:50 UTC, ${M("mcap_usd_b")}B). Fees: DefiLlama, the 365 days '
+                 f'to {esc(m["asof"])}. Exploratory, chosen 2026-11-14, after the freeze.'),
+        extra=tab,
+        notes=('The peer market caps come from a fetch made on 2026-11-14 (python3 -m pipeline.fetch_peer_caps); only the hourly point nearest NEAR&rsquo;s committed '
+               'snapshot is used.',),
+        source=source_p(ctx, raw=("raw/coingecko/peer_caps_30d.json", "raw/coingecko/near_snapshot.json", "raw/llama/fees_near-intents.json",
+                                  "raw/llama/fees_thorchain-dex.json", "raw/llama/fees_chainflip-amm.json"),
+                        code=("pipeline/fetch_peer_caps.py", "pipeline/investment_case.py")),
+        query=query_details(ctx, endpoints=(("Endpoint", "GET https://api.coingecko.com/api/v3/coins/{near,thorchain,chainflip}/market_chart?vs_currency=usd&days=30"),
+                                            ("Fetcher", "python3 -m pipeline.fetch_peer_caps (no key)"))),
+        data=data_details(tab))
+
+
+def card_signposts(ctx: Ctx) -> str:
+    m, M, Mt = ctx.m, ctx.M, ctx.Mt
+    title = "Signposts: how far today's values are from the lines that would favour the upside"
+    desc = "Bars from zero, percent of each line: 100 means today's value is at the line."
+    sp = (("coverage", "Coverage of dilution (P3, M1)"), ("revenue", "Captured revenue, 90 days (P2)"), ("share", "Intents' share of the peer set (P1)"),
+          ("market", "Market growth against G_req"), ("take", "NEAR's take against what the price needs"), ("staking", "Staking outflow against H1a's line"))
+
+    def build(v: Variant) -> tuple[str, float]:
+        return hbar_panel(v, title="Today as a share of the line, % (bars start at zero)", vmax=125, ticks=[0, 25, 50, 75, 100, 125],
+                          refs=[{"v": m["fwd_full_line_pct"], "label": "at the line"}],
+                          rows=[{"label": lab, "bars": [bar(m[f"ic_sp_{k}_pct"], "s1" if m[f"ic_sp_{k}_pct"] >= 100 else "sc", T(Mt(f"ic_sp_{k}_pct"), "%"))]}
+                                for k, lab in sp])
+
+    fig = dual(ctx, "chart-signposts", title, desc, build)
+    rows = [
+        ("Coverage of dilution (P3&rsquo;s quantity, 90 days)", f'{M("p3_quantity_90d_asof_pct")}%', f'at least {M("ic_p3_line_pct")}% (P3, frozen; M1, exploratory, dated after the freeze)', "2027-11-04"),
+        ("Captured revenue, 90 days", f'${M("rating_r90_usd_m")}M', f'at least ${M("ic_p2_line_usd_m")}M (P2, frozen)', "2027-05-04"),
+        ("Intents&rsquo; share of the peer set, 365 days", f'{M("intents_share_peerset_365d_pct")}%', f'at least {M("ic_p1_line_pct")}% (P1, frozen)', "2027-05-04"),
+        ("Cross-chain swap volume, growth a year", f'{M("ic_market_cagr_1y_pct")}%', f'{M("rating_g_req_pct")}% (G_req, if share and take hold)', "each year"),
+        ("NEAR&rsquo;s captured take, 90 days", f'{M("ic_take_90d_bp")} bp', f'{M("ic_take_needed_bp")} bp (what the price would need, at last year&rsquo;s market pace and Intents&rsquo; twelve-month-high share)', "each month"),
+        ("Net staking outflow ÷ staking rewards (H1a)", f'{M("h1a_ratio_as_written_x")}×', f'under {ctx.K("h1a_pass_below_x")}× (H1a&rsquo;s pass line)', "each quarter"),
+        ("HSP-029&rsquo;s issuance cut", "pending", "in force (a lower inflation cap)", "timelock ends 2026-11-16"),
+        ("A per-stream attestation of the escrow releases", "none", "published by NEAR (collapses the ladder&rsquo;s range)", "any time"),
+    ]
+    tab = table_html([{"h": "Signpost", "num": False}, {"h": "Today", "num": False}, {"h": "Line that favours the upside", "num": False}, {"h": "When", "num": False}],
+                     [{"k": None, "cells": list(r)} for r in rows], caption="Signposts, with today's values and the lines")
+    return card(
+        cid="signposts", kind="exp",
+        title="Signposts: share is past its line; coverage and revenue are close; the take rate and market growth are far from what the price needs",
+        headline=(f'Of the lines that would favour the upside, Intents&rsquo; share is past its own ({M("ic_sp_share_pct")}% of P1&rsquo;s line), revenue and coverage are '
+                  f'close ({M("ic_sp_revenue_pct")}% and {M("ic_sp_coverage_pct")}%), and the two that carry the price are far: market growth is '
+                  f'{M("ic_sp_market_pct")}% of G_req and NEAR&rsquo;s take {M("ic_sp_take_pct")}% of what the price needs.'),
+        shows=('The values a reader should watch, each against the line that would favour the upside: the pre-registered P1 to P3, the model&rsquo;s M1, the rating '
+               'rule&rsquo;s G_req, the take the price needs, and H1a&rsquo;s pass line.'),
+        notshows='A score: P1 to P3 and M1 to M4 resolve on their own dates, from the data, and are scored as written.',
+        figure=fig,
+        caption=f'Today: the data to {esc(m["asof"])}. Exploratory, chosen 2026-11-14, after the freeze; the lines come from PREREG.md, the addendum and the cards above.',
+        extra=tab,
+        notes=('For staking the line is H1a&rsquo;s pass line (net staking outflow under half of staking rewards) divided by today&rsquo;s ratio, so a full bar would mean '
+               'stakers are no longer net sellers of their rewards.',),
+        source=source_p(ctx, raw=IC_SOURCE_RAW, code=("pipeline/investment_case.py", "pipeline/compute.py")),
+        query=ic_query(ctx), data=data_details(tab))
+
+
+FWD_CARDS = (("priced", "What the price assumes", card_priced), ("multiply", "What would have to multiply", card_multiply),
+             ("scenarios", "Bear, base and bull", card_scenarios), ("peersval", "Peer valuation", card_peersval),
+             ("fwdcov", "Uncertainty: Monte Carlo", card_fwdcov), ("fwdsupply", "Supply projection", card_fwdsupply),
+             ("signposts", "Signposts", card_signposts))
 
 
 PRE_CARDS = (("h1a", "H1a: staking outflow", card_h1a), ("h1b", "H1b: net exchange inflow", card_h1b),
@@ -3064,6 +3379,8 @@ def not_computed(ctx: Ctx) -> str:
          f'{esc(m["l1_step_date"])}, and that HOT Wallet&rsquo;s <code>.tg</code> accounts account for {M("usage_bq_tg_share_of_signer_drop_pct")}% of the fall in active accounts '
          'over a year (exploratory, <code>docs/usage.md</code>). Why either happened is not in the data, and no sybil or bot filter is applied.'),
         ("Who the sellers were.", 'NEAR is fungible, so every flow here is a market-wide balance. Nothing says which coins were sold.'),
+        ("What NEAR is worth as an L1.", 'The investment case sets NEAR&rsquo;s whole market cap against Intents&rsquo; captured revenue. What the L1 itself is worth '
+         '(its fees, which burn, staking, any monetary premium) is not computed, so the growth the price assumes is what Intents would need if it carried the price alone.'),
         ("Longer-dated predictions P1 to P3.", 'They resolve on 2027-05-04 and 2027-11-04 and cannot be scored yet.'),
         ("HSP-029&rsquo;s issuance cut.",
          'Its on-chain timelock ends on 2026-11-16, after the submission deadline; we added that date up from the proposal&rsquo;s voting start, voting period and timelock period, and two published sources give the same date (<code>PREREG-ADDENDUM.md</code>, 2026-11-12 23:50 UTC entry, item 3). A House of Stake Directors&rsquo; decision on execution follows the timelock, and the proposal text also says the cut needs validator adoption through a protocol upgrade. G_req assumes the ramp; we state it as a pending resolver and do not predict it.'),
@@ -3124,6 +3441,10 @@ def limits(ctx: Ctx) -> str:
         ("Escrow funding", f'before {traced} is mostly sample-attributed.'),
         ("Exchange labels are snapshots", 'dated 2026-11-06. Exchange addresses retired before then may be missing, which biases the lower bound down.'),
         ("The name-filter check", 'behind the lst-pool.near sensitivity read sampled validator sets, not every epoch.'),
+        ("Investment-case assumptions.", 'The required return and the 2031 revenue multiple are assumptions, shown as a grid; which data window anchors each '
+         'scenario was chosen after the annual volumes, monthly shares and take rates were computed; the market&rsquo;s growth last year is all Intents&rsquo; and '
+         'partly DefiLlama&rsquo;s 2026-09-01 counting change; the Monte Carlo&rsquo;s volume drift comes from the one month that spans that change. All of it is '
+         'exploratory and dated in the addendum.'),
         ("The upper bound is mechanical.", 'It treats every unlabelled top-100 receiver as an exchange, including accounts that are probably not.'),
         ("DefiLlama&rsquo;s revenue", 'is NEAR delivered to the wallets, not fees accrued, and its volume series steps up on 2026-09-01.'),
         ("Not reproduced here.", f'An earlier analysis of {ctx.M("unstakers_a14_n")} accounts that reach one unlabelled hub (THESIS.md, the supply-side section, and docs/supply-side.md) is exploratory and is not reproduced here; the repository does not record when it was done or whether it preceded the freeze. No card on this page uses it.'),
@@ -3171,17 +3492,33 @@ def glance(ctx: Ctx) -> str:
 
 
 def kpis(ctx: Ctx) -> str:
-    """Four headline figures under the answer, each labelled pre-registered or exploratory and linked to its card. Every number is a metric span."""
+    """Four headline figures under the lede, each labelled and linked to its card. Every number is a metric span."""
     M = ctx.M
     items = [
-        ("Pre-registered", f'{M("h1a_ratio_as_written_x")}×', "net staking outflow ÷ staking rewards, 90 days (H1a fails)", "#chart-h1a"),
-        ("Exploratory", f'{M("ladder_all_wallets_pct_of_issuance", 2)}%', "of net issuance reached NEAR&rsquo;s three Intents revenue wallets, 30 days", "#chart-ladder"),
-        ("Exploratory", f'{M("ladder_public_collectors_pct_of_issuance", 2)} pts', "of that trace to public fee collectors", "#chart-ladder"),
-        ("Exploratory", f'{M("ladder_escrow_unshields_pct_of_issuance", 2)} pts', "arrived from an escrow whose fee stream is unattested", "#chart-ladder"),
+        ("Exploratory", f'{M("ic_implied_cagr_r15_x25_pct")}%', "a year: the growth in captured revenue NEAR&rsquo;s price would assume if Intents carried it alone", "#chart-priced"),
+        ("Exploratory", f'{M("ic_take_needed_vs_gross_x")}×', "Intents&rsquo; whole gross fee: what NEAR would have to capture at last year&rsquo;s pace", "#chart-multiply"),
+        ("Exploratory", f'{M("ic_base_coverage_2031_pct")}%', "of NEAR&rsquo;s dilution captured revenue would pay for in 2031, base case", "#chart-scenarios"),
+        ("Exploratory", f'{M("ladder_all_wallets_pct_of_issuance", 2)}%', "of net issuance verifiably reached NEAR&rsquo;s revenue wallets, 30 days", "#chart-ladder"),
     ]
     lis = "".join(f'<li class="kpi"><span class="kt">{t}</span><a class="kv" href="{h}">{v}</a><span class="kl">{l}</span></li>'
                   for t, v, l, h in items)
     return f'<ul class="kpis" aria-label="Headline figures">{lis}</ul>'
+
+
+def thesis_box(ctx: Ctx) -> str:
+    """The long-term view, under the title (exploratory). Every number is a metric span."""
+    M = ctx.M
+    return (
+        '<div class="thesis" id="thesis">'
+        f'<p><strong>The long-term view (exploratory, chosen after the freeze).</strong> If Intents&rsquo; fees carried NEAR&rsquo;s price alone, the price would '
+        f'assume captured revenue grows {M("ic_implied_cagr_r15_x25_pct")}% a year to 2031 (for the price to rise {M("ic_base_r_pct")}% a year and end at '
+        f'{M("ic_base_x")}× revenue). The cross-chain venues tracked here grew {M("ic_market_cagr_1y_pct")}% last year, all of it Intents&rsquo; own growth: the '
+        f'other venues&rsquo; volume changed by {M("ic_market_ex_intents_cagr_1y_pct")}%. At last year&rsquo;s pace and Intents&rsquo; best share, NEAR would have to capture '
+        f'{M("ic_take_needed_vs_gross_x")}× Intents&rsquo; whole gross fee. In the base case, captured revenue would pay for {M("ic_base_coverage_2031_pct")}% of the '
+        f'dollar value of NEAR&rsquo;s dilution in 2031.</p>'
+        '<p><strong>So:</strong> Intents has the largest share of its market, but as a claim on Intents&rsquo; fees NEAR is priced for more growth than the '
+        'data show at today&rsquo;s fees; holding it rests on more than that fee capture, or on a much higher take. The signposts say which. '
+        '<a href="#forward-view">The investment case.</a> This is not a valuation and not advice.</p></div>')
 
 
 def side_nav() -> str:
@@ -3191,10 +3528,10 @@ def side_nav() -> str:
     toc_exp = "".join(f'<li><a href="#chart-{cid}">{esc(lab)}</a></li>' for cid, lab, _ in EXP_CARDS)
     toc_fwd = "".join(f'<li><a href="#chart-{cid}">{esc(lab)}</a></li>' for cid, lab, _ in FWD_CARDS)
     secs = "".join(f'<li><a href="#{sid}">{lab}</a></li>' for sid, lab in
-                   (("scorecard", "Scorecard"), ("not-computed", "Not computed here"), ("reproduce", "Reproduce"), ("limits", "Limits")))
+                   (("thesis", "The long-term view"), ("scorecard", "Scorecard"), ("not-computed", "Not computed here"), ("reproduce", "Reproduce"), ("limits", "Limits")))
     return (f'<nav class="side" aria-label="Contents"><h2 class="sr">Contents</h2>'
             f'<p class="sidecap">Page</p><ul class="toc-more">{secs}</ul>'
-            f'<p class="sidecap">Forward view</p><ul class="toc-more">{toc_fwd}</ul>'
+            f'<p class="sidecap">Investment case</p><ul class="toc-more">{toc_fwd}</ul>'
             f'<p class="sidecap">Pre-registered</p><ul class="toc">{toc_pre}</ul>'
             f'<p class="sidecap">Exploratory</p><ul class="toc">{toc_exp}</ul></nav>')
 
@@ -3205,8 +3542,8 @@ def header(ctx: Ctx) -> str:
     docs = "".join(f'<li><a href="{esc(gh(p))}">{esc(p)}</a></li>' for p in ("THESIS.md", "README.md", "docs/glossary.md", "PREREG.md", "PREREG-ADDENDUM.md"))
     return (
         f'<header class="top"><p class="eyebrow">NEAR Hackathon 2026 · Investment Thesis track</p>'
-        f'<h1>Who buys and who sells NEAR?</h1>'
-        f'{answer_line(ctx)}{glance(ctx)}'
+        f'<h1>Can NEAR&rsquo;s Intents business grow into its dilution?</h1>'
+        f'{thesis_box(ctx)}{answer_line(ctx)}{glance(ctx)}'
         f'<p class="lede">A pre-registered, re-runnable token flow statement for NEAR. <code>python3 -m pipeline.compute</code> recomputes every number from the raw '
         f'snapshots in <code>data/raw/</code>, <code>python3 -m pipeline.render</code> redraws every chart from the committed metrics and snapshots, and <code>make site</code> runs both '
         f'offline in one command. Each chart shows the query behind it, the exact numbers it plots, and one plain sentence on what it shows and what it does not.</p>'
@@ -3280,10 +3617,11 @@ def build_page(ctx: Ctx, breaks: bool = True) -> str:
     body = (
         f'<a class="skip" href="#main">Skip to the content</a><div class="wrap">{header(ctx)}{side_nav()}'
         f'<main id="main">{scorecard(ctx)}'
-        f'<section id="forward-view" aria-labelledby="fwd-h"><h2 id="fwd-h">Forward view (exploratory, chosen after the freeze)</h2>'
-        f'<p class="note">The long-term question: can NEAR&rsquo;s Intents business grow its fee capture into the dilution NEAR&rsquo;s holders absorb? '
-        f'These two cards project it to 2031-11-04, the frozen rating rule&rsquo;s own date. The model was written on 2026-11-13, after the freeze; it changes no '
-        f'hypothesis, threshold, probability or the rating, and its own forecasts are dated in the addendum so they can be scored later.</p>'
+        f'<section id="forward-view" aria-labelledby="fwd-h"><h2 id="fwd-h">The investment case (exploratory, chosen after the freeze)</h2>'
+        f'<p class="note">The long-term question: can NEAR&rsquo;s Intents business grow its fee capture into the dilution NEAR&rsquo;s holders absorb, and does the '
+        f'price already assume it will? In order: what the price assumes, what would have to multiply, three scenarios from the data, peer valuation, the '
+        f'uncertainty (a Monte Carlo whose forecasts are dated in the addendum), the supply path, and the signposts. All of it was chosen on 2026-11-13 and '
+        f'2026-11-14, after the freeze, and changes no hypothesis, threshold, probability or the rating.</p>'
         f'{fwd}</section>'
         f'<section id="preregistered" aria-labelledby="pre-h"><h2 id="pre-h">Pre-registered results</h2>'
         f'<p class="note">Hypotheses, thresholds and probabilities were fixed in <a href="{esc(gh("PREREG.md"))}">PREREG.md</a> before the first BigQuery result the '
@@ -3303,12 +3641,69 @@ def build_page(ctx: Ctx, breaks: bool = True) -> str:
         '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
         '<meta name="viewport" content="width=device-width, initial-scale=1">\n<meta name="color-scheme" content="light dark">\n'
         '<title>NEAR flow statement dashboard</title>\n'
-        '<meta name="description" content="Pre-registered, re-runnable token flow statement for NEAR. The pre-registered question is how much NEAR flows to exchanges and how much of that '
+        '<meta name="description" content="A long-term investment thesis for NEAR: what its price assumes, what the evidence supports, scenarios and signposts, on a pre-registered, re-runnable token flow statement. The pre-registered question is how much NEAR flows to exchanges and how much of that '
         'identified buyers absorb; the question the evidence can answer is how much of NEAR&#x27;s value capture can you verify. '
         'Every chart shows the query behind it and the exact numbers it plots.">\n'
         '<link rel="icon" href="data:,">\n'
         f"<style>\n{css()}\n</style>\n</head>\n")
     return f"{head}<body>\n{break_lines(body) if breaks else body}\n</body>\n</html>\n"
+
+
+# ------------------------------------------------------------------ the story page (site/story.html): the case in six charts, for the demo
+STORY_NAME = "story.html"
+STORY_CARDS = ("ladder", "priced", "multiply", "scenarios", "fwdcov", "signposts")   # in the order the story tells them
+STORY_CSS = """
+.story main{max-width:980px;margin:0 auto;padding:0 20px}
+.story .slide{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:36px 0;border-bottom:1px solid var(--grid)}
+.story .card{border:0;background:transparent;padding:0;margin:0}
+.story .sn,.story .cardfoot,.story .keyfigs,.story .tablewrap,.story figcaption,.story .cardtop a,.story .notes{display:none}
+.story .card h3{font-size:clamp(1.25rem,2.6vw,1.85rem);line-height:1.25;margin:.7rem 0 1.1rem}
+.story .step{margin:0;font-size:.8125rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.story h1{font-size:clamp(2rem,5.4vw,3.4rem);line-height:1.1;margin:.3em 0 .5em}
+.story .cover p,.story .end p{font-size:clamp(1.05rem,1.9vw,1.3rem);max-width:none;margin:.5rem 0}
+.story .cover .big{font-size:clamp(1.4rem,3vw,2.1rem);font-weight:750;line-height:1.25;margin:.2rem 0 1rem}
+.story .end ul{font-size:clamp(1rem,1.7vw,1.2rem);padding-left:1.2rem}
+.story .end li{max-width:none;margin:.35rem 0}
+"""
+
+
+def build_story(ctx: Ctx) -> str:
+    """A second page with the same charts and no detail: one chart per screen, for recording the demo. Same data, same spans;
+    every link points back into the dashboard."""
+    M = ctx.M
+    by_id = {cid: fn for cid, _, fn in PRE_CARDS + EXP_CARDS + FWD_CARDS}
+    steps = ("What reaches NEAR today", "What the price assumes", "What would have to give", "Three futures from the data",
+             "How uncertain it is", "What to watch")
+    cover = (
+        '<section class="slide cover"><p class="eyebrow">Built at NEAR HACKATHON 2026 · Investment Thesis track</p>'
+        '<h1>Can NEAR&rsquo;s Intents business grow into its dilution?</h1>'
+        f'<p class="big">If Intents carried NEAR&rsquo;s price alone, the price would assume captured revenue grows {M("ic_implied_cagr_r15_x25_pct")}% a year to 2031. '
+        f'At today&rsquo;s fees, that would take NEAR capturing {M("ic_take_needed_vs_gross_x")}× Intents&rsquo; whole gross fee.</p>'
+        '<p>A long-term thesis built on a pre-registered, re-runnable token flow statement: every number on the next screens rebuilds offline from '
+        'committed data with one command. Exploratory results are labelled; the pre-registered ones are published, misses included.</p></section>')
+    slides = "".join(f'<section class="slide"><p class="step">{i + 1} · {esc(steps[i])}</p>{by_id[cid](ctx)}</section>'
+                     for i, cid in enumerate(STORY_CARDS))
+    end = (
+        '<section class="slide end"><p class="step">The view</p>'
+        f'<p class="big" style="font-size:clamp(1.3rem,2.6vw,1.8rem);font-weight:750">Intents has the largest share of its market, but as a claim on Intents&rsquo; fees NEAR is '
+        f'priced for more growth than the data show at today&rsquo;s fees: the bull case reaches {M("ic_bull_vs_required_pct")}% of the revenue the price would assume.</p>'
+        '<ul>'
+        f'<li>Base case: captured revenue would pay for {M("ic_base_coverage_2031_pct")}% of NEAR&rsquo;s dilution in 2031.</li>'
+        f'<li>To close the gap in today&rsquo;s market, NEAR would have to capture {M("ic_take_needed_vs_gross_x")}× Intents&rsquo; whole gross fee.</li>'
+        f'<li>Pre-registered: H1a fails; H1b and H1c are inconclusive; the frozen rule outputs {M("rating_output")}.</li>'
+        '<li>Forecasts are dated in the addendum and scored as written, misses included.</li></ul>'
+        f'<p>Re-run it: <code>git clone {esc(REPO_URL)} &amp;&amp; make site</code>. Research, not investment advice.</p></section>')
+    body = f'<main class="story">{cover}{slides}{end}</main>'
+    body = body.replace('href="#', 'href="index.html#')
+    head = (
+        '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
+        '<meta name="viewport" content="width=device-width, initial-scale=1">\n<meta name="color-scheme" content="light dark">\n'
+        '<title>NEAR investment thesis: the story</title>\n'
+        '<meta name="description" content="The NEAR investment case in six charts: what reaches NEAR, what the price assumes, what would have to give, '
+        'three futures, the uncertainty and the signposts.">\n'
+        '<link rel="icon" href="data:,">\n'
+        f"<style>\n{css()}\n{STORY_CSS.strip()}\n</style>\n</head>\n")
+    return f"{head}<body class=\"story\">\n{break_lines(body)}\n</body>\n</html>\n"
 
 
 # ------------------------------------------------------------------ build, write, check
@@ -3318,7 +3713,7 @@ def build_site(root: Path = ROOT, forward_dir: Path | None = None) -> tuple[dict
     main() names the data fingerprint and the data date from that Ctx. A second Ctx would read the data again, and without the
     --forward-dir given: with a broken default data/forward it stopped the command after the page had been written elsewhere."""
     ctx = Ctx(root, forward_dir)
-    return {f"{SITE_DIR}/{PAGE_NAME}": build_page(ctx).encode("utf-8")}, ctx
+    return {f"{SITE_DIR}/{PAGE_NAME}": build_page(ctx).encode("utf-8"), f"{SITE_DIR}/{STORY_NAME}": build_story(ctx).encode("utf-8")}, ctx
 
 
 def render(root: Path = ROOT, forward_dir: Path | None = None) -> dict[str, bytes]:

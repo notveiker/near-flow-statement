@@ -48,6 +48,15 @@ Plain-language definitions of the terms a first-time reader meets in the [README
 - **Dry run.** A run of the scorer on current data to see that it works. It is not a score of F1-F4. A dry run made during the window reads days of the window, and the addendum discloses the ones that did.
 - **Longer-dated predictions P1 to P3.** Three further pre-registered predictions that resolve on dates after the hackathon. They cannot be scored yet.
 
+## The investment case (exploratory)
+
+- **Coverage.** Captured Intents revenue over 90 days divided by the USD value of the net new NEAR minted over the same days: how much of NEAR's dilution the revenue routed to NEAR's wallets would pay for. It is the quantity of P3.
+- **What the price assumes (reverse DCF).** The yearly growth in captured revenue at which today's market cap would earn a required return to 2031 and end at a given multiple of revenue. The return and the multiple are assumptions, shown as a grid.
+- **Take rate.** Captured revenue divided by Intents' volume, in basis points (1 bp = 0.01%). The gross fee is all fees divided by volume.
+- **Scenarios.** Bear, base and bull values for market growth, Intents' share, the take rate and HSP-029, each taken from the data, not weighted by probability.
+- **Monte Carlo.** Many simulated futures drawn from the monthly changes in the data, giving a distribution rather than one path. Its forecasts M1 to M4 are dated in the addendum.
+- **Signpost.** A value to watch against the line that would favour the upside, such as the take rate against what the price needs.
+
 ## NEAR Intents and its revenue
 
 - **NEAR Intents.** The cross-chain swap venue whose fees the thesis follows. Its account `intents.near` pays out the withdrawals that reach NEAR's wallets.

@@ -53,6 +53,7 @@ Any figure that compares DefiLlama's Intents volume, or a rate built on it, acro
   - The dashboard's monthly series (`intents_monthly`: volume, captured and gross take; `peer_share_monthly`) and the 365-day peer share it shows: August and earlier months are on the old definition.
   - The escrow-release forward tests E1-E5 (`PREREG-ADDENDUM.md`, 2026-11-13 entry): the base rates of E4 and E5 use halved DefiLlama volume over windows ending 2026-08-05 to 11-04, and the earlier windows straddle the step. Their thresholds and probabilities are unchanged.
   - The window figures on the halved basis (take, 1Click share, net peer share, SwapKit's share of all Intents volume): their window lies after the step, and the table above restates them.
+  - The investment case ([`investment-case.md`](investment-case.md), 2026-11-13 and 2026-11-14): the peer set's growth over the last year (13.4<!--n:ic_market_cagr_1y_pct-->%) compares a year that straddles the step with one wholly before it, so part of it is the change of definition; the decomposition's market, share and take factors are on the reported basis, and only their product, the revenue, is not affected. The Monte Carlo's whole volume drift comes from the 2026-08 to 2026-09 pair, which spans the step; without it volume changed by -4.5<!--n:fwd_exsep_vol_monthly_mean_pct-->% a month and 3.3<!--n:fwd_exsep_p_cov_ge100_2031_pct-->% of paths cover all dilution by 2031. The forecasts M1-M4 were dated with the pair in and are unchanged.
 
 ## Recipe
 
