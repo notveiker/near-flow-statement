@@ -17,7 +17,7 @@
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0f0f0d;--surface:#171714;--raise:#1e1e1a;--ink:#f1efe7;--ink2:#c6c3b6;--muted:#a19e91;--grid:#2b2a25;--axis:#4c4a43;--border:rgba(241,239,231,.13);--code:#22211d;--s1:#3987e5;--s2:#d95926;--ctx:#898781;--link:#8ab8ee;--focus:#6da7ec;--live:#2fd39a;--shade:rgba(255,255,255,.22);}}
 :root[data-theme="dark"]{color-scheme:dark;--bg:#0f0f0d;--surface:#171714;--raise:#1e1e1a;--ink:#f1efe7;--ink2:#c6c3b6;--muted:#a19e91;--grid:#2b2a25;--axis:#4c4a43;--border:rgba(241,239,231,.13);--code:#22211d;--s1:#3987e5;--s2:#d95926;--ctx:#898781;--link:#8ab8ee;--focus:#6da7ec;--live:#2fd39a;--shade:rgba(255,255,255,.22);}
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-padding-top:12px}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:62px}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--sans);overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
 a{color:var(--link);text-underline-offset:3px;text-decoration-thickness:1px}
@@ -113,7 +113,6 @@ h3{font-size:1.0625rem;font-weight:650;line-height:1.35;margin:.5rem 0 .6rem}
 .tabbar a{padding:13px 0 11px;border-bottom:2px solid transparent;margin-bottom:-1px;color:var(--muted);font-size:.9375rem;font-weight:600;text-decoration:none}
 .tabbar a:hover{color:var(--ink)}
 @media (max-width:759px){.tabbar{flex-wrap:nowrap;overflow-x:auto;gap:0 22px;scrollbar-width:none}.tabbar a{white-space:nowrap}}
-.panel,.card{scroll-margin-top:64px}
 .panel>h2:first-child,.panel>section:first-child>h2{margin-top:1.2rem}
 @supports selector(:has(*)){
 .tabs>.panel{display:none}
@@ -334,7 +333,7 @@ footer{margin:3.5rem 0 2.5rem;padding-top:1rem;border-top:1px solid var(--grid);
 <li><a href="#chart-usage">Network usage</a></li></ul></nav>
 <main id="main">
 <div class="records">
-<p class="record"><span><strong>Predictions first, data second.</strong> Three hypotheses, a rating rule and seven dated forecasts were frozen on 2026-11-05, before the first BigQuery result the repository records. Each is scored as written, and every result is on this page, including the ones the data went against.</span> <a href="#scorecard">See how they scored</a></p>
+<p class="record"><span><strong>Predictions first, data second.</strong> Three hypotheses, a rating rule and seven dated forecasts were frozen on 2026-11-05, before the first BigQuery result the repository records. Each is scored as written, and every result is on this page, including the ones the data went against.</span> <a href="#preregistered">See how they scored</a></p>
 <p class="record"><span><strong>Re-run it.</strong> One command rebuilds every chart and every committed number on this page, offline, from the raw snapshots in the repository. No keys, no installs. Only the Today row is fetched live.</span> <a href="#reproduce">See the steps</a></p></div>
 <div class="tabs">
 <nav class="tabbar" aria-label="Sections"><a href="#forward-view" data-tab="forward-view">Investment case</a><a href="#preregistered" data-tab="preregistered">Pre-registered tests</a><a href="#exploratory" data-tab="exploratory">Supporting evidence</a><a href="#method" data-tab="method">Method and limits</a></nav>

@@ -947,7 +947,7 @@ CSS = """
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){/*DARK*/}}
 :root[data-theme="dark"]{/*DARK*/}
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-padding-top:12px}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:62px}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--sans);overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
 a{color:var(--link);text-underline-offset:3px;text-decoration-thickness:1px}
@@ -1043,7 +1043,6 @@ h3{font-size:1.0625rem;font-weight:650;line-height:1.35;margin:.5rem 0 .6rem}
 .tabbar a{padding:13px 0 11px;border-bottom:2px solid transparent;margin-bottom:-1px;color:var(--muted);font-size:.9375rem;font-weight:600;text-decoration:none}
 .tabbar a:hover{color:var(--ink)}
 @media (max-width:759px){.tabbar{flex-wrap:nowrap;overflow-x:auto;gap:0 22px;scrollbar-width:none}.tabbar a{white-space:nowrap}}
-.panel,.card{scroll-margin-top:64px}
 .panel>h2:first-child,.panel>section:first-child>h2{margin-top:1.2rem}
 @supports selector(:has(*)){
 .tabs>.panel{display:none}
@@ -3677,7 +3676,7 @@ def record_strip(ctx: Ctx) -> str:
     freeze_order(ctx)
     return ('<div class="records"><p class="record"><span><strong>Predictions first, data second.</strong> Three hypotheses, a rating rule and seven dated '
             f'forecasts were frozen on {FREEZE_UTC[:10]}, before the first BigQuery result the repository records. Each is scored as written, and every '
-            'result is on this page, including the ones the data went against.</span> <a href="#scorecard">See how they scored</a></p>'
+            'result is on this page, including the ones the data went against.</span> <a href="#preregistered">See how they scored</a></p>'
             '<p class="record"><span><strong>Re-run it.</strong> One command rebuilds every chart and every committed number on this page, offline, '
             'from the raw snapshots in the repository. No keys, no installs. Only the Today row is fetched live.</span> '
             '<a href="#reproduce">See the steps</a></p></div>')
