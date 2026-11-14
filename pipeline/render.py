@@ -3779,7 +3779,7 @@ def thesis_box(ctx: Ctx) -> str:
         'The NEAR those fees send to NEAR&rsquo;s revenue wallets equals, at most, about a sixth of net new supply.</p><p>For the fees alone to '
         f'carry the price NEAR had on {M("upd_asof") if has_update(ctx) else M("asof")}, they would have to grow faster each year to 2031 than '
         'cross-chain volume grew over any period in the data. Owning NEAR at that price is a bet on a bigger cut of those fees, or on value beyond them.</p>'
-        '<p class="go"><a href="#forward-view">Read the case</a> or <a href="story.html">see it as slides</a>.</p></div>')
+        '<p class="go"><a href="' + PAPER_NAME + '">Read our paper</a> or <a href="story.html">see it as slides</a>.</p></div>')
 
 
 def record_strip(ctx: Ctx) -> str:
@@ -4259,6 +4259,7 @@ def build_page(ctx: Ctx, breaks: bool = True) -> str:
 
 # ------------------------------------------------------------------ the story page (site/story.html): the case in six charts, for the demo
 STORY_NAME = "story.html"
+PAPER_NAME = "NEAR_Long_Thesis.pdf"   # the written paper: a file placed in site/ by hand, linked from the first screen, not built here
 STORY_CARDS = ("ladder", "priced", "multiply", "scenarios", "fwdcov", "signposts")   # in the order the story tells them
 STORY_CSS = """
 .story main{max-width:980px;margin:0 auto;padding:0 20px}

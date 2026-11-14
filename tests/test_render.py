@@ -508,10 +508,13 @@ class NoExternalResources(unittest.TestCase):
             self.assertNotRegex(m.group(1).strip("'\" "), r"^(https?:)?//", css[max(0, m.start() - 30):m.end()])
         self.assertNotRegex(PAGE, r"""(?:src|href)\s*=\s*["']\s*(?:https?:)?//(?!github\.com/notveiker/)""")
 
+    def test_the_paper_the_first_screen_links_to_is_committed(self):
+        self.assertTrue((R.ROOT / R.SITE_DIR / R.PAPER_NAME).read_bytes().startswith(b"%PDF-"))
+
     def test_links_are_anchors_or_repo_urls(self):
         for a in DOM.find_all("a"):
             href = a.attrs["href"]
-            self.assertTrue(href.startswith("#") or href.startswith(R.REPO_URL + "/") or href == R.STORY_NAME, href)
+            self.assertTrue(href.startswith("#") or href.startswith(R.REPO_URL + "/") or href in (R.STORY_NAME, R.PAPER_NAME), href)
             self.assertNotIn("javascript:", href.lower())
         for a in DOM.find_all("a"):
             if a.attrs["href"].startswith("http"):
