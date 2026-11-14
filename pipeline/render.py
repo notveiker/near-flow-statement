@@ -2893,7 +2893,10 @@ def card_usage(ctx: Ctx) -> str:
                '<code>docs/usage.md</code> has the details.'),
         source=source_p(ctx, raw=("raw/nearblocks/charts.json",), code=("pipeline/fetch_keyless.py", "pipeline/compute.py"),
                         upstream=("Nearblocks /v1/charts daily transactions, active accounts, active contracts and new accounts",)),
-        query=query_details(ctx, endpoints=(
+        query=query_details(ctx, sql=("sql/usage_daily.sql", "sql/usage_receipts.sql", "sql/usage_signer_groups.sql"), note=(
+            'The chart is drawn from the Nearblocks series named at the end of this block. The three BigQuery queries are the ones the track brief '
+            'asks for (daily active accounts, transaction counts, contract usage). They were run on 2026-11-13, after the freeze (exploratory), '
+            'and reproduce both Nearblocks series; <code>docs/usage.md</code> has what they found.'), endpoints=(
             ("Endpoint", "GET https://api.nearblocks.io/v1/charts"),
             ("Fetcher", "python3 -m pipeline.fetch_keyless (no key), function fetch_nearblocks()"),
             ("Step and series", "pipeline/compute.py, function l1_usage(): the step day, the four counts on the two days, the change since the step, and series l1_daily in data/series.json"),

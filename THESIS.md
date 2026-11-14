@@ -8,9 +8,9 @@ NEAR mints about 88,295<!--n:net_issuance_near_per_day_window--> more NEAR a day
 
 That is what the token earns today. The price asks for far more. Suppose Intents' fees had to carry NEAR's price alone, with the price rising 15<!--n:ic_base_r_pct-->% a year and the market cap ending at 25<!--n:ic_base_x-->× revenue in 2031. The fees would have to grow 84.9<!--n:ic_implied_cagr_r15_x25_pct-->% a year. The cross-chain venues we track grew 13.4<!--n:ic_market_cagr_1y_pct-->% last year. At that pace, and with Intents at its best share of the past twelve months, NEAR would have to take 2.5<!--n:ic_take_needed_vs_gross_x-->× the whole fee Intents charges.
 
-So our answer is: not on today's evidence. Intents had the largest share of its peer set over the 30, 90 and 365 days to 2026-11-04, and the fees that reach NEAR are real. But at today's price NEAR is a bet on more than those fees. It is a bet on the L1 itself, on a much larger cross-chain market, or on a much higher take. The rating rule we froze in advance outputs Hold, which carries no view on NEAR.
+So our answer is: not on today's evidence. Intents had the largest share of its peer set over the 30, 90 and 365 days to 2026-11-04, and the NEAR that reaches those wallets is real. But at today's price NEAR is a bet on more than Intents' fees. It is a bet on the L1 itself, on a much larger cross-chain market, or on a much higher take. The rating rule we froze in advance outputs Hold, which carries no view on NEAR.
 
-We wrote our predictions down before we saw any outcome, and we publish every result. One hypothesis failed, two could not be decided, and two of the four one-week forecasts missed. [The scores are below](#how-our-predictions-scored-pre-registered).
+We froze our predictions before the first BigQuery flow result this repository records, and we publish every result. One hypothesis failed, two could not be decided, and two of the four one-week forecasts missed. [The scores are below](#how-our-predictions-scored-pre-registered).
 
 *Labels: the hypothesis tests, the rating rule and the dated predictions are pre-registered. The flow statement and the investment case are exploratory, chosen after the freeze ([`PREREG-ADDENDUM.md`](PREREG-ADDENDUM.md)). Terms such as H1a, Hold, the ladder and the escrow are defined in the [glossary](docs/glossary.md).*
 
@@ -18,7 +18,7 @@ We wrote our predictions down before we saw any outcome, and we publish every re
 
 The hopeful case for NEAR is that Intents' fees grow into the dilution its holders absorb. We tested that case.
 
-NEAR's token captures value from Intents only through the fees routed to NEAR's revenue wallets. Those fees are real, and today they would pay for a fraction of NEAR's dilution. If Intents carried NEAR's price alone, the price would assume the fees grow 84.9<!--n:ic_implied_cagr_r15_x25_pct-->% a year to 2031 ([section 6.1](#61-what-the-price-assumes)). The peer set's volume has not grown that fast over any window in the data. Its fastest was 76.9<!--n:ic_market_cagr_3y_pct-->% a year, over the three years from the 2023 low.
+NEAR's token captures value from Intents only through the fees routed to NEAR's revenue wallets. Today those fees would pay for a fraction of NEAR's dilution. If Intents carried NEAR's price alone, the price would assume the fees grow 84.9<!--n:ic_implied_cagr_r15_x25_pct-->% a year to 2031 ([section 6.1](#61-what-the-price-assumes)). The peer set's volume has not grown that fast over any window in the data. Its fastest was 76.9<!--n:ic_market_cagr_3y_pct-->% a year, over the three years from the 2023 low.
 
 This is a claim about what is measured and what is priced. It is not a valuation, and the Hold is not a recommendation. Value capture that does not pass through those wallets, or that cannot be seen on chain, is not in it. NEAR's market cap also prices the L1, which we do not value here.
 
@@ -36,7 +36,7 @@ And Intents leads its market. Its share of the peer set's reported volume was 55
 
 *Exploratory, except H1a. The detail is in sections [3](#3-evidence-against-who-else-gets-paid-usage-valuation-context-exploratory), [4](#4-the-supply-side-pre-registered-tests-with-labelled-extras) and [6](#6-the-investment-case-what-the-price-assumes-what-the-evidence-supports-exploratory).*
 
-The price is far ahead of the fees. Captured revenue would have to go from $19.6<!--n:ic_rev_90d_ann_m-->M a year to $424<!--n:ic_required_rev_2031_m-->M by 2031. With the market at its last-year pace and Intents at its twelve-month-high share, NEAR's take would have to rise from 4.13<!--n:ic_take_90d_bp--> bp of volume to 37.4<!--n:ic_take_needed_bp--> bp. Today captured revenue would pay for 16.6<!--n:fwd_coverage_now_pct-->% of the dollar value of NEAR's dilution, and in our base scenario it pays for 44.6<!--n:ic_base_coverage_2031_pct-->% in 2031. Only the most favourable combinations reach what the price would assume (section 6.3).
+The price is far ahead of the fees. Captured revenue would have to go from $19.6<!--n:ic_rev_90d_ann_m-->M a year to $424<!--n:ic_required_rev_2031_m-->M by 2031. With the market at its last-year pace and Intents at its twelve-month-high share, NEAR's take would have to rise from 4.13<!--n:ic_take_90d_bp--> bp of volume to 37.4<!--n:ic_take_needed_bp--> bp. Today captured revenue would pay for 16.6<!--n:fwd_coverage_now_pct-->% of the dollar value of NEAR's dilution, and in our base scenario, at a flat price, it pays for 44.6<!--n:ic_base_coverage_2031_pct-->% in 2031. Only the most favourable combinations reach what the price would assume (section 6.3).
 
 What reaches NEAR is also smaller and less certain than the headline. We can verify a range, 4.53<!--n:ladder_public_collectors_pct_of_issuance-->% to 15.81<!--n:ladder_all_wallets_pct_of_issuance-->% of net issuance. Even the top is about a sixth of issuance, and this data does not show who buys the rest. None of the three wallets burns, stakes or locks the NEAR it receives (section 1). Listed partner fees were 1.44<!--n:partners_kept_vs_near_rev_floor_x-->× to 2.22<!--n:partners_kept_vs_near_rev_high_x-->× NEAR's entire captured revenue (section 3).
 
@@ -82,7 +82,7 @@ Before the first BigQuery flow result this repository records, we froze three hy
 
 *Chosen on 2026-11-14, after F1-F4 were scored.*
 
-Everything above stops at 2026-11-04, the pre-registered cutoff. We ran the same calculations on DefiLlama, CoinGecko and Nearblocks data fetched again on 2026-11-14, which run to 2026-11-13 (`pipeline/update.py`).
+The analysis above stops at 2026-11-04, the pre-registered cutoff. Only the forward tests look past it. We ran the same calculations on DefiLlama, CoinGecko and Nearblocks data fetched again on 2026-11-14, which run to 2026-11-13 (`pipeline/update.py`).
 
 The gap narrowed. NEAR's price would now assume captured revenue grows 79.8<!--n:upd_ic_implied_cagr_r15_x25_pct-->% a year to 2031, which is still faster than any window in the data. NEAR would need 1.6<!--n:upd_ic_take_needed_vs_gross_x-->× Intents' whole gross fee. In the base case captured revenue would pay for 62.2<!--n:upd_ic_base_coverage_2031_pct-->% of NEAR's dilution in 2031. Two things moved: NEAR's market cap fell to $4.48<!--n:upd_mcap_usd_b-->B, and 90-day captured revenue rose to $21.2<!--n:upd_ic_rev_90d_ann_m-->M at an annual rate.
 
@@ -102,7 +102,7 @@ The track brief says the score depends on "evidence someone else can reproduce".
 | Impact | It turns the claim that Intents revenue buys NEAR into a checkable range. It names the one disclosure that would settle it, a per-stream attestation of the escrow releases. And it shows how far public data gets alone: the releases track confidential swap volume ([`docs/confidential-flow.md`](docs/confidential-flow.md)) |
 | Originality | A pre-registration frozen before the first BigQuery flow result the repository records, and a ladder that separates what is traceable on chain from what is not |
 | Forward-looking models | `pipeline/investment_case.py` holds the reverse DCF of what the price assumes, the market × share × take split, the scenarios, a sensitivity table, peer valuation and the signposts. `pipeline/model.py` is a Monte Carlo of coverage to 2031 with dated forecasts (M1-M4). Both are standard library and recomputed by `make reproduce` (section 6) |
-| Sustainability | It re-runs offline from committed snapshots. P1-P3 resolve in 2027, and the forward tests are scored with misses included |
+| Sustainability | It re-runs offline from committed snapshots (`make reproduce`, `make site`). The investment case refreshes with no key: `python3 -m pipeline.fetch_update`, then `make site`, which is how the update to 2026-11-13 was made. The dashboard's Today row recomputes the growth the price assumes in the reader's browser. Dated tests keep it accountable: F1-F4 were scored with misses included, E1-E5 (exploratory) are scored from 2026-12-16, and P1-P3 (pre-registered) resolve in 2027 |
 
 The gaps against the track prompt are in [Limits](#limits). The BigQuery usage queries the brief asks for (daily active accounts, transaction counts, contract usage) were run on 2026-11-13, after the freeze, and are exploratory ([`docs/usage.md`](docs/usage.md)).
 
@@ -122,13 +122,15 @@ The ladder sorts the NEAR that reached the revenue wallets by how far we can tra
 
 **How to read it.** The rungs are not nested. Collectors + escrow + the other source = all three wallets. The buyback-wallet line is a subset of the total, and the two "of which" lines split the collector rung. Counting the 0.56<!--n:ladder_collectors_escrow_funded_pct_of_issuance--> points of fees paid from escrow-funded accounts, 11.81<!--n:ladder_escrow_all_pct_of_issuance--> points passed through the escrow in all. DefiLlama's revenue adapter counts three wallets, but only two were active in the window. `1csfundsadmin.sputnik-dao.near` received no NEAR, so everything arrived at `buybacks.multisignature.near` and `fefundsadmin.sputnik-dao.near`.
 
+**How firm it is.** The total is recomputed from committed data. The split into rungs rests on path labels assigned by code that is not committed. For the window, a committed query re-derives the escrow rung's single-use deliveries and their funding from BigQuery alone (section 2).
+
 **The denominator.** Net issuance is 88,295<!--n:net_issuance_near_per_day_window--> NEAR/day, from archival `total_supply` at blocks 218,718,000 and 223,087,766 (`data/raw/escrow/issuance_reads.json`), matched to the window. `PREREG.md`'s table has an older figure, 15.7<!--n:coverage_rev_near_30d_pct-->% on 88.2<!--n:net_issuance_near_per_day_30d_k-->K NEAR a day. That figure converts DefiLlama's USD revenue to NEAR at daily prices, while the 15.81<!--n:ladder_all_wallets_pct_of_issuance-->% above counts the NEAR itself. They agree closely.
 
 **The total matches DefiLlama, which counts the same wallets.** Our three-wallet total is 418.8<!--n:revwallets_near_k-->K NEAR. Compared in USD, that is 100.9<!--n:revwallets_vs_llama_rev_pct-->% of DefiLlama's reported Intents revenue for the same days. DefiLlama counts what arrives at the same three wallets from outside them, and leaves out internal hops between them. So this confirms the total that arrived, not which fee stream paid for it. Its adapter takes the three wallets from NEAR's own Dune query, so the match checks our pricing and our wallet list. It is not a count from a second source.
 
 ### Arrival is not removal
 
-None of the three wallets burns, stakes or locks its NEAR. NEAR's revenue dashboard says the buybacks "permanently remove NEAR from circulation", but its FAQ says only that product revenue "can be deployed" for buybacks or locking. The buyback wallet held 2.187<!--n:buyback_wallet_near_m-->M NEAR at the last block in the committed chain data (223,230,811<!--n:rpc_block-->, 2026-11-05 22:51 UTC, known at the freeze). The F1 score reads the balance again on 2026-11-14. What happens to that NEAR next is not in the data.
+None of the three wallets burns, stakes or locks its NEAR. NEAR's revenue dashboard says the buybacks "permanently remove NEAR from circulation", but its FAQ says only that product revenue "can be deployed" for buybacks or locking. The buyback wallet held 2.187<!--n:buyback_wallet_near_m-->M NEAR at the last block in the committed chain data (223,230,811<!--n:rpc_block-->, 2026-11-05 22:51 UTC, known at the freeze). The F1 score read the balance again on 2026-11-14. What happens to that NEAR next is not in the data.
 
 The two active wallets are also not alike. Of the points, 11.0<!--n:ladder_buyback_only_pct_of_issuance--> arrived in the buyback wallet. The other 4.81<!--n:ladder_frontend_only_pct_of_issuance--> arrived in the front-end fund, `fefundsadmin.sputnik-dao.near`, which NEAR Intents' fee page names as the recipient of the 0.2% fee on near-intents.org. That fund has never sent NEAR to the buyback wallet, and its signers can change its rules or its code with one vote. Forwarding the fees at all is a permission in the 1Click terms ("may be directed"), not an obligation.
 
@@ -136,7 +138,7 @@ The two active wallets are also not alike. Of the points, 11.0<!--n:ladder_buyba
 
 From the first to the last 30-day block of the supply window, captured revenue in dollars (DefiLlama) rose 118.9<!--n:sr_revenue_usd_first_to_last_block_pct-->%, while the NEAR arriving in the wallets fell 13.8<!--n:sr_near_arrived_fall_first_to_last_block_pct-->%. Against the issuance rate before the 2025-10-29 inflation cut, the same NEAR would be about 7.9<!--n:sr_ladder_at_old_cap_pct-->% of net issuance ([second review](docs/second-review.md), sections 1 and 5).
 
-### Who funded the collectors' fees (added 2026-11-13)
+### Who funded the collectors' fees (exploratory, added 2026-11-13)
 
 `sql/collector_inflow_funders.sql` classifies all 330,260<!--n:collectors_transfers_n--> transfers into the two collectors in the window by sender. Its totals equal `data/raw/bq/collector_inflows.json` for every day, collector and token.
 
@@ -183,7 +185,7 @@ The range is the finding, not either end. If a model needs one number, 15.81<!--
 
 The 100.0<!--n:escrow_funded_exact_30d_pct-->% above tallies two columns of the table (`funder` and `exact_amount_flag`) over the window's single-use deliveries. Which deliveries are single-use does not depend on those columns. It follows from the committed BigQuery output of the arrivals, and the re-read confirmed the recorded funding transfer of every one of them on the chain.
 
-**The funding scan, re-derived (added 2026-11-13).** The SQL of the original funding scan is not in this repository, and its BigQuery job could not be retrieved on 2026-11-13. A new query, `sql/escrow_funding_scan.sql`, re-derives the funding from the public dataset alone. It finds the same 1,262<!--n:escrow_rescan_deliveries_n--> deliveries in the window, and all 1,262<!--n:escrow_rescan_table_rows_matched_n--> table rows match one. Of those deliveries, 909<!--n:escrow_rescan_single_use_n--> were made by an account that delivered once. For 909<!--n:escrow_rescan_reproduced_n--> of those the query finds the same account, the same funding receipt, a funding of the exact amount, one funding only and no other inflow. So, for the window, the escrow rung no longer rests on uncommitted code. Two gaps remain. The code that assigned the table's path labels is still not committed, and before 2026-10-06 the funding hops are sampled. Details: [`docs/sources-checked.md`](docs/sources-checked.md), sections 2 and 3.
+**The funding scan, re-derived (exploratory, added 2026-11-13).** The SQL of the original funding scan is not in this repository, and its BigQuery job could not be retrieved on 2026-11-13. A new query, `sql/escrow_funding_scan.sql`, re-derives the funding from the public dataset alone. It finds the same 1,262<!--n:escrow_rescan_deliveries_n--> deliveries in the window, and all 1,262<!--n:escrow_rescan_table_rows_matched_n--> table rows match one. Of those deliveries, 909<!--n:escrow_rescan_single_use_n--> were made by an account that delivered once. For 909<!--n:escrow_rescan_reproduced_n--> of those the query finds the same account, the same funding receipt, a funding of the exact amount, one funding only and no other inflow. So, for the window, the escrow rung no longer rests on uncommitted code. Two gaps remain. The code that assigned the table's path labels is still not committed, and before 2026-10-06 the funding hops are sampled. Details: [`docs/sources-checked.md`](docs/sources-checked.md), sections 2 and 3.
 
 **What is missing is attestation, not NEAR.** The NEAR verifiably arrived. Two candidate NEAR-side fee streams fit, and the public chain cannot split the 11.25<!--n:ladder_escrow_unshields_pct_of_issuance--> points between them.
 
@@ -191,7 +193,7 @@ The 100.0<!--n:escrow_funded_exact_30d_pct-->% above tallies two columns of the 
 
 *The Confidential Infrastructure Fee.* The 1Click terms (Schedule 1 §6.2, §6.4) say Intents Technology "sets, charges, and retains" it on confidential swaps, with no share to integrators. They state no rate ("if any", §6.3), and the public fee pages do not mention confidential swaps, so the terms say who would keep such a fee, not that one is charged. Schedule 1 §1.7 adds that infrastructure fees "may be directed by the 1Click Service to a designated fee recipient in connection with NEAR ecosystem infrastructure, development and growth activities", and names no recipient. Forwarding any of it to NEAR's wallets would be a choice, not a documented fact.
 
-**What the public side does show (added 2026-11-13).** Both candidates are fees on confidential swaps, and the releases behave like such fees.
+**What the public side does show (exploratory, added 2026-11-13).** Both candidates are fees on confidential swaps, and the releases behave like such fees.
 
 | Daily escrow releases, compared with | Correlation |
 |---|---|
@@ -211,7 +213,7 @@ Releases ran at 14.8<!--n:conf_rel_bp_of_solver_window--> bp of solver volume ov
 
 These numbers come from the NEAR Intents Explorer API, which needs a partner key, and from on-chain wallet arithmetic. Details: [`docs/intents-fee-flows.md`](docs/intents-fee-flows.md), [`docs/partner-concentration.md`](docs/partner-concentration.md).
 
-**NEAR's captured take (a pre-freeze observation, from `PREREG.md`'s table).** NEAR's captured revenue was 4.98<!--n:take_captured_bp_30d--> bp of reported volume, 32.5<!--n:capture_share_30d_pct-->% of gross fees. Reported volume counts more than one side of a swap, so the take on one-sided volume is higher.
+**NEAR's captured take (a pre-freeze observation, from `PREREG.md`'s table).** NEAR's captured revenue was 4.98<!--n:take_captured_bp_30d--> bp of reported volume, 32.5<!--n:capture_share_30d_pct-->% of gross fees. DefiLlama's reported volume counts both legs of some swaps, so on one-sided volume the take is higher ([`docs/leg-count.md`](docs/leg-count.md)).
 
 | Volume basis | Captured take |
 |---|---|
@@ -437,7 +439,7 @@ On the rule's own path, supply grows 9.4<!--n:fwd_supply_growth_5y_pct-->% to 20
 
 **The question** is the frozen rating rule's own: does captured Intents revenue reach the USD value of net new supply by 2031-11-04? The rule answers with one constant price and one growth rate (G_req, 33.2<!--n:rating_g_req_pct-->% a year). The model answers with a distribution.
 
-**Coverage** is captured revenue over a trailing 90 days ÷ the USD value of the net new NEAR minted in the same 90 days. This is P3's quantity. Today it is 16.6<!--n:fwd_coverage_now_pct-->% at one price, or 17.8<!--n:p3_quantity_90d_asof_pct-->% priced daily, as P3 measures it. It has risen from 11.8<!--n:ic_cov_hist_first_pct-->% on 2026-02-04, the first date with 90 days of prices. The dashboard draws that history before the projection.
+**Coverage** is captured revenue over a trailing 90 days ÷ the USD value of the net new NEAR minted in the same 90 days. This is P3's quantity. Today it is 16.6<!--n:fwd_coverage_now_pct-->% at one price, or 17.8<!--n:p3_quantity_90d_asof_pct-->% priced daily, as P3 measures it. Measured the way P3 measures it, it has risen from 11.8<!--n:ic_cov_hist_first_pct-->% on 2026-02-04, the first date with 90 days of prices. The dashboard draws that history before the projection.
 
 **How it is built.**
 
@@ -504,7 +506,7 @@ Holding NEAR at today's price is therefore a bet on more than Intents' fee captu
 
 **The investment case (exploratory, 2026-11-13 and 2026-11-14).** The required return and the 2031 revenue multiple are assumptions, shown as a grid. NEAR's market cap also prices the L1, which is not valued here. So the growth the price assumes is what Intents would need if it carried the price alone. The scenario anchors were chosen after the annual volumes, monthly shares and monthly take rates were computed. The market history is one peer set whose members changed (THORChain alone before 2024). Last year's growth of the set is all Intents', and partly DefiLlama's 2026-09-01 counting change. We did not compare NEAR with other fee-switch or buyback tokens, because that would need hand-picked external data. See section 6.
 
-**The Monte Carlo.** It draws from eleven monthly pairs. It models no regime, no trend in the take rate and no mean reversion. Its price drift is removed by a choice made after a first run. Its volume drift comes from the one month that spans the counting change. Its coverage uses one price for the 90 days, where P3 prices each day.
+**The Monte Carlo (exploratory).** It draws from eleven monthly pairs. It models no regime, no trend in the take rate and no mean reversion. Its price drift is removed by a choice made after a first run. Its volume drift comes from the one month that spans the counting change. Its coverage uses one price for the 90 days, where P3 prices each day.
 
 **Second review (exploratory, 2026-11-12).** A later review re-ran parts of this analysis from the committed data. It found four things. The escrow share rose in a step at the end of August rather than as a trend. The rise in the explicit fee follows a documented 1Click price change on 2026-09-03. The front-end fund holds its 4.81<!--n:ladder_frontend_only_pct_of_issuance--> points of the ladder under its own five signers and has never forwarded NEAR to the buyback wallet. And H1b's lower bound turns on single days. The review changes no pre-registered result. Details, with a recipe for each figure: [`docs/second-review.md`](docs/second-review.md).
 

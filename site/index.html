@@ -8075,7 +8075,117 @@ L276.3,133.1L277,131.1L277.6,133.1L278.2,133.1L278.9,133.4L279.5,133.6L280.1,133
 <li>Upstream: Nearblocks /v1/charts daily transactions, active accounts, active contracts and new accounts</li></ul></div></details>
 <details class="query">
 <summary>Query</summary>
-<dl class="ep">
+<p class="qnote">The chart is drawn from the Nearblocks series named at the end of this block. The three BigQuery queries are the ones the track brief asks for (daily active accounts, transaction counts, contract usage). They were run on 2026-11-13, after the freeze (exploratory), and reproduce both Nearblocks series; <code>docs/usage.md</code> has what they found.</p>
+<p class="qh"><a href="https://github.com/notveiker/near-flow-statement/blob/main/sql/usage_daily.sql"><code>sql/usage_daily.sql</code></a> <span class="sha" data-r="bytes:sql/usage_daily.sql">1,814 bytes</span></p><pre tabindex="0"><code>-- Exploratory (written 2026-11-13, after the freeze). The brief&#x27;s usage queries: daily transactions, daily
+-- active accounts and active contracts, from the NEAR BigQuery public dataset, 2025-10-06..2026-11-04.
+-- Per block_date:
+--   n_tx                 transactions (every row of `transactions`)
+--   n_signers            distinct transaction signers (what a relayer signs counts once, for the relayer)
+--   n_signers_implicit   ... of which 64-hex implicit accounts
+--   n_receivers          distinct transaction receivers
+--   top10_signer_tx      transactions signed by that day&#x27;s ten most active signers
+--   top1_signer          that day&#x27;s most active signer, and top1_signer_tx its transactions
+-- Contract usage and meta-transaction users are in sql/usage_receipts.sql (fewer days: that table is larger).
+WITH t AS (
+  SELECT block_date AS day, signer_account_id AS s, receiver_account_id AS r
+  FROM `bigquery-public-data.crypto_near_mainnet_us.transactions`
+  WHERE block_date BETWEEN &#x27;2025-10-06&#x27; AND &#x27;2026-11-04&#x27;
+),
+per_signer AS (
+  SELECT day, s, COUNT(*) AS n,
+         ROW_NUMBER() OVER (PARTITION BY day ORDER BY COUNT(*) DESC, s) AS rk
+  FROM t GROUP BY day, s
+),
+top AS (
+  SELECT day,
+         SUM(IF(rk &lt;= 10, n, 0)) AS top10_signer_tx,
+         MAX(IF(rk = 1, s, NULL)) AS top1_signer,
+         MAX(IF(rk = 1, n, NULL)) AS top1_signer_tx,
+         COUNT(*) AS n_signers,
+         COUNTIF(REGEXP_CONTAINS(s, r&#x27;^[0-9a-f]{64}$&#x27;)) AS n_signers_implicit
+  FROM per_signer GROUP BY day
+),
+base AS (
+  SELECT day, COUNT(*) AS n_tx, COUNT(DISTINCT r) AS n_receivers FROM t GROUP BY day
+)
+SELECT CAST(b.day AS STRING) AS day, b.n_tx, top.n_signers, top.n_signers_implicit, b.n_receivers,
+       top.top10_signer_tx, top.top1_signer, top.top1_signer_tx
+FROM base b JOIN top USING (day)
+ORDER BY day
+</code></pre><p class="qh"><a href="https://github.com/notveiker/near-flow-statement/blob/main/sql/usage_receipts.sql"><code>sql/usage_receipts.sql</code></a> <span class="sha" data-r="bytes:sql/usage_receipts.sql">2,231 bytes</span></p><pre tabindex="0"><code>-- Exploratory (written 2026-11-13, after the freeze). Contract usage and meta-transaction users, from
+-- receipt_actions, on three spans: the 30 days to 2026-11-04, the same 30 days a year earlier, and
+-- 2026-03-25..04-08 around the step in Nearblocks&#x27; daily transaction count.
+-- Per block_date:
+--   n_fc_receipts        FUNCTION_CALL actions
+--   n_contracts_called   distinct accounts that received a FUNCTION_CALL (active contracts)
+--   n_contracts_called_by_tx_signer  ... counting only calls whose predecessor is the transaction signer
+--                        (direct calls by a user, not cross-contract calls)
+--   n_delegate_actions   DELEGATE_ACTION receipts (meta-transactions sent by a relayer)
+--   n_delegate_senders   distinct accounts on whose behalf a relayer sent one (the receipt&#x27;s receiver)
+--   n_users              distinct signers of any action receipt with is_delegate_action false and
+--                        predecessor = signer, plus the delegate senders (an upper bound on accounts
+--                        that acted that day, relayed or not)
+WITH a AS (
+  SELECT block_date AS day, action_kind AS k, receipt_receiver_account_id AS r,
+         receipt_predecessor_account_id AS p, signer_account_id AS s
+  FROM `bigquery-public-data.crypto_near_mainnet_us.receipt_actions`
+  WHERE block_date BETWEEN &#x27;2026-10-06&#x27; AND &#x27;2026-11-04&#x27;
+     OR block_date BETWEEN &#x27;2025-10-06&#x27; AND &#x27;2025-11-04&#x27;
+     OR block_date BETWEEN &#x27;2026-03-25&#x27; AND &#x27;2026-04-08&#x27;
+),
+users AS (
+  SELECT day, s AS u FROM a WHERE p = s AND k != &#x27;DELEGATE_ACTION&#x27;
+  UNION DISTINCT
+  SELECT day, r AS u FROM a WHERE k = &#x27;DELEGATE_ACTION&#x27;
+),
+agg AS (
+SELECT day,
+       COUNTIF(k = &#x27;FUNCTION_CALL&#x27;) AS n_fc_receipts,
+       COUNT(DISTINCT IF(k = &#x27;FUNCTION_CALL&#x27;, r, NULL)) AS n_contracts_called,
+       COUNT(DISTINCT IF(k = &#x27;FUNCTION_CALL&#x27; AND p = s, r, NULL)) AS n_contracts_called_by_tx_signer,
+       COUNTIF(k = &#x27;DELEGATE_ACTION&#x27;) AS n_delegate_actions,
+       COUNT(DISTINCT IF(k = &#x27;DELEGATE_ACTION&#x27;, r, NULL)) AS n_delegate_senders,
+FROM a GROUP BY day
+),
+nu AS (SELECT day, COUNT(*) AS n_users FROM users GROUP BY day)
+SELECT CAST(day AS STRING) AS day, agg.* EXCEPT (day), nu.n_users
+FROM agg JOIN nu USING (day)
+ORDER BY day
+</code></pre><p class="qh"><a href="https://github.com/notveiker/near-flow-statement/blob/main/sql/usage_signer_groups.sql"><code>sql/usage_signer_groups.sql</code></a> <span class="sha" data-r="bytes:sql/usage_signer_groups.sql">1,701 bytes</span></p><pre tabindex="0"><code>-- Exploratory (written 2026-11-13, after the freeze). Who the daily transaction signers are, on the 30 days
+-- to 2026-11-04, the same 30 days a year earlier, and 2026-03-30..04-03 around the step in the daily
+-- transaction count. Signers are grouped by the last label of the account id (`.tg`, `.near`, `.sweat`, ...;
+-- 64-hex implicit accounts as `implicit`, 0x-prefixed ones as `eth_implicit`), per day:
+--   n_signers   distinct signers in the group, n_tx their transactions.
+-- Also, for the five step days, the 15 signers with the most transactions (grp = &#x27;top_signer:&lt;account&gt;&#x27;).
+WITH t AS (
+  SELECT block_date AS day, signer_account_id AS s
+  FROM `bigquery-public-data.crypto_near_mainnet_us.transactions`
+  WHERE block_date BETWEEN &#x27;2026-10-06&#x27; AND &#x27;2026-11-04&#x27;
+     OR block_date BETWEEN &#x27;2025-10-06&#x27; AND &#x27;2025-11-04&#x27;
+     OR block_date BETWEEN &#x27;2026-03-30&#x27; AND &#x27;2026-04-03&#x27;
+),
+g AS (
+  SELECT day, s,
+    CASE WHEN REGEXP_CONTAINS(s, r&#x27;^[0-9a-f]{64}$&#x27;) THEN &#x27;implicit&#x27;
+         WHEN STARTS_WITH(s, &#x27;0x&#x27;) THEN &#x27;eth_implicit&#x27;
+         ELSE REGEXP_EXTRACT(s, r&#x27;\.([^.]+)$&#x27;) END AS grp
+  FROM t
+),
+by_group AS (
+  SELECT CAST(day AS STRING) AS day, IFNULL(grp, &#x27;(no dot)&#x27;) AS grp,
+         COUNT(DISTINCT s) AS n_signers, COUNT(*) AS n_tx
+  FROM g GROUP BY day, grp
+),
+top AS (
+  SELECT CAST(day AS STRING) AS day, CONCAT(&#x27;top_signer:&#x27;, s) AS grp, 1 AS n_signers, n AS n_tx
+  FROM (SELECT day, s, COUNT(*) AS n, ROW_NUMBER() OVER (PARTITION BY day ORDER BY COUNT(*) DESC, s) AS rk
+        FROM t WHERE day BETWEEN &#x27;2026-03-30&#x27; AND &#x27;2026-04-03&#x27; GROUP BY day, s)
+  WHERE rk &lt;= 15
+)
+SELECT * FROM by_group WHERE n_signers &gt;= 100 OR n_tx &gt;= 10000
+UNION ALL SELECT * FROM top
+ORDER BY day, grp
+</code></pre><dl class="ep">
 <dt>Endpoint</dt>
 <dd><code>GET https://api.nearblocks.io/v1/charts</code></dd>
 <dt>Fetcher</dt>
