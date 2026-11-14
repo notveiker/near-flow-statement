@@ -57,6 +57,10 @@ header.top{--mark:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 h1{font-size:clamp(2.4rem,6.6vw,4.75rem);font-weight:700;line-height:1.03;letter-spacing:-.03em;margin:0 0 .42em;max-width:17ch}
 .sub{margin:0 0 1.5rem;max-width:50ch;font-size:clamp(1.125rem,2.1vw,1.5rem);line-height:1.35;color:var(--ink2)}
 .byline{margin:0 0 3.2rem;max-width:none;font-size:1rem;font-weight:700;color:var(--ink)}
+header.top>.byline{margin-bottom:0}
+header.top>.scrollcue{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:9px;margin:0;max-width:none;font-size:.6875rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+header.top>.scrollcue::after{content:"";width:1px;height:30px;background:var(--axis)}
+@media print{header.top>.scrollcue{display:none}}
 .gauge-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px;margin:0 0 14px;max-width:none}
 .gauge-num{font-size:clamp(2rem,4.8vw,3.25rem);font-weight:700;line-height:1;letter-spacing:-.03em;font-variant-numeric:lining-nums tabular-nums;color:var(--ink)}
 .gauge-lab{flex:1 1 47rem;min-width:0;font-size:1.0625rem;line-height:1.4;color:var(--ink2)}
@@ -370,13 +374,8 @@ footer p{max-width:none}
 <h1>Can NEAR&rsquo;s Intents business grow into its dilution?</h1>
 <p class="sub">The long-term case for NEAR rests on Intents.</p>
 <p class="byline">Victor Song and Tharun Ekambaram</p>
-<div class="gauge">
-<p class="gauge-head"><span class="gauge-num"><span data-m="ladder_all_wallets_pct_of_issuance">15.81</span>%</span> <span class="gauge-lab">of NEAR&rsquo;s net new supply is matched by the NEAR that Intents fees send to its revenue wallets</span></p>
-<div class="gauge-track" aria-hidden="true">
-<div class="gauge-fill" style="width:15.81%">
-<div class="gauge-core" style="width:28.65%"></div></div></div>
-<p class="gauge-foot"><span><span class="gauge-key"></span><span data-m="ladder_public_collectors_pct_of_issuance">4.53</span> points of it trace on chain to public fee collectors</span><span>The whole bar is all net new supply, 30 days to <span data-m="asof">2026-11-04</span></span></p></div>
-<p class="fine">An exploratory analysis, built after our predictions were frozen. They are scored on the last slide.</p></header>
+<p class="fine">An exploratory analysis, built after our predictions were frozen. They are scored on the last slide.</p>
+<p class="scrollcue" aria-hidden="true">Scroll</p></header>
 <main class="story">
 <section class="slide">
 <p class="step">1. What reaches NEAR today</p>

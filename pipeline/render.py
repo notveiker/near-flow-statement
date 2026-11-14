@@ -988,6 +988,10 @@ header.top{--mark:url("/*MARK*/")}
 h1{font-size:clamp(2.4rem,6.6vw,4.75rem);font-weight:700;line-height:1.03;letter-spacing:-.03em;margin:0 0 .42em;max-width:17ch}
 .sub{margin:0 0 1.5rem;max-width:50ch;font-size:clamp(1.125rem,2.1vw,1.5rem);line-height:1.35;color:var(--ink2)}
 .byline{margin:0 0 3.2rem;max-width:none;font-size:1rem;font-weight:700;color:var(--ink)}
+header.top>.byline{margin-bottom:0}
+header.top>.scrollcue{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:9px;margin:0;max-width:none;font-size:.6875rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+header.top>.scrollcue::after{content:"";width:1px;height:30px;background:var(--axis)}
+@media print{header.top>.scrollcue{display:none}}
 .gauge-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px;margin:0 0 14px;max-width:none}
 .gauge-num{font-size:clamp(2rem,4.8vw,3.25rem);font-weight:700;line-height:1;letter-spacing:-.03em;font-variant-numeric:lining-nums tabular-nums;color:var(--ink)}
 .gauge-lab{flex:1 1 47rem;min-width:0;font-size:1.0625rem;line-height:1.4;color:var(--ink2)}
@@ -4031,7 +4035,8 @@ def gauge(ctx: Ctx) -> str:
 
 
 def header(ctx: Ctx, eyebrow: str = "NEAR Hackathon 2026, Investment Thesis track", fine: str = "") -> str:
-    """The cover: the question, what the long-term case rests on, who wrote it and for what, and one graphic. Nothing else.
+    """The cover: the question, what the long-term case rests on, who wrote it and for what, and a small cue to scroll. Nothing else.
+    (The bar that stood here, gauge() above, is no longer drawn; its two figures are in the ledger under the cover.)
     The slides page opens with the same cover, under its own first line and with one line of small print (fine).
 
     The subtitle says what the case rests on and does not say that it succeeds; the thesis under the cover says how far the price is
@@ -4044,7 +4049,7 @@ def header(ctx: Ctx, eyebrow: str = "NEAR Hackathon 2026, Investment Thesis trac
         f'<h1>Can NEAR&rsquo;s Intents business grow into its dilution?</h1>'
         '<p class="sub">The long-term case for NEAR rests on Intents.</p>'
         f'<p class="byline">{esc(AUTHORS)}</p>'
-        f'{gauge(ctx)}{small}</header>')
+        f'{small}<p class="scrollcue" aria-hidden="true">Scroll</p></header>')
 
 
 def brief(ctx: Ctx) -> str:

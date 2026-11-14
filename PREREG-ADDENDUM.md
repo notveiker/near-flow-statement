@@ -489,3 +489,7 @@ At the owner's request `site/NEAR_Long_Thesis.pdf`, the paper the first screen l
 ## 2026-11-14 23:33 UTC: space between a bar chart's legend and its first row (layout only)
 
 In the horizontal bar charts that carry a legend, the legend no longer sits directly on the first row's label: there are eight more units of space between them. The page was also read in the dark colour scheme at 1728 px after the two alignment passes. No number, result, label or rule changes.
+
+## 2026-11-14 23:44 UTC: the cover without its bar (layout only)
+
+At the owner's request the cover no longer draws the bar of net new supply: it shows the question, the subtitle, the authors and a small cue to scroll. The two figures the bar carried (the share of net new supply matched, and the part traced to public fee collectors) are in the ledger and Figure 1 under the cover. No number, result, label or rule changes.
