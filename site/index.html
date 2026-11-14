@@ -102,11 +102,13 @@ h2{font-family:var(--serif);font-size:1.75rem;font-weight:500;line-height:1.2;le
 h3{font-size:1.0625rem;font-weight:650;line-height:1.35;margin:.5rem 0 .6rem}
 .lede{font-size:1.0625rem;margin:0 0 1rem}
 .note{color:var(--ink2);font-size:.9375rem}
-.record{display:flex;align-items:center;justify-content:space-between;gap:10px 28px;max-width:none;margin:0 0 .4rem;padding:14px 18px;border:1px solid var(--border);border-left:3px solid var(--ink);border-radius:10px;background:var(--surface);font-size:.9375rem;color:var(--ink2)}
+.records{display:grid;gap:12px;margin:0 0 .4rem}
+@media (min-width:1100px){.records{grid-template-columns:1.45fr 1fr}}
+.record{display:flex;align-items:center;justify-content:space-between;gap:10px 28px;max-width:none;margin:0;padding:14px 18px;border:1px solid var(--border);border-left:3px solid var(--ink);border-radius:10px;background:var(--surface);font-size:.9375rem;color:var(--ink2)}
 .record strong{color:var(--ink);font-weight:650}
 .record a{font-weight:600;white-space:nowrap}
 .record a::after{content:" \2192"}
-@media (max-width:759px){.record{flex-direction:column;align-items:flex-start}}
+@media (max-width:759px),(min-width:1100px) and (max-width:1399px){.record{flex-direction:column;align-items:flex-start}}
 .tabbar{position:sticky;top:0;z-index:3;display:flex;flex-wrap:wrap;gap:0 26px;margin:1.6rem 0 .6rem;padding:0;background:var(--bg);border-bottom:1px solid var(--axis)}
 .tabbar a{padding:13px 0 11px;border-bottom:2px solid transparent;margin-bottom:-1px;color:var(--muted);font-size:.9375rem;font-weight:600;text-decoration:none}
 .tabbar a:hover{color:var(--ink)}
@@ -275,7 +277,7 @@ footer{margin:3.5rem 0 2.5rem;padding-top:1rem;border-top:1px solid var(--grid);
 <p class="tag">Exploratory view, formed after the pre-registration was frozen. Not investment advice.</p></div>
 <p class="kcap">Exploratory figures, data to <span data-m="upd_asof">2026-11-13</span>. Under each: its value at the pre-registered cutoff.</p>
 <ul class="kpis" aria-label="Headline figures">
-<li class="kpi"><a class="kv" href="#chart-ladder"><span data-m="ladder_all_wallets_pct_of_issuance">15.81</span>%</a><span class="kl">of net new supply reaches NEAR&rsquo;s revenue wallets today (30 days to <span data-m="asof">2026-11-04</span>)</span></li>
+<li class="kpi"><a class="kv" href="#chart-ladder"><span data-m="ladder_all_wallets_pct_of_issuance">15.81</span>%</a><span class="kl">of net new supply reaches NEAR&rsquo;s revenue wallets (30 days to <span data-m="asof">2026-11-04</span>)</span></li>
 <li class="kpi"><a class="kv" href="#chart-priced"><span data-m="upd_ic_implied_cagr_r15_x25_pct">79.8</span>%</a><span class="kl">a year: the revenue growth the price assumes, to 2031</span><span class="kw"><span data-m="asof">2026-11-04</span>: <span data-m="ic_implied_cagr_r15_x25_pct">84.9</span>%</span></li>
 <li class="kpi"><a class="kv" href="#chart-multiply"><span data-m="upd_ic_take_needed_vs_gross_x">1.6</span>×</a><span class="kl">Intents&rsquo; whole gross fee: what NEAR would have to capture</span><span class="kw"><span data-m="asof">2026-11-04</span>: <span data-m="ic_take_needed_vs_gross_x">2.5</span>×</span></li>
 <li class="kpi"><a class="kv" href="#chart-scenarios"><span data-m="upd_ic_base_coverage_2031_pct">62.2</span>%</a><span class="kl">of NEAR&rsquo;s dilution paid for in 2031, base case</span><span class="kw"><span data-m="asof">2026-11-04</span>: <span data-m="ic_base_coverage_2031_pct">44.6</span>%</span></li></ul>
@@ -331,7 +333,9 @@ footer{margin:3.5rem 0 2.5rem;padding-top:1rem;border-top:1px solid var(--grid);
 <li><a href="#chart-fwdsupply">Supply projection</a></li>
 <li><a href="#chart-usage">Network usage</a></li></ul></nav>
 <main id="main">
+<div class="records">
 <p class="record"><span><strong>Predictions first, data second.</strong> Three hypotheses, a rating rule and seven dated forecasts were frozen on 2026-11-05, before the first BigQuery result the repository records. Each is scored as written, and every result is on this page, including the ones the data went against.</span> <a href="#scorecard">See how they scored</a></p>
+<p class="record"><span><strong>Re-run it.</strong> One command rebuilds every number and chart on this page, offline, from the raw snapshots in the repository. No keys, no installs.</span> <a href="#reproduce">See the steps</a></p></div>
 <div class="tabs">
 <nav class="tabbar" aria-label="Sections"><a href="#forward-view" data-tab="forward-view">Investment case</a><a href="#preregistered" data-tab="preregistered">Pre-registered tests</a><a href="#exploratory" data-tab="exploratory">Supporting evidence</a><a href="#method" data-tab="method">Method and limits</a></nav>
 <section id="forward-view" class="panel" aria-labelledby="fwd-h">

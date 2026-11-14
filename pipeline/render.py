@@ -1032,11 +1032,13 @@ h2{font-family:var(--serif);font-size:1.75rem;font-weight:500;line-height:1.2;le
 h3{font-size:1.0625rem;font-weight:650;line-height:1.35;margin:.5rem 0 .6rem}
 .lede{font-size:1.0625rem;margin:0 0 1rem}
 .note{color:var(--ink2);font-size:.9375rem}
-.record{display:flex;align-items:center;justify-content:space-between;gap:10px 28px;max-width:none;margin:0 0 .4rem;padding:14px 18px;border:1px solid var(--border);border-left:3px solid var(--ink);border-radius:10px;background:var(--surface);font-size:.9375rem;color:var(--ink2)}
+.records{display:grid;gap:12px;margin:0 0 .4rem}
+@media (min-width:1100px){.records{grid-template-columns:1.45fr 1fr}}
+.record{display:flex;align-items:center;justify-content:space-between;gap:10px 28px;max-width:none;margin:0;padding:14px 18px;border:1px solid var(--border);border-left:3px solid var(--ink);border-radius:10px;background:var(--surface);font-size:.9375rem;color:var(--ink2)}
 .record strong{color:var(--ink);font-weight:650}
 .record a{font-weight:600;white-space:nowrap}
 .record a::after{content:" \\2192"}
-@media (max-width:759px){.record{flex-direction:column;align-items:flex-start}}
+@media (max-width:759px),(min-width:1100px) and (max-width:1399px){.record{flex-direction:column;align-items:flex-start}}
 .tabbar{position:sticky;top:0;z-index:3;display:flex;flex-wrap:wrap;gap:0 26px;margin:1.6rem 0 .6rem;padding:0;background:var(--bg);border-bottom:1px solid var(--axis)}
 .tabbar a{padding:13px 0 11px;border-bottom:2px solid transparent;margin-bottom:-1px;color:var(--muted);font-size:.9375rem;font-weight:600;text-decoration:none}
 .tabbar a:hover{color:var(--ink)}
@@ -3632,7 +3634,7 @@ def kpis(ctx: Ctx) -> str:
         return f'{M("upd_" + key)}{unit}', f'<span class="kw">{M("asof")}: {M(key)}{unit}</span>'
 
     items = [
-        (f'{M("ladder_all_wallets_pct_of_issuance", 2)}%', "", f'of net new supply reaches NEAR&rsquo;s revenue wallets today (30 days to {M("asof")})', "#chart-ladder"),
+        (f'{M("ladder_all_wallets_pct_of_issuance", 2)}%', "", f'of net new supply reaches NEAR&rsquo;s revenue wallets (30 days to {M("asof")})', "#chart-ladder"),
         (*fig("ic_implied_cagr_r15_x25_pct", "%"), "a year: the revenue growth the price assumes, to 2031", "#chart-priced"),
         (*fig("ic_take_needed_vs_gross_x", "×"), "Intents&rsquo; whole gross fee: what NEAR would have to capture", "#chart-multiply"),
         (*fig("ic_base_coverage_2031_pct", "%"), "of NEAR&rsquo;s dilution paid for in 2031, base case", "#chart-scenarios"),
@@ -3668,12 +3670,15 @@ def thesis_box(ctx: Ctx) -> str:
 
 
 def record_strip(ctx: Ctx) -> str:
-    """One line above the tabs: the predictions came first, and every result is on the page. It carries no number, so it cannot disagree
-    with the scorecard it links to. The order it states is the one freeze_order() checks against the manifest."""
+    """Two lines above the tabs: the predictions came first and every result is on the page; and the page rebuilds offline with one
+    command (the Reproduce section has the steps). Neither carries a number, so neither can disagree with the section it links to. The
+    order the first states is the one freeze_order() checks against the manifest."""
     freeze_order(ctx)
-    return ('<p class="record"><span><strong>Predictions first, data second.</strong> Three hypotheses, a rating rule and seven dated forecasts were frozen on '
-            f'{FREEZE_UTC[:10]}, before the first BigQuery result the repository records. Each is scored as written, and every result is on this page, '
-            'including the ones the data went against.</span> <a href="#scorecard">See how they scored</a></p>')
+    return ('<div class="records"><p class="record"><span><strong>Predictions first, data second.</strong> Three hypotheses, a rating rule and seven dated '
+            f'forecasts were frozen on {FREEZE_UTC[:10]}, before the first BigQuery result the repository records. Each is scored as written, and every '
+            'result is on this page, including the ones the data went against.</span> <a href="#scorecard">See how they scored</a></p>'
+            '<p class="record"><span><strong>Re-run it.</strong> One command rebuilds every number and chart on this page, offline, from the raw '
+            'snapshots in the repository. No keys, no installs.</span> <a href="#reproduce">See the steps</a></p></div>')
 
 
 def all_cards() -> dict[str, tuple[str, object]]:
