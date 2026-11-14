@@ -972,13 +972,24 @@ header.top{grid-area:top}main{grid-area:main}footer{grid-area:foot}
 }
 
 /* first screen: the question, a one-line answer, four figures as ledger rows, the live row. No boxes. */
-header.top{padding:40px 0 0}
-.eyebrow{margin:0 0 20px;font-size:.8125rem;color:var(--muted)}
-h1{font-size:clamp(2rem,5vw,3.25rem);font-weight:700;line-height:1.06;letter-spacing:-.025em;margin:0 0 .6em;max-width:22ch}
+header.top{display:flex;flex-direction:column;justify-content:center;min-height:min(78vh,720px);padding:56px 0 44px;border-bottom:1px solid var(--grid)}
+.eyebrow{margin:0 0 22px;font-size:.875rem;color:var(--muted)}
+h1{font-size:clamp(2.4rem,6.6vw,4.75rem);font-weight:700;line-height:1.03;letter-spacing:-.03em;margin:0 0 .42em;max-width:17ch}
+.sub{margin:0 0 1.5rem;max-width:44ch;font-size:clamp(1.125rem,2.1vw,1.5rem);line-height:1.35;color:var(--ink2)}
+.byline{margin:0 0 3.2rem;max-width:none;font-size:1rem;font-weight:700;color:var(--ink)}
+.gauge-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;margin:0 0 12px;max-width:none}
+.gauge-num{font-size:clamp(2rem,4.8vw,3.25rem);font-weight:700;line-height:1;letter-spacing:-.03em;font-variant-numeric:lining-nums tabular-nums;color:var(--ink)}
+.gauge-lab{font-size:1rem;line-height:1.4;color:var(--ink2);max-width:52ch}
+.gauge-track{height:34px;background:var(--grid)}
+.gauge-fill{display:flex;height:100%;background:var(--s2)}
+.gauge-core{height:100%;background:var(--s1)}
+.gauge-foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 24px;margin:10px 0 0;max-width:none;font-size:.8125rem;line-height:1.45;color:var(--muted)}
+.gauge-key{display:inline-block;width:10px;height:10px;margin-right:7px;background:var(--s1)}
+#brief{padding:2.6rem 0 0}
+#brief>h2{margin:0 0 .7rem}
 .thesis{margin:0 0 1.8rem;max-width:76ch}
-.thesis p{margin:0 0 .75rem;max-width:none;font-size:1.0625rem;line-height:1.55;color:var(--ink2)}
-.thesis .deck{font-size:1.3125rem;line-height:1.36;letter-spacing:-.005em;color:var(--ink)}
-.thesis .go{margin:0;font-size:1rem}
+.thesis p{margin:0 0 .9rem;max-width:none;font-size:1.1875rem;line-height:1.5;color:var(--ink)}
+.thesis .go{margin:0;font-size:1rem;color:var(--ink2)}
 .kcap{margin:0;padding:0 0 9px;max-width:none;font-size:.8125rem;line-height:1.4;color:var(--muted)}
 .kpis{list-style:none;padding:0;margin:0;border-top:1px solid var(--ink)}
 .kpi{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:28px;align-items:baseline;max-width:none;padding:13px 0 12px;border-bottom:1px solid var(--grid)}
@@ -1000,9 +1011,9 @@ details.metawrap>summary,details.fz>summary,details.readmore>summary,section>det
 .answer{margin:.2rem 0 .4rem;padding:0 0 0 16px;border-left:1px solid var(--axis)}
 .answer p{margin:.7rem 0;max-width:100ch;font-size:.9375rem}
 @media (min-width:1100px){
-header.top{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);column-gap:72px;align-items:start;padding-top:48px;
-grid-template-areas:"eb kcap" "h1 kpis" "th kpis" "th today"}
-.eyebrow{grid-area:eb}h1{grid-area:h1}.thesis{grid-area:th;margin-bottom:0}.kpis{grid-area:kpis}.kcap{grid-area:kcap;align-self:end}
+#brief{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);column-gap:72px;align-items:start;
+grid-template-areas:"h kcap" "th kpis" "th today"}
+#brief>h2{grid-area:h}.thesis{grid-area:th;margin-bottom:0}.kpis{grid-area:kpis}.kcap{grid-area:kcap;align-self:end}
 .today{grid-area:today}
 }
 
@@ -1022,13 +1033,13 @@ grid-template-areas:"eb kcap" "h1 kpis" "th kpis" "th today"}
 }
 
 /* sections, tabs */
-main{padding-top:2rem}
+main{padding-top:0}
 h2{font-size:1.5rem;font-weight:700;line-height:1.2;letter-spacing:-.015em;margin:2.6rem 0 .5rem}
 h3{font-size:1.0625rem;font-weight:650;line-height:1.35;margin:.5rem 0 .6rem}
 .lede{font-size:1.0625rem;margin:0 0 1rem}
 .note{color:var(--ink2);font-size:.9375rem}
 .note,.lede{max-width:104ch}
-.fine{margin:0;max-width:128ch;font-size:.8125rem;line-height:1.55;color:var(--muted)}
+.fine{margin:2.2rem 0 0;max-width:128ch;font-size:.8125rem;line-height:1.55;color:var(--muted)}
 .fine a{color:var(--ink2)}
 .tabbar{position:sticky;top:0;z-index:3;display:flex;flex-wrap:wrap;gap:0 26px;margin:1.6rem 0 .6rem;padding:0;background:var(--bg);border-bottom:1px solid var(--axis)}
 .tabbar a{padding:13px 0 11px;border-bottom:2px solid transparent;margin-bottom:-1px;color:var(--muted);font-size:.9375rem;font-weight:600;text-decoration:none}
@@ -3675,9 +3686,8 @@ def thesis_box(ctx: Ctx) -> str:
                          "issuance and the price assumes faster growth than any window in the data; the data no longer say that, so rewrite thesis_box()")
     return (
         '<div class="thesis" id="thesis">'
-        '<p class="deck">Not on today&rsquo;s evidence. NEAR Intents led its market over the past year, but NEAR&rsquo;s price asks for far more '
-        'than its fees deliver.</p>'
-        '<p>The NEAR those fees send to NEAR&rsquo;s revenue wallets equals, at most, about a sixth of net new supply. For the fees alone to '
+        '<p>NEAR Intents led its market over the past year, but NEAR&rsquo;s price asks for far more than its fees deliver. '
+        'The NEAR those fees send to NEAR&rsquo;s revenue wallets equals, at most, about a sixth of net new supply. For the fees alone to '
         f'carry the price NEAR had on {M("upd_asof") if has_update(ctx) else M("asof")}, they would have to grow faster each year to 2031 than '
         'cross-chain volume grew over any period in the data. Owning NEAR at that price is a bet on a bigger cut of those fees, or on value beyond them.</p>'
         '<p class="go"><a href="#forward-view">Read the case</a> or <a href="story.html">see it as slides</a>.</p></div>')
@@ -3885,12 +3895,42 @@ def live_panel(ctx: Ctx) -> str:
     return f'<div class="today" id="live"><p class="todaycap">{cap}</p><ul class="todayrow" aria-label="Today&rsquo;s values">{lis}</ul></div>'
 
 
+AUTHORS = "Victor Song and Tharun Ekambaram"
+
+
+def gauge(ctx: Ctx) -> str:
+    """The cover's one graphic: a bar as wide as the page that stands for all of NEAR's net new supply over the window, filled to the
+    share matched by the NEAR that reached the revenue wallets, with the part traced to public fee collectors marked inside it.
+    The widths are the two metrics; the render stops if they are not a part and a whole."""
+    M, m = ctx.M, ctx.m
+    whole, part = m["ladder_all_wallets_pct_of_issuance"], m["ladder_public_collectors_pct_of_issuance"]
+    if not 0 < part < whole < 100:
+        raise SystemExit("render: the cover's bar draws the traced part inside the whole, inside all of net new supply; the data no longer fit that")
+    return (
+        '<div class="gauge">'
+        f'<p class="gauge-head"><span class="gauge-num">{M("ladder_all_wallets_pct_of_issuance", 2)}%</span> '
+        '<span class="gauge-lab">of NEAR&rsquo;s net new supply is matched by the NEAR that Intents fees send to its revenue wallets</span></p>'
+        f'<div class="gauge-track" aria-hidden="true"><div class="gauge-fill" style="width:{whole:.2f}%"><div class="gauge-core" style="width:{100 * part / whole:.2f}%"></div></div></div>'
+        f'<p class="gauge-foot"><span><span class="gauge-key"></span>{M("ladder_public_collectors_pct_of_issuance", 2)} points of it trace on chain to public fee collectors</span>'
+        f'<span>The whole bar is all net new supply, 30 days to {M("asof")}</span></p></div>')
+
+
 def header(ctx: Ctx) -> str:
+    """The cover: the question, the answer in one line, who wrote it and for what, and one graphic. Nothing else."""
     answer_line(ctx)   # drawn in the track record tab; called here so that the first screen is not drawn either once the data stop supporting it
+    thesis_box(ctx)    # the same for the view under the cover, whose one-line answer the cover gives
     return (
         f'<header class="top"><p class="eyebrow">NEAR Hackathon 2026, Investment Thesis track</p>'
         f'<h1>Can NEAR&rsquo;s Intents business grow into its dilution?</h1>'
-        f'{thesis_box(ctx)}{kpis(ctx)}{live_panel(ctx)}</header>')
+        '<p class="sub">Not on today&rsquo;s evidence. NEAR&rsquo;s price asks for far more than the fees Intents sends it.</p>'
+        f'<p class="byline">{esc(AUTHORS)}</p>'
+        f'{gauge(ctx)}</header>')
+
+
+def brief(ctx: Ctx) -> str:
+    """Under the cover: the thesis in four sentences, with the headline figures and today's values beside it."""
+    return (f'<section id="brief" aria-labelledby="brief-h"><h2 id="brief-h">The thesis</h2>'
+            f'{thesis_box(ctx)}{kpis(ctx)}{live_panel(ctx)}</section>')
 
 
 DOCUMENTS = (("The full thesis", "THESIS.md"), ("Read me", "README.md"), ("Glossary", "docs/glossary.md"), ("Pre-registration", "PREREG.md"),
@@ -4096,7 +4136,7 @@ def build_page(ctx: Ctx, breaks: bool = True) -> str:
                   for head, ids in EVIDENCE)
     body = (
         f'<a class="skip" href="#main">Skip to the content</a><div class="wrap">{header(ctx)}{side_nav()}'
-        f'<main id="main">{record_strip(ctx)}'
+        f'<main id="main">{brief(ctx)}{record_strip(ctx)}'
         f'<div class="tabs"><nav class="tabbar" aria-label="Sections"><a href="#forward-view" data-tab="forward-view">Investment case</a>'
         f'<a href="#exploratory" data-tab="exploratory">Supporting evidence</a><a href="#preregistered" data-tab="preregistered">Track record</a>'
         f'<a href="#method" data-tab="method">Method and limits</a></nav>'

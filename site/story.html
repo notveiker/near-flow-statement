@@ -42,13 +42,24 @@ header.top{grid-area:top}main{grid-area:main}footer{grid-area:foot}
 }
 
 /* first screen: the question, a one-line answer, four figures as ledger rows, the live row. No boxes. */
-header.top{padding:40px 0 0}
-.eyebrow{margin:0 0 20px;font-size:.8125rem;color:var(--muted)}
-h1{font-size:clamp(2rem,5vw,3.25rem);font-weight:700;line-height:1.06;letter-spacing:-.025em;margin:0 0 .6em;max-width:22ch}
+header.top{display:flex;flex-direction:column;justify-content:center;min-height:min(78vh,720px);padding:56px 0 44px;border-bottom:1px solid var(--grid)}
+.eyebrow{margin:0 0 22px;font-size:.875rem;color:var(--muted)}
+h1{font-size:clamp(2.4rem,6.6vw,4.75rem);font-weight:700;line-height:1.03;letter-spacing:-.03em;margin:0 0 .42em;max-width:17ch}
+.sub{margin:0 0 1.5rem;max-width:44ch;font-size:clamp(1.125rem,2.1vw,1.5rem);line-height:1.35;color:var(--ink2)}
+.byline{margin:0 0 3.2rem;max-width:none;font-size:1rem;font-weight:700;color:var(--ink)}
+.gauge-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;margin:0 0 12px;max-width:none}
+.gauge-num{font-size:clamp(2rem,4.8vw,3.25rem);font-weight:700;line-height:1;letter-spacing:-.03em;font-variant-numeric:lining-nums tabular-nums;color:var(--ink)}
+.gauge-lab{font-size:1rem;line-height:1.4;color:var(--ink2);max-width:52ch}
+.gauge-track{height:34px;background:var(--grid)}
+.gauge-fill{display:flex;height:100%;background:var(--s2)}
+.gauge-core{height:100%;background:var(--s1)}
+.gauge-foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 24px;margin:10px 0 0;max-width:none;font-size:.8125rem;line-height:1.45;color:var(--muted)}
+.gauge-key{display:inline-block;width:10px;height:10px;margin-right:7px;background:var(--s1)}
+#brief{padding:2.6rem 0 0}
+#brief>h2{margin:0 0 .7rem}
 .thesis{margin:0 0 1.8rem;max-width:76ch}
-.thesis p{margin:0 0 .75rem;max-width:none;font-size:1.0625rem;line-height:1.55;color:var(--ink2)}
-.thesis .deck{font-size:1.3125rem;line-height:1.36;letter-spacing:-.005em;color:var(--ink)}
-.thesis .go{margin:0;font-size:1rem}
+.thesis p{margin:0 0 .9rem;max-width:none;font-size:1.1875rem;line-height:1.5;color:var(--ink)}
+.thesis .go{margin:0;font-size:1rem;color:var(--ink2)}
 .kcap{margin:0;padding:0 0 9px;max-width:none;font-size:.8125rem;line-height:1.4;color:var(--muted)}
 .kpis{list-style:none;padding:0;margin:0;border-top:1px solid var(--ink)}
 .kpi{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:28px;align-items:baseline;max-width:none;padding:13px 0 12px;border-bottom:1px solid var(--grid)}
@@ -70,9 +81,9 @@ details.metawrap>summary,details.fz>summary,details.readmore>summary,section>det
 .answer{margin:.2rem 0 .4rem;padding:0 0 0 16px;border-left:1px solid var(--axis)}
 .answer p{margin:.7rem 0;max-width:100ch;font-size:.9375rem}
 @media (min-width:1100px){
-header.top{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);column-gap:72px;align-items:start;padding-top:48px;
-grid-template-areas:"eb kcap" "h1 kpis" "th kpis" "th today"}
-.eyebrow{grid-area:eb}h1{grid-area:h1}.thesis{grid-area:th;margin-bottom:0}.kpis{grid-area:kpis}.kcap{grid-area:kcap;align-self:end}
+#brief{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);column-gap:72px;align-items:start;
+grid-template-areas:"h kcap" "th kpis" "th today"}
+#brief>h2{grid-area:h}.thesis{grid-area:th;margin-bottom:0}.kpis{grid-area:kpis}.kcap{grid-area:kcap;align-self:end}
 .today{grid-area:today}
 }
 
@@ -92,13 +103,13 @@ grid-template-areas:"eb kcap" "h1 kpis" "th kpis" "th today"}
 }
 
 /* sections, tabs */
-main{padding-top:2rem}
+main{padding-top:0}
 h2{font-size:1.5rem;font-weight:700;line-height:1.2;letter-spacing:-.015em;margin:2.6rem 0 .5rem}
 h3{font-size:1.0625rem;font-weight:650;line-height:1.35;margin:.5rem 0 .6rem}
 .lede{font-size:1.0625rem;margin:0 0 1rem}
 .note{color:var(--ink2);font-size:.9375rem}
 .note,.lede{max-width:104ch}
-.fine{margin:0;max-width:128ch;font-size:.8125rem;line-height:1.55;color:var(--muted)}
+.fine{margin:2.2rem 0 0;max-width:128ch;font-size:.8125rem;line-height:1.55;color:var(--muted)}
 .fine a{color:var(--ink2)}
 .tabbar{position:sticky;top:0;z-index:3;display:flex;flex-wrap:wrap;gap:0 26px;margin:1.6rem 0 .6rem;padding:0;background:var(--bg);border-bottom:1px solid var(--axis)}
 .tabbar a{padding:13px 0 11px;border-bottom:2px solid transparent;margin-bottom:-1px;color:var(--muted);font-size:.9375rem;font-weight:600;text-decoration:none}

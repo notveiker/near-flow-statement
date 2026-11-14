@@ -3233,7 +3233,9 @@ class FirstScreen(unittest.TestCase):
             head = dom.find("header")
             self.assertEqual(dom.find("h1").text(), "Can NEAR’s Intents business grow into its dilution?", name)
             kids = [c.tag + "".join("." + k for k in sorted(c.classes())) for c in head.children if isinstance(c, Node)]
-            self.assertEqual(kids, ["p.eyebrow", "h1", "div.thesis", "p.kcap", "ul.kpis", "div.today"], name)
+            self.assertEqual(kids, ["p.eyebrow", "h1", "p.sub", "p.byline", "div.gauge"], name)   # the cover: nothing but these
+            under = [c.tag + "".join("." + k for k in sorted(c.classes())) for c in section_node(dom, "brief").children if isinstance(c, Node)]
+            self.assertEqual(under, ["h2", "div.thesis", "p.kcap", "ul.kpis", "div.today"], f"{name}: the thesis and its figures follow the cover")
             # the two questions and the pre-registered answer open from one line at the top of the track record tab
             track = section_node(dom, "preregistered")
             readmore = [c for c in track.children if isinstance(c, Node) and "readmore" in c.classes()][0]
