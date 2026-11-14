@@ -438,3 +438,7 @@ The dashboard's charts are laid out in two columns of cards that end where their
 ## 2026-11-14 21:04 UTC: the dashboard opens with a cover (layout only)
 
 The first screen is now a cover: the title's question, a one-line answer, the two authors' names and one graphic, a bar that stands for all of NEAR's net new supply over the 30 days to 2026-11-04 and is filled to the 15.81<!--n:ladder_all_wallets_pct_of_issuance-->% matched by the NEAR that reached the revenue wallets, with the 4.53<!--n:ladder_public_collectors_pct_of_issuance--> points traced to public fee collectors marked inside it. The thesis in four sentences, the four headline figures and the values read live follow in a section headed "The thesis", above the line that labels them exploratory. No number, result or rule changes.
+
+## 2026-11-14 21:17 UTC: the cover's subtitle (wording only)
+
+The line under the dashboard's title now says what the long-term case for NEAR rests on (Intents, which led its market over the past year and already sends NEAR to NEAR's revenue wallets) and points at the bar under it, in place of the one-line answer "Not on today's evidence". It makes no claim that the case succeeds. The answer is unchanged and is stated in the section under the cover and in `THESIS.md`: at the price of 2026-11-13 the fees alone would have to grow faster than cross-chain volume has over any period in the data.

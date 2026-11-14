@@ -975,7 +975,7 @@ header.top{grid-area:top}main{grid-area:main}footer{grid-area:foot}
 header.top{display:flex;flex-direction:column;justify-content:center;min-height:min(78vh,720px);padding:56px 0 44px;border-bottom:1px solid var(--grid)}
 .eyebrow{margin:0 0 22px;font-size:.875rem;color:var(--muted)}
 h1{font-size:clamp(2.4rem,6.6vw,4.75rem);font-weight:700;line-height:1.03;letter-spacing:-.03em;margin:0 0 .42em;max-width:17ch}
-.sub{margin:0 0 1.5rem;max-width:44ch;font-size:clamp(1.125rem,2.1vw,1.5rem);line-height:1.35;color:var(--ink2)}
+.sub{margin:0 0 1.5rem;max-width:50ch;font-size:clamp(1.125rem,2.1vw,1.5rem);line-height:1.35;color:var(--ink2)}
 .byline{margin:0 0 3.2rem;max-width:none;font-size:1rem;font-weight:700;color:var(--ink)}
 .gauge-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;margin:0 0 12px;max-width:none}
 .gauge-num{font-size:clamp(2rem,4.8vw,3.25rem);font-weight:700;line-height:1;letter-spacing:-.03em;font-variant-numeric:lining-nums tabular-nums;color:var(--ink)}
@@ -3916,13 +3916,18 @@ def gauge(ctx: Ctx) -> str:
 
 
 def header(ctx: Ctx) -> str:
-    """The cover: the question, the answer in one line, who wrote it and for what, and one graphic. Nothing else."""
+    """The cover: the question, what the long-term case rests on, who wrote it and for what, and one graphic. Nothing else.
+
+    The subtitle says only what thesis_box() and gauge() check against the data: Intents had the largest share of its peer set over
+    365 days, and NEAR reached the revenue wallets. It does not say the case succeeds; the thesis under the cover says how far the
+    price is ahead of the fees."""
     answer_line(ctx)   # drawn in the track record tab; called here so that the first screen is not drawn either once the data stop supporting it
-    thesis_box(ctx)    # the same for the view under the cover, whose one-line answer the cover gives
+    thesis_box(ctx)    # the same for the view under the cover: its guard covers the subtitle's claim that Intents led its market
     return (
         f'<header class="top"><p class="eyebrow">NEAR Hackathon 2026, Investment Thesis track</p>'
         f'<h1>Can NEAR&rsquo;s Intents business grow into its dilution?</h1>'
-        '<p class="sub">Not on today&rsquo;s evidence. NEAR&rsquo;s price asks for far more than the fees Intents sends it.</p>'
+        '<p class="sub">The long-term case for NEAR rests on Intents. It led its market over the past year and already sends NEAR back to '
+        'NEAR&rsquo;s own wallets. The bar shows how far that has to grow.</p>'
         f'<p class="byline">{esc(AUTHORS)}</p>'
         f'{gauge(ctx)}</header>')
 
