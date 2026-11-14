@@ -661,7 +661,7 @@ def hbar_panel(v: Variant, *, title: object, rows: list[dict], vmax: float, tick
     if legend_items:
         lg, lg_h = legend(v, legend_items, th + fs + 4)
         out.append(lg)
-        lg_h += 4
+        lg_h += 12   # clear space between the legend and the first row's label
     ytop = th + 6 + lg_h + 15 * len(refs)
     ry = ytop + (9 if v.narrow else 4)
     geoms = []

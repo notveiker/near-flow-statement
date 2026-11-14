@@ -485,3 +485,7 @@ At the owner's request, after a read of the page on a wide screen. (1) The forwa
 ## 2026-11-14 23:28 UTC: the linked paper replaced by its updated version (one file)
 
 At the owner's request `site/NEAR_Long_Thesis.pdf`, the paper the first screen links to, is replaced by the authors' updated version (11 pages, produced 2026-11-14 23:25 UTC). The pipeline does not build or check the paper, and nothing on the dashboard changes.
+
+## 2026-11-14 23:33 UTC: space between a bar chart's legend and its first row (layout only)
+
+In the horizontal bar charts that carry a legend, the legend no longer sits directly on the first row's label: there are eight more units of space between them. The page was also read in the dark colour scheme at 1728 px after the two alignment passes. No number, result, label or rule changes.
