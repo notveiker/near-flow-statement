@@ -1063,6 +1063,12 @@ h3{font-size:1.0625rem;font-weight:650;line-height:1.35;margin:.5rem 0 .6rem}
 .tnote{font-size:.875rem;color:var(--ink2)}
 .tile a{font-size:.8125rem;white-space:nowrap}
 @media (min-width:860px){.tile{grid-template-columns:minmax(0,15rem) minmax(0,13rem) minmax(0,1fr) auto}}
+#what-changed{margin:0 0 2rem}
+#what-changed h3{font-family:var(--serif);font-size:1.25rem;font-weight:500;margin:1.6rem 0 .2rem}
+.took{display:grid;gap:0 36px;list-style:none;padding:0;margin:.6rem 0 0;border-top:1px solid var(--grid)}
+.took li{max-width:none;margin:0;padding:11px 0 12px;border-bottom:1px solid var(--grid);font-size:.9375rem;line-height:1.5;color:var(--ink2)}
+.took strong{color:var(--ink);font-weight:650}
+@media (min-width:900px){.took{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .ico{flex:none}
 .i-line{fill:none;stroke:var(--ink2);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 
@@ -1356,8 +1362,8 @@ WIDE_CARDS = {"fwdcov", "forward", "ladder", "revenue", "usage"}   # span both c
 
 
 def fig_no(cid: str) -> int:
-    """A card's figure number: its place on the page (the case, the pre-registered tests, then the supporting evidence)."""
-    return (CASE_IDS + tuple(c for c, _, _ in PRE_CARDS) + EVID_IDS).index(cid) + 1
+    """A card's figure number: its place on the page (the case, the supporting evidence, then the track record of pre-registered tests)."""
+    return (CASE_IDS + EVID_IDS + tuple(c for c, _, _ in PRE_CARDS)).index(cid) + 1
 
 
 def card(*, cid: str, kind: str, headline: str, shows: str, notshows: str, figure: str, caption: str,
@@ -3680,10 +3686,50 @@ def record_strip(ctx: Ctx) -> str:
     freeze_order(ctx)
     return ('<div class="records"><p class="record"><span><strong>Predictions first, data second.</strong> Three hypotheses, a rating rule and seven dated '
             f'forecasts were frozen on {FREEZE_UTC[:10]}, before the first BigQuery result the repository records. Each is scored as written, and every '
-            'result is on this page, including the ones the data went against.</span> <a href="#preregistered">See how they scored</a></p>'
+            'result is on this page, including the ones the data went against.</span> <a href="#preregistered">See the track record</a></p>'
             '<p class="record"><span><strong>Re-run it.</strong> One command rebuilds every chart and every committed number on this page, offline, '
             'from the raw snapshots in the repository. No keys, no installs. Only the Today row is fetched live.</span> '
             '<a href="#reproduce">See the steps</a></p></div>')
+
+
+def what_changed(ctx: Ctx) -> str:
+    """Under the scorecard: what each result changed in the case, in plain words (exploratory reading, written after the score).
+
+    It is drawn only for the outcomes it describes: H1a over its line, H1b and H1c unsettled, the rule giving no signal (check_pre_results),
+    F1 and F2 inside their bands and F3 and F4 outside them, with the update to the latest full day committed. For any other state it
+    draws nothing, so it can never describe a result the page does not show."""
+    fw = ctx.forward
+    if not fw or not has_update(ctx):
+        return ""
+    if [forward_word(fw, f) for f in FORWARD_IDS] != ["PASS", "PASS", "MISS", "MISS"]:
+        return ""
+    check_pre_results(ctx)
+    M, m = ctx.M, ctx.m
+    if not (m["upd_intents_share_peerset_30d_pct"] < m["intents_share_peerset_30d_pct"] and m["upd_ic_take_90d_bp"] > 4):
+        raise SystemExit("render: what_changed() says Intents' 30-day share fell in the update and NEAR's 90-day take is above 4 bp; "
+                         "the data no longer say that, so rewrite it")
+    pf = ctx.prereg_forward
+    lo_id = min(FORWARD_IDS, key=lambda f: float(pf[f]["p"]))   # the lowest and the highest of the four frozen probabilities
+    hi_id = max(FORWARD_IDS, key=lambda f: float(pf[f]["p"]))
+    items = (
+        ("What held.", 'The buyback wallet kept filling and net new supply ran at the pace we forecast (F1, F2). Those are the two sides '
+                       'the case sets against each other: NEAR arriving in NEAR&rsquo;s wallets, and new supply.'),
+        ("Where we were wrong in NEAR&rsquo;s favour.", f'We expected NEAR&rsquo;s take to fall back below {ctx.K("f3_max_bp")} bp, and it did not (F3). The headline figures '
+                                                         f'use the take as measured: {M("upd_ic_take_90d_bp")} bp over the 90 days to {M("upd_asof")}.'),
+        ("Where we were wrong against it.", 'We expected Intents to keep more than half of its peer set&rsquo;s volume that week, and THORChain out-traded it (F4). '
+                                            f'Share is one of the signposts we watch, and the update has the 30-day share at {M("upd_intents_share_peerset_30d_pct")}%.'),
+        ("Supply.", f'More NEAR left staking than rewards added (H1a): over those 90 days the NEAR outside the pools grew by '
+                    f'{M("ic_float_change_vs_net_supply_x")}× the net new supply. Whether it was sold is the question H1b leaves open.'),
+        ("Still open.", 'Too few exchange addresses are labelled to settle how much NEAR reaches exchanges (H1b, H1c). The frozen rule therefore gives '
+                        'no signal, so the view on this page rests on the investment case.'),
+        ("Our odds.", f'We gave the four one-week forecasts odds of <span data-p="{lo_id}">{esc(pf[lo_id]["p"])}</span> to '
+                      f'<span data-p="{hi_id}">{esc(pf[hi_id]["p"])}</span>, and two came true. Four is too few to re-fit our odds, so the '
+                      'longer-dated predictions stay as frozen. Read them with that in mind.'),
+    )
+    lis = "".join(f"<li><strong>{a}</strong> {b}</li>" for a, b in items)
+    return (f'<section id="what-changed" aria-labelledby="wc-h"><h3 id="wc-h">What the results changed</h3>'
+            f'<p class="note">Our reading, written after the score (exploratory). The headline figures on the first screen already include the week the '
+            f'forecasts covered: they run to {M("upd_asof")}.</p><ul class="took">{lis}</ul></section>')
 
 
 def all_cards() -> dict[str, tuple[str, object]]:
@@ -3700,12 +3746,12 @@ def side_nav() -> str:
         return "".join(f'<li><a href="#chart-{cid}">{esc(cards[cid][0])}</a></li>' for cid in ids)
 
     secs = "".join(f'<li><a href="#{sid}">{lab}</a></li>' for sid, lab in
-                   (("thesis", "The long-term view"), ("scorecard", "Scorecard"), ("about", "About the data"), ("not-computed", "Not computed here"), ("reproduce", "Reproduce"), ("limits", "Limits")))
+                   (("thesis", "The long-term view"), ("scorecard", "Track record"), ("about", "About the data"), ("not-computed", "Not computed here"), ("reproduce", "Reproduce"), ("limits", "Limits")))
     return (f'<nav class="side" aria-label="Contents"><h2 class="sr">Contents</h2>'
             f'<p class="sidecap">Page</p><ul class="toc-more">{secs}</ul>'
             f'<p class="sidecap">The case</p><ul class="toc-more">{links(CASE_IDS)}</ul>'
-            f'<p class="sidecap">Pre-registered</p><ul class="toc">{links(id_ for id_, _, _ in PRE_CARDS)}</ul>'
-            f'<p class="sidecap">Supporting evidence</p><ul class="toc">{links(EVID_IDS)}</ul></nav>')
+            f'<p class="sidecap">Supporting evidence</p><ul class="toc">{links(EVID_IDS)}</ul>'
+            f'<p class="sidecap">Track record</p><ul class="toc">{links(id_ for id_, _, _ in PRE_CARDS)}</ul></nav>')
 
 
 LIVE_JS = """
@@ -3942,22 +3988,23 @@ def build_page(ctx: Ctx, breaks: bool = True) -> str:
         f'<a class="skip" href="#main">Skip to the content</a><div class="wrap">{header(ctx)}{side_nav()}'
         f'<main id="main">{record_strip(ctx)}'
         f'<div class="tabs"><nav class="tabbar" aria-label="Sections"><a href="#forward-view" data-tab="forward-view">Investment case</a>'
-        f'<a href="#preregistered" data-tab="preregistered">Pre-registered tests</a><a href="#exploratory" data-tab="exploratory">Supporting evidence</a>'
+        f'<a href="#exploratory" data-tab="exploratory">Supporting evidence</a><a href="#preregistered" data-tab="preregistered">Track record</a>'
         f'<a href="#method" data-tab="method">Method and limits</a></nav>'
         f'<section id="forward-view" class="panel" aria-labelledby="fwd-h"><h2 id="fwd-h">The investment case</h2>'
         f'<p class="note">Six charts carry the argument: what reaches NEAR today, what the price assumes, what would have to change, and what to watch to 2031. '
         f'All of it is exploratory, chosen after the freeze (the ladder on 2026-11-06, the rest on 2026-11-13 and 2026-11-14). None of it changes a '
         f'pre-registered hypothesis, threshold, probability or the rating.</p>'
         f'<div class="grid">{fwd}</div>{update_table(ctx)}{LADDER_HISTORY}</section>'
-        f'<section id="preregistered" class="panel" aria-labelledby="pre-h"><h2 id="pre-h">What we predicted, and what the data said</h2>'
-        f'<p class="note">These were fixed in the <a href="{esc(gh("PREREG.md"))}">pre-registration</a> before the first BigQuery result the repository records, '
-        f'and each is scored as written. A prediction the data went against is still a finding: it says what happened instead. Later method choices are '
-        f'dated in the <a href="{esc(gh("PREREG-ADDENDUM.md"))}">addendum</a>.</p>'
-        f'{scorecard(ctx)}<div class="grid">{pre}</div></section>'
         f'<section id="exploratory" class="panel" aria-labelledby="exp-h"><h2 id="exp-h">Supporting evidence</h2>'
         f'<p class="note">Picked by the author after the freeze to give context. None of them is a test, and none feeds or changes a hypothesis, threshold, '
         f'probability or the rating rule.</p>'
         f'<div class="grid">{exp}</div></section>'
+        f'<section id="preregistered" class="panel" aria-labelledby="pre-h"><h2 id="pre-h">Track record: what we predicted, and what happened</h2>'
+        f'<p class="note">The case in the first tab is built on the data. This tab is the check we set ourselves before running it. We fixed these predictions, '
+        f'with odds, in the <a href="{esc(gh("PREREG.md"))}">pre-registration</a> before the first BigQuery result the repository records, so that the numbers '
+        f'could not be bent to fit a story afterwards. Each is scored as written, and a prediction the data went against is shown like the rest. Later method '
+        f'choices are dated in the <a href="{esc(gh("PREREG-ADDENDUM.md"))}">addendum</a>.</p>'
+        f'{scorecard(ctx)}{what_changed(ctx)}<div class="grid">{pre}</div></section>'
         f'<div id="method" class="panel">{about_data(ctx)}{not_computed(ctx)}{reproduce(ctx)}{limits(ctx)}</div></div></main>'
         f'<footer><p><strong>Research only.</strong> Nothing here is investment advice, an offer or a recommendation. '
         f'MIT licence (<a href="{esc(gh("LICENSE"))}">terms</a>). <a href="{esc(gh("pipeline/render.py"))}">How this page is built</a>.</p></footer></div>'

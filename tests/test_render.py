@@ -692,7 +692,7 @@ class Cards(unittest.TestCase):
 
     def test_every_chart_is_present_in_the_right_part(self):
         cards = self.cards()
-        self.assertEqual(tuple(cards), CASE_IDS + PRE_IDS + EVID_IDS)
+        self.assertEqual(tuple(cards), CASE_IDS + EVID_IDS + PRE_IDS)   # the case, the supporting evidence, then the track record
         self.assertEqual(set(cards), set(FWD_IDS) | set(CARD_IDS), "every card is on the page")
         part = {n.attrs["id"]: n for n in DOM.find_all("section") if n.attrs.get("id") in ("forward-view", "preregistered", "exploratory")}
         for cid, node in cards.items():
@@ -2543,9 +2543,9 @@ class Usage(unittest.TestCase):
         badge = usage.find("span", "badge")
         self.assertIn("badge-exp", badge.classes())
         self.assertEqual(badge.text().strip(), "Exploratory")
-        self.assertIs(cards[-1], usage, "it comes after the other exploratory cards")
+        self.assertIs([c for c in cards if c in expl][-1], usage, "it comes after the other exploratory cards")
         nav = next(n for n in DOM.find_all("nav") if n.attrs.get("aria-label") == "Contents")
-        toc_pre, toc_exp = nav.find_all("ul", "toc")
+        toc_exp, toc_pre = nav.find_all("ul", "toc")   # the contents list the supporting evidence, then the track record
         self.assertEqual([a.attrs["href"] for a in toc_pre.find_all("a")], [f"#chart-{c}" for c in PRE_IDS])
         self.assertEqual([a.attrs["href"] for a in toc_exp.find_all("a")], [f"#chart-{c}" for c in EVID_IDS])
         self.assertEqual(toc_exp.find_all("a")[-1].text(), "Network usage")
