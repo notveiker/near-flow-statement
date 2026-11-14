@@ -51,6 +51,7 @@ PAGE_KEY = f"{R.SITE_DIR}/{R.PAGE_NAME}"
 VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}
 CARD_IDS = ("h1a", "h1b", "h1c", "rating", "forward", "ladder", "escrow", "take", "partners", "paid", "peers", "revenue", "supply", "usage")
 PRE_IDS = ("h1a", "h1b", "h1c", "rating", "forward")
+FWD_IDS = ("fwdcov", "fwdsupply")   # the forward view (exploratory, 2026-11-13), first on the page
 
 
 # ------------------------------------------------------------------ a small DOM
@@ -190,6 +191,11 @@ NUM_TOKEN = re.compile(r"(?<![\w.])(\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?)"
 VALUE_ATTRS = ("data-m", "data-s", "data-d", "data-k")
 REF_ATTRS = VALUE_ATTRS + ("data-f", "data-p", "data-count", "data-fingerprint", "data-prereg", "data-r")
 
+
+
+def hl(card: "Node") -> "Node":
+    """A card's headline sentence: the p.finding under "Notes and sources" when the card has a short title, else the h3."""
+    return card.find("p", "finding") or card.find("h3")
 
 def card_node(dom: Node, cid: str) -> Node:
     return next(n for n in dom.find_all("section") if n.attrs.get("id") == f"chart-{cid}")
@@ -372,7 +378,8 @@ class Determinism(unittest.TestCase):
     def test_size_budget(self):
         # One self-contained file: the SQL text, the data tables and every chart drawn twice (wide and phone) are the bulk.
         # The usage card adds its two charts of 400 points each, drawn twice, and the 400-row table of what they plot.
-        self.assertLess(len(FILES[PAGE_KEY]), 520 * 1024)
+        # The forward view (2026-11-13) adds two cards: a fan chart and its probabilities, and the supply projection.
+        self.assertLess(len(FILES[PAGE_KEY]), 600 * 1024)
 
     def test_committed_site_is_current(self):
         committed = ROOT / R.SITE_DIR / R.PAGE_NAME
@@ -560,13 +567,14 @@ class DataAttributes(unittest.TestCase):
 
         collect(METRICS)
         token = re.compile(r"(?<![\w.\-/#$])(\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+\.\d+)(?![\w\-])")
-        skip_tags = {"svg", "table", "pre", "code", "style", "head", "details"}
+        skip_tags = {"svg", "table", "pre", "code", "style", "head"}  # a collapsed Query or Data block is skipped below; other <details> are read
         skip_classes = {"verbatim", "sha", "docs", "toc", "ver"}  # PREREG's own words, hashes, links, a Python version
         problems: list[str] = []
 
         def walk(n: Node, wrapped: bool, skipping: bool) -> None:
             now_wrapped = wrapped or any(k in n.attrs for k in ("data-m", "data-s", "data-d", "data-k", "data-f", "data-p", "data-count", "data-fingerprint", "data-prereg"))
-            now_skip = skipping or n.tag in skip_tags or bool(n.classes() & skip_classes)
+            now_skip = (skipping or n.tag in skip_tags or bool(n.classes() & skip_classes)
+                        or (n.tag == "details" and n.find("summary") is not None and n.find("summary").text().strip() in ("Query", "Data")))
             for c in n.children:
                 if isinstance(c, Node):
                     walk(c, now_wrapped, now_skip)
@@ -650,10 +658,10 @@ class Cards(unittest.TestCase):
 
     def test_every_chart_is_present_in_the_right_part(self):
         cards = self.cards()
-        self.assertEqual(tuple(cards), PRE_IDS + tuple(c for c in CARD_IDS if c not in PRE_IDS))
-        part = {n.attrs["id"]: n for n in DOM.find_all("section") if n.attrs.get("id") in ("preregistered", "exploratory")}
+        self.assertEqual(tuple(cards), FWD_IDS + PRE_IDS + tuple(c for c in CARD_IDS if c not in PRE_IDS))
+        part = {n.attrs["id"]: n for n in DOM.find_all("section") if n.attrs.get("id") in ("forward-view", "preregistered", "exploratory")}
         for cid, node in cards.items():
-            owner = "preregistered" if cid in PRE_IDS else "exploratory"
+            owner = "forward-view" if cid in FWD_IDS else "preregistered" if cid in PRE_IDS else "exploratory"
             self.assertIn(node, list(part[owner].iter()), cid)
             badge = node.find("span", "badge")
             self.assertIsNotNone(badge, cid)
@@ -664,14 +672,14 @@ class Cards(unittest.TestCase):
     def test_card_anatomy(self):
         for cid, node in self.cards().items():
             self.assertEqual(len(node.find_all("h3")), 1, cid)
-            self.assertTrue(node.find("h3").text().strip(), cid)
+            self.assertTrue(hl(node).text().strip(), cid)
             self.assertTrue(node.find("p", "shows").text().startswith("What it shows:"), cid)
             self.assertTrue(node.find("p", "notshows").text().startswith("What it does not show:"), cid)
             self.assertIn("Source:", node.find("div", "source").text(), cid)
             figure = node.find("figure")
             self.assertIsNotNone(figure.find("figcaption"), cid)
             details = {d.find("summary").text().strip(): d for d in node.find_all("details")}
-            self.assertEqual(set(details), {"Query", "Data"}, cid)
+            self.assertEqual(set(details), {"Notes and sources", "Query", "Data"}, cid)
             self.assertTrue(details["Data"].find_all("table"), cid)
             for table in details["Data"].find_all("table"):
                 self.assertGreaterEqual(len(table.find_all("tr")), 3, cid)
@@ -864,8 +872,8 @@ class ForwardTests(unittest.TestCase):
     def test_pending_without_a_scored_result(self):
         """Built from an empty forward directory, so it does not depend on what is committed under data/forward."""
         card = self.card(PENDING_DOM)
-        self.assertIn("pending", card.find("h3").text())
-        self.assertIn("2026-11-14 00:00 UTC", card.find("h3").text())
+        self.assertIn("pending", hl(card).text())
+        self.assertIn("2026-11-14 00:00 UTC", hl(card).text())
         words = [n.text().strip() for n in card.find_all("span") if "data-status" in n.attrs]
         self.assertEqual(words, ["pending"] * 4)
         self.assertEqual([n for n in PENDING_DOM.iter() if "data-f" in n.attrs], [])
@@ -882,11 +890,11 @@ class ForwardTests(unittest.TestCase):
         every data-f number on the page equals the committed result.json, and the card says it is scored."""
         card = self.card(DOM)
         if LIVE_SCORE is None:
-            self.assertIn("pending", card.find("h3").text())
+            self.assertIn("pending", hl(card).text())
             self.assertEqual([n for n in DOM.iter() if "data-f" in n.attrs], [])
             return
         self.assertGreater(check_forward_numbers(self, DOM, LIVE_SCORE), 5)
-        self.assertNotIn("pending", card.find("h3").text())
+        self.assertNotIn("pending", hl(card).text())
         words = [n.text().strip() for n in card.find_all("span") if "data-status" in n.attrs]
         self.assertEqual(words, [str(LIVE_SCORE["results"][f]["result"]) for f in ("F1", "F2", "F3", "F4")])
 
@@ -896,8 +904,8 @@ class ForwardTests(unittest.TestCase):
         words = {n.attrs["data-status"]: n.text().strip() for n in card.find_all("span") if "data-status" in n.attrs}
         self.assertEqual(words, {"F1": "PASS", "F2": "MISS", "F3": "PASS", "F4": "not scorable"})
         self.assertGreater(check_forward_numbers(self, dom, fixture_result()), 10)
-        self.assertIn("passed", card.find("h3").text())
-        self.assertIn("not scorable", card.find("h3").text())
+        self.assertIn("passed", hl(card).text())
+        self.assertIn("not scorable", hl(card).text())
         self.assertIn("a DefiLlama peer fetch is missing", card.text())
         self.assertIn("score_20261114T010203Z/result.json", card.find("div", "source").text())
         self.assertNotIn("pending", " ".join(words.values()))
@@ -926,7 +934,7 @@ class ForwardTests(unittest.TestCase):
         self.assertEqual([n for n in dom.iter() if "data-f" in n.attrs], [])
         for needle in ("1,111,111", "9.88", "9.8765", "1111111"):
             self.assertNotIn(needle, page)
-        self.assertIn("pending", self.card(dom).find("h3").text())
+        self.assertIn("pending", hl(self.card(dom)).text())
 
     def test_only_the_newest_score_directory_counts(self):
         with tempfile.TemporaryDirectory() as d:
@@ -934,7 +942,7 @@ class ForwardTests(unittest.TestCase):
             write_forward(tmp, "score_20261114T010000Z", fixture_result())
             write_forward(tmp, "score_20261115T010000Z", fixture_result(is_score=False, mode="DRY-RUN"))
             dom, _ = forward_dom(tmp)
-        self.assertIn("pending", self.card(dom).find("h3").text())
+        self.assertIn("pending", hl(self.card(dom)).text())
 
     def test_a_score_made_by_the_real_scorer_renders_and_ties_to_its_result(self):
         """The layout comes from pipeline/score_forward.py, not from this file, so a change there cannot slip past."""
@@ -1025,7 +1033,7 @@ class ForwardTests(unittest.TestCase):
         self.assertEqual([n.text().strip() for n in card.find_all("span") if "data-status" in n.attrs], ["not scorable"] * 4)
         table = next(t for t in card.find_all("table") if t.find("caption").text() == "Forward tests as frozen")
         self.assertEqual([tr.find_all("td")[2].text().strip() for tr in table.find_all("tr") if tr.find_all("td")], ["not scorable"] * 4)
-        self.assertEqual(re.sub(r"\s+", " ", card.find("h3").text()), "Forward tests scored: 0 passed, 0 missed and 4 not scorable of 4.")
+        self.assertEqual(re.sub(r"\s+", " ", hl(card).text()), "Forward tests scored: 0 passed, 0 missed and 4 not scorable of 4.")
         tile = [n for n in dom.find_all("li") if "tile" in n.classes()][4]
         self.assertIn("0 pass, 0 miss", tile.text())
         self.assertIn("4 not scorable", tile.text())
@@ -1507,7 +1515,7 @@ class Golden(unittest.TestCase):
         for name, dom, _, _ in VARIANTS:
             for cid, want in HEADLINE_REFS.items():
                 with self.subTest(variant=name, card=cid):
-                    self.assertEqual(refs_in(card_node(dom, cid).find("h3")), want)
+                    self.assertEqual(refs_in(hl(card_node(dom, cid))), want)
 
     def test_scorecard_tiles_print_the_expected_numbers(self):
         for name, dom, _, _ in VARIANTS:
@@ -1523,7 +1531,7 @@ class Golden(unittest.TestCase):
             with self.subTest(variant=name):
                 tile = [n for n in dom.find_all("li") if "tile" in n.classes()][4]
                 want = ([("f", "@count.PASS"), ("f", "@count.MISS"), ("f", "@count.not scorable")] if result else [])
-                self.assertEqual(refs_in(card_node(dom, "forward").find("h3"), ("data-f",)), want)
+                self.assertEqual(refs_in(hl(card_node(dom, "forward")), ("data-f",)), want)
                 self.assertEqual(refs_in(tile, ("data-f",)), want)
                 self.assertEqual(tile.find("a").attrs["href"], "#chart-forward")
 
@@ -1541,11 +1549,11 @@ class Golden(unittest.TestCase):
         want = {"revenue": ("October 2026", "September"), "escrow": ("July", "October", "November"),
                 "peers": ("30 days", "365 days"), "take": ("bp of volume", "partner fees"), "rating": ("Buy needs", "Avoid needs")}
         for cid, phrases in want.items():
-            h3 = card_node(DOM, cid).find("h3").text()
+            h3 = hl(card_node(DOM, cid)).text()
             for ph in phrases:
                 self.assertIn(ph, h3, cid)
         # in the peers headline the 30-day figure comes first, then the 365-day one
-        h3 = card_node(DOM, "peers").find("h3")
+        h3 = hl(card_node(DOM, "peers"))
         text = h3.text()
         self.assertLess(text.index("30 days"), text.index("365 days"))
         self.assertEqual([r for _, r in refs_in(h3)], ["intents_share_peerset_30d_pct", "intents_share_peerset_365d_pct"])
@@ -1553,17 +1561,17 @@ class Golden(unittest.TestCase):
     def test_each_headline_keeps_its_hedge(self):
         for name, dom, _, _ in VARIANTS:
             for cid, phrases in HEADLINE_PHRASES.items():
-                h3 = re.sub(r"\s+", " ", card_node(dom, cid).find("h3").text())
+                h3 = re.sub(r"\s+", " ", hl(card_node(dom, cid)).text())
                 for ph in phrases:
                     self.assertIn(ph, h3, f"{name}: the {cid} headline lost {ph!r}")
 
     def test_the_h1a_headline_verdict_word_agrees_with_the_metric(self):
         self.assertIs(METRICS["h1a_pass_as_written"], False)
-        h3 = card_node(DOM, "h1a").find("h3").text()
+        h3 = hl(card_node(DOM, "h1a")).text()
         self.assertTrue(h3.startswith("H1a fails:"), h3)
         for cid, key, word in (("h1b", "h1b_verdict", "inconclusive"), ("h1c", "h1c_verdict", "inconclusive"), ("rating", "rating_output", "Hold")):
             self.assertEqual(METRICS[key], word)
-            self.assertIn(word, card_node(DOM, cid).find("h3").text())
+            self.assertIn(word, hl(card_node(DOM, cid)).text())
 
     def test_every_card_has_text_after_what_it_does_not_show(self):
         for name, dom, _, _ in VARIANTS:
@@ -2176,7 +2184,7 @@ class Numbers(unittest.TestCase):
         self.assertEqual(set(found), {want})
 
     def test_take_block_labels_are_the_metric_windows(self):
-        h3 = card_node(DOM, "take").find("h3").text()
+        h3 = hl(card_node(DOM, "take")).text()
         self.assertIn(f"({block_label(METRICS['take_b1_window'])})", h3)
         self.assertIn(f"({block_label(METRICS['take_b3_window'])})", h3)
 
@@ -2543,7 +2551,7 @@ class Usage(unittest.TestCase):
             want = [round(now / 1e3, dec), round((now / then - 1) * 100, 1), round((now / start - 1) * 100, 1)]
             self.assertEqual([METRICS[avg_key], METRICS[yoy_key], METRICS[since_key]], want, key)
             self.assertEqual(rows[label], want, key)
-        h3 = card_node(DOM, "usage").find("h3")
+        h3 = hl(card_node(DOM, "usage"))
         self.assertEqual([float(n.text()) for n in h3.find_all("span") if n.attrs.get("data-m", "").startswith(("active", "tx_"))],
                          [METRICS["active_accounts_30d_k"], METRICS["active_accounts_30d_yoy_pct"], METRICS["tx_per_day_30d_yoy_pct"]])
 
@@ -2629,7 +2637,7 @@ class Usage(unittest.TestCase):
 
     # ---- the text
     def test_the_headline_does_not_present_the_transaction_fall_as_a_trend(self):
-        h3 = re.sub(r"\s+", " ", card_node(DOM, "usage").find("h3").text())
+        h3 = re.sub(r"\s+", " ", hl(card_node(DOM, "usage")).text())
         self.assertEqual(h3, f"Daily active accounts averaged {METRICS['active_accounts_30d_k']}K over the 30 days to {METRICS['asof']}, "
                              f"{METRICS['active_accounts_30d_yoy_pct']}% on the same 30 days a year earlier; daily transactions are "
                              f"{METRICS['tx_per_day_30d_yoy_pct']}% on a year earlier, but most of that is one step on {METRICS['l1_step_date']}, "
@@ -2823,7 +2831,7 @@ class Wording(unittest.TestCase):
         self.assertLess(math.log1p(METRICS["rating_g_obs_near_pct"] / 100) / math.log1p(go / 100), 0.5, "most of the USD growth is the price")
 
     def test_the_headline_and_the_tile_say_the_whole_rule_and_that_hold_is_no_view(self):
-        h3 = re.sub(r"\s+", " ", card_node(DOM, "rating").find("h3").text())
+        h3 = re.sub(r"\s+", " ", hl(card_node(DOM, "rating")).text())
         self.assertEqual(h3, "The frozen rule outputs Hold, which carries no view on NEAR: Buy needs H1b to pass and observed growth at least the required growth, Avoid needs H1b to fail and observed growth under "
                              "half the required growth, and H1b is inconclusive.")
         tile = [n for n in DOM.find_all("li") if "tile" in n.classes()][3]
@@ -2866,13 +2874,13 @@ class Wording(unittest.TestCase):
         self.assertLess(m["partners_kept_vs_near_rev_low_x"], m["partners_kept_vs_near_rev_low_tight_x"])         # the wide bound is the lower one
         self.assertGreater(m["near_share_of_partner_fees_max_pct"], m["near_share_of_partner_fees_max_tight_pct"])  # and the higher ceiling on NEAR's share
         self.assertGreater(m["swapkit_exit_ceiling_all_escrow_pct"], m["swapkit_exit_ceiling_pct"])                 # the second ceiling adds to the first
-        paid = re.sub(r"\s+", " ", card_node(DOM, "paid").find("h3").text())
+        paid = re.sub(r"\s+", " ", hl(card_node(DOM, "paid")).text())
         self.assertLess(m["partners_kept_vs_near_rev_floor_x"], m["partners_kept_vs_near_rev_low_x"])          # the floor is below the published reading
         self.assertTrue(paid.startswith(f"Listed partner fees were {m['partners_kept_vs_near_rev_floor_x']}× to {m['partners_kept_vs_near_rev_high_x']}× NEAR’s entire captured revenue "
                                         f"({m['partners_kept_vs_near_rev_low_x']}× is one reading, {m['partners_kept_vs_near_rev_low_tight_x']}× on the tighter one), "
                                         f"and 1Click was a net route out of NEAR"), paid)
         self.assertNotIn("at least", paid)
-        partners = re.sub(r"\s+", " ", card_node(DOM, "partners").find("h3").text())
+        partners = re.sub(r"\s+", " ", hl(card_node(DOM, "partners")).text())
         self.assertNotIn("at most", partners)
         self.assertIn(f"The ceiling is {m['swapkit_exit_ceiling_pct']}% if all the escrow NEAR delivered to the buyback wallet counts as SwapKit’s, and "
                       f"{m['swapkit_exit_ceiling_all_escrow_pct']}% if the escrow NEAR reaching the front-end fund is counted too.", partners)
@@ -3118,7 +3126,7 @@ class Wording(unittest.TestCase):
             self.assertEqual(page.count("under both"), 0, name)
             tile = [n for n in dom.find_all("li") if "tile" in n.classes()][2]
             self.assertTrue(re.sub(r"\s+", " ", tile.find("p", "tnote").text()).endswith("A pass needs at least 25% at both bounds."), name)
-            h3 = re.sub(r"\s+", " ", card_node(dom, "h1c").find("h3").text())
+            h3 = re.sub(r"\s+", " ", hl(card_node(dom, "h1c")).text())
             self.assertTrue(h3.endswith("; a pass needs at least 25% at both bounds."), name)
             notes = re.sub(r"\s+", " ", card_node(dom, "h1c").find("ul", "notes").find_all("li")[0].text())
             self.assertTrue(notes.startswith("With label coverage below 50%, H1c passes only if it reaches at least 25% at both bounds."), name)
@@ -3129,7 +3137,7 @@ class Wording(unittest.TestCase):
             self.assertIn("so the test passes only if it passes at both bounds.", h1b_note, name)
             tile_a = [n for n in dom.find_all("li") if "tile" in n.classes()][0]
             self.assertTrue(re.sub(r"\s+", " ", tile_a.find("p", "tnote").text()).endswith("A pass needed under 0.5×."), name)   # a ceiling, and it says so
-            self.assertIn("under 0.5×", re.sub(r"\s+", " ", card_node(dom, "h1a").find("h3").text()), name)
+            self.assertIn("under 0.5×", re.sub(r"\s+", " ", hl(card_node(dom, "h1a")).text()), name)
         # the rule behind the sentence: below 50% label coverage a test passes only if it passes at both bounds
         from pipeline import h1b as H
         self.assertEqual(float(H.H1C_MIN), 0.25)

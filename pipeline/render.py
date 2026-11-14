@@ -920,7 +920,28 @@ CSS = """
 html{-webkit-text-size-adjust:100%;scroll-padding-top:12px}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;overflow-wrap:break-word}
-.wrap{max-width:792px;margin:0 auto;padding:0 16px}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px}
+.side{margin:1.2rem 0 0}
+.side .toc,.side .toc-more{display:flex;flex-wrap:wrap;gap:4px 18px;list-style:none;padding:0;margin:.4rem 0}
+.side .sidecap{margin:.9rem 0 .2rem;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.side .sidecap:first-child{margin-top:0}
+@media (min-width:1100px){
+.wrap{max-width:1180px;display:grid;grid-template-columns:220px minmax(0,860px);grid-template-areas:"side top" "side main" "side foot";column-gap:48px;justify-content:center}
+header.top{grid-area:top}main{grid-area:main}footer{grid-area:foot}
+.side{grid-area:side;position:sticky;top:0;align-self:start;max-height:100vh;overflow:auto;margin:0;padding:28px 0 24px;font-size:.875rem}
+.side .toc,.side .toc-more{display:block;margin:.2rem 0 .4rem}
+.side li{margin:0}
+.side a{display:block;padding:3px 8px;margin-left:-8px;border-radius:6px;color:var(--ink2);text-decoration:none;line-height:1.35}
+.side a:hover{background:var(--code);color:var(--ink)}
+.side .sidecap{margin:1.1rem 0 .3rem}
+}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;list-style:none;padding:0;margin:.4rem 0 1rem}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px 14px;max-width:none;display:flex;flex-direction:column;gap:2px}
+.kpi .kv{font-size:1.6rem;font-weight:750;line-height:1.15;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.kpi a.kv{color:inherit;text-decoration:none}
+.kpi a.kv:hover{text-decoration:underline}
+.kpi .kl{font-size:.8125rem;color:var(--ink2);line-height:1.3}
+.kpi .kt{font-size:.6875rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 a{color:var(--link);text-underline-offset:2px}
 a:focus-visible,summary:focus-visible,.tablewrap:focus-visible,pre:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 .skip{position:absolute;left:-9999px;top:8px;background:var(--ink);color:var(--surface);padding:8px 14px;border-radius:6px;z-index:20}
@@ -964,6 +985,8 @@ h3{font-size:1.15rem;line-height:1.35;margin:.5rem 0 .6rem}
 .tnote{font-size:.875rem;color:var(--ink2)}
 .tile a{font-size:.875rem}
 @media (max-width:640px){.tile{grid-template-columns:minmax(0,1fr)}.tile .st{grid-row:auto}.tile>:not(.st){grid-column:1}}
+@media (min-width:760px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.tile{grid-template-columns:minmax(0,1fr);align-content:start}
+.tile .st{grid-row:auto;align-self:start;font-size:.95rem}.tile>:not(.st){grid-column:1}.tile:last-child:nth-child(odd){grid-column:1 / -1}}
 .badge{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:3px 10px 3px 8px;border-radius:999px;line-height:1.3}
 .badge-pre{background:var(--ink);color:var(--surface)}
 .badge-pre .i-line{stroke:var(--surface)}
@@ -972,6 +995,22 @@ h3{font-size:1.15rem;line-height:1.35;margin:.5rem 0 .6rem}
 .cardtop{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .cardtop a{font-size:.875rem;color:var(--muted)}
 .shows,.notshows{margin:.35rem 0}
+.sn{display:grid;gap:8px;margin:.6rem 0 .2rem}
+.sn p{margin:0;padding:9px 12px;border-radius:10px;background:var(--code);font-size:.9375rem;line-height:1.5;max-width:none}
+.sn strong{display:block;font-size:.6875rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.sn .shows{border-left:3px solid var(--s1)}.sn .notshows{border-left:3px solid var(--axis)}
+@media (min-width:900px){.sn{grid-template-columns:1fr 1fr}}
+.card h3{font-size:1.0625rem;font-weight:650;line-height:1.4}
+.finding{margin:.7rem 0 .4rem;font-weight:600}
+.finding::before{content:"The finding in full";display:block;font-size:.6875rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.cardfoot{display:flex;flex-wrap:wrap;gap:8px;margin-top:.6rem;padding-top:.6rem;border-top:1px solid var(--grid)}
+.cardfoot details{margin:0;border:0;padding:0;flex:0 0 auto;min-width:0}
+.cardfoot details[open]{flex-basis:100%;order:1}
+.cardfoot summary{display:inline-block;font-size:.8125rem;padding:4px 12px;border:1px solid var(--border);border-radius:999px;background:var(--surface)}
+.cardfoot summary:hover{border-color:var(--ink2)}
+.cardfoot details[open]>summary{background:var(--code)}
+details.metawrap,details.fz{border:0;padding:0;margin:.6rem 0}
+details.metawrap>summary,details.fz>summary,section>details.more>summary{font-size:.875rem;color:var(--ink2)}
 .notshows{color:var(--ink2)}
 figure.chart-fig{margin:1rem 0 .4rem}
 .chart{margin:0}
@@ -994,6 +1033,7 @@ figcaption{font-size:.8125rem;color:var(--muted);margin-top:6px}
 .svg .s1{fill:var(--s1)}.svg .s2{fill:var(--s2)}.svg .sc{fill:var(--ctx)}.svg .sk{fill:var(--ink)}.svg .st2{fill:var(--ink2)}
 .svg .track{fill:var(--grid)}
 .svg .band{fill:var(--s1);opacity:.22}
+.svg .band2{fill:var(--s1);opacity:.38}
 .svg .bandedge{stroke:var(--s1);stroke-width:2}
 .svg .ln{fill:none;stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round}
 .svg .l1{stroke:var(--s1)}.svg .l2{stroke:var(--s2)}.svg .lc{stroke:var(--ctx)}
@@ -1194,19 +1234,23 @@ def data_details(*tables: str) -> str:
 
 
 def card(*, cid: str, kind: str, headline: str, shows: str, notshows: str, figure: str, caption: str,
-         source: str, query: str, data: str, extra: str = "", notes: tuple[str, ...] = ()) -> str:
-    """One chart card. kind is "pre" (pre-registered) or "exp" (exploratory, chosen after the freeze)."""
+         source: str, query: str, data: str, extra: str = "", notes: tuple[str, ...] = (), title: str = "") -> str:
+    """One chart card. kind is "pre" (pre-registered) or "exp" (exploratory, chosen after the freeze).
+
+    With a title, the h3 is that short title and the full headline sentence (p.finding) opens first under "Notes and sources";
+    without one, the headline is the h3."""
+    finding = f'<p class="finding">{headline}</p>' if title else ""
     badge = (f'<span class="badge badge-pre">{icon("lock", 14)} Pre-registered</span>' if kind == "pre"
              else f'<span class="badge badge-exp">{icon("compass", 14)} Exploratory, chosen after the freeze</span>')
     note_ul = f'<ul class="notes">{"".join(f"<li>{n}</li>" for n in notes)}</ul>' if notes else ""
     return (
         f'<section class="card" id="chart-{cid}" aria-labelledby="chart-{cid}-h">'
         f'<div class="cardtop">{badge}<a href="#chart-{cid}" aria-label="Link to this chart">#</a></div>'
-        f'<h3 id="chart-{cid}-h">{headline}</h3>'
-        f'<p class="shows"><strong>What it shows:</strong> {shows}</p>'
-        f'<p class="notshows"><strong>What it does not show:</strong> {notshows}</p>'
+        f'<h3 id="chart-{cid}-h">{title or headline}</h3>'
+        f'<div class="sn"><p class="shows"><strong>What it shows:</strong> {shows}</p>'
+        f'<p class="notshows"><strong>What it does not show:</strong> {notshows}</p></div>'
         f'<figure class="chart-fig">{figure}<figcaption>{caption}</figcaption></figure>'
-        f"{extra}{note_ul}{source}{query}{data}</section>"
+        f'{extra}<div class="cardfoot"><details class="more"><summary>Notes and sources</summary>{finding}{note_ul}{source}</details>{query}{data}</div></section>'
     )
 
 
@@ -1462,6 +1506,7 @@ def card_h1b(ctx: Ctx) -> str:
         caption="Plotted values")
     return card(
         cid="h1b", kind="pre",
+        title=f'H1b is {ctx.M("h1b_verdict")}: net exchange inflow was {ctx.M("h1b_net_inflow_lower_m")}M to {ctx.M("h1b_net_inflow_upper_m")}M NEAR, against {ctx.M("h1a_gross_issuance_90d_m")}M minted',
         headline=(f'H1b is {ctx.M("h1b_verdict")}: net exchange inflow lies between {ctx.M("h1b_net_inflow_lower_m")}M and '
                   f'{ctx.M("h1b_net_inflow_upper_m")}M NEAR, on either side of the {ctx.M("h1a_gross_issuance_90d_m")}M NEAR minted.'),
         shows=(f'Net exchange inflow of NEAR (native plus wNEAR) into labelled exchange accounts over the 90 days {window_text(ctx, 90)}, as a range: '
@@ -1528,6 +1573,7 @@ def card_h1c(ctx: Ctx) -> str:
                '<a href="#chart-h1b">the H1b chart</a>; this chart adds one RPC read, below.')
     return card(
         cid="h1c", kind="pre",
+        title=f'H1c is {ctx.M("h1c_verdict")}: identified buying is {ctx.M("h1c_ratio_lower_pct")}% of net exchange inflow at one bound, {ctx.M("h1c_ratio_upper_pct")}% at the other',
         headline=(f'H1c is {ctx.M("h1c_verdict")}: the buyback wallet grew by {ctx.M("h1c_identified_buying_m")}M NEAR, '
                   f'{ctx.M("h1c_ratio_lower_pct")}% of the lower bound of net exchange inflow but {ctx.M("h1c_ratio_upper_pct")}% of the upper; '
                   f'a pass needs at least {ctx.K("h1c_min_pct")}% at both bounds.'),
@@ -1633,6 +1679,7 @@ def card_rating(ctx: Ctx) -> str:
                     ("If H1b had failed", ctx.M("rating_if_h1b_fail"))])
     return card(
         cid="rating", kind="pre",
+        title=f'The frozen rule outputs {ctx.M("rating_output")}, which carries no view on NEAR',
         headline=(f'The frozen rule outputs {ctx.M("rating_output")}, which carries no view on NEAR: Buy needs H1b to pass and observed growth at least the required growth, Avoid needs H1b to fail and observed '
                   f'growth under half the required growth, and H1b is {ctx.M("h1b_verdict")}.'),
         shows=(f'The two inputs of the pre-registered rating rule: required growth G_req of {ctx.M("rating_g_req_pct")}% a year '
@@ -2000,6 +2047,7 @@ def card_ladder(ctx: Ctx) -> str:
                 f"re-checkable evidence.") if note_job else ""
     return card(
         cid="ladder", kind="exp",
+        title=f'{ctx.M("ladder_all_wallets_pct_of_issuance", 2)}% of net issuance reached NEAR&rsquo;s three Intents revenue wallets; {ctx.M("ladder_public_collectors_pct_of_issuance", 2)} points trace to public fee collectors',
         headline=(f'NEAR delivered to NEAR&rsquo;s three Intents revenue wallets equalled {ctx.M("ladder_all_wallets_pct_of_issuance", 2)}% of net '
                   f'issuance; only {ctx.M("ladder_public_collectors_pct_of_issuance", 2)} points trace to public fee collectors and '
                   f'{ctx.M("ladder_escrow_unshields_pct_of_issuance", 2)} arrive as unshields from the Confidential Intents escrow, fee stream unattested.'),
@@ -2115,6 +2163,7 @@ def card_escrow(ctx: Ctx) -> str:
                     ("Escrow share, 30-day window", f'{ctx.M("escrow_share_of_buyback_near_30d_pct")}%')])
     return card(
         cid="escrow", kind="exp",
+        title=f'The escrow&rsquo;s share of the buyback wallet&rsquo;s NEAR stepped up once, from {ctx.M("escrow_share_buyback_2026_08_pct")}% in August to {ctx.M("escrow_share_buyback_2026_09_pct")}% in September',
         headline=(f'The escrow&rsquo;s share of the buyback wallet&rsquo;s NEAR stepped up once, at the end of August, and has been flat since: {ctx.M("escrow_share_buyback_2026_07_pct")}% in July and '
                   f'{ctx.M("escrow_share_buyback_2026_08_pct")}% in August, then {ctx.M("escrow_share_buyback_2026_09_pct")}% in September, {ctx.M("escrow_share_buyback_2026_10_pct")}% in October and {ctx.M("escrow_share_buyback_2026_11_pct")}% for {partial_month_note(ctx)}.'),
         shows=('For each calendar month, the share of NEAR delivered to <code>buybacks.multisignature.near</code> that came from single-use accounts '
@@ -2179,6 +2228,7 @@ def card_take(ctx: Ctx) -> str:
     tab = table_html(cols, rws, caption="Plotted values and the context behind them")
     return card(
         cid="take", kind="exp",
+        title=f'NEAR&rsquo;s explicit fee in 1Click rose from {ctx.M("take_b1_bb_explicit_bp")} bp to {ctx.M("take_b3_bb_explicit_bp")} bp of volume, mostly because more volume carries a buyback fee',
         headline=(f'NEAR&rsquo;s explicit fee inside 1Click rose from {ctx.M("take_b1_bb_explicit_bp")} bp of volume ({esc(labels[0])}) to '
                   f'{ctx.M("take_b3_bb_explicit_bp")} bp ({esc(labels[2])}), mostly because more volume carries a buyback fee entry; partner '
                   f'fees were {ctx.M("take_b3_partner_bp")} bp in the last block.'),
@@ -2274,6 +2324,7 @@ def card_partners(ctx: Ctx) -> str:
                     ("Explicit buyback fee HHI", ctx.M("buyback_fee_hhi", 3))])
     return card(
         cid="partners", kind="exp",
+        title=f'SwapKit routes {ctx.M("swapkit_vol_share_pct")}% of 1Click volume but paid NEAR ${ctx.M("swapkit_buyback_fees_usd", 0)} in explicit fees over 30 days',
         headline=(f'SwapKit routes {ctx.M("swapkit_vol_share_pct")}% of 1Click volume but paid NEAR ${ctx.M("swapkit_buyback_fees_usd", 0)} in explicit fees '
                   f'over 30 days; if it left, NEAR would lose about {ctx.M("swapkit_exit_traceable_pct")}% of captured revenue on the traceable '
                   f'streams. The ceiling is {ctx.M("swapkit_exit_ceiling_pct")}% if all the escrow NEAR delivered to the buyback wallet counts as SwapKit&rsquo;s, '
@@ -2357,6 +2408,7 @@ def card_paid(ctx: Ctx) -> str:
                     ("Share of 1Click volume with NEAR on one side", f'{ctx.M("explorer_near_side_swap_share_pct")}%')])
     return card(
         cid="paid", kind="exp",
+        title=f'Listed partner fees were {ctx.M("partners_kept_vs_near_rev_floor_x")}× to {ctx.M("partners_kept_vs_near_rev_high_x")}× NEAR&rsquo;s entire captured revenue',
         headline=(f'Listed partner fees were {ctx.M("partners_kept_vs_near_rev_floor_x")}× to {ctx.M("partners_kept_vs_near_rev_high_x")}× NEAR&rsquo;s entire captured revenue ({ctx.M("partners_kept_vs_near_rev_low_x")}× is one reading, '
                   f'{ctx.M("partners_kept_vs_near_rev_low_tight_x")}× on the tighter one), and 1Click was a net route out of NEAR: ${ctx.M("explorer_out_of_near_usd_m")}M out against '
                   f'${ctx.M("explorer_into_near_usd_m")}M in over 30 days.'),
@@ -2673,6 +2725,7 @@ def card_usage(ctx: Ctx) -> str:
     lead = f'<p class="note">Four daily counts, in thousands, on {esc(ref)} and then on {esc(step)}, the day of the fall:</p>'
     return card(
         cid="usage", kind="exp",
+        title=f'Daily active accounts averaged {M("active_accounts_30d_k")}K over the 30 days to {M("asof")}, {M("active_accounts_30d_yoy_pct")}% on a year earlier',
         headline=(f'Daily active accounts averaged {M("active_accounts_30d_k")}K over the 30 days to {M("asof")}, {M("active_accounts_30d_yoy_pct")}% on the same 30 days '
                   f'a year earlier; daily transactions are {M("tx_per_day_30d_yoy_pct")}% on a year earlier, but most of that is one step on {M("l1_step_date")}, '
                   f'not a gradual decline.'),
@@ -2710,6 +2763,180 @@ def card_usage(ctx: Ctx) -> str:
 
 
 # ------------------------------------------------------------------ page
+# ------------------------------------------------------------------ forward view (exploratory, 2026-11-13; pipeline/model.py)
+FAN_TICKS = (1.0, 10.0, 100.0, 1000.0)
+
+
+def fan_panel(v: Variant, *, title: object, rows: list[dict], refs: list[dict], end: Txt, tag: str = "") -> tuple[str, float]:
+    """Percentile bands on a log axis (1% to 1,000%): p10-p90 light, p25-p75 darker, the median as a line.
+
+    rows: the fwd_fan series ({"k", "date", "p10".."p90"}). Values outside the axis are drawn at its edge.
+    The panel is one <g class="panel" data-kind="fan" data-scale="log10">; the median's last dot carries data-v."""
+    fs = v.fs
+    lo, hi = FAN_TICKS[0], FAN_TICKS[-1]
+    ml = tw("1,000%", fs) + 12
+    mr = 58 if v.narrow else 96
+    pw = v.w - ml - mr
+    h_plot = 150 if v.narrow else 190
+    tb, th = title_block(v, title, tag)
+    out: list[str] = [tb]
+    lg, lh = legend(v, [("band2", "Middle half of paths", "box"),
+                        ("band", "Eight paths in ten", "box"), ("l1", "Median path", "line")], th + 4 + fs)
+    out.append(lg)
+    top = th + 4 + lh + fs + 10
+    base = top + h_plot
+
+    def sy(val: float) -> float:
+        c = min(max(val, lo), hi)
+        return base - h_plot * (math.log10(c) - math.log10(lo)) / (math.log10(hi) - math.log10(lo))
+
+    n = len(rows)
+
+    def sx(i: int) -> float:
+        return ml + pw * i / (n - 1)
+
+    for t in FAN_TICKS:
+        out.append(hline(ml, ml + pw, sy(t), "axis" if t == lo else "grid"))
+        out.append(text(ml - 6, sy(t) + fs * 0.35, f"{t:,.0f}%", cls="tk", anchor="end", fs=fs))
+    for i, r in enumerate(rows):
+        if r["k"] % (24 if v.narrow else 12) == 0:
+            lx, an = clamp_anchor(sx(i), tw(r["date"][:7], fs), v.w)
+            out.append(text(lx, base + fs + 7, esc(r["date"][:7]), cls="tk", anchor=an, fs=fs))
+    for a, b, cls in (("p10", "p90", "band"), ("p25", "p75", "band2")):
+        up = [f"{n1(sx(i))},{n1(sy(r[b]))}" for i, r in enumerate(rows)]
+        dn = [f"{n1(sx(i))},{n1(sy(r[a]))}" for i, r in reversed(list(enumerate(rows)))]
+        out.append(f'<path class="{cls}" d="M{"L".join(up + dn)}z" />')
+    for rf in refs:
+        yy = sy(rf["v"])
+        out.append(hline(ml, ml + pw, yy, "refline", f' data-v="{dv(rf["v"])}"'))
+        out.append(text(ml + 4, yy - 5, mk(rf["label"]), cls="rl", fs=fs))
+    out.append(f'<path class="ln l1" d="M{"L".join(f"{n1(sx(i))},{n1(sy(r["p50"]))}" for i, r in enumerate(rows))}" />')
+    out.append(f'<circle class="sk ring" data-v="{dv(rows[0]["p50"])}" cx="{n1(sx(0))}" cy="{n1(sy(rows[0]["p50"]))}" r="4" />')
+    last = rows[-1]
+    out.append(f'<circle class="s1 ring" data-v="{dv(last["p50"])}" cx="{n1(sx(n - 1))}" cy="{n1(sy(last["p50"]))}" r="4" />')
+    out.append(text(sx(n - 1) + 9, sy(last["p50"]) + fs * 0.35, mk(end), cls="val", fs=fs))
+    if not v.narrow:
+        out.append(text(sx(n - 1) + 9, sy(last["p90"]) + fs * 0.35, f'p90 {fmt_value(last["p90"], 0)}%', cls="tk", fs=fs - 0.5))
+        out.append(text(sx(n - 1) + 9, sy(last["p10"]) + fs * 0.35, f'p10 {fmt_value(last["p10"], 1)}%', cls="tk", fs=fs - 0.5))
+    panel = (f'<g class="panel" data-kind="fan" data-scale="log10" data-lo="{dv(lo)}" data-hi="{dv(hi)}" data-base="{n1(base)}" '
+             f'data-ph="{n1(h_plot)}" data-x0="{n1(ml)}" data-pw="{n1(pw)}">{"".join(out)}</g>')
+    return panel, base + fs + 16
+
+
+def card_fwdcov(ctx: Ctx) -> str:
+    m, M, Mt = ctx.m, ctx.M, ctx.Mt
+    fan = ctx.s["fwd_fan"]
+    title = "Projected coverage of NEAR's dilution by captured Intents revenue, 2026 to 2031, and the chance of reaching set lines"
+    desc = (f"Panel A: on a logarithmic axis, shaded percentile bands of coverage over {ctx.plain('fwd_paths_n')} simulated paths, "
+            f"starting at {ctx.plain('fwd_coverage_now_pct')}% and ending with a median of {ctx.plain('fwd_cov_2031_p50_pct')}% on {m['fwd_target_date']}; "
+            f"reference lines at {ctx.plain('fwd_full_line_pct')}% and {ctx.plain('fwd_p3_line_pct')}%. Panel B: bars from zero, the share of paths that reach each line.")
+
+    def P(key: str) -> Txt:
+        return T(Mt(key), "%")
+
+    def build(v: Variant) -> tuple[str, float]:
+        a, ha = fan_panel(v, tag="A", end=T(Mt("fwd_cov_2031_p50_pct"), "%"), title="Coverage: 90-day captured revenue ÷ USD value of net new NEAR (log axis)", rows=fan,
+                          refs=[{"v": m["fwd_full_line_pct"], "label": T(Mt("fwd_full_line_pct"), "%: revenue covers all dilution")},
+                                {"v": m["fwd_p3_line_pct"], "label": T(Mt("fwd_p3_line_pct"), "%: P3's line")}])
+        rows = [
+            {"label": "Reaches P3's line by 2027-11-04: model, and P3 as frozen", "bars": [
+                bar(m["fwd_p_cov_ge25_2027_pct"], "s1", P("fwd_p_cov_ge25_2027_pct"), "model"),
+                bar(m["fwd_p3_frozen_prob_pct"], "sc", P("fwd_p3_frozen_prob_pct"), "P3, frozen in PREREG.md")]},
+            {"label": "Covers all dilution by 2027-11", "bars": [bar(m["fwd_p_cov_ge100_2027_pct"], "s1", P("fwd_p_cov_ge100_2027_pct"))]},
+            {"label": "Covers all dilution by 2028-11", "bars": [bar(m["fwd_p_cov_ge100_2028_pct"], "s1", P("fwd_p_cov_ge100_2028_pct"))]},
+            {"label": "Covers all dilution by 2031-11-04 (the rating rule's date)", "bars": [bar(m["fwd_p_cov_ge100_2031_pct"], "s1", P("fwd_p_cov_ge100_2031_pct"))]},
+            {"label": "Same, without HSP-029's cut", "bars": [bar(m["fwd_p_cov_ge100_2031_no_hsp029_pct"], "s2", P("fwd_p_cov_ge100_2031_no_hsp029_pct"))]},
+            {"label": "Same, at half today's take rate", "bars": [bar(m["fwd_p_cov_ge100_2031_take_x0_5_pct"], "s2", P("fwd_p_cov_ge100_2031_take_x0_5_pct"))]},
+            {"label": "Same, at twice today's take rate", "bars": [bar(m["fwd_p_cov_ge100_2031_take_x2_0_pct"], "s2", P("fwd_p_cov_ge100_2031_take_x2_0_pct"))]},
+            {"label": "Same, if NEAR's price keeps its last-year trend", "bars": [bar(m["fwd_p_cov_ge100_2031_price_drift_pct"], "s2", P("fwd_p_cov_ge100_2031_price_drift_pct"))]},
+        ]
+        b, hb = hbar_panel(v, title="Share of simulated paths that reach the line, % (bars start at zero)", tag="B", rows=rows, vmax=100,
+                           ticks=[0, 25, 50, 75, 100],
+                           legend_items=[("s1", "Main run", "box"), ("s2", "Sensitivity", "box"), ("sc", "Frozen probability (PREREG.md)", "box")])
+        return stack([(a, ha), (b, hb)])
+
+    fig = dual(ctx, "chart-fwdcov", title, desc, build)
+    tab = table_html([{"h": "Month", "num": False, "c": "date"}] + [{"h": f"{q}th pct, %", "c": f"p{q}"} for q in (10, 25, 50, 75, 90)],
+                     [{"k": r["date"], "cells": [esc(r["date"])] + [fmt_value(r[f"p{q}"], 2) for q in (10, 25, 50, 75, 90)]}
+                      for r in fan if r["k"] % 3 == 0],
+                     caption="Panel A: plotted percentiles, every third model month", attrs='data-series="fwd_fan"')
+    figs = keyfigs([("Coverage today", f'{M("fwd_coverage_now_pct")}%'), ("Median, 2031-11-04", f'{M("fwd_cov_2031_p50_pct")}%'),
+                    ("All dilution covered by 2031", f'{M("fwd_p_cov_ge100_2031_pct")}% of paths'),
+                    ("Take rate held at", f'{M("fwd_take_bp")} bp')])
+    return card(
+        cid="fwdcov", kind="exp",
+        title=(f'On today&rsquo;s take rate, captured revenue covers all of NEAR&rsquo;s dilution by 2031 in {M("fwd_p_cov_ge100_2031_pct")}% of '
+               f'simulated paths; the median path covers {M("fwd_cov_2031_p50_pct")}%'),
+        headline=(f'Captured Intents revenue covers {M("fwd_coverage_now_pct")}% of the USD value of NEAR&rsquo;s net new supply today. Over '
+                  f'{M("fwd_paths_n")} paths that replay the volume and price changes of {M("fwd_boot_months_n")} months of data (price drift removed), the median reaches '
+                  f'{M("fwd_cov_2027_p50_pct")}% by 2027-11, {M("fwd_cov_2028_p50_pct")}% by 2028-11 and {M("fwd_cov_2031_p50_pct")}% by 2031-11-04, and '
+                  f'{M("fwd_p_cov_ge100_2031_pct")}% of paths cover all of it by then ({M("fwd_p_cov_ge100_2031_no_hsp029_pct")}% without HSP-029). If the price '
+                  f'keeps its last-year trend, that falls to {M("fwd_p_cov_ge100_2031_price_drift_pct")}%.'),
+        shows=(f'The frozen rating rule&rsquo;s question (does captured revenue reach the USD value of net new supply by 2031-11-04?) with a distribution in place of '
+               f'one price and one growth rate: {M("fwd_paths_n")} paths, each month drawing one of the {M("fwd_boot_months_n")} monthly changes in Intents volume and NEAR&rsquo;s '
+               f'mean price ({esc(m["fwd_boot_first"])} to {esc(m["fwd_boot_last"])}) together, against the rule&rsquo;s own supply path.'),
+        notshows=('A forecast of NEAR&rsquo;s price or a valuation. Eleven months of data cannot pin a five-year trend: the bands are as wide as the data make them, '
+                  'the take rate is held where it is, and no new fee stream, partner change or regime is modelled.'),
+        figure=fig,
+        caption=(f'Model: <code>pipeline/model.py</code>, a fixed seed, {M("fwd_months_n")} model months from {esc(m["asof"])}. Units: percent. Panel A&rsquo;s axis is '
+                 f'logarithmic; values below its floor are drawn at the floor. Exploratory, chosen 2026-11-13, after the freeze; it feeds nothing the rating rule computes.'),
+        extra=figs,
+        notes=(f'Volume and price move together in the data: the correlation of their monthly log changes is {M("fwd_vol_price_corr")}, so they are drawn as pairs, not separately.',
+               f'The price drift is removed because NEAR&rsquo;s mean price rose {M("fwd_price_monthly_mean_pct")}% a month on average over those months; replaying that for five '
+               f'years would assume the trend continues. With it, the 2031 median is {M("fwd_cov_2031_p50_price_drift_pct")}%: a higher price means each dollar of revenue '
+               'buys back less NEAR.',
+               f'Volume keeps its sample drift, {M("fwd_vol_monthly_mean_pct")}% a month. The take rate is captured revenue ÷ volume over the last 90 days, {M("fwd_take_bp")} bp, '
+               f'held fixed; coverage moves in proportion to it.',
+               f'P3 (frozen in PREREG.md with probability {M("fwd_p3_frozen_prob_pct")}%) asks whether coverage is at least {M("fwd_p3_line_pct")}% on 2027-11-04. The model, built after the freeze, gives '
+               f'{M("fwd_p_cov_ge25_2027_pct")}%; P3 is scored on the data, not on this model.',
+               f'Coverage today here is computed in USD at one price, as the rating rule does; the ladder&rsquo;s {M("ladder_all_wallets_pct_of_issuance", 2)}%-of-issuance figure counts NEAR as it arrived, '
+               'so the two differ slightly.'),
+        source=source_p(ctx, raw=("raw/llama/dailyRevenue_near-intents.json", "raw/llama/volume_near-intents.json",
+                                  "raw/coingecko/near_market_chart_365d.json", "raw/rpc/epoch_issuance.json", "raw/rpc/rating_assumptions.json"),
+                        code=("pipeline/model.py", "pipeline/h1a.py", "pipeline/compute.py")),
+        query=query_details(ctx, endpoints=(("Model", "python3 -m pipeline.compute (calls pipeline.model.forward); offline, standard library, fixed seed"),
+                                            ("Series", "fwd_fan in data/series.json"))),
+        data=data_details(tab))
+
+
+def card_fwdsupply(ctx: Ctx) -> str:
+    m, M, Mt = ctx.m, ctx.M, ctx.Mt
+    sup = ctx.s["fwd_supply"]
+    title = "Projected NEAR supply to 2031-11-04, with and without HSP-029's issuance cut"
+    desc = (f"Two lines on an axis that does not start at zero: with HSP-029, supply reaches {ctx.plain('fwd_supply_2031_m')} million; "
+            f"without it, {ctx.plain('fwd_supply_2031_no_hsp029_m')} million.")
+
+    def build(v: Variant) -> tuple[str, float]:
+        return line_panel(
+            v, title="Total supply, million NEAR", xlabels=[r["date"][:7] for r in sup],
+            xtick_idx=[i for i, r in enumerate(sup) if r["k"] % (24 if v.narrow else 12) == 0],
+            series=[{"cls": "l1", "dot": "s1", "ys": [r["hsp029_m"] for r in sup], "end": T(Mt("fwd_supply_2031_m"), "M"), "name": "With HSP-029 (as G_req assumes)"},
+                    {"cls": "l2", "dot": "s2", "ys": [r["no_hsp029_m"] for r in sup], "end": T(Mt("fwd_supply_2031_no_hsp029_m"), "M"), "name": "Without HSP-029"}],
+            ymin=1300.0, ymax=1500.0, yticks=[1300, 1350, 1400, 1450, 1500], h_plot=120 if v.narrow else 150,
+            ynote="The vertical axis starts at 1,300M, not zero.")
+
+    fig = dual(ctx, "chart-fwdsupply", title, desc, build)
+    tab = table_html([{"h": "Date", "num": False, "c": "date"}, {"h": "With HSP-029, million NEAR", "c": "hsp029_m"},
+                      {"h": "Without HSP-029, million NEAR", "c": "no_hsp029_m"}],
+                     [{"k": r["date"], "cells": [esc(r["date"]), fmt_value(r["hsp029_m"], 2), fmt_value(r["no_hsp029_m"], 2)]} for r in sup],
+                     caption="Plotted values, every third model month", attrs='data-series="fwd_supply"')
+    return card(
+        cid="fwdsupply", kind="exp",
+        headline=(f'NEAR&rsquo;s supply grows {M("fwd_supply_growth_5y_pct")}% by 2031-11-04 if HSP-029 takes effect and {M("fwd_supply_growth_5y_no_hsp029_pct")}% if not.'),
+        shows=('The supply path the frozen rating rule already uses for G_req (the realised share of the inflation cap and the post-v87 burn rate), run forward day by day, '
+               'with HSP-029&rsquo;s ramp to a lower inflation cap and without it. This is the dilution the coverage paths are measured against.'),
+        notshows='Whether HSP-029 is executed: its timelock ends on 2026-11-16, a Directors&rsquo; decision follows, and it needs validator adoption.',
+        figure=fig,
+        caption=f'Model: <code>pipeline/model.py</code> (supply_path), the same arithmetic as <code>pipeline/h1a.py</code> (g_req). From {esc(m["asof"])} to {esc(m["fwd_target_date"])}. Units: million NEAR.',
+        notes=(f'Supply starts at {M("fwd_supply_now_m")}M NEAR, the archival header at the end of the supply window.',),
+        source=source_p(ctx, raw=("raw/rpc/epoch_issuance.json", "raw/rpc/rating_assumptions.json"), code=("pipeline/model.py", "pipeline/h1a.py")),
+        query=query_details(ctx, endpoints=(("Model", "python3 -m pipeline.compute (pipeline.model.supply_path)"), ("Series", "fwd_supply in data/series.json"))),
+        data=data_details(tab))
+
+
+FWD_CARDS = (("fwdcov", "Coverage of dilution, to 2031", card_fwdcov), ("fwdsupply", "Supply projection", card_fwdsupply))
+
+
 PRE_CARDS = (("h1a", "H1a: staking outflow", card_h1a), ("h1b", "H1b: net exchange inflow", card_h1b),
              ("h1c", "H1c: identified buying", card_h1c), ("rating", "Rating rule inputs", card_rating),
              ("forward", "Forward tests F1-F4", card_forward))
@@ -2807,11 +3034,11 @@ def scorecard(ctx: Ctx) -> str:
                                 f'<code>python3 -m pipeline.score_forward --score</code>, misses included.'), href="#chart-forward"))
     freeze_stamp, freeze_gap = freeze_order(ctx)
     return (f'<section id="scorecard" aria-labelledby="scorecard-h"><h2 id="scorecard-h">Scorecard (pre-registered)</h2>'
-            f'<p class="note">Frozen at commit <code>{FREEZE_COMMIT}</code> ({FREEZE_UTC} UTC), {freeze_gap} before the first BigQuery result the repository records '
+            f'<details class="fz"><summary>Frozen at commit <code>{FREEZE_COMMIT}</code> before the first BigQuery result: how we know</summary><p class="note">Frozen at commit <code>{FREEZE_COMMIT}</code> ({FREEZE_UTC} UTC), {freeze_gap} before the first BigQuery result the repository records '
             f'({freeze_stamp} in <code>data/MANIFEST.json</code>). Commit and manifest times are written by the author&rsquo;s machine; one external record, GitHub&rsquo;s activity log, dates the push of the freeze commit to '
             f'2026-11-05 22:53:33 UTC (<code>PREREG-ADDENDUM.md</code>, 2026-11-12 23:50 UTC entry, item 2). BigQuery job IDs, which embed their creation time, are recorded only for the H1b and H1c runs and one October escrow scan, not for the '
             f'H1a queries. The table <a href="{esc(gh("PREREG.md"))}#{PREREG_ANCHOR}">&ldquo;What we had already '
-            f'seen&rdquo; in PREREG.md</a> lists the data already in hand at the freeze. Each status is shown by a shape and a word, not by colour alone.</p>'
+            f'seen&rdquo; in PREREG.md</a> lists the data already in hand at the freeze. Each status is shown by a shape and a word, not by colour alone.</p></details>'
             f'<ul class="tiles">{"".join(tiles)}</ul></section>')
 
 
@@ -2905,7 +3132,7 @@ def limits(ctx: Ctx) -> str:
     return (f'<section id="limits" aria-labelledby="limits-h"><h2 id="limits-h">Limits</h2>'
             f'<p class="note">These come from the Limits sections of THESIS.md and docs/*.md and from PREREG-ADDENDUM.md. '
             f'Escrow funding hops are traced per single-use delivery from {traced}, which a test checks against <code>data/raw/escrow/deliveries.csv</code>.</p>'
-            f'<ul class="plain">{lis}</ul></section>')
+            f'<details class="more"><summary>Show the limits</summary><ul class="plain">{lis}</ul></details></section>')
 
 
 def answer_line(ctx: Ctx) -> str:
@@ -2943,6 +3170,35 @@ def glance(ctx: Ctx) -> str:
     return f'<nav aria-label="Pre-registered results at a glance"><p class="chipcap">Pre-registered results</p><ul class="chips">{items}</ul></nav>'
 
 
+def kpis(ctx: Ctx) -> str:
+    """Four headline figures under the answer, each labelled pre-registered or exploratory and linked to its card. Every number is a metric span."""
+    M = ctx.M
+    items = [
+        ("Pre-registered", f'{M("h1a_ratio_as_written_x")}×', "net staking outflow ÷ staking rewards, 90 days (H1a fails)", "#chart-h1a"),
+        ("Exploratory", f'{M("ladder_all_wallets_pct_of_issuance", 2)}%', "of net issuance reached NEAR&rsquo;s three Intents revenue wallets, 30 days", "#chart-ladder"),
+        ("Exploratory", f'{M("ladder_public_collectors_pct_of_issuance", 2)} pts', "of that trace to public fee collectors", "#chart-ladder"),
+        ("Exploratory", f'{M("ladder_escrow_unshields_pct_of_issuance", 2)} pts', "arrived from an escrow whose fee stream is unattested", "#chart-ladder"),
+    ]
+    lis = "".join(f'<li class="kpi"><span class="kt">{t}</span><a class="kv" href="{h}">{v}</a><span class="kl">{l}</span></li>'
+                  for t, v, l, h in items)
+    return f'<ul class="kpis" aria-label="Headline figures">{lis}</ul>'
+
+
+def side_nav() -> str:
+    """The contents: the card links (two ul.toc, pre-registered then exploratory), after the page sections.
+    On a wide screen it is a sticky sidebar; on a narrow one it sits between the header and the scorecard."""
+    toc_pre = "".join(f'<li><a href="#chart-{cid}">{esc(lab)}</a></li>' for cid, lab, _ in PRE_CARDS)
+    toc_exp = "".join(f'<li><a href="#chart-{cid}">{esc(lab)}</a></li>' for cid, lab, _ in EXP_CARDS)
+    toc_fwd = "".join(f'<li><a href="#chart-{cid}">{esc(lab)}</a></li>' for cid, lab, _ in FWD_CARDS)
+    secs = "".join(f'<li><a href="#{sid}">{lab}</a></li>' for sid, lab in
+                   (("scorecard", "Scorecard"), ("not-computed", "Not computed here"), ("reproduce", "Reproduce"), ("limits", "Limits")))
+    return (f'<nav class="side" aria-label="Contents"><h2 class="sr">Contents</h2>'
+            f'<p class="sidecap">Page</p><ul class="toc-more">{secs}</ul>'
+            f'<p class="sidecap">Forward view</p><ul class="toc-more">{toc_fwd}</ul>'
+            f'<p class="sidecap">Pre-registered</p><ul class="toc">{toc_pre}</ul>'
+            f'<p class="sidecap">Exploratory</p><ul class="toc">{toc_exp}</ul></nav>')
+
+
 def header(ctx: Ctx) -> str:
     M = ctx.M
     freeze_stamp, _ = freeze_order(ctx)
@@ -2954,8 +3210,9 @@ def header(ctx: Ctx) -> str:
         f'<p class="lede">A pre-registered, re-runnable token flow statement for NEAR. <code>python3 -m pipeline.compute</code> recomputes every number from the raw '
         f'snapshots in <code>data/raw/</code>, <code>python3 -m pipeline.render</code> redraws every chart from the committed metrics and snapshots, and <code>make site</code> runs both '
         f'offline in one command. Each chart shows the query behind it, the exact numbers it plots, and one plain sentence on what it shows and what it does not.</p>'
+        f'{kpis(ctx)}'
         f'<p class="note">To check any number, open the Data table under its chart, then follow the steps under <a href="#reproduce">Reproduce</a>.</p>'
-        f'<dl class="meta">'
+        f'<details class="metawrap"><summary>Windows, data date, fingerprint and freeze</summary><dl class="meta">'
         f'<dt>Windows</dt><dd>Value capture: the 30 days to {M("asof")}. Supply: the 90 days {window_text(ctx, 90)}.</dd>'
         f'<dt>Data as of</dt><dd>{M("asof")} (<code>data/metrics.json</code>). Revenue-wallet window {M("revwallets_window")}. NEAR RPC block {M("rpc_block")}.</dd>'
         f'<dt>Data fingerprint</dt><dd><code data-fingerprint="{esc(ctx.fingerprint)}">{esc(ctx.fingerprint)}</code>, the first 16 hex of the SHA-256 of <code>data/MANIFEST.json</code>, '
@@ -2963,7 +3220,7 @@ def header(ctx: Ctx) -> str:
         f'<dt>Pre-registration</dt><dd><code>PREREG.md</code> SHA-256 <code data-prereg="{esc(ctx.prereg_sha)}">{esc(ctx.prereg_sha[:16])}…</code>, frozen at git tag '
         f'<code>{FREEZE_TAG}</code> (commit <code>{FREEZE_COMMIT}</code>, {FREEZE_UTC} UTC), before the first BigQuery result the repository records '
         f'({freeze_stamp} in <code>data/MANIFEST.json</code>); the order rests on the author&rsquo;s own commit and manifest times, and GitHub&rsquo;s activity log dates the push of the freeze commit to 2026-11-05 22:53:33 UTC. '
-        f'<a href="{esc(gh("PREREG.md"))}#{PREREG_ANCHOR}">&ldquo;What we had already seen&rdquo;</a> in that file lists the data already in hand.</dd></dl>'
+        f'<a href="{esc(gh("PREREG.md"))}#{PREREG_ANCHOR}">&ldquo;What we had already seen&rdquo;</a> in that file lists the data already in hand.</dd></dl></details>'
         f'<nav aria-label="Project documents"><ul class="docs">{docs}</ul></nav></header>')
 
 
@@ -3019,13 +3276,15 @@ def build_page(ctx: Ctx, breaks: bool = True) -> str:
     """The whole page. breaks=False leaves the body on a few very long lines (tests/test_render.py compares the two)."""
     pre = "".join(fn(ctx) for _, _, fn in PRE_CARDS)
     exp = "".join(fn(ctx) for _, _, fn in EXP_CARDS)
-    toc_pre = "".join(f'<li><a href="#chart-{cid}">{esc(lab)}</a></li>' for cid, lab, _ in PRE_CARDS)
-    toc_exp = "".join(f'<li><a href="#chart-{cid}">{esc(lab)}</a></li>' for cid, lab, _ in EXP_CARDS)
+    fwd = "".join(fn(ctx) for _, _, fn in FWD_CARDS)
     body = (
-        f'<a class="skip" href="#main">Skip to the content</a><div class="wrap">{header(ctx)}'
+        f'<a class="skip" href="#main">Skip to the content</a><div class="wrap">{header(ctx)}{side_nav()}'
         f'<main id="main">{scorecard(ctx)}'
-        f'<nav aria-label="Contents"><h2 class="sr">Contents</h2><p class="note"><strong>Pre-registered:</strong></p><ul class="toc">{toc_pre}</ul>'
-        f'<p class="note"><strong>Exploratory:</strong></p><ul class="toc">{toc_exp}</ul></nav>'
+        f'<section id="forward-view" aria-labelledby="fwd-h"><h2 id="fwd-h">Forward view (exploratory, chosen after the freeze)</h2>'
+        f'<p class="note">The long-term question: can NEAR&rsquo;s Intents business grow its fee capture into the dilution NEAR&rsquo;s holders absorb? '
+        f'These two cards project it to 2031-11-04, the frozen rating rule&rsquo;s own date. The model was written on 2026-11-13, after the freeze; it changes no '
+        f'hypothesis, threshold, probability or the rating, and its own forecasts are dated in the addendum so they can be scored later.</p>'
+        f'{fwd}</section>'
         f'<section id="preregistered" aria-labelledby="pre-h"><h2 id="pre-h">Pre-registered results</h2>'
         f'<p class="note">Hypotheses, thresholds and probabilities were fixed in <a href="{esc(gh("PREREG.md"))}">PREREG.md</a> before the first BigQuery result the '
         f'repository records (the scorecard note gives both times and what they rest on). '

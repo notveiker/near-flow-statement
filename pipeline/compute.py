@@ -1325,6 +1325,14 @@ def build() -> tuple[dict, dict]:
         if "rating_g_req_pct" in m:  # PREREG's Avoid line: G_obs below half of G_req
             m["rating_g_avoid_line_pct"] = r(m["rating_g_req_pct"] / 2, 1)
 
+    # ---------- Forward view (exploratory, 2026-11-13, after the freeze; pipeline/model.py) ----------
+    # The rating rule's question (revenue against the USD value of net new supply by 2031-11-04) with a distribution
+    # in place of one constant price and one growth rate. It feeds nothing the rule, H1a, H1b or H1c compute.
+    fwd_series: dict = {}
+    if (RAW / "rpc" / "rating_assumptions.json").exists() and (RAW / "rpc" / "epoch_issuance.json").exists():
+        from .model import forward
+        fwd_series = forward(m, rev, vol["near-intents"], price)
+
     if all((RAW / f).exists() for f in ("bq/staking_flows_daily.json", "bq/h1b_a_native_flows.json", "escrow/deliveries.csv",
                                          "bq/collector_inflows.json")) and "rating_g_req_pct" in m:
         second_review(m, rev, fees["near-intents"], vol["near-intents"])
@@ -1398,6 +1406,7 @@ def build() -> tuple[dict, dict]:
                        for mo in sorted({k[:7] for k in nb}) if mo >= "2024-01"],
         "supply_daily": [{"date": k, "supply_m": r(supply[k] / 1e6, 3)} for k in sorted(supply) if k >= "2024-11-01"],
         "l1_daily": l1_daily,
+        **fwd_series,
     }
     return m, series
 

@@ -43,7 +43,7 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(HERE))
 from pipeline import render as R  # noqa: E402
 from pipeline import score_forward as sf  # noqa: E402
-from test_render import (Node, ascii_words, card_node, check_forward_numbers, fixture_result, forward_dom, parse, realistic_result,  # noqa: E402
+from test_render import (Node, hl, ascii_words, card_node, check_forward_numbers, fixture_result, forward_dom, parse, realistic_result,  # noqa: E402
                          realistic_snapshot, scored_result, write_forward)
 
 PAGE_KEY = f"{R.SITE_DIR}/{R.PAGE_NAME}"
@@ -672,7 +672,7 @@ class HandEditedResults(unittest.TestCase):
         rows = {li.attrs["data-k"]: re.sub(r"\s+", " ", li.find("p", "tnote").text()).strip() for li in card.find_all("li") if li.attrs.get("data-k")}
         self.assertEqual(rows["F2"], "Not scorable: no reason recorded. It is never estimated.")
         self.assertEqual(rows["F3"], "Not scorable: no reason recorded. It is never estimated.")
-        self.assertEqual(re.sub(r"\s+", " ", card.find("h3").text()), "Forward tests scored: 0 passed, 2 missed and 2 not scorable of 4.")
+        self.assertEqual(re.sub(r"\s+", " ", hl(card).text()), "Forward tests scored: 0 passed, 2 missed and 2 not scorable of 4.")
 
     def test_a_value_is_named_in_a_message_as_what_it_is(self):
         kind = R.json_kind
@@ -797,7 +797,7 @@ class WhatTheScorerCanWrite(unittest.TestCase):
                 self.assertGreater(check_forward_numbers(self, dom, res), 3)
                 self.assertLessEqual(max(len(line) for line in page.split("\n")), 2000)
                 counts = {w: words.count(w) for w in ("PASS", "MISS", NS)}
-                self.assertEqual(re.sub(r"\s+", " ", card.find("h3").text()),
+                self.assertEqual(re.sub(r"\s+", " ", hl(card).text()),
                                  f"Forward tests scored: {counts['PASS']} passed, {counts['MISS']} missed and {counts[NS]} not scorable of 4.")
                 tile = [n for n in parsed(R.scorecard(ctx)).find_all("li") if "tile" in n.classes()][4]
                 self.assertIn(f"{counts['PASS']} pass, {counts['MISS']} miss", tile.text())
