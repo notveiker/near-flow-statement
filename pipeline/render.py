@@ -7,8 +7,9 @@
   --forward-dir DIR  read score_*/result.json from DIR instead of data/forward (the tests inject fixtures)
   --root DIR         read the committed data from another checkout of this repo
 
-Standard library only (Python 3.10+). The page loads nothing: no script, font, image or stylesheet from any
-other file or host, and no JavaScript at all, so it opens from file:// and from GitHub Pages alike. It is
+Standard library only (Python 3.10+). The page loads no script, font, image or stylesheet from any other file
+or host, so it opens from file:// and from GitHub Pages alike. Its one inline script is the live Today row
+(LIVE_JS), which reads four public, keyless APIs in the reader's browser and writes text only. The render is
 deterministic: no timestamps, git hashes or randomness; the output depends only on the committed files. Links to
 repo files are absolute GitHub URLs built from REPO_URL and BRANCH.
 
@@ -3659,7 +3660,7 @@ def thesis_box(ctx: Ctx) -> str:
         '<div class="thesis" id="thesis">'
         '<p><strong>NEAR Intents led its market over the past year. NEAR&rsquo;s price asks for much more than that.</strong> '
         'The NEAR that Intents fees deliver to NEAR&rsquo;s revenue wallets equals, at most, about a sixth of net new supply. For those fees alone to '
-        'justify today&rsquo;s price, they would have to grow faster each year to 2031 than cross-chain volume has grown over any period in the data. '
+        'carry today&rsquo;s price, they would have to grow faster each year to 2031 than cross-chain volume has grown over any period in the data. '
         'Owning NEAR at this price is a bet on a bigger cut of those fees, or on value beyond them. '
         '<a href="#forward-view">Read the case</a> or <a href="story.html">see it as slides</a>.</p>'
         '<p class="tag">Exploratory view, formed after the pre-registration was frozen. Not investment advice.</p></div>')
