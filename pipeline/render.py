@@ -941,8 +941,7 @@ CSS = """
 :root{color-scheme:light;--bg:#f5f3ec;--surface:#fcfbf7;--raise:#ffffff;--ink:#16150f;--ink2:#4b4940;--muted:#67655b;--grid:#e2dfd4;
 --axis:#b4b1a4;--border:rgba(22,21,15,.14);--code:#edeae0;--s1:#2a78d6;--s2:#e8632f;--ctx:#898781;
 --link:#1c5cab;--focus:#2a78d6;--shade:rgba(22,21,15,.2);
---serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
---sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+--sans:Arial,"Helvetica Neue",Helvetica,sans-serif;
 --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){/*DARK*/}}
 :root[data-theme="dark"]{/*DARK*/}
@@ -975,10 +974,10 @@ header.top{grid-area:top}main{grid-area:main}footer{grid-area:foot}
 /* first screen: the question, a one-line answer, four figures as ledger rows, the live row. No boxes. */
 header.top{padding:40px 0 0}
 .eyebrow{margin:0 0 20px;font-size:.8125rem;color:var(--muted)}
-h1{font-family:var(--serif);font-size:clamp(2.1rem,5.6vw,3.7rem);font-weight:500;line-height:1.04;letter-spacing:-.022em;margin:0 0 .55em;max-width:22ch}
+h1{font-size:clamp(2rem,5vw,3.25rem);font-weight:700;line-height:1.06;letter-spacing:-.025em;margin:0 0 .6em;max-width:22ch}
 .thesis{margin:0 0 1.8rem;max-width:76ch}
 .thesis p{margin:0 0 .75rem;max-width:none;font-size:1.0625rem;line-height:1.55;color:var(--ink2)}
-.thesis .deck{font-family:var(--serif);font-size:1.4375rem;line-height:1.32;letter-spacing:-.005em;color:var(--ink)}
+.thesis .deck{font-size:1.3125rem;line-height:1.36;letter-spacing:-.005em;color:var(--ink)}
 .thesis .go{margin:0;font-size:1rem}
 .kcap{margin:0;padding:0 0 9px;max-width:none;font-size:.8125rem;line-height:1.4;color:var(--muted)}
 .kpis{list-style:none;padding:0;margin:0;border-top:1px solid var(--ink)}
@@ -1024,7 +1023,7 @@ grid-template-areas:"eb kcap" "h1 kpis" "th kpis" "th today"}
 
 /* sections, tabs */
 main{padding-top:2rem}
-h2{font-family:var(--serif);font-size:1.75rem;font-weight:500;line-height:1.2;letter-spacing:-.012em;margin:2.6rem 0 .5rem}
+h2{font-size:1.5rem;font-weight:700;line-height:1.2;letter-spacing:-.015em;margin:2.6rem 0 .5rem}
 h3{font-size:1.0625rem;font-weight:650;line-height:1.35;margin:.5rem 0 .6rem}
 .lede{font-size:1.0625rem;margin:0 0 1rem}
 .note{color:var(--ink2);font-size:.9375rem}
@@ -1056,7 +1055,7 @@ h3{font-size:1.0625rem;font-weight:650;line-height:1.35;margin:.5rem 0 .6rem}
 .tile a{font-size:.8125rem;white-space:nowrap}
 @media (min-width:860px){.tile{grid-template-columns:minmax(0,15rem) minmax(0,13rem) minmax(0,1fr) auto}}
 #what-changed{margin:0 0 2rem}
-#what-changed h3{font-family:var(--serif);font-size:1.25rem;font-weight:500;margin:1.6rem 0 .2rem}
+#what-changed h3{font-size:1.125rem;font-weight:700;margin:1.6rem 0 .2rem}
 .took{display:grid;gap:0 36px;list-style:none;padding:0;margin:.6rem 0 0;border-top:1px solid var(--grid)}
 .took li{max-width:none;margin:0;padding:11px 0 12px;border-bottom:1px solid var(--grid);font-size:.9375rem;line-height:1.5;color:var(--ink2)}
 .took strong{color:var(--ink);font-weight:650}
@@ -1071,7 +1070,7 @@ h3{font-size:1.0625rem;font-weight:650;line-height:1.35;margin:.5rem 0 .6rem}
 @media (min-width:1214px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.grid>.card.span2{grid-column:span 2}}
 @media (min-width:1214px){.grid>.card.fill2{grid-column:span 2}.grid>.card.fill3{grid-column:1 / -1}.grid>.card.one{grid-column:auto}}
 .grid>.card .cv-wide{max-width:900px;margin:0 auto}
-.grid>.gridhead{margin:1.4rem 0 -.2rem;max-width:none;font-family:var(--serif);font-size:1.25rem;font-weight:500;color:var(--ink)}
+.grid>.gridhead{margin:1.4rem 0 -.2rem;max-width:none;font-size:1.0625rem;font-weight:700;color:var(--ink)}
 .grid>.gridhead:first-child{margin-top:.4rem}
 .card{container-type:inline-size;display:flex;flex-direction:column;min-width:0;margin:0;padding:18px 20px 14px;background:var(--surface);border:1px solid var(--border);border-radius:6px}
 .cardtop{display:flex;align-items:baseline;gap:10px;min-height:1.2rem;font-size:.8125rem}
