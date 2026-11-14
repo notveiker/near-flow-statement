@@ -2862,7 +2862,8 @@ def card_usage(ctx: Ctx) -> str:
     lead = f'<p class="note">Four daily counts, in thousands, on {esc(ref)} and then on {esc(step)}, the day of the fall:</p>'
     return card(
         cid="usage", kind="exp",
-        title=f'Daily active accounts: {M("active_accounts_30d_k")}K, {M("active_accounts_30d_yoy_pct")}% on a year earlier',
+        title=(f'Daily active accounts: {M("active_accounts_30d_k")}K, {M("active_accounts_30d_yoy_pct")}% on a year earlier; '
+               f'{M("usage_bq_tg_share_of_signer_drop_pct")}% of the fall is one wallet app&rsquo;s Telegram accounts'),
         headline=(f'Daily active accounts averaged {M("active_accounts_30d_k")}K over the 30 days to {M("asof")}, {M("active_accounts_30d_yoy_pct")}% on the same 30 days '
                   f'a year earlier; daily transactions are {M("tx_per_day_30d_yoy_pct")}% on a year earlier, but most of that is one step on {M("l1_step_date")}, '
                   f'a single-day drop.'),
