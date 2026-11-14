@@ -3978,6 +3978,11 @@ def build_story(ctx: Ctx) -> str:
         f'At today&rsquo;s fees, that would take NEAR capturing {M("ic_take_needed_vs_gross_x")}× Intents&rsquo; whole gross fee.</p></section>')
     slides = "".join(f'<section class="slide"><p class="step">{i + 1}. {esc(steps[i])}</p>{by_id[cid](ctx)}</section>'
                      for i, cid in enumerate(STORY_CARDS))
+    update_line = ''
+    if has_update(ctx):
+        update_line = (f'<li>Carried to {M("upd_asof")} with the same code: the price assumes {M("upd_ic_implied_cagr_r15_x25_pct")}% a year, NEAR would need '
+                       f'{M("upd_ic_take_needed_vs_gross_x")}× Intents&rsquo; whole gross fee, and the base case pays for {M("upd_ic_base_coverage_2031_pct")}% '
+                       f'of the dilution in 2031.</li>')
     fw = ctx.forward
     if fw:
         words = [forward_word(fw, f) for f in FORWARD_IDS]
@@ -3994,7 +3999,7 @@ def build_story(ctx: Ctx) -> str:
         f'<li>To close the gap in today&rsquo;s market, NEAR would have to capture {M("ic_take_needed_vs_gross_x")}× Intents&rsquo; whole gross fee.</li>'
         f'<li>Pre-registered: net staking outflow was {M("h1a_ratio_as_written_x")}× staking rewards, where H1a predicted under {ctx.K("h1a_pass_below_x")}×; '
         'exchange flows come out as ranges the labels cannot settle, so the frozen rating rule gives no signal.</li>'
-        f'<li>{forecast_line}</li></ul>'
+        f'<li>{forecast_line}</li>{update_line}</ul>'
         f'<p>Re-run it: <code>git clone {esc(REPO_URL)} &amp;&amp; make site</code>. Research only; nothing here is investment advice.</p></section>')
     body = f'<main class="story">{cover}{slides}{end}</main>'
     body = body.replace('href="#', 'href="index.html#')
