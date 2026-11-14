@@ -959,6 +959,7 @@ code,pre{font-family:var(--mono);font-size:.85em}
 code{overflow-wrap:anywhere}
 p,li{max-width:72ch}
 @media (min-width:1100px){p,li{max-width:88ch}}
+:where(#main) p,:where(#main) li{max-width:none}
 h1,h2,h3,.big,.gridhead{text-wrap:balance}
 p,li,dd,.tnote,.note,.finding{text-wrap:pretty}
 [data-m],[data-k],[data-f],[data-d],[data-s]{white-space:nowrap}
@@ -997,7 +998,7 @@ h1{font-size:clamp(2.4rem,6.6vw,4.75rem);font-weight:700;line-height:1.03;letter
 #brief{padding:2.6rem 0 0}
 #brief>h2{margin:0 0 .7rem}
 .thesis{margin:0 0 1.8rem;max-width:76ch}
-.thesis p{margin:0 0 .9rem;max-width:none;font-size:1.1875rem;line-height:1.5;color:var(--ink)}
+.thesis p{margin:0 0 .9rem;max-width:none;text-wrap:balance;font-size:1.1875rem;line-height:1.5;color:var(--ink)}
 .thesis .go{margin:0;font-size:1rem;color:var(--ink2)}
 .kcap{margin:0;padding:0 0 9px;max-width:none;font-size:.8125rem;line-height:1.4;color:var(--muted)}
 .kpis{list-style:none;padding:0;margin:0;border-top:1px solid var(--ink)}
@@ -1016,9 +1017,11 @@ h1{font-size:clamp(2.4rem,6.6vw,4.75rem);font-weight:700;line-height:1.03;letter
 details.readmore{margin:.2rem 0 .6rem;border:0;padding:0}
 details.metawrap,details.fz{border:0;padding:0;margin:.6rem 0}
 details.metawrap>summary,details.fz>summary,details.readmore>summary,section>details.more>summary{font-size:.875rem;font-weight:500;color:var(--ink2)}
+section>details.lead>summary{font-size:.9375rem;font-weight:400;line-height:1.6;color:var(--ink2)}
+section>details.lead[open]>summary{color:var(--ink)}
 .questions{font-size:1rem;margin:.6rem 0 .7rem}
 .answer{margin:.2rem 0 .4rem;padding:0 0 0 16px;border-left:1px solid var(--axis)}
-.answer p{margin:.7rem 0;max-width:100ch;font-size:.9375rem}
+.answer p{margin:.7rem 0;max-width:none;font-size:.9375rem}
 @media (min-width:1100px){
 #brief{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);column-gap:72px;align-items:start;
 grid-template-areas:"h kcap" "th kpis" "th today"}
@@ -1047,8 +1050,8 @@ h2{font-size:1.5rem;font-weight:700;line-height:1.2;letter-spacing:-.015em;margi
 h3{font-size:1.0625rem;font-weight:650;line-height:1.35;margin:.5rem 0 .6rem}
 .lede{font-size:1.0625rem;margin:0 0 1rem}
 .note{color:var(--ink2);font-size:.9375rem}
-.note,.lede{max-width:104ch}
-.fine{margin:2.2rem 0 0;max-width:128ch;font-size:.8125rem;line-height:1.55;color:var(--muted)}
+.note,.lede{max-width:none}
+.fine{margin:2.2rem 0 0;max-width:none;font-size:.8125rem;line-height:1.55;color:var(--muted)}
 .fine a{color:var(--ink2)}
 .tabbar{position:sticky;top:0;z-index:3;display:flex;flex-wrap:wrap;gap:0 26px;margin:1.6rem 0 .6rem;padding:0;background:var(--bg);border-bottom:1px solid var(--axis)}
 .tabbar a{padding:13px 0 11px;border-bottom:2px solid transparent;margin-bottom:-1px;color:var(--muted);font-size:.9375rem;font-weight:600;text-decoration:none}
@@ -1077,8 +1080,10 @@ h3{font-size:1.0625rem;font-weight:650;line-height:1.35;margin:.5rem 0 .6rem}
 #what-changed{margin:0 0 2rem}
 #what-changed h3{font-size:1.125rem;font-weight:700;margin:1.6rem 0 .2rem}
 .took{display:grid;gap:0 36px;list-style:none;padding:0;margin:.6rem 0 0;border-top:1px solid var(--grid)}
-.took li{max-width:none;margin:0;padding:11px 0 12px;border-bottom:1px solid var(--grid);font-size:.9375rem;line-height:1.5;color:var(--ink2)}
+.took li{max-width:none;text-wrap:balance;margin:0;padding:11px 0 12px;border-bottom:1px solid var(--grid);font-size:.9375rem;line-height:1.5;color:var(--ink2)}
 .took strong{color:var(--ink);font-weight:650}
+@media (min-width:1100px){.tail{white-space:nowrap}}
+.card .note{text-wrap:balance}
 @media (min-width:900px){.took{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .ico{flex:none}
 .i-line{fill:none;stroke:var(--ink2);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
@@ -1091,7 +1096,7 @@ h3{font-size:1.0625rem;font-weight:650;line-height:1.35;margin:.5rem 0 .6rem}
 .grid .card .cv-wide{max-width:900px;margin:0 auto}
 .grid>.gridhead{margin:1.4rem 0 -.2rem;max-width:none;font-size:1.0625rem;font-weight:700;color:var(--ink)}
 .grid>.gridhead:first-child{margin-top:.4rem}
-.grid>.gridlead{margin:-.5rem 0 .1rem;max-width:104ch;font-size:.9375rem;line-height:1.55;color:var(--ink2)}
+.grid>.gridlead{margin:-.5rem 0 .1rem;max-width:none;font-size:.9375rem;line-height:1.55;color:var(--ink2)}
 .card{container-type:inline-size;min-width:0;margin:0;padding:18px 20px 14px;background:var(--surface);border:1px solid var(--border);border-radius:6px}
 /* a card that takes a full row: the chart at the left, its key figures and notes beside it */
 @supports selector(:has(*)){@media (min-width:1100px){
@@ -1115,7 +1120,7 @@ figure.chart-fig{margin:.9rem 0 .4rem}
 .grid .cv-narrow{max-width:440px;margin:0 auto}
 @media (max-width:699px){.cv-wide{display:none}.cv-narrow{display:block}.card{padding:14px 14px 10px}}
 @container (max-width:600px){.cv-wide{display:none}.cv-narrow{display:block;max-width:none}}
-figcaption{font-size:.8125rem;line-height:1.5;color:var(--muted);margin-top:8px}
+figcaption{font-size:.8125rem;line-height:1.5;color:var(--muted);margin-top:8px;text-wrap:balance}
 .svg{display:block;width:100%;height:auto}
 .svg text{fill:var(--ink2);font-family:inherit}
 .svg .ttl{fill:var(--ink);font-weight:700}
@@ -1197,7 +1202,8 @@ th.txt,td.t{text-align:left;font-variant-numeric:normal;white-space:normal;min-w
 thead th{position:sticky;top:0;background:var(--surface);z-index:1;border-bottom:1px solid var(--axis);font-size:.75rem;color:var(--muted)}
 tbody tr:last-child td{border-bottom:0}
 .update{margin:2.4rem 0 1.2rem}
-.update .tablewrap{max-width:860px}
+@media (min-width:1100px){.update{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);column-gap:48px;align-items:start}
+.update .updh{grid-column:1 / -1}.update .tablewrap{margin-top:0}}
 .update .updh{margin:.2rem 0 .4rem;font-size:1.0625rem}
 .update .tablewrap{max-height:none;background:var(--surface)}
 .update td:nth-child(3){font-weight:650;color:var(--ink)}
@@ -1217,6 +1223,7 @@ ol.steps p{margin:.2rem 0}
 ul.plain{padding:0;list-style:none}
 ul.plain li{margin:0 0 .7rem;line-height:1.55}
 footer{margin:3.5rem 0 2.5rem;padding-top:1rem;border-top:1px solid var(--grid);font-size:.875rem;color:var(--ink2)}
+footer p{max-width:none}
 """
 
 
@@ -1398,11 +1405,12 @@ def fig_no(cid: str) -> int:
 
 
 def card(*, cid: str, kind: str, headline: str, shows: str, notshows: str, figure: str, caption: str,
-         source: str, query: str, data: str, extra: str = "", notes: tuple[str, ...] = (), title: str = "", more: str = "") -> str:
+         source: str, query: str, data: str, extra: str = "", notes: tuple[str, ...] = (), title: str = "", more: str = "", capnote: str = "") -> str:
     """One chart card. kind is "pre" (pre-registered) or "exp" (exploratory, chosen after the freeze).
 
     With a title, the h3 is that short title and the full headline sentence (p.finding) opens first under "Notes and sources",
     followed by what the chart shows and does not show; without one, the headline is the h3."""
+    notes = tuple(notes) + ((capnote,) if capnote else ())   # a sentence kept out of the one-line caption
     finding = f'<p class="finding">{headline}</p>' if title else ""
     sn = (f'<div class="sn"><p class="shows"><strong>What it shows:</strong> {shows}</p>'
           f'<p class="notshows"><strong>What it does not show:</strong> {notshows}</p></div>')
@@ -1456,6 +1464,31 @@ def keyfigs(items: list[tuple[str, str]]) -> str:
             + "</dl>")
 
 
+TAIL_CHARS = 56   # how much of a lead's ending stays on one line on a wide screen
+
+
+def keep_tail(html: str, chars: int = TAIL_CHARS) -> str:
+    """The same paragraph content with its last `chars` or so visible characters in span.tail, cut at a space outside every tag.
+
+    On a wide screen span.tail does not wrap, so a paragraph that runs the full width of the page cannot end on a line of two or three words."""
+    depth, seen, pos = 0, 0, len(html)
+    for tok in reversed(re.split(r"(<[^>]+>)", html)):
+        pos -= len(tok)
+        if tok.startswith("<"):
+            depth += 1 if tok.startswith("</") else (0 if tok.endswith("/>") else -1)   # read backwards: a closing tag opens a nested run
+            continue
+        for i in range(len(tok) - 1, -1, -1):
+            if tok[i] == " " and depth == 0 and seen >= chars:
+                return f'{html[:pos + i]} <span class="tail">{html[pos + i + 1:]}</span>'
+            seen += 1
+    return html
+
+
+def tailed(html: str) -> str:
+    """keep_tail() on every p.note, p.lede and p.fine in a run of HTML (a p never nests, so the shortest match is one paragraph)."""
+    return re.sub(r'(<p class="(?:note|lede|fine)">)(.*?)(</p>)', lambda m: m.group(1) + keep_tail(m.group(2)) + m.group(3), html, flags=re.S)
+
+
 def window_text(ctx: Ctx, days: int) -> str:
     end = date.fromisoformat(ctx.m["asof"])
     start = date.fromordinal(end.toordinal() - days + 1)
@@ -1506,7 +1539,7 @@ def card_h1a(ctx: Ctx) -> str:
                           f"Staking rewards: {ctx.plain('h1a_staking_rewards_90d_m')}M NEAR")]},
         ]
         pass_line = eval_expr(f"{CONSTS['h1a_pass_below_x'][0]}*h1a_staking_rewards_90d_m", m)
-        a, ha = hbar_panel(v, title="90-day totals, million NEAR (bars start at zero)", tag="A", rows=a_rows, vmax=250,
+        a, ha = hbar_panel(v, title="90-day totals, million NEAR", tag="A", rows=a_rows, vmax=250,
                            ticks=[0, 50, 100, 150, 200, 250],
                            refs=[{"v": pass_line, "label": T("H1a’s line: net outflow below ",
                                                               ctx.Dt("0.5*h1a_staking_rewards_90d_m", 2), "M")}])
@@ -1556,7 +1589,7 @@ def card_h1a(ctx: Ctx) -> str:
                   'Nor who withdrew or where the NEAR went: NEAR is fungible, so nothing here says which coins were sold, and whether the NEAR '
                   'reached exchanges is H1b, which the exchange labels cannot settle.'),
         figure=fig,
-        caption=f'Window: 90 days, {window_text(ctx, 90)} (UTC). Unit: million NEAR. Panel A bars start at zero; Panel B accumulates the daily flows.',
+        caption=f'Window: 90 days, {window_text(ctx, 90)} (UTC). Unit: million NEAR.',
         extra=figs,
         notes=(f'The {ctx.M("h1a_gross_issuance_90d_m")}M NEAR minted is read from {ctx.M("h1a_epochs_in_window")} epoch-boundary block headers. '
                f'Panel B uses the {ctx.M("pool_rewards_90d_m")}M NEAR of rewards credited to pools in the daily series, so on that denominator the '
@@ -1632,7 +1665,7 @@ def card_h1b(ctx: Ctx) -> str:
              "bars": [bar(m["h1b_net_inflow_upper_ex_nonexchange_m"], "sc", T(Mt("h1b_net_inflow_upper_ex_nonexchange_m"), "M"),
                           f"Upper bound ex non-exchange: {ctx.plain('h1b_net_inflow_upper_ex_nonexchange_m')}M NEAR")]},
         ]
-        a, ha = hbar_panel(v, title="Net exchange inflow, 90 days, million NEAR (bars start at zero)", tag="A", rows=a_rows, vmax=200,
+        a, ha = hbar_panel(v, title="Net exchange inflow, 90 days, million NEAR", tag="A", rows=a_rows, vmax=200,
                            ticks=[0, 50, 100, 150, 200],
                            refs=[{"v": m["h1a_gross_issuance_90d_m"],
                                   "label": T("gross issuance ", Mt("h1a_gross_issuance_90d_m"), "M (the H1b bar)")}])
@@ -1647,7 +1680,7 @@ def card_h1b(ctx: Ctx) -> str:
              "bars": [bar(m["h1b_coverage_inflow_pct"], "sc", T(Mt("h1b_coverage_inflow_pct"), "%"),
                           f"Coverage by inflow: {ctx.plain('h1b_coverage_inflow_pct')}%")]},
         ]
-        b, hb = hbar_panel(v, title="Labelled share of the top-100 native-NEAR receivers, % (bars start at zero)", tag="B", rows=b_rows,
+        b, hb = hbar_panel(v, title="Labelled share of the top-100 native-NEAR receivers, %", tag="B", rows=b_rows,
                            vmax=100, ticks=[0, 25, 50, 75, 100], tick_fmt=lambda t: f"{t:g}%",
                            refs=[{"v": CONSTS["h1b_coverage_min_pct"][0],
                                   "label": T("required for a point result: ", ctx.Kt("h1b_coverage_min_pct"), "%")}])
@@ -1680,7 +1713,7 @@ def card_h1b(ctx: Ctx) -> str:
         notshows=('That any of this NEAR was sold, or by whom (NEAR is fungible): it counts only labelled centralized-exchange accounts, so '
                   '1Click, a non-custodial route out of NEAR, is reported beside H1b and never inside it.'),
         figure=fig,
-        caption=f'Window: 90 days, {window_text(ctx, 90)} (UTC). Units: million NEAR (Panel A) and percent of the top-100 receivers (Panel B). Both axes start at zero.',
+        caption=f'Window: 90 days, {window_text(ctx, 90)} (UTC).',
         notes=(f'Only {ctx.M("h1b_coverage_count_pct")}% of the top-100 native-NEAR receivers carry an exchange label ({ctx.M("h1b_coverage_tier1_count_pct")}% a cited '
                f'one; the rest are labelled by our sweep rule), below the '
                f'{ctx.K("h1b_coverage_min_pct")}% the pre-registration requires, so H1b is confirmed only if it is true at both bounds. The lower '
@@ -1716,7 +1749,7 @@ def card_h1c(ctx: Ctx) -> str:
              "bars": [bar(m["h1c_ratio_upper_pct"], "s2", T(Mt("h1c_ratio_upper_pct"), "%"),
                           f"Against the upper bound: {ctx.plain('h1c_ratio_upper_pct')}%")]},
         ]
-        return hbar_panel(v, title="Identified buying ÷ net exchange inflow, % (bars start at zero)", rows=rows, vmax=40,
+        return hbar_panel(v, title="Identified buying ÷ net exchange inflow, %", rows=rows, vmax=40,
                           ticks=[0, 10, 20, 30, 40], tick_fmt=lambda t: f"{t:g}%",
                           refs=[{"v": CONSTS["h1c_min_pct"][0], "label": T("H1c’s bar: at least ", ctx.Kt("h1c_min_pct"), "% at both bounds")}])
 
@@ -1746,7 +1779,7 @@ def card_h1c(ctx: Ctx) -> str:
                f'({ctx.M("h1c_identified_buying_m")}M NEAR), as a share of the two net exchange inflow bounds from H1b.'),
         notshows=('That the buyback wallet&rsquo;s NEAR came from exchanges: NEAR is fungible, so the ratio is a market-wide balance and traces no individual coins.'),
         figure=fig,
-        caption=f'Window: 90 days, {window_text(ctx, 90)} (UTC). Unit: percent. The axis starts at zero.',
+        caption=f'Window: 90 days, {window_text(ctx, 90)} (UTC). Unit: percent.',
         extra=figs,
         notes=(f'With label coverage below {ctx.K("h1b_coverage_min_pct")}%, H1c is confirmed only if it reaches at least {ctx.K("h1c_min_pct")}% at both bounds. '
                f'It clears the bar against the lower bound and falls far short against the upper, so it stays unsettled; it inherits every limit of '
@@ -1808,7 +1841,7 @@ def card_rating(ctx: Ctx) -> str:
              "bars": [bar(m["rating_g_obs_near_pct"], "sc", T(Mt("rating_g_obs_near_pct"), "%/yr"),
                           f"G_obs (NEAR terms): {ctx.plain('rating_g_obs_near_pct')}%/yr")]},
         ]
-        return hbar_panel(v, title="Growth in captured Intents revenue, % a year (bars start at zero)", rows=rows, vmax=700,
+        return hbar_panel(v, title="Growth in captured Intents revenue, % a year", rows=rows, vmax=700,
                           ticks=[0, 100, 200, 300, 400, 500, 600, 700] if not v.narrow else [0, 200, 400, 600])
 
     fig = dual(ctx, "chart-rating", title, desc, build)
@@ -1860,7 +1893,7 @@ def card_rating(ctx: Ctx) -> str:
                   f'and most of the USD growth is the NEAR price. The NEAR-terms growth measures a step in the share of fees NEAR captures: over the same '
                   f'windows gross fees and volume grew far less (<code>docs/second-review.md</code>).'),
         figure=fig,
-        caption=f'Unit: percent a year, from zero, which is why observed USD growth dwarfs the rest. Observed growth compares the last 180 days with the 180 before, to {ctx.m["asof"]}.',
+        caption=f'Observed growth: the last 180 days against the 180 days before, to {ctx.m["asof"]}.',
         extra=figs,
         notes=(f'The frozen rule, branch by branch: {rule}',
                f'G_req is the annual growth in captured Intents revenue ({ctx.M("rating_r90_usd_m")}M USD over the last 90 days, DefiLlama) needed for it to equal '
@@ -2103,8 +2136,7 @@ def card_forward(ctx: Ctx) -> str:
         title=(f'Forward tests: <span data-f="@count.PASS" data-scale="1">{sum(1 for f_ in FORWARD_IDS if word_of(f_) == "PASS")}</span> of 4 came true'
                if fw else "Forward tests F1 to F4: scored after the window"),
         headline=headline, shows=shows, notshows=notshows, figure=fig,
-        caption=(f'Window: {esc(w0)} to {esc(w1)} (UTC). Scoring {"opened" if fw else "opens"} {esc(opens)}. Each line has its own unit, named in its title, '
-                 f'and its axis is a band around the prediction, so it does not start at zero.'),
+        caption=(f'Window: {esc(w0)} to {esc(w1)} (UTC). Scoring {"opened" if fw else "opens"} {esc(opens)}. Each line has its own unit, named in its title.'),
         more=lst, notes=notes,
         source=source_p(ctx, code=("pipeline/score_forward.py",),
                         upstream=("DefiLlama dailyVolume and dailyRevenue (api.llama.fi)", "Nearblocks /v1/charts total_supply",
@@ -2232,7 +2264,7 @@ def card_ladder(ctx: Ctx) -> str:
                   f'{ctx.M("ladder_escrow_unshields_pct_of_issuance", 2)} points between the two candidate NEAR-side streams that fit, so, if those three are all of NEAR&rsquo;s Intents revenue wallets, measured value capture is a '
                   f'range, {ctx.M("ladder_public_collectors_pct_of_issuance", 2)}% to {ctx.M("ladder_all_wallets_pct_of_issuance", 2)}% of issuance.'),
         figure=fig,
-        caption=(f'Window: the 30 days {window_text(ctx, 30)} (UTC). Unit: percent of net issuance. Both panels start at zero; Panel B is a zoom of Panel A.'),
+        caption=(f'Window: the 30 days {window_text(ctx, 30)} (UTC). Unit: percent of net issuance. Panel B is a zoom of Panel A.'),
         extra=figs,
         notes=('The two candidate readings are near.com&rsquo;s fees and the Confidential Infrastructure Fee. A per-stream attestation by NEAR would turn the '
                'range into one number. Nothing here alleges misconduct. This is consistent with a privacy feature working as documented, and the question is auditability.',
@@ -2342,7 +2374,7 @@ def card_escrow(ctx: Ctx) -> str:
                'funded by the Confidential Intents escrow (unshields), apart from what the recurring fee collectors delivered.'),
         notshows='Which fee stream the escrow NEAR comes from, which is unattested (the releases move day by day with confidential swap volume, <code>docs/confidential-flow.md</code>), and any share in USD terms: these are shares of NEAR delivered.',
         figure=fig,
-        caption=f'Window: 2026-07-07 to {esc(asof)} (UTC), by calendar month. Unit: percent of NEAR delivered. The axis starts at zero.',
+        caption=f'Window: 2026-07-07 to {esc(asof)} (UTC), by calendar month. Unit: percent of NEAR delivered.',
         extra=figs,
         notes=(f'Before {traced_from} the funding of a single-use (escrow-path) delivery is mostly attributed from samples; from that date the funding hop of every '
                f'single-use (escrow-path) delivery in the window is traced (every single-use delivery in the 30-day window, {ctx.M("escrow_single_use_30d_n")}), '
@@ -2409,8 +2441,8 @@ def card_take(ctx: Ctx) -> str:
         notshows=('The period since the 2026-02-23 fee switch (this covers 90 days), and a like-for-like comparison of the captured-revenue bars, because '
                   'DefiLlama&rsquo;s volume series steps up on 2026-09-01.'),
         figure=fig,
-        caption=('Windows: 2026-08-07 to 2026-11-04 in three 30-day blocks (UTC). Unit: basis points. The axis starts at zero. Grey bars use a '
-                 'different denominator and are not like-for-like with the other two.'),
+        caption=('Windows: 2026-08-07 to 2026-11-04 in three 30-day blocks (UTC). Unit: basis points.'),
+        capnote='The grey bars use a different denominator and are not like-for-like with the other two.',
         notes=(f'NEAR&rsquo;s explicit take rose mainly because more volume carries a buyback fee entry ({ctx.M("take_b1_vol_with_bb_pct")}% of volume in the first block, '
                f'{ctx.M("take_b3_vol_with_bb_pct")}% in the last); SwapKit&rsquo;s share barely moved: it stayed between {ctx.M("take_b1_swapkit_vol_pct")}% and '
                f'{ctx.M("take_b3_swapkit_vol_pct")}%.',
@@ -2461,7 +2493,7 @@ def card_partners(ctx: Ctx) -> str:
             rows.append({"label": channel_label(c["channel"]),
                          "bars": [bar(c["vol_share_pct"], "s1", T(Mt(f"{p}.vol_share_pct"), "%"), f"{channel_label(c['channel'])}: {c['vol_share_pct']}% of volume"),
                                   bar(c["share_pct"], "s2", T(Mt(f"{p}.share_pct"), "%"), f"{channel_label(c['channel'])}: {c['share_pct']}% of explicit fees")]})
-        a, ha = hbar_panel(v, title="Share of 1Click volume and of NEAR's explicit buyback fees, 30 days, % (bars start at zero)", tag="A",
+        a, ha = hbar_panel(v, title="Share of 1Click volume and of NEAR's explicit buyback fees, 30 days, %", tag="A",
                            rows=rows, vmax=50, ticks=[0, 10, 20, 30, 40, 50], tick_fmt=lambda t: f"{t:g}%",
                            legend_items=[("s1", "Share of 1Click volume", "rect"), ("s2", "Share of NEAR's explicit buyback fees", "rect")])
         b_rows = [
@@ -2507,8 +2539,8 @@ def card_partners(ctx: Ctx) -> str:
                   f'the ceilings count every escrow unshield as if it came from SwapKit, which neither candidate reading of that stream supports, and the ledger '
                   f'cannot tell 0% from about {ctx.M("near_share_of_partner_fees_max_pct")}% for SwapKit ({ctx.M("near_share_of_partner_fees_max_tight_pct")}% on the tighter reading).'),
         figure=fig,
-        caption=(f'Window: the 30 days {window_text(ctx, 30)} (UTC). Unit: percent. Both panels start at zero. SwapKit&rsquo;s fee bar is to scale, just too short to see. '
-                 f'In Panel A blue is volume share and orange is fee share.'),
+        caption=(f'Window: the 30 days {window_text(ctx, 30)} (UTC). Unit: percent.'),
+        capnote='SwapKit&rsquo;s fee bar is to scale, just too short to see.',
         extra=figs,
         notes=(f'{ctx.M("buyback_fee_unreferred_share_pct")}% of NEAR&rsquo;s explicit fees come from swaps with no referral, meaning integrators on the default fee; '
                f'the top three channels account for {ctx.M("buyback_fee_top3_share_pct")}%.',
@@ -2549,7 +2581,7 @@ def card_paid(ctx: Ctx) -> str:
              "bars": [bar(m["partners_kept_vs_near_rev_high_x"], "sc", T(Mt("partners_kept_vs_near_rev_high_x"), "×"),
                           f"Upper: {ctx.plain('partners_kept_vs_near_rev_high_x')}×")]},
         ]
-        a, ha = hbar_panel(v, title="Partners' listed fees ÷ NEAR's entire captured revenue (bars start at zero)", tag="A", rows=a_rows, vmax=2.5,
+        a, ha = hbar_panel(v, title="Partners' listed fees ÷ NEAR's entire captured revenue", tag="A", rows=a_rows, vmax=2.5,
                            ticks=[0, 0.5, 1, 1.5, 2, 2.5], tick_fmt=lambda t: f"{t:g}×",
                            refs=[{"v": 1.0, "label": T("1×: equal to NEAR's whole captured revenue")}])
         b_rows = [
@@ -2558,7 +2590,7 @@ def card_paid(ctx: Ctx) -> str:
             {"label": "1Click swaps out of NEAR", "bars": [bar(m["explorer_out_of_near_usd_m"], "st2", T("$", Mt("explorer_out_of_near_usd_m"), "M"),
                                                               f"Out of NEAR: ${ctx.plain('explorer_out_of_near_usd_m')}M")]},
         ]
-        b, hb = hbar_panel(v, title="1Click swaps with NEAR on one side, USD million, 30 days (bars start at zero)", tag="B", rows=b_rows, vmax=30,
+        b, hb = hbar_panel(v, title="1Click swaps with NEAR on one side, USD million, 30 days", tag="B", rows=b_rows, vmax=30,
                            ticks=[0, 10, 20, 30])
         return stack([(a, ha), (b, hb)])
 
@@ -2591,8 +2623,7 @@ def card_paid(ctx: Ctx) -> str:
                   f'{ctx.M("legcount_oneclick_share_solver_hi_pct")}% on one-sided volume, taking confidential solver shields as one-sided confidential volume; exploratory), and near.com, direct solver flow '
                   f'and other integrations have a fee structure the Explorer API does not show, so we do not extrapolate.'),
         figure=fig,
-        caption=(f'Window: the 30 days {window_text(ctx, 30)} (UTC). Units: a multiple of NEAR&rsquo;s revenue (Panel A) and USD million (Panel B). Both axes start at zero. '
-                 f'In Panel A blue is the wide lower bound the headline quotes; grey is the tight reading and the upper bound.'),
+        caption=(f'Window: the 30 days {window_text(ctx, 30)} (UTC). Blue: the bound the headline quotes.'),
         extra=figs,
         notes=(f'The wide reading counts all the NEAR in the buyback wallet that the explicit fee entries do not explain as partner fees passed on to NEAR: the listed '
                f'partner fees left after that are at least {ctx.M("partners_kept_vs_near_rev_low_x")}× NEAR&rsquo;s revenue, and at most {ctx.M("near_share_of_partner_fees_max_pct")}% of the fees on '
@@ -2639,7 +2670,7 @@ def card_peers(ctx: Ctx) -> str:
 
     def build(v: Variant) -> tuple[str, float]:
         return line_panel(
-            v, title="NEAR Intents' share of Intents + THORChain + Chainflip + Maya volume, % (axis starts at zero)",
+            v, title="NEAR Intents' share of Intents + THORChain + Chainflip + Maya volume, %",
             xlabels=[r["month"] for r in rows], xtick_idx=tick_every(n, 6 if v.narrow else 3),
             series=[{"cls": "l1", "dot": "s1", "ys": [r["near-intents"] for r in rows],
                      "end": T(St(f"peer_share_monthly.{last}.near-intents"), "%")}],
@@ -2669,7 +2700,7 @@ def card_peers(ctx: Ctx) -> str:
         notshows=(f'Volume is not the token: only {ctx.M("explorer_near_side_swap_share_pct")}% of 1Click volume has NEAR on one side, and a share of volume says '
                   f'nothing about revenue.'),
         figure=fig,
-        caption=f'Window: {esc(rows[0]["month"])} to {esc(last)} (UTC), by calendar month. Unit: percent of the peer set&rsquo;s reported volume. The axis starts at zero.',
+        caption=f'Window: {esc(rows[0]["month"])} to {esc(last)} (UTC), by calendar month. Unit: percent of reported volume.',
         extra=figs,
         notes=(f'Reported Intents volume counts both legs of public swaps (measured), plus, from 2026-09-01, confidential-treasury flow at about one leg (measured; what that flow represents is inferred), which on the solver pairs is swap volume counted at close to both legs; DefiLlama&rsquo;s adapter states no methodology, and this comes from a sum of <code>intents.near</code> settlement on five days and the solver pairs on three (exploratory, <code>docs/leg-count.md</code>, <code>docs/confidential-flow.md</code>). '
                f'On one-sided volume the 30-day share is {ctx.M("legcount_peer_share_solver_lo_pct")}% to {ctx.M("legcount_peer_share_solver_hi_pct")}%, '
@@ -2707,12 +2738,12 @@ def card_revenue(ctx: Ctx) -> str:
             lab_txt = T("$", St(f"intents_monthly.{r['month']}.rev_m"), "M") if r["month"] == peak_rev else None
             cats.append({"label": r["month"], "vals": [r["rev_m"]], "txts": [lab_txt],
                          "tips": [f"{r['month']}: ${fmt_value(r['rev_m'])}M captured revenue"]})
-        a, ha = vcol_panel(v, title="Captured revenue per month, USD million (bars start at zero)", tag="A", cats=cats,
+        a, ha = vcol_panel(v, title="Captured revenue per month, USD million", tag="A", cats=cats,
                            series=[{"cls": "s1", "name": "Captured revenue"}], ymax=top, yticks=ticks,
                            h_plot=96 if not v.narrow else 90, label_step=6 if v.narrow else 3)
         bticks, btop = nice_axis(max(r["captured_bp"] for r in rows), 4)
         b, hb = line_panel(
-            v, title="Captured revenue ÷ DefiLlama reported volume, basis points (axis starts at zero)", tag="B",
+            v, title="Captured revenue ÷ DefiLlama reported volume, basis points", tag="B",
             xlabels=[r["month"] for r in rows], xtick_idx=tick_every(n, 6 if v.narrow else 3),
             series=[{"cls": "l1", "dot": "s1", "ys": [r["captured_bp"] for r in rows], "end": T(St(f"intents_monthly.{last}.captured_bp"), " bp")}],
             ymin=0, ymax=btop, yticks=bticks, h_plot=96 if not v.narrow else 90,
@@ -2739,8 +2770,7 @@ def card_revenue(ctx: Ctx) -> str:
         notshows=('Fees accrued: DefiLlama&rsquo;s revenue is NEAR delivered to the wallets, so a month&rsquo;s figure depends on when deliveries land, and the chart '
                   'does not say which fee stream paid.'),
         figure=fig,
-        caption=(f'Window: {esc(rows[0]["month"])} to {esc(last)} (UTC), by calendar month; the last month covers {partial_month_note(ctx)} only. '
-                 f'Units: USD million (Panel A) and basis points (Panel B). Both axes start at zero.'),
+        caption=(f'Window: {esc(rows[0]["month"])} to {esc(last)} (UTC), by calendar month; the last month covers {partial_month_note(ctx)} only.'),
         extra=figs,
         notes=(f'Revenue before the 2026-02-23 fee switch counts as captured, as DefiLlama labels it. Reported volume was ${ctx.S("intents_monthly.2026-10.vol_b")}B in October. '
                f'The volume is what DefiLlama reports: both legs of public swaps, and from 2026-09-01 also the confidential flow, counted at close to both legs (exploratory, <code>docs/confidential-flow.md</code>; its adapter states no methodology). '
@@ -2790,7 +2820,7 @@ def card_supply(ctx: Ctx) -> str:
             ymin=lo, ymax=hi, yticks=[1200, 1240, 1280, 1320], h_plot=96 if not v.narrow else 90, area_first=True,
             ynote="The vertical axis starts at 1,200M.")
         cats = [{"label": date_short(r["date"]), "vals": [r["change_k"]], "txts": [None]} for r in daily]
-        b, hb = vcol_panel(v, title="Net issuance per day, thousand NEAR (bars start at zero)", tag="B", cats=cats,
+        b, hb = vcol_panel(v, title="Net issuance per day, thousand NEAR", tag="B", cats=cats,
                            series=[{"cls": "s1", "name": "Net issuance"}], ymax=120, yticks=[0, 40, 80, 120],
                            h_plot=96 if not v.narrow else 90, label_step=30 if v.narrow else 15,
                            refs=[{"v": m["net_issuance_near_per_day_30d_k"], "label": T("30-day mean ", Mt("net_issuance_near_per_day_30d_k"), "K")}])
@@ -2816,7 +2846,8 @@ def card_supply(ctx: Ctx) -> str:
         shows=(f'Total NEAR supply at each month end and day-to-day net issuance (mint minus burn) over the 90 days {window_text(ctx, 90)}; net issuance is the quantity the ladder is measured against.'),
         notshows=('Who receives the issuance, or what changes after HSP-029, an issuance cut whose on-chain timelock ends on 2026-11-16 by our own sum of the contract&rsquo;s periods, after the deadline, and which also needs validator adoption.'),
         figure=fig,
-        caption=f'Window: Panel A, month ends from {esc(me_dates[0])} to {esc(me_dates[-1])} (the last point is the as-of date); Panel B, the 90 days {window_text(ctx, 90)} (UTC). Units: million NEAR and thousand NEAR a day.',
+        caption=f'Windows (UTC): month ends from {esc(me_dates[0])} (Panel A); the 90 days to {esc(me_dates[-1])} (Panel B).',
+        capnote=f'Panel A&rsquo;s last point is the as-of date, {esc(me_dates[-1])}.',
         extra=figs,
         notes=(f'In those 90 days {ctx.M("h1a_gross_issuance_90d_m")}M NEAR were minted (read from {ctx.M("h1a_epochs_in_window")} epoch-boundary block headers), '
                f'{ctx.M("h1a_burn_90d_k")}K NEAR burned and the net supply change was {ctx.M("h1a_net_supply_change_90d_m")}M NEAR.',
@@ -2863,8 +2894,8 @@ def card_usage(ctx: Ctx) -> str:
         months = (4, 10) if v.narrow else (1, 4, 7, 10)
         ticks_x = [i for i, d in enumerate(dates) if d[8:] == "01" and int(d[5:7]) in months]
         panels = []
-        for key, name, tag in (("tx_k", "Transactions per day, thousand (axis starts at zero)", "A"),
-                               ("active_accounts_k", "Active accounts per day, thousand (axis starts at zero)", "B")):
+        for key, name, tag in (("tx_k", "Transactions per day, thousand", "A"),
+                               ("active_accounts_k", "Active accounts per day, thousand", "B")):
             ys = [r[key] for r in rows]
             yt, top = nice_axis(max(ys), 5)
             panels.append(line_panel(
@@ -2915,8 +2946,8 @@ def card_usage(ctx: Ctx) -> str:
                   f'the BigQuery count of contracts called has a median of {M("usage_bq_contracts_called_median_30d_n")} a day, against '
                   f'{M("usage_bq_contracts_called_median_yago_n")} a year earlier.'),
         figure=fig,
-        caption=(f'Window: {esc(first)} to {esc(last)} (UTC), one point per day. Unit: thousand a day. Both axes start at zero. The dashed line is {esc(step)}. '
-                 f'The lines are single days and the headline figures 30-day averages, so their last points differ.'),
+        caption=(f'Window: {esc(first)} to {esc(last)} (UTC), one point per day. Unit: thousand a day. The dashed line is {esc(step)}.'),
+        capnote='The lines are single days and the headline figures 30-day averages, so their last points differ.',
         extra=f'{lead}{figs}',
         notes=(f'The transactions series falls in one step, from {M("l1_step_tx_before_k")}K to {M("l1_step_tx_after_k")}K between {esc(ref)} and {esc(step)}. '
                f'Active contracts and new accounts fall with it, but active accounts barely move ({M("l1_step_active_accounts_before_k")}K to '
@@ -3039,7 +3070,7 @@ def card_fwdcov(ctx: Ctx) -> str:
             {"label": "Same, if NEAR's price keeps its last-year trend", "bars": [bar(m["fwd_p_cov_ge100_2031_price_drift_pct"], "s2", P("fwd_p_cov_ge100_2031_price_drift_pct"))]},
             {"label": "Same, without the month that spans DefiLlama's counting change", "bars": [bar(m["fwd_exsep_p_cov_ge100_2031_pct"], "s2", P("fwd_exsep_p_cov_ge100_2031_pct"))]},
         ]
-        b, hb = hbar_panel(v, title="Share of simulated paths that reach the line, % (bars start at zero)", tag="B", rows=rows, vmax=100,
+        b, hb = hbar_panel(v, title="Share of simulated paths that reach the line, %", tag="B", rows=rows, vmax=100,
                            ticks=[0, 25, 50, 75, 100],
                            legend_items=[("s1", "Main run", "box"), ("s2", "Sensitivity", "box"), ("sc", "Frozen probability (PREREG.md)", "box")])
         return stack([(a, ha), (b, hb)])
@@ -3068,8 +3099,8 @@ def card_fwdcov(ctx: Ctx) -> str:
         notshows=('A forecast of NEAR&rsquo;s price or a valuation. Eleven months of data cannot pin a five-year trend: the bands are as wide as the data make them, '
                   'the take rate is held where it is, and no new fee stream, partner change or regime is modelled.'),
         figure=fig,
-        caption=(f'Model: <code>pipeline/model.py</code>, a fixed seed, {M("fwd_months_n")} model months from {esc(m["asof"])}. Units: percent. Panel A&rsquo;s axis is '
-                 f'logarithmic; values below its floor are drawn at the floor. It feeds nothing the rating rule computes.'),
+        caption=(f'Model: <code>pipeline/model.py</code>, a fixed seed, {M("fwd_months_n")} model months from {esc(m["asof"])}. Unit: percent. Panel A&rsquo;s axis is logarithmic.'),
+        capnote='In Panel A, values below the axis floor are drawn at the floor. The model feeds nothing the rating rule computes.',
         extra=figs,
         notes=(f'The volume drift comes from one month: the 2026-08 to 2026-09 change spans DefiLlama&rsquo;s 2026-09-01 change in what it counts as Intents volume. '
                f'Without that month volume changed by {M("fwd_exsep_vol_monthly_mean_pct")}% a month, the 2031 median is {M("fwd_exsep_cov_2031_p50_pct")}% and '
@@ -3122,7 +3153,8 @@ def card_fwdsupply(ctx: Ctx) -> str:
                'with HSP-029&rsquo;s ramp to a lower inflation cap and without it. This is the dilution the coverage paths are measured against.'),
         notshows='Whether HSP-029 is executed: its timelock ends on 2026-11-16, a Directors&rsquo; decision follows, and it needs validator adoption.',
         figure=fig,
-        caption=f'Model: <code>pipeline/model.py</code> (supply_path), the same arithmetic as <code>pipeline/h1a.py</code> (g_req). From {esc(m["asof"])} to {esc(m["fwd_target_date"])}. Units: million NEAR.',
+        caption=f'Model: <code>pipeline/model.py</code> (supply_path), from {esc(m["asof"])} to {esc(m["fwd_target_date"])}. Unit: million NEAR.',
+        capnote='The model uses the same arithmetic as <code>pipeline/h1a.py</code> (g_req).',
         notes=(f'Supply starts at {M("fwd_supply_now_m")}M NEAR, the archival header at the end of the supply window.',),
         source=source_p(ctx, raw=("raw/rpc/epoch_issuance.json", "raw/rpc/rating_assumptions.json"), code=("pipeline/model.py", "pipeline/h1a.py")),
         query=query_details(ctx, endpoints=(("Model", "python3 -m pipeline.compute (pipeline.model.supply_path)"), ("Series", "fwd_supply in data/series.json"))),
@@ -3162,7 +3194,7 @@ def card_priced(ctx: Ctx) -> str:
             {"label": "The other venues: a year over four years", "bars": [bar(m["ic_market_ex_intents_cagr_4y_pct"], "s1", P("ic_market_ex_intents_cagr_4y_pct"))]},
             {"label": "The other venues: last year", "bars": [bar(max(m["ic_market_ex_intents_cagr_1y_pct"], 0.0), "s1", P("ic_market_ex_intents_cagr_1y_pct"))]},
         ]
-        return hbar_panel(v, title="Growth a year to 2031, % (bars start at zero)", rows=rows, vmax=100, ticks=[0, 25, 50, 75, 100],
+        return hbar_panel(v, title="Growth a year to 2031, %", rows=rows, vmax=100, ticks=[0, 25, 50, 75, 100],
                           legend_items=[("s2", "What the price assumes", "box"), ("sc", "What the rating rule needs", "box"),
                                         ("s1", "What the venues did", "box")])
 
@@ -3190,8 +3222,8 @@ def card_priced(ctx: Ctx) -> str:
         notshows=('A valuation of NEAR as a whole. NEAR&rsquo;s market cap also prices the L1 (its fees, which burn, staking and any monetary premium); here all of it '
                   'is set against Intents&rsquo; captured revenue, so the growth shown is what Intents would need if it carried the price alone.'),
         figure=fig,
-        caption=(f'Market cap ${M("mcap_usd_b")}B (CoinGecko snapshot, 2026-11-05). Captured revenue: the 90 days to {esc(m["asof"])} at an annual rate. '
-                 f'Supply grows {M("ic_supply_factor_x")}× to 2031-11-04 with HSP-029. Market: THORChain, Chainflip, Maya and NEAR Intents (DefiLlama, reported basis), '
+        caption=(f'Market cap ${M("mcap_usd_b")}B on 2026-11-05. Captured revenue: the 90 days to {esc(m["asof"])}, annualised.'),
+        capnote=(f'Supply grows {M("ic_supply_factor_x")}× to 2031-11-04 with HSP-029. Market: THORChain, Chainflip, Maya and NEAR Intents (DefiLlama, reported basis), '
                  'full years to the as-of date.'),
         extra=figs, more=grid,
         notes=(f'The required return is on NEAR&rsquo;s price. Supply grows and the buybacks burn nothing, so for the price to rise at that rate the market cap must grow '
@@ -3219,12 +3251,12 @@ def card_multiply(ctx: Ctx) -> str:
             f"the take the price needs {ctx.plain('ic_take_needed_bp')}.")
 
     def build(v: Variant) -> tuple[str, float]:
-        a, ha = hbar_panel(v, tag="A", title="Multiples by 2031 (bars start at zero)", vmax=25, ticks=[0, 5, 10, 15, 20, 25], rows=[
+        a, ha = hbar_panel(v, tag="A", title="Multiples by 2031", vmax=25, ticks=[0, 5, 10, 15, 20, 25], rows=[
             {"label": "Captured revenue must multiply by", "bars": [bar(m["ic_required_multiple_x"], "s2", T(Mt("ic_required_multiple_x"), "×"))]},
             {"label": "The market, at its last-year pace", "bars": [bar(m["ic_mult_market_x"], "s1", T(Mt("ic_mult_market_x"), "×"))]},
             {"label": "Intents' share, at its twelve-month high", "bars": [bar(m["ic_mult_share_x"], "s1", T(Mt("ic_mult_share_x"), "×"))]},
             {"label": "Left for NEAR's take rate", "bars": [bar(m["ic_mult_take_x"], "sc", T(Mt("ic_mult_take_x"), "×"))]}])
-        b, hb = hbar_panel(v, tag="B", title="Take rate, basis points of volume (bars start at zero)", vmax=40, ticks=[0, 10, 20, 30, 40], rows=[
+        b, hb = hbar_panel(v, tag="B", title="Take rate, basis points of volume", vmax=40, ticks=[0, 10, 20, 30, 40], rows=[
             {"label": "NEAR's captured take today", "bars": [bar(m["ic_take_90d_bp"], "s1", T(Mt("ic_take_90d_bp"), " bp"))]},
             {"label": "Intents' whole gross fee today", "bars": [bar(m["ic_gross_bp_90d"], "sc", T(Mt("ic_gross_bp_90d"), " bp"))]},
             {"label": "Take the price needs", "bars": [bar(m["ic_take_needed_bp"], "s2", T(Mt("ic_take_needed_bp"), " bp"))]}])
@@ -3247,8 +3279,8 @@ def card_multiply(ctx: Ctx) -> str:
         notshows=('That the take rate cannot rise: fees are a policy choice. It shows how far the current fee structure is from what the price implies, if the market '
                   'grows as it has.'),
         figure=fig,
-        caption=(f'Base assumptions: a required return of {M("ic_base_r_pct")}% and {M("ic_base_x")}× revenue in 2031. Take and gross fee: the 90 days to {esc(m["asof"])} '
-                 '(DefiLlama revenue and fees ÷ volume, reported basis).'),
+        caption=(f'Base case: {M("ic_base_r_pct")}% required return, {M("ic_base_x")}× revenue in 2031. Take and fee: the 90 days to {esc(m["asof"])}.'),
+        capnote='Take and gross fee are DefiLlama revenue and fees ÷ volume, on the reported basis.',
         extra=figs,
         notes=(f'Intents&rsquo; share of the peer set over the 90 days was {M("ic_share_90d_pct")}%; its twelve-month high was {M("ic_share_max_pct")}% '
                f'({esc(m["ic_share_max_month"])}) and its low {M("ic_share_min_pct")}% ({esc(m["ic_share_min_month"])}).',
@@ -3275,7 +3307,7 @@ def card_scenarios(ctx: Ctx) -> str:
            ("take", "Take rate: lowest to highest month"), ("share", "Intents' share: twelve-month low to high"), ("hsp029", "HSP-029: not in force to in force"))
 
     def build(v: Variant) -> tuple[str, float]:
-        a, ha = hbar_panel(v, tag="A", title="Coverage on 2031-11-04, % (bars start at zero)", vmax=300, ticks=[0, 100, 200, 300],
+        a, ha = hbar_panel(v, tag="A", title="Coverage on 2031-11-04, %", vmax=300, ticks=[0, 100, 200, 300],
                            refs=[{"v": m["fwd_full_line_pct"], "label": T(Mt("fwd_full_line_pct"), "%: covers all dilution")}], rows=[
             {"label": f"{nm} case", "bars": [bar(m[f"ic_{k}_coverage_2031_pct"], c, T(Mt(f"ic_{k}_coverage_2031_pct"), "%"))]}
             for k, nm, c in (("bear", "Bear", "sc"), ("base", "Base", "s1"), ("bull", "Bull", "s2"))])
@@ -3336,7 +3368,7 @@ def card_peersval(ctx: Ctx) -> str:
             f"{ctx.plain('ic_peer_thorchain_mcap_to_fees_x')} times its fees and Chainflip's {ctx.plain('ic_peer_chainflip_mcap_to_fees_x')}.")
 
     def build(v: Variant) -> tuple[str, float]:
-        return hbar_panel(v, title="Market cap ÷ annual fees or revenue, × (bars start at zero)", vmax=250, ticks=[0, 50, 100, 150, 200, 250], rows=[
+        return hbar_panel(v, title="Market cap ÷ annual fees or revenue, ×", vmax=250, ticks=[0, 50, 100, 150, 200, 250], rows=[
             {"label": "NEAR ÷ captured revenue", "bars": [bar(m["ic_near_mcap_to_rev_90d_ann_x"], "s2", T(Mt("ic_near_mcap_to_rev_90d_ann_x"), "×"))]},
             {"label": "NEAR ÷ Intents' gross fees", "bars": [bar(m["ic_near_mcap_to_intents_fees_x"], "s2", T(Mt("ic_near_mcap_to_intents_fees_x"), "×"))]},
             {"label": "THORChain (RUNE) ÷ fees", "bars": [bar(m["ic_peer_thorchain_mcap_to_fees_x"], "s1", T(Mt("ic_peer_thorchain_mcap_to_fees_x"), "×"))]},
@@ -3363,8 +3395,7 @@ def card_peersval(ctx: Ctx) -> str:
                   'reach their tokens (DefiLlama counts only the small share of THORChain&rsquo;s swap fees burned as RUNE as holders&rsquo; revenue). Maya Protocol is '
                   'left out: its token (CACAO) is not listed on CoinGecko.'),
         figure=fig,
-        caption=(f'Market caps at {esc(m["ic_peer_caps_at_utc"])} UTC (NEAR: the committed snapshot at 22:50 UTC, ${M("mcap_usd_b")}B). Fees: DefiLlama, the 365 days '
-                 f'to {esc(m["asof"])}.'),
+        caption=(f'Market caps: {esc(m["ic_peer_caps_at_utc"])} UTC (NEAR ${M("mcap_usd_b")}B, 22:50). Fees: the 365 days to {esc(m["asof"])}.'),
         notes=('The peer market caps come from a fetch made on 2026-11-14 (python3 -m pipeline.fetch_peer_caps); only the hourly point nearest NEAR&rsquo;s committed '
                'snapshot is used.',),
         source=source_p(ctx, raw=("raw/coingecko/peer_caps_30d.json", "raw/coingecko/near_snapshot.json", "raw/llama/fees_near-intents.json",
@@ -3383,7 +3414,7 @@ def card_signposts(ctx: Ctx) -> str:
           ("market", "Market growth against G_req"), ("take", "NEAR's take against what the price needs"), ("staking", "Staking outflow against H1a's line"))
 
     def build(v: Variant) -> tuple[str, float]:
-        return hbar_panel(v, title="Today as a share of the line, % (bars start at zero)", vmax=125, ticks=[0, 25, 50, 75, 100, 125],
+        return hbar_panel(v, title="Today as a share of the line, %", vmax=125, ticks=[0, 25, 50, 75, 100, 125],
                           refs=[{"v": m["fwd_full_line_pct"], "label": "at the line"}],
                           rows=[{"label": lab, "bars": [bar(m[f"ic_sp_{k}_pct"], "s1" if m[f"ic_sp_{k}_pct"] >= 100 else "sc", T(Mt(f"ic_sp_{k}_pct"), "%"))]}
                                 for k, lab in sp])
@@ -3419,7 +3450,7 @@ def card_signposts(ctx: Ctx) -> str:
                'rule&rsquo;s G_req, the take the price needs, and H1a&rsquo;s line.'),
         notshows='A score: P1 to P3 and M1 to M4 resolve on their own dates, from the data, and are scored as written.',
         figure=fig,
-        caption=f'In this chart today means the data to {esc(m["asof"])}, the cutoff. The lines come from PREREG.md, the addendum and the cards above.',
+        caption=f'Today means the data to {esc(m["asof"])}. Lines: PREREG.md, the addendum, the cards above.',
         notes=('For staking the line is H1a&rsquo;s line (net staking outflow under half of staking rewards) divided by today&rsquo;s ratio, so a full bar would mean '
                'stakers are no longer net sellers of their rewards.',),
         source=source_p(ctx, raw=IC_SOURCE_RAW, code=("pipeline/investment_case.py", "pipeline/compute.py")),
@@ -3561,8 +3592,9 @@ def not_computed(ctx: Ctx) -> str:
     ]
     lis = "".join(f"<li><strong>{a}</strong> {b}</li>" for a, b in items)
     return (f'<section id="not-computed" aria-labelledby="nc-h"><h2 id="nc-h">Not computed here</h2>'
-            f'<p class="note">Questions the page leaves open, either because the committed data cannot answer them or because a number would claim more than the data support.</p>'
-            f'<details class="more"><summary>Show what is not computed</summary><ul class="plain">{lis}</ul></details></section>')
+            f'<details class="more lead"><summary>Questions we leave open.</summary>'
+            f'<p class="note">We leave them open either because the committed data cannot answer them or because a number would claim more than the data support.</p>'
+            f'<ul class="plain">{lis}</ul></details></section>')
 
 
 def reproduce(ctx: Ctx) -> str:
@@ -3586,9 +3618,9 @@ def reproduce(ctx: Ctx) -> str:
     lis = "".join(f'<li><p class="do"><strong>Do:</strong> <code>{esc(c)}</code></p><p class="see"><strong>See:</strong> {s}</p></li>'
                   for c, s in rows)
     return (f'<section id="reproduce" aria-labelledby="repro-h"><h2 id="repro-h">Reproduce</h2>'
-            f'<p class="note">Every number and chart on this page rebuilds offline from the committed data, and each step says what its command prints. '
-            f'<code>make reproduce</code> runs steps 2 to 4, <code>make render-check</code> runs step 6, '
-            f'and <code>make site</code> runs steps 2 to 4 and then step 7, offline.</p><details class="more"><summary>Show the steps</summary><ol class="steps">{lis}</ol></details></section>')
+            f'<details class="more lead"><summary>Every number and chart on this page rebuilds offline from the committed data.</summary>'
+            f'<p class="note">Each step says what its command prints. <code>make reproduce</code> runs steps 2 to 4, <code>make render-check</code> runs step 6, '
+            f'and <code>make site</code> runs steps 2 to 4 and then step 7, offline.</p><ol class="steps">{lis}</ol></details></section>')
 
 
 def limits(ctx: Ctx) -> str:
@@ -3623,12 +3655,13 @@ def limits(ctx: Ctx) -> str:
     ]
     lis = "".join(f"<li><strong>{a}</strong> {b}</li>" for a, b in items)
     return (f'<section id="limits" aria-labelledby="limits-h"><h2 id="limits-h">Limits</h2>'
-            f'<p class="note">Four limits matter most. Too few exchange addresses are labelled to settle the exchange tests: {M("h1b_coverage_count_pct")}% of the '
+            f'<details class="more lead"><summary>Four limits matter most: exchange labels, the escrow&rsquo;s fee stream, one partner source, and two assumptions.</summary>'
+            f'<p class="note">Too few exchange addresses are labelled to settle the exchange tests: {M("h1b_coverage_count_pct")}% of the '
             f'top-100 receivers, where a point result needs {ctx.K("h1b_coverage_min_pct")}%. Which fee funds the escrow releases is unattested. Partner numbers rest '
             f'on one key-gated source. And the investment case rests on two assumptions, shown as a grid. '
             f'Escrow funding hops are traced per single-use delivery from {traced}, which a test checks against <code>data/raw/escrow/deliveries.csv</code>. '
             f'The full list comes from the Limits sections of THESIS.md and docs/*.md and from PREREG-ADDENDUM.md.</p>'
-            f'<details class="more"><summary>Show the limits</summary><ul class="plain">{lis}</ul></details></section>')
+            f'<ul class="plain">{lis}</ul></details></section>')
 
 
 def answer_line(ctx: Ctx) -> str:
@@ -3710,7 +3743,7 @@ def thesis_box(ctx: Ctx) -> str:
     return (
         '<div class="thesis" id="thesis">'
         '<p>NEAR Intents led its market over the past year, but NEAR&rsquo;s price asks for far more than its fees deliver. '
-        'The NEAR those fees send to NEAR&rsquo;s revenue wallets equals, at most, about a sixth of net new supply. For the fees alone to '
+        'The NEAR those fees send to NEAR&rsquo;s revenue wallets equals, at most, about a sixth of net new supply.</p><p>For the fees alone to '
         f'carry the price NEAR had on {M("upd_asof") if has_update(ctx) else M("asof")}, they would have to grow faster each year to 2031 than '
         'cross-chain volume grew over any period in the data. Owning NEAR at that price is a bet on a bigger cut of those fees, or on value beyond them.</p>'
         '<p class="go"><a href="#forward-view">Read the case</a> or <a href="story.html">see it as slides</a>.</p></div>')
@@ -3746,19 +3779,16 @@ def what_changed(ctx: Ctx) -> str:
     lo_id = min(FORWARD_IDS, key=lambda f: float(pf[f]["p"]))   # the lowest and the highest of the four frozen probabilities
     hi_id = max(FORWARD_IDS, key=lambda f: float(pf[f]["p"]))
     items = (
-        ("What held.", 'The buyback wallet kept filling and net new supply ran at the pace we forecast (F1, F2). Those are the two sides '
-                       'the case sets against each other: NEAR arriving in NEAR&rsquo;s wallets, and new supply.'),
-        ("Where we were wrong in NEAR&rsquo;s favour.", f'We expected NEAR&rsquo;s take to fall back below {ctx.K("f3_max_bp")} bp, and it did not (F3). The headline figures '
-                                                         f'use the take as measured: {M("upd_ic_take_90d_bp")} bp over the 90 days to {M("upd_asof")}.'),
-        ("Where we were wrong against it.", 'We expected Intents to keep more than half of its peer set&rsquo;s volume that week, and THORChain out-traded it (F4). '
-                                            f'Share is one of the signposts we watch, and the update has the 30-day share at {M("upd_intents_share_peerset_30d_pct")}%.'),
-        ("Supply.", f'More NEAR left staking than rewards added (H1a): over those 90 days the NEAR outside the pools grew by '
-                    f'{M("ic_float_change_vs_net_supply_x")}× the net new supply. Whether it was sold is the question H1b leaves open.'),
-        ("Still open.", 'Too few exchange addresses are labelled to settle how much NEAR reaches exchanges (H1b, H1c). The frozen rule therefore gives '
-                        'no signal, so the view on this page rests on the investment case.'),
+        ("Where we were right.", 'The buyback wallet kept filling and net new supply ran at the pace we forecast (F1, F2). The case sets those two against each other.'),
+        ("Where we were wrong in NEAR&rsquo;s favour.", f'We expected NEAR&rsquo;s take to fall back below {ctx.K("f3_max_bp")} bp, and it did not (F3). '
+                                                         f'The headline figures use the measured {M("upd_ic_take_90d_bp")} bp.'),
+        ("Where we were wrong against it.", 'We expected Intents to keep over half its peer set&rsquo;s volume, and THORChain out-traded it (F4). '
+                                            f'The 30-day share is {M("upd_intents_share_peerset_30d_pct")}% in the update.'),
+        ("Supply.", f'More NEAR left staking than rewards added (H1a): the NEAR outside the pools grew by {M("ic_float_change_vs_net_supply_x")}× '
+                    'the net new supply. Whether it was sold, H1b leaves open.'),
+        ("Still open.", 'Labels cover too few exchange addresses to settle H1b and H1c, so the frozen rule gives no signal and the view rests on the investment case.'),
         ("Our odds.", f'We gave the four one-week forecasts odds of <span data-p="{lo_id}">{esc(pf[lo_id]["p"])}</span> to '
-                      f'<span data-p="{hi_id}">{esc(pf[hi_id]["p"])}</span>, and two came true. Four is too few to re-fit our odds, so the '
-                      'longer-dated predictions stay as frozen.'),
+                      f'<span data-p="{hi_id}">{esc(pf[hi_id]["p"])}</span>, and two came true. Four is too few to re-fit, so the longer-dated odds stay as frozen.'),
     )
     lis = "".join(f"<li><strong>{a}</strong> {b}</li>" for a, b in items)
     return (f'<section id="what-changed" aria-labelledby="wc-h"><h3 id="wc-h">What the results changed</h3>'
@@ -3938,19 +3968,21 @@ def gauge(ctx: Ctx) -> str:
         f'<span>The whole bar is all net new supply, 30 days to {M("asof")}</span></p></div>')
 
 
-def header(ctx: Ctx) -> str:
+def header(ctx: Ctx, eyebrow: str = "NEAR Hackathon 2026, Investment Thesis track", fine: str = "") -> str:
     """The cover: the question, what the long-term case rests on, who wrote it and for what, and one graphic. Nothing else.
+    The slides page opens with the same cover, under its own first line and with one line of small print (fine).
 
     The subtitle says what the case rests on and does not say that it succeeds; the thesis under the cover says how far the price is
     ahead of the fees."""
     answer_line(ctx)   # drawn in the track record tab; called here so that the first screen is not drawn either once the data stop supporting it
     thesis_box(ctx)    # the same for the view under the cover: its guard covers the subtitle's claim that Intents led its market
+    small = f'<p class="fine">{fine}</p>' if fine else ""
     return (
-        f'<header class="top"><p class="eyebrow">NEAR Hackathon 2026, Investment Thesis track</p>'
+        f'<header class="top"><p class="eyebrow">{esc(eyebrow)}</p>'
         f'<h1>Can NEAR&rsquo;s Intents business grow into its dilution?</h1>'
         '<p class="sub">The long-term case for NEAR rests on Intents.</p>'
         f'<p class="byline">{esc(AUTHORS)}</p>'
-        f'{gauge(ctx)}</header>')
+        f'{gauge(ctx)}{small}</header>')
 
 
 def brief(ctx: Ctx) -> str:
@@ -3970,7 +4002,7 @@ def about_data(ctx: Ctx) -> str:
     docs = "".join(f'<li><a href="{esc(gh(p))}">{esc(lab)}</a></li>' for lab, p in DOCUMENTS)
     return (
         f'<section id="about" aria-labelledby="about-h"><h2 id="about-h">About the data</h2>'
-        f'<p class="lede">A pre-registered token flow statement for NEAR that anyone can re-run. <code>make site</code> runs <code>python3 -m pipeline.compute</code> and '
+        f'<p class="lede">A token flow statement for NEAR that anyone can re-run. <code>make site</code> runs <code>python3 -m pipeline.compute</code> and '
         f'<code>python3 -m pipeline.render</code> in one command, rebuilding every number and chart from the raw snapshots in <code>data/raw/</code>, offline. Each chart carries the query behind it and the exact numbers it plots; '
         f'the steps to check one are under <a href="#reproduce">Reproduce</a>.</p>'
         f'<dl class="meta">'
@@ -4158,28 +4190,27 @@ def build_page(ctx: Ctx, breaks: bool = True) -> str:
     cards = all_cards()
     pre = lay_out(tuple(c for c, _, _ in PRE_CARDS), cards, ctx)
     fwd = lay_out(CASE_IDS, cards, ctx)
-    exp = "".join(f'<p class="gridhead">{esc(head)}</p><p class="gridlead">{group_lead(ctx, head)}</p>' + lay_out(ids, cards, ctx)
+    exp = "".join(f'<p class="gridhead">{esc(head)}</p><p class="gridlead">{keep_tail(group_lead(ctx, head))}</p>' + lay_out(ids, cards, ctx)
                   for head, ids in EVIDENCE)
     body = (
         f'<a class="skip" href="#main">Skip to the content</a>{header(ctx)}<div class="wrap">{side_nav()}'
-        f'<main id="main">{brief(ctx)}{record_strip(ctx)}'
+        f'<main id="main">{brief(ctx)}{tailed(record_strip(ctx))}'
         f'<div class="tabs"><nav class="tabbar" aria-label="Sections"><a href="#forward-view" data-tab="forward-view">Investment case</a>'
         f'<a href="#exploratory" data-tab="exploratory">Supporting evidence</a><a href="#preregistered" data-tab="preregistered">Track record</a>'
         f'<a href="#method" data-tab="method">Method and limits</a></nav>'
         f'<section id="forward-view" class="panel" aria-labelledby="fwd-h"><h2 id="fwd-h">The investment case</h2>'
-        f'{case_lead(ctx)}'
+        f'{tailed(case_lead(ctx))}'
         f'<div class="grid">{fwd}</div>{update_table(ctx)}{LADDER_HISTORY}</section>'
         f'<section id="exploratory" class="panel" aria-labelledby="exp-h"><h2 id="exp-h">Supporting evidence</h2>'
-        f'{evidence_lead(ctx)}'
+        f'{tailed(evidence_lead(ctx))}'
         f'<div class="grid">{exp}</div></section>'
         f'<section id="preregistered" class="panel" aria-labelledby="pre-h"><h2 id="pre-h">Track record: what we predicted, and what happened</h2>'
-        f'{track_lead(ctx)}'
+        f'{tailed(track_lead(ctx))}'
         f'<details class="readmore"><summary>The questions and the pre-registered answer</summary>{answer_line(ctx)}</details>'
         f'{scorecard(ctx)}{what_changed(ctx)}<div class="grid">{pre}</div></section>'
-        f'<div id="method" class="panel">{about_data(ctx)}{not_computed(ctx)}{reproduce(ctx)}{limits(ctx)}</div></div></main>'
+        f'<div id="method" class="panel">{tailed(about_data(ctx))}{not_computed(ctx)}{reproduce(ctx)}{limits(ctx)}</div></div></main>'
         f'<footer><p><strong>Research only.</strong> Nothing here is investment advice, an offer or a recommendation. '
-        f'MIT licence (<a href="{esc(gh("LICENSE"))}">terms</a>). <a href="{esc(gh("pipeline/render.py"))}">How this page is built</a>. '
-        f'The logo on the cover is NEAR&rsquo;s trademark and is shown to name the subject; this page is an independent hackathon entry.</p></footer></div>'
+        f'MIT licence (<a href="{esc(gh("LICENSE"))}">terms</a>). <a href="{esc(gh("pipeline/render.py"))}">How this page is built</a>.</p></footer></div>'
         f'{live_script(ctx)}')
     head = (
         '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
@@ -4205,10 +4236,9 @@ STORY_CSS = """
 .story .step{margin:0;font-size:.9375rem;font-weight:600;color:var(--muted)}
 .story .fignum{display:none}
 .story .badge{position:static;width:auto;height:auto;overflow:visible;clip:auto;font-size:.875rem;color:var(--muted)}
-.story h1{font-size:clamp(2rem,5.4vw,3.4rem);line-height:1.1;margin:.3em 0 .5em}
-.story .cover p,.story .end p{font-size:clamp(1.05rem,1.9vw,1.3rem);max-width:none;margin:.5rem 0}
-.story .cover .big{font-size:clamp(1.4rem,3vw,2.1rem);font-weight:650;line-height:1.25;margin:.2rem 0 1rem}
-.story .cover .fine{margin:1.4rem 0 0;font-size:.9375rem;max-width:none}
+.story .end p{font-size:clamp(1.05rem,1.9vw,1.3rem);max-width:none;margin:.5rem 0}
+.story header.top{padding-left:max(20px,calc((100% - 940px) / 2));padding-right:max(20px,calc((100% - 940px) / 2))}
+.story header.top .fine{margin:1.8rem 0 0;font-size:.875rem;max-width:none}
 .story .end ul{font-size:clamp(1rem,1.7vw,1.2rem);padding-left:1.2rem}
 .story .end li{max-width:none;margin:.35rem 0}
 """
@@ -4222,12 +4252,8 @@ def build_story(ctx: Ctx) -> str:
     by_id = {cid: fn for cid, _, fn in PRE_CARDS + EXP_CARDS + FWD_CARDS}
     steps = ("What reaches NEAR today", "What the price assumes", "What would have to give", "Three futures from the data",
              "How uncertain it is", "What to watch")
-    cover = (
-        '<section class="slide cover"><p class="eyebrow">Built at NEAR HACKATHON 2026, Investment Thesis track</p>'
-        '<h1>Can NEAR&rsquo;s Intents business grow into its dilution?</h1>'
-        f'<p class="big">If Intents carried NEAR&rsquo;s price alone, the price would assume captured revenue grows {M("ic_implied_cagr_r15_x25_pct")}% a year to 2031. '
-        f'At today&rsquo;s fees, that would take NEAR capturing {M("ic_take_needed_vs_gross_x")}× Intents&rsquo; whole gross fee.</p>'
-        '<p class="fine">An exploratory analysis, built after our predictions were frozen. They are scored on the last slide.</p></section>')
+    cover = header(ctx, eyebrow="Built at NEAR HACKATHON 2026, Investment Thesis track",
+                   fine="An exploratory analysis, built after our predictions were frozen. They are scored on the last slide.")
     slides = "".join(f'<section class="slide"><p class="step">{i + 1}. {esc(steps[i])}</p>{by_id[cid](ctx)}</section>'
                      for i, cid in enumerate(STORY_CARDS))
     update_line = ''
@@ -4253,7 +4279,7 @@ def build_story(ctx: Ctx) -> str:
         'exchange flows come out as ranges the labels cannot settle, so the frozen rating rule gives no signal.</li>'
         f'<li>{forecast_line}</li>{update_line}</ul>'
         f'<p>Re-run it: <code>git clone {esc(REPO_URL)} &amp;&amp; cd near-flow-statement &amp;&amp; make site</code>. Research only; nothing here is investment advice.</p></section>')
-    body = f'<main class="story">{cover}{slides}{end}</main>'
+    body = f'{cover}<main class="story">{slides}{end}</main>'
     body = body.replace('href="#', 'href="index.html#')
     head = (
         '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'

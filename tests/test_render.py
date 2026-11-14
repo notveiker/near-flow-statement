@@ -2733,9 +2733,9 @@ class Usage(unittest.TestCase):
         self.assertEqual([r for _, r in refs_in(why)], ["usage_bq_step_kaiching_share_pct", "usage_bq_tg_share_of_signer_drop_pct"])
         text = re.sub(r"\s+", " ", why.text())
         self.assertIn("Why either happened is not in the data", text)
-        lead = sec.find("p", "note").text()
+        lead = sec.find("summary").text() + " " + sec.find("p", "note").text()   # the line that opens the list, and the reason under it
         self.assertNotIn("cannot be computed from the committed sources, so the page does not show a number", lead)
-        self.assertIn("Questions the page leaves open", lead)
+        self.assertIn("Questions we leave open", lead)
 
 
 # ------------------------------------------------------------------ panel letters, in every figure
@@ -2940,7 +2940,7 @@ class Wording(unittest.TestCase):
                 blue = [pt for pt in panels[0].find_all("path") if "data-v" in pt.attrs and "s1" in pt.classes()]
                 self.assertEqual([float(pt.attrs["data-v"]) for pt in blue], [m["partners_kept_vs_near_rev_low_x"]], name)
         caption = card_node(DOM, "paid").find("figcaption").text()
-        self.assertIn("blue is the wide lower bound the headline quotes", caption)
+        self.assertIn("Blue: the bound the headline quotes", caption)
         notes = re.sub(r"\s+", " ", card_node(DOM, "paid").find("ul", "notes").find_all("li")[0].text())
         self.assertIn(f"the listed partner fees left after that are at least {m['partners_kept_vs_near_rev_low_x']}× NEAR’s revenue, and at most {m['near_share_of_partner_fees_max_pct']}% of the fees on partner swaps "
                       f"with no buyback fee entry reached NEAR", notes)
