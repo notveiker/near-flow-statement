@@ -4049,7 +4049,7 @@ def header(ctx: Ctx, eyebrow: str = "NEAR Hackathon 2026, Investment Thesis trac
 
 def brief(ctx: Ctx) -> str:
     """Under the cover: the thesis in four sentences, with the headline figures and today's values beside it."""
-    return (f'<section id="brief" aria-labelledby="brief-h"><h2 id="brief-h">The thesis</h2>'
+    return (f'<section id="brief" aria-labelledby="brief-h"><h2 id="brief-h">Our thesis</h2>'
             f'{thesis_box(ctx)}{kpis(ctx)}{live_panel(ctx)}</section>')
 
 
