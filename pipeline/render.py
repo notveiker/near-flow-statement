@@ -959,6 +959,7 @@ a:focus-visible,summary:focus-visible,.tablewrap:focus-visible,pre:focus-visible
 code,pre{font-family:var(--mono);font-size:.85em}
 code{overflow-wrap:anywhere}
 p,li{max-width:72ch}
+@media (min-width:1100px){p,li{max-width:88ch}}
 h1,h2,h3,.big,.gridhead{text-wrap:balance}
 p,li,dd,.tnote,.note,.finding{text-wrap:pretty}
 [data-m],[data-k],[data-f],[data-d],[data-s]{white-space:nowrap}
@@ -974,8 +975,8 @@ header.top{grid-area:top}main{grid-area:main}footer{grid-area:foot}
 /* first screen: the question, a one-line answer, four figures as ledger rows, the live row. No boxes. */
 header.top{padding:40px 0 0}
 .eyebrow{margin:0 0 20px;font-size:.8125rem;color:var(--muted)}
-h1{font-family:var(--serif);font-size:clamp(2.1rem,5.6vw,3.7rem);font-weight:500;line-height:1.04;letter-spacing:-.022em;margin:0 0 .55em;max-width:17ch}
-.thesis{margin:0 0 1.8rem;max-width:64ch}
+h1{font-family:var(--serif);font-size:clamp(2.1rem,5.6vw,3.7rem);font-weight:500;line-height:1.04;letter-spacing:-.022em;margin:0 0 .55em;max-width:22ch}
+.thesis{margin:0 0 1.8rem;max-width:76ch}
 .thesis p{margin:0 0 .75rem;max-width:none;font-size:1.0625rem;line-height:1.55;color:var(--ink2)}
 .thesis .deck{font-family:var(--serif);font-size:1.4375rem;line-height:1.32;letter-spacing:-.005em;color:var(--ink)}
 .thesis .go{margin:0;font-size:1rem}
@@ -993,12 +994,12 @@ h1{font-family:var(--serif);font-size:clamp(2.1rem,5.6vw,3.7rem);font-weight:500
 .tl{grid-column:1;grid-row:1;font-size:.875rem;line-height:1.35;color:var(--ink)}
 .tw{grid-column:1;grid-row:2;font-size:.75rem;line-height:1.4;color:var(--muted)}
 .todayrow output{grid-column:2;grid-row:1 / span 2;align-self:center;text-align:right;font-size:1.0625rem;font-weight:600;line-height:1.2;font-variant-numeric:lining-nums tabular-nums}
-details.readmore{margin:.2rem 0 .6rem;border:0;padding:0;max-width:900px}
+details.readmore{margin:.2rem 0 .6rem;border:0;padding:0}
 details.metawrap,details.fz{border:0;padding:0;margin:.6rem 0}
 details.metawrap>summary,details.fz>summary,details.readmore>summary,section>details.more>summary{font-size:.875rem;font-weight:500;color:var(--ink2)}
 .questions{font-size:1rem;margin:.6rem 0 .7rem}
 .answer{margin:.2rem 0 .4rem;padding:0 0 0 16px;border-left:1px solid var(--axis)}
-.answer p{margin:.7rem 0;max-width:86ch;font-size:.9375rem}
+.answer p{margin:.7rem 0;max-width:100ch;font-size:.9375rem}
 @media (min-width:1100px){
 header.top{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);column-gap:72px;align-items:start;padding-top:48px;
 grid-template-areas:"eb kcap" "h1 kpis" "th kpis" "th today"}
@@ -1068,6 +1069,8 @@ h3{font-size:1.0625rem;font-weight:650;line-height:1.35;margin:.5rem 0 .6rem}
 .grid>.gridhead{grid-column:1 / -1}
 @media (min-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.grid>.card.span2{grid-column:1 / -1}.grid>.card.span2 .cv-wide{max-width:900px;margin:0 auto}}
 @media (min-width:1214px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.grid>.card.span2{grid-column:span 2}}
+@media (min-width:1214px){.grid>.card.fill2{grid-column:span 2}.grid>.card.fill3{grid-column:1 / -1}.grid>.card.one{grid-column:auto}}
+.grid>.card .cv-wide{max-width:900px;margin:0 auto}
 .grid>.gridhead{margin:1.4rem 0 -.2rem;max-width:none;font-family:var(--serif);font-size:1.25rem;font-weight:500;color:var(--ink)}
 .grid>.gridhead:first-child{margin-top:.4rem}
 .card{container-type:inline-size;display:flex;flex-direction:column;min-width:0;margin:0;padding:18px 20px 14px;background:var(--surface);border:1px solid var(--border);border-radius:6px}
@@ -1123,12 +1126,11 @@ figcaption{font-size:.8125rem;line-height:1.5;color:var(--muted);margin-top:8px}
 .cardfoot summary:hover{text-decoration-thickness:2px}
 .cardfoot details[open]>summary{display:block;margin:.3rem 0 .5rem;color:var(--ink);font-weight:650;text-decoration:none}
 .finding{margin:.7rem 0 .4rem;font-weight:600}
-.finding::before{content:"In full";display:block;font-size:.75rem;font-weight:600;color:var(--muted)}
 .shows,.notshows{margin:.35rem 0}
 .notshows{color:var(--ink2)}
 .sn{display:grid;gap:10px;margin:.6rem 0 .2rem}
 .sn p{margin:0;font-size:.9375rem;line-height:1.5;max-width:none}
-.sn strong{display:block;font-size:.75rem;font-weight:700;color:var(--muted);margin-bottom:2px}
+.sn strong{font-weight:650;color:var(--ink)}
 @media (min-width:900px){.sn{grid-template-columns:1fr 1fr}}
 .source,.qnote{font-size:.875rem;color:var(--ink2);margin:.7rem 0 .3rem}
 .source p{margin:0 0 .2rem}
@@ -1140,8 +1142,8 @@ figcaption{font-size:.8125rem;line-height:1.5;color:var(--muted);margin-top:8px}
 ul.rule{margin:.8rem 0;padding-left:1.1rem}
 ul.rule li{margin:.35rem 0}
 .sha{color:var(--muted);font-size:.8125rem;white-space:nowrap}
-ol.fwd{list-style:none;padding:0;margin:.9rem 0;display:grid;gap:10px}
-ol.fwd li{border:1px solid var(--border);border-radius:4px;padding:10px 12px;min-width:0;max-width:none;background:var(--raise)}
+ol.fwd{list-style:none;padding:0;margin:.9rem 0;display:grid;gap:0;border-bottom:1px solid var(--grid)}
+ol.fwd li{border-top:1px solid var(--grid);padding:10px 0;min-width:0;max-width:none}
 ol.fwd p{margin:.2rem 0}
 .fhead{margin:.2rem 0}
 .fhead .st{font-size:.95rem}
@@ -1153,7 +1155,7 @@ details{margin:.45rem 0;border-top:1px solid var(--grid);padding-top:.35rem}
 summary{cursor:pointer;font-weight:650;padding:4px 0}
 pre{margin:.5rem 0 .6rem;padding:12px 14px;background:var(--code);border-radius:4px;overflow:auto;max-height:440px;line-height:1.45;tab-size:2}
 .qh{margin:.7rem 0 0;font-size:.875rem}
-.tablewrap{overflow:auto;max-height:420px;border:1px solid var(--border);border-radius:4px;margin:.5rem 0 .7rem;
+.tablewrap{overflow:auto;max-height:420px;border-top:1px solid var(--axis);border-bottom:1px solid var(--grid);margin:.5rem 0 .7rem;
 background:linear-gradient(to right,var(--surface) 30%,transparent) 0 0/34px 100% no-repeat local,
 linear-gradient(to left,var(--surface) 30%,transparent) 100% 0/34px 100% no-repeat local,
 linear-gradient(to right,var(--shade),transparent) 0 0/14px 100% no-repeat scroll,
@@ -1167,7 +1169,8 @@ th.txt,td.t{text-align:left;font-variant-numeric:normal;white-space:normal;min-w
 @media (max-width:699px){th.txt,td.t{min-width:6.5rem}th,td{padding:5px 8px}.scrollhint{display:block}}
 thead th{position:sticky;top:0;background:var(--surface);z-index:1;border-bottom:1px solid var(--axis);font-size:.75rem;color:var(--muted)}
 tbody tr:last-child td{border-bottom:0}
-.update{margin:2.4rem 0 1.2rem;max-width:860px}
+.update{margin:2.4rem 0 1.2rem}
+.update .tablewrap{max-width:860px}
 .update .updh{margin:.2rem 0 .4rem;font-size:1.0625rem}
 .update .tablewrap{max-height:none;background:var(--surface)}
 .update td:nth-child(3){font-weight:650;color:var(--ink)}
@@ -3375,7 +3378,7 @@ def card_signposts(ctx: Ctx) -> str:
                'rule&rsquo;s G_req, the take the price needs, and H1a&rsquo;s line.'),
         notshows='A score: P1 to P3 and M1 to M4 resolve on their own dates, from the data, and are scored as written.',
         figure=fig,
-        caption=f'Today means the data to {esc(m["asof"])}. The lines come from PREREG.md, the addendum and the cards above.',
+        caption=f'In this chart today means the data to {esc(m["asof"])}, the cutoff. The lines come from PREREG.md, the addendum and the cards above.',
         notes=('For staking the line is H1a&rsquo;s line (net staking outflow under half of staking rewards) divided by today&rsquo;s ratio, so a full bar would mean '
                'stakers are no longer net sellers of their rewards.',),
         source=source_p(ctx, raw=IC_SOURCE_RAW, code=("pipeline/investment_case.py", "pipeline/compute.py")),
@@ -3627,7 +3630,7 @@ def kpis(ctx: Ctx) -> str:
     def fig(key: str, unit: str) -> tuple[str, str]:
         if not up:
             return f'{M(key)}{unit}', ""
-        return f'{M("upd_" + key)}{unit}', f'<span class="kw">{M("asof")}: {M(key)}{unit}</span>'
+        return f'{M("upd_" + key)}{unit}', f'<span class="kw">was {M(key)}{unit}</span>'
 
     # one row each: the label, under it the earlier value (or the window), and the figure at the right
     items = [
@@ -3638,7 +3641,8 @@ def kpis(ctx: Ctx) -> str:
         (*fig("ic_base_coverage_2031_pct", "%"), "NEAR&rsquo;s dilution paid for in 2031, base case", "#chart-scenarios"),
     ]
     lis = "".join(f'<li class="kpi"><a class="kv" href="{h}">{v}</a><span class="kl">{l}</span>{w}</li>' for v, w, l, h in items)
-    cap = f'Where it stands, on data to {M("upd_asof")}' if up else f'Where it stands, on data to {M("asof")}'
+    cap = (f'Where it stands, on data to {M("upd_asof")}. In grey: where it stood on {M("asof")}, the cutoff.' if up
+           else f'Where it stands, on data to {M("asof")}')
     return f'<p class="kcap">{cap}</p><ul class="kpis" aria-label="Headline figures">{lis}</ul>'
 
 
@@ -3673,9 +3677,9 @@ def record_strip(ctx: Ctx) -> str:
     rebuilds offline. It carries no number, so it cannot disagree with the sections it links to; the order it states is the one
     freeze_order() checks against the manifest."""
     freeze_order(ctx)
-    return ('<p class="fine">The case on this page is exploratory: we built it after freezing our predictions, which are scored as written in the '
-            '<a href="#preregistered">track record</a>. Every chart and every committed number rebuilds offline with one command '
-            '(<a href="#reproduce">the steps</a>); only the Today row is fetched live. Nothing here is investment advice.</p>')
+    return ('<p class="fine">The view and figures above and the first two tabs are exploratory: we built them after freezing our predictions, which are '
+            'scored as written in the <a href="#preregistered">track record</a>. Every chart and every committed number rebuilds offline with one command '
+            '(<a href="#reproduce">the steps</a>); only the Today values are fetched live. Nothing here is investment advice.</p>')
 
 
 def what_changed(ctx: Ctx) -> str:
@@ -3710,7 +3714,7 @@ def what_changed(ctx: Ctx) -> str:
                         'no signal, so the view on this page rests on the investment case.'),
         ("Our odds.", f'We gave the four one-week forecasts odds of <span data-p="{lo_id}">{esc(pf[lo_id]["p"])}</span> to '
                       f'<span data-p="{hi_id}">{esc(pf[hi_id]["p"])}</span>, and two came true. Four is too few to re-fit our odds, so the '
-                      'longer-dated predictions stay as frozen. Read them with that in mind.'),
+                      'longer-dated predictions stay as frozen.'),
     )
     lis = "".join(f"<li><strong>{a}</strong> {b}</li>" for a, b in items)
     return (f'<section id="what-changed" aria-labelledby="wc-h"><h3 id="wc-h">What the results changed</h3>'
@@ -3850,12 +3854,13 @@ def live_panel(ctx: Ctx) -> str:
     if has_update(ctx):
         d = M("upd_asof")
         items = (
-            ("lv-implied", "Growth the price assumes", f'{d}: {M("upd_ic_implied_cagr_r15_x25_pct")}% a year'),
-            ("lv-mcap", "NEAR market cap", f'{d}: ${M("upd_mcap_usd_b")}B'),
-            ("lv-rev30", "Intents revenue, 30 days", f'{d}: ${M("upd_intents_rev_30d_m")}M'),
-            ("lv-take", "NEAR&rsquo;s take, 30 days", f'{d}: {M("upd_take_captured_bp_30d")} bp'),
-            ("lv-bb", "Buyback wallet", f'At the freeze: {M("buyback_wallet_near_m")}M NEAR'),
+            ("lv-implied", "Growth the price assumes", f'was {M("upd_ic_implied_cagr_r15_x25_pct")}% a year'),
+            ("lv-mcap", "NEAR market cap", f'was ${M("upd_mcap_usd_b")}B'),
+            ("lv-rev30", "Intents revenue, 30 days", f'was ${M("upd_intents_rev_30d_m")}M'),
+            ("lv-take", "NEAR&rsquo;s take, 30 days", f'was {M("upd_take_captured_bp_30d")} bp'),
+            ("lv-bb", "Buyback wallet", f'{M("buyback_wallet_near_m")}M NEAR at the freeze'),
         )
+        cap = f'Today, read live by your browser. In grey: {d}.'
     else:
         items = (
             ("lv-implied", "Growth the price assumes", f'{M("asof")}: {M("ic_implied_cagr_r15_x25_pct")}% a year'),
@@ -3864,8 +3869,9 @@ def live_panel(ctx: Ctx) -> str:
             ("lv-take", "NEAR&rsquo;s take, 30 days", f'{M("asof")}: {M("take_captured_bp_30d")} bp'),
             ("lv-bb", "Buyback wallet", f'At the freeze: {M("buyback_wallet_near_m")}M NEAR'),
         )
+        cap = 'Today, read live by your browser'
     lis = "".join(f'<li><span class="tl">{lab}</span><output id="{oid}">&hellip;</output><span class="tw">{was}</span></li>' for oid, lab, was in items)
-    return f'<div class="today" id="live"><p class="todaycap">Today, read live by your browser</p><ul class="todayrow" aria-label="Today&rsquo;s values">{lis}</ul></div>'
+    return f'<div class="today" id="live"><p class="todaycap">{cap}</p><ul class="todayrow" aria-label="Today&rsquo;s values">{lis}</ul></div>'
 
 
 def header(ctx: Ctx) -> str:
@@ -3964,12 +3970,52 @@ FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox
            "%3Crect width='16' height='16' rx='3' fill='%2316150f'/%3E%3Cpath fill='%23f1efe7' d='M3.5 9h2v3.5h-2zM7 6h2v6.5H7zM10.5 3.5h2v9h-2z'/%3E%3C/svg%3E")
 
 
+def row_classes(ids: tuple[str, ...], cols: int = 3) -> dict[str, str]:
+    """For one group of cards on the three-column grid: {card id: extra class} so that no row of the group ends short.
+
+    A card is one column wide, or two if it is in WIDE_CARDS. Cards fill rows in order. Where a row would end short, its last card is
+    widened to the end of the row (fill2, fill3). One case is handled the other way round: a wide card followed by one card and then a
+    lone card (2 + 1, then 1) becomes three cards in one row, the wide one drawn one column wide (class one)."""
+    width = {c: (2 if c in WIDE_CARDS else 1) for c in ids}
+    rows: list[list[str]] = [[]]
+    for c in ids:
+        if sum(width[x] for x in rows[-1]) + width[c] > cols:
+            rows.append([])
+        rows[-1].append(c)
+    out: dict[str, str] = {}
+    if len(rows) >= 2 and len(rows[-1]) == 1 and width[rows[-1][0]] == 1 and len(rows[-2]) == 2 and sum(width[x] for x in rows[-2]) == cols:
+        wide = next(x for x in rows[-2] if width[x] == 2)
+        out[wide] = "one"
+        width[wide] = 1
+        rows[-2:] = [rows[-2] + rows[-1]]
+    for row in rows:
+        short = cols - sum(width[x] for x in row)
+        if row and short > 0:
+            out[row[-1]] = f"fill{width[row[-1]] + short}"
+    return out
+
+
+def with_row_classes(ids: tuple[str, ...], cards: dict[str, tuple[str, object]], ctx: Ctx) -> str:
+    """The cards of one group, in order, each with the class row_classes() gives it."""
+    extra = row_classes(ids)
+    parts = []
+    for cid in ids:
+        markup = cards[cid][1](ctx)
+        if cid in extra:
+            head = '<section class="card'
+            if not markup.startswith(head):
+                raise SystemExit(f"render: card {cid} does not start with {head!r}")
+            markup = f'{head} {extra[cid]}' + markup[len(head):]
+        parts.append(markup)
+    return "".join(parts)
+
+
 def build_page(ctx: Ctx, breaks: bool = True) -> str:
     """The whole page. breaks=False leaves the body on a few very long lines (tests/test_render.py compares the two)."""
     cards = all_cards()
-    pre = "".join(fn(ctx) for _, _, fn in PRE_CARDS)
-    fwd = "".join(cards[cid][1](ctx) for cid in CASE_IDS)
-    exp = "".join(f'<p class="gridhead">{esc(head)}</p>' + "".join(cards[cid][1](ctx) for cid in ids) for head, ids in EVIDENCE)
+    pre = with_row_classes(tuple(c for c, _, _ in PRE_CARDS), cards, ctx)
+    fwd = with_row_classes(CASE_IDS, cards, ctx)
+    exp = "".join(f'<p class="gridhead">{esc(head)}</p>' + with_row_classes(ids, cards, ctx) for head, ids in EVIDENCE)
     body = (
         f'<a class="skip" href="#main">Skip to the content</a><div class="wrap">{header(ctx)}{side_nav()}'
         f'<main id="main">{record_strip(ctx)}'
@@ -3977,20 +4023,19 @@ def build_page(ctx: Ctx, breaks: bool = True) -> str:
         f'<a href="#exploratory" data-tab="exploratory">Supporting evidence</a><a href="#preregistered" data-tab="preregistered">Track record</a>'
         f'<a href="#method" data-tab="method">Method and limits</a></nav>'
         f'<section id="forward-view" class="panel" aria-labelledby="fwd-h"><h2 id="fwd-h">The investment case</h2>'
-        f'<p class="note">Six charts carry the argument: what reaches NEAR today, what the price assumes, what would have to change, and what to watch to 2031. '
-        f'Everything in this tab is exploratory: we chose it after freezing our predictions (the ladder on 2026-11-06, the rest on 2026-11-13 and '
+        f'<p class="note">Six charts: what reaches NEAR today, what the price assumes, what would have to change, and what to watch to 2031. '
+        f'All of it is exploratory: we chose it after freezing our predictions (the ladder on 2026-11-06, the rest on 2026-11-13 and '
         f'2026-11-14), and none of it changes a pre-registered hypothesis, threshold, probability or the rating.</p>'
         f'<div class="grid">{fwd}</div>{update_table(ctx)}{LADDER_HISTORY}</section>'
         f'<section id="exploratory" class="panel" aria-labelledby="exp-h"><h2 id="exp-h">Supporting evidence</h2>'
-        f'<p class="note">Context for the case. Everything in this tab is exploratory too: picked after the predictions were frozen. None of it is a test, '
-        f'and none of it feeds or changes a hypothesis, threshold, probability or the rating rule.</p>'
+        f'<p class="note">Context for the case, also exploratory: picked after the predictions were frozen. None of it is a test, and none of it feeds or '
+        f'changes a hypothesis, threshold, probability or the rating rule.</p>'
         f'<div class="grid">{exp}</div></section>'
         f'<section id="preregistered" class="panel" aria-labelledby="pre-h"><h2 id="pre-h">Track record: what we predicted, and what happened</h2>'
-        f'<p class="note">The case in the first tab is built on the data. This tab is the check we set ourselves before running it. We fixed these predictions, '
-        f'with odds, in the <a href="{esc(gh("PREREG.md"))}">pre-registration</a> before the first BigQuery result the repository records, so that the numbers '
-        f'could not be bent to fit a story afterwards. Each is scored as written, and a prediction the data went against is shown like the rest. Everything in '
-        f'this tab is pre-registered except the list headed &ldquo;What the results changed&rdquo;. Later method choices are dated in the '
-        f'<a href="{esc(gh("PREREG-ADDENDUM.md"))}">addendum</a>.</p>'
+        f'<p class="note">This is the check on the case: predictions we fixed, with odds, in the <a href="{esc(gh("PREREG.md"))}">pre-registration</a> '
+        f'before the first BigQuery result the repository records, so that the numbers could not be bent to fit a story afterwards. Each is scored as written, '
+        f'misses included. Everything in this tab is pre-registered except the list headed &ldquo;What the results changed&rdquo;. Later method choices are '
+        f'dated in the <a href="{esc(gh("PREREG-ADDENDUM.md"))}">addendum</a>.</p>'
         f'<details class="readmore"><summary>The questions and the pre-registered answer</summary>{answer_line(ctx)}</details>'
         f'{scorecard(ctx)}{what_changed(ctx)}<div class="grid">{pre}</div></section>'
         f'<div id="method" class="panel">{about_data(ctx)}{not_computed(ctx)}{reproduce(ctx)}{limits(ctx)}</div></div></main>'
@@ -4023,7 +4068,8 @@ STORY_CSS = """
 .story .badge{position:static;width:auto;height:auto;overflow:visible;clip:auto;font-size:.875rem;color:var(--muted)}
 .story h1{font-size:clamp(2rem,5.4vw,3.4rem);line-height:1.1;margin:.3em 0 .5em}
 .story .cover p,.story .end p{font-size:clamp(1.05rem,1.9vw,1.3rem);max-width:none;margin:.5rem 0}
-.story .cover .big{font-size:clamp(1.4rem,3vw,2.1rem);font-weight:750;line-height:1.25;margin:.2rem 0 1rem}
+.story .cover .big{font-size:clamp(1.4rem,3vw,2.1rem);font-weight:650;line-height:1.25;margin:.2rem 0 1rem}
+.story .cover .fine{margin:1.4rem 0 0;font-size:.9375rem;max-width:none}
 .story .end ul{font-size:clamp(1rem,1.7vw,1.2rem);padding-left:1.2rem}
 .story .end li{max-width:none;margin:.35rem 0}
 """
@@ -4041,7 +4087,8 @@ def build_story(ctx: Ctx) -> str:
         '<section class="slide cover"><p class="eyebrow">Built at NEAR HACKATHON 2026, Investment Thesis track</p>'
         '<h1>Can NEAR&rsquo;s Intents business grow into its dilution?</h1>'
         f'<p class="big">If Intents carried NEAR&rsquo;s price alone, the price would assume captured revenue grows {M("ic_implied_cagr_r15_x25_pct")}% a year to 2031. '
-        f'At today&rsquo;s fees, that would take NEAR capturing {M("ic_take_needed_vs_gross_x")}× Intents&rsquo; whole gross fee.</p></section>')
+        f'At today&rsquo;s fees, that would take NEAR capturing {M("ic_take_needed_vs_gross_x")}× Intents&rsquo; whole gross fee.</p>'
+        '<p class="fine">An exploratory analysis, built after our predictions were frozen. They are scored on the last slide.</p></section>')
     slides = "".join(f'<section class="slide"><p class="step">{i + 1}. {esc(steps[i])}</p>{by_id[cid](ctx)}</section>'
                      for i, cid in enumerate(STORY_CARDS))
     update_line = ''
@@ -4058,7 +4105,7 @@ def build_story(ctx: Ctx) -> str:
         forecast_line = 'Forecasts are dated in the addendum and will be scored as written, whichever way they go.'
     end = (
         '<section class="slide end"><p class="step">The view</p>'
-        f'<p class="big" style="font-size:clamp(1.3rem,2.6vw,1.8rem);font-weight:750">Intents led its market over the year to {M("asof")}, but as a claim on Intents&rsquo; fees NEAR is '
+        f'<p class="big" style="font-size:clamp(1.3rem,2.6vw,1.8rem);font-weight:650">Intents led its market over the year to {M("asof")}, but as a claim on Intents&rsquo; fees NEAR is '
         f'priced for more growth than the data show at today&rsquo;s fees: the bull case reaches {M("ic_bull_vs_required_pct")}% of the revenue the price would assume.</p>'
         '<ul>'
         f'<li>Base case: captured revenue would pay for {M("ic_base_coverage_2031_pct")}% of NEAR&rsquo;s dilution in 2031.</li>'

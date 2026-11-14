@@ -29,6 +29,7 @@ a:focus-visible,summary:focus-visible,.tablewrap:focus-visible,pre:focus-visible
 code,pre{font-family:var(--mono);font-size:.85em}
 code{overflow-wrap:anywhere}
 p,li{max-width:72ch}
+@media (min-width:1100px){p,li{max-width:88ch}}
 h1,h2,h3,.big,.gridhead{text-wrap:balance}
 p,li,dd,.tnote,.note,.finding{text-wrap:pretty}
 [data-m],[data-k],[data-f],[data-d],[data-s]{white-space:nowrap}
@@ -44,8 +45,8 @@ header.top{grid-area:top}main{grid-area:main}footer{grid-area:foot}
 /* first screen: the question, a one-line answer, four figures as ledger rows, the live row. No boxes. */
 header.top{padding:40px 0 0}
 .eyebrow{margin:0 0 20px;font-size:.8125rem;color:var(--muted)}
-h1{font-family:var(--serif);font-size:clamp(2.1rem,5.6vw,3.7rem);font-weight:500;line-height:1.04;letter-spacing:-.022em;margin:0 0 .55em;max-width:17ch}
-.thesis{margin:0 0 1.8rem;max-width:64ch}
+h1{font-family:var(--serif);font-size:clamp(2.1rem,5.6vw,3.7rem);font-weight:500;line-height:1.04;letter-spacing:-.022em;margin:0 0 .55em;max-width:22ch}
+.thesis{margin:0 0 1.8rem;max-width:76ch}
 .thesis p{margin:0 0 .75rem;max-width:none;font-size:1.0625rem;line-height:1.55;color:var(--ink2)}
 .thesis .deck{font-family:var(--serif);font-size:1.4375rem;line-height:1.32;letter-spacing:-.005em;color:var(--ink)}
 .thesis .go{margin:0;font-size:1rem}
@@ -63,12 +64,12 @@ h1{font-family:var(--serif);font-size:clamp(2.1rem,5.6vw,3.7rem);font-weight:500
 .tl{grid-column:1;grid-row:1;font-size:.875rem;line-height:1.35;color:var(--ink)}
 .tw{grid-column:1;grid-row:2;font-size:.75rem;line-height:1.4;color:var(--muted)}
 .todayrow output{grid-column:2;grid-row:1 / span 2;align-self:center;text-align:right;font-size:1.0625rem;font-weight:600;line-height:1.2;font-variant-numeric:lining-nums tabular-nums}
-details.readmore{margin:.2rem 0 .6rem;border:0;padding:0;max-width:900px}
+details.readmore{margin:.2rem 0 .6rem;border:0;padding:0}
 details.metawrap,details.fz{border:0;padding:0;margin:.6rem 0}
 details.metawrap>summary,details.fz>summary,details.readmore>summary,section>details.more>summary{font-size:.875rem;font-weight:500;color:var(--ink2)}
 .questions{font-size:1rem;margin:.6rem 0 .7rem}
 .answer{margin:.2rem 0 .4rem;padding:0 0 0 16px;border-left:1px solid var(--axis)}
-.answer p{margin:.7rem 0;max-width:86ch;font-size:.9375rem}
+.answer p{margin:.7rem 0;max-width:100ch;font-size:.9375rem}
 @media (min-width:1100px){
 header.top{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);column-gap:72px;align-items:start;padding-top:48px;
 grid-template-areas:"eb kcap" "h1 kpis" "th kpis" "th today"}
@@ -138,6 +139,8 @@ h3{font-size:1.0625rem;font-weight:650;line-height:1.35;margin:.5rem 0 .6rem}
 .grid>.gridhead{grid-column:1 / -1}
 @media (min-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.grid>.card.span2{grid-column:1 / -1}.grid>.card.span2 .cv-wide{max-width:900px;margin:0 auto}}
 @media (min-width:1214px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.grid>.card.span2{grid-column:span 2}}
+@media (min-width:1214px){.grid>.card.fill2{grid-column:span 2}.grid>.card.fill3{grid-column:1 / -1}.grid>.card.one{grid-column:auto}}
+.grid>.card .cv-wide{max-width:900px;margin:0 auto}
 .grid>.gridhead{margin:1.4rem 0 -.2rem;max-width:none;font-family:var(--serif);font-size:1.25rem;font-weight:500;color:var(--ink)}
 .grid>.gridhead:first-child{margin-top:.4rem}
 .card{container-type:inline-size;display:flex;flex-direction:column;min-width:0;margin:0;padding:18px 20px 14px;background:var(--surface);border:1px solid var(--border);border-radius:6px}
@@ -193,12 +196,11 @@ figcaption{font-size:.8125rem;line-height:1.5;color:var(--muted);margin-top:8px}
 .cardfoot summary:hover{text-decoration-thickness:2px}
 .cardfoot details[open]>summary{display:block;margin:.3rem 0 .5rem;color:var(--ink);font-weight:650;text-decoration:none}
 .finding{margin:.7rem 0 .4rem;font-weight:600}
-.finding::before{content:"In full";display:block;font-size:.75rem;font-weight:600;color:var(--muted)}
 .shows,.notshows{margin:.35rem 0}
 .notshows{color:var(--ink2)}
 .sn{display:grid;gap:10px;margin:.6rem 0 .2rem}
 .sn p{margin:0;font-size:.9375rem;line-height:1.5;max-width:none}
-.sn strong{display:block;font-size:.75rem;font-weight:700;color:var(--muted);margin-bottom:2px}
+.sn strong{font-weight:650;color:var(--ink)}
 @media (min-width:900px){.sn{grid-template-columns:1fr 1fr}}
 .source,.qnote{font-size:.875rem;color:var(--ink2);margin:.7rem 0 .3rem}
 .source p{margin:0 0 .2rem}
@@ -210,8 +212,8 @@ figcaption{font-size:.8125rem;line-height:1.5;color:var(--muted);margin-top:8px}
 ul.rule{margin:.8rem 0;padding-left:1.1rem}
 ul.rule li{margin:.35rem 0}
 .sha{color:var(--muted);font-size:.8125rem;white-space:nowrap}
-ol.fwd{list-style:none;padding:0;margin:.9rem 0;display:grid;gap:10px}
-ol.fwd li{border:1px solid var(--border);border-radius:4px;padding:10px 12px;min-width:0;max-width:none;background:var(--raise)}
+ol.fwd{list-style:none;padding:0;margin:.9rem 0;display:grid;gap:0;border-bottom:1px solid var(--grid)}
+ol.fwd li{border-top:1px solid var(--grid);padding:10px 0;min-width:0;max-width:none}
 ol.fwd p{margin:.2rem 0}
 .fhead{margin:.2rem 0}
 .fhead .st{font-size:.95rem}
@@ -223,7 +225,7 @@ details{margin:.45rem 0;border-top:1px solid var(--grid);padding-top:.35rem}
 summary{cursor:pointer;font-weight:650;padding:4px 0}
 pre{margin:.5rem 0 .6rem;padding:12px 14px;background:var(--code);border-radius:4px;overflow:auto;max-height:440px;line-height:1.45;tab-size:2}
 .qh{margin:.7rem 0 0;font-size:.875rem}
-.tablewrap{overflow:auto;max-height:420px;border:1px solid var(--border);border-radius:4px;margin:.5rem 0 .7rem;
+.tablewrap{overflow:auto;max-height:420px;border-top:1px solid var(--axis);border-bottom:1px solid var(--grid);margin:.5rem 0 .7rem;
 background:linear-gradient(to right,var(--surface) 30%,transparent) 0 0/34px 100% no-repeat local,
 linear-gradient(to left,var(--surface) 30%,transparent) 100% 0/34px 100% no-repeat local,
 linear-gradient(to right,var(--shade),transparent) 0 0/14px 100% no-repeat scroll,
@@ -237,7 +239,8 @@ th.txt,td.t{text-align:left;font-variant-numeric:normal;white-space:normal;min-w
 @media (max-width:699px){th.txt,td.t{min-width:6.5rem}th,td{padding:5px 8px}.scrollhint{display:block}}
 thead th{position:sticky;top:0;background:var(--surface);z-index:1;border-bottom:1px solid var(--axis);font-size:.75rem;color:var(--muted)}
 tbody tr:last-child td{border-bottom:0}
-.update{margin:2.4rem 0 1.2rem;max-width:860px}
+.update{margin:2.4rem 0 1.2rem}
+.update .tablewrap{max-width:860px}
 .update .updh{margin:.2rem 0 .4rem;font-size:1.0625rem}
 .update .tablewrap{max-height:none;background:var(--surface)}
 .update td:nth-child(3){font-weight:650;color:var(--ink)}
@@ -267,7 +270,8 @@ footer{margin:3.5rem 0 2.5rem;padding-top:1rem;border-top:1px solid var(--grid);
 .story .badge{position:static;width:auto;height:auto;overflow:visible;clip:auto;font-size:.875rem;color:var(--muted)}
 .story h1{font-size:clamp(2rem,5.4vw,3.4rem);line-height:1.1;margin:.3em 0 .5em}
 .story .cover p,.story .end p{font-size:clamp(1.05rem,1.9vw,1.3rem);max-width:none;margin:.5rem 0}
-.story .cover .big{font-size:clamp(1.4rem,3vw,2.1rem);font-weight:750;line-height:1.25;margin:.2rem 0 1rem}
+.story .cover .big{font-size:clamp(1.4rem,3vw,2.1rem);font-weight:650;line-height:1.25;margin:.2rem 0 1rem}
+.story .cover .fine{margin:1.4rem 0 0;font-size:.9375rem;max-width:none}
 .story .end ul{font-size:clamp(1rem,1.7vw,1.2rem);padding-left:1.2rem}
 .story .end li{max-width:none;margin:.35rem 0}
 </style>
@@ -277,7 +281,8 @@ footer{margin:3.5rem 0 2.5rem;padding-top:1rem;border-top:1px solid var(--grid);
 <section class="slide cover">
 <p class="eyebrow">Built at NEAR HACKATHON 2026, Investment Thesis track</p>
 <h1>Can NEAR&rsquo;s Intents business grow into its dilution?</h1>
-<p class="big">If Intents carried NEAR&rsquo;s price alone, the price would assume captured revenue grows <span data-m="ic_implied_cagr_r15_x25_pct">84.9</span>% a year to 2031. At today&rsquo;s fees, that would take NEAR capturing <span data-m="ic_take_needed_vs_gross_x">2.5</span>× Intents&rsquo; whole gross fee.</p></section>
+<p class="big">If Intents carried NEAR&rsquo;s price alone, the price would assume captured revenue grows <span data-m="ic_implied_cagr_r15_x25_pct">84.9</span>% a year to 2031. At today&rsquo;s fees, that would take NEAR capturing <span data-m="ic_take_needed_vs_gross_x">2.5</span>× Intents&rsquo; whole gross fee.</p>
+<p class="fine">An exploratory analysis, built after our predictions were frozen. They are scored on the last slide.</p></section>
 <section class="slide">
 <p class="step">1. What reaches NEAR today</p>
 <section class="card span2" id="chart-ladder" aria-labelledby="chart-ladder-h">
@@ -1828,7 +1833,7 @@ L187.8,176.7L191.2,176.8L194.5,176.9L197.9,176.6L201.3,176.7L204.6,176.3L208,176
 <line class="refline" data-v="100" x1="221.4" x2="221.4" y1="237.5" y2="257.5" />
 <line class="refline" data-v="100" x1="221.4" x2="221.4" y1="278" y2="298" />
 <text x="227.4" y="52" class="rl" font-size="11.5">at the line</text></g></svg></div></div>
-<figcaption>Today means the data to 2026-11-04. The lines come from PREREG.md, the addendum and the cards above.</figcaption></figure>
+<figcaption>In this chart today means the data to 2026-11-04, the cutoff. The lines come from PREREG.md, the addendum and the cards above.</figcaption></figure>
 <div class="cardfoot">
 <details class="more">
 <summary>Notes and sources</summary>
@@ -1918,7 +1923,7 @@ L187.8,176.7L191.2,176.8L194.5,176.9L197.9,176.6L201.3,176.7L204.6,176.3L208,176
 <td class="t">any time</td></tr></tbody></table></div></details></div></section></section>
 <section class="slide end">
 <p class="step">The view</p>
-<p class="big" style="font-size:clamp(1.3rem,2.6vw,1.8rem);font-weight:750">Intents led its market over the year to <span data-m="asof">2026-11-04</span>, but as a claim on Intents&rsquo; fees NEAR is priced for more growth than the data show at today&rsquo;s fees: the bull case reaches <span data-m="ic_bull_vs_required_pct">53.9</span>% of the revenue the price would assume.</p>
+<p class="big" style="font-size:clamp(1.3rem,2.6vw,1.8rem);font-weight:650">Intents led its market over the year to <span data-m="asof">2026-11-04</span>, but as a claim on Intents&rsquo; fees NEAR is priced for more growth than the data show at today&rsquo;s fees: the bull case reaches <span data-m="ic_bull_vs_required_pct">53.9</span>% of the revenue the price would assume.</p>
 <ul>
 <li>Base case: captured revenue would pay for <span data-m="ic_base_coverage_2031_pct">44.6</span>% of NEAR&rsquo;s dilution in 2031.</li>
 <li>To close the gap in today&rsquo;s market, NEAR would have to capture <span data-m="ic_take_needed_vs_gross_x">2.5</span>× Intents&rsquo; whole gross fee.</li>

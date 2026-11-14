@@ -488,8 +488,8 @@ class NoExternalResources(unittest.TestCase):
             self.assertEqual([o.attrs["id"] for o in outs], ["lv-implied", "lv-mcap", "lv-rev30", "lv-take", "lv-bb"], name)
             self.assertTrue(all(o.text() == "…" for o in outs), name)
             self.assertEqual([r for _, r in refs_in(row)],
-                             ["upd_asof", "upd_ic_implied_cagr_r15_x25_pct", "upd_asof", "upd_mcap_usd_b", "upd_asof", "upd_intents_rev_30d_m",
-                              "upd_asof", "upd_take_captured_bp_30d", "buyback_wallet_near_m"], name)
+                             ["upd_asof", "upd_ic_implied_cagr_r15_x25_pct", "upd_mcap_usd_b", "upd_intents_rev_30d_m",   # the date once, in the caption
+                              "upd_take_captured_bp_30d", "buyback_wallet_near_m"], name)
             about = re.sub(r"\s+", " ", section_node(dom, "about").text())
             self.assertIn("The Today row is exploratory. Your browser fetches it when the page opens", about, name)
             self.assertNotIn("Fetched", re.sub(r"\s+", " ", dom.find("header").text()), name)
